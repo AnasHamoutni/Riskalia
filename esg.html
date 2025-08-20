@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — ESG</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — ESG & Risques Climat</title>
+  <meta name="description" content="Diagnostic climat/ESG, stress tests, structuration paramétrique, conformité TCFD/Taxonomie UE/SFDR, financement vert et accompagnement au changement."/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
-:root{
-  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;
-  --cl:#fff;--cm:#f5f8fa;--cd:#253238;
-  --radius:14px;
-  --grad:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85));
-}
+:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;--radius:14px;--shadow:0 10px 24px rgba(0,0,0,.07);--grad:linear-gradient(rgba(0,92,115,.84),rgba(0,92,115,.84))}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
-body{font-family:'Open Sans',sans-serif;background:var(--cl);color:var(--cd);line-height:1.65}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--cd);line-height:1.65}
 body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
 a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
 .container{max-width:1200px;margin:auto;padding:0 16px}
-.btn{display:inline-block;padding:12px 22px;background:var(--c3);color:#fff;border-radius:8px;font-weight:700;transition:.25s}
+.btn{display:inline-block;padding:12px 20px;background:var(--c3);color:#fff;border-radius:10px;font-weight:700;transition:.2s;border:1px solid transparent}
 .btn:hover{transform:translateY(-2px);background:var(--c2)}
-.btn-secondary{background:#fff;color:var(--c1)}
-.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:0 10px 20px rgba(0,0,0,.06)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:7px 12px;border-radius:999px;font-weight:800}
+.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.muted{color:#607888}
-.kicker{color:#4e6a74;margin:-4px 0 16px;text-align:center}
-header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:50}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.muted{color:#5f7781}
+.small{font-size:.95rem}
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-.brand{display:flex;align-items:center;gap:8px;color:var(--c1);font-weight:800}
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
 .brand img{height:48px;width:auto;border-radius:8px}
 nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
-nav a{position:relative}
+nav a{position:relative;padding:6px}
 nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
-nav a:hover::after, nav a.active::after{width:100%}
+nav a:hover::after,nav a.active::after{width:100%}
 .menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
 @media(max-width:900px){
   nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-  nav ul.show{right:0}
-  body[dir="rtl"] nav ul{right:auto;left:-100%}
-  body[dir="rtl"] nav ul.show{left:0}
+  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
   .menu-toggle{display:block}
 }
-.hero{min-height:40vh;background:var(--grad),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
-.hero h1{color:#fff;font-size:clamp(2rem,6vw,3.1rem);letter-spacing:-.5px;margin-bottom:12px}
-.hero p{color:#fff;font-size:clamp(1rem,4vw,1.18rem);max-width:780px;margin:0 auto 24px}
+.hero{min-height:46vh;background:var(--grad),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.5vw,3.1rem);letter-spacing:-.4px;margin-bottom:12px}
+.hero p{color:#fff;opacity:.98;max-width:860px;margin:0 auto 16px}
+section{padding:54px 0}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 12px}
+.tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:800}
+.tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
+blockquote{border-left:4px solid var(--c3);padding-left:12px;color:#46656f;background:#f0fafc;border-radius:8px}
 footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
 .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-footer h4{color:var(--c3);margin-bottom:8px}
-a:focus,button:focus,.btn:focus{outline:2px solid var(--c3);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+.reveal.active{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
   </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
-    <nav aria-label="Navigation">
+    <a class="brand" href="index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
+    </a>
+    <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
@@ -74,295 +86,489 @@ a:focus,button:focus,.btn:focus{outline:2px solid var(--c3);outline-offset:2px}
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="container">
-    <h1 data-i18n="esg.title">Assurances durables & accompagnement ESG</h1>
-    <p class="kicker" style="color:#fff;opacity:.95" data-i18n="esg.kicker">Mesurer, décider, financer — pour une résilience durable</p>
+    <h1 data-i18n="esg.title">ESG & Risques Climat</h1>
+    <p data-i18n="esg.sub">Diagnostiquer, décider, financer et piloter vos risques physiques et de transition. TCFD • Taxonomie UE • SFDR • Scénarios NGFS.</p>
+    <div class="badges" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <span class="badge" data-i18n="esg.badges.0">Stress tests & scénarios</span>
+      <span class="badge" data-i18n="esg.badges.1">Paramétriques & pertes d’exploitation vertes</span>
+      <span class="badge" data-i18n="esg.badges.2">Reporting TCFD & Taxonomie</span>
+    </div>
   </div>
 </section>
 
-<section style="padding:40px 0 0">
+<!-- TABS -->
+<section class="reveal" style="padding-top:28px">
   <div class="container">
-    <div id="esg-grid" class="grid-3"></div>
+    <div class="tabs">
+      <button class="tab active" data-tab="approach" data-i18n="esg.tabs.approach">Approche</button>
+      <button class="tab" data-tab="diagnostics" data-i18n="esg.tabs.diagnostics">Diagnostic</button>
+      <button class="tab" data-tab="financing" data-i18n="esg.tabs.financing">Financement & Paramétrique</button>
+      <button class="tab" data-tab="compliance" data-i18n="esg.tabs.compliance">Conformité & Reporting</button>
+      <button class="tab" data-tab="change" data-i18n="esg.tabs.change">Formation & Change</button>
+      <button class="tab" data-tab="cases" data-i18n="esg.tabs.cases">Cas d’usage</button>
+      <button class="tab" data-tab="faq" data-i18n="esg.tabs.faq">FAQ</button>
+    </div>
+    <div id="tab-content"></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container" style="text-align:center">
+    <h2 data-i18n="esg.cta.title">Un projet à impact, un portefeuille à sécuriser ?</h2>
+    <p class="muted" data-i18n="esg.cta.text">Partagez vos besoins (sites, budgets, contraintes bailleurs). Nous revenons sous 24–48 h avec une feuille de route.</p>
+    <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.advisor">Parler à un expert</a>
   </div>
 </section>
 
 <footer>
   <div class="container footer-grid">
-    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
-    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
-    <div><h4 data-i18n="footer.links">Liens</h4>
-      <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-      </p>
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
     </div>
   </div>
 </footer>
 
 <script>
+/* ================== i18n ================== */
 const I18N = {
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",contact:"Contact",links:"Liens"},
-    home:{
-      title:"L’expertise qui rassure",
-      sub:"Courtage toutes branches · Réassurance · Assurance ESG. Nous transformons vos aléas opérationnels en croissance durable.",
-      why:[
-        {t:"Agrément ACAPS toutes branches",d:"Courtage, réassurance & Takaful. Conformité & protection des assurés."},
-        {t:"Méthode « Scoring & Placement »",d:"Notation des assureurs/réassureurs → meilleures conditions."},
-        {t:"Transparence contractuelle",d:"Commissions & honoraires communiqués avant signature."}
-      ]
-    },
-    solutions:{
-      title:"Solutions d’assurance",
-      choose:"Choisissez votre profil",
-      pill:{enterprise:"Entreprises",individual:"Particuliers"},
-      enterprise:[
-        {icon:"🏢",title:"Multirisques Entreprises",desc:"Locaux, équipements, pertes d’exploitation et RC."},
-        {icon:"🚚",title:"Transport & Logistique",desc:"Ad valorem, CMR, chaîne du froid et retards."},
-        {icon:"🚗",title:"Automobile & Flotte",desc:"Gestion de flotte, sinistres et tarification dédiée."},
-        {icon:"⚖️",title:"Responsabilité Civile",desc:"Générale, professionnelle, produits, environnement."},
-        {icon:"🏗️",title:"Construction (TRC/RC déc.)",desc:"Tous risques chantier, montage/essai, décennale."},
-        {icon:"👥",title:"Santé Collective & Prévoyance",desc:"Couvertures collectives, absentéisme, assistance."}
-      ],
-      individual:[
-        {icon:"🩺",title:"Santé",desc:"Réseaux de soins, remboursements clairs, hospitalisation."},
-        {icon:"🛡️",title:"Accidents de la vie",desc:"Indemnisation invalidité, frais et assistance."},
-        {icon:"⏳",title:"Retraite & Épargne",desc:"Capital ou rente, fiscalité optimisée."},
-        {icon:"🏠",title:"Biens (habitation/auto)",desc:"MRH, auto, objets de valeur — garanties essentielles."},
-        {icon:"💠",title:"Assurance-vie & Placements",desc:"Supports dirham/euro, profils de risque, transmission."},
-        {icon:"🛫",title:"Voyage Schengen",desc:"Attestation conforme, rapatriement et frais médicaux."}
-      ]
-    },
-    re:{
-      title:"Réassurance : expertise & accompagnement stratégique",
-      tabs:{intro:"Présentation",treaty:"Traités",fac:"Facultatives",product:"Conception produit"},
-      intro:[
-        "Accompagnement des assureurs, captives et grands risques : analyse de portefeuille, stratégie de cession, placement et sinistres complexes.",
-        "Accès direct à un marché noté A/A+/AA, benchmark de clauses et délais d’indemnisation.",
-        "Pilotage de bout en bout : structuration, wording, pricing indicatif et négociation."
-      ],
-      treaty:[
-        "Structuration : Quota Share, Surplus, XoL, Stop-Loss, Agrégat — alignés IFRS 17.",
-        "Paramétrage des priorités, limites et corridors de commission.",
-        "Documentation LMA/IUA et mapping comptable."
-      ],
-      fac:[
-        "Placements rapides : Property, Engineering, Energy, Casualty, Lines financières.",
-        "Solutions pour projets spécifiques (construction, énergie) et pics d’exposition.",
-        "Gestion des sinistres : quantum review, loss adjusters, arbitrages internationaux."
-      ],
-      product:[
-        "Design de produits (y compris paramétriques) : triggers et base d’indemnisation.",
-        "Wording & exclusions : rédaction, benchmark marché, simplification client.",
-        "Soutien pricing/actuariat et data qualité pour le suivi de rentabilité."
-      ]
-    },
+    cta:{quote:"Obtenir un devis",advisor:"Parler à un expert"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
     esg:{
-      title:"Assurances durables & accompagnement ESG",
-      kicker:"Mesurer, décider, financer — pour une résilience durable",
-      blocks:[
-        {icon:"📐",title:"Mesurer & diagnostiquer",desc:"Expositions, stress tests & scénarios NGFS, cartographie climat/ESG."},
-        {icon:"🧭",title:"Décider & aligner",desc:"Alignement TCFD, Taxonomie UE, SFDR ; feuille de route ESG."},
-        {icon:"💼",title:"Financer & mettre en œuvre",desc:"Paramétriques, pertes d’exploitation vertes, accès bailleurs."}
-      ]
-    },
-    contact:{
-      title:"Contact & Espace client",
-      lead:"Un conseiller vous répond sous 24 h",
-      form:{name:"Nom & Prénom",email:"Adresse e-mail",phone:"Téléphone",type:"Type d’assurance",msg:"Message",
-        opt:{broker:"Courtage",re:"Réassurance",esg:"ESG & Financement climatique"},submit:"Envoyer"},
-      ok:"Merci ! Votre demande a bien été transmise."
+      title:"ESG & Risques Climat",
+      sub:"Diagnostiquer, décider, financer et piloter vos risques physiques et de transition. TCFD • Taxonomie UE • SFDR • Scénarios NGFS.",
+      badges:["Stress tests & scénarios","Paramétriques & pertes d’exploitation vertes","Reporting TCFD & Taxonomie"],
+      tabs:{approach:"Approche",diagnostics:"Diagnostic",financing:"Financement & Paramétrique",compliance:"Conformité & Reporting",change:"Formation & Change",cases:"Cas d’usage",faq:"FAQ"},
+      approach:{
+        lead:"Une démarche pragmatique et séquencée pour passer de l’analyse au financement, puis au pilotage.",
+        blocks:[
+          {t:"Mesurer",d:"Cartographie des aléas climatiques (physiques) et des expositions de transition (réglementation, énergie, marché)."},
+          {t:"Décider",d:"Matrice de matérialité, appétence au risque, feuille de route par site et par fonction (Achats, Immobilier, Finance)."},
+          {t:"Assurer & Financer",d:"Paramétriques (indice pluie/vent/NDVI), pertes d’exploitation vertes, garanties environnement, accès bailleurs (BM, BEI, AFD, GCF)."},
+          {t:"Piloter & Reporter",d:"Indicateurs TCFD, KPIs (LR/ULR), Taxonomie UE, SFDR Articles (le cas échéant), amélioration continue."}
+        ],
+        timeline:{k:"Feuille de route type (4–8 semaines)",items:[
+          "S1 : cadrage & collecte données (sites, historiques, exigences bailleurs)",
+          "S2 : diagnostic & scénarios (RCP/NGFS), quantification des pertes",
+          "S3 : options d’assurance & structuration financière (paramétriques, RC env.)",
+          "S4 : plan d’implémentation, reporting TCFD, budgétisation & calendrier"
+        ]}
+      },
+      diagnostics:{
+        intro:"Des diagnostics orientés décision, pas des rapports de 200 pages.",
+        cards:[
+          {t:"Exposition physique",d:"Heatmaps aléas (inondation, sécheresse, vent, canicule, feu), chaines d'approvisionnement critiques."},
+          {t:"Quantification pertes",d:"Pertes d’exploitation, dommages directs, coûts logistiques — horizons 1/5/10 ans."},
+          {t:"Stress tests",d:"Scénarios NGFS/RCP, variations d’énergie/carbone, sensibilité marges & cash."},
+          {t:"Priorisation",d:"Pareto des sites/actifs, quick wins vs. projets structurants, CAPEX/OPEX."}
+        ],
+        docs:["Liste des sites & coordonnées","Pertes historiques (si existant)","Plans de continuité/maintenance","Données énergie & eau"]
+      },
+      financing:{
+        intro:"Structurer le financement du risque et des projets à impact.",
+        parametric:{
+          k:"Paramétriques — principes",
+          bullets:[
+            "Déclenchement simple (pluie, vent, température, sismique) → indemnité rapide",
+            "Contrôle du basis risk via indices locaux/multi-sources",
+            "Fenêtre d’indemnisation 10–30 jours selon péril",
+            "Peut back-uper les franchises d’un programme classique"
+          ],
+          docs:["Localisation & historique météo/alarms","Seuils opérationnels (arrêt, seuil de service)","Budget cible & limites souhaitées"]
+        },
+        greenBI:{
+          k:"Pertes d’exploitation vertes",
+          bullets:[
+            "Couverture des surcoûts d’énergie/approvisionnement liés aux aléas",
+            "Inclusion d’investissements de résilience conditionnés",
+            "Compatibilité avec exigences bailleurs (BM, BEI, AFD, GCF)"
+          ]
+        },
+        lenders:{k:"Bailleurs & financeurs",bullets:["Banque Mondiale/IFC","BEI/KfW","AFD/Proparco","Fonds climat (GCF, etc.)"] }
+      },
+      compliance:{
+        lead:"Concrétiser la conformité sans complexité.",
+        blocks:[
+          {t:"TCFD",d:"Gouvernance, stratégie, gestion des risques, métriques & cibles — structuration des chapitres et jalons annuels."},
+          {t:"Taxonomie UE",d:"Éligibilité & alignement (CA, CAPEX, OPEX), critères techniques & Do No Significant Harm (DNSH)."},
+          {t:"SFDR",d:"Phares pour investisseurs (Article 6/8/9) — indicateurs de durabilité et plans d’action."},
+          {t:"KPIs & MI",d:"Définition des KPIs, reporting trimestriel, tableaux de suivi et contrôles internes."}
+        ],
+        docs:["Périmètre consolidation","Données CA/CAPEX/OPEX","Inventaire activités","Matérialité & risques"]
+      },
+      change:{
+        lead:"Acculturer et embarquer les équipes.",
+        items:[
+          {t:"Formations ciblées",d:"Achats (clauses ESG), Exploitation (plan chaleur), Finance (provisions/climat)."},
+          {t:"Exercices & jeux sérieux",d:"Table-top et simulations d’événements, réactions en chaîne."},
+          {t:"Procédures & contrats",d:"Clauses fournisseurs, critères d’appel d’offres, SLA de continuité."}
+        ]
+      },
+      cases:{
+        items:[
+          {t:"Site agroalimentaire",d:"Index pluie + chaleur pour sécuriser la production saisonnière ; ROI < 18 mois grâce à la réduction des arrêts."},
+          {t:"Logistique urbaine",d:"Paramétrique vent & inondation couvrant surcoûts de distribution ; reporting TCFD intégré au plan annuel."}
+        ]
+      },
+      faq:{
+        items:[
+          {q:"Faut-il un historique météo long ?",a:"Souhaitable mais pas bloquant — on combine stations, satellites et réanalyses pour reconstruire des séries."},
+          {q:"Les paramétriques remplacent-ils l’assurance classique ?",a:"Non, ils la complètent pour indemniser rapidement des pertes difficiles à prouver."},
+          {q:"Peut-on démarrer petit ?",a:"Oui, pilote sur 1–2 sites avec seuils simples, puis extension."},
+          {q:"Délais typiques ?",a:"Diagnostic 2–4 semaines, structuration 2–3 semaines, mise en place immédiate après accord."},
+          {q:"C’est compatible avec nos bailleurs ?",a:"Oui — nous cadrons dès le départ les exigences (Taxonomie, TCFD, indicateurs)."},
+          {q:"Intervenez-vous hors Maroc ?",a:"Oui, selon les lignes et partenaires."}
+        ]
+      },
+      cta:{title:"Un projet à impact, un portefeuille à sécuriser ?",text:"Partagez vos besoins (sites, budgets, contraintes bailleurs). Nous revenons sous 24–48 h avec une feuille de route."}
     }
   },
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",contact:"Contact",links:"Links"},
-    home:{
-      title:"Expertise that assures",
-      sub:"All-lines brokerage · Reinsurance · ESG insurance. We turn operational uncertainty into sustainable growth.",
-      why:[
-        {t:"ACAPS licence – all lines",d:"Brokerage, reinsurance & Takaful. Compliance and policyholder protection."},
-        {t:"“Scoring & Placement” method",d:"Carrier scoring → best terms."},
-        {t:"Contract transparency",d:"Fees & commissions disclosed pre-signature."}
-      ]
-    },
-    solutions:{
-      title:"Insurance solutions",
-      choose:"Choose your profile",
-      pill:{enterprise:"Enterprises",individual:"Individuals"},
-      enterprise:[
-        {icon:"🏢",title:"Commercial All-risks",desc:"Premises, equipment, BI and liability."},
-        {icon:"🚚",title:"Transport & Logistics",desc:"Ad valorem, CMR, cold-chain and delay."},
-        {icon:"🚗",title:"Motor & Fleet",desc:"Fleet management, claims and tailored pricing."},
-        {icon:"⚖️",title:"Liability",desc:"General, professional & product liability, environmental."},
-        {icon:"🏗️",title:"Construction (CAR/Decennial)",desc:"CAR, erection/commissioning, decennial."},
-        {icon:"👥",title:"Group Health & Benefits",desc:"Collective covers, absenteeism, assistance."}
-      ],
-      individual:[
-        {icon:"🩺",title:"Health",desc:"Care networks, clear reimbursements, hospitalization options."},
-        {icon:"🛡️",title:"Personal Accident",desc:"Compensation for disability, expenses and assistance."},
-        {icon:"⏳",title:"Retirement & Savings",desc:"Lump sum or annuity, tax-efficient."},
-        {icon:"🏠",title:"Property (home/auto)",desc:"Home MRH, motor, valuables — essentials covered."},
-        {icon:"💠",title:"Life & Investments",desc:"Dirham/euro funds, risk profiles, estate planning."},
-        {icon:"🛫",title:"Schengen Travel",desc:"Compliant certificate, medical expenses and repatriation."}
-      ]
-    },
-    re:{
-      title:"Reinsurance: expertise & strategic support",
-      tabs:{intro:"Overview",treaty:"Treaty",fac:"Facultative",product:"Product design"},
-      intro:[
-        "Support to insurers, captives and large risks: portfolio analysis, cession strategy, placement and complex claims.",
-        "Direct access to A/A+/AA markets with clause and settlement-time benchmarking.",
-        "End-to-end steering: structuring, wording, indicative pricing and negotiation."
-      ],
-      treaty:[
-        "Design: Quota Share, Surplus, XoL, Stop-Loss, Aggregate — aligned with IFRS 17.",
-        "Optimising retentions, limits and commission corridors.",
-        "LMA/IUA documentation and accounting mapping."
-      ],
-      fac:[
-        "Fast placements for Property, Engineering, Energy, Casualty and Financial lines.",
-        "Options for specific projects and peak exposures.",
-        "Claims handling: quantum review, loss adjusters, international arbitration."
-      ],
-      product:[
-        "Product & guarantee design (incl. parametrics): triggers and basis of indemnity.",
-        "Wording & exclusions: drafting, market benchmark, client simplification.",
-        "Pricing/actuarial support and data quality for profitability monitoring."
-      ]
-    },
+    cta:{quote:"Get a quote",advisor:"Talk to an expert"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
     esg:{
-      title:"Sustainable insurance & ESG advisory",
-      kicker:"Measure, decide, finance — for lasting resilience",
-      blocks:[
-        {icon:"📐",title:"Measure & diagnose",desc:"Exposure analysis, NGFS stress tests, climate/ESG mapping."},
-        {icon:"🧭",title:"Decide & align",desc:"TCFD, EU Taxonomy, SFDR; mitigation/adaptation roadmap."},
-        {icon:"💼",title:"Finance & implement",desc:"Parametrics, green BI, access to lenders and renegotiation."}
-      ]
-    },
-    contact:{
-      title:"Contact & Client space",
-      lead:"We reply within 24 hours",
-      form:{name:"Full name",email:"Email address",phone:"Phone",type:"Insurance type",msg:"Message",
-        opt:{broker:"Brokerage",re:"Reinsurance",esg:"ESG & Climate finance"},submit:"Send"},
-      ok:"Thanks! Your request has been sent."
+      title:"ESG & Climate Risk",
+      sub:"Measure, decide, finance and steer physical & transition risks. TCFD • EU Taxonomy • SFDR • NGFS scenarios.",
+      badges:["Stress tests & scenarios","Parametrics & green business interruption","TCFD & Taxonomy reporting"],
+      tabs:{approach:"Approach",diagnostics:"Diagnostics",financing:"Financing & Parametric",compliance:"Compliance & Reporting",change:"Training & Change",cases:"Use cases",faq:"FAQ"},
+      approach:{
+        lead:"A pragmatic, sequenced path from analysis to financing and ongoing steering.",
+        blocks:[
+          {t:"Measure",d:"Map physical hazards and transition exposures (regulation, energy, market)."},
+          {t:"Decide",d:"Materiality matrix, risk appetite, site-by-site roadmap with accountable functions."},
+          {t:"Insure & Finance",d:"Parametric covers (rain/wind/NDVI), green BI, environmental liability, access to lenders (WB, EIB, AFD, GCF)."},
+          {t:"Steer & Report",d:"TCFD indicators, KPIs (LR/ULR), EU Taxonomy, SFDR where relevant."}
+        ],
+        timeline:{k:"Typical roadmap (4–8 weeks)",items:[
+          "W1: scoping & data (sites, history, lender requirements)",
+          "W2: diagnostics & scenarios (RCP/NGFS), loss quantification",
+          "W3: insurance options & financial structure (parametric, env. liability)",
+          "W4: implementation plan, TCFD reporting, budget & schedule"
+        ]}
+      },
+      diagnostics:{
+        intro:"Decision-grade diagnostics — not 200-page reports.",
+        cards:[
+          {t:"Physical exposure",d:"Hazard heatmaps (flood, drought, wind, heat, wildfire), critical supply chain nodes."},
+          {t:"Loss quantification",d:"Business interruption, direct damage, logistics costs — 1/5/10-year horizons."},
+          {t:"Stress tests",d:"NGFS/RCP scenarios, energy/carbon variations, margin & cash sensitivity."},
+          {t:"Prioritisation",d:"Site/asset Pareto, quick wins vs. structural projects, CAPEX/OPEX."}
+        ],
+        docs:["Site list & coordinates","Historical losses (if any)","BCP/maintenance plans","Energy & water data"]
+      },
+      financing:{
+        intro:"Structure risk financing and impact projects.",
+        parametric:{
+          k:"Parametrics — principles",
+          bullets:[
+            "Simple triggers (rain, wind, temperature, seismic) → fast payout",
+            "Basis risk controlled through local/multi-source indices",
+            "Payout window 10–30 days depending on peril",
+            "Can backstop deductibles of traditional programmes"
+          ],
+          docs:["Locations & weather history/alerts","Operational thresholds (shutdown, service level)","Target budget & limits"]
+        },
+        greenBI:{k:"Green business interruption",bullets:[
+          "Cover extra energy/supply costs tied to climate perils",
+          "Include conditional resilience investments",
+          "Compatible with lender requirements (WB, EIB, AFD, GCF)"
+        ]},
+        lenders:{k:"Lenders & DFIs",bullets:["World Bank/IFC","EIB/KfW","AFD/Proparco","Climate funds (GCF, etc.)"]}
+      },
+      compliance:{
+        lead:"Deliver compliance without the complexity.",
+        blocks:[
+          {t:"TCFD",d:"Governance, strategy, risk management, metrics & targets — chapter plan and yearly milestones."},
+          {t:"EU Taxonomy",d:"Eligibility & alignment (turnover, CAPEX, OPEX), technical criteria & DNSH."},
+          {t:"SFDR",d:"Articles 6/8/9 — sustainability indicators and action plans for investors."},
+          {t:"KPIs & MI",d:"Define KPIs, quarterly reporting, dashboards and internal controls."}
+        ],
+        docs:["Consolidation perimeter","Turnover/CAPEX/OPEX data","Activity inventory","Materiality & risk maps"]
+      },
+      change:{
+        lead:"Upskill and mobilise teams.",
+        items:[
+          {t:"Targeted trainings",d:"Procurement (ESG clauses), Operations (heat plans), Finance (climate provisions)."},
+          {t:"Exercises & serious games",d:"Table-top incident simulations and cascading effects."},
+          {t:"Procedures & contracts",d:"Supplier clauses, RFP criteria, continuity SLAs."}
+        ]
+      },
+      cases:{
+        items:[
+          {t:"Agri-food site",d:"Rain + heat index securing seasonal output; ROI < 18 months from reduced stoppages."},
+          {t:"Urban logistics",d:"Parametric wind & flood covering distribution overruns; TCFD reporting embedded."}
+        ]
+      },
+      faq:{
+        items:[
+          {q:"Do we need long weather history?",a:"Helpful but not mandatory — we combine station, satellite and reanalysis datasets."},
+          {q:"Do parametrics replace traditional insurance?",a:"No — they complement it with fast, objective payouts."},
+          {q:"Can we start small?",a:"Yes — pilot on 1–2 sites with simple thresholds, then scale."},
+          {q:"Typical timelines?",a:"Diagnostics 2–4 weeks; structuring 2–3 weeks; immediate launch once agreed."},
+          {q:"Compatible with our lenders?",a:"Yes — we align with their requirements from day one."},
+          {q:"Do you operate outside Morocco?",a:"Yes, depending on lines and partners."}
+        ]
+      },
+      cta:{title:"A high-impact project or a portfolio to secure?",text:"Share sites, budgets and lender constraints. We return within 24–48h with a roadmap."}
     }
   },
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
-    cta:{quote:"احصل على عرض سعر",advisor:"تواصل مع مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",contact:"اتصال",links:"روابط"},
-    home:{
-      title:"خبرة تمنح الطمأنينة",
-      sub:"وساطة لجميع الفروع · إعادة التأمين · تأمينات ESG. نحو نمو مستدام.",
-      why:[
-        {t:"ترخيص ACAPS لجميع الفروع",d:"وساطة، إعادة تأمين وتكافل. امتثال وحماية للمؤمن لهم."},
-        {t:"منهجية «التنقيط والوساطة»",d:"تنقيط الشركات → أفضل الشروط."},
-        {t:"شفافية تعاقدية",d:"الإفصاح عن الأتعاب والعمولات قبل التوقيع."}
-      ]
-    },
-    solutions:{
-      title:"حلول التأمين",
-      choose:"اختر نوع العميل",
-      pill:{enterprise:"شركات",individual:"أفراد"},
-      enterprise:[
-        {icon:"🏢",title:"متعدد المخاطر للشركات",desc:"المقرات والمعدات وخسائر الاستغلال والمسؤولية."},
-        {icon:"🚚",title:"النقل واللوجستيك",desc:"قيمة مضافة، CMR، سلسلة التبريد والتأخيرات."},
-        {icon:"🚗",title:"السيارات والأسطول",desc:"إدارة الأسطول والمطالبات وتسعير مخصص."},
-        {icon:"⚖️",title:"المسؤولية المدنية",desc:"العامة والمهنية والمنتجات والبيئية."},
-        {icon:"🏗️",title:"البناء (أخطار الورش/العشرية)",desc:"جميع أخطار المقاولين والتركيب والتجارب والعشرية."},
-        {icon:"👥",title:"الصحة الجماعية والاحتياط",desc:"تغطيات جماعية والغياب والمساعدة."}
-      ],
-      individual:[
-        {icon:"🩺",title:"الصحة",desc:"شبكات علاج وتعويضات واضحة وخيارات الاستشفاء."},
-        {icon:"🛡️",title:"حوادث الحياة",desc:"تعويض عند العجز ومصاريف ومساعدة."},
-        {icon:"⏳",title:"التقاعد والادخار",desc:"رأس مال أو معاش بكفاءة ضريبية."},
-        {icon:"🏠",title:"الممتلكات (السكن/السيارة)",desc:"سكن متعدد الأخطار وسيارة ومقتنيات."},
-        {icon:"💠",title:"التأمين على الحياة والاستثمار",desc:"صناديق بالدرهم/اليورو وملفات مخاطر."},
-        {icon:"🛫",title:"سفر شنغن",desc:"شهادة مطابقة وتغطية طبية وإعادة للوطن."}
-      ]
-    },
-    re:{
-      title:"إعادة التأمين: خبرة ودعم استراتيجي",
-      tabs:{intro:"عرض عام",treaty:"اتفاقيات",fac:"اختيارية",product:"تصميم المنتجات"},
-      intro:[
-        "مرافقة الشركات والكابتيف والمخاطر الكبرى: تحليل المحافظ، إستراتيجية التنازل، الوساطة وإدارة المطالبات المعقدة.",
-        "ولوج مباشر إلى أسواق مصنفة A/A+/AA مع مقارنة الشروط وأزمنة التسوية.",
-        "إدارة شاملة: الهيكلة، الصياغة، التسعير الإشاري والتفاوض."
-      ],
-      treaty:[
-        "تصميم: حصة نسبية، فائض، فوق الخسارة، إيقاف الخسارة، مجمّع — متوافق مع IFRS 17.",
-        "تحسين حدود التحمل والحدود العليا وممرات العمولات.",
-        "وثائق LMA/IUA وربط محاسبي."
-      ],
-      fac:[
-        "وساطات سريعة في الممتلكات والهندسة والطاقة والمسؤولية والخطوط المالية.",
-        "خيارات للمشاريع الخاصة وذرى التعرض.",
-        "إدارة المطالبات: مراجعة التعويض وخبراء الخسائر وتحكيم دولي."
-      ],
-      product:[
-        "تصميم المنتجات والضمانات (بما فيها البارامترية): المشغلات وأسس التعويض.",
-        "الصياغات والاستثناءات: كتابة ومقارنة سوقية وتبسيط.",
-        "دعم اكتواري/تسعيري وضبط جودة البيانات."
-      ]
-    },
+    cta:{quote:"احصل على عرض سعر",advisor:"تواصل مع خبير"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
     esg:{
-      title:"تأمينات مستدامة وخدمات ESG",
-      kicker:"قياس، قرار، تمويل — لمرونة دائمة",
-      blocks:[
-        {icon:"📐",title:"القياس والتشخيص",desc:"التعرضات، اختبارات ضغط NGFS، خرائط مناخ/ESG."},
-        {icon:"🧭",title:"القرار والمواءمة",desc:"TCFD وتصنيف الاتحاد الأوروبي وSFDR؛ خارطة طريق."},
-        {icon:"💼",title:"التمويل والتنفيذ",desc:"حلول بارامترية وخسائر تشغيل خضراء وجهات تمويل."}
-      ]
-    },
-    contact:{
-      title:"اتصل بنا ومساحة الزبون",
-      lead:"نجيبكم خلال 24 ساعة",
-      form:{name:"الاسم الكامل",email:"البريد الإلكتروني",phone:"الهاتف",type:"نوع التأمين",msg:"الرسالة",
-        opt:{broker:"وساطة",re:"إعادة التأمين",esg:"ESG وتمويل المناخ"},submit:"إرسال"},
-      ok:"شكراً! تم إرسال طلبكم."
+      title:"الاستدامة ومخاطر المناخ",
+      sub:"قياس وقرار وتمويل وتسيير المخاطر الفيزيائية والانتقالية. TCFD • تصنيف الاتحاد الأوروبي • SFDR • سيناريوهات NGFS.",
+      badges:["اختبارات ضغط وسيناريوهات","حلول بارامترية وخسائر تشغيل خضراء","تقارير TCFD والتصنيف"],
+      tabs:{approach:"المنهجية",diagnostics:"التشخيص",financing:"التمويل والبارامترية",compliance:"الامتثال والتقارير",change:"التدريب والتغيير",cases:"حالات استخدام",faq:"أسئلة"},
+      approach:{
+        lead:"مسار عملي ومتدرج من التحليل إلى التمويل ثم التسيير المستمر.",
+        blocks:[
+          {t:"القياس",d:"خرائط الأخطار المناخية والتعرّض لمخاطر الانتقال."},
+          {t:"القرار",d:"مصفوفة المادية، شهية المخاطر، خارطة طريق لكل موقع."},
+          {t:"التأمين والتمويل",d:"بارامترية (أمطار/رياح/NDVI)، خسائر تشغيل خضراء، مسؤولية بيئية، وصول للجهات الممولة."},
+          {t:"التسيير والتقارير",d:"مؤشرات TCFD، مؤشرات أداء، تصنيف الاتحاد الأوروبي وSFDR."}
+        ],
+        timeline:{k:"خارطة طريق (4–8 أسابيع)",items:[
+          "الأسبوع 1: تحديد النطاق وجمع البيانات",
+          "الأسبوع 2: تشخيص وسيناريوهات وقياس الخسائر",
+          "الأسبوع 3: خيارات التأمين والهيكلة المالية",
+          "الأسبوع 4: خطة التنفيذ وتقارير TCFD والميزانية"
+        ]}
+      },
+      diagnostics:{
+        intro:"تشخيص موجه للقرار وليس تقارير مطولة.",
+        cards:[
+          {t:"التعرّض الفيزيائي",d:"خرائط حرارية للفيضانات والجفاف والرياح والحرارة والحرائق وسلاسل التوريد."},
+          {t:"قياس الخسائر",d:"خسائر التشغيل والأضرار المباشرة والتكاليف اللوجستية."},
+          {t:"اختبارات الضغط",d:"سيناريوهات NGFS/RCP وتغيرات الطاقة/الكربون."},
+          {t:"الأولويات",d:"تحليل باريتو للمواقع، حلول سريعة مقابل مشاريع هيكلية."}
+        ],
+        docs:["قائمة وعناوين المواقع","خسائر تاريخية","خطط الاستمرارية/الصيانة","بيانات الطاقة والمياه"]
+      },
+      financing:{
+        intro:"هيكلة تمويل المخاطر والمشاريع ذات الأثر.",
+        parametric:{
+          k:"البارامترية — مبادئ",
+          bullets:[
+            "مؤشرات بسيطة (أمطار/رياح/حرارة/زلزال) → تعويض سريع",
+            "تقليل مخاطر الأساس عبر مؤشرات محلية متعددة المصادر",
+            "نافذة تعويض 10–30 يوماً حسب الخطر",
+            "يمكن أن تغطي التحمل في البرامج التقليدية"
+          ],
+          docs:["المواقع والتاريخ المناخي","عتبات تشغيلية (إيقاف/مستوى خدمة)","ميزانية وحدود مستهدفة"]
+        },
+        greenBI:{k:"خسائر تشغيل خضراء",bullets:[
+          "تغطية تكاليف الطاقة/الإمداد المرتبطة بالمناخ",
+          "إدراج استثمارات مرونة مشروطة",
+          "توافق مع متطلبات الممولين"
+        ]},
+        lenders:{k:"الجهات الممولة",bullets:["البنك الدولي/IFC","BEI/KfW","AFD/Proparco","صناديق المناخ (GCF وغيرها)"]}
+      },
+      compliance:{
+        lead:"امتثال فعّال دون تعقيد.",
+        blocks:[
+          {t:"TCFD",d:"الحوكمة والاستراتيجية وإدارة المخاطر والمؤشرات والأهداف."},
+          {t:"تصنيف الاتحاد الأوروبي",d:"الأهلية والمواءمة للأنشطة (المبيعات/الاستثمار/المصاريف)."},
+          {t:"SFDR",d:"مؤشرات الاستدامة للمستثمرين (المواد 6/8/9)."},
+          {t:"مؤشرات وMI",d:"تحديد المؤشرات وتقارير ربع سنوية ولوحات متابعة."}
+        ],
+        docs:["نطاق التوحيد","بيانات المبيعات/الاستثمار/المصاريف","جرد الأنشطة","المادية والمخاطر"]
+      },
+      change:{
+        lead:"رفع الكفاءات وإشراك الفرق.",
+        items:[
+          {t:"تدريبات مستهدفة",d:"المشتريات، التشغيل، المالية."},
+          {t:"تمارين ومحاكاة",d:"سيناريوهات ومناورات."},
+          {t:"إجراءات وعقود",d:"بنود للموردين ومعايير للمناقصات واتفاقيات الاستمرارية."}
+        ]
+      },
+      cases:{
+        items:[
+          {t:"موقع غذائي",d:"مؤشر أمطار + حرارة لضمان الإنتاج الموسمي؛ عائد < 18 شهراً."},
+          {t:"لوجستيك حضري",d:"بارامترية رياح/فيضانات لتغطية التكاليف الإضافية؛ تقارير TCFD مدمجة."}
+        ]
+      },
+      faq:{
+        items:[
+          {q:"هل نحتاج تاريخاً مناخياً طويلاً؟",a:"يفيد لكنه غير إلزامي — ندمج بيانات محطات وأقمار وإعادة تحليل."},
+          {q:"هل تستبدل البارامترية التأمين التقليدي؟",a:"لا، بل تكمله بتعويضات سريعة وموضوعية."},
+          {q:"هل يمكن البدء بشكل تجريبي؟",a:"نعم، على 1–2 مواقع ثم التوسع."},
+          {q:"المهل المعتادة؟",a:"تشخيص 2–4 أسابيع؛ هيكلة 2–3 أسابيع."},
+          {q:"هل تتوافق مع متطلبات الممولين؟",a:"نعم، نراعي المتطلبات من البداية."},
+          {q:"نشاط خارج المغرب؟",a:"نعم حسب الفروع والشركاء."}
+        ]
+      },
+      cta:{title:"مشروع ذو أثر أو محفظة تحتاج إلى تأمين؟",text:"ارسلوا المواقع والميزانيات ومتطلبات الممولين — نعود بخارطة طريق خلال 24–48 ساعة."}
     }
   }
 };
-</script>
-<script>
-let lang = localStorage.getItem('riskalia_lang') || (navigator.language||'fr').slice(0,2);
+
+/* ================== Runtime ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
+let currentTab = 'approach';
+
 function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null||!(n in cur)) return path; cur=cur[n]; } return cur; }
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML=t(el.dataset.i18n); });
-  document.querySelectorAll('[data-ph]').forEach(el=>{ el.placeholder=t(el.dataset.ph); });
-  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-}
-function initLangSwitch(){
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang);
-      applyTexts(); renderHomeWhy(); initSolutions(true); renderRe(); renderESG(); renderContactLabels();
-    });
+
+function setActiveNav(){
+  const here=location.pathname.split('/').pop()||'esg.html';
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
   });
 }
-function initNav(){
-  const menuBtn=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
-  if(menuBtn&&menu){ menuBtn.addEventListener('click',()=>menu.classList.toggle('show'));
-    document.querySelectorAll('nav a').forEach(a=> a.addEventListener('click',()=>menu.classList.remove('show'))); }
-  const here=location.pathname.split('/').pop()||'index.html';
-  document.querySelectorAll('nav a').forEach(a=>{ const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here)); });
+
+function renderApproach(){
+  const blocks=t('esg.approach.blocks')||[];
+  const tl=t('esg.approach.timeline')||{k:'',items:[]};
+  return `
+    <section class="card">
+      <p class="muted">${t('esg.approach.lead')}</p>
+      <div class="grid-4" style="margin-top:14px">
+        ${blocks.map(x=>`<div class="card"><h4>${x.t}</h4><p class="muted">${x.d}</p></div>`).join('')}
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h4>${tl.k}</h4>
+        <ol class="small" style="margin-top:8px">${(tl.items||[]).map(it=>`<li>${it}</li>`).join('')}</ol>
+      </div>
+    </section>
+  `;
 }
-function renderHomeWhy(){ const wrap=document.getElementById('home-why'); if(!wrap) return;
-  const items=t('home.why')||[]; wrap.innerHTML=items.map(x=>`<div class="card"><h3>${x.t}</h3><p class="muted">${x.d}</p></div>`).join(''); }
-function initSolutions(){} // not used here
-function renderRe(){} // not used here
-function renderESG(){ const grid=document.getElementById('esg-grid'); if(!grid) return;
-  const blocks=I18N[lang].esg?.blocks||[]; grid.innerHTML=blocks.map(b=>`<div class="card"><h4>${b.icon} ${b.title}</h4><p class="muted">${b.desc}</p></div>`).join(''); }
-function renderContactLabels(){ const sel=document.getElementById('type-select'); if(!sel) return; const first=sel.querySelector('option[value=""]'); if(first) first.innerHTML=t('contact.form.type'); }
-function initContactForm(){ const f=document.querySelector('form[data-contact]'); if(!f) return; f.addEventListener('submit',(e)=>{ e.preventDefault(); alert(t('contact.ok')); }); }
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initLangSwitch(); initNav(); renderESG(); initContactForm(); });
+
+function renderDiagnostics(){
+  const cards=t('esg.diagnostics.cards')||[];
+  const docs=t('esg.diagnostics.docs')||[];
+  return `
+    <section class="grid-3">
+      ${cards.map(c=>`<article class="card"><h4>${c.t}</h4><p class="muted">${c.d}</p></article>`).join('')}
+    </section>
+    <section class="card" style="margin-top:14px">
+      <h4>📑 ${lang==='en'?'Data required':'Données requises'}</h4>
+      <ul class="small" style="margin-top:6px">${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+    </section>
+  `;
+}
+
+function renderFinancing(){
+  const p=t('esg.financing.parametric')||{k:'',bullets:[],docs:[]};
+  const g=t('esg.financing.greenBI')||{k:'',bullets:[]};
+  const l=t('esg.financing.lenders')||{k:'',bullets:[]};
+  return `
+    <section class="grid-3">
+      <article class="card">
+        <div class="kicker">${p.k}</div>
+        <ul class="small" style="margin-top:6px">${(p.bullets||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+      </article>
+      <article class="card">
+        <div class="kicker">${g.k}</div>
+        <ul class="small" style="margin-top:6px">${(g.bullets||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+      </article>
+      <article class="card">
+        <div class="kicker">${l.k}</div>
+        <ul class="small" style="margin-top:6px">${(l.bullets||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+      </article>
+    </section>
+    <section class="card" style="margin-top:14px">
+      <h4>📑 ${lang==='en'?'Data required':'Données requises'}</h4>
+      <ul class="small" style="margin-top:6px">${(p.docs||[]).map(d=>`<li>${d}</li>`).join('')}</ul>
+    </section>
+  `;
+}
+
+function renderCompliance(){
+  const blocks=t('esg.compliance.blocks')||[];
+  const docs=t('esg.compliance.docs')||[];
+  return `
+    <section class="grid-4">
+      ${blocks.map(b=>`<article class="card"><h4>${b.t}</h4><p class="muted">${b.d}</p></article>`).join('')}
+    </section>
+    <section class="card" style="margin-top:14px">
+      <h4>📑 ${lang==='en'?'Data required':'Données requises'}</h4>
+      <ul class="small" style="margin-top:6px">${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+    </section>
+  `;
+}
+
+function renderChange(){
+  const items=t('esg.change.items')||[];
+  return `
+    <section class="grid-3">
+      ${items.map(i=>`<article class="card"><h4>${i.t}</h4><p class="muted">${i.d}</p></article>`).join('')}
+    </section>
+  `;
+}
+
+function renderCases(){
+  const items=t('esg.cases.items')||[];
+  return `
+    <section class="grid-3">
+      ${items.map(c=>`<article class="card"><h4>${c.t}</h4><p class="muted">${c.d}</p></article>`).join('')}
+    </section>
+  `;
+}
+
+function renderFAQ(){
+  const items=t('esg.faq.items')||[];
+  return `
+    <section class="grid-3">
+      ${items.map(f=>`<article class="card"><h4>${f.q}</h4><p class="muted" style="margin-top:6px">${f.a}</p></article>`).join('')}
+    </section>
+  `;
+}
+
+function renderTab(){
+  const host=document.getElementById('tab-content'); if(!host) return;
+  let html='';
+  if(currentTab==='approach') html=renderApproach();
+  if(currentTab==='diagnostics') html=renderDiagnostics();
+  if(currentTab==='financing') html=renderFinancing();
+  if(currentTab==='compliance') html=renderCompliance();
+  if(currentTab==='change') html=renderChange();
+  if(currentTab==='cases') html=renderCases();
+  if(currentTab==='faq') html=renderFAQ();
+  host.innerHTML=html;
+}
+
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  renderTab();
+}
+
+function initUI(){
+  setActiveNav();
+  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  document.querySelectorAll('.tab').forEach(b=>{
+    b.addEventListener('click', ()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); currentTab=b.dataset.tab; renderTab(); window.scrollTo({top:document.querySelector('.tabs').offsetTop-80, behavior:'smooth'}); });
+  });
+  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
+  applyTexts(); initUI();
+});
 </script>
 </body>
 </html>
