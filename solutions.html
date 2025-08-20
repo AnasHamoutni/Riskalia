@@ -1,17 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Solutions</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Solutions d’assurance</title>
+  <meta name="description" content="Solutions d’assurance pour entreprises et particuliers : multirisques, transport, flotte auto, RC, construction, santé, retraite, vie & placements, voyage Schengen.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;--radius:14px;--shadow:0 10px 24px rgba(0,0,0,.07);--grad:linear-gradient(rgba(0,92,115,.84),rgba(0,92,115,.84))}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--cd);line-height:1.65}
+body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+.container{max-width:1200px;margin:auto;padding:0 16px}
+.btn{display:inline-block;padding:12px 20px;background:var(--c3);color:#fff;border-radius:10px;font-weight:700;transition:.2s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px);background:var(--c2)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:7px 12px;border-radius:999px;font-weight:800}
+.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.muted{color:#5f7781}
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand img{height:48px;width:auto;border-radius:8px}
+nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
+nav a{position:relative;padding:6px}
+nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+nav a:hover::after,nav a.active::after{width:100%}
+.menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+@media(max-width:900px){
+  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
+  .menu-toggle{display:block}
+}
+.hero{min-height:46vh;background:var(--grad),url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.5vw,3.1rem);letter-spacing:-.4px;margin-bottom:12px}
+.hero p{color:#fff;opacity:.98;max-width:840px;margin:0 auto 16px}
+section{padding:54px 0}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 12px}
+.tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:800}
+.tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
+.searchbar{display:flex;gap:8px;justify-content:center;margin:12px 0 18px}
+.searchbar input{width:520px;max-width:90%;padding:12px;border:1px solid #cfd9de;border-radius:10px}
+.anchor-nav{position:sticky;top:86px;align-self:start}
+.anchor-box{position:relative;padding:16px;border:1px solid #e3eef1;border-radius:12px;background:#fbfeff}
+.anchor-box a{display:block;padding:8px 6px;border-radius:8px;color:#0b4e5b}
+.anchor-box a:hover{background:#eef6f8}
+.detail{scroll-margin-top:100px}
+.detail h3{margin-bottom:8px}
+.detail .grid-2 .card{height:100%}
+blockquote{border-left:4px solid var(--c3);padding-left:12px;color:#46656f;background:#f0fafc;border-radius:8px}
+footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+.reveal.active{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
-    <nav aria-label="Navigation">
+    <a class="brand" href="index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
+    </a>
+    <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
@@ -29,27 +94,421 @@
   </div>
 </header>
 
-<section style="padding:40px 0 0">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
-    <h1 data-i18n="solutions.title">Solutions d’assurance</h1>
-    <p class="kicker" data-i18n="solutions.choose">Choisissez votre profil</p>
-    <div class="pill-group">
-      <button class="pill active" data-pop="enterprise" data-i18n="solutions.pill.enterprise">Entreprises</button>
-      <button class="pill" data-pop="individual" data-i18n="solutions.pill.individual">Particuliers</button>
+    <h1 data-i18n="sol.title">Solutions d’assurance</h1>
+    <p data-i18n="sol.sub">Des produits clairs et efficaces, pensés pour les <strong>entreprises</strong> et les <strong>particuliers</strong>.</p>
+    <div class="badges" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <span class="badge" data-i18n="sol.badges.0">Mise en concurrence multi-assureurs</span>
+      <span class="badge" data-i18n="sol.badges.1">Accompagnement sinistres 24/7</span>
+      <span class="badge" data-i18n="sol.badges.2">Transparence des frais</span>
     </div>
-    <div id="sol-grid" class="grid-3"></div>
+  </div>
+</section>
+
+<!-- PICKER + SEARCH -->
+<section class="reveal" style="padding-top:28px">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-pop="enterprise" data-i18n="sol.tabs.enterprise">Entreprises</button>
+      <button class="tab" data-pop="individual" data-i18n="sol.tabs.individual">Particuliers</button>
+    </div>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit">
+      <button class="btn secondary" id="clear" data-i18n="sol.clear">Effacer</button>
+    </div>
+    <div id="cards" class="grid-3"></div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container" style="display:grid;grid-template-columns:260px 1fr;gap:20px">
+    <aside class="anchor-nav">
+      <div class="anchor-box">
+        <div class="kicker" style="margin-bottom:8px" data-i18n="sol.index">Index</div>
+        <div id="anchors"></div>
+      </div>
+    </aside>
+    <div id="details"></div>
   </div>
 </section>
 
 <footer>
   <div class="container footer-grid">
-    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
-    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
-    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a><br><a href="contact.html" data-i18n="nav.contact">Contact</a></p></div>
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
+         <a href="contact.html" data-i18n="nav.contact">Contact</a></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
   </div>
 </footer>
 
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/site.js"></script>
+<script>
+/* ================== Données i18n (FR/EN/AR) ================== */
+const I18N = {
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
+    sol:{
+      title:"Solutions d’assurance",
+      sub:"Des produits clairs et efficaces, pensés pour les <strong>entreprises</strong> et les <strong>particuliers</strong>.",
+      badges:["Mise en concurrence multi-assureurs","Accompagnement sinistres 24/7","Transparence des frais"],
+      tabs:{enterprise:"Entreprises",individual:"Particuliers"},
+      clear:"Effacer",
+      index:"Index",
+      cta:"Obtenir un devis",
+      note:"Les garanties et plafonds peuvent varier selon l’assureur et le profil. Nous vous conseillons le montage optimal au meilleur coût.",
+      enterprise:{
+        cards:[
+          {slug:"multirisques",icon:"🏢",title:"Multirisques Entreprises",short:"Locaux, équipements, pertes d’exploitation, RC."},
+          {slug:"transport",icon:"🚚",title:"Transport & Logistique",short:"Ad valorem, CMR, chaîne du froid, retards."},
+          {slug:"flotte",icon:"🚗",title:"Automobile & Flotte",short:"Gestion de flotte, bris, RC, assistance."},
+          {slug:"rc",icon:"⚖️",title:"Responsabilité Civile",short:"Générale, pro, produits, environnement."},
+          {slug:"construction",icon:"🏗️",title:"Construction (TRC/RC décennale)",short:"Chantiers, montage/essai, décennale."},
+          {slug:"santecollective",icon:"👥",title:"Santé Collective & Prévoyance",short:"Couvertures salariales, prévention, services."}
+        ],
+        details:{
+          multirisques:{
+            title:"Multirisques Entreprises",
+            intro:"Protège vos actifs et votre activité contre les sinistres majeurs et leurs conséquences financières.",
+            cover:["Incendie, explosion, DDE","Vol & vandalisme","Bris de machines, bris de glace","Pertes d’exploitation (franchise temps)","RC exploitation & après livraison"],
+            options:["Catastrophes naturelles & événements climatiques","Cyber basique (extra)","Objets de valeur / équipements mobiles"],
+            for:["PME/ETI multi-sites","Industries et entrepôts","Commerces & services"],
+            docs:["Questionnaire de risques","Inventaire/valeurs assurées","Historique sinistres 3–5 ans"]
+          },
+          transport:{
+            title:"Transport & Logistique",
+            intro:"Couvre les marchandises en transit et vos responsabilités de transporteur.",
+            cover:["Tous risques ad valorem","RC transporteur / CMR","Température dirigée","Retard/privation de jouissance (selon conditions)"],
+            options:["Police annuelle ou à l’expédition","Stockage intermédiaire","Guerre & grèves (selon ligne)"],
+            for:["Importateurs/exportateurs","3PL/4PL, transitaires","Agro/Pharma (chaîne du froid)"],
+            docs:["Flux & valeurs annuelles","Itinéraires et modes","Conditions d’emballage"]
+          },
+          flotte:{
+            title:"Automobile & Flotte",
+            intro:"Un contrat cadre pour vos véhicules, avec pilotage sinistres et budget.",
+            cover:["RC obligatoire","Dommages tous accidents","Vol/Incendie/Bris de glace","Protection du conducteur","Assistance 24/7"],
+            options:["Télématique & prévention","Véhicule de remplacement","Aménagements spécifiques pro"],
+            for:["Flottes > 5 véhicules","Sociétés de service & distribution","Transport de personnes/marchandises"],
+            docs:["Parc (immat/valeur/usages)","Historique sinistres","Mesures de prévention"]
+          },
+          rc:{
+            title:"Responsabilité Civile",
+            intro:"Protège l’entreprise contre les dommages causés à des tiers.",
+            cover:["RC exploitation","RC produits après livraison","RC professionnelle (selon métiers)","RC environnementale"],
+            options:["RC dirigeants (D&O)","Fraude & crime (selon marchés)","Extensions contractuelles"],
+            for:["Industrie, construction","Services & tech","Agro, santé, éducation"],
+            docs:["Activités & CA","Pays d’opération","Contrats clients types"]
+          },
+          construction:{
+            title:"Construction (TRC/RC décennale)",
+            intro:"Sécurise vos chantiers et votre responsabilité post-livraison.",
+            cover:["Tous risques chantier (TRC/CAR)","Montage & essai","RC maître d’ouvrage / constructeur","Décennale (où applicable)"],
+            options:["Dommages aux existants","Perte d’exploitation chantier","Désordres esthétiques (selon marché)"],
+            for:["MOA, entreprises générales","Lots techniques & corps d’état","BTP, énergie, génie civil"],
+            docs:["CCTP/Plans","Planning & budget","Expérience & références"]
+          },
+          santecollective:{
+            title:"Santé Collective & Prévoyance",
+            intro:"Couvre vos salariés et améliore votre politique RH.",
+            cover:["Frais de santé (hospitalisation, dentaire, optique)","Invalidité/décès","Assistance et réseau de soins"],
+            options:["Télé-médecine, prévention","Couvertures à la carte par catégorie","Tiers-payant élargi"],
+            for:["PME/ETI/Grands comptes","Branches à forte sinistralité santé","Sociétés multi-sites"],
+            docs:["Effectifs & catégories","Consommation santé (si existant)","Budget cible & niveaux souhaités"]
+          }
+        }
+      },
+      individual:{
+        cards:[
+          {slug:"sante",icon:"🩺",title:"Santé",short:"Remboursements clairs, réseaux de soins, hospitalisation."},
+          {slug:"gav",icon:"🛡️",title:"Accidents de la vie",short:"Invalidité/ITT, frais et assistance."},
+          {slug:"retraite",icon:"⏳",title:"Retraite & Épargne",short:"Capital/rente, horizon & profil de risque."},
+          {slug:"biens",icon:"🏠",title:"Biens (habitation/auto)",short:"MRH, auto, objets de valeur."},
+          {slug:"vie",icon:"💠",title:"Assurance-vie & Placements",short:"Supports dirham/euro, transmission."},
+          {slug:"schengen",icon:"🛫",title:"Voyage Schengen",short:"Attestation conforme, frais médicaux & rapatriement."}
+        ],
+        details:{
+          sante:{
+            title:"Santé",
+            intro:"Des garanties lisibles et un accès facilité aux soins.",
+            cover:["Hospitalisation & soins courants","Optique & dentaire","Maternité (selon formules)"],
+            options:["Réseaux de soins partenaires","Télé-médecine","Couverture famille"],
+            for:["Salariés & indépendants","Familles","Étudiants/expats"],
+            docs:["Bulletin d’adhésion","Pièce d’identité","RIB (prélèvement)"]
+          },
+          gav:{
+            title:"Accidents de la vie",
+            intro:"Une protection financière en cas d’accident domestique, scolaire, loisirs.",
+            cover:["Invalidité/IPP","Frais & assistance","Indemnités journalières (selon options)"],
+            options:["Couverture enfants","Capital décès","Aide à domicile"],
+            for:["Familles & seniors","Sportifs loisirs","Travailleurs non-salariés"],
+            docs:["Bulletin d’adhésion","Déclarations de santé (si nécessaire)"]
+          },
+          retraite:{
+            title:"Retraite & Épargne",
+            intro:"Construisez un capital ou une rente selon votre horizon.",
+            cover:["Versements libres/programmé","Arbitrages selon profil","Avantages fiscaux (selon cadre légal)"],
+            options:["Sécurisation progressive","Protection du conjoint","Supports diversifiés"],
+            for:["Actifs & TNS","Préparation succession","Objectifs long terme"],
+            docs:["Pièce d’identité","Justificatif domicile","RIB"]
+          },
+          biens:{
+            title:"Biens (habitation/auto)",
+            intro:"L’essentiel pour protéger logement, véhicule et objets.",
+            cover:["Incendie/dégâts des eaux/vol","RC vie privée","Dommages auto, bris de glace, assistance"],
+            options:["Objets de valeur","Valeur à neuf","Véhicule de remplacement"],
+            for:["Propriétaires/locataires","Conducteurs tous profils","Résidences principales/secondaires"],
+            docs:["Relevé d’informations auto","État descriptif logement","Attestation de propriété/contrat de bail"]
+          },
+          vie:{
+            title:"Assurance-vie & Placements",
+            intro:"Épargne souple, transmission et objectifs patrimoniaux.",
+            cover:["Supports dirham/euro","Unités de compte (selon appétence)","Bénéficiaires & fiscalité (selon cadre)"],
+            options:["Gestion pilotée","Arbitrages libres","Avances/rachats"],
+            for:["Constitution d’épargne","Transmission","Diversification"],
+            docs:["Pièce d’identité","RIB","Formulaire de souscription"]
+          },
+          schengen:{
+            title:"Voyage Schengen",
+            intro:"Attestation conforme pour vos demandes de visa.",
+            cover:["Frais médicaux & hospitalisation","Rapatriement","Assistance voyage"],
+            options:["Franchise 0","Extensions bagages","Annulation (selon assureur)"],
+            for:["Voyageurs court séjour","Étudiants/affaires","Visites familiales"],
+            docs:["Passeport","Dates & pays de séjour","Adresse d’hébergement"]
+          }
+        }
+      }
+    }
+  },
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
+    sol:{
+      title:"Insurance solutions",
+      sub:"Clear, effective products for both <strong>businesses</strong> and <strong>individuals</strong>.",
+      badges:["Multi-carrier competitive placement","24/7 claims assistance","Transparent fees"],
+      tabs:{enterprise:"Enterprises",individual:"Individuals"},
+      clear:"Clear",
+      index:"Index",
+      cta:"Get a quote",
+      note:"Covers and limits vary by carrier and profile. We design the optimal structure at best value.",
+      enterprise:{
+        cards:[
+          {slug:"multirisques",icon:"🏢",title:"Commercial All-risks",short:"Premises, equipment, BI, liability."},
+          {slug:"transport",icon:"🚚",title:"Transport & Logistics",short:"Ad valorem, CMR, cold-chain, delays."},
+          {slug:"flotte",icon:"🚗",title:"Motor & Fleet",short:"Fleet management, damage, assistance."},
+          {slug:"rc",icon:"⚖️",title:"Liability",short:"General, professional, product, environmental."},
+          {slug:"construction",icon:"🏗️",title:"Construction (CAR/Decennial)",short:"Site works, erection/commissioning, decennial."},
+          {slug:"santecollective",icon:"👥",title:"Group Health & Benefits",short:"Employee covers, prevention, services."}
+        ],
+        details:{
+          multirisques:{title:"Commercial All-risks",intro:"Protects assets and operations from major losses.",cover:["Fire/explosion/water damage","Theft & vandalism","Machinery/Glass breakage","Business interruption","Public/products liability"],options:["NatCat & weather events","Basic cyber (add-on)","Valuables/mobile equipment"],for:["SMEs & mid-caps","Industry/warehousing","Retail & services"],docs:["Risk questionnaire","Values & schedules","3–5y loss runs"]},
+          transport:{title:"Transport & Logistics",intro:"Covers goods in transit and carrier liabilities.",cover:["All-risks ad valorem","Carrier liability / CMR","Temperature-controlled","Delay/loss of use (as per terms)"],options:["Annual/open policy or per shipment","Interim storage","War/strikes (where available)"],for:["Import/export","3PL/forwarders","Agro/Pharma (cold chain)"],docs:["Volumes & annual values","Routes & modes","Packing standards"]},
+          flotte:{title:"Motor & Fleet",intro:"Master policy for vehicles with claims/budget steering.",cover:["Compulsory TPL","Own damage","Theft/Fire/Glass","Driver personal accident","Roadside assistance"],options:["Telematics & prevention","Courtesy car","Special equipment"],for:["Fleets > 5 vehicles","Service & distribution","Passenger/cargo transport"],docs:["Fleet list","Loss runs","Prevention measures"]},
+          rc:{title:"Liability",intro:"Protects the company against third-party damage.",cover:["Public liability","Products/Completed operations","Professional liability (where applicable)","Environmental liability"],options:["D&O","Crime (market-dependent)","Contractual extensions"],for:["Industry & construction","Services & tech","Agro, health, education"],docs:["Activities & turnover","Territories","Standard contracts"]},
+          construction:{title:"Construction (CAR/Decennial)",intro:"Secures site works and post-completion liability.",cover:["Contractors’ all risks (CAR)","Erection & testing","Owner/contractor liability","Decennial (where applicable)"],options:["Existing property","Project BI","Aesthetic defects (market-dependent)"],for:["Owners & main contractors","Technical lots & trades","Infrastructure & energy"],docs:["Specs/drawings","Schedule & budget","Experience & references"]},
+          santecollective:{title:"Group Health & Benefits",intro:"Protects your workforce and supports HR policy.",cover:["Medical expenses","Disability/death","Assistance & networks"],options:["Tele-medicine, prevention","Category-based benefits","Extended third-party billing"],for:["SMEs/mid-caps/large","High-claim sectors","Multi-site companies"],docs:["Headcount & categories","Past consumption","Budget & target levels"]}
+        }
+      },
+      individual:{
+        cards:[
+          {slug:"sante",icon:"🩺",title:"Health",short:"Clear reimbursements, networks, hospitalization."},
+          {slug:"gav",icon:"🛡️",title:"Personal Accident",short:"Disability/TTD, expenses, assistance."},
+          {slug:"retraite",icon:"⏳",title:"Retirement & Savings",short:"Lump sum/annuity, horizon & risk profile."},
+          {slug:"biens",icon:"🏠",title:"Property (home/auto)",short:"Home MRH, motor, valuables."},
+          {slug:"vie",icon:"💠",title:"Life & Investments",short:"Dirham/euro funds, estate planning."},
+          {slug:"schengen",icon:"🛫",title:"Schengen Travel",short:"Compliant certificate, medical & repatriation."}
+        ],
+        details:{
+          sante:{title:"Health",intro:"Clear covers and easy access to care.",cover:["Hospital & routine care","Optical & dental","Maternity (by plan)"],options:["Partner networks","Tele-medicine","Family cover"],for:["Employees & self-employed","Families","Students/expats"],docs:["Enrollment form","ID","Bank details"]},
+          gav:{title:"Personal Accident",intro:"Financial protection for domestic, school and leisure accidents.",cover:["Permanent disability","Expenses & assistance","Daily indemnity (options)"],options:["Children cover","Death benefit","Home help"],for:["Families & seniors","Recreational athletes","Self-employed"],docs:["Enrollment form","Health statement if needed"]},
+          retraite:{title:"Retirement & Savings",intro:"Build capital or annuity over time.",cover:["Flexible or scheduled payments","Risk-profiled allocation","Tax advantages (legal framework)"],options:["Lifecycle de-risking","Spouse protection","Diversified funds"],for:["Individuals & self-employed","Estate planning","Long-term goals"],docs:["ID","Proof of address","Bank details"]},
+          biens:{title:"Property (home/auto)",intro:"Essentials for your home, car and valuables.",cover:["Fire/water/theft","Personal liability","Motor damage, glass breakage, assistance"],options:["Valuables","New-for-old","Replacement car"],for:["Owners/tenants","Drivers all profiles","Main/second homes"],docs:["Motor info/loss runs","Home description","Title/lease"]},
+          vie:{title:"Life & Investments",intro:"Flexible savings, estate planning and objectives.",cover:["Dirham/euro funds","Unit-linked (where suitable)","Beneficiaries & taxation"],options:["Managed allocation","Free switches","Loans/withdrawals"],for:["Wealth build-up","Estate transfer","Diversification"],docs:["ID","Bank details","Subscription form"]},
+          schengen:{title:"Schengen Travel",intro:"Compliant certificate for visa applications.",cover:["Medical & hospital costs","Repatriation","Travel assistance"],options:["Zero deductible","Baggage","Trip cancellation (carrier-dependent)"],for:["Short-stay travelers","Students/business","Family visits"],docs:["Passport","Dates & countries","Accommodation address"]}
+        }
+      }
+    }
+  },
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
+    sol:{
+      title:"حلول التأمين",
+      sub:"منتجات واضحة وفعّالة مخصّصة لـ<strong>الشركات</strong> و<strong>الأفراد</strong>.",
+      badges:["منافسة بين عدة شركات تأمين","مساعدة مطالبات 24/7","شفافية الرسوم"],
+      tabs:{enterprise:"شركات",individual:"أفراد"},
+      clear:"مسح",
+      index:"فهرس",
+      cta:"احصل على عرض سعر",
+      note:"تختلف التغطيات والحدود حسب الشركة والملف. نوصي بالبناء الأمثل بأفضل كلفة.",
+      enterprise:{
+        cards:[
+          {slug:"multirisques",icon:"🏢",title:"متعدد المخاطر للشركات",short:"المقرات والمعدات وخسائر الاستغلال والمسؤولية."},
+          {slug:"transport",icon:"🚚",title:"النقل واللوجستيك",short:"قيمة مضافة، CMR، سلسلة التبريد، التأخيرات."},
+          {slug:"flotte",icon:"🚗",title:"السيارات والأسطول",short:"إدارة الأسطول والأضرار والمساعدة."},
+          {slug:"rc",icon:"⚖️",title:"المسؤولية المدنية",short:"العامة والمهنية والمنتجات والبيئية."},
+          {slug:"construction",icon:"🏗️",title:"البناء (أخطار الورش/العشرية)",short:"الورش والتركيب/التجارب والعشرية."},
+          {slug:"santecollective",icon:"👥",title:"الصحة الجماعية والاحتياط",short:"تغطيات الموظفين والوقاية والخدمات."}
+        ],
+        details:{
+          multirisques:{title:"متعدد المخاطر للشركات",intro:"حماية الأصول واستمرارية النشاط.",cover:["حريق/انفجار/أضرار مياه","سرقة وتخريب","كسر آلات/زجاج","خسائر الاستغلال","مسؤولية عامة ومنتجات"],options:["كوارث طبيعية ومناخية","سايبر أساسي","مقتنيات/معدات متنقلة"],for:["شركات صغيرة ومتوسطة","صناعة ومخازن","تجارة وخدمات"],docs:["استبيان مخاطر","قيم وموجودات","خسائر 3–5 سنوات"]},
+          transport:{title:"النقل واللوجستيك",intro:"تغطية البضائع أثناء النقل ومسؤوليات الناقل.",cover:["جميع الأخطار بالقيمة المضافة","مسؤولية الناقل/CMR","سلسلة تبريد","تأخير/حرمان من المنفعة"],options:["وثيقة سنوية أو للشحنات","تخزين وسيط","حرب/إضرابات"],for:["مستوردون/مصدّرون","3PL/وسطاء شحن","أغذية/أدوية"],docs:["تدفقات وقيم سنوية","مسارات ووسائل","معايير التغليف"]},
+          flotte:{title:"السيارات والأسطول",intro:"عقد رئيسي لأسطول المركبات مع تسيير للمطالبات والميزانية.",cover:["مسؤولية إجبارية","أضرار شاملة","سرقة/حريق/زجاج","سائق","مساعدة على الطريق"],options:["تليماتيك ووقاية","سيارة بديلة","معدات خاصة"],for:["أساطيل > 5 مركبات","خدمات وتوزيع","نقل أشخاص/بضائع"],docs:["قائمة الأسطول","سجل الخسائر","إجراءات الوقاية"]},
+          rc:{title:"المسؤولية المدنية",intro:"حماية ضد الأضرار للغير.",cover:["مسؤولية عامة","مسؤولية المنتجات بعد التسليم","مسؤولية مهنية","مسؤولية بيئية"],options:["مسؤولية المديرين D&O","جريمة/احتيال","امتدادات تعاقدية"],for:["صناعة وبناء","خدمات وتقنية","زراعة وصحة وتعليم"],docs:["الأنشطة وحجم الأعمال","الدول","نماذج العقود"]},
+          construction:{title:"البناء (أخطار الورش/العشرية)",intro:"تأمين الورش والمسؤولية بعد الإنجاز.",cover:["جميع أخطار المقاولين","التركيب والتجارب","مسؤولية المالك/المنفّذ","العشرية"],options:["أضرار قائمة","خسائر استغلال المشروع","عيوب جمالية"],for:["مالكو المشاريع والمقاولون","الحرف/الأشغال التقنية","بنية تحتية وطاقة"],docs:["مواصفات ورسومات","الجدول والميزانية","الخبرة والمراجع"]},
+          santecollective:{title:"الصحة الجماعية والاحتياط",intro:"حماية الموظفين وتعزيز سياسة الموارد البشرية.",cover:["نفقات طبية","عجز/وفاة","شبكات ومساعدة"],options:["طب عن بُعد ووقاية","حسب الفئات","طرف ثالث موسع"],for:["شركات صغيرة/متوسطة/كبرى","قطاعات ذات مطالبات مرتفعة","متعددة المواقع"],docs:["عدد وتصنيف الموظفين","استهلاك سابق","ميزانية ومستويات مستهدفة"]}
+        }
+      },
+      individual:{
+        cards:[
+          {slug:"sante",icon:"🩺",title:"الصحة",short:"تعويضات واضحة وشبكات علاج واستشفاء."},
+          {slug:"gav",icon:"🛡️",title:"حوادث الحياة",short:"عجز/تعطل، مصاريف، مساعدة."},
+          {slug:"retraite",icon:"⏳",title:"التقاعد والادخار",short:"رأس مال/معاش وفق الأفق والمخاطر."},
+          {slug:"biens",icon:"🏠",title:"الممتلكات (السكن/السيارة)",short:"سكن متعدد الأخطار وسيارة ومقتنيات."},
+          {slug:"vie",icon:"💠",title:"تأمين الحياة والاستثمار",short:"صناديق درهم/يورو، انتقال الملكية."},
+          {slug:"schengen",icon:"🛫",title:"سفر شنغن",short:"شهادة مطابقة وتكاليف طبية وإعادة."}
+        ],
+        details:{
+          sante:{title:"الصحة",intro:"تغطيات مفهومة ووصول سهل للرعاية.",cover:["استشفاء وعلاجات","نظارات وأسنان","أمومة"],options:["شبكات شركاء","طب عن بُعد","عائلية"],for:["موظفون ومستقلون","عائلات","طلبة/مغتربون"],docs:["استمارة انخراط","هوية","حساب بنكي"]},
+          gav:{title:"حوادث الحياة",intro:"حماية مالية للحوادث المنزلية/المدرسية/الترفيهية.",cover:["عجز دائم","مصاريف ومساعدة","تعويضات يومية"],options:["أطفال","رأسمال وفاة","مساعدة منزلية"],for:["عائلات وكبار السن","هواة رياضة","مستقلون"],docs:["استمارة","تصريح صحي عند الحاجة"]},
+          retraite:{title:"التقاعد والادخار",intro:"بناء رأس مال أو معاش.",cover:["دفعات مرنة/مجدولة","توزيع حسب المخاطر","امتيازات ضريبية"],options:["تقليل المخاطر تدريجياً","حماية الزوج/الزوجة","تنويع"],for:["أفراد ومستقلون","تخطيط وريث","أهداف طويلة"],docs:["هوية","سكن","حساب بنكي"]},
+          biens:{title:"الممتلكات (السكن/السيارة)",intro:"أساسيات حماية المنزل والسيارة والمقتنيات.",cover:["حريق/مياه/سرقة","مسؤولية مدنية","أضرار سيارة/زجاج/مساعدة"],options:["مقتنيات ثمينة","قيمة جديدة","سيارة بديلة"],for:["مالكون/مستأجرون","سائقون كل الفئات","سكن رئيسي/ثانوي"],docs:["معلومات سيارة/سجل الخسائر","وصف السكن","ملكية/عقد إيجار"]},
+          vie:{title:"تأمين الحياة والاستثمار",intro:"ادخار مرن وتخطيط ميراث وأهداف مالية.",cover:["صناديق درهم/يورو","وحدات استثمارية","مستفيدون وضرائب"],options:["تسيير مُدار","تحويلات حرة","سلف/سحب"],for:["بناء الثروة","نقل الملكية","تنويع"],docs:["هوية","حساب بنكي","استمارة اشتراك"]},
+          schengen:{title:"سفر شنغن",intro:"شهادة مطابقة لطلب التأشيرة.",cover:["نفقات طبية واستشفاء","إعادة للوطن","مساعدة سفر"],options:["بدون تحمل","أمتعة","إلغاء الرحلة"],for:["سفر قصير","طلبة/أعمال","زيارات عائلية"],docs:["جواز سفر","تواريخ وبلدان","عنوان الإقامة"]}
+        }
+      }
+    }
+  }
+};
+
+/* ================== Runtime ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+let pop = 'enterprise';
+let searchQ = '';
+
+function t(path){
+  const nodes=path.split('.'); let cur=I18N[lang];
+  for(const n of nodes){ if(cur==null || !(n in cur)) return path; cur=cur[n]; }
+  return cur;
+}
+
+function setActiveNav(){
+  const here=location.pathname.split('/').pop()||'solutions.html';
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
+  });
+}
+
+function renderCards(){
+  const wrap=document.getElementById('cards'); if(!wrap) return;
+  const list = (t(`sol.${pop}.cards`) || []).filter(c=>{
+    return !searchQ || (c.title.toLowerCase().includes(searchQ) || c.short.toLowerCase().includes(searchQ));
+  });
+  wrap.innerHTML = list.map(c=>`
+    <article class="card">
+      <h3>${c.icon} ${c.title}</h3>
+      <p class="muted">${c.short}</p>
+      <div style="margin-top:10px">
+        <a class="btn" href="#${c.slug}" onclick="event.preventDefault();document.getElementById('${c.slug}').scrollIntoView({behavior:'smooth'});">${t('sol.cta')}</a>
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderAnchors(){
+  const a=document.getElementById('anchors'); if(!a) return;
+  const list=t(`sol.${pop}.cards`)||[];
+  a.innerHTML = list.map(c=>`<a href="#${c.slug}">${c.icon} ${c.title}</a>`).join('');
+}
+
+function renderDetails(){
+  const box=document.getElementById('details'); if(!box) return;
+  const detailMap=t(`sol.${pop}.details`)||{};
+  const list=t(`sol.${pop}.cards`)||[];
+  box.innerHTML = `
+    <p class="muted" style="margin:-6px 0 16px">${t('sol.note')}</p>
+    ${list.map(c=>{
+      const d = detailMap[c.slug]; if(!d) return '';
+      return `
+      <section class="detail" id="${c.slug}">
+        <div class="kicker">${c.icon} ${c.title}</div>
+        <div class="card" style="margin-bottom:12px">
+          <h3>${d.title}</h3>
+          <p class="muted" style="margin-top:6px">${d.intro}</p>
+          <div class="grid-2" style="margin-top:14px">
+            <div class="card">
+              <h4>✔ ${lang==='en'?'Core covers':'Couvertures essentielles'}</h4>
+              <ul style="margin-top:8px">${(d.cover||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>➕ ${lang==='en'?'Options':'Options'}</h4>
+              <ul style="margin-top:8px">${(d.options||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>👤 ${lang==='en'?'Ideal for':'À qui ça s’adresse'}</h4>
+              <ul style="margin-top:8px">${(d.for||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>📑 ${lang==='en'?'Required docs':'Pièces requises'}</h4>
+              <ul style="margin-top:8px">${(d.docs||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+            <a class="btn" href="contact.html">${t('sol.cta')}</a>
+            <a class="btn secondary" href="#top">↑ ${lang==='en'?'Back to top':'Haut de page'}</a>
+          </div>
+        </div>
+      </section>`;
+    }).join('')}
+  `;
+}
+
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  // placeholder de recherche
+  const q=document.getElementById('q'); if(q){ q.placeholder = (lang==='en'?'Search a product…':lang==='ar'?'ابحث عن منتج…':'Rechercher un produit…'); }
+  renderCards(); renderAnchors(); renderDetails();
+}
+
+function initUI(){
+  // menu burger
+  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  // tabs
+  document.querySelectorAll('.tab').forEach(b=>{
+    b.addEventListener('click', ()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); pop=b.dataset.pop; renderCards(); renderAnchors(); renderDetails(); });
+  });
+  // search
+  const q=document.getElementById('q'); const clear=document.getElementById('clear');
+  if(q){ q.addEventListener('input', ()=>{ searchQ=q.value.toLowerCase().trim(); renderCards(); }); }
+  if(clear){ clear.addEventListener('click',()=>{ searchQ=''; if(q) q.value=''; renderCards(); }); }
+  // reveal
+  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  // scroll to hash on load if any
+  if(location.hash){ const el=document.querySelector(location.hash); if(el) el.scrollIntoView({behavior:'smooth'}); }
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  setActiveNav();
+  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
+  applyTexts(); initUI();
+});
+</script>
 </body>
 </html>
