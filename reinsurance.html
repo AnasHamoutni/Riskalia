@@ -1,17 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — Réassurance</title>
+  <meta name="description" content="Traités QS, Surplus, XoL, Stop-Loss & Agrégat. Facultatives rapides. Conception de produits. Cellule sinistres complexes 24/7, arbitrages internationaux. Alignement IFRS 17."/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;--radius:14px;--shadow:0 10px 24px rgba(0,0,0,.07);--grad:linear-gradient(rgba(0,92,115,.84),rgba(0,92,115,.84))}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--cd);line-height:1.65}
+body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+.container{max-width:1200px;margin:auto;padding:0 16px}
+.btn{display:inline-block;padding:12px 20px;background:var(--c3);color:#fff;border-radius:10px;font-weight:700;transition:.2s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px);background:var(--c2)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:7px 12px;border-radius:999px;font-weight:800}
+.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.muted{color:#5f7781}
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand img{height:48px;width:auto;border-radius:8px}
+nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
+nav a{position:relative;padding:6px}
+nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+nav a:hover::after,nav a.active::after{width:100%}
+.menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+@media(max-width:900px){
+  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
+  .menu-toggle{display:block}
+}
+.hero{min-height:46vh;background:var(--grad),url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.5vw,3.1rem);letter-spacing:-.4px;margin-bottom:12px}
+.hero p{color:#fff;opacity:.98;max-width:860px;margin:0 auto 16px}
+section{padding:54px 0}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 12px}
+.tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:800}
+.tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
+blockquote{border-left:4px solid var(--c3);padding-left:12px;color:#46656f;background:#f0fafc;border-radius:8px}
+.small{font-size:.95rem}
+footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+.reveal.active{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
-    <nav aria-label="Navigation">
+    <a class="brand" href="index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
+    </a>
+    <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
@@ -29,30 +86,493 @@
   </div>
 </header>
 
-<section style="padding:40px 0 0">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
     <h1 data-i18n="re.title">Réassurance : expertise & accompagnement stratégique</h1>
-
-    <div class="tabs">
-      <button class="tab active" data-tab="intro" data-i18n="re.tabs.intro">Présentation</button>
-      <button class="tab" data-tab="treaty" data-i18n="re.tabs.treaty">Traités</button>
-      <button class="tab" data-tab="fac" data-i18n="re.tabs.fac">Facultatives</button>
-      <button class="tab" data-tab="product" data-i18n="re.tabs.product">Conception produit</button>
+    <p data-i18n="re.sub">Traités QS/Surplus/XoL/Stop-Loss/Agrégat · Facultatives rapides · Alignement IFRS 17 · Wordings LMA/IUA · Cellule sinistres complexes 24/7.</p>
+    <div class="badges" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <span class="badge" data-i18n="re.badges.0">Accès marchés A/A+/AA</span>
+      <span class="badge" data-i18n="re.badges.1">Optimisation capital & solvabilité</span>
+      <span class="badge" data-i18n="re.badges.2">Délais d’indemnisation raccourcis</span>
     </div>
+  </div>
+</section>
 
-    <div id="re-content" class="card"></div>
+<!-- TABS -->
+<section class="reveal" style="padding-top:28px">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="overview" data-i18n="re.tabs.overview">Présentation</button>
+      <button class="tab" data-tab="treaties" data-i18n="re.tabs.treaties">Traités</button>
+      <button class="tab" data-tab="fac" data-i18n="re.tabs.fac">Facultatives</button>
+      <button class="tab" data-tab="design" data-i18n="re.tabs.design">Conception produit</button>
+      <button class="tab" data-tab="claims" data-i18n="re.tabs.claims">Sinistres & arbitrages</button>
+      <button class="tab" data-tab="faq" data-i18n="re.tabs.faq">FAQ</button>
+    </div>
+    <div id="tab-content"></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container" style="text-align:center">
+    <h2 data-i18n="re.cta.title">Besoin d’un placement ou d’une revue de programme ?</h2>
+    <p class="muted" data-i18n="re.cta.text">Envoyez-nous vos bordereaux et états de sinistres ; nous répondons sous 24–48 h.</p>
+    <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.advisor">Parler à un expert</a>
   </div>
 </section>
 
 <footer>
   <div class="container footer-grid">
-    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
-    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
-    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a><br><a href="contact.html" data-i18n="nav.contact">Contact</a></p></div>
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
   </div>
 </footer>
 
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/site.js"></script>
+<script>
+/* ================== i18n ================== */
+const I18N = {
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    cta:{quote:"Obtenir un devis",advisor:"Parler à un expert"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
+    re:{
+      title:"Réassurance : expertise & accompagnement stratégique",
+      sub:"Traités QS/Surplus/XoL/Stop-Loss/Agrégat · Facultatives rapides · Alignement IFRS 17 · Wordings LMA/IUA · Cellule sinistres complexes 24/7.",
+      badges:["Accès marchés A/A+/AA","Optimisation capital & solvabilité","Délais d’indemnisation raccourcis"],
+      tabs:{overview:"Présentation",treaties:"Traités",fac:"Facultatives",design:"Conception produit",claims:"Sinistres & arbitrages",faq:"FAQ"},
+      overview:{
+        lead:"Nous sécurisons vos portefeuilles et projets via un accès direct aux marchés notés A/A+/AA, une structuration rigoureuse des programmes, et une exécution rapide.",
+        blocks:[
+          {t:"Architecture sur-mesure",d:"QS, Surplus, XoL (par risque/par événement), Stop-Loss & Agrégat conformément à vos objectifs de solvabilité et d’appétence au risque."},
+          {t:"Placement compétitif",d:"Scoring des marchés, concours multi-tours, pilotage des parts, corridors de commissions et clauses de révision."},
+          {t:"Gouvernance & IFRS 17",d:"Alignement PAA/GMM, agrégation de groupes de contrats, granularités et cessions adaptées."},
+          {t:"Data & modélisation",d:"Loss triangles, ALM, stress tests, courbes de sévérité, pricing facultatif ‘time-to-market’."}
+        ],
+        timeline:{k:"Feuille de route type (4–6 semaines)",items:[
+          "Semaine 1 : collecte données, diagnostic et objectifs",
+          "Semaine 2 : design du programme & wordings (LMA/IUA)",
+          "Semaines 3–4 : appel au marché, négociations multi-tours",
+          "Semaine 5 : lignes finales, signings & slip/binder",
+          "Semaine 6 : bordereaux & MI, mise en production"
+        ]}
+      },
+      treaties:{
+        intro:"Choix des traités en fonction de la volatilité, de la fréquence/sévérité et des objectifs de capital.",
+        list:[
+          {slug:"qs",t:"Quota Share (QS)",use:["Partage proportionnel de la prime & sinistre","Stabilise résultats et solvabilité","Pertinent en croissance de portefeuille"],mech:["Cession fixe (ex. 30–60%)","Commission de cession/commission glissante","Participation résultat (selon seuils)"],good:["Lignes à fréquence élevée","Lancements produits"],knobs:["Taux de cession","Structure de commission","Exclusions/retrocessions"]},
+          {slug:"surplus",t:"Surplus",use:["Augmente la capacité sur gros risques","Évite de sur-assurer les petits"],mech:["Cession au-delà de la rétention par risque","Nombre de lignes (ex. 3–10 lignes)","Ligne de souscription indexée"],good:["Property, Engineering","Risques hétérogènes"],knobs:["Rétention par risque","Nombre de lignes","Agrégats par assuré/branche"]},
+          {slug:"xol",t:"Excess of Loss (XoL)",use:["Protège contre les chocs sévères","Lisse la sinistralité"],mech:["Par risque, par événement (cat), ou annuel","Couche(s) avec priorités & limites","Prime min dépôt + ajustement"],good:["Property, CAT, RC lourde","Auto matérielle sinistres majeurs"],knobs:["Priorité (attachment)","Limite par couche","Clausier (hours clause, hours aggregation)"]},
+          {slug:"stop",t:"Stop-Loss / Agrégat",use:["Protège le ratio combiné annuel","Couvre la dérive de fréquence"],mech:["Attaches sur sinistres agrégés/an","Périmètre multi-branches possible","Partage de participations"],good:["Portefeuilles mûrs à variance résiduelle","Lignes de masse (auto/santé)"],knobs:["Attachment sur ratio/point MAD","Limite annuelle","Partage profit"]},
+          {slug:"custom",t:"Montages hybrides",use:["Combinaisons QS+XoL, CL+agrégat","Optimisation coût du capital"],mech:["Empilement de couches & corridors","Triggers KPI (LR corridor)","Clauses de réouverture"],good:["Groupes multi-lignes","Contexte IFRS 17 / Solvabilité"],knobs:["Séquençage des couches","Corridors & caps","Wording spécifique"]}
+        ],
+        docs:["Bordereaux primes & sinistres 3–5 ans","Exposure (somme assurée, PML, géo)","Wordings & extensions souhaitées","Objectifs (solvabilité, budget, rating)"]
+      },
+      fac:{
+        intro:"Ciblée et rapide pour pics d’exposition, risques uniques ou projets isolés.",
+        classes:[
+          {t:"Property & Pertes d’exploitation",pts:["BI, DSU/Delay in Start-Up","Périls naturels, SRCC (selon marché)","Haute valeur/locaux critiques"]},
+          {t:"CAR/EAR & Énergie",pts:["Chantiers, montage & essai","Power/Oil & Gas (selon marché)","Bris d’équipements critiques"]},
+          {t:"Responsabilités",pts:["Générale/Produits","Professionnelle","Environnementale"]},
+          {t:"Marine Cargo & Project Cargo",pts:["Ad valorem / stock throughput","Chaîne du froid","Projets industriels"]},
+          {t:"Spécialités",pts:["Cyber (sélectif)","Political Risk/Credit (selon marché)","Infrastructures/PPP"]}
+        ],
+        workflow:{k:"Workflow de placement",steps:[
+          "Brief & documents (SOI, valeurs, plans, wordings)",
+          "Slip & chiffrage (lead markets)",
+          "Négociation & lignes (lead/follow)",
+          "Order & confirmations",
+          "Endossements, MI & reporting"
+        ]},
+        docs:["SOI & COPE/COPE détaillés","Plan/implantation & protections","Historique sinistres & mesures","Wordings/clauses souhaitées"]
+      },
+      design:{
+        lead:"De l’idée au marché : spécification, tarification, wording et déploiement.",
+        steps:[
+          {t:"Étude d’opportunité",d:"Taille de marché, positionnement, contraintes réglementaires."},
+          {t:"Tarification & actuariat",d:"Courbes fréquence/sévérité, chargements, stress tests."},
+          {t:"Wording & conformité",d:"Base LMA/IUA, exclusions, annexes locales, KYC/AML."},
+          {t:"Pilotage & MI",d:"Bordereaux, KPIs (LR/ULR), ajustements et renouvellement."}
+        ]
+      },
+      claims:{
+        lead:"Cellule sinistres complexes 24/7",
+        bullets:[
+          "Quantum review & stratégies de règlement",
+          "Coordination loss adjusters & experts techniques",
+          "Médiation/arbitrage (ARIAS, ICC, ad hoc)",
+          "Gestion documentaire & réserves, MI aux marchés"
+        ],
+        docs:["Déclaration & circonstances","Estimations & pièces justificatives","Rapports d’expertise","Correspondances & échéances"]
+      },
+      faq:{
+        items:[
+          {q:"Quels marchés adressez-vous ?",a:"Marchés notés A/A+/AA selon les lignes et l’appétence. Benchmarks de clauses et délais de règlement."},
+          {q:"Pouvez-vous reprendre un programme existant ?",a:"Oui, revue indépendante (wordings, pricing, performance) et recommandations rapides."},
+          {q:"Délais typiques de placement ?",a:"Facultatives : 48–96h pour une première position. Traités : 4–6 semaines selon complexité."},
+          {q:"Accompagnez-vous la comptabilité de cession ?",a:"Oui, bordereaux, cash-calls, rapprochements et MI périodique."}
+        ]
+      },
+      cta:{title:"Besoin d’un placement ou d’une revue de programme ?",text:"Envoyez-nous vos bordereaux et états de sinistres ; nous répondons sous 24–48 h."}
+    }
+  },
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    cta:{quote:"Get a quote",advisor:"Talk to an expert"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
+    re:{
+      title:"Reinsurance: expertise & strategic support",
+      sub:"QS/Surplus/XoL/Stop-Loss/Aggregate treaties · Fast facultatives · IFRS 17 alignment · LMA/IUA wordings · 24/7 complex claims.",
+      badges:["Access to A/A+/AA markets","Capital & solvency optimisation","Shorter settlement timelines"],
+      tabs:{overview:"Overview",treaties:"Treaties",fac:"Facultatives",design:"Product design",claims:"Claims & arbitration",faq:"FAQ"},
+      overview:{
+        lead:"We secure portfolios and projects through direct access to top-rated markets, robust programme design and fast execution.",
+        blocks:[
+          {t:"Tailored architecture",d:"QS, Surplus, XoL (risk/event), Stop-Loss & Aggregate aligned to risk appetite and solvency goals."},
+          {t:"Competitive placement",d:"Carrier scoring, multi-round negotiations, line steering, commission corridors and review clauses."},
+          {t:"Governance & IFRS 17",d:"PAA/GMM alignment, groups of contracts, relevant cessions."},
+          {t:"Data & modelling",d:"Triangles, ALM, stress tests, severity curves, rapid facultative pricing."}
+        ],
+        timeline:{k:"Typical roadmap (4–6 weeks)",items:[
+          "Week 1: data collection, diagnosis & objectives",
+          "Week 2: programme design & wordings (LMA/IUA)",
+          "Weeks 3–4: market approach & negotiations",
+          "Week 5: final lines, signings & slip/binder",
+          "Week 6: bordereaux & MI, go-live"
+        ]}
+      },
+      treaties:{
+        intro:"Choose treaty forms by volatility, frequency/severity mix and capital objectives.",
+        list:[
+          {slug:"qs",t:"Quota Share (QS)",use:["Proportional share of premium & loss","Stabilises results & solvency","Relevant in portfolio growth"],mech:["Fixed cession (e.g., 30–60%)","Ceding/Sliding commission","Profit participation"],good:["High-frequency lines","New products"],knobs:["Cession rate","Commission structure","Exclusions/retro"]},
+          {slug:"surplus",t:"Surplus",use:["Adds capacity on large risks","Avoids over-ceding small ones"],mech:["Cession above per-risk retention","Number of lines (e.g., 3–10)","Indexed underwriting line"],good:["Property, Engineering","Heterogeneous risks"],knobs:["Per-risk retention","Lines count","Per insured/class aggregates"]},
+          {slug:"xol",t:"Excess of Loss (XoL)",use:["Shields against severe shocks","Smooths loss ratio"],mech:["Per risk, per event (cat), or annual","Layering with priorities & limits","M&D premium + adjustment"],good:["Property, CAT, heavy liability","Motor large losses"],knobs:["Attachment","Limit per layer","Clauses (hours, aggregation)"]},
+          {slug:"stop",t:"Stop-Loss / Aggregate",use:["Protects annual combined ratio","Covers frequency drift"],mech:["Attachment on annual aggregate","Multi-line scope possible","Participations sharing"],good:["Mature portfolios","Mass lines (motor/health)"],knobs:["Attachment (LR/MAD)","Annual limit","Profit share"]},
+          {slug:"custom",t:"Hybrid structures",use:["QS+XoL, CL+aggregate","Optimised capital cost"],mech:["Layer stacking & corridors","KPI triggers (LR corridor)","Reopening clauses"],good:["Multi-line groups","IFRS 17/Solvency context"],knobs:["Layer sequencing","Corridors & caps","Specific wording"]}
+        ],
+        docs:["Premium & loss bordereaux (3–5y)","Exposure (SI, PML, geo)","Target wordings & extensions","Objectives (solvency, budget, rating)"]
+      },
+      fac:{
+        intro:"Targeted and fast for peak exposures, single risks or standalone projects.",
+        classes:[
+          {t:"Property & Business Interruption",pts:["BI, DSU/Delay in Start-Up","NatCat & SRCC (market-dependent)","High-value/critical sites"]},
+          {t:"CAR/EAR & Energy",pts:["Construction/erection & testing","Power/Oil & Gas (market-dependent)","Critical equipment breakdown"]},
+          {t:"Liabilities",pts:["General/Products","Professional","Environmental"]},
+          {t:"Marine Cargo & Project Cargo",pts:["Ad valorem / stock throughput","Cold chain","Industrial projects"]},
+          {t:"Specialties",pts:["Cyber (selective)","Political Risk/Credit (market-dependent)","Infrastructure/PPP"]}
+        ],
+        workflow:{k:"Placement workflow",steps:[
+          "Brief & docs (SOI, values, plans, wordings)",
+          "Slip & pricing (lead markets)",
+          "Negotiation & lines (lead/follow)",
+          "Order & confirmations",
+          "Endorsements, MI & reporting"
+        ]},
+        docs:["SOI & COPE details","Layouts/protections","Loss history & prevention","Desired wordings/clauses"]
+      },
+      design:{
+        lead:"From idea to market: specification, pricing, wording and rollout.",
+        steps:[
+          {t:"Opportunity study",d:"TAM, positioning, regulatory constraints."},
+          {t:"Pricing & actuarial",d:"Freq/sev curves, loadings, stress tests."},
+          {t:"Wording & compliance",d:"LMA/IUA base, exclusions, local annexes, KYC/AML."},
+          {t:"Steer & MI",d:"Bordereaux, KPIs (LR/ULR), adjustments & renewal."}
+        ]
+      },
+      claims:{
+        lead:"24/7 complex claims unit",
+        bullets:[
+          "Quantum review & settlement strategy",
+          "Adjuster/technical experts coordination",
+          "Mediation/arbitration (ARIAS, ICC, ad hoc)",
+          "Document management & reserves, MI to markets"
+        ],
+        docs:["Notice & circumstances","Estimates & evidences","Expert reports","Correspondence & timelines"]
+      },
+      faq:{
+        items:[
+          {q:"Which markets do you approach?",a:"A/A+/AA-rated markets depending on lines and appetite. Clause and settlement benchmarks included."},
+          {q:"Can you take over an existing programme?",a:"Yes — independent review (wordings, pricing, performance) and quick recommendations."},
+          {q:"Typical timelines?",a:"Fac: 48–96h to first stance. Treaties: 4–6 weeks depending on complexity."},
+          {q:"Do you support cession accounting?",a:"Yes — bordereaux, cash-calls, reconciliations and periodic MI."}
+        ]
+      },
+      cta:{title:"Need a placement or programme review?",text:"Send bordereaux and loss runs — we reply within 24–48 hours."}
+    }
+  },
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    cta:{quote:"احصل على عرض سعر",advisor:"تواصل مع خبير"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
+    re:{
+      title:"إعادة التأمين: خبرة ودعم استراتيجي",
+      sub:"اتفاقيات نسبية/فائض/فوق الخسارة/إيقاف الخسارة/مجمّع · اختياريات سريعة · توافق IFRS 17 · صيغ LMA/IUA · خلية مطالبات معقدة 24/7.",
+      badges:["ولوج أسواق مصنّفة A/A+/AA","تحسين رأس المال والملاءة","تقليص آجال التسوية"],
+      tabs:{overview:"عرض عام",treaties:"اتفاقيات",fac:"اختياريات",design:"تصميم منتجات",claims:"مطالبات وتحكيم",faq:"أسئلة"},
+      overview:{
+        lead:"نؤمّن المحافظ والمشاريع عبر وصول مباشر لأفضل الأسواق، تصميم صارم للبرامج، وتنفيذ سريع.",
+        blocks:[
+          {t:"هندسة مخصّصة",d:"نسبية، فائض، فوق الخسارة (حسب الخطر/الحدث)، إيقاف الخسارة والمجمّع وفق شهية المخاطر والملاءة."},
+          {t:"وساطة تنافسية",d:"تنقيط الشركات ومفاوضات متعددة الجولات وتوجيه الحصص وممرات العمولة."},
+          {t:"حوكمة وIFRS 17",d:"مواءمة PAA/GMM وتجميع العقود وتناسب نسب الإسناد."},
+          {t:"بيانات ونمذجة",d:"مثلثات خسائر، ALM، اختبارات ضغط ومنحنيات شدة."}
+        ],
+        timeline:{k:"خارطة طريق (4–6 أسابيع)",items:[
+          "الأسبوع 1: جمع البيانات والأهداف",
+          "الأسبوع 2: تصميم البرنامج وصياغات LMA/IUA",
+          "الأسبوع 3–4: مخاطبة السوق والتفاوض",
+          "الأسبوع 5: الحصص النهائية والتوقيعات",
+          "الأسبوع 6: bordereaux وتقارير MI وإطلاق"
+        ]}
+      },
+      treaties:{
+        intro:"اختيار نوع الاتفاقية وفق التذبذب ومزيج التكرار/الشدة وأهداف رأس المال.",
+        list:[
+          {slug:"qs",t:"نسبة من الأصل (Quota Share)",use:["تقاسم نسبي للقسط والخسارة","استقرار النتائج والملاءة","مناسب لنمو المحافظ"],mech:["نسبة إسناد ثابتة","عمولة الإسناد/الانزلاقية","مشاركة أرباح"],good:["فروع عالية التكرار","منتجات جديدة"],knobs:["نسبة الإسناد","بنية العمولة","الاستثناءات/إعادة الإسناد"]},
+          {slug:"surplus",t:"فائض",use:["رفع السعة للمخاطر الكبيرة","تجنّب مبالغة الصغرى"],mech:["إسناد فوق احتفاظ لكل خطر","عدد الخطوط","خط الاكتتاب المفهرس"],good:["ممتلكات وهندسة","مخاطر غير متجانسة"],knobs:["احتفاظ لكل خطر","عدد الخطوط","مجمعات بحسب المؤمن له/الفرع"]},
+          {slug:"xol",t:"فوق الخسارة",use:["حماية من الصدمات الشديدة","تنضير نسبة الخسائر"],mech:["حسب الخطر/الحدث أو سنوي","طبقات بأولوية وحدود","قسط حد أدنى قابل للتعديل"],good:["ممتلكات وكوارث ومسؤوليات ثقيلة","خسائر كبيرة في السيارات"],knobs:["نقطة التحمل","حد الطبقة","بنود التجميع بالساعات"]},
+          {slug:"stop",t:"إيقاف الخسارة/مجمع",use:["حماية النسبة المجمعة السنوية","تغطية انحراف التكرار"],mech:["تحمل على الخسائر المجمعة سنوياً","إمكانية تعدد الفروع","مشاركة في العوائد"],good:["محافظ ناضجة","فروع الكتلة (سيارات/صحة)"],knobs:["مستوى التحمل","الحد السنوي","تقاسم الأرباح"]},
+          {slug:"custom",t:"هياكل هجينة",use:["مزج نسبية+فوق الخسارة","خفض كلفة رأس المال"],mech:["تكديس الطبقات والممرات","محفزات KPI","بنود إعادة الفتح"],good:["مجموعات متعددة الفروع","سياق IFRS 17/ملاءة"],knobs:["تسلسل الطبقات","الممرات والحدود","صياغات خاصة"]}
+        ],
+        docs:["bordereaux أقساط وخسائر 3–5 سنوات","التعرض (مبالغ، PML، جغرافيا)","الصياغات والامتدادات المطلوبة","الأهداف (ملاءة، ميزانية، تصنيف)"]
+      },
+      fac:{
+        intro:"سريعة وموجهة لذرى التعرض والمخاطر المفردة.",
+        classes:[
+          {t:"ممتلكات وخسائر استغلال",pts:["BI، تأخير بدء التشغيل","كوارث طبيعية واضطرابات (حسب السوق)","مواقع حرجة عالية القيمة"]},
+          {t:"مشاريع وتركيب وطاقة",pts:["CAR/EAR وتركيب وتجارب","طاقة ونفط وغاز (حسب السوق)","أعطال معدات حرجة"]},
+          {t:"مسؤوليات",pts:["عامة/منتجات","مهنية","بيئية"]},
+          {t:"بحري وشحن مشاريع",pts:["قيمة مضافة / تدفق مخزون","سلسلة تبريد","مشاريع صناعية"]},
+          {t:"تخصصات",pts:["سايبر (انتقائي)","مخاطر سياسية/ائتمان","بنى تحتية/PPP"]}
+        ],
+        workflow:{k:"سير عمل الإسناد الاختياري",steps:[
+          "موجز ووثائق (قيم، خطط، صياغات)",
+          "Slip وتسعير (الشركات القائدة)",
+          "تفاوض وحصص (قائد/تابع)",
+          "Order وتأكيدات",
+          "ملحقات وتقارير MI"
+        ]},
+        docs:["SOI وتفاصيل COPE","رسومات/حماية","سجل خسائر وإجراءات وقاية","صياغات مطلوبة"]
+      },
+      design:{
+        lead:"من الفكرة إلى السوق: مواصفات وتسعير وصياغات وإطلاق.",
+        steps:[
+          {t:"دراسة الفرصة",d:"حجم السوق والتموضع والضوابط."},
+          {t:"تسعير واكتواري",d:"منحنيات تكرار/شدة واختبارات ضغط."},
+          {t:"صياغة وامتثال",d:"قواعد LMA/IUA واستثناءات وملفات KYC/AML."},
+          {t:"تسيير وMI",d:"bordereaux ومؤشرات وأعمال التجديد."}
+        ]
+      },
+      claims:{
+        lead:"خلية مطالبات معقدة 24/7",
+        bullets:[
+          "مراجعة التعويض والاستراتيجية",
+          "تنسيق الخبراء الفنيين",
+          "وساطة/تحكيم (ARIAS/ICC)",
+          "تسيير الوثائق والاحتياط وتقارير للأسواق"
+        ],
+        docs:["تصريح بالحادث","تقديرات ومستندات","تقارير خبرة","مراسلات ومواعيد"]
+      },
+      faq:{
+        items:[
+          {q:"ما هي الأسواق التي تتعاملون معها؟",a:"أسواق مصنّفة A/A+/AA وفق الفروع والشهية. معايير بنود وصرف تعويضات."},
+          {q:"هل يمكن استلام برنامج قائم؟",a:"نعم، مراجعة مستقلة وتوصيات سريعة."},
+          {q:"ما هي المهل النموذجية؟",a:"اختياريات 48–96 ساعة لأول موقف. الاتفاقيات 4–6 أسابيع."},
+          {q:"هل تدعمون محاسبة الإسناد؟",a:"نعم، bordereaux وطلبات نقدية وتسويات وتقارير دورية."}
+        ]
+      },
+      cta:{title:"بحاجة إلى إسناد أو مراجعة برنامج؟",text:"أرسلوا bordereaux وسجل الخسائر — نجيب خلال 24–48 ساعة."}
+    }
+  }
+};
+
+/* ================== Runtime ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+let currentTab = 'overview';
+
+function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null||!(n in cur)) return path; cur=cur[n]; } return cur; }
+
+function setActiveNav(){
+  const here=location.pathname.split('/').pop()||'reinsurance.html';
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
+  });
+}
+
+function renderOverview(){
+  const b=t('re.overview.blocks')||[];
+  const tl=t('re.overview.timeline')||{k:'',items:[]};
+  return `
+    <section class="card">
+      <p class="muted">${t('re.overview.lead')}</p>
+      <div class="grid-4" style="margin-top:14px">
+        ${b.map(x=>`<div class="card"><h4>${x.t}</h4><p class="muted">${x.d}</p></div>`).join('')}
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h4>${tl.k}</h4>
+        <ol class="small" style="margin-top:8px">${(tl.items||[]).map(it=>`<li>${it}</li>`).join('')}</ol>
+      </div>
+    </section>
+  `;
+}
+
+function renderTreaties(){
+  const list=t('re.treaties.list')||[];
+  const docs=t('re.treaties.docs')||[];
+  return `
+    <section class="grid-3">
+      ${list.map(x=>`
+        <article class="card" id="${x.slug}">
+          <div class="kicker">${x.t}</div>
+          <div class="grid-2">
+            <div class="card">
+              <h4>🎯 ${lang==='en'?'Use when':'À utiliser quand'}</h4>
+              <ul class="small" style="margin-top:6px">${(x.use||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>⚙️ ${lang==='en'?'Mechanics':'Mécanismes'}</h4>
+              <ul class="small" style="margin-top:6px">${(x.mech||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>✅ ${lang==='en'?'Good for':'Pertinent pour'}</h4>
+              <ul class="small" style="margin-top:6px">${(x.good||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+            <div class="card">
+              <h4>🔧 ${lang==='en'?'Knobs':'Réglages'}</h4>
+              <ul class="small" style="margin-top:6px">${(x.knobs||[]).map(i=>`<li>${i}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </article>
+      `).join('')}
+    </section>
+    <section class="card" style="margin-top:14px">
+      <h4>📑 ${lang==='en'?'Documents required':'Documents requis'}</h4>
+      <ul class="small" style="margin-top:6px">${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+    </section>
+  `;
+}
+
+function renderFac(){
+  const cls=t('re.fac.classes')||[];
+  const wf=t('re.fac.workflow')||{k:'',steps:[]};
+  const docs=t('re.fac.docs')||[];
+  return `
+    <section class="grid-3">
+      ${cls.map(c=>`
+        <article class="card">
+          <div class="kicker">${c.t}</div>
+          <ul class="small" style="margin-top:6px">${(c.pts||[]).map(p=>`<li>${p}</li>`).join('')}</ul>
+        </article>
+      `).join('')}
+    </section>
+    <section class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <h4>🧭 ${wf.k}</h4>
+        <ol class="small" style="margin-top:6px">${(wf.steps||[]).map(s=>`<li>${s}</li>`).join('')}</ol>
+      </div>
+      <div class="card">
+        <h4>📑 ${lang==='en'?'Documents required':'Documents requis'}</h4>
+        <ul class="small" style="margin-top:6px">${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+      </div>
+    </section>
+  `;
+}
+
+function renderDesign(){
+  const steps=t('re.design.steps')||[];
+  return `
+    <section class="card">
+      <p class="muted">${t('re.design.lead')}</p>
+      <div class="grid-4" style="margin-top:14px">
+        ${steps.map(s=>`<div class="card"><h4>${s.t}</h4><p class="muted">${s.d}</p></div>`).join('')}
+      </div>
+      <blockquote class="small" style="margin-top:14px">
+        ${lang==='en'
+          ? 'We base wordings on LMA/IUA templates and adapt annexes to local requirements; MI (Management Information) is defined with carriers from day one.'
+          : lang==='ar'
+            ? 'نعتمد صياغات LMA/IUA ونكيّف الملاحق حسب المتطلبات المحلية؛ يتم الاتفاق على تقارير MI منذ البداية.'
+            : 'Nous basons les wordings sur des modèles LMA/IUA et adaptons les annexes locales ; la MI (Management Information) est cadrée dès le départ avec les marchés.'}
+      </blockquote>
+    </section>
+  `;
+}
+
+function renderClaims(){
+  const bullets=t('re.claims.bullets')||[];
+  const docs=t('re.claims.docs')||[];
+  return `
+    <section class="grid-2">
+      <div class="card">
+        <h4>🛟 ${t('re.claims.lead')}</h4>
+        <ul class="small" style="margin-top:6px">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+      </div>
+      <div class="card">
+        <h4>📑 ${lang==='en'?'Documents required':'Documents requis'}</h4>
+        <ul class="small" style="margin-top:6px">${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+      </div>
+    </section>
+  `;
+}
+
+function renderFAQ(){
+  const items=t('re.faq.items')||[];
+  return `
+    <section class="grid-3">
+      ${items.map(f=>`<article class="card"><h4>${f.q}</h4><p class="muted" style="margin-top:6px">${f.a}</p></article>`).join('')}
+    </section>
+  `;
+}
+
+function renderTab(){
+  const host=document.getElementById('tab-content'); if(!host) return;
+  let html='';
+  if(currentTab==='overview') html=renderOverview();
+  if(currentTab==='treaties') html=renderTreaties();
+  if(currentTab==='fac') html=renderFac();
+  if(currentTab==='design') html=renderDesign();
+  if(currentTab==='claims') html=renderClaims();
+  if(currentTab==='faq') html=renderFAQ();
+  host.innerHTML=html;
+}
+
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  renderTab();
+}
+
+function initUI(){
+  setActiveNav();
+  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  document.querySelectorAll('.tab').forEach(b=>{
+    b.addEventListener('click', ()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active'); currentTab=b.dataset.tab; renderTab(); window.scrollTo({top:document.querySelector('.tabs').offsetTop-80, behavior:'smooth'}); });
+  });
+  // reveal
+  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
+  applyTexts(); initUI();
+});
+</script>
 </body>
 </html>
