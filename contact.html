@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Contact</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
+    <nav aria-label="Navigation">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:40px 0 0">
+  <div class="container">
+    <h1 data-i18n="contact.title">Contact & Espace client</h1>
+    <p class="kicker" data-i18n="contact.lead">Un conseiller vous répond sous 24 h</p>
+    <form data-contact style="max-width:720px;margin:auto;display:grid;gap:14px">
+      <input type="text" data-ph="contact.form.name" placeholder="Nom & Prénom" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <input type="email" data-ph="contact.form.email" placeholder="Adresse e-mail" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <input type="tel" data-ph="contact.form.phone" placeholder="Téléphone" style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <select required style="padding:14px;border:1px solid #cfd9de;border-radius:8px" id="type-select">
+        <option value="" data-i18n="contact.form.type">Type d’assurance</option>
+        <option data-i18n="contact.form.opt.broker">Courtage</option>
+        <option data-i18n="contact.form.opt.re">Réassurance</option>
+        <option data-i18n="contact.form.opt.esg">ESG & Financement climatique</option>
+      </select>
+      <textarea rows="6" data-ph="contact.form.msg" placeholder="Message" style="padding:14px;border:1px solid #cfd9de;border-radius:8px"></textarea>
+      <button type="submit" class="btn" data-i18n="contact.form.submit" style="justify-self:center">Envoyer</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
+    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
+    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a></p></div>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

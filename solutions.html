@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Solutions</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
+    <nav aria-label="Navigation">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:40px 0 0">
+  <div class="container">
+    <h1 data-i18n="solutions.title">Solutions d’assurance</h1>
+    <p class="kicker" data-i18n="solutions.choose">Choisissez votre profil</p>
+    <div class="pill-group">
+      <button class="pill active" data-pop="enterprise" data-i18n="solutions.pill.enterprise">Entreprises</button>
+      <button class="pill" data-pop="individual" data-i18n="solutions.pill.individual">Particuliers</button>
+    </div>
+    <div id="sol-grid" class="grid-3"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
+    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
+    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a><br><a href="contact.html" data-i18n="nav.contact">Contact</a></p></div>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
