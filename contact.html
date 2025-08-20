@@ -5,56 +5,7 @@
   <title>Riskalia — Contact</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-:root{
-  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;
-  --cl:#fff;--cm:#f5f8fa;--cd:#253238;
-  --radius:14px;
-  --grad:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85));
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
-body{font-family:'Open Sans',sans-serif;background:var(--cl);color:var(--cd);line-height:1.65}
-body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
-a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
-.container{max-width:1200px;margin:auto;padding:0 16px}
-.btn{display:inline-block;padding:12px 22px;background:var(--c3);color:#fff;border-radius:8px;font-weight:700;transition:.25s}
-.btn:hover{transform:translateY(-2px);background:var(--c2)}
-.btn-secondary{background:#fff;color:var(--c1)}
-.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:0 10px 20px rgba(0,0,0,.06)}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.muted{color:#607888}
-header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:50}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-.brand{display:flex;align-items:center;gap:8px;color:var(--c1);font-weight:800}
-.brand img{height:48px;width:auto;border-radius:8px}
-nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
-nav a{position:relative}
-nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
-nav a:hover::after, nav a.active::after{width:100%}
-.menu-toggle{display:none;font-size:2rem;cursor:pointer}
-@media(max-width:900px){
-  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-  nav ul.show{right:0}
-  body[dir="rtl"] nav ul{right:auto;left:-100%}
-  body[dir="rtl"] nav ul.show{left:0}
-  .menu-toggle{display:block}
-}
-.hero{min-height:40vh;background:var(--grad),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
-.hero h1{color:#fff;font-size:clamp(2rem,6vw,3.1rem);letter-spacing:-.5px;margin-bottom:12px}
-.hero p{color:#fff;font-size:clamp(1rem,4vw,1.18rem);max-width:780px;margin:0 auto 24px}
-form input,form select,form textarea{padding:14px;border:1px solid #cfd9de;border-radius:8px;width:100%}
-.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.form-grid > *:nth-child(5){grid-column:1/-1}
-form button{justify-self:center}
-footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-footer h4{color:var(--c3);margin-bottom:8px}
-a:focus,button:focus,.btn:focus{outline:2px solid var(--c3);outline-offset:2px}
-@media(max-width:640px){.form-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 <header>
@@ -78,44 +29,23 @@ a:focus,button:focus,.btn:focus{outline:2px solid var(--c3);outline-offset:2px}
   </div>
 </header>
 
-<section class="hero">
+<section style="padding:40px 0 0">
   <div class="container">
     <h1 data-i18n="contact.title">Contact & Espace client</h1>
-    <p class="kicker" style="color:#fff;opacity:.95" data-i18n="contact.lead">Un conseiller vous répond sous 24 h</p>
-  </div>
-</section>
-
-<section style="padding:40px 0 0">
-  <div class="container grid-2">
-    <div class="card">
-      <form data-contact>
-        <div class="form-grid">
-          <input type="text" data-ph="contact.form.name" placeholder="Nom & Prénom" required>
-          <input type="email" data-ph="contact.form.email" placeholder="Adresse e-mail" required>
-          <input type="tel" data-ph="contact.form.phone" placeholder="Téléphone">
-          <select required id="type-select">
-            <option value="" data-i18n="contact.form.type">Type d’assurance</option>
-            <option data-i18n="contact.form.opt.broker">Courtage</option>
-            <option data-i18n="contact.form.opt.re">Réassurance</option>
-            <option data-i18n="contact.form.opt.esg">ESG & Financement climatique</option>
-          </select>
-          <textarea rows="6" data-ph="contact.form.msg" placeholder="Message"></textarea>
-        </div>
-        <br>
-        <button type="submit" class="btn" data-i18n="contact.form.submit">Envoyer</button>
-      </form>
-    </div>
-    <div class="card">
-      <h3>Riskalia</h3>
-      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
-      <br>
-      <p><strong>Email</strong> : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a><br>
-         <strong>LinkedIn</strong> : <a href="#" target="_blank" rel="noopener">/riskalia</a></p>
-      <br>
-      <div style="height:220px;border-radius:12px;overflow:hidden;background:#eef5f7;display:flex;align-items:center;justify-content:center" aria-hidden="true">
-        <span class="muted">Carte / bureau (à intégrer)</span>
-      </div>
-    </div>
+    <p class="kicker" data-i18n="contact.lead">Un conseiller vous répond sous 24 h</p>
+    <form data-contact style="max-width:720px;margin:auto;display:grid;gap:14px">
+      <input type="text" data-ph="contact.form.name" placeholder="Nom & Prénom" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <input type="email" data-ph="contact.form.email" placeholder="Adresse e-mail" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <input type="tel" data-ph="contact.form.phone" placeholder="Téléphone" style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
+      <select required style="padding:14px;border:1px solid #cfd9de;border-radius:8px" id="type-select">
+        <option value="" data-i18n="contact.form.type">Type d’assurance</option>
+        <option data-i18n="contact.form.opt.broker">Courtage</option>
+        <option data-i18n="contact.form.opt.re">Réassurance</option>
+        <option data-i18n="contact.form.opt.esg">ESG & Financement climatique</option>
+      </select>
+      <textarea rows="6" data-ph="contact.form.msg" placeholder="Message" style="padding:14px;border:1px solid #cfd9de;border-radius:8px"></textarea>
+      <button type="submit" class="btn" data-i18n="contact.form.submit" style="justify-self:center">Envoyer</button>
+    </form>
   </div>
 </section>
 
@@ -123,278 +53,11 @@ a:focus,button:focus,.btn:focus{outline:2px solid var(--c3);outline-offset:2px}
   <div class="container footer-grid">
     <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
     <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
-    <div><h4 data-i18n="footer.links">Liens</h4>
-      <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a>
-      </p>
-    </div>
+    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a></p></div>
   </div>
 </footer>
 
-<script>
-const I18N = {
-  fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",contact:"Contact",links:"Liens"},
-    home:{
-      title:"L’expertise qui rassure",
-      sub:"Courtage toutes branches · Réassurance · Assurance ESG. Nous transformons vos aléas opérationnels en croissance durable.",
-      why:[
-        {t:"Agrément ACAPS toutes branches",d:"Courtage, réassurance & Takaful. Conformité & protection des assurés."},
-        {t:"Méthode « Scoring & Placement »",d:"Notation des assureurs/réassureurs → meilleures conditions."},
-        {t:"Transparence contractuelle",d:"Commissions & honoraires communiqués avant signature."}
-      ]
-    },
-    solutions:{
-      title:"Solutions d’assurance",
-      choose:"Choisissez votre profil",
-      pill:{enterprise:"Entreprises",individual:"Particuliers"},
-      enterprise:[
-        {icon:"🏢",title:"Multirisques Entreprises",desc:"Locaux, équipements, pertes d’exploitation et RC."},
-        {icon:"🚚",title:"Transport & Logistique",desc:"Ad valorem, CMR, chaîne du froid et retards."},
-        {icon:"🚗",title:"Automobile & Flotte",desc:"Gestion de flotte, sinistres et tarification dédiée."},
-        {icon:"⚖️",title:"Responsabilité Civile",desc:"Générale, professionnelle, produits, environnement."},
-        {icon:"🏗️",title:"Construction (TRC/RC déc.)",desc:"Tous risques chantier, montage/essai, décennale."},
-        {icon:"👥",title:"Santé Collective & Prévoyance",desc:"Couvertures collectives, absentéisme, assistance."}
-      ],
-      individual:[
-        {icon:"🩺",title:"Santé",desc:"Réseaux de soins, remboursements clairs, hospitalisation."},
-        {icon:"🛡️",title:"Accidents de la vie",desc:"Indemnisation invalidité, frais et assistance."},
-        {icon:"⏳",title:"Retraite & Épargne",desc:"Capital ou rente, fiscalité optimisée."},
-        {icon:"🏠",title:"Biens (habitation/auto)",desc:"MRH, auto, objets de valeur — garanties essentielles."},
-        {icon:"💠",title:"Assurance-vie & Placements",desc:"Supports dirham/euro, profils de risque, transmission."},
-        {icon:"🛫",title:"Voyage Schengen",desc:"Attestation conforme, rapatriement et frais médicaux."}
-      ]
-    },
-    re:{
-      title:"Réassurance : expertise & accompagnement stratégique",
-      tabs:{intro:"Présentation",treaty:"Traités",fac:"Facultatives",product:"Conception produit"},
-      intro:[
-        "Accompagnement des assureurs, captives et grands risques : analyse de portefeuille, stratégie de cession, placement et sinistres complexes.",
-        "Accès direct à un marché noté A/A+/AA, benchmark de clauses et délais d’indemnisation.",
-        "Pilotage de bout en bout : structuration, wording, pricing indicatif et négociation."
-      ],
-      treaty:[
-        "Structuration : Quota Share, Surplus, XoL, Stop-Loss, Agrégat — alignés IFRS 17.",
-        "Paramétrage des priorités, limites et corridors de commission.",
-        "Documentation LMA/IUA et mapping comptable."
-      ],
-      fac:[
-        "Placements rapides : Property, Engineering, Energy, Casualty, Lines financières.",
-        "Solutions pour projets spécifiques (construction, énergie) et pics d’exposition.",
-        "Gestion des sinistres : quantum review, loss adjusters, arbitrages internationaux."
-      ],
-      product:[
-        "Design de produits (y compris paramétriques) : triggers et base d’indemnisation.",
-        "Wording & exclusions : rédaction, benchmark marché, simplification client.",
-        "Soutien pricing/actuariat et data qualité pour le suivi de rentabilité."
-      ]
-    },
-    esg:{
-      title:"Assurances durables & accompagnement ESG",
-      kicker:"Mesurer, décider, financer — pour une résilience durable",
-      blocks:[
-        {icon:"📐",title:"Mesurer & diagnostiquer",desc:"Expositions, stress tests & scénarios NGFS, cartographie climat/ESG."},
-        {icon:"🧭",title:"Décider & aligner",desc:"Alignement TCFD, Taxonomie UE, SFDR ; feuille de route ESG."},
-        {icon:"💼",title:"Financer & mettre en œuvre",desc:"Paramétriques, pertes d’exploitation vertes, accès bailleurs."}
-      ]
-    },
-    contact:{
-      title:"Contact & Espace client",
-      lead:"Un conseiller vous répond sous 24 h",
-      form:{name:"Nom & Prénom",email:"Adresse e-mail",phone:"Téléphone",type:"Type d’assurance",msg:"Message",
-        opt:{broker:"Courtage",re:"Réassurance",esg:"ESG & Financement climatique"},submit:"Envoyer"},
-      ok:"Merci ! Votre demande a bien été transmise."
-    }
-  },
-  en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",contact:"Contact",links:"Links"},
-    home:{
-      title:"Expertise that assures",
-      sub:"All-lines brokerage · Reinsurance · ESG insurance. We turn operational uncertainty into sustainable growth.",
-      why:[
-        {t:"ACAPS licence – all lines",d:"Brokerage, reinsurance & Takaful. Compliance and policyholder protection."},
-        {t:"“Scoring & Placement” method",d:"Carrier scoring → best terms."},
-        {t:"Contract transparency",d:"Fees & commissions disclosed pre-signature."}
-      ]
-    },
-    solutions:{
-      title:"Insurance solutions",
-      choose:"Choose your profile",
-      pill:{enterprise:"Enterprises",individual:"Individuals"},
-      enterprise:[
-        {icon:"🏢",title:"Commercial All-risks",desc:"Premises, equipment, BI and liability."},
-        {icon:"🚚",title:"Transport & Logistics",desc:"Ad valorem, CMR, cold-chain and delay."},
-        {icon:"🚗",title:"Motor & Fleet",desc:"Fleet management, claims and tailored pricing."},
-        {icon:"⚖️",title:"Liability",desc:"General, professional & product liability, environmental."},
-        {icon:"🏗️",title:"Construction (CAR/Decennial)",desc:"CAR, erection/commissioning, decennial."},
-        {icon:"👥",title:"Group Health & Benefits",desc:"Collective covers, absenteeism, assistance."}
-      ],
-      individual:[
-        {icon:"🩺",title:"Health",desc:"Care networks, clear reimbursements, hospitalization options."},
-        {icon:"🛡️",title:"Personal Accident",desc:"Compensation for disability, expenses and assistance."},
-        {icon:"⏳",title:"Retirement & Savings",desc:"Lump sum or annuity, tax-efficient."},
-        {icon:"🏠",title:"Property (home/auto)",desc:"Home MRH, motor, valuables — essentials covered."},
-        {icon:"💠",title:"Life & Investments",desc:"Dirham/euro funds, risk profiles, estate planning."},
-        {icon:"🛫",title:"Schengen Travel",desc:"Compliant certificate, medical expenses and repatriation."}
-      ]
-    },
-    re:{
-      title:"Reinsurance: expertise & strategic support",
-      tabs:{intro:"Overview",treaty:"Treaty",fac:"Facultative",product:"Product design"},
-      intro:[
-        "Support to insurers, captives and large risks: portfolio analysis, cession strategy, placement and complex claims.",
-        "Direct access to A/A+/AA markets with clause and settlement-time benchmarking.",
-        "End-to-end steering: structuring, wording, indicative pricing and negotiation."
-      ],
-      treaty:[
-        "Design: Quota Share, Surplus, XoL, Stop-Loss, Aggregate — aligned with IFRS 17.",
-        "Optimising retentions, limits and commission corridors.",
-        "LMA/IUA documentation and accounting mapping."
-      ],
-      fac:[
-        "Fast placements for Property, Engineering, Energy, Casualty and Financial lines.",
-        "Options for specific projects and peak exposures.",
-        "Claims handling: quantum review, loss adjusters, international arbitration."
-      ],
-      product:[
-        "Product & guarantee design (incl. parametrics): triggers and basis of indemnity.",
-        "Wording & exclusions: drafting, market benchmark, client simplification.",
-        "Pricing/actuarial support and data quality for profitability monitoring."
-      ]
-    },
-    esg:{
-      title:"Sustainable insurance & ESG advisory",
-      kicker:"Measure, decide, finance — for lasting resilience",
-      blocks:[
-        {icon:"📐",title:"Measure & diagnose",desc:"Exposure analysis, NGFS stress tests, climate/ESG mapping."},
-        {icon:"🧭",title:"Decide & align",desc:"TCFD, EU Taxonomy, SFDR; mitigation/adaptation roadmap."},
-        {icon:"💼",title:"Finance & implement",desc:"Parametrics, green BI, access to lenders and renegotiation."}
-      ]
-    },
-    contact:{
-      title:"Contact & Client space",
-      lead:"We reply within 24 hours",
-      form:{name:"Full name",email:"Email address",phone:"Phone",type:"Insurance type",msg:"Message",
-        opt:{broker:"Brokerage",re:"Reinsurance",esg:"ESG & Climate finance"},submit:"Send"},
-      ok:"Thanks! Your request has been sent."
-    }
-  },
-  ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
-    cta:{quote:"احصل على عرض سعر",advisor:"تواصل مع مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",contact:"اتصال",links:"روابط"},
-    home:{
-      title:"خبرة تمنح الطمأنينة",
-      sub:"وساطة لجميع الفروع · إعادة التأمين · تأمينات ESG. نحو نمو مستدام.",
-      why:[
-        {t:"ترخيص ACAPS لجميع الفروع",d:"وساطة، إعادة تأمين وتكافل. امتثال وحماية للمؤمن لهم."},
-        {t:"منهجية «التنقيط والوساطة»",d:"تنقيط الشركات → أفضل الشروط."},
-        {t:"شفافية تعاقدية",d:"الإفصاح عن الأتعاب والعمولات قبل التوقيع."}
-      ]
-    },
-    solutions:{
-      title:"حلول التأمين",
-      choose:"اختر نوع العميل",
-      pill:{enterprise:"شركات",individual:"أفراد"},
-      enterprise:[
-        {icon:"🏢",title:"متعدد المخاطر للشركات",desc:"المقرات والمعدات وخسائر الاستغلال والمسؤولية."},
-        {icon:"🚚",title:"النقل واللوجستيك",desc:"قيمة مضافة، CMR، سلسلة التبريد والتأخيرات."},
-        {icon:"🚗",title:"السيارات والأسطول",desc:"إدارة الأسطول والمطالبات وتسعير مخصص."},
-        {icon:"⚖️",title:"المسؤولية المدنية",desc:"العامة والمهنية والمنتجات والبيئية."},
-        {icon:"🏗️",title:"البناء (أخطار الورش/العشرية)",desc:"جميع أخطار المقاولين والتركيب والتجارب والعشرية."},
-        {icon:"👥",title:"الصحة الجماعية والاحتياط",desc:"تغطيات جماعية والغياب والمساعدة."}
-      ],
-      individual:[
-        {icon:"🩺",title:"الصحة",desc:"شبكات علاج وتعويضات واضحة وخيارات الاستشفاء."},
-        {icon:"🛡️",title:"حوادث الحياة",desc:"تعويض عند العجز ومصاريف ومساعدة."},
-        {icon:"⏳",title:"التقاعد والادخار",desc:"رأس مال أو معاش بكفاءة ضريبية."},
-        {icon:"🏠",title:"الممتلكات (السكن/السيارة)",desc:"سكن متعدد الأخطار وسيارة ومقتنيات."},
-        {icon:"💠",title:"التأمين على الحياة والاستثمار",desc:"صناديق بالدرهم/اليورو وملفات مخاطر."},
-        {icon:"🛫",title:"سفر شنغن",desc:"شهادة مطابقة وتغطية طبية وإعادة للوطن."}
-      ]
-    },
-    re:{
-      title:"إعادة التأمين: خبرة ودعم استراتيجي",
-      tabs:{intro:"عرض عام",treaty:"اتفاقيات",fac:"اختيارية",product:"تصميم المنتجات"},
-      intro:[
-        "مرافقة الشركات والكابتيف والمخاطر الكبرى: تحليل المحافظ، إستراتيجية التنازل، الوساطة وإدارة المطالبات المعقدة.",
-        "ولوج مباشر إلى أسواق مصنفة A/A+/AA مع مقارنة الشروط وأزمنة التسوية.",
-        "إدارة شاملة: الهيكلة، الصياغة، التسعير الإشاري والتفاوض."
-      ],
-      treaty:[
-        "تصميم: حصة نسبية، فائض، فوق الخسارة، إيقاف الخسارة، مجمّع — متوافق مع IFRS 17.",
-        "تحسين حدود التحمل والحدود العليا وممرات العمولات.",
-        "وثائق LMA/IUA وربط محاسبي."
-      ],
-      fac:[
-        "وساطات سريعة في الممتلكات والهندسة والطاقة والمسؤولية والخطوط المالية.",
-        "خيارات للمشاريع الخاصة وذرى التعرض.",
-        "إدارة المطالبات: مراجعة التعويض وخبراء الخسائر وتحكيم دولي."
-      ],
-      product:[
-        "تصميم المنتجات والضمانات (بما فيها البارامترية): المشغلات وأسس التعويض.",
-        "الصياغات والاستثناءات: كتابة ومقارنة سوقية وتبسيط.",
-        "دعم اكتواري/تسعيري وضبط جودة البيانات."
-      ]
-    },
-    esg:{
-      title:"تأمينات مستدامة وخدمات ESG",
-      kicker:"قياس، قرار، تمويل — لمرونة دائمة",
-      blocks:[
-        {icon:"📐",title:"القياس والتشخيص",desc:"التعرضات، اختبارات ضغط NGFS، خرائط مناخ/ESG."},
-        {icon:"🧭",title:"القرار والمواءمة",desc:"TCFD وتصنيف الاتحاد الأوروبي وSFDR؛ خارطة طريق."},
-        {icon:"💼",title:"التمويل والتنفيذ",desc:"حلول بارامترية وخسائر تشغيل خضراء وجهات تمويل."}
-      ]
-    },
-    contact:{
-      title:"اتصل بنا ومساحة الزبون",
-      lead:"نجيبكم خلال 24 ساعة",
-      form:{name:"الاسم الكامل",email:"البريد الإلكتروني",phone:"الهاتف",type:"نوع التأمين",msg:"الرسالة",
-        opt:{broker:"وساطة",re:"إعادة التأمين",esg:"ESG وتمويل المناخ"},submit:"إرسال"},
-      ok:"شكراً! تم إرسال طلبكم."
-    }
-  }
-};
-</script>
-<script>
-let lang = localStorage.getItem('riskalia_lang') || (navigator.language||'fr').slice(0,2);
-if(!['fr','en','ar'].includes(lang)) lang='fr';
-function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null||!(n in cur)) return path; cur=cur[n]; } return cur; }
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML=t(el.dataset.i18n); });
-  document.querySelectorAll('[data-ph]').forEach(el=>{ el.placeholder=t(el.dataset.ph); });
-  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-}
-function initLangSwitch(){
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang);
-      applyTexts(); renderHomeWhy(); initSolutions(true); renderRe(); renderESG(); renderContactLabels();
-    });
-  });
-}
-function initNav(){
-  const menuBtn=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
-  if(menuBtn&&menu){ menuBtn.addEventListener('click',()=>menu.classList.toggle('show'));
-    document.querySelectorAll('nav a').forEach(a=> a.addEventListener('click',()=>menu.classList.remove('show'))); }
-  const here=location.pathname.split('/').pop()||'index.html';
-  document.querySelectorAll('nav a').forEach(a=>{ const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here)); });
-}
-function renderHomeWhy(){} // not used here
-function initSolutions(){} // not used here
-function renderRe(){} // not used here
-function renderESG(){} // not used here
-function renderContactLabels(){ const sel=document.getElementById('type-select'); if(!sel) return; const first=sel.querySelector('option[value=""]'); if(first) first.innerHTML=t('contact.form.type'); }
-function initContactForm(){ const f=document.querySelector('form[data-contact]'); if(!f) return;
-  f.addEventListener('submit',(e)=>{ e.preventDefault(); alert(t('contact.ok')); f.reset(); });
-}
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initLangSwitch(); initNav(); renderContactLabels(); initContactForm(); });
-</script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>
