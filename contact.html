@@ -1,17 +1,80 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Contact</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Contact & Espace client</title>
+  <meta name="description" content="Contactez Riskalia : demandes de devis, sinistres, réassurance et ESG. Réponse sous 24–48h."/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;--radius:14px;--shadow:0 10px 24px rgba(0,0,0,.07);--grad:linear-gradient(rgba(0,92,115,.84),rgba(0,92,115,.84))}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--cd);line-height:1.65}
+body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+.container{max-width:1200px;margin:auto;padding:0 16px}
+.btn{display:inline-block;padding:12px 20px;background:var(--c3);color:#fff;border-radius:10px;font-weight:700;transition:.2s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px);background:var(--c2)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:7px 12px;border-radius:999px;font-weight:800}
+.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.muted{color:#5f7781}
+small,.small{font-size:.95rem}
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand img{height:48px;width:auto;border-radius:8px}
+nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
+nav a{position:relative;padding:6px}
+nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+nav a:hover::after,nav a.active::after{width:100%}
+.menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+@media(max-width:900px){
+  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
+  .menu-toggle{display:block}
+}
+.hero{min-height:46vh;background:var(--grad),url('https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.5vw,3.1rem);letter-spacing:-.4px;margin-bottom:12px}
+.hero p{color:#fff;opacity:.98;max-width:860px;margin:0 auto 16px}
+section{padding:54px 0}
+form .row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+form .row-1{display:grid;grid-template-columns:1fr;gap:14px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #cfd9de;border-radius:10px;background:#fff}
+label{font-weight:700;font-size:.95rem;margin-bottom:6px;display:block;color:#11454f}
+.field{display:flex;flex-direction:column}
+.error{color:#b00020;font-size:.9rem;margin-top:6px;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#b00020;background:#fff7f7}
+.success{display:none;margin-top:12px;padding:12px;border-radius:10px;background:#e8faf2;color:#0c6b3f;border:1px solid #bfe9d3}
+.map{width:100%;height:320px;border:0;border-radius:12px}
+footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+.reveal.active{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
+@media(max-width:720px){form .row{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html"><img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span></a>
-    <nav aria-label="Navigation">
+    <a class="brand" href="index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
+    </a>
+    <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
@@ -29,35 +92,393 @@
   </div>
 </header>
 
-<section style="padding:40px 0 0">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
-    <h1 data-i18n="contact.title">Contact & Espace client</h1>
-    <p class="kicker" data-i18n="contact.lead">Un conseiller vous répond sous 24 h</p>
-    <form data-contact style="max-width:720px;margin:auto;display:grid;gap:14px">
-      <input type="text" data-ph="contact.form.name" placeholder="Nom & Prénom" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
-      <input type="email" data-ph="contact.form.email" placeholder="Adresse e-mail" required style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
-      <input type="tel" data-ph="contact.form.phone" placeholder="Téléphone" style="padding:14px;border:1px solid #cfd9de;border-radius:8px">
-      <select required style="padding:14px;border:1px solid #cfd9de;border-radius:8px" id="type-select">
-        <option value="" data-i18n="contact.form.type">Type d’assurance</option>
-        <option data-i18n="contact.form.opt.broker">Courtage</option>
-        <option data-i18n="contact.form.opt.re">Réassurance</option>
-        <option data-i18n="contact.form.opt.esg">ESG & Financement climatique</option>
-      </select>
-      <textarea rows="6" data-ph="contact.form.msg" placeholder="Message" style="padding:14px;border:1px solid #cfd9de;border-radius:8px"></textarea>
-      <button type="submit" class="btn" data-i18n="contact.form.submit" style="justify-self:center">Envoyer</button>
-    </form>
+    <h1 data-i18n="ct.title">Contact & Espace client</h1>
+    <p data-i18n="ct.sub">Une question, un devis, un sinistre ? Nous répondons sous 24–48 h.</p>
+    <div class="badges" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <span class="badge" data-i18n="ct.badges.0">Transparence totale</span>
+      <span class="badge" data-i18n="ct.badges.1">Accompagnement 24/7</span>
+      <span class="badge" data-i18n="ct.badges.2">Experts dédiés</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<section class="reveal" style="padding-top:28px">
+  <div class="container">
+    <div class="grid-3">
+      <div class="card">
+        <div class="kicker" data-i18n="ct.cards.phone.k">Téléphone</div>
+        <h3><a href="tel:+212600000000">+212 6 00 00 00 00</a></h3>
+        <p class="muted small" data-i18n="ct.cards.phone.d">Lun–Ven 9h–18h (GMT+1). Astreinte sinistres 24/7.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Email</div>
+        <h3><a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></h3>
+        <p class="muted small" data-i18n="ct.cards.mail.d">Envoyez vos bordereaux/sinistres. Gros fichiers : lien Drive/WeTransfer.</p>
+      </div>
+      <div class="card">
+        <div class="kicker" data-i18n="ct.cards.addr.k">Adresse</div>
+        <h3>Siège — [Adresse complète]</h3>
+        <p class="muted small" data-i18n="ct.cards.addr.d">Accueil sur rendez-vous. Visio possible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM + INFO -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container">
+    <div class="grid-2">
+      <div class="card">
+        <h2 data-i18n="ct.form.title">Écrivez-nous</h2>
+        <p class="muted" data-i18n="ct.form.lead">Remplissez le formulaire : un conseiller vous répond sous 24–48 h.</p>
+        <form id="contactForm" novalidate>
+          <div class="row">
+            <div class="field">
+              <label for="name" data-i18n="ct.form.name.l">Nom & Prénom</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Ex. Salma Benali"/>
+              <div class="error" data-i18n="ct.form.name.e">Merci d’indiquer votre nom.</div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@domaine.com"/>
+              <div class="error" data-i18n="ct.form.email.e">Email invalide.</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="phone" data-i18n="ct.form.phone.l">Téléphone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+212 …"/>
+              <div class="error" data-i18n="ct.form.phone.e">Numéro invalide.</div>
+            </div>
+            <div class="field">
+              <label for="company" data-i18n="ct.form.company.l">Société (optionnel)</label>
+              <input id="company" name="company" type="text" placeholder="Votre entreprise"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="topic" data-i18n="ct.form.topic.l">Sujet</label>
+              <select id="topic" name="topic" required>
+                <option value="" selected data-i18n="ct.form.topic.opt0">Choisir…</option>
+                <option value="courtage" data-i18n="ct.form.topic.opt1">Courtage</option>
+                <option value="reassurance" data-i18n="ct.form.topic.opt2">Réassurance</option>
+                <option value="esg" data-i18n="ct.form.topic.opt3">ESG & Climat</option>
+                <option value="claim" data-i18n="ct.form.topic.opt4">Déclarer un sinistre</option>
+                <option value="other" data-i18n="ct.form.topic.opt5">Autre</option>
+              </select>
+              <div class="error" data-i18n="ct.form.topic.e">Merci de sélectionner un sujet.</div>
+            </div>
+            <div class="field">
+              <label for="link" data-i18n="ct.form.link.l">Lien vers documents (optionnel)</label>
+              <input id="link" name="link" type="url" placeholder="https://… (Drive, WeTransfer)"/>
+            </div>
+          </div>
+          <div class="row-1">
+            <div class="field">
+              <label for="msg" data-i18n="ct.form.msg.l">Message</label>
+              <textarea id="msg" name="message" rows="6" required placeholder="Décrivez votre besoin…"></textarea>
+              <div class="error" data-i18n="ct.form.msg.e">Merci d’indiquer un message.</div>
+            </div>
+            <label class="small" style="display:flex;gap:8px;align-items:flex-start">
+              <input id="consent" type="checkbox" required style="margin-top:4px">
+              <span data-i18n="ct.form.consent">J’autorise Riskalia à me contacter au sujet de ma demande.</span>
+            </label>
+          </div>
+          <div class="success" id="successBox" role="status" aria-live="polite"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn" type="submit" data-i18n="ct.form.submit">Envoyer</button>
+            <button class="btn secondary" type="reset" data-i18n="ct.form.reset">Effacer</button>
+          </div>
+          <p class="small muted" style="margin-top:10px" data-i18n="ct.form.privacy">Vos données ne sont utilisées que pour traiter votre demande. Pas de prospection sans consentement.</p>
+        </form>
+      </div>
+      <div class="card">
+        <h2 data-i18n="ct.client.title">Espace client</h2>
+        <p class="muted" data-i18n="ct.client.lead">Accédez à vos documents, attestations et suivis de sinistres.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px">
+          <a class="btn" href="#" onclick="alertSoon();return false;" data-i18n="ct.client.login">Se connecter</a>
+          <a class="btn secondary" href="#" onclick="alertSoon();return false;" data-i18n="ct.client.create">Créer un accès</a>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h4 data-i18n="ct.client.blocks.0.t">Attestations & contrats</h4>
+            <p class="muted small" data-i18n="ct.client.blocks.0.d">Téléchargez attestations auto, MRH, captives, wordings, slips & binders.</p>
+          </div>
+          <div class="card">
+            <h4 data-i18n="ct.client.blocks.1.t">Sinistres & MI</h4>
+            <p class="muted small" data-i18n="ct.client.blocks.1.d">Déclarez, suivez les jalons, recevez la MI trimestrielle et les cash-calls.</p>
+          </div>
+        </div>
+        <h3 style="margin-top:14px" data-i18n="ct.map.title">Nous rendre visite</h3>
+        <iframe class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Casablanca%2C%20Morocco&output=embed"
+          title="Carte"></iframe>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="container footer-grid">
-    <div><h4>Riskalia</h4><p data-i18n="footer.desc"></p></div>
-    <div><h4 data-i18n="footer.contact">Contact</h4><p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p></div>
-    <div><h4 data-i18n="footer.links">Liens</h4><p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br><a href="esg.html" data-i18n="nav.esg">ESG</a></p></div>
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
   </div>
 </footer>
 
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/site.js"></script>
+<script>
+/* ================== i18n ================== */
+const I18N = {
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
+    ct:{
+      title:"Contact & Espace client",
+      sub:"Une question, un devis, un sinistre ? Nous répondons sous 24–48 h.",
+      badges:["Transparence totale","Accompagnement 24/7","Experts dédiés"],
+      cards:{phone:{k:"Téléphone",d:"Lun–Ven 9h–18h (GMT+1). Astreinte sinistres 24/7."},mail:{d:"Envoyez vos bordereaux/sinistres. Gros fichiers : lien Drive/WeTransfer."},addr:{k:"Adresse",d:"Accueil sur rendez-vous. Visio possible."}},
+      form:{
+        title:"Écrivez-nous",
+        lead:"Remplissez le formulaire : un conseiller vous répond sous 24–48 h.",
+        name:{l:"Nom & Prénom",e:"Merci d’indiquer votre nom."},
+        email:{e:"Email invalide."},
+        phone:{l:"Téléphone",e:"Numéro invalide."},
+        company:{l:"Société (optionnel)"},
+        topic:{l:"Sujet",opt0:"Choisir…",opt1:"Courtage",opt2:"Réassurance",opt3:"ESG & Climat",opt4:"Déclarer un sinistre",opt5:"Autre",e:"Merci de sélectionner un sujet."},
+        link:{l:"Lien vers documents (optionnel)"},
+        msg:{l:"Message",e:"Merci d’indiquer un message."},
+        consent:"J’autorise Riskalia à me contacter au sujet de ma demande.",
+        submit:"Envoyer",
+        reset:"Effacer",
+        privacy:"Vos données ne sont utilisées que pour traiter votre demande. Pas de prospection sans consentement.",
+        ok:"Merci ! Votre demande a été enregistrée. Nous revenons vers vous rapidement."
+      },
+      client:{
+        title:"Espace client",
+        lead:"Accédez à vos documents, attestations et suivis de sinistres.",
+        login:"Se connecter",
+        create:"Créer un accès",
+        blocks:[
+          {t:"Attestations & contrats",d:"Téléchargez attestations auto, MRH, captives, wordings, slips & binders."},
+          {t:"Sinistres & MI",d:"Déclarez, suivez les jalons, recevez la MI trimestrielle et les cash-calls."}
+        ]
+      },
+      map:{title:"Nous rendre visite"}
+    }
+  },
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
+    ct:{
+      title:"Contact & Client area",
+      sub:"Question, quote, claim? We answer within 24–48h.",
+      badges:["Full transparency","24/7 assistance","Dedicated experts"],
+      cards:{phone:{k:"Phone",d:"Mon–Fri 9am–6pm (GMT+1). 24/7 claims hotline."},mail:{d:"Send bordereaux/claims. Large files via Drive/WeTransfer."},addr:{k:"Address",d:"By appointment. Video calls available."}},
+      form:{
+        title:"Write to us",
+        lead:"Fill the form and an advisor will get back within 24–48h.",
+        name:{l:"Full name",e:"Please provide your name."},
+        email:{e:"Invalid email."},
+        phone:{l:"Phone",e:"Invalid phone number."},
+        company:{l:"Company (optional)"},
+        topic:{l:"Topic",opt0:"Choose…",opt1:"Brokerage",opt2:"Reinsurance",opt3:"ESG & Climate",opt4:"Report a claim",opt5:"Other",e:"Please select a topic."},
+        link:{l:"Link to documents (optional)"},
+        msg:{l:"Message",e:"Please enter a message."},
+        consent:"I authorise Riskalia to contact me about my request.",
+        submit:"Send",
+        reset:"Clear",
+        privacy:"Data used only to process your request. No marketing without consent.",
+        ok:"Thank you! Your request has been recorded. We’ll get back shortly."
+      },
+      client:{
+        title:"Client area",
+        lead:"Access certificates, policies and claim tracking.",
+        login:"Log in",
+        create:"Create account",
+        blocks:[
+          {t:"Certificates & policies",d:"Download motor/home, captives, wordings, slips & binders."},
+          {t:"Claims & MI",d:"Report and track milestones; receive quarterly MI and cash-calls."}
+        ]
+      },
+      map:{title:"Visit us"}
+    }
+  },
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
+    ct:{
+      title:"الاتصال ومساحة العملاء",
+      sub:"سؤال أو عرض سعر أو مطالبة؟ نجيب خلال 24–48 ساعة.",
+      badges:["شفافية كاملة","مساندة 24/7","خبراء مختصون"],
+      cards:{phone:{k:"الهاتف",d:"الاثنين–الجمعة 9–18 (GMT+1). طوارئ المطالبات 24/7."},mail:{d:"أرسلوا bordereaux/المطالبات. الملفات الكبيرة عبر Drive/WeTransfer."},addr:{k:"العنوان",d:"الاستقبال بحجز مسبق. اجتماعات عبر الفيديو متاحة."}},
+      form:{
+        title:"راسلونا",
+        lead:"املؤوا النموذج وسيعود إليكم مستشار خلال 24–48 ساعة.",
+        name:{l:"الاسم الكامل",e:"يرجى إدخال الاسم."},
+        email:{e:"بريد غير صالح."},
+        phone:{l:"الهاتف",e:"رقم غير صالح."},
+        company:{l:"الشركة (اختياري)"},
+        topic:{l:"الموضوع",opt0:"اختيار…",opt1:"وساطة",opt2:"إعادة تأمين",opt3:"استدامة ومناخ",opt4:"تبليغ مطالبة",opt5:"أخرى",e:"يرجى اختيار الموضوع."},
+        link:{l:"رابط للمستندات (اختياري)"},
+        msg:{l:"الرسالة",e:"يرجى إدخال رسالة."},
+        consent:"أوافق على أن تتواصل Riskalia معي بخصوص طلبي.",
+        submit:"إرسال",
+        reset:"مسح",
+        privacy:"تُستخدم البيانات لمعالجة الطلب فقط. لا تسويق دون موافقة.",
+        ok:"شكرًا! تم تسجيل طلبكم. سنتواصل قريبًا."
+      },
+      client:{
+        title:"مساحة العملاء",
+        lead:"وصول إلى الشهادات والعقود وتتبع المطالبات.",
+        login:"تسجيل الدخول",
+        create:"إنشاء حساب",
+        blocks:[
+          {t:"شهادات وعقود",d:"تحميل شهادات السيارة/السكن، الوثائق، الصياغات، slips & binders."},
+          {t:"مطالبات ومعلومات إدارية",d:"تبليغ وتتبع المراحل، تقارير ربع سنوية وطلبات نقدية."}
+        ]
+      },
+      map:{title:"زيارتنا"}
+    }
+  }
+};
+
+/* ================== Runtime ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+
+function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null||!(n in cur)) return path; cur=cur[n]; } return cur; }
+function setActiveNav(){
+  const here=location.pathname.split('/').pop()||'contact.html';
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
+  });
+}
+
+/* ===== UI init ===== */
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  // placeholders
+  const name=document.getElementById('name'); if(name) name.placeholder=(lang==='en'?'e.g. Salma Benali':lang==='ar'?'مثال: سلمى بنعلي':'Ex. Salma Benali');
+  const email=document.getElementById('email'); if(email) email.placeholder=(lang==='en'?'you@domain.com':lang==='ar'?'you@domain.com':'vous@domaine.com');
+  const phone=document.getElementById('phone'); if(phone) phone.placeholder=(lang==='en'?'+212 …':lang==='ar'?'+212 …':'+212 …');
+  const link=document.getElementById('link'); if(link) link.placeholder=(lang==='en'?'https://… (Drive, WeTransfer)':lang==='ar'?'https://… (Drive, WeTransfer)':'https://… (Drive, WeTransfer)');
+  const msg=document.getElementById('msg'); if(msg) msg.placeholder=(lang==='en'?'Describe your need…':lang==='ar'?'صف طلبك…':'Décrivez votre besoin…');
+}
+
+function alertSoon(){
+  alert(lang==='en'?'Coming soon — we will activate the client area shortly.':
+        lang==='ar'?'قريبًا — سنفعّل مساحة العملاء قريبًا.':
+        'Bientôt — nous activerons l’espace client prochainement.');
+}
+
+/* ===== Form handling ===== */
+function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+function validatePhone(v){ if(!v) return true; const d=v.replace(/[^\d]/g,''); return d.length>=8; }
+
+function setFieldValidity(id, ok){
+  const field=document.getElementById(id).closest('.field');
+  const err=field.querySelector('.error');
+  field.classList.toggle('invalid', !ok);
+  if(err) err.style.display = ok ? 'none' : 'block';
+}
+
+function buildMailto(data){
+  const subject = encodeURIComponent(`[Riskalia] ${data.topicLabel} — ${data.name}`);
+  const lines = [
+    `Nom: ${data.name}`,
+    `Email: ${data.email}`,
+    `Téléphone: ${data.phone||'-'}`,
+    `Société: ${data.company||'-'}`,
+    `Sujet: ${data.topicLabel} (${data.topic})`,
+    `Lien docs: ${data.link||'-'}`,
+    '',
+    data.message
+  ];
+  const body = encodeURIComponent(lines.join('\n'));
+  return `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
+}
+
+function onSubmit(e){
+  e.preventDefault();
+  const f=e.target;
+  const data={
+    name:f.name.value.trim(),
+    email:f.email.value.trim(),
+    phone:f.phone.value.trim(),
+    company:f.company.value.trim(),
+    topic:f.topic.value,
+    topicLabel:f.topic.options[f.topic.selectedIndex]?.text || '',
+    link:f.link.value.trim(),
+    message:f.message.value.trim(),
+    consent:f.querySelector('#consent').checked
+  };
+
+  let ok=true;
+  if(!data.name){ ok=false; setFieldValidity('name', false);} else setFieldValidity('name', true);
+  if(!validateEmail(data.email)){ ok=false; setFieldValidity('email', false);} else setFieldValidity('email', true);
+  if(!data.topic){ ok=false; setFieldValidity('topic', false);} else setFieldValidity('topic', true);
+  if(!data.message){ ok=false; setFieldValidity('msg', false);} else setFieldValidity('msg', true);
+  if(!validatePhone(data.phone)){ ok=false; setFieldValidity('phone', false);} else setFieldValidity('phone', true);
+  if(!data.consent){ ok=false; alert(lang==='en'?'Please accept the consent notice.':lang==='ar'?'يرجى قبول إشعار الموافقة.':'Merci d’accepter l’avis de consentement.'); }
+
+  if(!ok) return;
+
+  // Save locally (simple CRM-lite)
+  const leads = JSON.parse(localStorage.getItem('riskalia_leads')||'[]');
+  leads.push({ts:new Date().toISOString(),lang,...data});
+  localStorage.setItem('riskalia_leads', JSON.stringify(leads));
+
+  // Success UI
+  const box=document.getElementById('successBox');
+  box.textContent = t('ct.form.ok');
+  box.style.display='block';
+
+  // Prepare mailto (fallback, no backend required)
+  const link = buildMailto(data);
+  // Open in a new window to not lose the page state
+  window.location.href = link;
+
+  // Reset minimal fields but keep success visible
+  f.reset();
+}
+
+function initForm(){
+  const form=document.getElementById('contactForm');
+  if(!form) return;
+  form.addEventListener('submit', onSubmit);
+  form.addEventListener('reset', ()=>{ document.querySelectorAll('.field').forEach(el=>{ el.classList.remove('invalid'); const er=el.querySelector('.error'); if(er) er.style.display='none'; }); document.getElementById('successBox').style.display='none'; });
+}
+
+/* ===== Page init ===== */
+function initUI(){
+  setActiveNav();
+  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
+  applyTexts(); initUI(); initForm();
+});
+</script>
 </body>
 </html>
