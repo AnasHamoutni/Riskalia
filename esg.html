@@ -4,90 +4,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — ESG & Risques Climat</title>
-  <meta name="description" content="ESG & Climate Risk : diagnostics physiques/transition, scénarios NGFS, solutions assurantielles (paramétriques), reporting TCFD/Taxonomie/SFDR, financement vert, formation & gouvernance."/>
+  <meta name="description" content="Accompagnement ESG & climat : diagnostic de risques physiques/transition, scénarios NGFS, paramétriques météo, garanties vertes, reporting TCFD/ISSB & Taxonomie UE."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <!-- Fonts + CSS global -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-:root{
-  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;
-  --radius:16px;--shadow:0 12px 26px rgba(0,0,0,.07);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
-body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.75;background:#fff}
-body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.container{max-width:1180px;margin:auto;padding:0 18px}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
-.muted{color:#5f7781}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;font-weight:800}
-.btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent}
-.btn:hover{background:var(--c2)}
-.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
-section{padding:58px 0}
-
-/* nav */
-header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
-.brand img{height:50px;width:auto;border-radius:10px}
-nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
-nav a{position:relative;padding:6px}
-nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
-nav a:hover::after,nav a.active::after{width:100%}
-.menu-toggle{display:none;font-size:2rem;cursor:pointer}
-.lang-switch{display:flex;gap:6px}
-.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
-.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
-@media(max-width:900px){
-  nav ul{flex-direction:column;position:absolute;top:70px;right:-100%;background:#fff;width:260px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
-  .menu-toggle{display:block}
-}
-
-/* hero */
-.hero{min-height:42vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
-.hero h1{color:#fff;font-size:clamp(2rem,3.4vw,3rem);letter-spacing:-.4px;margin-bottom:10px}
-.hero p{color:#fff;opacity:.98;max-width:900px;margin:0 auto}
-.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
-
-/* tabs + tools */
-.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:-18px}
-.tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:800}
-.tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
-.tools{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:12px 0}
-
-/* grids */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.card h3{margin:6px 0 10px}
-.card ul{padding-left:18px}
-.card li{margin:8px 0}
-
-/* timeline */
-.roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
-.step{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:14px}
-.step .num{font-weight:900;color:#0b5562;margin-bottom:6px}
-
-/* mini self-check */
-.check{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:10px}
-.progress{height:12px;background:#e7f2f5;border-radius:999px;overflow:hidden}
-.progress>span{display:block;height:100%;background:linear-gradient(90deg,#00b0c8,#00849b)}
-.score{font-weight:900;color:#0b5562}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
-.reveal.active{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
-
-/* footer */
-footer{background:var(--c1);color:#fff;padding:50px 0;margin-top:30px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-footer h4{color:#a8ecf4;margin-bottom:10px}
-  </style>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 <header>
@@ -113,40 +35,164 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
   </div>
 </header>
 
-<section class="hero">
+<!-- HÉRO (fond défini dans styles.css: .hero--esg) -->
+<section class="hero hero--esg">
   <div class="container">
-    <h1 data-i18n="title">ESG & Risques Climat</h1>
-    <p data-i18n="subtitle">Du diagnostic à la mise en œuvre : scénarios, paramétriques, reporting TCFD/Taxonomie/SFDR et structuration des garanties vertes.</p>
+    <h1 data-i18n="title">ESG & Risques Climat — de l’analyse à l’action</h1>
+    <p data-i18n="subtitle">Cartographie physique/transition, scénarios NGFS, solutions d’assurance (dont paramétriques), reporting TCFD/ISSB et alignement Taxonomie UE/SFDR.</p>
     <div class="badges">
-      <span class="badge" data-i18n="badges.0">Physique & Transition</span>
-      <span class="badge" data-i18n="badges.1">Scénarios NGFS</span>
-      <span class="badge" data-i18n="badges.2">Conformité & Financement</span>
+      <span class="badge" data-i18n="badges.0">Diagnostic & scénarios</span>
+      <span class="badge" data-i18n="badges.1">Paramétriques & garanties vertes</span>
+      <span class="badge" data-i18n="badges.2">Reporting & bailleurs</span>
     </div>
   </div>
 </section>
 
-<section class="reveal" style="padding-top:28px">
+<!-- APERÇU OFFRE -->
+<section class="reveal">
   <div class="container">
-    <div class="tabs">
-      <button class="tab active" data-tab="assess" data-i18n="tabs.assess">Diagnostic & Cartographie</button>
-      <button class="tab" data-tab="strategy" data-i18n="tabs.strategy">Stratégie & Scénarios</button>
-      <button class="tab" data-tab="insurance" data-i18n="tabs.insurance">Assurances & Paramétriques</button>
-      <button class="tab" data-tab="reporting" data-i18n="tabs.reporting">Reporting & Conformité</button>
-      <button class="tab" data-tab="finance" data-i18n="tabs.finance">Financement vert</button>
-      <button class="tab" data-tab="training" data-i18n="tabs.training">Formation & Gouvernance</button>
-      <button class="tab" data-tab="faq" data-i18n="tabs.faq">FAQ</button>
+    <div class="kicker" data-i18n="offer.kicker">Offre</div>
+    <h2 data-i18n="offer.h2">Notre accompagnement ESG & climat</h2>
+    <div class="grid-3 mt-1">
+      <article class="card">
+        <h3 data-i18n="cards.0.t">Diagnostic & scénarios</h3>
+        <p class="muted" data-i18n="cards.0.p">Évaluation des risques physiques (inondations, chaleur, vent…) et de transition (réglementaire, marché, techno). Scénarios NGFS & stress tests.</p>
+        <ul>
+          <li data-i18n="cards.0.li.0">Cartographie actifs/chaîne de valeur</li>
+          <li data-i18n="cards.0.li.1">Pertes attendues — horizons 2030/2050</li>
+          <li data-i18n="cards.0.li.2">Matérialité double & priorisation</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cards.1.t">Solutions d’assurance</h3>
+        <p class="muted" data-i18n="cards.1.p">Montage de couvertures climatiques & environnementales, y compris paramétriques basées sur indices météo.</p>
+        <ul>
+          <li data-i18n="cards.1.li.0">Paramétriques (pluie, vent, chaleur, NDVI)</li>
+          <li data-i18n="cards.1.li.1">Extensions environnement & supply chain</li>
+          <li data-i18n="cards.1.li.2">Approche “finance verte” des projets</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cards.2.t">Reporting & financement</h3>
+        <p class="muted" data-i18n="cards.2.p">Alignement TCFD/ISSB, Taxonomie UE, SFDR et exigences des bailleurs (BM, BEI, AFD…).</p>
+        <ul>
+          <li data-i18n="cards.2.li.0">Gouvernance, stratégie, risques, métriques</li>
+          <li data-i18n="cards.2.li.1">Plans d’adaptation & indicateurs</li>
+          <li data-i18n="cards.2.li.2">Dossiers de financement & assurances</li>
+        </ul>
+      </article>
     </div>
-
-    <div id="panel"></div>
   </div>
 </section>
 
+<!-- FEUILLE DE ROUTE / PROCESS -->
 <section class="reveal" style="background:var(--cm)">
-  <div class="container" style="text-align:center">
-    <h2 data-i18n="cta.title">Un projet à impact ou une exigence bailleurs ?</h2>
-    <p class="muted" data-i18n="cta.sub">Nous préparons vos due diligences, matrices de risques et term-sheets assurantielles. Retour en 5–10 jours ouvrés.</p>
-    <a class="btn" href="contact.html" data-i18n="cta.btn1">Obtenir un devis</a>
-    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.btn2">Parler à un expert</a>
+  <div class="container">
+    <div class="kicker" data-i18n="road.kicker">Parcours</div>
+    <h2 data-i18n="road.h2">Feuille de route type</h2>
+    <div class="roadmap">
+      <div class="step">
+        <div class="num">1 — 🔎</div>
+        <div data-i18n="road.steps.0">Cadrage & collecte (2–3 semaines)</div>
+      </div>
+      <div class="step">
+        <div class="num">2 — 🧮</div>
+        <div data-i18n="road.steps.1">Cartographie & scénarios (3–5 semaines)</div>
+      </div>
+      <div class="step">
+        <div class="num">3 — 🛡️</div>
+        <div data-i18n="road.steps.2">Design des couvertures (2–4 semaines)</div>
+      </div>
+      <div class="step">
+        <div class="num">4 — 📊</div>
+        <div data-i18n="road.steps.3">Reporting & déploiement (continu)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTO-DIAGNOSTIC (démo front) -->
+<section class="reveal">
+  <div class="container">
+    <div class="kicker" data-i18n="check.kicker">Auto-diagnostic</div>
+    <h2 data-i18n="check.h2">Où en êtes-vous ?</h2>
+    <div class="grid-3">
+      <article class="card">
+        <h3 data-i18n="check.cards.0.t">Gouvernance ESG</h3>
+        <div class="check">
+          <div class="progress" aria-label="score"><span style="width: 60%"></span></div>
+          <div class="score">60%</div>
+        </div>
+        <p class="muted mt-1" data-i18n="check.cards.0.p">Comité, rôles et responsabilités, intégration des risques.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="check.cards.1.t">Données & indicateurs</h3>
+        <div class="check">
+          <div class="progress"><span style="width: 45%"></span></div>
+          <div class="score">45%</div>
+        </div>
+        <p class="muted mt-1" data-i18n="check.cards.1.p">Périmètre émissions, métriques physiques/transition, qualité des données.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="check.cards.2.t">Couvertures & résilience</h3>
+        <div class="check">
+          <div class="progress"><span style="width: 35%"></span></div>
+          <div class="score">35%</div>
+        </div>
+        <p class="muted mt-1" data-i18n="check.cards.2.p">Assurances climatiques, extensions environnement, continuité d’activité.</p>
+      </article>
+    </div>
+    <p class="muted mt-2" data-i18n="check.note">Ces scores illustratifs vous aident à prioriser les actions. Nous construisons un plan d’amélioration réaliste et mesurable.</p>
+  </div>
+</section>
+
+<!-- CAS D’USAGE -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container">
+    <div class="kicker" data-i18n="cases.kicker">Cas</div>
+    <h2 data-i18n="cases.h2">Exemples d’intervention</h2>
+    <div class="grid-3">
+      <article class="card">
+        <h3 data-i18n="cases.0.t">Agro & supply chain</h3>
+        <p class="muted" data-i18n="cases.0.p">Indice pluie/NDVI pour sécuriser rendements et achats; clauses logistiques pour chocs climatiques.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cases.1.t">Énergie & industrie</h3>
+        <p class="muted" data-i18n="cases.1.p">Stress tests chaleur/vent sur sites critiques; XoL BI et extensions environnementales.</p>
+      </article>
+      <article class="card">
+        <h3 data-i18n="cases.2.t">Infrastructures & finance</h3>
+        <p class="muted" data-i18n="cases.2.p">Dossiers bailleurs conformes TCFD/ISSB; assurance paramétrique en complément des garanties classiques.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="reveal">
+  <div class="container center">
+    <h2 data-i18n="cta.t">Passons à l’action</h2>
+    <p class="muted" data-i18n="cta.p">Un atelier d’1h pour cadrer vos risques et vos priorités, sans engagement.</p>
+    <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un rendez-vous</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container">
+    <h2>FAQ</h2>
+    <details class="mt-1">
+      <summary>❓ <span data-i18n="faq.0.q">Quelles données faut-il pour un diagnostic climat ?</span></summary>
+      <div><p class="muted" data-i18n="faq.0.a">Inventaire des sites, données d’exposition, historique sinistres, et premières métriques d’émissions (si disponibles).</p></div>
+    </details>
+    <details>
+      <summary>❓ <span data-i18n="faq.1.q">Les paramétriques remplacent-elles les assurances classiques ?</span></summary>
+      <div><p class="muted" data-i18n="faq.1.a">Non — elles complètent les garanties traditionnelles avec des déclencheurs objectifs et des indemnisations rapides.</p></div>
+    </details>
+    <details>
+      <summary>❓ <span data-i18n="faq.2.q">Pouvez-vous aider sur le reporting TCFD/ISSB ?</span></summary>
+      <div><p class="muted" data-i18n="faq.2.a">Oui, de la gouvernance aux indicateurs, y compris l’alignement Taxonomie UE et les attentes des bailleurs.</p></div>
+    </details>
   </div>
 </section>
 
@@ -170,213 +216,111 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 </footer>
 
 <script>
-/* ===== Données i18n (structure inspirée WTW Climate Risk) ===== */
-const I18N = {
+/* ================== i18n ================== */
+const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    title:"ESG & Risques Climat",
-    subtitle:"Du diagnostic à la mise en œuvre : scénarios, paramétriques, reporting TCFD/Taxonomie/SFDR et structuration des garanties vertes.",
-    badges:["Physique & Transition","Scénarios NGFS","Conformité & Financement"],
-    tabs:{assess:"Diagnostic & Cartographie",strategy:"Stratégie & Scénarios",insurance:"Assurances & Paramétriques",reporting:"Reporting & Conformité",finance:"Financement vert",training:"Formation & Gouvernance",faq:"FAQ"},
-    cta:{title:"Un projet à impact ou une exigence bailleurs ?",sub:"Nous préparons vos due diligences, matrices de risques et term-sheets assurantielles. Retour en 5–10 jours ouvrés.",btn1:"Obtenir un devis",btn2:"Parler à un expert"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    assess:{
-      lead:"Première étape : objectiver l’exposition physique & transition, structurer les données et prioriser.",
-      cards:[
-        {t:"Cartographie & matérialité double",bul:["Risques physiques (inondation, chaleur, vent, sécheresse)","Risques de transition (marché, réglementation, techno)","Matrice double matérialité & priorisation"]},
-        {t:"Données & indicateurs",bul:["Qualité/complétude des données","KPI/KRI ESG (énergie, eau, GES)","Plan de collecte & gouvernance data"]},
-        {t:"Stress tests & PML",bul:["Fréquences/sevérités historiques","Pertes maximales probables (PML)","Zonage & agrégations critiques"]},
-        {t:"Chaîne de valeur",bul:["Fournisseurs & logistique","Clients & contrats","Localisations sensibles (cartes)"]}
-      ],
-      roadmap:["0–30 jours : cadrage & accès données","30–90 jours : analyses, cartos & quick wins","90–180 jours : intégration ERM & budget"]
-    },
-    strategy:{
-      lead:"Traduire l’analyse en décisions : scénarios, appétence au risque, trajectoires & plans d’action.",
-      cards:[
-        {t:"Scénarios & trajectoires",bul:["Scénarios NGFS (Ordonnée/Désordonnée)","Température & voies de transition","Effets P&L, cash & solvabilité"]},
-        {t:"Appétence & limites",bul:["Tolérances par secteur/site","Seuils d’alerte & déclencheurs","Alignement ORSA/IFRS 17/ERM"]},
-        {t:"Plan d’adaptation",bul:["Mesures physiques (durcissement, redondance)","Mesures de transition (énergie, achats)","Business continuity & PCA"]}
-      ],
-      check:{q:"Score de préparation (auto-évaluation)",items:["Cartographie des expositions","Jeu de données ESG fiable","Scénarios NGFS au moins 2 voies","Processus de revue annuelle","Indicateurs suivis au Comex"]}
-    },
-    insurance:{
-      lead:"Solutions assurantielles pour sécuriser la trajectoire : garanties classiques & paramétriques.",
-      cards:[
-        {t:"Paramétriques",bul:["Indice pluie/vent/température","Déclenchement simple & indemnisation rapide","Idéal Opex/Capex & PPP"]},
-        {t:"Garanties vertes",bul:["RC environnement & pollution","Pertes d’exploitation vertes","Extensions efficacité énergétique"]},
-        {t:"Montages avancés",bul:["Captives/sidecars & ART","Couvertures supply-chain","Crédits carbone : risques & assurance"]},
-      ]
-    },
-    reporting:{
-      lead:"Conformité & transparence : cadre TCFD, Taxonomie UE, SFDR, ISSB/CSRD.",
-      cards:[
-        {t:"TCFD / ISSB",bul:["Gouvernance, stratégie, gestion des risques","Mesures & cibles","Annexes & règles d’audit"]},
-        {t:"Taxonomie UE / SFDR",bul:["Éligibilité & alignement","KPIs (Capex/Opex/Chiffre d’affaires)","Documentation & contrôles"]},
-        {t:"Tableaux de bord",bul:["KRI temps réel (énergie, eau, GES)","Alertes & seuils","Calendrier de reporting"]}
-      ],
-      deliverables:["Note de cadrage & gap analysis","Plan d’action & feuille de route","Jeux de slides & annexes réglementaires"]
-    },
-    finance:{
-      lead:"Accès au financement vert & exigences bailleurs (BM, BEI, AFD, GCF…).",
-      cards:[
-        {t:"Diligences bailleurs",bul:["Liste des exigences par bailleur","Grille conformité & points durs","Plan de remédiation"]},
-        {t:"Term-sheet assurantielle",bul:["Garanties exigées & niveaux","Clauses & exclusions critiques","Devis & calendrier de placement"]},
-        {t:"Structuration",bul:["PPP & project finance","Garanties de performance","Suivi & reporting financiers"]}
-      ]
-    },
-    training:{
-      lead:"Acculturation & gouvernance pour rendre l’ESG opérationnel.",
-      cards:[
-        {t:"Formations",bul:["Workshops ESG/Climat (1–3 jours)","Sensibilisation métiers & achats","Sessions Comex/Conseil"]},
-        {t:"Gouvernance",bul:["Politiques ESG & chartes","Rôles & responsabilités","Rituels de pilotage"]},
-        {t:"Change & adoption",bul:["Playbooks & modèles","Kits de démarrage par équipe","Plan de communication"]}
-      ]
-    },
+    title:"ESG & Risques Climat — de l’analyse à l’action",
+    subtitle:"Cartographie physique/transition, scénarios NGFS, solutions d’assurance (dont paramétriques), reporting TCFD/ISSB et alignement Taxonomie UE/SFDR.",
+    badges:["Diagnostic & scénarios","Paramétriques & garanties vertes","Reporting & bailleurs"],
+    offer:{kicker:"Offre",h2:"Notre accompagnement ESG & climat"},
+    cards:[
+      {t:"Diagnostic & scénarios",p:"Évaluation des risques physiques (inondations, chaleur, vent…) et de transition (réglementaire, marché, techno). Scénarios NGFS & stress tests.",
+       li:["Cartographie actifs/chaîne de valeur","Pertes attendues — horizons 2030/2050","Matérialité double & priorisation"]},
+      {t:"Solutions d’assurance",p:"Montage de couvertures climatiques & environnementales, y compris paramétriques basées sur indices météo.",
+       li:["Paramétriques (pluie, vent, chaleur, NDVI)","Extensions environnement & supply chain","Approche “finance verte” des projets"]},
+      {t:"Reporting & financement",p:"Alignement TCFD/ISSB, Taxonomie UE, SFDR et exigences des bailleurs (BM, BEI, AFD…).",
+       li:["Gouvernance, stratégie, risques, métriques","Plans d’adaptation & indicateurs","Dossiers de financement & assurances"]}
+    ],
+    road:{kicker:"Parcours",h2:"Feuille de route type",steps:["Cadrage & collecte (2–3 semaines)","Cartographie & scénarios (3–5 semaines)","Design des couvertures (2–4 semaines)","Reporting & déploiement (continu)"]},
+    check:{kicker:"Auto-diagnostic",h2:"Où en êtes-vous ?",
+           cards:[{t:"Gouvernance ESG",p:"Comité, rôles et responsabilités, intégration des risques."},
+                  {t:"Données & indicateurs",p:"Périmètre émissions, métriques physiques/transition, qualité des données."},
+                  {t:"Couvertures & résilience",p:"Assurances climatiques, extensions environnement, continuité d’activité."}],
+           note:"Ces scores illustratifs vous aident à prioriser les actions. Nous construisons un plan d’amélioration réaliste et mesurable."},
+    cases:{kicker:"Cas",h2:"Exemples d’intervention",
+           0:{t:"Agro & supply chain",p:"Indice pluie/NDVI pour sécuriser rendements et achats; clauses logistiques pour chocs climatiques."},
+           1:{t:"Énergie & industrie",p:"Stress tests chaleur/vent sur sites critiques; XoL BI et extensions environnementales."},
+           2:{t:"Infrastructures & finance",p:"Dossiers bailleurs conformes TCFD/ISSB; assurance paramétrique en complément des garanties classiques."}},
+    cta:{t:"Passons à l’action",p:"Un atelier d’1h pour cadrer vos risques et vos priorités, sans engagement.",btn:"Demander un rendez-vous"},
     faq:[
-      {q:"Pouvez-vous intervenir sur un projet déjà lancé ?",a:"Oui, nous reprenons les analyses existantes et comblons les écarts prioritaires."},
-      {q:"Couvrez-vous l’Afrique et l’Europe ?",a:"Oui, via partenariats locaux et marchés réassurance."},
-      {q:"Quels délais pour un diagnostic ?",a:"Entre 4 et 8 semaines selon la taille et la disponibilité des données."}
-    ]
+      {q:"Quelles données faut-il pour un diagnostic climat ?",a:"Inventaire des sites, données d’exposition, historique sinistres, et premières métriques d’émissions (si disponibles)."},
+      {q:"Les paramétriques remplacent-elles les assurances classiques ?",a:"Non — elles complètent les garanties traditionnelles avec des déclencheurs objectifs et des indemnisations rapides."},
+      {q:"Pouvez-vous aider sur le reporting TCFD/ISSB ?",a:"Oui, de la gouvernance aux indicateurs, y compris l’alignement Taxonomie UE et les attentes des bailleurs."}
+    ],
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
   },
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    title:"ESG & Climate Risk",
-    subtitle:"From assessment to execution: scenarios, parametrics, TCFD/Taxonomy/SFDR reporting and green-risk structuring.",
-    badges:["Physical & Transition","NGFS Scenarios","Compliance & Financing"],
-    tabs:{assess:"Assessment & Mapping",strategy:"Strategy & Scenarios",insurance:"Insurance & Parametrics",reporting:"Reporting & Compliance",finance:"Green Finance",training:"Training & Governance",faq:"FAQ"},
-    cta:{title:"Impact project or lender requirements?",sub:"We prepare due diligence, risk matrices and insurance term-sheets. Turnaround in 5–10 business days.",btn1:"Get a quote",btn2:"Talk to an expert"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    assess:{
-      lead:"Step one: quantify physical & transition exposure, structure data and prioritise.",
-      cards:[
-        {t:"Mapping & double materiality",bul:["Physical risks (flood, heat, wind, drought)","Transition risks (market, policy, tech)","Double-materiality matrix & priorities"]},
-        {t:"Data & indicators",bul:["Data quality & completeness","ESG KPIs/KRIs (energy, water, GHG)","Collection plan & data governance"]},
-        {t:"Stress tests & PML",bul:["Historic frequency/severity","Probable Maximum Loss (PML)","Hot-spots & aggregation by zone"]},
-        {t:"Value chain",bul:["Suppliers & logistics","Clients & contracts","Sensitive locations (maps)"]}
-      ],
-      roadmap:["0–30 days: scoping & data access","30–90 days: analytics, maps & quick wins","90–180 days: ERM integration & budget"]
-    },
-    strategy:{
-      lead:"Turn insights into decisions: scenarios, risk appetite, pathways & action plans.",
-      cards:[
-        {t:"Scenarios & pathways",bul:["NGFS orderly/disorderly","Temperature & transition paths","P&L, cash & solvency impacts"]},
-        {t:"Risk appetite & limits",bul:["Sector/site tolerances","Early-warning triggers","Alignment with ORSA/IFRS 17/ERM"]},
-        {t:"Adaptation plan",bul:["Physical hardening & redundancy","Transition measures (energy, sourcing)","Business continuity & BCP"]}
-      ],
-      check:{q:"Readiness score (self-check)",items:["Exposure mapping","Reliable ESG dataset","≥2 NGFS scenarios","Annual review process","KPIs monitored at ExCo"]}
-    },
-    insurance:{
-      lead:"Insurance solutions to secure the journey: traditional and parametric covers.",
-      cards:[
-        {t:"Parametrics",bul:["Rain/wind/temperature indices","Simple triggers, fast payouts","Great for Opex/Capex & PPP"]},
-        {t:"Green covers",bul:["Environmental liability & pollution","Green business interruption","Energy-efficiency extensions"]},
-        {t:"Advanced structures",bul:["Captives/sidecars & ART","Supply-chain covers","Carbon risks & insurance"]}
-      ]
-    },
-    reporting:{
-      lead:"Compliance & transparency: TCFD, EU Taxonomy, SFDR, ISSB/CSRD.",
-      cards:[
-        {t:"TCFD / ISSB",bul:["Governance, strategy, risk management","Metrics & targets","Audit-ready annexes"]},
-        {t:"EU Taxonomy / SFDR",bul:["Eligibility & alignment","KPIs (Capex/Opex/Revenue)","Documentation & controls"]},
-        {t:"Dashboards",bul:["Real-time KRIs (energy, water, GHG)","Alerts & thresholds","Reporting calendar"]}
-      ],
-      deliverables:["Scoping note & gap analysis","Action plan & roadmap","Slide decks & regulatory annexes"]
-    },
-    finance:{
-      lead:"Access to green finance & lender requirements (WB, EIB, AFD, GCF…).",
-      cards:[
-        {t:"Lenders’ due-diligence",bul:["Requirement checklist by lender","Compliance grid & gaps","Remediation plan"]},
-        {t:"Insurance term-sheet",bul:["Required covers & limits","Critical clauses/exclusions","Quotes & placement timeline"]},
-        {t:"Structuring",bul:["PPP & project finance","Performance guarantees","Financial reporting follow-up"]}
-      ]
-    },
-    training:{
-      lead:"Upskilling & governance to make ESG operational.",
-      cards:[
-        {t:"Training",bul:["1–3 day ESG/Climate workshops","Business & procurement tracks","Board/ExCo sessions"]},
-        {t:"Governance",bul:["ESG policies & charters","Roles & responsibilities","Steering rituals"]},
-        {t:"Change & adoption",bul:["Playbooks & templates","Team starter kits","Communication plan"]}
-      ]
-    },
+    title:"ESG & Climate — from analysis to action",
+    subtitle:"Physical/transition mapping, NGFS scenarios, (incl. parametric) insurance solutions, TCFD/ISSB reporting and EU Taxonomy/SFDR alignment.",
+    badges:["Assessment & scenarios","Parametrics & green covers","Reporting & lenders"],
+    offer:{kicker:"Offer",h2:"Our ESG & climate support"},
+    cards:[
+      {t:"Assessment & scenarios",p:"Evaluate physical risks (flood, heat, wind…) and transition risks (policy, market, tech). NGFS scenarios & stress tests.",
+       li:["Asset & value-chain mapping","Expected loss — 2030/2050 horizons","Double materiality & prioritisation"]},
+      {t:"Insurance solutions",p:"Design of climate & environmental covers, including weather-index parametrics.",
+       li:["Parametrics (rain, wind, heat, NDVI)","Environmental & supply-chain extensions","Green-finance approach for projects"]},
+      {t:"Reporting & financing",p:"TCFD/ISSB alignment, EU Taxonomy, SFDR and lenders’ requirements (WB, EIB, AFD…).",
+       li:["Governance, strategy, risk, metrics","Adaptation plans & KPIs","Financing files & insurance placement"]}
+    ],
+    road:{kicker:"Journey",h2:"Typical roadmap",steps:["Scoping & data (2–3 wks)","Mapping & scenarios (3–5 wks)","Cover design (2–4 wks)","Reporting & rollout (ongoing)"]},
+    check:{kicker:"Self-check",h2:"Where are you now?",
+           cards:[{t:"ESG governance",p:"Committee, roles, responsibilities, risk integration."},
+                  {t:"Data & metrics",p:"GHG scope, physical/transition metrics, data quality."},
+                  {t:"Covers & resilience",p:"Climate insurance, environmental extensions, business continuity."}],
+           note:"Illustrative scores to prioritise actions. We build a realistic, measurable improvement plan."},
+    cases:{kicker:"Use cases",h2:"Examples",
+           0:{t:"Agri & supply chain",p:"Rain/NDVI indices to secure yields & procurement; logistics clauses for climate shocks."},
+           1:{t:"Energy & industry",p:"Heat/wind stress tests on critical sites; BI XoL and environmental extensions."},
+           2:{t:"Infrastructure & finance",p:"Lender-ready TCFD/ISSB files; parametrics complementing traditional covers."}},
+    cta:{t:"Let’s get to work",p:"A 1h scoping workshop to prioritise your actions.",btn:"Book a meeting"},
     faq:[
-      {q:"Can you join an ongoing project?",a:"Yes — we leverage existing work and close priority gaps."},
-      {q:"Do you cover Africa & Europe?",a:"Yes, via local partners and reinsurance markets."},
-      {q:"Timeframe for an assessment?",a:"Typically 4–8 weeks depending on size and data availability."}
-    ]
+      {q:"What data is needed for a climate assessment?",a:"Site inventory, exposure data, loss history, and preliminary emissions metrics if available."},
+      {q:"Do parametrics replace traditional insurance?",a:"No—they complement with objective triggers and fast payouts."},
+      {q:"Can you support TCFD/ISSB reporting?",a:"Yes—from governance to metrics, including EU Taxonomy alignment and lenders’ expectations."}
+    ],
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
   },
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"الاستدامة ومخاطر المناخ",
-    subtitle:"من التشخيص إلى التنفيذ: السيناريوهات، التأمينات البارامترية، تقارير TCFD/التصنيف الأوروبي/SFDR وهيكلة الضمانات الخضراء.",
-    badges:["مخاطر فيزيائية وانتقالية","سيناريوهات NGFS","امتثال وتمويل"],
-    tabs:{assess:"التشخيص ورسم الخرائط",strategy:"الاستراتيجية والسيناريوهات",insurance:"التأمينات والبارامترية",reporting:"التقارير والامتثال",finance:"التمويل الأخضر",training:"التدريب والحوكمة",faq:"الأسئلة"},
-    cta:{title:"مشروع ذو أثر أو متطلبات ممولين؟",sub:"نجهّز العناية الواجبة ومصفوفات المخاطر وملخصات التأمين. تسليم خلال 5–10 أيام عمل.",btn1:"احصل على عرض",btn2:"تحدث إلى خبير"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    assess:{
-      lead:"الخطوة الأولى: قياس التعرض للمخاطر الفيزيائية والانتقالية، وتنظيم البيانات وتحديد الأولويات.",
-      cards:[
-        {t:"رسم الخرائط والمادية المزدوجة",bul:["فيضانات/حرارة/رياح/جفاف","مخاطر انتقال (السوق/التشريعات/التقنية)","مصفوفة المادية المزدوجة والأولويات"]},
-        {t:"البيانات والمؤشرات",bul:["جودة واكتمال البيانات","مؤشرات ESG (طاقة/مياه/انبعاثات)","خطة جمع وحوكمة البيانات"]},
-        {t:"اختبارات ضغط وPML",bul:["تواتر/حدة تاريخية","الخسارة القصوى المحتملة","مناطق تجميع حساسة"]},
-        {t:"سلسلة القيمة",bul:["الموردون واللوجستيات","العملاء والعقود","مواقع حساسة (خرائط)"]}
-      ],
-      roadmap:["0–30 يوماً: تحديد النطاق والوصول للبيانات","30–90 يوماً: التحليلات والخرائط والنتائج السريعة","90–180 يوماً: دمج ERM والميزانية"]
-    },
-    strategy:{
-      lead:"تحويل الرؤى إلى قرارات: السيناريوهات، شهية المخاطر، المسارات وخطط العمل.",
-      cards:[
-        {t:"السيناريوهات والمسارات",bul:["NGFS منظم/غير منظم","درجة الحرارة ومسارات الانتقال","أثر على الربح والتدفقات والملاءة"]},
-        {t:"شهية المخاطر والحدود",bul:["تحمل حسب القطاع/الموقع","مؤشرات إنذار مبكر","مواءمة مع ORSA/IFRS 17/ERM"]},
-        {t:"خطة التكيف",bul:["تعزيزات فيزيائية وازدواجية","إجراءات انتقال (طاقة/مشتريات)","استمرارية الأعمال"]}
-      ],
-      check:{q:"درجة الجاهزية (فحص ذاتي)",items:["خريطة التعرض","مجموعة بيانات ESG موثوقة","سيناريوهان NGFS على الأقل","مراجعة سنوية","مؤشرات لدى الإدارة"]}
-    },
-    insurance:{
-      lead:"حلول تأمينية لتأمين المسار: تغطيات تقليدية وبارامترية.",
-      cards:[
-        {t:"بارامترية",bul:["مؤشرات مطر/رياح/حرارة","تعويض سريع بشروط بسيطة","مناسب لـ Opex/Capex وPPP"]},
-        {t:"تغطيات خضراء",bul:["مسؤولية بيئية وتلوث","خسارة أرباح خضراء","امتدادات كفاءة الطاقة"]},
-        {t:"هياكل متقدمة",bul:["شركات أسطول/ART","تغطية سلاسل الإمداد","مخاطر الكربون والتأمين"]}
-      ]
-    },
-    reporting:{
-      lead:"امتثال وشفافية: TCFD والتصنيف الأوروبي وSFDR وISSB/CSRD.",
-      cards:[
-        {t:"TCFD / ISSB",bul:["الحوكمة والاستراتيجية وإدارة المخاطر","قياسات وأهداف","ملاحق جاهزة للتدقيق"]},
-        {t:"التصنيف الأوروبي / SFDR",bul:["الأهلية والمواءمة","مؤشرات (Capex/Opex/الإيراد)","توثيق ورقابة"]},
-        {t:"لوحات متابعة",bul:["مؤشرات لحظية (طاقة/مياه/انبعاثات)","تنبيهات وحدود","رزنامة تقارير"]}
-      ],
-      deliverables:["مذكرة نطاق وتحليل فجوات","خطة عمل وخارطة طريق","عروض تقديمية وملاحق تنظيمية"]
-    },
-    finance:{
-      lead:"الوصول إلى التمويل الأخضر ومتطلبات الممولين (البنك الدولي، بنك الاستثمار الأوروبي، AFD، GCF…).",
-      cards:[
-        {t:"العناية الواجبة",bul:["قائمة المتطلبات حسب الممول","شبكة امتثال ونقاط ضعف","خطة معالجة"]},
-        {t:"ملخص التأمين",bul:["التغطيات والحدود المطلوبة","بنود واستثناءات حرجة","عروض وتسلسل زمني"]},
-        {t:"الهيكلة",bul:["PPP وتمويل المشاريع","ضمانات الأداء","متابعة التقارير المالية"]}
-      ]
-    },
-    training:{
-      lead:"التوعية والحوكمة لجعل الاستدامة عملية.",
-      cards:[
-        {t:"التدريب",bul:["ورش 1–3 أيام","مسارات للأعمال والمشتريات","جلسات الإدارة العليا"]},
-        {t:"الحوكمة",bul:["سياسات ومواثيق ESG","الأدوار والمسؤوليات","آليات التسيير"]},
-        {t:"التغيير والتبني",bul:["أدلة ونماذج","حِزم انطلاق للفرق","خطة تواصل"]}
-      ]
-    },
+    title:"الاستدامة والمناخ — من التحليل إلى التنفيذ",
+    subtitle:"خرائط المخاطر الفيزيائية/الانتقالية، سيناريوهات NGFS، حلول تأمينية (بما فيها البارامترية)، تقارير TCFD/ISSB ومواءمة التصنيف الأوروبي/SFDR.",
+    badges:["تشخيص وسيناريوهات","بارامترية وتغطيات خضراء","تقارير ومتطلبات الممولين"],
+    offer:{kicker:"العرض",h2:"خدمتنا في الاستدامة والمناخ"},
+    cards:[
+      {t:"تشخيص وسيناريوهات",p:"تقييم المخاطر الفيزيائية (فيضانات، حرارة، رياح…) والانتقالية (تشريعات، سوق، تقنية). سيناريوهات NGFS واختبارات ضغط.",
+       li:["خرائط الأصول وسلسلة القيمة","خسائر متوقعة لأفق 2030/2050","مادية مزدوجة وترتيب أولويات"]},
+      {t:"حلول تأمينية",p:"تصميم تغطيات مناخية وبيئية، بما فيها البارامترية المعتمدة على مؤشرات الطقس.",
+       li:["بارامترية (أمطار، رياح، حرارة، NDVI)","امتدادات بيئية وسلاسل الإمداد","مقاربة التمويل الأخضر للمشاريع"]},
+      {t:"تقارير وتمويل",p:"مواءمة TCFD/ISSB والتصنيف الأوروبي وSFDR ومتطلبات الممولين (البنك الدولي، بنك الاستثمار الأوروبي، AFD…).",
+       li:["حوكمة واستراتيجية ومخاطر ومؤشرات","خطط التكيف ومؤشرات الأداء","ملفات التمويل وترتيب التأمين"]}
+    ],
+    road:{kicker:"المسار",h2:"خارطة طريق نموذجية",steps:["تحديد النطاق والبيانات (2–3 أسابيع)","الخرائط والسيناريوهات (3–5 أسابيع)","تصميم التغطيات (2–4 أسابيع)","التقارير والتنفيذ (مستمر)"]},
+    check:{kicker:"فحص ذاتي",h2:"أين تقف الآن؟",
+           cards:[{t:"حوكمة الاستدامة",p:"لجان وأدوار ومسؤوليات ودمج المخاطر."},
+                  {t:"البيانات والمؤشرات",p:"نطاق الانبعاثات ومؤشرات الفيزيائي/الانتقالي وجودة البيانات."},
+                  {t:"التغطيات والمرونة",p:"تأمينات مناخية وامتدادات بيئية واستمرارية الأعمال."}],
+           note:"درجات توضيحية للمساعدة في ترتيب الأولويات. نبني خطة تحسين واقعية وقابلة للقياس."},
+    cases:{kicker:"حالات استخدام",h2:"أمثلة",
+           0:{t:"الزراعة وسلاسل الإمداد",p:"مؤشرات المطر/NDVI لتأمين الغلال والمشتريات؛ بنود لوجستية للصدمات المناخية."},
+           1:{t:"الطاقة والصناعة",p:"اختبارات حرارة/رياح للمواقع الحرجة؛ XoL خسارة أرباح وامتدادات بيئية."},
+           2:{t:"البنية التحتية والتمويل",p:"ملفات متوافقة مع TCFD/ISSB؛ بارامترية تكمل التغطيات التقليدية."}},
+    cta:{t:"لنبدأ الآن",p:"ورشة تمهيدية لمدة ساعة لتحديد الأولويات.",btn:"احجز موعداً"},
     faq:[
-      {q:"هل يمكن الانضمام لمشروع جارٍ؟",a:"نعم، نبني على العمل المنجز ونغلق الفجوات الحرجة."},
-      {q:"النطاق الجغرافي؟",a:"إفريقيا وأوروبا عبر شركاء محليين وأسواق إعادة التأمين."},
-      {q:"مدة إنجاز التشخيص؟",a:"بين 4 و8 أسابيع حسب الحجم وتوافر البيانات."}
-    ]
+      {q:"ما البيانات المطلوبة لتشخيص المناخ؟",a:"قائمة المواقع وبيانات التعرض وسجل الخسائر ومقاييس الانبعاثات إن وجدت."},
+      {q:"هل تستبدل البارامترية التأمين التقليدي؟",a:"لا—بل تكمله بمشغلات موضوعية وتعويضات سريعة."},
+      {q:"هل تساندون تقارير TCFD/ISSB؟",a:"نعم—من الحوكمة إلى المؤشرات، مع مواءمة التصنيف الأوروبي وتوقعات الممولين."}
+    ],
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
   }
 };
 
-/* ===== Helpers ===== */
-let lang = localStorage.getItem('riskalia_lang') || 'fr';
+/* ================== Helpers ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $ = (s,root=document)=>root.querySelector(s);
-const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>[...root.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('esg.html'))); }
 
@@ -544,3 +488,4 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
+
