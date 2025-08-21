@@ -298,18 +298,34 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
   .hero p{ margin-bottom:10px; }
 }
 
-/* --- Solutions: alignement des boutons dans les cartes --- */
-#grid .card{
+/* Solutions — zone d’actions dans chaque carte */
+#grid .card .actions,
+#grid .card .mt-2{            /* compat : si tu n'as pas encore renommé en .actions */
+  margin-top: auto;           /* pousse la barre de boutons en bas de la carte */
   display: flex;
-  flex-direction: column;   /* permet de pousser la barre d'actions en bas */
-}
-#grid .actions{
-  margin-top: auto;         /* colle la zone boutons au bas de la carte */
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;          /* passe en 2 lignes si l’écran est étroit */
+  flex-wrap: wrap;
+  gap: 12px;                  /* ESPACE entre les boutons */
   align-items: center;
 }
-#grid .actions .btn{
-  flex: 0 0 auto;           /* évite l'étirement des boutons */
+
+/* Ce fallback garde un espace même si 'gap' est ignoré par le navigateur */
+#grid .card .actions .btn + .btn,
+#grid .card .mt-2 .btn + .btn{
+  margin-left: 12px;
 }
+
+/* Mobile : boutons empilés, bien espacés et plein largeur */
+@media (max-width: 520px){
+  #grid .card .actions,
+  #grid .card .mt-2{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  #grid .card .actions .btn + .btn,
+  #grid .card .mt-2 .btn + .btn{
+    margin-left: 0;
+  }
+}
+
+
