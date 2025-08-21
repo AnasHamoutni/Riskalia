@@ -15,7 +15,7 @@
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
@@ -324,160 +324,31 @@ const $$=(s,root=document)=>[...root.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('esg.html'))); }
 
-/* ===== Renderers ===== */
-function cardGrid(items){
-  return `<div class="grid">${items.map(it=>`
-    <article class="card"><h3>${it.t}</h3><ul>${(it.bul||[]).map(x=>`<li>${x}</li>`).join('')}</ul></article>
-  `).join('')}</div>`;
-}
-
-function render_assess(){
-  const d=t('assess');
-  return `
-    <article class="card">
-      <div class="kicker">1</div>
-      <h2>${t('tabs.assess')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-      <div class="roadmap">
-        ${d.roadmap.map((s,i)=>`<div class="step"><div class="num">${i===0?'🚀':i===1?'🧭':'🏁'}</div><div>${s}</div></div>`).join('')}
-      </div>
-    </article>
-  `;
-}
-
-function render_strategy(){
-  const d=t('strategy');
-  return `
-    <article class="card">
-      <div class="kicker">2</div>
-      <h2>${t('tabs.strategy')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-      <div class="card" style="margin-top:14px;background:#f8fbfc;border:1px solid #e2edf2">
-        <strong>${d.check.q}</strong>
-        <div id="checkList" style="margin-top:8px"></div>
-        <div class="check">
-          <div class="progress" aria-label="progression"><span id="bar" style="width:0%"></span></div>
-          <div class="score" id="score">0%</div>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function render_insurance(){
-  const d=t('insurance');
-  return `
-    <article class="card">
-      <div class="kicker">3</div>
-      <h2>${t('tabs.insurance')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-    </article>
-  `;
-}
-
-function render_reporting(){
-  const d=t('reporting');
-  return `
-    <article class="card">
-      <div class="kicker">4</div>
-      <h2>${t('tabs.reporting')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-      <details style="margin-top:12px"><summary>🗂️ ${lang==='en'?'Deliverables':'Livrables'}</summary>
-        <div><ul>${(d.deliverables||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
-      </details>
-    </article>
-  `;
-}
-
-function render_finance(){
-  const d=t('finance');
-  return `
-    <article class="card">
-      <div class="kicker">5</div>
-      <h2>${t('tabs.finance')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-    </article>
-  `;
-}
-
-function render_training(){
-  const d=t('training');
-  return `
-    <article class="card">
-      <div class="kicker">6</div>
-      <h2>${t('tabs.training')}</h2>
-      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
-      ${cardGrid(d.cards)}
-    </article>
-  `;
-}
-
-function render_faq(){
-  const list=t('faq')||[];
-  return `
-    <article class="card">
-      <div class="kicker">FAQ</div>
-      <h2>FAQ</h2>
-      ${list.map(x=>`<details style="margin-top:10px"><summary>❓ ${x.q}</summary><div><p class="muted" style="margin-top:8px">${x.a}</p></div></details>`).join('')}
-    </article>
-  `;
-}
-
-let currentTab='assess';
-function renderPanel(){
-  const host=$("#panel");
-  host.innerHTML = currentTab==='assess'?render_assess()
-                 : currentTab==='strategy'?render_strategy()
-                 : currentTab==='insurance'?render_insurance()
-                 : currentTab==='reporting'?render_reporting()
-                 : currentTab==='finance'?render_finance()
-                 : currentTab==='training'?render_training()
-                 : render_faq();
-
-  // initialise le mini self-check si présent
-  const check=t('strategy.check');
-  const wrap=$("#checkList");
-  if(wrap){
-    wrap.innerHTML = (check.items||[]).map((txt,i)=>`
-      <label style="display:flex;gap:8px;align-items:center;margin:6px 0;">
-        <input type="checkbox" data-x="item" aria-label="${txt}"/>
-        <span>${txt}</span>
-      </label>`).join('');
-    const update=()=>{
-      const all=$$('[data-x="item"]',wrap); const done=all.filter(x=>x.checked).length;
-      const pct=Math.round(done*100/Math.max(all.length,1));
-      $("#bar").style.width=pct+"%"; $("#score").textContent=pct+"%";
-    };
-    wrap.addEventListener('change',update); update();
-  }
-}
-
-/* ===== UI & i18n ===== */
+/* ================== Render ================== */
 function applyTexts(){
   document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+
+  // éléments simples
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
-  renderPanel();
+
+  // listes dynamiques (cartes offre)
+  // Déjà injectées via data-i18n pour titres/paragraphes/listes — rien d’autre à faire ici.
+
+  // FAQ dynamique (si tu veux générer via JS — ici on garde statique avec data-i18n)
 }
 
+/* ================== UI ================== */
 function initUI(){
+  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
 
-  $$('.tab').forEach(btn=> btn.addEventListener('click', ()=>{
-    $$('.tab').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
-    currentTab=btn.dataset.tab; renderPanel();
-    window.scrollTo({top:document.querySelector('.tabs').offsetTop-80,behavior:'smooth'});
+  // langue
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // i18n
-  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
 
   // reveal
   const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
@@ -488,5 +359,3 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
