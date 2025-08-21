@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Plan du site</title>
+  <meta name="description" content="Plan du site Riskalia : accès rapide aux pages Solutions, Réassurance, ESG, Contact et Accueil."/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;--radius:14px;--shadow:0 10px 24px rgba(0,0,0,.07);--grad:linear-gradient(rgba(0,92,115,.84),rgba(0,92,115,.84))}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:'Open Sans',sans-serif;background:#fff;color:var(--cd);line-height:1.65}
+body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+.container{max-width:1200px;margin:auto;padding:0 16px}
+.btn{display:inline-block;padding:12px 20px;background:var(--c3);color:#fff;border-radius:10px;font-weight:700;transition:.2s;border:1px solid transparent}
+.btn:hover{transform:translateY(-2px);background:var(--c2)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+.card{background:#fff;padding:22px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:10px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:6px 10px;border-radius:999px;font-weight:800}
+.muted{color:#5f7781}
+.small{font-size:.95rem}
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand img{height:48px;width:auto;border-radius:8px}
+nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
+nav a{position:relative;padding:6px}
+nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+nav a:hover::after,nav a.active::after{width:100%}
+.menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+@media(max-width:900px){
+  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:240px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
+  .menu-toggle{display:block}
+}
+.hero{min-height:40vh;background:var(--grad),url('https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.5vw,3.2rem);letter-spacing:-.4px;margin-bottom:6px}
+.hero p{color:#fff;opacity:.98;max-width:880px;margin:0 auto 12px}
+.searchbar{display:flex;gap:8px;justify-content:center;margin:12px 0}
+.searchbar input{width:560px;max-width:92%;padding:12px;border:1px solid #cfd9de;border-radius:10px}
+section{padding:54px 0}
+footer{background:var(--c1);color:#fff;padding:48px 0;margin-top:28px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
+.reveal.active{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
+  </style>
+
+  <!-- JSON-LD minimal pour l'indexation -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SiteNavigationElement",
+    "name":["Home","Solutions","Reinsurance","ESG","Contact","Sitemap"],
+    "url":[
+      "index.html",
+      "solutions.html",
+      "reinsurance.html",
+      "esg.html",
+      "contact.html",
+      "sitemap.html"
+    ]
+  }
+  </script>
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="sitemap.html" class="active">Sitemap</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1 id="hTitle">Plan du site</h1>
+    <p id="hSub">Trouvez rapidement la page dont vous avez besoin.</p>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="Rechercher…"/>
+      <button class="btn secondary" id="clear">Effacer</button>
+      <a class="btn" href="index.html" id="goHome">Accueil</a>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <span class="badge" id="lastUpdate">Mise à jour : —</span>
+      <span class="badge">HTML static</span>
+      <span class="badge">FR | EN | AR</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="reveal" style="padding-top:28px">
+  <div class="container">
+    <div class="grid-2">
+      <div class="card">
+        <div class="kicker" id="mainPagesK">Pages principales</div>
+        <div id="cardsMain" class="grid-3"></div>
+      </div>
+      <div class="card">
+        <div class="kicker" id="otherK">Autres</div>
+        <div id="cardsOther" class="grid-3"></div>
+        <p class="muted small" style="margin-top:8px" id="note404">
+          La page 404 s’affiche automatiquement si une URL est introuvable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="reveal" style="background:var(--cm)">
+  <div class="container" style="text-align:center">
+    <h2 id="ctaTitle">Vous ne trouvez pas ?</h2>
+    <p class="muted" id="ctaText">Écrivez-nous : nous vous guidons vers la bonne ressource.</p>
+    <a class="btn" href="contact.html" id="ctaBtn">Contacter un conseiller</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" id="footerDesc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 id="footerLinksH">Liens</h4>
+      <p>
+        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </p>
+    </div>
+    <div>
+      <h4 id="footerContactH">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================== i18n ================== */
+const I18N = {
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    hero:{title:"Plan du site",sub:"Trouvez rapidement la page dont vous avez besoin.",ph:"Rechercher…",clear:"Effacer",home:"Accueil"},
+    badges:{static:"HTML static",langs:"FR | EN | AR",updated:"Mise à jour : "},
+    mainK:"Pages principales",
+    otherK:"Autres",
+    note404:"La page 404 s’affiche automatiquement si une URL est introuvable.",
+    cta:{title:"Vous ne trouvez pas ?",text:"Écrivez-nous : nous vous guidons vers la bonne ressource.",btn:"Contacter un conseiller"},
+    footerDesc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",
+    cardsMain:[
+      {icon:"🏠",t:"Accueil",d:"Présentation et atouts de Riskalia.",href:"index.html"},
+      {icon:"🧩",t:"Solutions",d:"Produits pour entreprises et particuliers.",href:"solutions.html"},
+      {icon:"🧭",t:"Réassurance",d:"Traités, facultatives, sinistres & arbitrages.",href:"reinsurance.html"},
+      {icon:"🌿",t:"ESG",d:"Diagnostics, paramétriques, reporting TCFD/Taxonomie.",href:"esg.html"},
+      {icon:"✉️",t:"Contact",d:"Demande de devis, sinistres, coordonnées.",href:"contact.html"}
+    ],
+    cardsOther:[
+      {icon:"🗺️",t:"Plan du site",d:"Vous êtes ici.",href:"sitemap.html"},
+      {icon:"⚠️",t:"Page 404",d:"Page d’erreur élégante avec navigation.",href:"404.html"}
+    ]
+  },
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    hero:{title:"Sitemap",sub:"Quickly find the page you need.",ph:"Search…",clear:"Clear",home:"Home"},
+    badges:{static:"Static HTML",langs:"FR | EN | AR",updated:"Updated: "},
+    mainK:"Main pages",
+    otherK:"Others",
+    note404:"The 404 page appears automatically when a URL is not found.",
+    cta:{title:"Can’t find it?",text:"Write to us — we’ll point you to the right resource.",btn:"Talk to an advisor"},
+    footerDesc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",
+    cardsMain:[
+      {icon:"🏠",t:"Home",d:"Overview and strengths of Riskalia.",href:"index.html"},
+      {icon:"🧩",t:"Solutions",d:"Products for businesses and individuals.",href:"solutions.html"},
+      {icon:"🧭",t:"Reinsurance",d:"Treaties, facultatives, claims & arbitration.",href:"reinsurance.html"},
+      {icon:"🌿",t:"ESG",d:"Diagnostics, parametrics, TCFD/Taxonomy reporting.",href:"esg.html"},
+      {icon:"✉️",t:"Contact",d:"Quotes, claims and details.",href:"contact.html"}
+    ],
+    cardsOther:[
+      {icon:"🗺️",t:"Sitemap",d:"You are here.",href:"sitemap.html"},
+      {icon:"⚠️",t:"404 page",d:"Styled error page with navigation.",href:"404.html"}
+    ]
+  },
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    hero:{title:"خريطة الموقع",sub:"ابحث بسرعة عن الصفحة المطلوبة.",ph:"ابحث…",clear:"مسح",home:"الرئيسية"},
+    badges:{static:"HTML ثابت",langs:"FR | EN | AR",updated:"آخر تحديث: "},
+    mainK:"الصفحات الرئيسية",
+    otherK:"أخرى",
+    note404:"تظهر صفحة 404 تلقائيًا عندما لا يتم العثور على الرابط.",
+    cta:{title:"لم تجد ما تريد؟",text:"راسلنا — نرشدك إلى المورد الصحيح.",btn:"تواصل مع مستشار"},
+    footerDesc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",
+    cardsMain:[
+      {icon:"🏠",t:"الرئيسية",d:"نظرة عامة ونقاط قوة Riskalia.",href:"index.html"},
+      {icon:"🧩",t:"الحلول",d:"منتجات للشركات والأفراد.",href:"solutions.html"},
+      {icon:"🧭",t:"إعادة التأمين",d:"اتفاقيات، اختياريات، مطالبات وتحكيم.",href:"reinsurance.html"},
+      {icon:"🌿",t:"الاستدامة",d:"تشخيص وحلول بارامترية وتقارير TCFD/التصنيف.",href:"esg.html"},
+      {icon:"✉️",t:"اتصل بنا",d:"عروض أسعار ومطالبات وتواصل.",href:"contact.html"}
+    ],
+    cardsOther:[
+      {icon:"🗺️",t:"خريطة الموقع",d:"أنت هنا.",href:"sitemap.html"},
+      {icon:"⚠️",t:"صفحة 404",d:"صفحة خطأ أنيقة مع تنقل.",href:"404.html"}
+    ]
+  }
+};
+
+/* ================== Runtime ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+
+function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null || !(n in cur)) return path; cur=cur[n]; } return cur; }
+function setActiveNav(){
+  const here=location.pathname.split('/').pop()||'sitemap.html';
+  document.querySelectorAll('nav a').forEach(a=>{
+    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
+  });
+}
+
+function renderCards(){
+  const main = t('cardsMain') || [];
+  const other = t('cardsOther') || [];
+  const mk = document.getElementById('cardsMain');
+  const ok = document.getElementById('cardsOther');
+  mk.innerHTML = main.map(c=>cardTpl(c)).join('');
+  ok.innerHTML = other.map(c=>cardTpl(c)).join('');
+}
+
+function cardTpl(c){
+  return `
+    <a href="${c.href}" class="card" style="display:block">
+      <div class="kicker">${c.icon} ${c.t}</div>
+      <p class="muted small">${c.d}</p>
+    </a>
+  `;
+}
+
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+
+  document.querySelectorAll('[data-i18n="nav.home"]').forEach(e=>e.textContent=t('nav.home'));
+  document.querySelectorAll('[data-i18n="nav.solutions"]').forEach(e=>e.textContent=t('nav.solutions'));
+  document.querySelectorAll('[data-i18n="nav.re"]').forEach(e=>e.textContent=t('nav.re'));
+  document.querySelectorAll('[data-i18n="nav.esg"]').forEach(e=>e.textContent=t('nav.esg'));
+  document.querySelectorAll('[data-i18n="nav.contact"]').forEach(e=>e.textContent=t('nav.contact'));
+
+  document.getElementById('hTitle').textContent = t('hero.title');
+  document.getElementById('hSub').textContent = t('hero.sub');
+  document.getElementById('q').placeholder = t('hero.ph');
+  document.getElementById('clear').textContent = t('hero.clear');
+  document.getElementById('goHome').textContent = t('hero.home');
+
+  document.getElementById('mainPagesK').textContent = t('mainK');
+  document.getElementById('otherK').textContent = t('otherK');
+  document.getElementById('note404').textContent = t('note404');
+
+  document.getElementById('ctaTitle').textContent = t('cta.title');
+  document.getElementById('ctaText').textContent = t('cta.text');
+  document.getElementById('ctaBtn').textContent = t('cta.btn');
+
+  document.getElementById('footerDesc').innerHTML = t('footerDesc');
+  document.getElementById('footerLinksH').textContent = (lang==='en'?'Links':lang==='ar'?'روابط':'Liens');
+  document.getElementById('footerContactH').textContent = (lang==='en'?'Contact':lang==='ar'?'اتصال':'Contact');
+
+  renderCards();
+  updateLastUpdateBadge();
+}
+
+function updateLastUpdateBadge(){
+  const el=document.getElementById('lastUpdate');
+  const prefix = I18N[lang].badges.updated;
+  // Affiche la date locale
+  const d=new Date();
+  const fmt = new Intl.DateTimeFormat(lang==='ar'?'ar':(lang==='en'?'en':'fr'), {year:'numeric',month:'long',day:'2-digit'});
+  el.textContent = prefix + fmt.format(d);
+}
+
+function initUI(){
+  setActiveNav();
+  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
+
+  // reveal
+  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+
+  // search filter
+  const q=document.getElementById('q'); const clear=document.getElementById('clear');
+  q.addEventListener('input', ()=>{
+    const val=q.value.toLowerCase().trim();
+    const all = [...(t('cardsMain')||[]), ...(t('cardsOther')||[])];
+    const [wrapMain, wrapOther] = [document.getElementById('cardsMain'), document.getElementById('cardsOther')];
+    const main = t('cardsMain')||[]; const other=t('cardsOther')||[];
+    const fMain = !val? main : main.filter(c => (c.t+' '+c.d).toLowerCase().includes(val));
+    const fOther = !val? other : other.filter(c => (c.t+' '+c.d).toLowerCase().includes(val));
+    wrapMain.innerHTML = fMain.map(cardTpl).join('');
+    wrapOther.innerHTML = fOther.map(cardTpl).join('');
+  });
+  clear.addEventListener('click', ()=>{ q.value=''; q.dispatchEvent(new Event('input')); q.focus(); });
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  applyTexts(); initUI();
+});
+</script>
+</body>
+</html>
