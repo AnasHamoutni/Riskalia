@@ -280,4 +280,105 @@ function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a
 /* ================== UI & i18n ================== */
 function populateProducts(){
   const seg=$('#segment').value;
-  const list = seg==='corp' ? t('prods.corp') : t('pro
+  const list = seg==='corp' ? t('prods.corp') : t('prods.retail');
+  const sel=$('#product'); sel.innerHTML='';
+  (list||[]).forEach(label=>{
+    const opt=document.createElement('option');
+    opt.textContent=label; opt.value=label; sel.appendChild(opt);
+  });
+}
+
+function applyTexts(){
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+  populateProducts();
+  // placeholders / aria
+  $('#topic').placeholder = lang==='en'?'E.g. fleet renewal, XoL layer…'
+                         : lang==='ar'?'مثال: تجديد أسطول، طبقة XoL…'
+                         : 'Ex. renouvellement flotte, couche XoL…';
+  $('#message').placeholder = lang==='en'?'Briefly describe your need (context, sums insured, deadlines)…'
+                            : lang==='ar'?'صف حاجتك بإيجاز (السياق، مبالغ التأمين، المهل)…'
+                            : 'Décrivez brièvement votre besoin (contexte, capitaux, délais)…';
+}
+
+function initUI(){
+  // burger
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+
+  // langue
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+
+  // reveal
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+
+  // segment → produits
+  $('#segment').addEventListener('change', populateProducts);
+
+  // validation + mailto
+  const F=$('#contactForm');
+  F.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    // simple validation
+    let ok=true;
+    const need = [['#name','#e-name'],['#email','#e-email'],['#product','#e-product'],['#consent','#e-consent']];
+    need.forEach(([f,err])=>{
+      const el=$(f), er=$(err);
+      const valid = (el.type==='checkbox') ? el.checked : !!el.value.trim();
+      er.style.display = valid?'none':'block';
+      if(!valid) ok=false;
+    });
+    // honeypot
+    if (F.company && F.company.value) ok=false;
+
+    if(!ok) return;
+
+    // build mailto
+    const seg = $('#segment').value;
+    const name = encodeURIComponent($('#name').value.trim());
+    const email= encodeURIComponent($('#email').value.trim());
+    const phone= encodeURIComponent($('#phone').value.trim());
+    const product = encodeURIComponent($('#product').value);
+    const topic = encodeURIComponent($('#topic').value.trim());
+    const message = encodeURIComponent($('#message').value.trim());
+
+    const subject = encodeURIComponent(
+      (lang==='en'?'Quote / Info — ':'Demande devis / info — ')
+      + (seg==='corp' ? (lang==='en'?'Business: ':'Entreprise : ') : (lang==='en'?'Individual: ':'Particulier : '))
+      + decodeURIComponent(product)
+    );
+
+    const bodyLines = [
+      (lang==='en'?'Name: ':'Nom : ')+decodeURIComponent(name),
+      'Email: '+decodeURIComponent(email),
+      (lang==='en'?'Phone: ':'Téléphone : ')+decodeURIComponent(phone),
+      (lang==='en'?'Segment: ':'Vous êtes : ')+(seg==='corp'?(lang==='en'?'Business':'Entreprise'):(lang==='en'?'Individual':'Particulier')),
+      (lang==='en'?'Product: ':'Produit : ')+decodeURIComponent(product),
+      (lang==='en'?'Subject: ':'Objet : ')+decodeURIComponent(topic||'—'),
+      '',
+      (lang==='en'?'Message:':'Message :'),
+      decodeURIComponent(message||'—'),
+      '',
+      '—',
+      'Riskalia website'
+    ];
+
+    const body = encodeURIComponent(bodyLines.join('\n'));
+    const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
+
+    // confirmation visuelle + ouverture
+    $('#ok').style.display='block';
+    window.location.href = mailto;
+  });
+}
+
+/* init */
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+</body>
+</html>
