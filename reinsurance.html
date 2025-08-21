@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Réassurance : Traités & Facultatives</title>
-  <meta name="description" content="Traités QS/Surplus/XoL/Stop-Loss, facultatives et conception de produits. Cellule sinistres & arbitrages 24/7."/>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-/* ===== base ===== */
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Riskalia — Réassurance (traités & facultatives)</title>
+<meta name="description" content="Réassurance Riskalia : traités QS/Surplus/XoL/Stop-Loss, facultatives, conception produit, sinistres & arbitrages.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
 :root{
-  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;
-  --radius:16px;--shadow:0 12px 26px rgba(0,0,0,.07);
-  --space:20px;--gap:22px;--fs:1.06rem;--lh:1.8;
+  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f6fafc;--cd:#243238;
+  --shadow:0 16px 34px rgba(0,0,0,.06);--radius:18px;
+  --lh:1.9;--fs:1.06rem;--space:26px;--gap:26px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
@@ -22,21 +21,10 @@ body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.container{max-width:1180px;margin:auto;padding:0 18px}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:calc(var(--space) + 2px)}
-.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
-.muted{color:#5f7781}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;font-weight:800}
-section{padding:62px 0}
-
-/* density switcher */
-body.compact{--space:14px;--gap:14px;--fs:.98rem;--lh:1.65}
-body.spacious{--space:26px;--gap:26px;--fs:1.12rem;--lh:1.95}
-
-/* ===== nav ===== */
 header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.container{max-width:1240px;margin:auto;padding:0 20px}
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand{display:flex;align-items:center;gap:12px;color:var(--c1);font-weight:800}
 .brand img{height:50px;width:auto;border-radius:10px}
 nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
 nav a{position:relative;padding:6px}
@@ -46,48 +34,69 @@ nav a:hover::after,nav a.active::after{width:100%}
 .lang-switch{display:flex;gap:6px}
 .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
 .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
-@media(max-width:900px){
-  nav ul{flex-direction:column;position:absolute;top:70px;right:-100%;background:#fff;width:260px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+@media(max-width:980px){
+  nav ul{flex-direction:column;position:absolute;top:70px;right:-100%;background:#fff;width:260px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
   nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
   .menu-toggle{display:block}
 }
 
-/* ===== hero ===== */
-.hero{min-height:42vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
-.hero h1{color:#fff;font-size:clamp(2rem,3.6vw,3.1rem);letter-spacing:-.4px;margin-bottom:10px}
-.hero p{color:#fff;opacity:.98;max-width:920px;margin:0 auto}
-.hero .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+/* hero */
+.hero{min-height:42vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero h1{color:#fff;font-size:clamp(2rem,3.4vw,3rem);letter-spacing:-.4px;margin-bottom:10px}
+.hero p{color:#fff;opacity:.98;max-width:900px;margin:0 auto}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;padding:8px 12px;border-radius:999px;font-weight:800}
 
-/* ===== tabs ===== */
-.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:-18px}
-.tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:800}
-.tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
+/* layout w/ sticky toc */
+.main{display:grid;grid-template-columns:260px 1fr;gap:34px}
+@media(max-width:1100px){ .main{grid-template-columns:1fr} }
+.aside{position:sticky;top:86px;align-self:start;background:var(--cm);border:1px solid #e2edf2;border-radius:14px;padding:14px}
+.aside h4{margin-bottom:6px;color:#0b5562}
+.aside a{display:block;padding:8px 10px;border-radius:10px;margin:2px 0;color:#0b5562}
+.aside a.active,.aside a:hover{background:#dff3f7;color:#083f49}
 
-/* ===== layout ===== */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:var(--gap)} /* max 2 colonnes */
-details{background:#f8fbfc;border:1px solid #e6eff3;border-radius:14px;overflow:hidden}
-summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:800;color:#0b5562;display:flex;align-items:center;gap:8px}
+/* mobile chips nav */
+.chips{display:none;gap:10px;flex-wrap:wrap;margin:16px 0}
+.chip{border:1px solid #cfe1e6;border-radius:999px;padding:8px 12px;background:#fff;color:#0b4e5b;font-weight:800}
+.chip.active,.chip:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+@media(max-width:1100px){ .chips{display:flex} .aside{display:none} }
+
+/* cards + prose */
+.prose{max-width:880px}
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:calc(var(--space) + 2px);margin-bottom:var(--gap)}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:8px}
+.muted{color:#5f7781}
+section{padding:62px 0}
+summary{cursor:pointer;list-style:none;padding:12px 16px;border:1px solid #e6eff3;background:#f8fbfc;border-radius:12px;display:flex;align-items:center;gap:8px;font-weight:800;color:#0b5562}
 summary::-webkit-details-marker{display:none}
-details > div{padding:0 16px 16px}
-ul{padding-left:20px}
-li{margin-bottom:10px}
+details{margin-top:12px}
+details>div{padding:12px 6px 4px 6px}
+ul{padding-left:22px} li{margin:8px 0}
 
-/* ===== reveal ===== */
+/* view switch */
+.toolbar{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin:10px 0 4px}
+.select{border:1px solid #cfe1e6;border-radius:10px;padding:8px 12px;background:#fff;font-weight:700;color:#0b4e5b}
+
+/* comparison table */
+.table-wrap{overflow:auto;border:1px solid #e6eff3;border-radius:14px}
+table{border-collapse:collapse;min-width:820px;width:100%;background:#fff}
+caption{padding:12px 14px;text-align:left;font-weight:800;color:#0b5562}
+th,td{padding:16px 14px;border-top:1px solid #eef3f6;vertical-align:top}
+th{background:#f6fafc;color:#0b5562;text-align:left}
+tr:nth-child(even) td{background:#fbfdfe}
+
+/* reveal */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
 .reveal.active{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
 
-/* ===== footer ===== */
+/* footer */
 footer{background:var(--c1);color:#fff;padding:50px 0;margin-top:30px}
 .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
 footer h4{color:#a8ecf4;margin-bottom:10px}
-
-/* helpers */
-.toolbar{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin:14px 0 6px}
-.select{border:1px solid #cfe1e6;border-radius:10px;padding:8px 12px;background:#fff;font-weight:700;color:#0b4e5b}
-  </style>
+</style>
 </head>
-<body class="spacious"><!-- démarre en mode “Spacieux” -->
+<body>
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
@@ -124,35 +133,101 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 </section>
 
 <section class="reveal" style="padding-top:28px">
-  <div class="container">
-    <div class="tabs">
-      <button class="tab active" data-tab="treaties" data-i18n="re.tabs.treaties">Traités</button>
-      <button class="tab" data-tab="fac" data-i18n="re.tabs.fac">Facultatives</button>
-      <button class="tab" data-tab="product" data-i18n="re.tabs.product">Conception produit</button>
-      <button class="tab" data-tab="claims" data-i18n="re.tabs.claims">Sinistres & arbitrages</button>
-      <button class="tab" data-tab="faq" data-i18n="re.tabs.faq">FAQ</button>
+  <div class="container main">
+    <!-- sticky toc -->
+    <aside class="aside" aria-label="Sommaire">
+      <h4 data-i18n="toc.title">Sommaire</h4>
+      <a href="#treaties" class="toc">Traités</a>
+      <a href="#fac" class="toc">Facultatives</a>
+      <a href="#product" class="toc">Conception produit</a>
+      <a href="#claims" class="toc">Sinistres & arbitrages</a>
+      <a href="#faq" class="toc">FAQ</a>
+    </aside>
+
+    <!-- content -->
+    <div class="prose">
+      <!-- chips for mobile -->
+      <div class="chips">
+        <a class="chip" href="#treaties">Traités</a>
+        <a class="chip" href="#fac">Facultatives</a>
+        <a class="chip" href="#product">Conception</a>
+        <a class="chip" href="#claims">Sinistres</a>
+        <a class="chip" href="#faq">FAQ</a>
+      </div>
+
+      <div class="toolbar">
+        <label for="view" class="muted" id="viewLbl">Affichage :</label>
+        <select id="view" class="select">
+          <option value="cards">Cartes détaillées</option>
+          <option value="compare">Tableau comparatif</option>
+        </select>
+      </div>
+
+      <!-- Traités -->
+      <article id="treaties" class="card">
+        <div class="kicker">Traités</div>
+        <h2 data-i18n="re.treatiesH">Traités QS / Surplus / XoL / Stop-Loss</h2>
+
+        <div id="treaties-cards"></div>
+
+        <div id="treaties-compare" class="table-wrap" style="display:none;margin-top:18px">
+          <table>
+            <caption id="cap">Comparatif rapide</caption>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>À utiliser quand</th>
+                <th>Mécanismes clés</th>
+                <th>Réglages</th>
+                <th>Pertinent pour</th>
+              </tr>
+            </thead>
+            <tbody id="cmpBody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Facultatives -->
+      <article id="fac" class="card">
+        <div class="kicker">Facultatives</div>
+        <h2 data-i18n="re.tabs.fac">Facultatives</h2>
+        <p class="muted" data-i18n="re.fac.intro">Capacité sur risques spécifiques : placement auprès de marchés notés A/AA, wordings LMA/IUA.</p>
+        <details open><summary>🧩 Portefeuille de facultatives</summary><div><ul id="facList"></ul></div></details>
+      </article>
+
+      <!-- Conception produit -->
+      <article id="product" class="card">
+        <div class="kicker">Produit</div>
+        <h2 data-i18n="re.tabs.product">Conception produit</h2>
+        <p class="muted" data-i18n="re.product.lead">Co-conception avec souscription & actuariat : de l’idée au wording.</p>
+        <details open><summary>🛠️ Méthode</summary><div><ol id="prodSteps"></ol></div></details>
+      </article>
+
+      <!-- Sinistres -->
+      <article id="claims" class="card">
+        <div class="kicker">24/7</div>
+        <h2 data-i18n="re.tabs.claims">Sinistres & arbitrages</h2>
+        <p class="muted" data-i18n="re.claims.lead">Cellule sinistres complexes 24/7</p>
+        <details open><summary>📊 Services</summary><div><ul id="claimsList"></ul></div></details>
+      </article>
+
+      <!-- FAQ -->
+      <article id="faq" class="card">
+        <div class="kicker">FAQ</div>
+        <h2>FAQ</h2>
+        <div id="faqWrap"></div>
+      </article>
+
+      <!-- CTA -->
+      <article class="card" style="background:var(--cm);border:1px solid #e2edf2">
+        <h3 data-i18n="re.cta.title">Un programme à renouveler ? Une ligne à structurer ?</h3>
+        <p class="muted" data-i18n="re.cta.sub">Envoyez vos bordereaux, historiques et objectifs de couverture : on vous répond sous 24–48 h.</p>
+        <div class="badges" style="justify-content:flex-start">
+          <a class="badge" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+          <a class="badge" href="contact.html" data-i18n="cta.advisor">Parler à un expert</a>
+        </div>
+      </article>
     </div>
-
-    <!-- densité -->
-    <div class="toolbar">
-      <label for="density" class="muted" id="densityLabel">Affichage :</label>
-      <select id="density" class="select" aria-labelledby="densityLabel">
-        <option value="compact">Compact</option>
-        <option value="standard" selected>Standard</option>
-        <option value="spacious">Spacieux</option>
-      </select>
-    </div>
-
-    <div id="tab-content"></div>
-  </div>
-</section>
-
-<section class="reveal" style="background:var(--cm)">
-  <div class="container" style="text-align:center">
-    <h2 data-i18n="re.cta.title">Un programme à renouveler ? Une ligne à structurer ?</h2>
-    <p class="muted" data-i18n="re.cta.sub">Envoyez vos bordereaux, historiques et objectifs de couverture : on vous répond sous 24–48 h.</p>
-    <a class="badge" href="contact.html" style="text-decoration:none" data-i18n="cta.quote">Obtenir un devis</a>
-    <a class="badge" href="contact.html" style="text-decoration:none;margin-left:8px" data-i18n="cta.advisor">Parler à un expert</a>
   </div>
 </section>
 
@@ -176,33 +251,45 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 </footer>
 
 <script>
-/* ================== i18n ================== */
-const I18N = {
+/* ================== i18n data ================== */
+const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
     cta:{quote:"Obtenir un devis",advisor:"Parler à un expert"},
+    toc:{title:"Sommaire"},
     re:{
       title:"Réassurance — expertise & accompagnement",
       sub:"Traités QS/Surplus/XoL/Stop-Loss & facultatives. Conception produit. Cellule sinistres complexes & arbitrages 24/7.",
       badges:["Accès réassureurs notés A+ / AA","Wordings LMA/IUA","IFRS 17 & capital"],
-      tabs:{treaties:"Traités",fac:"Facultatives",product:"Conception produit",claims:"Sinistres & arbitrages",faq:"FAQ"},
-      cta:{title:"Un programme à renouveler ? Une ligne à structurer ?",sub:"Envoyez vos bordereaux, historiques et objectifs de couverture : on vous répond sous 24–48 h."},
+      treatiesH:"Traités QS / Surplus / XoL / Stop-Loss",
       treaties:[
-        {key:"QS",title:"Quota Share (QS)", use:["Partage proportionnel prime & sinistre","Stabilise résultats et solvabilité","Pertinent en croissance de portefeuille"], mech:["Cession fixe (ex. 20–60%)","Commission de cession/commutation glissante","Participation bénéficiaire possible"], settings:["Rétention faible","Plafonds par risque/évènement (optionnels)"], good:["Lignes émergentes","Sociétés en démarrage/virage"], notes:["Suivi ULR / glissières de commission"]},
-        {key:"SURPLUS",title:"Surplus", use:["Augmente la capacité sur gros risques","Évite de sur-assurer les petits"], mech:["Cession au-delà de la rétention par risque","Nombre de lignes (ex. 3–10 lignes)","Ligne de souscription indexée"], settings:["Rétention par somme assurée","Lignes max"], good:["Branches industrielles","Grandes valeurs isolées"], notes:["Surveiller l’agrégation par zone"]},
-        {key:"XOL",title:"Excess of Loss (XoL)", use:["Protège contre les chocs sévères","Lisse la sinistralité"], mech:["Par risque / évènement (cat) / agrégat annuel","Couches avec priorités & limites","Prime min dépôt + ajustement"], settings:["Priorité (attachment) basée sur érosion","Limite par couche","Cap agrégat"], good:["IARD auto/RC/Incendie","Cat nat"], notes:["Modélisation PML/AAL recommandée"]},
-        {key:"STOP",title:"Stop-Loss / Agrégat", use:["Protège le ratio combiné annuel","Couvre la dérive de fréquence"], mech:["Attaches sur sinistres agrégés/an","Périmètre multi-branches possible","Partage de participations"], settings:["Attachment sur ratio/point combiné","Limite annuelle"], good:["Portefeuilles retail","Assureurs mutualistes"], notes:["Nécessite historique propre & fiable"]}
+        {type:"Quota Share (QS)",use:["Partage proportionnel prime & sinistre","Stabilise résultats et solvabilité","Pertinent en croissance de portefeuille"],mech:["Cession fixe (ex. 20–60%)","Commission de cession/commutation glissante","Participation bénéficiaire possible"],settings:["Rétention faible","Plafonds par risque/évènement (optionnels)"],good:["Lignes émergentes","Assureurs en démarrage/virage"]},
+        {type:"Surplus",use:["Augmente la capacité sur gros risques","Évite de sur-assurer les petits"],mech:["Cession au-delà de la rétention par risque","Nombre de lignes (ex. 3–10)","Ligne de souscription indexée"],settings:["Rétention par somme assurée","Lignes max"],good:["Industriel, grands risques isolés"]},
+        {type:"Excess of Loss (XoL)",use:["Protège contre les chocs sévères","Lisse la sinistralité"],mech:["Par risque / évènement (cat) / agrégat annuel","Couches avec priorités & limites","Prime min dépôt + ajustement"],settings:["Priorité (attachment)","Limite par couche","Cap agrégat"],good:["Auto/RC/Incendie, NatCat"]},
+        {type:"Stop-Loss / Agrégat",use:["Protège le ratio combiné annuel","Couvre la dérive de fréquence"],mech:["Attaches sur sinistres agrégés/an","Multi-branches possible","Partage de participations"],settings:["Attachment sur ratio/point","Limite annuelle"],good:["Retail, mutualistes"]}
       ],
-      fac:{
-        intro:"Capacité sur risques spécifiques : placement auprès de marchés notés A/AA, wordings LMA/IUA.",
-        bullets:["Incendie & risques divers (PAR) – usines, data centers, entrepôts","Responsabilité civile – générale, produits, professionnelle","Énergie & construction – CAR/EAR, montage, essais","Transport & aviation – marchandises / casco / RC","Lignes financières – BBB/Crime, cyber, D&O"]
-      },
-      product:{lead:"Co-conception avec souscription & actuariat : de l’idée au wording.",steps:["Étude de besoin & benchmark","Design des garanties & exclusions","Tarification & modèles","Wordings & guidelines LMA/IUA","Pilote & boucle d’amélioration"]},
-      claims:{lead:"Cellule sinistres complexes 24/7",bullets:["Quantum review & stratégie de négociation","Coordination loss adjusters/expertise","Arbitrages (ARIAS, Swiss Re Forum…)","Gestion des cash-calls & avances","Reporting réassureurs, MI trimestrielle"]},
+      fac:{intro:"Capacité sur risques spécifiques : placement auprès de marchés notés A/AA, wordings LMA/IUA.",
+           bullets:["Incendie & risques divers (PAR) — usines, data centers, entrepôts",
+                    "Responsabilité civile — générale, produits, professionnelle",
+                    "Énergie & construction — CAR/EAR, montage, essais",
+                    "Transport & aviation — marchandises / casco / RC",
+                    "Lignes financières — BBB/Crime, cyber, D&O"]},
+      product:{lead:"Co-conception avec souscription & actuariat : de l’idée au wording.",
+               steps:["Étude de besoin & benchmark",
+                      "Design des garanties & exclusions",
+                      "Tarification & modèles de souscription",
+                      "Wordings & guidelines LMA/IUA",
+                      "Pilote & boucle d’amélioration"]},
+      claims:{lead:"Cellule sinistres complexes 24/7",
+              bullets:["Quantum review & stratégie de négociation",
+                       "Coordination loss adjusters / expertise",
+                       "Arbitrages (ARIAS, Swiss Re Forum…)",
+                       "Gestion des cash-calls & avances",
+                       "Reporting réassureurs, MI trimestrielle"]},
       faq:[
         {q:"Pouvez-vous intervenir en co-assurance ?",a:"Oui, selon lignes et marchés participants."},
-        {q:"Intervention Afrique/Europe ?",a:"Oui, via partenaires et plateformes réassurance."},
+        {q:"Intervention Afrique/Europe ?",a:"Oui, via partenaires et plateformes de réassurance."},
         {q:"Délais moyens d’un placement traité ?",a:"2–4 semaines après data-room complète."}
       ]
     }
@@ -211,24 +298,35 @@ const I18N = {
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
     footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
     cta:{quote:"Get a quote",advisor:"Talk to an expert"},
+    toc:{title:"Contents"},
     re:{
       title:"Reinsurance — expertise & support",
       sub:"QS/Surplus/XoL/Stop-Loss treaties & facultative. Product design. Complex claims & arbitration 24/7.",
       badges:["Access to A+/AA markets","LMA/IUA wordings","IFRS 17 & capital"],
-      tabs:{treaties:"Treaties",fac:"Facultative",product:"Product design",claims:"Claims & arbitration",faq:"FAQ"},
-      cta:{title:"Renewal coming up? Need capacity?",sub:"Share bordereaux, history and target coverage — we revert within 24–48h."},
+      treatiesH:"QS / Surplus / XoL / Stop-Loss",
       treaties:[
-        {key:"QS",title:"Quota Share (QS)", use:["Proportional sharing of premium & loss","Stabilises results and solvency","Useful for portfolio growth"], mech:["Fixed cession (e.g. 20–60%)","Sliding ceding/commission","Profit participation possible"], settings:["Low retention","Per-risk/event caps (optional)"], good:["Emerging lines","Start-up/turnaround carriers"], notes:["Track ULR / sliding scales"]},
-        {key:"SURPLUS",title:"Surplus", use:["Boosts capacity on large risks","Avoids over-insuring small ones"], mech:["Cession above per-risk retention","Number of lines (e.g. 3–10)","Indexed underwriting line"], settings:["Per-sum insured retention","Max lines"], good:["Industrial property","High single values"], notes:["Watch geographic aggregation"]},
-        {key:"XOL",title:"Excess of Loss (XoL)", use:["Protects against severe shocks","Smooths loss ratio"], mech:["Per risk / event (cat) / annual aggregate","Layering with priorities & limits","Minimum deposit premium + adjustment"], settings:["Attachment based on erosion","Per-layer limit","Aggregate cap"], good:["Motor/GL/Fire","NatCat"], notes:["PML/AAL modelling recommended"]},
-        {key:"STOP",title:"Stop-Loss / Aggregate", use:["Protects annual combined ratio","Covers frequency drift"], mech:["Annual aggregate attachments","Multi-line scope possible","Participation sharing"], settings:["Attachment on ratio/point","Annual limit"], good:["Retail portfolios","Mutuals"], notes:["Requires clean, reliable history"]}
+        {type:"Quota Share (QS)",use:["Proportional sharing of premium & loss","Stabilises results and solvency","Useful when portfolios grow"],mech:["Fixed cession (e.g. 20–60%)","Sliding ceding/commission","Profit participation possible"],settings:["Low retention","Per-risk/event caps (optional)"],good:["Emerging lines","Start-up/turnaround"]},
+        {type:"Surplus",use:["Boosts capacity on large risks","Avoids over-insuring small risks"],mech:["Cession above per-risk retention","Number of lines (e.g. 3–10)","Indexed underwriting line"],settings:["Per-sum insured retention","Max lines"],good:["Industrial, high single values"]},
+        {type:"Excess of Loss (XoL)",use:["Protects against severe shocks","Smooths loss ratio"],mech:["Per risk / event (cat) / annual aggregate","Layering with priorities & limits","Minimum deposit premium + adjustment"],settings:["Attachment priority","Per-layer limit","Aggregate cap"],good:["Motor/GL/Fire, NatCat"]},
+        {type:"Stop-Loss / Aggregate",use:["Protects annual combined ratio","Covers frequency drift"],mech:["Annual aggregate attachments","Multi-line scope possible","Participation sharing"],settings:["Attachment on ratio/point","Annual limit"],good:["Retail portfolios, mutuals"]}
       ],
-      fac:{intro:"Capacity for specific risks with A/AA markets, LMA/IUA wordings.",bullets:["Property (PAR) – plants, DCs, warehouses","Liability – GL, products, PI","Energy & construction – CAR/EAR, erection, testing","Marine & aviation – cargo / hull / liability","Financial lines – BBB/Crime, cyber, D&O"]},
-      product:{lead:"Co-design with underwriting & actuarial — from idea to wording.",steps:["Needs & benchmark","Coverage & exclusions","Pricing & models","Wordings & guidelines","Pilot & improvement loop"]},
-      claims:{lead:"Complex claims desk 24/7",bullets:["Quantum review & negotiation strategy","Loss-adjuster coordination","Arbitration (ARIAS, Swiss Re Forum…)","Cash-calls & advances","Reinsurer reporting & MI"]},
+      fac:{intro:"Capacity on specific risks with A/AA markets, LMA/IUA wordings.",
+           bullets:["Property (PAR) — plants, DCs, warehouses",
+                    "Liability — GL, products, PI",
+                    "Energy & construction — CAR/EAR, erection, testing",
+                    "Marine & aviation — cargo / hull / liability",
+                    "Financial lines — BBB/Crime, cyber, D&O"]},
+      product:{lead:"Co-design with underwriting & actuarial: from idea to wording.",
+               steps:["Needs & benchmark","Coverage & exclusions","Pricing & underwriting models","Wordings & guidelines","Pilot & improvement loop"]},
+      claims:{lead:"Complex claims desk 24/7",
+              bullets:["Quantum review & negotiation strategy",
+                       "Loss-adjuster coordination",
+                       "Arbitration (ARIAS, Swiss Re Forum…)",
+                       "Cash-calls & advances",
+                       "Reinsurer reporting & MI"]},
       faq:[
-        {q:"Coinsurance available?",a:"Yes, depending on lines and markets."},
-        {q:"Africa/Europe coverage?",a:"Yes, with partners and platforms."},
+        {q:"Can you work in coinsurance?",a:"Yes, depending on lines and markets."},
+        {q:"Do you operate in Africa/Europe?",a:"Yes, via partners and platforms."},
         {q:"Typical treaty placement timeline?",a:"2–4 weeks after a complete data-room."}
       ]
     }
@@ -237,126 +335,173 @@ const I18N = {
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
     footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
     cta:{quote:"احصل على عرض",advisor:"تواصل مع خبير"},
+    toc:{title:"المحتويات"},
     re:{
       title:"إعادة التأمين — خبرة ومرافقة",
       sub:"اتفاقيات نسبية/فائض/فوق الخسارة/ستوب-لوس واختياريات. تصميم المنتجات. مطالبات وتحكيم 24/7.",
       badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","IFRS 17 ورأس المال"],
-      tabs:{treaties:"الاتفاقيات",fac:"اختياريات",product:"تصميم المنتج",claims:"المطالبات والتحكيم",faq:"الأسئلة"},
-      cta:{title:"هل لديك تجديد قريب؟ تحتاج سعة؟",sub:"أرسلوا البيانات والسجلات والأهداف — نعود خلال 24–48 ساعة."},
+      treatiesH:"الاتفاقيات QS / فائض / فوق الخسارة / ستوب-لوس",
       treaties:[
-        {key:"QS",title:"حصة نسبية (QS)", use:["تقاسم نسبي للأقساط والخسائر","استقرار النتائج والملاءة","مفيد لنمو المحافظ"], mech:["تنازل ثابت (20–60%)","عمولة انزلاقية","مشاركة أرباح ممكنة"], settings:["احتفاظ منخفض","حدود لكل خطر/حدث (اختياري)"], good:["خطوط ناشئة","شركات ناشئة/إعادة توجيه"], notes:["متابعة ULR والسلالم"]},
-        {key:"SURPLUS",title:"فائض", use:["زيادة السعة للمخاطر الكبيرة","تجنب الإفراط على الصغيرة"], mech:["تنازل فوق احتفاظ كل خطر","عدد خطوط (3–10)","خط اكتتاب مفهرس"], settings:["احتفاظ حسب مبلغ التأمين","حد أقصى للخطوط"], good:["ممتلكات صناعية","قيم فردية مرتفعة"], notes:["مراقبة التجميع الجغرافي"]},
-        {key:"XOL",title:"فوق الخسارة (XoL)", use:["حماية من الصدمات الشديدة","تنعيم نسبة الخسارة"], mech:["لكل خطر/حدث (كارثي)/تجميعي سنوي","طبقات بحدود وأولويات","قسط إيداع أدنى + تعديل"], settings:["نقطة التعلّق حسب التآكل","حد لكل طبقة","سقف إجمالي"], good:["سيارات/مسؤولية/حريق","كوارث طبيعية"], notes:["يوصى بنمذجة PML/AAL"]},
-        {key:"STOP",title:"ستوب-لوس / تجميعي", use:["حماية النسبة المجمعة السنوية","تغطية انحراف التكرار"], mech:["تعلّقات على خسائر سنوية مجمعة","نطاق متعدد الفروع ممكن","مشاركة العوائد"], settings:["Attachment على النسبة/النقطة","حد سنوي"], good:["محافظ التجزئة","التأمين التعاوني"], notes:["يتطلب تاريخ خسائر نظيف"] }
+        {type:"الحصة النسبية (QS)",use:["تقاسم نسبي للأقساط والخسائر","استقرار النتائج والملاءة","مفيد مع نمو المحافظ"],mech:["تنازل ثابت 20–60%","عمولة انزلاقية","مشاركة أرباح"],settings:["احتفاظ منخفض","حدود لكل خطر/حدث"],good:["خطوط ناشئة","شركات ناشئة/إعادة توجيه"]},
+        {type:"فائض",use:["زيادة السعة للمخاطر الكبيرة","تجنب الإفراط للصغيرة"],mech:["تنازل فوق احتفاظ كل خطر","عدد خطوط (3–10)","خط اكتتاب مفهرس"],settings:["احتفاظ حسب مبلغ التأمين","حد أقصى للخطوط"],good:["صناعي وقيم عالية"]},
+        {type:"فوق الخسارة (XoL)",use:["حماية من الصدمات الشديدة","تنعيم نسبة الخسارة"],mech:["لكل خطر/حدث (كارثي)/تجميعي سنوي","طبقات بحدود وأولويات","قسط إيداع أدنى + تعديل"],settings:["نقطة التعلّق","حد لكل طبقة","سقف إجمالي"],good:["سيارات/مسؤولية/حريق، كوارث طبيعية"]},
+        {type:"ستوب-لوس / تجميعي",use:["حماية النسبة المجمعة السنوية","تغطية انحراف التكرار"],mech:["تعلّقات على خسائر سنوية مجمعة","نطاق متعدد الفروع","مشاركة العوائد"],settings:["Attachment على النسبة/النقطة","حد سنوي"],good:["محافظ التجزئة، التعاوني"]}
       ],
-      fac:{intro:"سعات لمخاطر محددة لدى أسواق A/AA بصياغات LMA/IUA.",bullets:["ممتلكات صناعية","مسؤولية عامة/منتج/مهنية","طاقة وإنشاء (CAR/EAR)","بحري وطيران","مالية: BBB/جرائم، سيبراني، D&O"]},
-      product:{lead:"تصميم مشترك من الفكرة إلى الصياغة.",steps:["دراسة الحاجة","تصميم التغطيات","التسعير والنماذج","الصياغات والإرشادات","تجربة وتحسين"]},
-      claims:{lead:"فريق مطالبات معقدة 24/7",bullets:["مراجعة الكم والتفاوض","تنسيق الخبراء","تحكيم","طلبات نقدية","تقارير وإدارة معلومات"]},
+      fac:{intro:"سعات لمخاطر محددة لدى أسواق A/AA بصياغات LMA/IUA.",
+           bullets:["ممتلكات (PAR) — مصانع، مراكز بيانات، مستودعات",
+                    "مسؤولية — عامة/منتج/مهنية",
+                    "طاقة وإنشاء — CAR/EAR",
+                    "بحري وطيران — بضائع/هياكل/مسؤولية",
+                    "مالية — BBB/جرائم، سيبراني، D&O"]},
+      product:{lead:"تصميم مشترك مع الاكتتاب والإكتواري من الفكرة إلى الصياغة.",
+               steps:["دراسة الحاجة","تصميم التغطيات والاستثناءات","التسعير ونماذج الاكتتاب","الصياغات والإرشادات","تجربة وتحسين"]},
+      claims:{lead:"فريق مطالبات معقدة 24/7",
+              bullets:["مراجعة الكم والتفاوض","تنسيق الخبراء","تحكيم","طلبات نقدية","تقارير وإدارة معلومات"]},
       faq:[
-        {q:"هل تعملون في التشارك؟",a:"نعم حسب الفروع والأسواق."},
-        {q:"نشاط في إفريقيا/أوروبا؟",a:"نعم عبر الشركاء."},
+        {q:"هل تعملون بالتشارك؟",a:"نعم حسب الفروع والأسواق."},
+        {q:"نشاط في إفريقيا/أوروبا؟",a:"نعم عبر الشركاء والمنصات."},
         {q:"مدة وضع الاتفاقية؟",a:"2–4 أسابيع بعد اكتمال البيانات."}
       ]
     }
   }
 };
 
-/* ================== helpers ================== */
+/* ================== helpers & renderers ================== */
 let lang = localStorage.getItem('riskalia_lang') || 'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-
-function t(path){ const nodes=path.split('.'); let cur=I18N[lang]; for(const n of nodes){ if(cur==null||!(n in cur)) return path; cur=cur[n]; } return cur; }
+function t(path){const nodes=path.split('.');let cur=I18N[lang];for(const n of nodes){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function $(s,root=document){return root.querySelector(s)}
+function $all(s,root=document){return [...root.querySelectorAll(s)]}
 
 function setActiveNav(){
-  const here='reinsurance.html';
-  document.querySelectorAll('nav a').forEach(a=>{
-    const href=a.getAttribute('href'); a.classList.toggle('active', href.endsWith(here));
+  $all('nav a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('reinsurance.html')));
+}
+
+function treatyCardObj(tr){
+  const labels={use:lang==='en'?'Use when':lang==='ar'?'متى تُستخدم':'À utiliser quand',
+                mech:lang==='en'?'Mechanisms':lang==='ar'?'آليات':'Mécanismes',
+                set:lang==='en'?'Settings':lang==='ar'?'إعدادات':'Réglages',
+                good:lang==='en'?'Good for':lang==='ar'?'مناسب لـ':'Pertinent pour'};
+  const wrap=document.createElement('div');
+  wrap.innerHTML=`
+    <details open><summary>🎯 ${labels.use}</summary><div><ul>${(tr.use||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div></details>
+    <details open><summary>⚙️ ${labels.mech}</summary><div><ul>${(tr.mech||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div></details>
+    ${(tr.settings||[]).length?`<details><summary>🔧 ${labels.set}</summary><div><ul>${tr.settings.map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`:''}
+    ${(tr.good||[]).length?`<details><summary>✅ ${labels.good}</summary><div><ul>${tr.good.map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`:''}
+  `;
+  return wrap;
+}
+
+function renderTreatiesCards(){
+  const host=$("#treaties-cards"); host.innerHTML="";
+  const data=t('re.treaties');
+  data.forEach(tr=>{
+    const art=document.createElement('article'); art.className='card'; art.style.marginBottom='var(--gap)';
+    art.innerHTML=`<div class="kicker">${tr.type.split('(')[0].trim()}</div><h3 style="margin-bottom:10px">${tr.type}</h3>`;
+    art.appendChild(treatyCardObj(tr));
+    host.appendChild(art);
   });
 }
 
-/* ===== renderers ===== */
-function treatyCard(tr){
-  // par défaut on ouvre “à utiliser” et “mécanismes”
-  return `
-  <article class="card">
-    <div class="kicker">${tr.key}</div>
-    <h3 style="margin-bottom:12px">${tr.title}</h3>
-
-    <details open>
-      <summary>🎯 ${lang==='en'?'Use when':lang==='ar'?'متى تُستخدم':'À utiliser quand'}</summary>
-      <div><ul>${(tr.use||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
-    </details>
-
-    <details open style="margin-top:12px">
-      <summary>⚙️ ${lang==='en'?'Mechanisms':lang==='ar'?'آليات':'Mécanismes'}</summary>
-      <div><ul>${(tr.mech||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
-    </details>
-
-    ${tr.settings?`<details style="margin-top:12px"><summary>🔧 ${lang==='en'?'Settings':lang==='ar'?'إعدادات':'Réglages'}</summary><div><ul>${tr.settings.map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`:''}
-
-    ${tr.good?`<details style="margin-top:12px"><summary>✅ ${lang==='en'?'Good for':lang==='ar'?'مناسب لـ':'Pertinent pour'}</summary><div><ul>${tr.good.map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`:''}
-
-    ${tr.notes?`<details style="margin-top:12px"><summary>📝 ${lang==='en'?'Notes':lang==='ar'?'ملاحظات':'Notes'}</summary><div><ul>${tr.notes.map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`:''}
-  </article>`;
+function renderTreatiesCompare(){
+  const body=$("#cmpBody"); body.innerHTML="";
+  (t('re.treaties')||[]).forEach(tr=>{
+    const trEl=document.createElement('tr');
+    trEl.innerHTML=`
+      <th scope="row">${tr.type}</th>
+      <td><ul>${(tr.use||[]).map(x=>`<li>${x}</li>`).join('')}</ul></td>
+      <td><ul>${(tr.mech||[]).map(x=>`<li>${x}</li>`).join('')}</ul></td>
+      <td><ul>${(tr.settings||[]).map(x=>`<li>${x}</li>`).join('')}</ul></td>
+      <td><ul>${(tr.good||[]).map(x=>`<li>${x}</li>`).join('')}</ul></td>
+    `;
+    body.appendChild(trEl);
+  });
 }
 
-function renderTreaties(){ const data=t('re.treaties')||[]; return `<section class="cards-grid">${data.map(treatyCard).join('')}</section>`; }
-function renderFac(){ const f=t('re.fac'); return `<section class="card"><p class="muted">${f.intro}</p><ul style="margin-top:10px">${(f.bullets||[]).map(x=>`<li>${x}</li>`).join('')}</ul></section>`; }
-function renderProduct(){ const p=t('re.product'); return `<section class="card"><p class="muted">${p.lead}</p><ol style="margin-top:10px">${(p.steps||[]).map(x=>`<li>${x}</li>`).join('')}</ol></section>`; }
-function renderClaims(){ const c=t('re.claims'); return `<section class="card"><div class="kicker">24/7</div><h3 style="margin-bottom:6px">${c.lead}</h3><ul style="margin-top:10px">${(c.bullets||[]).map(x=>`<li>${x}</li>`).join('')}</ul></section>`; }
-function renderFAQ(){ const f=t('re.faq')||[]; return `<section class="cards-grid">${f.map(x=>`<article class="card"><h4>${x.q}</h4><p class="muted" style="margin-top:8px">${x.a}</p></article>`).join('')}</section>`; }
-
-let currentTab='treaties';
-function renderTab(){
-  const host=document.getElementById('tab-content');
-  host.innerHTML = currentTab==='treaties'?renderTreaties()
-                 : currentTab==='fac'?renderFac()
-                 : currentTab==='product'?renderProduct()
-                 : currentTab==='claims'?renderClaims()
-                 : renderFAQ();
+function renderLists(){
+  const f=t('re.fac'); $("#facList").innerHTML=(f.bullets||[]).map(x=>`<li>${x}</li>`).join('');
+  const p=t('re.product'); $("#prodSteps").innerHTML=(p.steps||[]).map(x=>`<li>${x}</li>`).join('');
+  const c=t('re.claims'); $("#claimsList").innerHTML=(c.bullets||[]).map(x=>`<li>${x}</li>`).join('');
+  const faq=t('re.faq')||[];
+  const wrap=$("#faqWrap"); wrap.innerHTML="";
+  faq.forEach(item=>{
+    const d=document.createElement('details'); d.innerHTML=`<summary>❓ ${item.q}</summary><div><p class="muted" style="margin-top:8px">${item.a}</p></div>`;
+    wrap.appendChild(d);
+  });
 }
 
-/* ===== page init ===== */
+/* ================== page init ================== */
 function applyTexts(){
   document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  document.querySelectorAll('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
-  document.querySelectorAll('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  renderTab();
+  $all('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+  $all('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  // aside/anchors labels
+  const aside=$("#viewLbl"); aside.textContent = (lang==='en'?'View:':lang==='ar'?'العرض:':'Affichage :');
+  $(".aside a[href='#treaties']").textContent   = (lang==='en'?'Treaties':lang==='ar'?'الاتفاقيات':'Traités');
+  $(".aside a[href='#fac']").textContent        = (lang==='en'?'Facultative':lang==='ar'?'اختياريات':'Facultatives');
+  $(".aside a[href='#product']").textContent    = (lang==='en'?'Product design':lang==='ar'?'تصميم المنتج':'Conception produit');
+  $(".aside a[href='#claims']").textContent     = (lang==='en'?'Claims & arbitration':lang==='ar'?'المطالبات والتحكيم':'Sinistres & arbitrages');
+  $(".aside a[href='#faq']").textContent        = 'FAQ';
+  $(".aside h4").textContent                    = t('toc.title');
+
+  // chips
+  const chips=$all('.chips .chip');
+  chips[0].textContent = (lang==='en'?'Treaties':lang==='ar'?'الاتفاقيات':'Traités');
+  chips[1].textContent = (lang==='en'?'Facultative':lang==='ar'?'اختياريات':'Facultatives');
+  chips[2].textContent = (lang==='en'?'Product':lang==='ar'?'تصميم':'Conception');
+  chips[3].textContent = (lang==='en'?'Claims':lang==='ar'?'مطالبات':'Sinistres');
+  chips[4].textContent = 'FAQ';
+
+  // render data-driven parts
+  renderTreatiesCards();
+  renderTreatiesCompare();
+  renderLists();
 }
 
 function initUI(){
   setActiveNav();
-  const toggle=document.querySelector('.menu-toggle'); const menu=document.getElementById('menu');
+  // burger
+  const toggle=$(".menu-toggle"); const menu=$("#menu");
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  // smooth scroll
+  $all(".aside a, .chips a").forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id=a.getAttribute('href').replace('#','');
+      const el=document.getElementById(id);
+      if(el){ window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-86,behavior:'smooth'}); }
+    });
+  });
+  // highlight section on scroll (desktop)
+  const anchors=$all(".aside a");
+  const sections=['treaties','fac','product','claims','faq'].map(id=>document.getElementById(id));
+  const onScroll=()=>{
+    const pos=window.scrollY+120;
+    let current=sections[0].id;
+    sections.forEach(sec=>{ if(pos>=sec.offsetTop) current=sec.id; });
+    anchors.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+current));
+    // reveal
+    $all('.reveal').forEach(el=>{ if(el.getBoundingClientRect().top<window.innerHeight*0.85) el.classList.add('active'); });
+  };
+  window.addEventListener('scroll',onScroll); onScroll();
 
-  // tabs
-  document.querySelectorAll('.tab').forEach(b=> b.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); b.classList.add('active');
-    currentTab=b.dataset.tab; renderTab(); window.scrollTo({top:document.querySelector('.tabs').offsetTop-80, behavior:'smooth'});
-  }));
-
-  // density selector
-  const sel=document.getElementById('density');
-  const saved=localStorage.getItem('riskalia_density')||'spacious';
-  sel.value = saved==='standard'?'standard':(saved==='compact'?'compact':'spacious');
-  document.body.classList.remove('compact','spacious');
-  if(saved!=='standard') document.body.classList.add(saved);
-  sel.addEventListener('change',()=>{
-    document.body.classList.remove('compact','spacious');
-    const v=sel.value;
-    if(v!=='standard') document.body.classList.add(v);
-    localStorage.setItem('riskalia_density', v);
+  // view switch
+  const view=$("#view");
+  view.addEventListener('change', ()=>{
+    const cards=$("#treaties-cards").parentElement; // the article card that wraps cards
+    const cmp=$("#treaties-compare");
+    const showCmp = view.value==='compare';
+    $("#treaties-cards").style.display = showCmp?'none':'block';
+    cmp.style.display = showCmp?'block':'none';
   });
 
-  // reveal
-  const reveals=document.querySelectorAll('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; reveals.forEach(el=>{ const top=el.getBoundingClientRect().top; if(top<tr){el.classList.add('active');} }); };
-  window.addEventListener('scroll',onScroll); onScroll();
+  // language buttons
+  $all('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
-  applyTexts(); initUI();
-});
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
