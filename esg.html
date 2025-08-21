@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Solutions (Entreprises & Particuliers)</title>
-  <meta name="description" content="Solutions d’assurance Riskalia : offres Entreprises (multirisques, transport, flotte, RC, construction) et Particuliers (santé, accidents de la vie, retraite, biens, assurance-vie & placements, voyage Schengen)."/>
+  <title>Riskalia — ESG & Risques Climat</title>
+  <meta name="description" content="ESG & Climate Risk : diagnostics physiques/transition, scénarios NGFS, solutions assurantielles (paramétriques), reporting TCFD/Taxonomie/SFDR, financement vert, formation & gouvernance."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
-:root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f6fafc;--cd:#243238;--radius:16px;--shadow:0 12px 26px rgba(0,0,0,.07)}
+:root{
+  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f5f8fa;--cd:#253238;
+  --radius:16px;--shadow:0 12px 26px rgba(0,0,0,.07);
+}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
 body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.75;background:#fff}
@@ -47,25 +50,33 @@ nav a:hover::after,nav a.active::after{width:100%}
 }
 
 /* hero */
-.hero{min-height:42vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
+.hero{min-height:42vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
 .hero h1{color:#fff;font-size:clamp(2rem,3.4vw,3rem);letter-spacing:-.4px;margin-bottom:10px}
 .hero p{color:#fff;opacity:.98;max-width:900px;margin:0 auto}
 .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 
-/* tabs + search */
+/* tabs + tools */
 .tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:-18px}
 .tab{border:1px solid #cfe1e6;background:#fff;color:#0b4e5b;padding:12px 16px;border-radius:12px;cursor:pointer;font-weight:800}
 .tab.active{background:var(--c2);color:#fff;border-color:var(--c2)}
 .tools{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:12px 0}
-.search{flex:1;display:flex;gap:8px}
-.search input{width:100%;padding:12px 14px;border:1px solid #cfe1e6;border-radius:12px}
-.view{white-space:nowrap}
 
 /* grids */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .card h3{margin:6px 0 10px}
 .card ul{padding-left:18px}
 .card li{margin:8px 0}
+
+/* timeline */
+.roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.step{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:14px}
+.step .num{font-weight:900;color:#0b5562;margin-bottom:6px}
+
+/* mini self-check */
+.check{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:10px}
+.progress{height:12px;background:#e7f2f5;border-radius:999px;overflow:hidden}
+.progress>span{display:block;height:100%;background:linear-gradient(90deg,#00b0c8,#00849b)}
+.score{font-weight:900;color:#0b5562}
 
 /* reveal */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
@@ -82,15 +93,15 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span>Riskalia</span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="esg.html" class="active" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
@@ -104,12 +115,12 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 
 <section class="hero">
   <div class="container">
-    <h1 data-i18n="title">Solutions d’assurance</h1>
-    <p data-i18n="subtitle">Une offre claire pour <strong>Entreprises</strong> et <strong>Particuliers</strong> — inspirée des meilleures pratiques du marché.</p>
+    <h1 data-i18n="title">ESG & Risques Climat</h1>
+    <p data-i18n="subtitle">Du diagnostic à la mise en œuvre : scénarios, paramétriques, reporting TCFD/Taxonomie/SFDR et structuration des garanties vertes.</p>
     <div class="badges">
-      <span class="badge" data-i18n="badges.0">Mise en concurrence des assureurs</span>
-      <span class="badge" data-i18n="badges.1">Gestion des sinistres</span>
-      <span class="badge" data-i18n="badges.2">Transparence des honoraires</span>
+      <span class="badge" data-i18n="badges.0">Physique & Transition</span>
+      <span class="badge" data-i18n="badges.1">Scénarios NGFS</span>
+      <span class="badge" data-i18n="badges.2">Conformité & Financement</span>
     </div>
   </div>
 </section>
@@ -117,21 +128,25 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <section class="reveal" style="padding-top:28px">
   <div class="container">
     <div class="tabs">
-      <button class="tab active" data-tab="corp" data-i18n="tabs.corp">Entreprises</button>
-      <button class="tab" data-tab="retail" data-i18n="tabs.retail">Particuliers</button>
-    </div>
-
-    <div class="tools">
-      <div class="search">
-        <input id="q" type="search" placeholder="Rechercher un produit…" aria-label="Recherche"/>
-        <button class="btn secondary" id="clear" data-i18n="clear">Effacer</button>
-      </div>
-      <div class="view">
-        <a href="contact.html" class="btn" data-i18n="cta">Demander un devis</a>
-      </div>
+      <button class="tab active" data-tab="assess" data-i18n="tabs.assess">Diagnostic & Cartographie</button>
+      <button class="tab" data-tab="strategy" data-i18n="tabs.strategy">Stratégie & Scénarios</button>
+      <button class="tab" data-tab="insurance" data-i18n="tabs.insurance">Assurances & Paramétriques</button>
+      <button class="tab" data-tab="reporting" data-i18n="tabs.reporting">Reporting & Conformité</button>
+      <button class="tab" data-tab="finance" data-i18n="tabs.finance">Financement vert</button>
+      <button class="tab" data-tab="training" data-i18n="tabs.training">Formation & Gouvernance</button>
+      <button class="tab" data-tab="faq" data-i18n="tabs.faq">FAQ</button>
     </div>
 
     <div id="panel"></div>
+  </div>
+</section>
+
+<section class="reveal" style="background:var(--cm)">
+  <div class="container" style="text-align:center">
+    <h2 data-i18n="cta.title">Un projet à impact ou une exigence bailleurs ?</h2>
+    <p class="muted" data-i18n="cta.sub">Nous préparons vos due diligences, matrices de risques et term-sheets assurantielles. Retour en 5–10 jours ouvrés.</p>
+    <a class="btn" href="contact.html" data-i18n="cta.btn1">Obtenir un devis</a>
+    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.btn2">Parler à un expert</a>
   </div>
 </section>
 
@@ -155,149 +170,369 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 </footer>
 
 <script>
-/* ====== Données i18n (inspiration Ascoma pour l’architecture de l’offre) ====== */
-const I18N={
+/* ===== Données i18n (structure inspirée WTW Climate Risk) ===== */
+const I18N = {
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    title:"Solutions d’assurance",
-    subtitle:"Une offre claire pour <strong>Entreprises</strong> et <strong>Particuliers</strong> — inspirée des meilleures pratiques du marché.",
-    badges:["Mise en concurrence des assureurs","Gestion des sinistres","Transparence des honoraires"],
-    tabs:{corp:"Entreprises",retail:"Particuliers"},
-    clear:"Effacer",cta:"Demander un devis",
+    title:"ESG & Risques Climat",
+    subtitle:"Du diagnostic à la mise en œuvre : scénarios, paramétriques, reporting TCFD/Taxonomie/SFDR et structuration des garanties vertes.",
+    badges:["Physique & Transition","Scénarios NGFS","Conformité & Financement"],
+    tabs:{assess:"Diagnostic & Cartographie",strategy:"Stratégie & Scénarios",insurance:"Assurances & Paramétriques",reporting:"Reporting & Conformité",finance:"Financement vert",training:"Formation & Gouvernance",faq:"FAQ"},
+    cta:{title:"Un projet à impact ou une exigence bailleurs ?",sub:"Nous préparons vos due diligences, matrices de risques et term-sheets assurantielles. Retour en 5–10 jours ouvrés.",btn1:"Obtenir un devis",btn2:"Parler à un expert"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    corp:[
-      {icon:"🏭",t:"Multirisques Entreprise",bul:["Bâtiments, machines, stocks","Pertes d’exploitation","Vol, bris, RC locative"]},
-      {icon:"🚚",t:"Transport (marchandises)",bul:["Tous modes : route/mer/air","Clauses ICC, facultés","Stock & transit"]},
-      {icon:"🚗",t:"Automobile & Flotte",bul:["Flottes & engins","RC, dommages, bris de glace","Assistance & protection juridique"]},
-      {icon:"⚖️",t:"Responsabilité Civile",bul:["RC générale/produits","RC professionnelle","RC environnement"]},
-      {icon:"🏗️",t:"Construction",bul:["CAR/EAR","TRC & décennale","Tous corps de chantier"]},
-      {icon:"🩺",t:"Santé collective & prévoyance",bul:["Couverture salariés","Réseau de soins & tiers payant","Sur-mesure par conventions"]}
-    ],
-    retail:[
-      {icon:"🩺",t:"Santé",bul:["Hospitalisation & soins courants","Réseaux de soins","Options famille"]},
-      {icon:"🛡️",t:"Accidents de la vie",bul:["Invalidité/perte de revenus","Protection famille","Assistance 24/7"]},
-      {icon:"🏠",t:"Biens (Habitation)",bul:["Incendie, vol, dégâts des eaux","Responsabilité civile","Option objets de valeur"]},
-      {icon:"💼",t:"Assurance-vie & placements",bul:["Épargne/valorisation","Transmission","Arbitrages sécurisés"]},
-      {icon:"✈️",t:"Voyage Schengen",bul:["Visa & assistance médicale","Bagages & retard","Option multivoyages"]},
-      {icon:"⏳",t:"Retraite",bul:["Complément de revenus","Fisc optimisé (selon cadre)","Gestion profilée"]}
+    assess:{
+      lead:"Première étape : objectiver l’exposition physique & transition, structurer les données et prioriser.",
+      cards:[
+        {t:"Cartographie & matérialité double",bul:["Risques physiques (inondation, chaleur, vent, sécheresse)","Risques de transition (marché, réglementation, techno)","Matrice double matérialité & priorisation"]},
+        {t:"Données & indicateurs",bul:["Qualité/complétude des données","KPI/KRI ESG (énergie, eau, GES)","Plan de collecte & gouvernance data"]},
+        {t:"Stress tests & PML",bul:["Fréquences/sevérités historiques","Pertes maximales probables (PML)","Zonage & agrégations critiques"]},
+        {t:"Chaîne de valeur",bul:["Fournisseurs & logistique","Clients & contrats","Localisations sensibles (cartes)"]}
+      ],
+      roadmap:["0–30 jours : cadrage & accès données","30–90 jours : analyses, cartos & quick wins","90–180 jours : intégration ERM & budget"]
+    },
+    strategy:{
+      lead:"Traduire l’analyse en décisions : scénarios, appétence au risque, trajectoires & plans d’action.",
+      cards:[
+        {t:"Scénarios & trajectoires",bul:["Scénarios NGFS (Ordonnée/Désordonnée)","Température & voies de transition","Effets P&L, cash & solvabilité"]},
+        {t:"Appétence & limites",bul:["Tolérances par secteur/site","Seuils d’alerte & déclencheurs","Alignement ORSA/IFRS 17/ERM"]},
+        {t:"Plan d’adaptation",bul:["Mesures physiques (durcissement, redondance)","Mesures de transition (énergie, achats)","Business continuity & PCA"]}
+      ],
+      check:{q:"Score de préparation (auto-évaluation)",items:["Cartographie des expositions","Jeu de données ESG fiable","Scénarios NGFS au moins 2 voies","Processus de revue annuelle","Indicateurs suivis au Comex"]}
+    },
+    insurance:{
+      lead:"Solutions assurantielles pour sécuriser la trajectoire : garanties classiques & paramétriques.",
+      cards:[
+        {t:"Paramétriques",bul:["Indice pluie/vent/température","Déclenchement simple & indemnisation rapide","Idéal Opex/Capex & PPP"]},
+        {t:"Garanties vertes",bul:["RC environnement & pollution","Pertes d’exploitation vertes","Extensions efficacité énergétique"]},
+        {t:"Montages avancés",bul:["Captives/sidecars & ART","Couvertures supply-chain","Crédits carbone : risques & assurance"]},
+      ]
+    },
+    reporting:{
+      lead:"Conformité & transparence : cadre TCFD, Taxonomie UE, SFDR, ISSB/CSRD.",
+      cards:[
+        {t:"TCFD / ISSB",bul:["Gouvernance, stratégie, gestion des risques","Mesures & cibles","Annexes & règles d’audit"]},
+        {t:"Taxonomie UE / SFDR",bul:["Éligibilité & alignement","KPIs (Capex/Opex/Chiffre d’affaires)","Documentation & contrôles"]},
+        {t:"Tableaux de bord",bul:["KRI temps réel (énergie, eau, GES)","Alertes & seuils","Calendrier de reporting"]}
+      ],
+      deliverables:["Note de cadrage & gap analysis","Plan d’action & feuille de route","Jeux de slides & annexes réglementaires"]
+    },
+    finance:{
+      lead:"Accès au financement vert & exigences bailleurs (BM, BEI, AFD, GCF…).",
+      cards:[
+        {t:"Diligences bailleurs",bul:["Liste des exigences par bailleur","Grille conformité & points durs","Plan de remédiation"]},
+        {t:"Term-sheet assurantielle",bul:["Garanties exigées & niveaux","Clauses & exclusions critiques","Devis & calendrier de placement"]},
+        {t:"Structuration",bul:["PPP & project finance","Garanties de performance","Suivi & reporting financiers"]}
+      ]
+    },
+    training:{
+      lead:"Acculturation & gouvernance pour rendre l’ESG opérationnel.",
+      cards:[
+        {t:"Formations",bul:["Workshops ESG/Climat (1–3 jours)","Sensibilisation métiers & achats","Sessions Comex/Conseil"]},
+        {t:"Gouvernance",bul:["Politiques ESG & chartes","Rôles & responsabilités","Rituels de pilotage"]},
+        {t:"Change & adoption",bul:["Playbooks & modèles","Kits de démarrage par équipe","Plan de communication"]}
+      ]
+    },
+    faq:[
+      {q:"Pouvez-vous intervenir sur un projet déjà lancé ?",a:"Oui, nous reprenons les analyses existantes et comblons les écarts prioritaires."},
+      {q:"Couvrez-vous l’Afrique et l’Europe ?",a:"Oui, via partenariats locaux et marchés réassurance."},
+      {q:"Quels délais pour un diagnostic ?",a:"Entre 4 et 8 semaines selon la taille et la disponibilité des données."}
     ]
   },
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    title:"Insurance Solutions",
-    subtitle:"A clear offer for <strong>Businesses</strong> and <strong>Individuals</strong> — inspired by market best practices.",
-    badges:["Tendering across insurers","Claims handling","Fee transparency"],
-    tabs:{corp:"Businesses",retail:"Individuals"},
-    clear:"Clear",cta:"Request a quote",
+    title:"ESG & Climate Risk",
+    subtitle:"From assessment to execution: scenarios, parametrics, TCFD/Taxonomy/SFDR reporting and green-risk structuring.",
+    badges:["Physical & Transition","NGFS Scenarios","Compliance & Financing"],
+    tabs:{assess:"Assessment & Mapping",strategy:"Strategy & Scenarios",insurance:"Insurance & Parametrics",reporting:"Reporting & Compliance",finance:"Green Finance",training:"Training & Governance",faq:"FAQ"},
+    cta:{title:"Impact project or lender requirements?",sub:"We prepare due diligence, risk matrices and insurance term-sheets. Turnaround in 5–10 business days.",btn1:"Get a quote",btn2:"Talk to an expert"},
     footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    corp:[
-      {icon:"🏭",t:"Commercial Property (All Risks)",bul:["Buildings, machinery, stock","Business interruption","Theft, glass, tenants’ liability"]},
-      {icon:"🚚",t:"Cargo/Transport",bul:["All modes: road/sea/air","ICC clauses, facultative","Stock & transit"]},
-      {icon:"🚗",t:"Motor & Fleet",bul:["Fleets & equipment","TPL, own damage, glass","Roadside & legal protection"]},
-      {icon:"⚖️",t:"General & Professional Liability",bul:["GL/Product liability","Professional liability","Environmental liability"]},
-      {icon:"🏗️",t:"Construction",bul:["CAR/EAR","Contractors’ All Risks & Decennial","Site-wide coverage"]},
-      {icon:"🩺",t:"Group Health & Benefits",bul:["Employees’ medical cover","Provider networks & TPAs","Custom plans by agreements"]}
-    ],
-    retail:[
-      {icon:"🩺",t:"Health",bul:["In/out-patient care","Provider networks","Family options"]},
-      {icon:"🛡️",t:"Personal Accident",bul:["Disability/loss of income","Family protection","24/7 assistance"]},
-      {icon:"🏠",t:"Home (Property)",bul:["Fire, theft, water damage","Personal liability","Valuables option"]},
-      {icon:"💼",t:"Life Insurance & Savings",bul:["Wealth accumulation","Estate planning","Prudent allocation"]},
-      {icon:"✈️",t:"Schengen Travel",bul:["Visa medical cover","Baggage & delay","Multi-trip option"]},
-      {icon:"⏳",t:"Retirement",bul:["Supplementary income","Tax-efficient (where applicable)","Managed profiles"]}
+    assess:{
+      lead:"Step one: quantify physical & transition exposure, structure data and prioritise.",
+      cards:[
+        {t:"Mapping & double materiality",bul:["Physical risks (flood, heat, wind, drought)","Transition risks (market, policy, tech)","Double-materiality matrix & priorities"]},
+        {t:"Data & indicators",bul:["Data quality & completeness","ESG KPIs/KRIs (energy, water, GHG)","Collection plan & data governance"]},
+        {t:"Stress tests & PML",bul:["Historic frequency/severity","Probable Maximum Loss (PML)","Hot-spots & aggregation by zone"]},
+        {t:"Value chain",bul:["Suppliers & logistics","Clients & contracts","Sensitive locations (maps)"]}
+      ],
+      roadmap:["0–30 days: scoping & data access","30–90 days: analytics, maps & quick wins","90–180 days: ERM integration & budget"]
+    },
+    strategy:{
+      lead:"Turn insights into decisions: scenarios, risk appetite, pathways & action plans.",
+      cards:[
+        {t:"Scenarios & pathways",bul:["NGFS orderly/disorderly","Temperature & transition paths","P&L, cash & solvency impacts"]},
+        {t:"Risk appetite & limits",bul:["Sector/site tolerances","Early-warning triggers","Alignment with ORSA/IFRS 17/ERM"]},
+        {t:"Adaptation plan",bul:["Physical hardening & redundancy","Transition measures (energy, sourcing)","Business continuity & BCP"]}
+      ],
+      check:{q:"Readiness score (self-check)",items:["Exposure mapping","Reliable ESG dataset","≥2 NGFS scenarios","Annual review process","KPIs monitored at ExCo"]}
+    },
+    insurance:{
+      lead:"Insurance solutions to secure the journey: traditional and parametric covers.",
+      cards:[
+        {t:"Parametrics",bul:["Rain/wind/temperature indices","Simple triggers, fast payouts","Great for Opex/Capex & PPP"]},
+        {t:"Green covers",bul:["Environmental liability & pollution","Green business interruption","Energy-efficiency extensions"]},
+        {t:"Advanced structures",bul:["Captives/sidecars & ART","Supply-chain covers","Carbon risks & insurance"]}
+      ]
+    },
+    reporting:{
+      lead:"Compliance & transparency: TCFD, EU Taxonomy, SFDR, ISSB/CSRD.",
+      cards:[
+        {t:"TCFD / ISSB",bul:["Governance, strategy, risk management","Metrics & targets","Audit-ready annexes"]},
+        {t:"EU Taxonomy / SFDR",bul:["Eligibility & alignment","KPIs (Capex/Opex/Revenue)","Documentation & controls"]},
+        {t:"Dashboards",bul:["Real-time KRIs (energy, water, GHG)","Alerts & thresholds","Reporting calendar"]}
+      ],
+      deliverables:["Scoping note & gap analysis","Action plan & roadmap","Slide decks & regulatory annexes"]
+    },
+    finance:{
+      lead:"Access to green finance & lender requirements (WB, EIB, AFD, GCF…).",
+      cards:[
+        {t:"Lenders’ due-diligence",bul:["Requirement checklist by lender","Compliance grid & gaps","Remediation plan"]},
+        {t:"Insurance term-sheet",bul:["Required covers & limits","Critical clauses/exclusions","Quotes & placement timeline"]},
+        {t:"Structuring",bul:["PPP & project finance","Performance guarantees","Financial reporting follow-up"]}
+      ]
+    },
+    training:{
+      lead:"Upskilling & governance to make ESG operational.",
+      cards:[
+        {t:"Training",bul:["1–3 day ESG/Climate workshops","Business & procurement tracks","Board/ExCo sessions"]},
+        {t:"Governance",bul:["ESG policies & charters","Roles & responsibilities","Steering rituals"]},
+        {t:"Change & adoption",bul:["Playbooks & templates","Team starter kits","Communication plan"]}
+      ]
+    },
+    faq:[
+      {q:"Can you join an ongoing project?",a:"Yes — we leverage existing work and close priority gaps."},
+      {q:"Do you cover Africa & Europe?",a:"Yes, via local partners and reinsurance markets."},
+      {q:"Timeframe for an assessment?",a:"Typically 4–8 weeks depending on size and data availability."}
     ]
   },
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"حلول التأمين",
-    subtitle:"عرض واضح لـ <strong>الشركات</strong> و<strong>الأفراد</strong> — مستلهم من أفضل الممارسات.",
-    badges:["مقارنة عروض الشركات","إدارة المطالبات","شفافية الأتعاب"],
-    tabs:{corp:"الشركات",retail:"الأفراد"},
-    clear:"مسح",cta:"اطلب عرض سعر",
+    title:"الاستدامة ومخاطر المناخ",
+    subtitle:"من التشخيص إلى التنفيذ: السيناريوهات، التأمينات البارامترية، تقارير TCFD/التصنيف الأوروبي/SFDR وهيكلة الضمانات الخضراء.",
+    badges:["مخاطر فيزيائية وانتقالية","سيناريوهات NGFS","امتثال وتمويل"],
+    tabs:{assess:"التشخيص ورسم الخرائط",strategy:"الاستراتيجية والسيناريوهات",insurance:"التأمينات والبارامترية",reporting:"التقارير والامتثال",finance:"التمويل الأخضر",training:"التدريب والحوكمة",faq:"الأسئلة"},
+    cta:{title:"مشروع ذو أثر أو متطلبات ممولين؟",sub:"نجهّز العناية الواجبة ومصفوفات المخاطر وملخصات التأمين. تسليم خلال 5–10 أيام عمل.",btn1:"احصل على عرض",btn2:"تحدث إلى خبير"},
     footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    corp:[
-      {icon:"🏭",t:"متعدد المخاطر للشركات",bul:["المباني والآلات والمخزون","فقدان الأرباح","سرقة وكسر وزيادة مسؤولية المستأجر"]},
-      {icon:"🚚",t:"نقل البضائع",bul:["جميع الوسائط: بر/بحر/جو","شروط ICC واختياريات","المخزون أثناء النقل"]},
-      {icon:"🚗",t:"السيارات والأساطيل",bul:["أساطيل ومعدات","مسؤولية وأضرار ومساعدات","حماية قانونية"]},
-      {icon:"⚖️",t:"المسؤولية المدنية",bul:["عامة/منتج","مهنية","بيئية"]},
-      {icon:"🏗️",t:"الإنشاءات",bul:["CAR/EAR","جميع أخطار المقاولين & العشرية","تغطية مواقع العمل"]},
-      {icon:"🩺",t:"صحة جماعية ومزايا",bul:["تأمين الموظفين الطبي","شبكات مزودين & TPAs","خطط مخصصة"]}
-    ],
-    retail:[
-      {icon:"🩺",t:"الصحة",bul:["علاج داخل/خارج المستشفى","شبكات مقدّمي الخدمة","خيارات عائلية"]},
-      {icon:"🛡️",t:"حوادث الحياة",bul:["عجز/فقدان الدخل","حماية العائلة","مساعدة 24/7"]},
-      {icon:"🏠",t:"الممتلكات (المنزل)",bul:["حريق وسرقة ومياه","مسؤولية شخصية","خيار المقتنيات"]},
-      {icon:"💼",t:"تأمين الحياة والادخار",bul:["تنمية المدخرات","التوريث","توزيع محافظ متزن"]},
-      {icon:"✈️",t:"سفر شنغن",bul:["تغطية فيزا طبية","أمتعة وتأخّر","متعدد الرحلات"]},
-      {icon:"⏳",t:"التقاعد",bul:["دخل تكميلي","كفاءة ضريبية (حيث تنطبق)","ملفات إدارة"}]
+    assess:{
+      lead:"الخطوة الأولى: قياس التعرض للمخاطر الفيزيائية والانتقالية، وتنظيم البيانات وتحديد الأولويات.",
+      cards:[
+        {t:"رسم الخرائط والمادية المزدوجة",bul:["فيضانات/حرارة/رياح/جفاف","مخاطر انتقال (السوق/التشريعات/التقنية)","مصفوفة المادية المزدوجة والأولويات"]},
+        {t:"البيانات والمؤشرات",bul:["جودة واكتمال البيانات","مؤشرات ESG (طاقة/مياه/انبعاثات)","خطة جمع وحوكمة البيانات"]},
+        {t:"اختبارات ضغط وPML",bul:["تواتر/حدة تاريخية","الخسارة القصوى المحتملة","مناطق تجميع حساسة"]},
+        {t:"سلسلة القيمة",bul:["الموردون واللوجستيات","العملاء والعقود","مواقع حساسة (خرائط)"]}
+      ],
+      roadmap:["0–30 يوماً: تحديد النطاق والوصول للبيانات","30–90 يوماً: التحليلات والخرائط والنتائج السريعة","90–180 يوماً: دمج ERM والميزانية"]
+    },
+    strategy:{
+      lead:"تحويل الرؤى إلى قرارات: السيناريوهات، شهية المخاطر، المسارات وخطط العمل.",
+      cards:[
+        {t:"السيناريوهات والمسارات",bul:["NGFS منظم/غير منظم","درجة الحرارة ومسارات الانتقال","أثر على الربح والتدفقات والملاءة"]},
+        {t:"شهية المخاطر والحدود",bul:["تحمل حسب القطاع/الموقع","مؤشرات إنذار مبكر","مواءمة مع ORSA/IFRS 17/ERM"]},
+        {t:"خطة التكيف",bul:["تعزيزات فيزيائية وازدواجية","إجراءات انتقال (طاقة/مشتريات)","استمرارية الأعمال"]}
+      ],
+      check:{q:"درجة الجاهزية (فحص ذاتي)",items:["خريطة التعرض","مجموعة بيانات ESG موثوقة","سيناريوهان NGFS على الأقل","مراجعة سنوية","مؤشرات لدى الإدارة"]}
+    },
+    insurance:{
+      lead:"حلول تأمينية لتأمين المسار: تغطيات تقليدية وبارامترية.",
+      cards:[
+        {t:"بارامترية",bul:["مؤشرات مطر/رياح/حرارة","تعويض سريع بشروط بسيطة","مناسب لـ Opex/Capex وPPP"]},
+        {t:"تغطيات خضراء",bul:["مسؤولية بيئية وتلوث","خسارة أرباح خضراء","امتدادات كفاءة الطاقة"]},
+        {t:"هياكل متقدمة",bul:["شركات أسطول/ART","تغطية سلاسل الإمداد","مخاطر الكربون والتأمين"]}
+      ]
+    },
+    reporting:{
+      lead:"امتثال وشفافية: TCFD والتصنيف الأوروبي وSFDR وISSB/CSRD.",
+      cards:[
+        {t:"TCFD / ISSB",bul:["الحوكمة والاستراتيجية وإدارة المخاطر","قياسات وأهداف","ملاحق جاهزة للتدقيق"]},
+        {t:"التصنيف الأوروبي / SFDR",bul:["الأهلية والمواءمة","مؤشرات (Capex/Opex/الإيراد)","توثيق ورقابة"]},
+        {t:"لوحات متابعة",bul:["مؤشرات لحظية (طاقة/مياه/انبعاثات)","تنبيهات وحدود","رزنامة تقارير"]}
+      ],
+      deliverables:["مذكرة نطاق وتحليل فجوات","خطة عمل وخارطة طريق","عروض تقديمية وملاحق تنظيمية"]
+    },
+    finance:{
+      lead:"الوصول إلى التمويل الأخضر ومتطلبات الممولين (البنك الدولي، بنك الاستثمار الأوروبي، AFD، GCF…).",
+      cards:[
+        {t:"العناية الواجبة",bul:["قائمة المتطلبات حسب الممول","شبكة امتثال ونقاط ضعف","خطة معالجة"]},
+        {t:"ملخص التأمين",bul:["التغطيات والحدود المطلوبة","بنود واستثناءات حرجة","عروض وتسلسل زمني"]},
+        {t:"الهيكلة",bul:["PPP وتمويل المشاريع","ضمانات الأداء","متابعة التقارير المالية"]}
+      ]
+    },
+    training:{
+      lead:"التوعية والحوكمة لجعل الاستدامة عملية.",
+      cards:[
+        {t:"التدريب",bul:["ورش 1–3 أيام","مسارات للأعمال والمشتريات","جلسات الإدارة العليا"]},
+        {t:"الحوكمة",bul:["سياسات ومواثيق ESG","الأدوار والمسؤوليات","آليات التسيير"]},
+        {t:"التغيير والتبني",bul:["أدلة ونماذج","حِزم انطلاق للفرق","خطة تواصل"]}
+      ]
+    },
+    faq:[
+      {q:"هل يمكن الانضمام لمشروع جارٍ؟",a:"نعم، نبني على العمل المنجز ونغلق الفجوات الحرجة."},
+      {q:"النطاق الجغرافي؟",a:"إفريقيا وأوروبا عبر شركاء محليين وأسواق إعادة التأمين."},
+      {q:"مدة إنجاز التشخيص؟",a:"بين 4 و8 أسابيع حسب الحجم وتوافر البيانات."}
+    ]
   }
 };
 
-let lang = localStorage.getItem('riskalia_lang')||'fr';
+/* ===== Helpers ===== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
 const $ = (s,root=document)=>root.querySelector(s);
 const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
-
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('esg.html'))); }
 
-function setActiveNav(){
-  $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html')));
+/* ===== Renderers ===== */
+function cardGrid(items){
+  return `<div class="grid">${items.map(it=>`
+    <article class="card"><h3>${it.t}</h3><ul>${(it.bul||[]).map(x=>`<li>${x}</li>`).join('')}</ul></article>
+  `).join('')}</div>`;
 }
 
-function productCard(p){
-  return `<article class="card">
-    <div class="kicker">${p.icon}</div>
-    <h3>${p.t}</h3>
-    <ul>${(p.bul||[]).map(x=>`<li>${x}</li>`).join('')}</ul>
-    <div style="margin-top:10px"><a class="btn secondary" href="contact.html">${lang==='en'?'Learn more':lang==='ar'?'مزيد من المعلومات':'En savoir plus'}</a></div>
-  </article>`;
+function render_assess(){
+  const d=t('assess');
+  return `
+    <article class="card">
+      <div class="kicker">1</div>
+      <h2>${t('tabs.assess')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+      <div class="roadmap">
+        ${d.roadmap.map((s,i)=>`<div class="step"><div class="num">${i===0?'🚀':i===1?'🧭':'🏁'}</div><div>${s}</div></div>`).join('')}
+      </div>
+    </article>
+  `;
 }
 
-function renderPanel(type='corp'){
-  const data = t(type);
-  const host = $('#panel');
-  host.innerHTML = `<div class="grid" id="grid"></div>`;
-  $('#grid').innerHTML = data.map(productCard).join('');
+function render_strategy(){
+  const d=t('strategy');
+  return `
+    <article class="card">
+      <div class="kicker">2</div>
+      <h2>${t('tabs.strategy')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+      <div class="card" style="margin-top:14px;background:#f8fbfc;border:1px solid #e2edf2">
+        <strong>${d.check.q}</strong>
+        <div id="checkList" style="margin-top:8px"></div>
+        <div class="check">
+          <div class="progress" aria-label="progression"><span id="bar" style="width:0%"></span></div>
+          <div class="score" id="score">0%</div>
+        </div>
+      </div>
+    </article>
+  `;
 }
 
+function render_insurance(){
+  const d=t('insurance');
+  return `
+    <article class="card">
+      <div class="kicker">3</div>
+      <h2>${t('tabs.insurance')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+    </article>
+  `;
+}
+
+function render_reporting(){
+  const d=t('reporting');
+  return `
+    <article class="card">
+      <div class="kicker">4</div>
+      <h2>${t('tabs.reporting')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+      <details style="margin-top:12px"><summary>🗂️ ${lang==='en'?'Deliverables':'Livrables'}</summary>
+        <div><ul>${(d.deliverables||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      </details>
+    </article>
+  `;
+}
+
+function render_finance(){
+  const d=t('finance');
+  return `
+    <article class="card">
+      <div class="kicker">5</div>
+      <h2>${t('tabs.finance')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+    </article>
+  `;
+}
+
+function render_training(){
+  const d=t('training');
+  return `
+    <article class="card">
+      <div class="kicker">6</div>
+      <h2>${t('tabs.training')}</h2>
+      <p class="muted" style="margin:6px 0 12px">${d.lead}</p>
+      ${cardGrid(d.cards)}
+    </article>
+  `;
+}
+
+function render_faq(){
+  const list=t('faq')||[];
+  return `
+    <article class="card">
+      <div class="kicker">FAQ</div>
+      <h2>FAQ</h2>
+      ${list.map(x=>`<details style="margin-top:10px"><summary>❓ ${x.q}</summary><div><p class="muted" style="margin-top:8px">${x.a}</p></div></details>`).join('')}
+    </article>
+  `;
+}
+
+let currentTab='assess';
+function renderPanel(){
+  const host=$("#panel");
+  host.innerHTML = currentTab==='assess'?render_assess()
+                 : currentTab==='strategy'?render_strategy()
+                 : currentTab==='insurance'?render_insurance()
+                 : currentTab==='reporting'?render_reporting()
+                 : currentTab==='finance'?render_finance()
+                 : currentTab==='training'?render_training()
+                 : render_faq();
+
+  // initialise le mini self-check si présent
+  const check=t('strategy.check');
+  const wrap=$("#checkList");
+  if(wrap){
+    wrap.innerHTML = (check.items||[]).map((txt,i)=>`
+      <label style="display:flex;gap:8px;align-items:center;margin:6px 0;">
+        <input type="checkbox" data-x="item" aria-label="${txt}"/>
+        <span>${txt}</span>
+      </label>`).join('');
+    const update=()=>{
+      const all=$$('[data-x="item"]',wrap); const done=all.filter(x=>x.checked).length;
+      const pct=Math.round(done*100/Math.max(all.length,1));
+      $("#bar").style.width=pct+"%"; $("#score").textContent=pct+"%";
+    };
+    wrap.addEventListener('change',update); update();
+  }
+}
+
+/* ===== UI & i18n ===== */
 function applyTexts(){
   document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
   $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
-  renderPanel(currentTab);
+  renderPanel();
 }
 
-let currentTab='corp';
-
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
 
-  // tabs
-  $$('.tab').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      $$('.tab').forEach(x=>x.classList.remove('active'));
-      btn.classList.add('active');
-      currentTab = btn.dataset.tab;
-      renderPanel(currentTab);
-      $('#q').value=''; // reset search
-    });
-  });
+  $$('.tab').forEach(btn=> btn.addEventListener('click', ()=>{
+    $$('.tab').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+    currentTab=btn.dataset.tab; renderPanel();
+    window.scrollTo({top:document.querySelector('.tabs').offsetTop-80,behavior:'smooth'});
+  }));
 
-  // search filter
-  const q=$('#q'); const clear=$('#clear');
-  const filter=()=>{
-    const kw=q.value.trim().toLowerCase();
-    const items=[...(t(currentTab)||[])];
-    const filtered = kw? items.filter(p=> (p.t+' '+(p.bul||[]).join(' ')).toLowerCase().includes(kw)) : items;
-    $('#grid').innerHTML = filtered.map(productCard).join('');
-  };
-  q.addEventListener('input', filter);
-  clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
-
-  // language switch
+  // i18n
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
 
   // reveal
