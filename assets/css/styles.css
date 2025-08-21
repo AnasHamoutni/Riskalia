@@ -297,3 +297,19 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
   section{ padding:58px 0; }
   .hero p{ margin-bottom:10px; }
 }
+
+/* --- Solutions: alignement des boutons dans les cartes --- */
+#grid .card{
+  display: flex;
+  flex-direction: column;   /* permet de pousser la barre d'actions en bas */
+}
+#grid .actions{
+  margin-top: auto;         /* colle la zone boutons au bas de la carte */
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;          /* passe en 2 lignes si l’écran est étroit */
+  align-items: center;
+}
+#grid .actions .btn{
+  flex: 0 0 auto;           /* évite l'étirement des boutons */
+}
