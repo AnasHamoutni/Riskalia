@@ -336,3 +336,34 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
   .card{ padding: 16px; }
 }
 
+/* ===== Mobile fixes: reinsurance/contact overflow & spacing ===== */
+@media (max-width: 600px){
+  /* shrink global padding slightly */
+  .container{ padding-left:14px; padding-right:14px; }
+
+  /* neutralize the "spacious" density on small screens */
+  body.spacious{
+    --fs: 1rem;
+    --lh: 1.6;
+    --space: 16px;
+    --gap: 14px;
+  }
+
+  /* stack all multi-column grids to a single column */
+  .grid, .grid-2, .grid-3, .cards-grid{ grid-template-columns: 1fr !important; }
+
+  /* lighter cards/typography inside the main content */
+  .main .card{ padding:16px; }
+  .main h2{ font-size: clamp(1.25rem, 5.2vw, 1.45rem); line-height:1.25; }
+  .main h3{ font-size: clamp(1.05rem, 4.6vw, 1.2rem); line-height:1.25; }
+
+  /* prevent any long tokens from pushing out of the viewport */
+  p, li, h2, h3, summary, td, th{
+    overflow-wrap:anywhere;
+    word-break:break-word;
+  }
+
+  /* tables: keep them scrollable, not wider than the viewport */
+  .table-wrap{ overflow-x:auto; }
+  table{ min-width: 640px; } /* smaller than before so phones scroll less */
+}
