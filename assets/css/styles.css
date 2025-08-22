@@ -313,3 +313,21 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
   text-align: center;
 }
 
+
+/* ---- Contact form: mobile overflow fix ---- */
+@media (max-width: 600px){
+  .container{ padding-left: 14px; padding-right: 14px; }   /* smaller side padding */
+  .grid-2{ grid-template-columns: 1fr !important; }        /* stack the two cards */
+  .form{ max-width: none !important; width: 100%; }        /* never exceed viewport */
+
+  /* every form row becomes a single column */
+  .form .row{ grid-template-columns: 1fr !important; }
+
+  /* make the fields strictly fill their cell */
+  .field input,
+  .field select,
+  .field textarea{
+    width: 100%;
+    max-width: 100%;
+  }
+}
