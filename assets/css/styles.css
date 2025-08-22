@@ -336,34 +336,61 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
   .card{ padding: 16px; }
 }
 
-/* ===== Mobile fixes: reinsurance/contact overflow & spacing ===== */
+/* ===== Reinsurance (and long-content pages) — mobile tuning ===== */
 @media (max-width: 600px){
-  /* shrink global padding slightly */
-  .container{ padding-left:14px; padding-right:14px; }
+  /* make sure the page never overflows horizontally */
+  html, body { overflow-x: hidden; }
+  .container { padding-left:14px; padding-right:14px; }
 
-  /* neutralize the "spacious" density on small screens */
+  /* if "spacious" is used, neutralize it on phones */
   body.spacious{
-    --fs: 1rem;
-    --lh: 1.6;
-    --space: 16px;
+    --fs: 1rem;      /* base font size */
+    --lh: 1.6;       /* base line-height */
+    --space: 16px;   /* card padding scale */
     --gap: 14px;
   }
 
-  /* stack all multi-column grids to a single column */
+  /* Reinsurance hero a bit tighter */
+  .hero--re{ min-height: 36vh; }
+  .hero--re h1{ font-size: clamp(1.25rem, 6vw, 1.6rem); line-height:1.2; }
+  .hero--re p{ font-size: .98rem; }
+
+  /* Stack every multi-column container */
   .grid, .grid-2, .grid-3, .cards-grid{ grid-template-columns: 1fr !important; }
 
-  /* lighter cards/typography inside the main content */
-  .main .card{ padding:16px; }
-  .main h2{ font-size: clamp(1.25rem, 5.2vw, 1.45rem); line-height:1.25; }
-  .main h3{ font-size: clamp(1.05rem, 4.6vw, 1.2rem); line-height:1.25; }
+  /* Main content cards: tighter paddings & type scale */
+  .main { gap: 16px; }
+  .main .card{ padding:16px; border-radius:14px; }
 
-  /* prevent any long tokens from pushing out of the viewport */
+  /* Headings smaller so they don't feel "shouted" on phones */
+  .main .card h2{
+    font-size: clamp(1.15rem, 5.2vw, 1.35rem);
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+  .main .card h3{
+    font-size: clamp(1.05rem, 4.8vw, 1.2rem);
+    line-height: 1.25;
+    margin: 10px 0 4px;
+  }
+
+  /* Body text & lists */
+  .main .card p,
+  .main .card li{ font-size: 1rem; line-height:1.55; }
+  .main .card ul{ padding-inline-start: 18px; }
+  .main .card li{ margin: 6px 0; }
+
+  /* Chips (mobile section nav) a bit smaller */
+  .chips{ gap: 8px; }
+  .chip{ padding: 8px 10px; font-size:.95rem; }
+
+  /* Tables: remain scrollable, not wider than phone */
+  .table-wrap{ overflow-x:auto; }
+  table{ min-width: 640px; }
+
+  /* Last-resort wrapping so long words never push the page wide */
   p, li, h2, h3, summary, td, th{
     overflow-wrap:anywhere;
     word-break:break-word;
   }
-
-  /* tables: keep them scrollable, not wider than the viewport */
-  .table-wrap{ overflow-x:auto; }
-  table{ min-width: 640px; } /* smaller than before so phones scroll less */
 }
