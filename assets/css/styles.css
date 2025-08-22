@@ -349,6 +349,28 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
     --space: 16px;   /* card padding scale */
     --gap: 14px;
   }
+/* Reinsurance mobile fix: neutralize "spacious" */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+
+@media (max-width: 600px){
+  body.spacious{
+    --fs: 1rem;     /* base text ≈ 16px */
+    --lh: 1.6;
+    --space: 16px;
+    --gap: 14px;
+  }
+  /* scale down big headings so they don't feel cropped */
+  .hero--re h1{ font-size: clamp(1.25rem, 5.5vw, 1.6rem); line-height:1.2; }
+  .main .card h2{ font-size: clamp(1.05rem, 4.8vw, 1.3rem); line-height:1.25; }
+  .main .card h3{ font-size: clamp(1.0rem, 4.4vw, 1.2rem); line-height:1.25; }
+
+  /* keep layout inside the viewport */
+  html, body{ overflow-x:hidden; }
+  .container{ padding-left:14px; padding-right:14px; }
+  .grid, .grid-2, .grid-3, .cards-grid{ grid-template-columns:1fr !important; }
+  .table-wrap{ overflow-x:auto; }
+  p, li, h2, h3, summary, td, th{ overflow-wrap:anywhere; word-break:break-word; }
+}
 
   /* Reinsurance hero a bit tighter */
   .hero--re{ min-height: 36vh; }
