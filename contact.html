@@ -6,40 +6,51 @@
   <title>Riskalia — Contact & Espace client</title>
   <meta name="description" content="Contactez Riskalia pour un devis ou un conseil : courtage toutes branches, réassurance, ESG & risques climat."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+
   <!-- Feuille de styles globale -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
+
+  <!-- Styles spécifiques page contact (layout + map) -->
   <style>
-  /* Légères touches spécifiques à la page (s’appuie sur styles.css) */
-  .hero.hero--contact{
-    min-height:42vh;
-    background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-               url('https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
-  }
-  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-  .form{max-width:860px;margin:0 auto}
-  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:700px){ .form .row{grid-template-columns:1fr} }
-  .field{display:flex;flex-direction:column;gap:6px}
-  .field input,.field select,.field textarea{
-    padding:12px 14px;border:1px solid #cfe1e6;border-radius:12px;background:#fff;font:inherit
-  }
-  .req{color:#c53333;font-weight:700}
-  .hint{font-size:.92rem;color:#5f7781}
-  .error{color:#c53333;font-weight:700;margin-top:4px;display:none}
-  .ok{display:none;color:#0b6b4a;font-weight:800;margin-top:10px}
-  .map{
-    background:#eef6f8 url('https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;
-    border:1px solid #e2edf2;border-radius:16px;min-height:220px
-  }
+    .hero.hero--contact{
+      min-height:42vh;
+      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+                 url('https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
+    }
+
+    /* Nouveau layout : colonne formulaire plus large */
+    .contact-layout{
+      display:grid;
+      grid-template-columns: minmax(280px,1fr) minmax(420px,1.6fr);
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .contact-layout{ grid-template-columns:1fr; }
+    }
+
+    /* Infos à gauche */
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+    /* Formulaire : on s’appuie au maximum sur la feuille globale */
+    .form{max-width:880px;margin:0 auto}
+    .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:700px){ .form .row{grid-template-columns:1fr} }
+
+    /* Carte Google Maps */
+    .map-embed{border:1px solid #e2edf2;border-radius:16px;overflow:hidden}
+    .map-embed iframe{width:100%;height:280px;border:0;display:block}
+    @media(min-width:980px){ .map-embed iframe{height:320px} }
   </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia">
+      <span></span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
@@ -73,10 +84,12 @@
 
 <section class="reveal">
   <div class="container">
-    <div class="grid-2">
+    <div class="contact-layout"><!-- <- nouveau wrapper -->
+      <!-- Colonne gauche : coordonnées + Google Maps -->
       <article class="card">
         <div class="kicker" data-i18n="box.contact.k">Contact</div>
         <h3 data-i18n="box.contact.t">Nos coordonnées</h3>
+
         <div class="contact-grid" style="margin-top:8px">
           <div>
             <p>📞 <strong data-i18n="box.contact.phone.t">Téléphone</strong><br>
@@ -90,16 +103,27 @@
             <p class="hint" style="margin-top:8px" data-i18n="box.contact.hours">Lun–Ven, 9:00–18:00 (UTC+1)</p>
           </div>
         </div>
-        <div class="map" aria-hidden="true" style="margin-top:12px;border-radius:16px"></div>
+
+        <!-- Google Maps Embed : change le paramètre 'q=' quand tu auras l’adresse exacte -->
+        <div class="map-embed" style="margin-top:12px">
+          <iframe
+            title="Localisation Riskalia sur Google Maps"
+            src="https://www.google.com/maps?q=Casablanca%2C%20Morocco&z=12&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
       </article>
 
+      <!-- Colonne droite : formulaire -->
       <article class="card form">
         <div class="kicker" data-i18n="form.k">Formulaire</div>
         <h3 data-i18n="form.t">Demande d’information / Devis</h3>
         <p class="hint" data-i18n="form.hint">Les champs marqués <span class="req">*</span> sont obligatoires.</p>
 
         <form id="contactForm" novalidate>
-          <input type="text" name="company" autocomplete="organization" style="display:none" aria-hidden="true"> <!-- honeypot -->
+          <input type="text" name="company" autocomplete="organization" style="display:none" aria-hidden="true"><!-- honeypot -->
 
           <div class="row" style="margin-top:10px">
             <div class="field">
@@ -372,7 +396,7 @@ function initUI(){
     const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
 
     // confirmation visuelle + ouverture
-    $('#ok').style.display='block';
+    document.getElementById('ok').style.display='block';
     window.location.href = mailto;
   });
 }
