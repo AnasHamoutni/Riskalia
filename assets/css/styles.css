@@ -310,4 +310,6 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
 #grid .card .actions .btn{
   width: 100%;                /* boutons alignés et même largeur */
   margin: 0;                  /* on neutralise tout margin résiduel */
+  text-align: center;
 }
+
