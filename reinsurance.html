@@ -6,12 +6,14 @@
   <title>Riskalia — Réassurance (Traités, Facultatives, Conception)</title>
   <meta name="description" content="Réassurance de bout en bout : traités (QS/Surplus/XoL/Stop-Loss), facultatives (Property, RC, construction…), conception de produits, sinistres & arbitrages, process et FAQ."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <!-- Show content even if JS fails -->
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
   <!-- Fonts + CSS global -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
   <style>
-    /* Héro : image spécifique (le reste vient de styles.css) */
+    /* Héro spécifique à la page (le reste vient de styles.css) */
     .hero--re{
       background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
                  url('https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
@@ -264,7 +266,7 @@
         <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un devis</a>
       </article>
 <br/>
-      <!-- ===== FAQ (enrichie) ===== -->
+      <!-- ===== FAQ enrichie ===== -->
       <article id="faq" class="card">
         <div class="kicker">7</div>
         <h2 data-i18n="faq.title">7. FAQ</h2>
@@ -304,7 +306,7 @@
   </div>
 </footer>
 
-<!-- SEO FAQPage (extrait) -->
+<!-- SEO FAQPage -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -472,7 +474,10 @@ const I18N={
       claims:{t:"مطالبات وتحكيم 24/7",lead:"فريق مخصص: مراجعة كمّية وتنسيق خبراء وتقارير وتحكيم (ARIAS…).",
               sum:"منهجنا",li:["تصعيد وطلبات نقدية.","مشاركة وثائق وسجل تدقيق.","وساطة وتحكيم دوليان."]},
       process:{t:"العملية والمخرجات",steps:["تشخيص المحفظة والأهداف (2–3 أسابيع)","نمذجة PML/AAL وسيناريوهات (2–4 أسابيع)","اختبار السوق والترتيب (2–6 أسابيع)","توقيع وتقارير ومتابعة سنوية"]},
-      faq:{t:"الأسئلة الشائعة"},
+      faq:{t:"الأسئلة الشائعة"}
+    },
+    cta:{t:"تحتاج هيكلة أو تجديد اتفاقية؟",p:"حدّثنا عن محفظتك — نُعد خطة تنازل ورزنامة سوق.",btn:"اطلب عرضاً"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
     faq:{
       title:"٧. أسئلة شائعة",
       lead:"إجابات سريعة على أكثر الأسئلة تكراراً. استخدم البحث للتصفية.",
@@ -590,7 +595,7 @@ function initUI(){
     document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
   }));
 
-  // reveal on scroll
+  // reveal on scroll + TOC highlight
   const rev=$$('.reveal');
   const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); highlightTOC(); };
   window.addEventListener('scroll',onScroll); onScroll();
@@ -607,7 +612,7 @@ function highlightTOC(){
     if(top<window.innerHeight*0.35) activeId=id;
   }
   $$('.aside .toc').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+activeId);
+    a.classList.toggle('active', a.getAttribute('href')==('#'+activeId));
   });
 }
 
