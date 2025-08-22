@@ -337,82 +337,43 @@ footer h4{ color:#a8ecf4; margin-bottom:10px; }
 }
 
 /* ===== Reinsurance (and long-content pages) — mobile tuning ===== */
-@media (max-width: 600px){
-  /* make sure the page never overflows horizontally */
-  html, body { overflow-x: hidden; }
-  .container { padding-left:14px; padding-right:14px; }
-
-  /* if "spacious" is used, neutralize it on phones */
-  body.spacious{
-    --fs: 1rem;      /* base font size */
-    --lh: 1.6;       /* base line-height */
-    --space: 16px;   /* card padding scale */
-    --gap: 14px;
-  }
-/* Reinsurance mobile fix: neutralize "spacious" */
+/* GLOBAL (once) */
 html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-
-@media (max-width: 600px){
-  body.spacious{
-    --fs: 1rem;     /* base text ≈ 16px */
-    --lh: 1.6;
-    --space: 16px;
-    --gap: 14px;
-  }
-  /* scale down big headings so they don't feel cropped */
-  .hero--re h1{ font-size: clamp(1.25rem, 5.5vw, 1.6rem); line-height:1.2; }
-  .main .card h2{ font-size: clamp(1.05rem, 4.8vw, 1.3rem); line-height:1.25; }
-  .main .card h3{ font-size: clamp(1.0rem, 4.4vw, 1.2rem); line-height:1.25; }
-
-  /* keep layout inside the viewport */
-  html, body{ overflow-x:hidden; }
+/* Reinsurance / long pages — MOBILE */
+@media (max-width:600px){
+  /* keep everything inside the viewport */
+  html,body{ overflow-x:hidden; }
   .container{ padding-left:14px; padding-right:14px; }
+
+  /* neutralize the “spacious” scale on phones */
+  body.spacious{ --fs:1rem; --lh:1.6; --space:16px; --gap:14px; }
+
+  /* hero + headings scale */
+  .hero--re{ min-height:36vh; }
+  .hero--re h1{ font-size:clamp(1.25rem,5.5vw,1.6rem); line-height:1.2; }
+  .hero--re p{ font-size:.98rem; }
+
+  /* stack multi-column layouts */
   .grid, .grid-2, .grid-3, .cards-grid{ grid-template-columns:1fr !important; }
-  .table-wrap{ overflow-x:auto; }
-  p, li, h2, h3, summary, td, th{ overflow-wrap:anywhere; word-break:break-word; }
-}
 
-  /* Reinsurance hero a bit tighter */
-  .hero--re{ min-height: 36vh; }
-  .hero--re h1{ font-size: clamp(1.25rem, 6vw, 1.6rem); line-height:1.2; }
-  .hero--re p{ font-size: .98rem; }
-
-  /* Stack every multi-column container */
-  .grid, .grid-2, .grid-3, .cards-grid{ grid-template-columns: 1fr !important; }
-
-  /* Main content cards: tighter paddings & type scale */
-  .main { gap: 16px; }
+  /* content cards */
+  .main{ gap:16px; }
   .main .card{ padding:16px; border-radius:14px; }
+  .main .card h2{ font-size:clamp(1.05rem,4.8vw,1.3rem); line-height:1.25; margin-bottom:6px; }
+  .main .card h3{ font-size:clamp(1rem,4.4vw,1.2rem); line-height:1.25; margin:10px 0 4px; }
 
-  /* Headings smaller so they don't feel "shouted" on phones */
-  .main .card h2{
-    font-size: clamp(1.15rem, 5.2vw, 1.35rem);
-    line-height: 1.25;
-    margin-bottom: 6px;
-  }
-  .main .card h3{
-    font-size: clamp(1.05rem, 4.8vw, 1.2rem);
-    line-height: 1.25;
-    margin: 10px 0 4px;
-  }
+  /* body text & lists */
+  .main .card p, .main .card li{ font-size:1rem; line-height:1.55; }
+  .main .card ul{ padding-inline-start:18px; }
+  .main .card li{ margin:6px 0; }
 
-  /* Body text & lists */
-  .main .card p,
-  .main .card li{ font-size: 1rem; line-height:1.55; }
-  .main .card ul{ padding-inline-start: 18px; }
-  .main .card li{ margin: 6px 0; }
+  /* chips */
+  .chips{ gap:8px; }
+  .chip{ padding:8px 10px; font-size:.95rem; }
 
-  /* Chips (mobile section nav) a bit smaller */
-  .chips{ gap: 8px; }
-  .chip{ padding: 8px 10px; font-size:.95rem; }
-
-  /* Tables: remain scrollable, not wider than phone */
+  /* tables scroll instead of widening the page */
   .table-wrap{ overflow-x:auto; }
-  table{ min-width: 640px; }
 
-  /* Last-resort wrapping so long words never push the page wide */
-  p, li, h2, h3, summary, td, th{
-    overflow-wrap:anywhere;
-    word-break:break-word;
-  }
+  /* last-resort wrapping */
+  p, li, h2, h3, summary, td, th{ overflow-wrap:anywhere; word-break:break-word; }
 }
