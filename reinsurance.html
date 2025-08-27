@@ -20,14 +20,16 @@
       min-height:42vh;
     }
 
+    /* ===== S'assurer que les ancêtres ne cassent pas position:sticky ===== */
+    .container, .reveal { overflow: visible !important; }
+
     /* ===== Layout deux colonnes (desktop) + sidebar sticky ===== */
     .main{
       display:grid;
       grid-template-columns: 280px minmax(0,1fr);
       gap:28px;
       align-items:start;
-      /* s'assurer que rien ne coupe la sticky */
-      overflow: visible;
+      overflow: visible; /* important pour sticky */
     }
     .content-col{ min-width:0; }
 
@@ -39,8 +41,10 @@
       position: sticky;
       top: var(--sticky-top);
       max-height: calc(100vh - var(--sticky-top) - var(--sticky-pad));
-      overflow:auto;
-      padding-right: 4px; /* petit espace pour la scrollbar */
+      overflow:auto;                /* la liste du sommaire peut défiler si longue */
+      padding-right: 4px;           /* petit espace pour la scrollbar */
+      z-index: 2;                   /* au-dessus des ombres éventuelles */
+      scroll-behavior: smooth;      /* défilement interne fluide */
     }
     .aside h4{ margin-top:0; }
     .aside .toc{
@@ -669,7 +673,7 @@ function initUI(){
   window.addEventListener('scroll',onScroll); onScroll();
 }
 
-/* Active le lien du sommaire selon la section visible */
+/* Active le lien du sommaire selon la section visible + auto-scroll de la sidebar si besoin */
 function highlightTOC(){
   const ids=['intro','treaty','fac','design','claims','process','faq'];
   let activeId=ids[0];
@@ -679,9 +683,28 @@ function highlightTOC(){
     const top=el.getBoundingClientRect().top;
     if(top<window.innerHeight*0.35) activeId=id;
   }
-  $$('.aside .toc').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==('#'+activeId));
+
+  let activeLink = null;
+  document.querySelectorAll('.aside .toc').forEach(a=>{
+    const isActive = a.getAttribute('href') === ('#'+activeId);
+    a.classList.toggle('active', isActive);
+    if(isActive) activeLink = a;
   });
+
+  // garder l'item actif visible dans la sidebar
+  if(activeLink){
+    const aside = document.querySelector('.aside');
+    if(aside){
+      const linkTop = activeLink.offsetTop;
+      const linkBottom = linkTop + activeLink.offsetHeight;
+      const viewTop = aside.scrollTop;
+      const viewBottom = viewTop + aside.clientHeight;
+      if(linkTop < viewTop || linkBottom > viewBottom){
+        const target = linkTop - aside.clientHeight/2 + activeLink.offsetHeight/2;
+        aside.scrollTo({ top: Math.max(0, target), behavior: 'smooth' });
+      }
+    }
+  }
 }
 
 /* Ajuster automatiquement la marge sticky selon la hauteur réelle du header */
