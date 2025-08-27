@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Construction (CAR/EAR) — Tous risques chantier, essais & DSU/ALoP</title>
+  <meta name="description" content="Assurances chantier CAR/EAR : dommages aux travaux, RC chantier, essais & période de maintenance, ALoP/DSU (perte d’exploitation chantier), engins & biens de chantier. Pour MOA, EPC/entreprises, ingénieries et projets énergie/infrastructures."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+
+  <!-- Fonts + global CSS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+
+  <style>
+    /* Hero visuel pour produit */
+    .hero--product{
+      min-height:42vh;
+      background:
+        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+        url('https://images.unsplash.com/photo-1488998527040-85054a85150e?auto=format&fit=crop&w=1600&q=70')
+        center/cover no-repeat;
+      display:flex; align-items:center; text-align:center;
+    }
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:960px; margin:6px auto 0; }
+
+    /* Mise en page: onglets horizontaux collants */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI/Paramètres */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
+  </style>
+
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="spacious">
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="../index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero hero--product">
+  <div class="container">
+    <h1 data-i18n="title">Construction (CAR/EAR)</h1>
+    <p data-i18n="subtitle">Tous risques chantier • RC chantier • Montage & essais • Maintenance • ALoP/DSU (perte d’exploitation chantier) • Engins & biens de chantier.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">Maître d’ouvrage / EPC / Entreprises</span>
+      <span class="badge" data-i18n="badges.1">Projets énergie & infrastructures</span>
+      <span class="badge" data-i18n="badges.2">Wordings LMA/IUA</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="reveal">
+  <div class="container main main--single">
+
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Construction tabs">
+      <button class="tab active"  id="tab-over" role="tab" aria-selected="true"  data-tab="over" data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" data-tab="cov"  data-i18n="tabs.cov">Couvertures</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" data-tab="opt"  data-i18n="tabs.opt">Options & DSU</button>
+      <button class="tab"         id="tab-req"  role="tab" aria-selected="false" data-tab="req"  data-i18n="tabs.req">Documents</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" data-tab="claim"data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" data-tab="faq"  data-i18n="tabs.faq">FAQ</button>
+    </nav>
+
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            Les polices <strong>CAR (Contractors’ All Risks)</strong> et <strong>EAR (Erection All Risks)</strong> couvrent les dommages matériels aux travaux ainsi que la <strong>responsabilité civile chantier</strong> durant la construction, les <strong>essais</strong> et la <strong>maintenance</strong>. Elles s’adressent aux <em>maîtres d’ouvrage</em>, EPC/entreprises, sous-traitants et ingénieries.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Projets bâtiment, génie civil, énergie & industrie.</li>
+            <li data-i18n="over.li.1">Phases : chantier → essais → maintenance.</li>
+            <li data-i18n="over.li.2">Possibilité <strong>DSU/ALoP</strong> : pertes de marge dues à un retard d’ouverture.</li>
+          </ul>
+        </div>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Ligne RC</div><div>1–10+ M / occurrence</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Franchises</div><div>par péril / activité</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Forme</div><div>PCIP/CCIP (MOA/contractor)</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Couvertures -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Couvertures de base</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Dommages aux travaux</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Incendie, explosion, tempête, inondation, vol/effraction.</li>
+            <li data-i18n="cov.c0.li.1">Erreurs de construction, effondrement, glissement.</li>
+            <li data-i18n="cov.c0.li.2">Biens existants et avoisinants (selon sous-limites).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">Responsabilité civile chantier</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Dommages corporels & matériels aux tiers.</li>
+            <li data-i18n="cov.c1.li.1">Défense & recours, frais de justice.</li>
+            <li data-i18n="cov.c1.li.2">Cross-liability / renonciation à recours (si stipulé).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Biens & frais associés</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Biens de chantier, baraques, entrepôts temporaires.</li>
+            <li data-i18n="cov.c2.li.1">Frais de déblai/démolition, prévention & sauvetage.</li>
+            <li data-i18n="cov.c2.li.2">Engins & matériel de chantier (CPM option).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options & DSU -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options, extensions & DSU/ALoP</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Montage, essais & maintenance</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Essais à chaud / à froid, dommages pendant la mise en service.</li>
+            <li data-i18n="opt.c0.li.1">Maintenance visite (12 mois) ou étendue (jusqu’à 24 mois).</li>
+            <li data-i18n="opt.c0.li.2">Faute professionnelle de conception (DE5/LEG — si prévu).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">DSU / ALoP (retard d’ouverture)</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Couvre la marge brute perdue due à un sinistre matériel garanti.</li>
+            <li data-i18n="opt.c1.li.1">Paramètres : période d’indemnisation, carence, profil de revenus.</li>
+            <li data-i18n="opt.c1.li.2">Données requises : planning, chemin critique, contrats O&M.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Autres extensions fréquentes</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Stockage hors site & transit intérieur (marine inland).</li>
+            <li data-i18n="opt.c2.li.1">Biens avoisinants / existants, interférences de services.</li>
+            <li data-i18n="opt.c2.li.2">Clauses pollution accidentelle & nuisances (selon projet).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Documents requis -->
+    <article id="req" class="card tabpanel" role="tabpanel" aria-labelledby="tab-req">
+      <h2 data-i18n="req.t">4. Documents & paramètres de souscription</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="req.c0.t">Données projet</h3>
+          <ul>
+            <li data-i18n="req.c0.li.0">Description & valeur du projet (VRT), calendrier, Gantt/chemin critique.</li>
+            <li data-i18n="req.c0.li.1">Plans/méthodes, géotechnique, étude risques (QRA si applicable).</li>
+            <li data-i18n="req.c0.li.2">Répartition MOA/EPC/lotissements, CCAP & contrats majeurs.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="req.c1.t">Paramètres de police</h3>
+          <ul>
+            <li data-i18n="req.c1.li.0">Limites, sous-limites, franchises par péril/activité.</li>
+            <li data-i18n="req.c1.li.1">Périodes chantier, essais, maintenance & DSU.</li>
+            <li data-i18n="req.c1.li.2">Forme PCIP (MOA) ou CCIP (contractor) selon gouvernance.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Gestion des sinistres</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Notre approche</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Notification immédiate, mesures conservatoires & sécurisation site.</li>
+            <li data-i18n="claim.li.1">Désignation experts, collecte preuves & suivi réparations.</li>
+            <li data-i18n="claim.li.2">Cash-calls possibles, reporting & arbitrages si nécessaire.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">CAR vs EAR : quelle différence ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">CAR vise souvent le génie civil/bâtiment ; EAR s’applique aux montages/équipements industriels. Les principes de garanties sont proches.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Comment dimensionner la DSU/ALoP ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Sur la marge brute attendue pendant la période d’indemnisation, avec carence et plafonds. Le planning et le chemin critique sont clés.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Qui doit être assuré ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">MOA, EPC/entreprises, sous-traitants, ingénieurs — avec renonciations croisées selon wording pour éviter les trous de couverture.</p></div>
+      </details>
+    </article>
+
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Parlez-nous de votre projet</h3>
+      <p class="muted" data-i18n="cta.p">Nous préparons une note de présentation, un wording CAR/EAR et un calendrier marché.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
+
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./rc.html">← <span data-i18n="nav.prev">Responsabilité Civile</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./santecollective.html"><span data-i18n="nav.next">Santé collective & Prévoyance</span> →</a>
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAQ SEO -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"CAR vs EAR : quelle différence ?","acceptedAnswer":{"@type":"Answer","text":"CAR vise souvent le génie civil/bâtiment ; EAR s’applique aux montages/équipements industriels. Les principes de garanties sont proches."}},
+{"@type":"Question","name":"Comment dimensionner la DSU/ALoP ?","acceptedAnswer":{"@type":"Answer","text":"Sur la marge brute attendue pendant la période d’indemnisation, avec carence et plafonds. Le planning et le chemin critique sont clés."}},
+{"@type":"Question","name":"Qui doit être assuré ?","acceptedAnswer":{"@type":"Answer","text":"MOA, EPC/entreprises, sous-traitants, ingénieurs — avec renonciations croisées selon wording pour éviter les trous de couverture."}}
+]}
+</script>
+
+<script>
+/* ================== I18N ================== */
+const I18N={
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    title:"Construction (CAR/EAR)",
+    subtitle:"Tous risques chantier • RC chantier • Montage & essais • Maintenance • ALoP/DSU (perte d’exploitation chantier) • Engins & biens de chantier.",
+    badges:["Maître d’ouvrage / EPC / Entreprises","Projets énergie & infrastructures","Wordings LMA/IUA"],
+    tabs:{over:"Aperçu",cov:"Couvertures",opt:"Options & DSU",req:"Documents",claim:"Sinistres",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"Les polices CAR (Contractors’ All Risks) et EAR (Erection All Risks) couvrent les dommages matériels aux travaux ainsi que la responsabilité civile chantier durant la construction, les essais et la maintenance. Elles s’adressent aux maîtres d’ouvrage, EPC/entreprises, sous-traitants et ingénieries.",
+          li:["Projets bâtiment, génie civil, énergie & industrie.","Phases : chantier → essais → maintenance.","Possibilité DSU/ALoP : pertes de marge dues à un retard d’ouverture."],
+          kpi:["Ligne RC","Franchises","Forme"]},
+    cov:{t:"2. Couvertures de base",
+         c0:{t:"Dommages aux travaux",li:["Incendie, explosion, tempête, inondation, vol/effraction.","Erreurs de construction, effondrement, glissement.","Biens existants et avoisinants (selon sous-limites)."]},
+         c1:{t:"Responsabilité civile chantier",li:["Dommages corporels & matériels aux tiers.","Défense & recours, frais de justice.","Cross-liability / renonciation à recours (si stipulé)."]},
+         c2:{t:"Biens & frais associés",li:["Biens de chantier, baraques, entrepôts temporaires.","Frais de déblai/démolition, prévention & sauvetage.","Engins & matériel de chantier (CPM option)."]}},
+    opt:{t:"3. Options, extensions & DSU/ALoP",
+         c0:{t:"Montage, essais & maintenance",li:["Essais à chaud / à froid, dommages pendant la mise en service.","Maintenance visite (12 mois) ou étendue (jusqu’à 24 mois).","Faute professionnelle de conception (DE5/LEG — si prévu)."]},
+         c1:{t:"DSU / ALoP (retard d’ouverture)",li:["Couvre la marge brute perdue due à un sinistre matériel garanti.","Paramètres : période d’indemnisation, carence, profil de revenus.","Données requises : planning, chemin critique, contrats O&M."]},
+         c2:{t:"Autres extensions fréquentes",li:["Stockage hors site & transit intérieur (marine inland).","Biens avoisinants / existants, interférences de services.","Clauses pollution accidentelle & nuisances (selon projet)."]}},
+    req:{t:"4. Documents & paramètres de souscription",
+         c0:{t:"Données projet",li:["Description & valeur du projet (VRT), calendrier, Gantt/chemin critique.","Plans/méthodes, géotechnique, étude risques (QRA si applicable).","Répartition MOA/EPC/lotissements, CCAP & contrats majeurs."]},
+         c1:{t:"Paramètres de police",li:["Limites, sous-limites, franchises par péril/activité.","Périodes chantier, essais, maintenance & DSU.","Forme PCIP (MOA) ou CCIP (contractor) selon gouvernance."]}},
+    claim:{t:"5. Gestion des sinistres",sum:"Notre approche",li:["Notification immédiate, mesures conservatoires & sécurisation site.","Désignation experts, collecte preuves & suivi réparations.","Cash-calls possibles, reporting & arbitrages si nécessaire."]},
+    faq:{t:"6. FAQ",q0:"CAR vs EAR : quelle différence ?",a0:"CAR vise souvent le génie civil/bâtiment ; EAR s’applique aux montages/équipements industriels. Les principes de garanties sont proches.",
+         q1:"Comment dimensionner la DSU/ALoP ?",a1:"Sur la marge brute attendue pendant la période d’indemnisation, avec carence et plafonds. Le planning et le chemin critique sont clés.",
+         q2:"Qui doit être assuré ?",a2:"MOA, EPC/entreprises, sous-traitants, ingénieurs — avec renonciations croisées selon wording pour éviter les trous de couverture."},
+    cta:{t:"Parlez-nous de votre projet",p:"Nous préparons une note de présentation, un wording CAR/EAR et un calendrier marché.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Responsabilité Civile",next:"Santé collective & Prévoyance"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+  },
+
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    title:"Construction (CAR/EAR)",
+    subtitle:"All Risks construction • Third-party liability • Erection & testing • Maintenance • ALoP/DSU • Contractors’ plant & site property.",
+    badges:["Owner / EPC / Contractors","Energy & infrastructure projects","LMA/IUA wordings"],
+    tabs:{over:"Overview",cov:"Covers",opt:"Options & ALoP",req:"Documents",claim:"Claims",faq:"FAQ"},
+    over:{t:"1. Overview",p:"CAR (Contractors’ All Risks) and EAR (Erection All Risks) protect the works plus third-party liability during construction, testing and maintenance. For owners, EPC/contractors, subcontractors and engineers.",
+          li:["Building, civil, energy & industrial projects.","Phases: construction → testing → maintenance.","Optional ALoP/DSU for delay in start-up."],
+          kpi:["TPL line","Deductibles","Form"]},
+    cov:{t:"2. Core covers",
+         c0:{t:"Material damage to the works",li:["Fire, explosion, storm, flood, theft.","Faulty workmanship, collapse, landslip.","Existing & surrounding property (sublimits)."]},
+         c1:{t:"Third-party liability",li:["Bodily injury & property damage to third parties.","Defence & recovery costs.","Cross-liability / waiver of subrogation if stipulated."]},
+         c2:{t:"Ancillary property & costs",li:["Site property, temporary facilities.","Debris removal, prevention & salvage costs.","Contractors’ plant & equipment (option)."]}},
+    opt:{t:"3. Options, extensions & ALoP/DSU",
+         c0:{t:"Erection, testing & maintenance",li:["Cold/hot testing, commissioning.","Visits maintenance (12m) or extended (up to 24m).","Design defects cover (DE/LEG wording if agreed)."]},
+         c1:{t:"ALoP / DSU",li:["Covers lost gross profit due to insured PD on the works.","Settings: indemnity period, time deductible, revenue profile.","Data: schedule, critical path, O&M contracts."]},
+         c2:{t:"Other common extensions",li:["Off-site storage & inland transit.","Existing/surrounding property, service interference.","Sudden & accidental pollution clauses where relevant."]}},
+    req:{t:"4. Submission & policy settings",
+         c0:{t:"Project data",li:["Description & value, timetable, critical path.","Drawings/method statements, geotech, risk study (QRA).","Roles MOA/EPC/lots, major contracts & T&Cs."]},
+         c1:{t:"Policy settings",li:["Limits, sublimits, deductibles per peril/activity.","Periods: construction, testing, maintenance, ALoP.","PCIP (owner controlled) or CCIP (contractor controlled)."]}},
+    claim:{t:"5. Claims handling",sum:"Our approach",li:["Immediate notice, site protection & mitigation.","Loss adjusters, evidence, repair follow-up.","Cash-calls possible, reporting & arbitration if needed."]},
+    faq:{t:"6. FAQ",q0:"CAR vs EAR: what’s the difference?",a0:"CAR is often used for civil/building; EAR for erection/industrial equipment. Cover principles are similar.",
+         q1:"How to size ALoP/DSU?",a1:"Based on expected gross profit over the indemnity period, with waiting period and limits. Schedule & critical path are key.",
+         q2:"Who should be insured?",a2:"Owner, EPC/contractors, subcontractors, engineers — with cross-waivers as per wording to avoid gaps."},
+    cta:{t:"Tell us about your project",p:"We’ll prepare a placement note, CAR/EAR wording and a market calendar.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Liability",next:"Group Health & Benefits"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"الإنشاءات (CAR/EAR)",
+    subtitle:"جميع أخطار المشاريع • مسؤولية طرف ثالث • التركيب والاختبارات • الصيانة • ALoP/DSU • معدات وممتلكات الموقع.",
+    badges:["المالك / EPC / المقاولون","مشاريع الطاقة والبنية التحتية","صياغات LMA/IUA"],
+    tabs:{over:"لمحة",cov:"التغطيات",opt:"خيارات وDSU",req:"المستندات",claim:"المطالبات",faq:"الأسئلة"},
+    over:{t:"١. لمحة",p:"توفر CAR/EAR تغطية لأعمال المشروع ومسؤولية الغير خلال البناء والاختبارات وفترة الصيانة. مخصصة للمالك وEPC والمقاولين والمهندسين.",
+          li:["مبانٍ وأشغال مدنية وطاقة وصناعة.","مراحل: تنفيذ → اختبارات → صيانة.","خيار ALoP/DSU لتأخر التشغيل."],
+          kpi:["حد المسؤولية","التحملات","النموذج"]},
+    cov:{t:"٢. التغطيات الأساسية",
+         c0:{t:"أضرار بالأعمال",li:["حريق، انفجار، عاصفة، فيضان، سرقة.","أخطاء تنفيذ، انهيار، انهيال.","الممتلكات القائمة والمجاورة (حدود فرعية)."]},
+         c1:{t:"مسؤولية الموقع",li:["إصابات وأضرار للغير.","الدفاع والرجوع القضائي.","مسؤولية متبادلة/تنازل عن الرجوع حسب الصياغة."]},
+         c2:{t:"ممتلكات وتكاليف مساندة",li:["ممتلكات الموقع والمنشآت المؤقتة.","إزالة الأنقاض وتكاليف الوقاية والإنقاذ.","معدات وآليات المقاول (اختياري)."]}},
+    opt:{t:"٣. خيارات وامتدادات وDSU/ALoP",
+         c0:{t:"التركيب والاختبارات والصيانة",li:["اختبارات باردة/ساخنة أثناء التشغيل التجريبي.","صيانة زيارات (١٢ شهراً) أو ممتدة (حتى ٢٤ شهراً).","عيوب التصميم وفق بنود DE/LEG عند الاتفاق."]},
+         c1:{t:"ALoP / DSU",li:["خسارة الربح الإجمالي بسبب ضرر مادي مغطى.","المعلمات: مدة التعويض، فترة انتظار، منحنى الإيرادات.","البيانات: الجدول، المسار الحرج، عقود التشغيل والصيانة."]},
+         c2:{t:"امتدادات شائعة أخرى",li:["تخزين خارج الموقع ونقل داخلي.","ممتلكات قائمة/مجاورة وتداخل الخدمات.","تلوث فجائي وعارض حيث يلزم."]}},
+    req:{t:"٤. المستندات ومعايير الوثيقة",
+         c0:{t:"بيانات المشروع",li:["الوصف والقيمة والجدول والمسار الحرج.","رسومات وطرق التنفيذ وجيوتقنية ودراسة مخاطر.","تقسيم أدوار المالك/EPC/العقود الرئيسية."]},
+         c1:{t:"إعداد الوثيقة",li:["حدود وتحت حدود وتحملات لكل خطر/نشاط.","فترات البناء والاختبارات والصيانة وDSU.","نموذج PCIP (مالك) أو CCIP (مقاول)."]}},
+    claim:{t:"٥. إدارة المطالبات",sum:"نهجنا",li:["إخطار فوري وحماية الموقع وتقليل الخسائر.","خبراء تسوية وأدلة ومتابعة الإصلاح.","دفعات تحت الحساب وتقارير وتحكيم عند الحاجة."]},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"ما الفرق بين CAR وEAR؟",a0:"CAR غالباً للأعمال المدنية/المباني، وEAR للتركيب والمعدات الصناعية. المبادئ متقاربة.",
+         q1:"كيف نحدد ALoP/DSU؟",a1:"وفق الربح الإجمالي المتوقع خلال مدة التعويض مع فترة انتظار وحدود. الجدول والمسار الحرج أساسيان.",
+         q2:"من يجب إدراجه كمؤمَّن؟",a2:"المالك وEPC والمقاولون والمهندسون مع تنازلات متبادلة لتفادي فجوات التغطية."},
+    cta:{t:"حدثنا عن مشروعك",p:"نُعد مذكرة طرح، وصياغة CAR/EAR، ورزنامة سوق.",
+         quote:"اطلب عرضاً",talk:"تحدّث إلى مستشار"},
+    nav:{prev:"المسؤولية المدنية",next:"الصحة الجماعية والمزايا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+  }
+};
+
+/* ================== Helpers ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
+
+/* ================== Render & Tabs ================== */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','req','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+}
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+</body>
+</html>
