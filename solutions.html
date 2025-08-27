@@ -110,7 +110,7 @@ const I18N = {
     badges:["Mise en concurrence","Gestion des sinistres","Transparence totale"],
     tabs:{corp:"Entreprises",retail:"Particuliers"},
     ui:{clear:"Effacer",search:"Rechercher…",nores:"Aucun produit ne correspond à votre recherche."},
-    cta:{quote:"Obtenir un devis",more:"Parler à un conseiller"},
+    cta:{quote:"Obtenir un devis",learn:"Savoir plus",more:"Parler à un conseiller"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
     filters:{
       corp:[["all","Tous"],["prop","Biens"],["trans","Transport"],["fleet","Flotte"],["liab","Responsabilité"],["const","Construction"],["health","Santé"]],
@@ -118,23 +118,72 @@ const I18N = {
     },
     products:{
       corp:[
-        {id:"multirisques",cat:["prop"],t:"Multirisques Entreprise",p:"Biens & pertes d’exploitation pour locaux, stocks, machines.",bul:["Incendie, dégâts des eaux, bris de machines","Pertes d’exploitation (PDB)","Options CatNat & événements climatiques"]},
-        {id:"transport",cat:["trans"],t:"Transport (marchandises)",p:"Couvre vos expéditions import/export & logistique.",bul:["Tous risques facultés","RC transporteur / commissionnaire","Paramétriques météo en option"]},
-        {id:"flotte",cat:["fleet"],t:"Automobile & Flotte",p:"De 5 à 5 000 véhicules, gestion sinistres & télématique.",bul:["Tiers / Tous risques / Bris de glace","Assistance & véhicules de remplacement","Tableaux de bord sinistres"]},
-        {id:"rc",cat:["liab"],t:"Responsabilité Civile",p:"RC Générale / Professionnelle / Pollution / Produits.",bul:["RC exploitation et après livraison","RC professionnelle (PI)","RC environnementale"]},
-        {id:"construction",cat:["const"],t:"Construction (CAR/EAR)",p:"Tous risques chantier & décennale selon projet.",bul:["Chantiers BTP, énergie, infrastructures","Pertes d’exploitation chantier","Couvertures par phase"]},
-        {id:"santecollective",cat:["health"],t:"Santé collective & Prévoyance",p:"Contrats pour salariés : frais médicaux et prévoyance.",bul:["Réseaux de soins & tiers payant","Couvertures cadres/non-cadres","Pilotage coûts & prévention"]}
+        {id:"multirisques", url:"produits/multirisques.html",
+         img:"https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=60",
+         cat:["prop"], t:"Multirisques Entreprise",
+         p:"Biens & pertes d’exploitation pour locaux, stocks, machines.",
+         bul:["Incendie, dégâts des eaux, bris de machines","Pertes d’exploitation (PDB)","Options CatNat & événements climatiques"]},
+        {id:"transport", url:"produits/transport.html",
+         img:"https://images.unsplash.com/photo-1517959105821-eaf2591984c2?auto=format&fit=crop&w=1200&q=60",
+         cat:["trans"], t:"Transport (marchandises)",
+         p:"Couvre vos expéditions import/export & logistique.",
+         bul:["Tous risques facultés","RC transporteur / commissionnaire","Paramétriques météo en option"]},
+        {id:"flotte", url:"produits/flotte.html",
+         img:"https://images.unsplash.com/photo-1517673132405-9d71e31f2d3b?auto=format&fit=crop&w=1200&q=60",
+         cat:["fleet"], t:"Automobile & Flotte",
+         p:"De 5 à 5 000 véhicules, gestion sinistres & télématique.",
+         bul:["Tiers / Tous risques / Bris de glace","Assistance & véhicules de remplacement","Tableaux de bord sinistres"]},
+        {id:"rc", url:"produits/responsabilite-civile.html",
+         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
+         cat:["liab"], t:"Responsabilité Civile",
+         p:"RC Générale / Professionnelle / Pollution / Produits.",
+         bul:["RC exploitation et après livraison","RC professionnelle (PI)","RC environnementale"]},
+        {id:"construction", url:"produits/construction.html",
+         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
+         cat:["const"], t:"Construction (CAR/EAR)",
+         p:"Tous risques chantier & décennale selon projet.",
+         bul:["Chantiers BTP, énergie, infrastructures","Pertes d’exploitation chantier","Couvertures par phase"]},
+        {id:"santecollective", url:"produits/sante-collective.html",
+         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"], t:"Santé collective & Prévoyance",
+         p:"Contrats pour salariés : frais médicaux et prévoyance.",
+         bul:["Réseaux de soins & tiers payant","Couvertures cadres/non-cadres","Pilotage coûts & prévention"]}
       ],
       retail:[
-        {id:"sante",cat:["health"],t:"Santé",p:"Remboursement soins, hospitalisation, optique & dentaire.",bul:["Réseau partenaires & tiers payant","Formules modulaires","Assistance 24/7"]},
-        {id:"alv",cat:["acc"],t:"Accidents de la vie",p:"Indemnisation des accidents domestiques & loisirs.",bul:["Incapacité & invalidité","Rente éducation","Assistance à domicile"]},
-        {id:"habitation",cat:["home"],t:"Biens (Habitation)",p:"Incendie, vol, dégâts des eaux, RC vie privée.",bul:["Valeur à neuf selon options","Protection juridique","Objets de valeur"]},
-        {id:"vie",cat:["life"],t:"Assurance-vie & placements",p:"Épargne, transmission & capitalisation.",bul:["Fonds euros & unités de compte","Arbitrages & fiscalité","Options bénéficiaires"]},
-        {id:"schengen",cat:["travel"],t:"Voyage Schengen",p:"Attestation conforme, visa & assistance.",bul:["Frais médicaux & rapatriement","Bagages & retard","Formules courte/longue durée"]},
-        {id:"retraite",cat:["ret"],t:"Retraite",p:"Constitution d’une rente/épargne long terme.",bul:["Versements programmés","Avantages fiscaux (selon cadre)","Options réversibilité"]}
+        {id:"sante", url:"produits/sante.html",
+         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"], t:"Santé",
+         p:"Remboursement soins, hospitalisation, optique & dentaire.",
+         bul:["Réseau partenaires & tiers payant","Formules modulaires","Assistance 24/7"]},
+        {id:"alv", url:"produits/accidents-de-la-vie.html",
+         img:"https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=1200&q=60",
+         cat:["acc"], t:"Accidents de la vie",
+         p:"Indemnisation des accidents domestiques & loisirs.",
+         bul:["Incapacité & invalidité","Rente éducation","Assistance à domicile"]},
+        {id:"habitation", url:"produits/biens.html",
+         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
+         cat:["home"], t:"Biens (Habitation)",
+         p:"Incendie, vol, dégâts des eaux, RC vie privée.",
+         bul:["Valeur à neuf selon options","Protection juridique","Objets de valeur"]},
+        {id:"vie", url:"produits/assurance-vie.html",
+         img:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=60",
+         cat:["life"], t:"Assurance-vie & placements",
+         p:"Épargne, transmission & capitalisation.",
+         bul:["Fonds euros & unités de compte","Arbitrages & fiscalité","Options bénéficiaires"]},
+        {id:"schengen", url:"produits/voyage-schengen.html",
+         img:"https://images.unsplash.com/photo-1502920917128-1aa500764ce7?auto=format&fit=crop&w=1200&q=60",
+         cat:["travel"], t:"Voyage Schengen",
+         p:"Attestation conforme, visa & assistance.",
+         bul:["Frais médicaux & rapatriement","Bagages & retard","Formules courte/longue durée"]},
+        {id:"retraite", url:"produits/retraite.html",
+         img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60",
+         cat:["ret"], t:"Retraite",
+         p:"Constitution d’une rente/épargne long terme.",
+         bul:["Versements programmés","Avantages fiscaux (selon cadre)","Options réversibilité"]}
       ]
     }
   },
+
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
     title:"Insurance solutions",
@@ -142,7 +191,7 @@ const I18N = {
     badges:["Market benchmarking","Claims handling","Full transparency"],
     tabs:{corp:"Businesses",retail:"Individuals"},
     ui:{clear:"Clear",search:"Search…",nores:"No product matches your search."},
-    cta:{quote:"Get a quote",more:"Talk to an advisor"},
+    cta:{quote:"Get a quote",learn:"Learn more",more:"Talk to an advisor"},
     footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
     filters:{
       corp:[["all","All"],["prop","Property"],["trans","Cargo"],["fleet","Fleet"],["liab","Liability"],["const","Construction"],["health","Health"]],
@@ -150,23 +199,72 @@ const I18N = {
     },
     products:{
       corp:[
-        {id:"multirisques",cat:["prop"],t:"Commercial Property (All Risks)",p:"Assets & Business Interruption for premises, stock, machinery.",bul:["Fire, water damage, machinery breakdown","Business interruption","NatCat & climate options"]},
-        {id:"transport",cat:["trans"],t:"Cargo / Transport",p:"Covers imports/exports and logistics chain.",bul:["All-risks cargo","Carrier/Freight forwarder liability","Optional weather parametrics"]},
-        {id:"flotte",cat:["fleet"],t:"Motor & Fleet",p:"From 5 to 5,000 vehicles, claims & telematics.",bul:["TPL / Comprehensive / Glass","Roadside assistance","Claims dashboards"]},
-        {id:"rc",cat:["liab"],t:"General / Professional Liability",p:"GL, PI, pollution, product liability.",bul:["Operations & post-delivery","Professional indemnity","Environmental liability"]},
-        {id:"construction",cat:["const"],t:"Construction (CAR/EAR)",p:"All-risks projects & decennial where applicable.",bul:["BTP, energy, infrastructure","Project delay/BI options","Phase-based covers"]},
-        {id:"santecollective",cat:["health"],t:"Group Health & Benefits",p:"Employee medical + risk benefits packages.",bul:["Provider networks & direct billing","Schemes by grade","Cost control & prevention"]}
+        {id:"multirisques",url:"produits/multirisques.html",
+         img:"https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=60",
+         cat:["prop"],t:"Commercial Property (All Risks)",
+         p:"Assets & Business Interruption for premises, stock, machinery.",
+         bul:["Fire, water damage, machinery breakdown","Business interruption","NatCat & climate options"]},
+        {id:"transport",url:"produits/transport.html",
+         img:"https://images.unsplash.com/photo-1517959105821-eaf2591984c2?auto=format&fit=crop&w=1200&q=60",
+         cat:["trans"],t:"Cargo / Transport",
+         p:"Covers imports/exports and logistics chain.",
+         bul:["All-risks cargo","Carrier/Freight forwarder liability","Optional weather parametrics"]},
+        {id:"flotte",url:"produits/flotte.html",
+         img:"https://images.unsplash.com/photo-1517673132405-9d71e31f2d3b?auto=format&fit=crop&w=1200&q=60",
+         cat:["fleet"],t:"Motor & Fleet",
+         p:"From 5 to 5,000 vehicles, claims & telematics.",
+         bul:["TPL / Comprehensive / Glass","Roadside assistance","Claims dashboards"]},
+        {id:"rc",url:"produits/responsabilite-civile.html",
+         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
+         cat:["liab"],t:"General / Professional Liability",
+         p:"GL, PI, pollution, product liability.",
+         bul:["Operations & post-delivery","Professional indemnity","Environmental liability"]},
+        {id:"construction",url:"produits/construction.html",
+         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
+         cat:["const"],t:"Construction (CAR/EAR)",
+         p:"All-risks projects & decennial where applicable.",
+         bul:["BTP, energy, infrastructure","Project delay/BI options","Phase-based covers"]},
+        {id:"santecollective",url:"produits/sante-collective.html",
+         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"],t:"Group Health & Benefits",
+         p:"Employee medical + risk benefits packages.",
+         bul:["Provider networks & direct billing","Schemes by grade","Cost control & prevention"]}
       ],
       retail:[
-        {id:"sante",cat:["health"],t:"Health",p:"Outpatient, hospital, optical & dental.",bul:["Partner networks & cashless","Modular plans","24/7 assistance"]},
-        {id:"alv",cat:["acc"],t:"Personal Accident",p:"Indemnities for domestic/leisure accidents.",bul:["Disability benefits","Education annuity","Home assistance"]},
-        {id:"habitation",cat:["home"],t:"Home (Property)",p:"Fire, theft, water damage, personal liability.",bul:["New-for-old options","Legal protection","Valuables cover"]},
-        {id:"vie",cat:["life"],t:"Life Insurance & Savings",p:"Wealth, succession & capital growth.",bul:["Euro funds & UC","Arbitrage & tax","Beneficiary options"]},
-        {id:"schengen",cat:["travel"],t:"Schengen Travel",p:"Visa-compliant certificate & assistance.",bul:["Medical & repatriation","Baggage & delay","Short/long stays"]},
-        {id:"retraite",cat:["ret"],t:"Retirement",p:"Build long-term income/savings.",bul:["Programmed contributions","Tax efficiency (framework)","Reversion options"]}
+        {id:"sante",url:"produits/sante.html",
+         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"],t:"Health",
+         p:"Outpatient, hospital, optical & dental.",
+         bul:["Partner networks & cashless","Modular plans","24/7 assistance"]},
+        {id:"alv",url:"produits/accidents-de-la-vie.html",
+         img:"https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=1200&q=60",
+         cat:["acc"],t:"Personal Accident",
+         p:"Indemnities for domestic/leisure accidents.",
+         bul:["Disability benefits","Education annuity","Home assistance"]},
+        {id:"habitation",url:"produits/biens.html",
+         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
+         cat:["home"],t:"Home (Property)",
+         p:"Fire, theft, water damage, personal liability.",
+         bul:["New-for-old options","Legal protection","Valuables cover"]},
+        {id:"vie",url:"produits/assurance-vie.html",
+         img:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=60",
+         cat:["life"],t:"Life Insurance & Savings",
+         p:"Wealth, succession & capital growth.",
+         bul:["Euro funds & UC","Arbitrage & tax","Beneficiary options"]},
+        {id:"schengen",url:"produits/voyage-schengen.html",
+         img:"https://images.unsplash.com/photo-1502920917128-1aa500764ce7?auto=format&fit=crop&w=1200&q=60",
+         cat:["travel"],t:"Schengen Travel",
+         p:"Visa-compliant certificate & assistance.",
+         bul:["Medical & repatriation","Baggage & delay","Short/long stays"]},
+        {id:"retraite",url:"produits/retraite.html",
+         img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60",
+         cat:["ret"],t:"Retirement",
+         p:"Build long-term income/savings.",
+         bul:["Programmed contributions","Tax efficiency (framework)","Reversion options"]}
       ]
     }
   },
+
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"حلول التأمين",
@@ -174,7 +272,7 @@ const I18N = {
     badges:["مقارنة عروض السوق","إدارة المطالبات","شفافية كاملة"],
     tabs:{corp:"الشركات",retail:"الأفراد"},
     ui:{clear:"مسح",search:"ابحث…",nores:"لا توجد منتجات مطابقة لبحثك."},
-    cta:{quote:"اطلب عرضاً",more:"تحدث إلى مستشار"},
+    cta:{quote:"اطلب عرضاً",learn:"تعرّف أكثر",more:"تحدث إلى مستشار"},
     footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
     filters:{
       corp:[["all","الكل"],["prop","ممتلكات"],["trans","نقل"],["fleet","أساطيل"],["liab","مسؤولية"],["const","إنشاءات"],["health","صحة"]],
@@ -182,20 +280,68 @@ const I18N = {
     },
     products:{
       corp:[
-        {id:"multirisques",cat:["prop"],t:"متعدد المخاطر للشركات",p:"الممتلكات وخسارة الأرباح للمقار والمخازن والآلات.",bul:["حريق وتسرب مياه وكسر آلات","خسارة الأرباح","خيارات كوارث طبيعية ومناخ"]},
-        {id:"transport",cat:["trans"],t:"نقل البضائع",p:"يغطي الاستيراد/التصدير وسلاسل الإمداد.",bul:["جميع الأخطار للبضائع","مسؤولية الناقل/المخلص","بارامترية للطقس (اختياري)"]},
-        {id:"flotte",cat:["fleet"],t:"السيارات والأساطيل",p:"من 5 إلى 5000 مركبة، إدارة مطالبات وتتبع.",bul:["طرف ثالث/شامل/زجاج","مساعدة على الطريق","لوحات مؤشرات للمطالبات"]},
-        {id:"rc",cat:["liab"],t:"المسؤولية العامة/المهنية",p:"عامة ومهنية وتلوث ومسؤولية المنتج.",bul:["أثناء التشغيل وبعد التسليم","المسؤولية المهنية","المسؤولية البيئية"]},
-        {id:"construction",cat:["const"],t:"الإنشاءات (CAR/EAR)",p:"جميع أخطار المشاريع والضمانات اللاحقة حيث تنطبق.",bul:["بناء وطاقة وبنية تحتية","تأخير المشروع/خسارة الأرباح","تغطيات حسب المراحل"]},
-        {id:"santecollective",cat:["health"],t:"الصحة الجماعية والمزايا",p:"برامج طبية ومخاطر للموظفين.",bul:["شبكات مقدمي الخدمة والدفع المباشر","خطط حسب الدرجات","تحكم في التكاليف والوقاية"]}
+        {id:"multirisques",url:"produits/multirisques.html",
+         img:"https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=60",
+         cat:["prop"],t:"متعدد المخاطر للشركات",
+         p:"الممتلكات وخسارة الأرباح للمقار والمخازن والآلات.",
+         bul:["حريق وتسرب مياه وكسر آلات","خسارة الأرباح","خيارات كوارث طبيعية ومناخ"]},
+        {id:"transport",url:"produits/transport.html",
+         img:"https://images.unsplash.com/photo-1517959105821-eaf2591984c2?auto=format&fit=crop&w=1200&q=60",
+         cat:["trans"],t:"نقل البضائع",
+         p:"يغطي الاستيراد/التصدير وسلاسل الإمداد.",
+         bul:["جميع الأخطار للبضائع","مسؤولية الناقل/المخلص","بارامترية للطقس (اختياري)"]},
+        {id:"flotte",url:"produits/flotte.html",
+         img:"https://images.unsplash.com/photo-1517673132405-9d71e31f2d3b?auto=format&fit=crop&w=1200&q=60",
+         cat:["fleet"],t:"السيارات والأساطيل",
+         p:"من 5 إلى 5000 مركبة، إدارة مطالبات وتتبع.",
+         bul:["طرف ثالث/شامل/زجاج","مساعدة على الطريق","لوحات مؤشرات للمطالبات"]},
+        {id:"rc",url:"produits/responsabilite-civile.html",
+         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
+         cat:["liab"],t:"المسؤولية العامة/المهنية",
+         p:"عامة ومهنية وتلوث ومسؤولية المنتج.",
+         bul:["أثناء التشغيل وبعد التسليم","المسؤولية المهنية","المسؤولية البيئية"]},
+        {id:"construction",url:"produits/construction.html",
+         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
+         cat:["const"],t:"الإنشاءات (CAR/EAR)",
+         p:"جميع أخطار المشاريع والضمانات اللاحقة حيث تنطبق.",
+         bul:["بناء وطاقة وبنية تحتية","تأخير المشروع/خسارة الأرباح","تغطيات حسب المراحل"]},
+        {id:"santecollective",url:"produits/sante-collective.html",
+         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"],t:"الصحة الجماعية والمزايا",
+         p:"برامج طبية ومخاطر للموظفين.",
+         bul:["شبكات مقدمي الخدمة والدفع المباشر","خطط حسب الدرجات","تحكم في التكاليف والوقاية"]}
       ],
       retail:[
-        {id:"sante",cat:["health"],t:"الصحة",p:"عيادات وتنويم ونظارات وأسنان.",bul:["شبكات شركاء ودفع مباشر","خطط مرنة","مساعدة 24/7"]},
-        {id:"alv",cat:["acc"],t:"حوادث الحياة",p:"تعويض عن الحوادث المنزلية والترفيهية.",bul:["عوائد عجز","راتب تعليم","مساعدة منزلية"]},
-        {id:"habitation",cat:["home"],t:"السكن (الممتلكات)",p:"حريق وسرقة وتسرب مياه ومسؤولية خاصة.",bul:["قيمة جديدة حسب الخيارات","حماية قانونية","تغطية المقتنيات الثمينة"]},
-        {id:"vie",cat:["life"],t:"تأمين الحياة والادخار",p:"ادخار ونقل الثروة وتنمية رأس المال.",bul:["صناديق بالعملة المحلية ووحدات","تحويلات وضريبة","خيارات المستفيد"]},
-        {id:"schengen",cat:["travel"],t:"سفر شنغن",p:"شهادة مطابقة للتأشيرة ومساعدة.",bul:["نفقات طبية وإعادة للوطن","أمتعة وتأخير","قصير/طويل الأجل"]},
-        {id:"retraite",cat:["ret"],t:"التقاعد",p:"بناء دخل/ادخار طويل الأجل.",bul:["مساهمات مبرمجة","كفاءة ضريبية (حسب الإطار)","خيارات الاستحقاق"]}
+        {id:"sante",url:"produits/sante.html",
+         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
+         cat:["health"],t:"الصحة",
+         p:"عيادات وتنويم ونظارات وأسنان.",
+         bul:["شبكات شركاء ودفع مباشر","خطط مرنة","مساعدة 24/7"]},
+        {id:"alv",url:"produits/accidents-de-la-vie.html",
+         img:"https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=1200&q=60",
+         cat:["acc"],t:"حوادث الحياة",
+         p:"تعويض عن الحوادث المنزلية والترفيهية.",
+         bul:["عوائد عجز","راتب تعليم","مساعدة منزلية"]},
+        {id:"habitation",url:"produits/biens.html",
+         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
+         cat:["home"],t:"السكن (الممتلكات)",
+         p:"حريق وسرقة وتسرب مياه ومسؤولية خاصة.",
+         bul:["قيمة جديدة حسب الخيارات","حماية قانونية","تغطية المقتنيات الثمينة"]},
+        {id:"vie",url:"produits/assurance-vie.html",
+         img:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=60",
+         cat:["life"],t:"تأمين الحياة والادخار",
+         p:"ادخار ونقل الثروة وتنمية رأس المال.",
+         bul:["صناديق بالعملة المحلية ووحدات","تحويلات وضريبة","خيارات المستفيد"]},
+        {id:"schengen",url:"produits/voyage-schengen.html",
+         img:"https://images.unsplash.com/photo-1502920917128-1aa500764ce7?auto=format&fit=crop&w=1200&q=60",
+         cat:["travel"],t:"سفر شنغن",
+         p:"شهادة مطابقة للتأشيرة ومساعدة.",
+         bul:["نفقات طبية وإعادة للوطن","أمتعة وتأخير","قصير/طويل الأجل"]},
+        {id:"retraite",url:"produits/retraite.html",
+         img:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60",
+         cat:["ret"],t:"التقاعد",
+         p:"بناء دخل/ادخار طويل الأجل.",
+         bul:["مساهمات مبرمجة","كفاءة ضريبية (حسب الإطار)","خيارات الاستحقاق"]}
       ]
     }
   }
@@ -246,16 +392,20 @@ function renderGrid(){
   }
 
   filtered.forEach(it=>{
+    const img = it.img || "https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?auto=format&fit=crop&w=1200&q=60";
+    const url = it.url || "#";
     const card=document.createElement('article');
     card.className='card';
     card.innerHTML = `
-      <img class="illus" src="https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?auto=format&fit=crop&w=1200&q=60" alt="">
+      <a href="${url}" aria-label="${it.t}">
+        <img class="illus" src="${img}" alt="">
+      </a>
       <h3 style="margin-top:10px">${it.t}</h3>
       <p class="muted">${it.p || ''}</p>
       ${ (it.bul && it.bul.length) ? `<ul>${it.bul.map(x=>`<li>${x}</li>`).join('')}</ul>` : '' }
       <div class="actions">
-        <a class="btn" href="contact.html">${t('cta.quote')}</a>
-        <a class="btn secondary" href="contact.html">${t('cta.more')}</a>
+        <a class="btn" href="${url}">${t('cta.learn')}</a>
+        <a class="btn secondary" href="contact.html">${t('cta.quote')}</a>
       </div>
     `;
     grid.appendChild(card);
@@ -264,30 +414,23 @@ function renderGrid(){
 
 function applyTexts(){
   document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  // textes statiques
   $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  // placeholders
   $('#q').placeholder = t('ui.search');
   setActiveNav();
-  // rerender chips + grid
   renderChips(); renderGrid();
-  // activer l’onglet courant
   $$('.tab').forEach(b=> b.classList.toggle('active', b.dataset.seg===seg));
 }
 
 /* ================== UI ================== */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
 
-  // langue
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
 
-  // tabs
   $$('#tab-corp,#tab-retail').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       seg = btn.dataset.seg;
@@ -297,11 +440,9 @@ function initUI(){
     });
   });
 
-  // recherche
   $('#q').addEventListener('input', (e)=>{ query=e.target.value; renderGrid(); });
   $('#clear').addEventListener('click', ()=>{ query=''; $('#q').value=''; renderGrid(); });
 
-  // reveal
   const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
 }
@@ -309,8 +450,10 @@ function initUI(){
 /* init */
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
+
 </body>
 </html>
+
 
 
 
