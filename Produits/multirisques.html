@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Multirisques Entreprise</title>
+  <meta name="description" content="Assurance Multirisques Entreprise : protection des biens (locaux, machines, stocks) et pertes d’exploitation, avec options CatNat et événements climatiques."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+
+  <style>
+    /* ==== HÉRO produit ==== */
+    .hero--product{
+      background:
+        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+        url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
+      min-height: 40vh;
+      display:flex;align-items:center;text-align:center
+    }
+    .hero--product h1{ color:#fff; font-size:clamp(1.8rem,3.6vw,3rem) }
+    .hero--product p{ color:#fff; opacity:.98; max-width:920px; margin:6px auto 0 }
+
+    /* ==== Mise en page produit ==== */
+    .main--single{ display:block }
+    .breadcrumbs{ font-weight:800; color:#0b5562; margin-bottom:10px }
+    .breadcrumbs a{ color:var(--c2) }
+
+    /* Tabs horizontaux (sticky) */
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      display:flex; gap:8px; overflow:auto; white-space:nowrap; box-shadow:var(--shadow)
+    }
+    .tabs .tab{ padding:12px 14px; border:1px solid #cfe1e6; border-radius:12px; background:#fff; font-weight:800; color:#0b4e5b; cursor:pointer }
+    .tabs .tab.active{ background:var(--c2); color:#fff; border-color:var(--c2) }
+
+    .tabpanel{ display:none }
+    .tabpanel.active{ display:block }
+
+    /* Grilles & éléments */
+    .features{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-top:8px }
+    .features .p{ background:#f8fbfc; border:1px solid #e2edf2; border-radius:12px; padding:12px }
+    .checks{ list-style:none; padding-left:0 }
+    .checks li{ margin:8px 0; padding-left:26px; position:relative }
+    .checks li::before{ content:"✔"; position:absolute; left:0; top:0; color:#0b6b4a; font-weight:900 }
+
+    .info{ display:grid; grid-template-columns: 1fr 1fr; gap:16px }
+    @media(max-width:900px){ .info{ grid-template-columns:1fr } }
+
+    /* Cartes latérales & KPIs */
+    .facts{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px }
+    .facts .p{ background:#f8fbfc; border:1px solid #e2edf2; border-radius:12px; padding:12px }
+    .facts .v{ font-weight:900; color:#0b5562 }
+
+    /* CTA bas de page */
+    .cta-stack{ display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:10px }
+
+    /* Mobile compacts */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px }
+      .tabs .tab{ padding:10px 12px }
+    }
+  </style>
+
+  <!-- No-JS fallback: affiche tout -->
+  <noscript><style>.tabpanel{display:block}.tabs.sticky{position:static}</style></noscript>
+</head>
+<body>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="../index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../climate.html" data-i18n="nav.climate">Climate Risk</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero hero--product">
+  <div class="container">
+    <p class="breadcrumbs"><a href="../solutions.html" data-i18n="nav.solutions">Solutions</a> · <span data-i18n="title">Multirisques Entreprise</span></p>
+    <h1 data-i18n="title">Multirisques Entreprise</h1>
+    <p data-i18n="subtitle">Biens (locaux, machines, stocks) & pertes d’exploitation — sur mesure par activité, avec options climatiques.</p>
+    <div class="badges">
+      <span class="badge" data-i18n="badges.0">Biens & Pertes d’exploitation</span>
+      <span class="badge" data-i18n="badges.1">CatNat / Climatique</span>
+      <span class="badge" data-i18n="badges.2">Prévention & sinistres</span>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container main main--single">
+
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Sous-sections">
+      <button class="tab active" id="tab-over" role="tab" aria-selected="true"  aria-controls="over" data-tab="over"  data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" aria-controls="cov"  data-tab="cov"   data-i18n="tabs.cov">Garanties</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" aria-controls="opt"  data-tab="opt"   data-i18n="tabs.opt">Options</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" aria-controls="claim"data-tab="claim" data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" aria-controls="faq"  data-tab="faq"   data-i18n="tabs.faq">FAQ</button>
+    </nav>
+
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.h">Pourquoi le Multirisques ?</h2>
+      <div class="info">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            Un contrat « chapeau » qui couvre vos actifs (bâtiments, machines, marchandises) et la continuité d’activité
+            via la Pertes d’Exploitation (PDB). La formule et les franchises sont ajustées à votre secteur et à vos sites.
+          </p>
+          <ul class="checks">
+            <li data-i18n="over.li.0">Couverture des dommages matériels majeurs (incendie, eaux, tempête…)</li>
+            <li data-i18n="over.li.1">Indemnisation de la marge brute (PDB) selon durée d’indemnisation</li>
+            <li data-i18n="over.li.2">Prévention & contrôle de risque (visites, recommandations)</li>
+          </ul>
+        </div>
+        <aside>
+          <div class="facts">
+            <div class="p"><div class="v" data-i18n="facts.0.v">Sites multi-risques</div><div data-i18n="facts.0.l">capacité scalable</div></div>
+            <div class="p"><div class="v" data-i18n="facts.1.v">PDB 12–24 mois</div><div data-i18n="facts.1.l">durée d’indemnisation</div></div>
+            <div class="p"><div class="v" data-i18n="facts.2.v">International</div><div data-i18n="facts.2.l">extensions possibles</div></div>
+          </div>
+          <div class="cta-stack">
+            <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+            <a class="btn secondary" href="../contact.html" data-i18n="cta.advice">Parler à un conseiller</a>
+            <a class="btn secondary" href="#" aria-disabled="true" data-i18n="cta.pdf">Fiche produit (PDF)</a>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <!-- Garanties -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.h">Garanties principales</h2>
+      <div class="features">
+        <div class="p">
+          <h3 data-i18n="cov.b.0.t">Dommages aux biens</h3>
+          <ul class="checks">
+            <li data-i18n="cov.b.0.li.0">Incendie, explosion, foudre</li>
+            <li data-i18n="cov.b.0.li.1">Dégâts des eaux, tempête, grêle</li>
+            <li data-i18n="cov.b.0.li.2">Bris de machines, électricité</li>
+          </ul>
+        </div>
+        <div class="p">
+          <h3 data-i18n="cov.b.1.t">Pertes d’exploitation</h3>
+          <ul class="checks">
+            <li data-i18n="cov.b.1.li.0">Marge brute / Frais supplémentaires</li>
+            <li data-i18n="cov.b.1.li.1">Durée 12–24 mois (au choix)</li>
+            <li data-i18n="cov.b.1.li.2">Point de départ & franchises ajustables</li>
+          </ul>
+        </div>
+        <div class="p">
+          <h3 data-i18n="cov.b.2.t">Responsabilités associées</h3>
+          <ul class="checks">
+            <li data-i18n="cov.b.2.li.0">RC Exploitation (option packagée)</li>
+            <li data-i18n="cov.b.2.li.1">Protection juridique (selon marché)</li>
+            <li data-i18n="cov.b.2.li.2">Défense & recours</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Options -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.h">Options & extensions</h2>
+      <ul class="checks">
+        <li data-i18n="opt.li.0">Événements climatiques élargis (inondation, sécheresse…)</li>
+        <li data-i18n="opt.li.1">Stocks en cours de transport / bris d’outils</li>
+        <li data-i18n="opt.li.2">Frais de décontamination & dépollution</li>
+        <li data-i18n="opt.li.3">Valeur à neuf / ajustement des capitaux</li>
+      </ul>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.h">Accompagnement sinistres</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Notre approche</span></summary>
+        <div>
+          <ul class="checks">
+            <li data-i18n="claim.li.0">Cellule dédiée : déclaration & premières mesures</li>
+            <li data-i18n="claim.li.1">Coordination experts & chiffrage PDB</li>
+            <li data-i18n="claim.li.2">Cash-calls & suivi indemnisation</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.h">FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Quelle différence entre PDB 12 et 24 mois ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">24 mois offrent une marge de reprise plus longue en cas de sinistre majeur. Le choix dépend du cycle d’exploitation.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Faut-il une visite de risque ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Oui pour les sites significatifs : elle permet de calibrer les protections et d’obtenir de meilleures conditions.</p></div>
+      </details>
+    </article>
+
+    <!-- CTA finale -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Besoin d’une étude Multirisques ?</h3>
+      <p class="muted" data-i18n="cta.p">Nous analysons vos capitaux, votre marge brute et proposons une architecture de garanties adaptée.</p>
+      <div class="cta-stack" style="justify-items:center">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../solutions.html" data-i18n="cta.back">← Retour aux Solutions</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p><a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="../climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
+         <a href="../esg.html" data-i18n="nav.esg">ESG</a></p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ====== i18n produit (FR/EN/AR) ====== */
+const I18N = {
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    title:"Multirisques Entreprise",
+    subtitle:"Biens (locaux, machines, stocks) & pertes d’exploitation — sur mesure par activité, avec options climatiques.",
+    badges:["Biens & Pertes d’exploitation","CatNat / Climatique","Prévention & sinistres"],
+    tabs:{over:"Aperçu",cov:"Garanties",opt:"Options",claim:"Sinistres",faq:"FAQ"},
+    over:{
+      h:"Pourquoi le Multirisques ?",
+      p:"Un contrat « chapeau » qui couvre vos actifs (bâtiments, machines, marchandises) et la continuité d’activité via la Pertes d’Exploitation (PDB). La formule et les franchises sont ajustées à votre secteur et à vos sites.",
+      li:["Couverture des dommages matériels majeurs (incendie, eaux, tempête…)","Indemnisation de la marge brute (PDB) selon durée d’indemnisation","Prévention & contrôle de risque (visites, recommandations)"]
+    },
+    facts:[{v:"Sites multi-risques",l:"capacité scalable"},{v:"PDB 12–24 mois",l:"durée d’indemnisation"},{v:"International",l:"extensions possibles"}],
+    cov:{
+      h:"Garanties principales",
+      b:[
+        {t:"Dommages aux biens",li:["Incendie, explosion, foudre","Dégâts des eaux, tempête, grêle","Bris de machines, électricité"]},
+        {t:"Pertes d’exploitation",li:["Marge brute / Frais supplémentaires","Durée 12–24 mois (au choix)","Point de départ & franchises ajustables"]},
+        {t:"Responsabilités associées",li:["RC Exploitation (option packagée)","Protection juridique (selon marché)","Défense & recours"]}
+      ]
+    },
+    opt:{h:"Options & extensions", li:["Événements climatiques élargis (inondation, sécheresse…)","Stocks en cours de transport / bris d’outils","Frais de décontamination & dépollution","Valeur à neuf / ajustement des capitaux"]},
+    claim:{h:"Accompagnement sinistres", sum:"Notre approche", li:["Cellule dédiée : déclaration & premières mesures","Coordination experts & chiffrage PDB","Cash-calls & suivi indemnisation"]},
+    faq:{h:"FAQ", q0:"Quelle différence entre PDB 12 et 24 mois ?", a0:"24 mois offrent une marge de reprise plus longue en cas de sinistre majeur. Le choix dépend du cycle d’exploitation.",
+         q1:"Faut-il une visite de risque ?", a1:"Oui pour les sites significatifs : elle permet de calibrer les protections et d’obtenir de meilleures conditions."},
+    cta:{quote:"Obtenir un devis", advice:"Parler à un conseiller", pdf:"Fiche produit (PDF)", t:"Besoin d’une étude Multirisques ?", p:"Nous analysons vos capitaux, votre marge brute et proposons une architecture de garanties adaptée.", back:"← Retour aux Solutions"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+  },
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    title:"Commercial Property (All Risks)",
+    subtitle:"Assets (premises, machinery, stock) & Business Interruption — tailored by industry, with climate options.",
+    badges:["Property & BI","NatCat / Climate","Prevention & claims"],
+    tabs:{over:"Overview",cov:"Covers",opt:"Options",claim:"Claims",faq:"FAQ"},
+    over:{h:"Why Property All Risks?",
+      p:"A master policy protecting your physical assets and business continuity through BI. Limits and deductibles are aligned with your operations and sites.",
+      li:["Major physical damage (fire, water, storm)","BI indemnity (gross profit) with selectable indemnity period","Risk engineering & prevention visits"]},
+    facts:[{v:"Multi-site",l:"scalable capacity"},{v:"BI 12–24 months",l:"indemnity period"},{v:"International",l:"possible extensions"}],
+    cov:{h:"Key covers",
+      b:[
+        {t:"Property damage",li:["Fire, explosion, lightning","Water damage, storm, hail","Machinery breakdown, electrical"]},
+        {t:"Business Interruption",li:["Gross profit / Increased cost of working","12–24 months (choice)","Waiting period & deductibles"]},
+        {t:"Associated liabilities",li:["General liability (pack option)","Legal protection (market dependent)","Defence & recovery"]}
+      ]
+    },
+    opt:{h:"Options & extensions", li:["Wider climate perils (flood, drought…)","Stock in transit / tools breakdown","Decontamination & pollution costs","New-for-old / sum insured adjustments"]},
+    claim:{h:"Claims support", sum:"Our approach", li:["Dedicated desk: FNOL & first measures","Loss adjusters coordination & BI quantification","Cash-calls & indemnity follow-up"]},
+    faq:{h:"FAQ", q0:"BI 12 vs 24 months?", a0:"24 months offer a longer recovery runway after a major loss. Choose by operating cycle.",
+         q1:"Is a risk survey needed?", a1:"Yes for material sites — helps calibrate protections and secure better terms."},
+    cta:{quote:"Get a quote", advice:"Talk to an advisor", pdf:"Product sheet (PDF)", t:"Need a Property study?", p:"We analyse sums insured and gross profit, then design a suitable architecture.", back:"← Back to Solutions"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"متعدد المخاطر للشركات",
+    subtitle:"حماية الممتلكات (مقار، آلات، مخزون) وخسارة الأرباح — مصمم حسب النشاط، مع خيارات مناخية.",
+    badges:["ممتلكات وخسارة أرباح","كوارث طبيعية/مناخ","وقاية وإدارة مطالبات"],
+    tabs:{over:"نظرة عامة",cov:"التغطيات",opt:"الخيارات",claim:"المطالبات",faq:"الأسئلة"},
+    over:{h:"لماذا متعدد المخاطر؟",
+      p:"وثيقة شاملة تحمي الأصول المادية واستمرارية النشاط عبر خسارة الأرباح. تُضبط الحدود والخصومات وفق طبيعة النشاط والمواقع.",
+      li:["أضرار مادية كبرى (حريق، مياه، عاصفة)","تعويض الربح الإجمالي لمدة 12–24 شهرًا","زيارات وقاية وهندسة مخاطر"]},
+    facts:[{v:"مواقع متعددة",l:"سعة قابلة للتدرج"},{v:"خسارة أرباح 12–24 شهرًا",l:"مدة التعويض"},{v:"دولي",l:"امتدادات ممكنة"}],
+    cov:{h:"التغطيات الرئيسية",
+      b:[
+        {t:"أضرار الممتلكات",li:["حريق وانفجار وصاعقة","أضرار مياه وعاصفة وبَرَد","كسر آلات وأعطال كهربائية"]},
+        {t:"خسارة الأرباح",li:["ربح إجمالي/تكاليف إضافية","مدة 12–24 شهرًا (اختياري)","فترات انتظار وخصومات قابلة للضبط"]},
+        {t:"مسؤوليات مرتبطة",li:["مسؤولية تشغيل (اختيارية ضمن حزمة)","حماية قانونية (حسب السوق)","الدفاع والمطالبة بالحقوق"]}
+      ]
+    },
+    opt:{h:"خيارات وامتدادات", li:["مخاطر مناخية أوسع (فيضانات، جفاف…)","مخزون أثناء النقل/كسر الأدوات","تكاليف إزالة التلوث","قيمة جديدة/ضبط مبالغ التأمين"]},
+    claim:{h:"دعم المطالبات", sum:"منهجنا", li:["فريق مخصص: الإخطار والإجراءات الأولى","تنسيق الخبراء وتقدير خسارة الأرباح","دفعات تحت الحساب ومتابعة التعويض"]},
+    faq:{h:"الأسئلة الشائعة", q0:"ما الفرق بين 12 و24 شهرًا لخسارة الأرباح؟", a0:"24 شهرًا تمنح وقتًا أطول للتعافي بعد الخسائر الكبرى. يعتمد الاختيار على دورة التشغيل.",
+         q1:"هل يلزم فحص مخاطر؟", a1:"نعم للمواقع المهمة — يساعد على تحسين الحماية والحصول على شروط أفضل."},
+    cta:{quote:"اطلب عرضًا", advice:"تحدث إلى مستشار", pdf:"النشرة (PDF)", t:"تحتاج دراسة متعدد المخاطر؟", p:"نحلل مبالغ التأمين والربح الإجمالي ونقترح هيكل تغطيات مناسبًا.", back:"← عودة إلى الحلول"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقًا]"}
+  }
+};
+
+/* ===== Helpers ===== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function markActiveNav(){
+  // on force l'onglet "Solutions" actif
+  $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href')?.endsWith('solutions.html')));
+}
+
+/* ===== Rendu & UI ===== */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+
+  // Textes statiques
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+
+  // Boutons langue UI
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+
+  // Nav active
+  markActiveNav();
+}
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  const show=(id)=>{
+    tabs.forEach(b=>{
+      const on=b.dataset.tab===id;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    history.replaceState(null,'','#'+id);
+  };
+  tabs.forEach(b=> b.addEventListener('click', ()=> show(b.dataset.tab)));
+  // hash initial
+  const id=(location.hash||'#over').slice(1);
+  show(['over','cov','opt','claim','faq'].includes(id)?id:'over');
+}
+function initUI(){
+  // burger
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  // langue
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  // reveal
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  // tabs
+  bindTabs();
+}
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+
+<!-- SEO: FAQPage (extrait) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"BI 12 vs 24 months?","acceptedAnswer":{"@type":"Answer","text":"24 months offer a longer recovery runway after a major loss. Choose by operating cycle."}},
+    {"@type":"Question","name":"Is a risk survey needed?","acceptedAnswer":{"@type":"Answer","text":"Yes for material sites — helps calibrate protections and secure better terms."}}
+  ]
+}
+</script>
+</body>
+</html>
