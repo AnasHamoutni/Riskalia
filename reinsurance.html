@@ -13,11 +13,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
   <style>
-    /* Héro spécifique à la page (le reste vient de styles.css) */
+    /* ===== HERO spécifique à la page (le reste vient de styles.css) ===== */
     .hero--re{
       background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
                  url('https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
       min-height:42vh;
+    }
+
+    /* ===== Layout deux colonnes (desktop) + sidebar sticky ===== */
+    .main{
+      display:grid;
+      grid-template-columns: 280px minmax(0,1fr);
+      gap:28px;
+      align-items:start;
+      /* s'assurer que rien ne coupe la sticky */
+      overflow: visible;
+    }
+    .content-col{ min-width:0; }
+
+    :root{
+      --sticky-top: 84px;   /* marge sous le header; sera ajustée en JS */
+      --sticky-pad: 8px;
+    }
+    .aside{
+      position: sticky;
+      top: var(--sticky-top);
+      max-height: calc(100vh - var(--sticky-top) - var(--sticky-pad));
+      overflow:auto;
+      padding-right: 4px; /* petit espace pour la scrollbar */
+    }
+    .aside h4{ margin-top:0; }
+    .aside .toc{
+      display:block;
+      padding:6px 0;
+      text-decoration:none;
+    }
+    .aside .toc.active{ font-weight:600; }
+
+    /* Éviter que l'ancre soit cachée sous le header sticky lors du scroll */
+    article{ scroll-margin-top: calc(var(--sticky-top) + 12px); }
+
+    /* ===== Mobile : une colonne, sidebar non-sticky ===== */
+    @media (max-width: 992px){
+      .main{ grid-template-columns: 1fr; }
+      .aside{
+        position: static;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+      }
     }
   </style>
 </head>
@@ -71,218 +115,228 @@
       <a href="#faq" class="toc"><span data-i18n="sec.faq.t">FAQ</span></a>
     </aside>
 
-    <!-- CHIPS (mobile) -->
-    <div class="chips" role="tablist" aria-label="Sections">
-      <button class="chip" data-jump="intro" data-i18n="sec.intro.t">Présentation</button>
-      <button class="chip" data-jump="treaty" data-i18n="sec.treaty.t">Traités</button>
-      <button class="chip" data-jump="fac" data-i18n="sec.fac.t">Facultatives</button>
-      <button class="chip" data-jump="design" data-i18n="sec.design.t">Conception</button>
-      <button class="chip" data-jump="claims" data-i18n="sec.claims.t">Sinistres</button>
-      <button class="chip" data-jump="process" data-i18n="sec.process.t">Processus</button>
-      <button class="chip" data-jump="faq" data-i18n="sec.faq.t">FAQ</button>
-    </div>
+    <!-- COLONNE CONTENU (chips + articles) -->
+    <div class="content-col">
+      <!-- CHIPS (mobile) -->
+      <div class="chips" role="tablist" aria-label="Sections">
+        <button class="chip" data-jump="intro" data-i18n="sec.intro.t">Présentation</button>
+        <button class="chip" data-jump="treaty" data-i18n="sec.treaty.t">Traités</button>
+        <button class="chip" data-jump="fac" data-i18n="sec.fac.t">Facultatives</button>
+        <button class="chip" data-jump="design" data-i18n="sec.design.t">Conception</button>
+        <button class="chip" data-jump="claims" data-i18n="sec.claims.t">Sinistres</button>
+        <button class="chip" data-jump="process" data-i18n="sec.process.t">Processus</button>
+        <button class="chip" data-jump="faq" data-i18n="sec.faq.t">FAQ</button>
+      </div>
 
-    <!-- CONTENT -->
-    <div>
-      <!-- INTRO -->
-      <article id="intro" class="card">
-        <h2 data-i18n="sec.intro.t">1. Présentation</h2>
-        <p class="muted" data-i18n="sec.intro.p">Réassurance de bout en bout : de l’analyse d’appétence au risque à la rédaction des wordings, de la modélisation PML/AAL aux placements multicouches et au suivi annuel.</p>
-        <ul>
-          <li data-i18n="sec.intro.li.0">Accès direct aux réassureurs notés A/AA.</li>
-          <li data-i18n="sec.intro.li.1">Wordings et clauses LMA/IUA, respect des standards internationaux.</li>
-          <li data-i18n="sec.intro.li.2">Reporting cash-calls, sinistres majeurs, arbitrages.</li>
-        </ul>
-      </article>
-<br/>
-      <!-- TRAITES -->
-      <article id="treaty" class="card">
-        <h2 data-i18n="sec.treaty.t">2. Traités</h2>
-        <p class="muted" data-i18n="sec.treaty.lead">Conception et placement de traités proportionnels et non proportionnels, adaptés au profil de risque et au plan de cession.</p>
+      <!-- CONTENT -->
+      <div>
+        <!-- INTRO -->
+        <article id="intro" class="card">
+          <h2 data-i18n="sec.intro.t">1. Présentation</h2>
+          <p class="muted" data-i18n="sec.intro.p">Réassurance de bout en bout : de l’analyse d’appétence au risque à la rédaction des wordings, de la modélisation PML/AAL aux placements multicouches et au suivi annuel.</p>
+          <ul>
+            <li data-i18n="sec.intro.li.0">Accès direct aux réassureurs notés A/AA.</li>
+            <li data-i18n="sec.intro.li.1">Wordings et clauses LMA/IUA, respect des standards internationaux.</li>
+            <li data-i18n="sec.intro.li.2">Reporting cash-calls, sinistres majeurs, arbitrages.</li>
+          </ul>
+        </article>
+        <br/>
 
-        <div class="cards-grid mt-2">
-          <section class="card">
-            <h3 data-i18n="sec.treaty.cards.0.t">Proportionnels (Quota-Share / Surplus)</h3>
-            <ul>
-              <li data-i18n="sec.treaty.cards.0.li.0">Stabilisation des ratios — partage primes/sinistres.</li>
-              <li data-i18n="sec.treaty.cards.0.li.1">Optimisation du capital & solvabilité.</li>
-              <li data-i18n="sec.treaty.cards.0.li.2">Clauses de commission & réglages glissants.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.treaty.cards.1.t">Non proportionnels (XoL / Stop-Loss)</h3>
-            <ul>
-              <li data-i18n="sec.treaty.cards.1.li.0">Protection de fréquence/sévérité.</li>
-              <li data-i18n="sec.treaty.cards.1.li.1">Couverture volatilité & catastrophes.</li>
-              <li data-i18n="sec.treaty.cards.1.li.2">Stratégies multicouches & agrégations.</li>
-            </ul>
-          </section>
-        </div>
+        <!-- TRAITES -->
+        <article id="treaty" class="card">
+          <h2 data-i18n="sec.treaty.t">2. Traités</h2>
+          <p class="muted" data-i18n="sec.treaty.lead">Conception et placement de traités proportionnels et non proportionnels, adaptés au profil de risque et au plan de cession.</p>
 
-        <div class="table-wrap mt-2">
-          <table>
-            <caption data-i18n="sec.treaty.table.cap" style="text-align:center;">Comparatif rapide des traités</caption>
-            <thead>
-              <tr>
-                <th data-i18n="sec.treaty.table.h.0" style="text-align:center;" >Type</th>
-                <th data-i18n="sec.treaty.table.h.1" style="text-align:center;">Objectif</th>
-                <th data-i18n="sec.treaty.table.h.2" style="text-align:center;">Points-clés</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Quota-Share</td>
-                <td data-i18n="sec.treaty.table.qs.obj">Stabiliser & partager le portefeuille</td>
-                <td data-i18n="sec.treaty.table.qs.k">Commission, glissante, cession par ligne</td>
-              </tr>
-              <tr>
-                <td>Surplus</td>
-                <td data-i18n="sec.treaty.table.sp.obj">Augmenter la capacité par risque</td>
-                <td data-i18n="sec.treaty.table.sp.k">Lignes, limites, capitaux par branche</td>
-              </tr>
-              <tr>
-                <td>XoL</td>
-                <td data-i18n="sec.treaty.table.x.obj">Limiter la sévérité</td>
-                <td data-i18n="sec.treaty.table.x.k">Attachment, limites, multi-layers</td>
-              </tr>
-              <tr>
-                <td>Stop-Loss</td>
-                <td data-i18n="sec.treaty.table.sl.obj">Limiter la sinistralité annuelle</td>
-                <td data-i18n="sec.treaty.table.sl.k">Aggregate, corridor, franchise annuelle</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </article>
-<br/>
-      <!-- FACULTATIVES -->
-      <article id="fac" class="card">
-        <h2 data-i18n="sec.fac.t">3. Facultatives</h2>
-        <p class="muted" data-i18n="sec.fac.lead">Placements ciblés pour risques spécifiques : Property, RC, énergie, construction, lignes financières, transport…</p>
-
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="sec.fac.cards.0.t">Property & CatNat</h3>
-            <ul>
-              <li data-i18n="sec.fac.cards.0.li.0">Grandes valeurs / sites sensibles.</li>
-              <li data-i18n="sec.fac.cards.0.li.1">Paramétriques météo en option.</li>
-              <li data-i18n="sec.fac.cards.0.li.2">PML site & agrégations.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.fac.cards.1.t">RC / Financières</h3>
-            <ul>
-              <li data-i18n="sec.fac.cards.1.li.0">RC générale, produits, pollution.</li>
-              <li data-i18n="sec.fac.cards.1.li.1">D&O, PI, crime, cyber.</li>
-              <li data-i18n="sec.fac.cards.1.li.2">Wordings LMA/IUA.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.fac.cards.2.t">Construction & Énergie</h3>
-            <ul>
-              <li data-i18n="sec.fac.cards.2.li.0">CAR/EAR, tous risques chantier.</li>
-              <li data-i18n="sec.fac.cards.2.li.1">Énergies & grands travaux.</li>
-              <li data-i18n="sec.fac.cards.2.li.2">Sur-mesure par phase.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-<br/>
-      <!-- CONCEPTION PRODUITS -->
-      <article id="design" class="card">
-        <h2 data-i18n="sec.design.t">4. Conception de produits</h2>
-        <p class="muted" data-i18n="sec.design.lead">De l’idéation au lancement : étude d’adéquation marché, tarification, wordings, réassurance support et pilotage performance.</p>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="sec.design.cards.0.t">Études & tarification</h3>
-            <ul>
-              <li data-i18n="sec.design.cards.0.li.0">Benchmark & faisabilité.</li>
-              <li data-i18n="sec.design.cards.0.li.1">Tarifs, segments & profils.</li>
-              <li data-i18n="sec.design.cards.0.li.2">Business plan & KPI.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.design.cards.1.t">Wordings & conformité</h3>
-            <ul>
-              <li data-i18n="sec.design.cards.1.li.0">Clauses LMA/IUA.</li>
-              <li data-i18n="sec.design.cards.1.li.1">Cadres ACAPS & IFRS 17.</li>
-              <li data-i18n="sec.design.cards.1.li.2">Distribution & PRIIPs.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.design.cards.2.t">Réassurance support</h3>
-            <ul>
-              <li data-i18n="sec.design.cards.2.li.0">Capacité & appétence.</li>
-              <li data-i18n="sec.design.cards.2.li.1">Commissions & corridors.</li>
-              <li data-i18n="sec.design.cards.2.li.2">Monitoring performance.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-<br/>
-      <!-- SINISTRES & ARBITRAGES -->
-      <article id="claims" class="card">
-        <h2 data-i18n="sec.claims.t">5. Sinistres & arbitrages 24/7</h2>
-        <p class="muted" data-i18n="sec.claims.lead">Cellule dédiée : quantum review, coordination loss adjusters, reporting & arbitrages (ARIAS…).</p>
-        <details class="mt-2">
-          <summary>🧭 <span data-i18n="sec.claims.sum">Notre approche</span></summary>
-          <div>
-            <ul>
-              <li data-i18n="sec.claims.li.0">Processus d’escalade & cash-calls.</li>
-              <li data-i18n="sec.claims.li.1">Partage documentation & audit trail.</li>
-              <li data-i18n="sec.claims.li.2">Médiation et arbitrage internationaux.</li>
-            </ul>
+          <div class="cards-grid mt-2">
+            <section class="card">
+              <h3 data-i18n="sec.treaty.cards.0.t">Proportionnels (Quota-Share / Surplus)</h3>
+              <ul>
+                <li data-i18n="sec.treaty.cards.0.li.0">Stabilisation des ratios — partage primes/sinistres.</li>
+                <li data-i18n="sec.treaty.cards.0.li.1">Optimisation du capital & solvabilité.</li>
+                <li data-i18n="sec.treaty.cards.0.li.2">Clauses de commission & réglages glissants.</li>
+              </ul>
+            </section>
+            <section class="card">
+              <h3 data-i18n="sec.treaty.cards.1.t">Non proportionnels (XoL / Stop-Loss)</h3>
+              <ul>
+                <li data-i18n="sec.treaty.cards.1.li.0">Protection de fréquence/sévérité.</li>
+                <li data-i18n="sec.treaty.cards.1.li.1">Couverture volatilité & catastrophes.</li>
+                <li data-i18n="sec.treaty.cards.1.li.2">Stratégies multicouches & agrégations.</li>
+              </ul>
+            </section>
           </div>
-        </details>
-      </article>
-<br/>
-      <!-- PROCESS -->
-      <article id="process" class="card">
-        <h2 data-i18n="sec.process.t">6. Processus & livrables</h2>
-        <div class="roadmap">
-          <div class="step">
-            <div class="num">1 — 🔎</div>
-            <div data-i18n="sec.process.steps.0">Diagnostic portefeuille & objectifs (2–3 semaines)</div>
-          </div>
-          <div class="step">
-            <div class="num">2 — 🧮</div>
-            <div data-i18n="sec.process.steps.1">Modélisation PML/AAL & scénarios (2–4 semaines)</div>
-          </div>
-          <div class="step">
-            <div class="num">3 — 🤝</div>
-            <div data-i18n="sec.process.steps.2">Market-test & placement (2–6 semaines)</div>
-          </div>
-          <div class="step">
-            <div class="num">4 — 📊</div>
-            <div data-i18n="sec.process.steps.3">Signature, bordereaux, reporting & suivi annuel</div>
-          </div>
-        </div>
-      </article>
-<br/>
-      <!-- CTA -->
-      <article class="card center">
-        <h3 data-i18n="cta.t">Besoin d’un montage ou d’un renouvellement traité ?</h3>
-        <p class="muted" data-i18n="cta.p">Parlez-nous de votre portefeuille : nous préparons un plan de cession et un calendrier de marché.</p>
-        <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un devis</a>
-      </article>
-<br/>
-      <!-- ===== FAQ enrichie ===== -->
-      <article id="faq" class="card">
-        <h2 data-i18n="faq.title">7. FAQ</h2>
-        <p class="muted mb-1" data-i18n="faq.lead">
-          Les réponses rapides aux questions les plus courantes. Utilisez la recherche pour filtrer.
-        </p>
 
-        <!-- recherche -->
-        <div class="search" role="search" style="margin:10px 0 6px">
-          <input id="faqSearch" type="search" placeholder="Rechercher dans la FAQ…" aria-label="Rechercher dans la FAQ">
-          <button class="btn" id="faqClear" type="button" data-i18n="ui.clear">Effacer</button>
-        </div>
+          <div class="table-wrap mt-2">
+            <table>
+              <caption data-i18n="sec.treaty.table.cap" style="text-align:center;">Comparatif rapide des traités</caption>
+              <thead>
+                <tr>
+                  <th data-i18n="sec.treaty.table.h.0" style="text-align:center;">Type</th>
+                  <th data-i18n="sec.treaty.table.h.1" style="text-align:center;">Objectif</th>
+                  <th data-i18n="sec.treaty.table.h.2" style="text-align:center;">Points-clés</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Quota-Share</td>
+                  <td data-i18n="sec.treaty.table.qs.obj">Stabiliser & partager le portefeuille</td>
+                  <td data-i18n="sec.treaty.table.qs.k">Commission, glissante, cession par ligne</td>
+                </tr>
+                <tr>
+                  <td>Surplus</td>
+                  <td data-i18n="sec.treaty.table.sp.obj">Augmenter la capacité par risque</td>
+                  <td data-i18n="sec.treaty.table.sp.k">Lignes, limites, capitaux par branche</td>
+                </tr>
+                <tr>
+                  <td>XoL</td>
+                  <td data-i18n="sec.treaty.table.x.obj">Limiter la sévérité</td>
+                  <td data-i18n="sec.treaty.table.x.k">Attachment, limites, multi-layers</td>
+                </tr>
+                <tr>
+                  <td>Stop-Loss</td>
+                  <td data-i18n="sec.treaty.table.sl.obj">Limiter la sinistralité annuelle</td>
+                  <td data-i18n="sec.treaty.table.sl.k">Aggregate, corridor, franchise annuelle</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <br/>
 
-        <!-- liste dynamique -->
-        <div id="faqList" class="faq-list"></div>
-      </article>
-    </div>
+        <!-- FACULTATIVES -->
+        <article id="fac" class="card">
+          <h2 data-i18n="sec.fac.t">3. Facultatives</h2>
+          <p class="muted" data-i18n="sec.fac.lead">Placements ciblés pour risques spécifiques : Property, RC, énergie, construction, lignes financières, transport…</p>
+
+          <div class="grid mt-2">
+            <section class="card">
+              <h3 data-i18n="sec.fac.cards.0.t">Property & CatNat</h3>
+              <ul>
+                <li data-i18n="sec.fac.cards.0.li.0">Grandes valeurs / sites sensibles.</li>
+                <li data-i18n="sec.fac.cards.0.li.1">Paramétriques météo en option.</li>
+                <li data-i18n="sec.fac.cards.0.li.2">PML site & agrégations.</li>
+              </ul>
+            </section>
+            <section class="card">
+              <h3 data-i18n="sec.fac.cards.1.t">RC / Financières</h3>
+              <ul>
+                <li data-i18n="sec.fac.cards.1.li.0">RC générale, produits, pollution.</li>
+                <li data-i18n="sec.fac.cards.1.li.1">D&O, PI, crime, cyber.</li>
+                <li data-i18n="sec.fac.cards.1.li.2">Wordings LMA/IUA.</li>
+              </ul>
+            </section>
+            <section class="card">
+              <h3 data-i18n="sec.fac.cards.2.t">Construction & Énergie</h3>
+              <ul>
+                <li data-i18n="sec.fac.cards.2.li.0">CAR/EAR, tous risques chantier.</li>
+                <li data-i18n="sec.fac.cards.2.li.1">Énergies & grands travaux.</li>
+                <li data-i18n="sec.fac.cards.2.li.2">Sur-mesure par phase.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+        <br/>
+
+        <!-- CONCEPTION PRODUITS -->
+        <article id="design" class="card">
+          <h2 data-i18n="sec.design.t">4. Conception de produits</h2>
+          <p class="muted" data-i18n="sec.design.lead">De l’idéation au lancement : étude d’adéquation marché, tarification, wordings, réassurance support et pilotage performance.</p>
+          <div class="grid mt-2">
+            <section class="card">
+              <h3 data-i18n="sec.design.cards.0.t">Études & tarification</h3>
+              <ul>
+                <li data-i18n="sec.design.cards.0.li.0">Benchmark & faisabilité.</li>
+                <li data-i18n="sec.design.cards.0.li.1">Tarifs, segments & profils.</li>
+                <li data-i18n="sec.design.cards.0.li.2">Business plan & KPI.</li>
+              </ul>
+            </section>
+            <section class="card">
+              <h3 data-i18n="sec.design.cards.1.t">Wordings & conformité</h3>
+              <ul>
+                <li data-i18n="sec.design.cards.1.li.0">Clauses LMA/IUA.</li>
+                <li data-i18n="sec.design.cards.1.li.1">Cadres ACAPS & IFRS 17.</li>
+                <li data-i18n="sec.design.cards.1.li.2">Distribution & PRIIPs.</li>
+              </ul>
+            </section>
+            <section class="card">
+              <h3 data-i18n="sec.design.cards.2.t">Réassurance support</h3>
+              <ul>
+                <li data-i18n="sec.design.cards.2.li.0">Capacité & appétence.</li>
+                <li data-i18n="sec.design.cards.2.li.1">Commissions & corridors.</li>
+                <li data-i18n="sec.design.cards.2.li.2">Monitoring performance.</li>
+              </ul>
+            </section>
+          </div>
+        </article>
+        <br/>
+
+        <!-- SINISTRES & ARBITRAGES -->
+        <article id="claims" class="card">
+          <h2 data-i18n="sec.claims.t">5. Sinistres & arbitrages 24/7</h2>
+          <p class="muted" data-i18n="sec.claims.lead">Cellule dédiée : quantum review, coordination loss adjusters, reporting & arbitrages (ARIAS…).</p>
+          <details class="mt-2">
+            <summary>🧭 <span data-i18n="sec.claims.sum">Notre approche</span></summary>
+            <div>
+              <ul>
+                <li data-i18n="sec.claims.li.0">Processus d’escalade & cash-calls.</li>
+                <li data-i18n="sec.claims.li.1">Partage documentation & audit trail.</li>
+                <li data-i18n="sec.claims.li.2">Médiation et arbitrage internationaux.</li>
+              </ul>
+            </div>
+          </details>
+        </article>
+        <br/>
+
+        <!-- PROCESS -->
+        <article id="process" class="card">
+          <h2 data-i18n="sec.process.t">6. Processus & livrables</h2>
+          <div class="roadmap">
+            <div class="step">
+              <div class="num">1 — 🔎</div>
+              <div data-i18n="sec.process.steps.0">Diagnostic portefeuille & objectifs (2–3 semaines)</div>
+            </div>
+            <div class="step">
+              <div class="num">2 — 🧮</div>
+              <div data-i18n="sec.process.steps.1">Modélisation PML/AAL & scénarios (2–4 semaines)</div>
+            </div>
+            <div class="step">
+              <div class="num">3 — 🤝</div>
+              <div data-i18n="sec.process.steps.2">Market-test & placement (2–6 semaines)</div>
+            </div>
+            <div class="step">
+              <div class="num">4 — 📊</div>
+              <div data-i18n="sec.process.steps.3">Signature, bordereaux, reporting & suivi annuel</div>
+            </div>
+          </div>
+        </article>
+        <br/>
+
+        <!-- CTA -->
+        <article class="card center">
+          <h3 data-i18n="cta.t">Besoin d’un montage ou d’un renouvellement traité ?</h3>
+          <p class="muted" data-i18n="cta.p">Parlez-nous de votre portefeuille : nous préparons un plan de cession et un calendrier de marché.</p>
+          <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un devis</a>
+        </article>
+        <br/>
+
+        <!-- ===== FAQ enrichie ===== -->
+        <article id="faq" class="card">
+          <h2 data-i18n="faq.title">7. FAQ</h2>
+          <p class="muted mb-1" data-i18n="faq.lead">
+            Les réponses rapides aux questions les plus courantes. Utilisez la recherche pour filtrer.
+          </p>
+
+          <!-- recherche -->
+          <div class="search" role="search" style="margin:10px 0 6px">
+            <input id="faqSearch" type="search" placeholder="Rechercher dans la FAQ…" aria-label="Rechercher dans la FAQ">
+            <button class="btn" id="faqClear" type="button" data-i18n="ui.clear">Effacer</button>
+          </div>
+
+          <!-- liste dynamique -->
+          <div id="faqList" class="faq-list"></div>
+        </article>
+      </div> <!-- /content -->
+    </div> <!-- /content-col -->
   </div>
 </section>
 
@@ -630,27 +684,23 @@ function highlightTOC(){
   });
 }
 
+/* Ajuster automatiquement la marge sticky selon la hauteur réelle du header */
+function setStickyOffset(){
+  const header = document.querySelector('header');
+  if(header){
+    const h = header.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--sticky-top', (h + 16) + 'px');
+  }
+}
+
 /* init */
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+document.addEventListener('DOMContentLoaded', ()=>{
+  applyTexts();
+  initUI();
+  setStickyOffset();
+  // recalc si la barre de langue/menus change la hauteur (ex: resize)
+  window.addEventListener('resize', setStickyOffset);
+});
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
