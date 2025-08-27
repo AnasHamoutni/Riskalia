@@ -28,9 +28,10 @@
       background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
       overflow:auto; white-space:nowrap;
       box-shadow:var(--shadow);
+      display:flex; gap:10px;
     }
-    .tabs.sticky .tab{ flex:0 0 auto; }            /* onglets ne se compressent pas */
-    .tabpanel{ display:none; }                      /* 1 seul panneau visible */
+    .tabs.sticky .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
     .tabpanel.active{ display:block; }
 
     /* Petites cartes KPI + “documents” */
@@ -40,7 +41,7 @@
     .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
     .dl a{display:flex;align-items:center;gap:10px;border:1px solid #e2edf2;background:#f8fbfc;padding:12px;border-radius:12px;font-weight:800;color:#0b5562}
 
-    /* Mobile : onglets un peu plus compacts */
+    /* Mobile : onglets plus compacts */
     @media(max-width:600px){
       .tabs.sticky{ top:66px; padding:6px; }
       .tab{ padding:10px 12px; }
@@ -89,10 +90,14 @@
 
     <!-- ONGLETs horizontaux -->
     <nav class="tabs sticky" role="tablist" aria-label="Sections ESG">
-      <button class="tab active" role="tab" id="tab-intro"   aria-selected="true"  aria-controls="intro"    data-tab="intro"   data-i18n="sec.intro.t">Engagement</button>
-      <button class="tab"         role="tab" id="tab-gov"     aria-selected="false" aria-controls="gov"      data-tab="gov"     data-i18n="sec.gov.t">Gouvernance & éthique</button>
-      <button class="tab"         role="tab" id="tab-people"  aria-selected="false" aria-controls="people"   data-tab="people"  data-i18n="sec.people.t">Personnes & diversité</button>
-      <button class="tab"         role="tab" id="tab-env"     aria-selected="false" aria-controls="env"      data-tab="env"     data-i18n="sec.env.t">Environnement</button>
+      <button class="tab active" role="tab" id="tab-intro"     aria-selected="true"  aria-controls="intro"     data-tab="intro"     data-i18n="sec.intro.t">Engagement</button>
+      <button class="tab"         role="tab" id="tab-gov"       aria-selected="false" aria-controls="gov"       data-tab="gov"       data-i18n="sec.gov.t">Gouvernance & éthique</button>
+      <button class="tab"         role="tab" id="tab-people"    aria-selected="false" aria-controls="people"    data-tab="people"    data-i18n="sec.people.t">Personnes & diversité</button>
+      <button class="tab"         role="tab" id="tab-env"       aria-selected="false" aria-controls="env"       data-tab="env"       data-i18n="sec.env.t">Environnement</button>
+      <button class="tab"         role="tab" id="tab-procure"   aria-selected="false" aria-controls="procure"   data-tab="procure"   data-i18n="sec.procure.t">Achats responsables</button>
+      <button class="tab"         role="tab" id="tab-community" aria-selected="false" aria-controls="community" data-tab="community" data-i18n="sec.community.t">Sociétal & mécénat</button>
+      <button class="tab"         role="tab" id="tab-targets"   aria-selected="false" aria-controls="targets"   data-tab="targets"   data-i18n="sec.targets.t">Objectifs & KPI</button>
+      <button class="tab"         role="tab" id="tab-faq"       aria-selected="false" aria-controls="faq"       data-tab="faq"       data-i18n="sec.faq.t">FAQ</button>
     </nav>
 
     <!-- PANNEAUX -->
@@ -227,7 +232,7 @@
       </div>
     </article>
 
-    <article id="community" class="card tabpanel" role="tabpanel" aria-labelledby="tab-comm">
+    <article id="community" class="card tabpanel" role="tabpanel" aria-labelledby="tab-community">
       <h2 data-i18n="sec.community.t">6. Sociétal & mécénat</h2>
       <div class="grid mt-2">
         <section class="card">
@@ -250,7 +255,7 @@
     </article>
 
     <article id="targets" class="card tabpanel" role="tabpanel" aria-labelledby="tab-targets">
-      <h2 data-i18n="sec.targets.t">7. Objectifs & indicateurs</h2>
+      <h2 data-i18n="sec.targets.t">7. Objectifs & KPI</h2>
       <div class="table-wrap mt-2">
         <table>
           <caption data-i18n="sec.targets.cap">Cibles 2025–2027</caption>
@@ -354,7 +359,7 @@
 </script>
 
 <script>
-/* ================== i18n (même contenu que ta version précédente) ================== */
+/* ================== i18n ================== */
 const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
@@ -367,31 +372,31 @@ const I18N={
         policies:["Code de conduite (PDF)","Charte achats responsables (PDF)","Politique environnementale (PDF)"]},
       gov:{t:"Gouvernance & éthique",
         cards:[
-          {t:"Intégrité & conformité",li:["Prévention corruption & conflits d’intérêts.","KYC/AML proportionnés.","Formation annuelle obligatoire."]},
-          {t:"Protection des données & cyber",li:["RGPD & DPA prestataires.","MFA, backups, chiffrement.","Exercices phishing & IRP."]},
-          {t:"Gouvernance & transparence",li:["Rôles ESG au COMEX.","Canal lanceur d’alerte.","Transparence des honoraires."]}
+          {t:"Intégrité & conformité",li:["Prévention corruption & conflits d’intérêts, cadeaux & hospitalités encadrés.","KYC/AML proportionnés à nos activités de courtage & réassurance.","Programme de formation annuelle obligatoire."]},
+          {t:"Protection des données & cyber",li:["RGPD : minimisation, droits des personnes, DPA avec prestataires.","Hygiène cyber : MFA, backups, chiffrement disques & transit.","Exercices phishing & plan de réponse."]},
+          {t:"Gouvernance & transparence",li:["Rôles ESG au COMEX, revue trimestrielle des indicateurs.","Canal lanceur d’alerte anonyme et suivi des signalements.","Transparence des honoraires & rémunérations de marché."]}
         ]},
       people:{t:"Personnes & diversité",
         cards:[
-          {t:"Bien-être & conditions de travail",li:["Télétravail hybride & droit à la déconnexion.","Santé & parentalité.","Ergonomie & sécurité."]},
-          {t:"Diversité & inclusion",li:["Recrutements non-discriminants.","Égalité salariale : revues annuelles.","Management inclusif."]},
-          {t:"Développement & engagement",li:["Parcours & budget formation.","Entretiens semestriels.","Baromètre d’engagement."]}
+          {t:"Bien-être & conditions de travail",li:["Télétravail hybride, droit à la déconnexion, horaires souples.","Couverture santé, soutien parentalité & congés solidaires.","Ergonomie & sécurité des postes."]},
+          {t:"Diversité & inclusion",li:["Recrutements non-discriminants & viviers diversifiés.","Égalité salariale : revues annuelles & correctifs.","Sensibilisation biais & management inclusif."]},
+          {t:"Développement & engagement",li:["Parcours de formation & budget individuel.","Entretiens semestriels & plans de progression.","Enquêtes d’engagement & plans d’action."]}
         ]},
       env:{t:"Environnement",lead:"Priorité à la sobriété : mesurer, éviter, réduire et compenser en dernier recours.",
         cards:[
-          {t:"Empreinte carbone",li:["Bilan GES scopes 1–3.","Plan de réduction ciblé.","Compensation résiduelle crédible."]},
-          {t:"Mobilité & voyages",li:["Priorité visio & rail.","Quotas CO₂ par équipe.","Mobilité douce."]},
-          {t:"Green IT & déchets",li:["Allonger la durée de vie IT.","Cloud efficient & sobriété data.","Tri & DEEE."]}
+          {t:"Empreinte carbone",li:["Bilan GES scopes 1–3 (bureaux, énergie, déplacements, numérique).","Plan de réduction : énergie, mobilité, achats, usage cloud.","Compenser les résiduelles via projets crédibles."]},
+          {t:"Mobilité & voyages",li:["Priorité visio & rail ; politique travel “nécessité justifiée”.","Classer les vols et fixer des quotas CO₂ par équipe.","Incitations mobilité douce."]},
+          {t:"Green IT & déchets",li:["Durée de vie allongée des équipements & reconditionné.","Hébergement cloud efficient & sobriété data.","Tri & filières DEEE certifiées."]}
         ]},
       procure:{t:"Achats responsables",
         cards:[
-          {t:"Charte fournisseurs",li:["Exigences sociales & environnementales.","Clauses anticorruption & confidentialité.","Évaluations & plans de progrès."]},
-          {t:"Préférences d’achat",li:["Éco-conception & local.","Critère CO₂ au TCO.","Diversité fournisseurs."]}
+          {t:"Charte fournisseurs",li:["Exigences sociales, éthiques, environnementales & sécurité.","Clause anticorruption & confidentialité.","Évaluation périodique & plan de progrès."]},
+          {t:"Préférences d’achat",li:["Produits éco-conçus & prestataires locaux quand pertinent.","Critère CO₂ intégré dans le TCO.","Diversité fournisseurs (PME, ESS)."]}
         ]},
       community:{t:"Sociétal & mécénat",
         cards:[
-          {t:"Pro bono & mentoring",li:["Heures pro bono.","Mentoring & insertion.","Soutien lors de crises."]},
-          {t:"Dons & mécénat",li:["Budget dédié & comité.","Transparence bénéficiaires.","Suivi d’impact."]}
+          {t:"Pro bono & mentoring",li:["Heures pro bono pour associations & éducation.","Mentoring jeunes talents & insertion.","Soutien sinistres majeurs (expertise bénévole)."]},
+          {t:"Dons & mécénat",li:["Budget annuel dédié & comité de sélection.","Transparence des bénéficiaires.","Suivi d’impact simple."]}
         ]},
       targets:{t:"Objectifs & KPI",cap:"Cibles 2025–2027",h:["Pilier","Objectif","Indicateur (KPI)","Échéance"]},
       faq:{t:"FAQ"}
@@ -399,8 +404,94 @@ const I18N={
     cta:{t:"Des questions sur notre politique ESG ?",p:"Contactez-nous pour recevoir les politiques détaillées et notre dernier reporting.",btn:"Nous contacter"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
   },
-  en:{ /* …conserve tes objets EN/AR si tu veux la traduction – omis ici pour concision */ },
-  ar:{ /* …idem */ }
+
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    title:"ESG at Riskalia",
+    subtitle:"Governance & ethics • Wellbeing & diversity • Environmental footprint • Responsible procurement • Social impact • KPIs & targets.",
+    badges:["Code of conduct","Wellbeing & inclusion","Footprint & frugality"],
+    sec:{
+      intro:{t:"Commitment",p:"Our ESG policy frames how we decide, hire, buy, operate and report. It rests on simple principles: compliance & ethics, respect for people, environmental sobriety and positive local impact.",
+        kpi:[{v:"Code & whistleblowing",l:"Confidential channel"},{v:"Training",l:"Ethics, GDPR, cyber"},{v:"Footprint",l:"Scopes 1–3 measurement"}],
+        policies:["Code of conduct (PDF)","Responsible purchasing charter (PDF)","Environmental policy (PDF)"]},
+      gov:{t:"Governance & ethics",
+        cards:[
+          {t:"Integrity & compliance",li:["Anti-corruption & conflict-of-interest prevention; gifts & hospitality rules.","Risk-based KYC/AML for broking & reinsurance activities.","Mandatory annual training programme."]},
+          {t:"Data protection & cyber",li:["GDPR: minimisation, data subject rights, DPAs with vendors.","Cyber hygiene: MFA, backups, disk & transit encryption.","Phishing drills & incident response plan."]},
+          {t:"Governance & transparency",li:["ESG roles at ExCo; quarterly review of indicators.","Anonymous whistleblowing channel with tracking.","Transparent fees & market remuneration."]}
+        ]},
+      people:{t:"People & diversity",
+        cards:[
+          {t:"Wellbeing & working conditions",li:["Hybrid work, right to disconnect, flexible hours.","Health cover, parental support & volunteer leave.","Ergonomics & workplace safety."]},
+          {t:"Diversity & inclusion",li:["Non-discriminatory hiring & diverse talent pools.","Pay equity: yearly reviews & corrections.","Bias awareness & inclusive management."]},
+          {t:"Development & engagement",li:["Learning paths & personal budget.","Bi-annual reviews & growth plans.","Engagement surveys & action plans."]}
+        ]},
+      env:{t:"Environment",lead:"We prioritise sobriety: measure, avoid, reduce and offset as a last resort.",
+        cards:[
+          {t:"Carbon footprint",li:["GHG inventory scopes 1–3 (offices, energy, travel, digital).","Reduction plan: energy, mobility, purchasing, cloud use.","Offset residuals through credible projects."]},
+          {t:"Mobility & travel",li:["Video & rail by default; “business-need” travel policy.","Classify flights and set CO₂ budgets per team.","Incentives for soft mobility."]},
+          {t:"Green IT & waste",li:["Extend device lifetime & prefer refurbished.","Efficient cloud hosting & data sobriety.","Sorting & certified e-waste streams."]}
+        ]},
+      procure:{t:"Responsible procurement",
+        cards:[
+          {t:"Supplier charter",li:["Social, ethical, environmental & security requirements.","Anti-corruption & confidentiality clauses.","Periodic assessment & improvement plans."]},
+          {t:"Buying preferences",li:["Eco-designed products & local providers where relevant.","CO₂ criterion integrated in TCO.","Supplier diversity (SMEs, social economy)."]}
+        ]},
+      community:{t:"Community & philanthropy",
+        cards:[
+          {t:"Pro bono & mentoring",li:["Pro bono hours for NGOs & education.","Mentoring young talent & inclusion.","Support during major crises (expertise)."]},
+          {t:"Donations & sponsorship",li:["Dedicated annual budget & selection committee.","Transparency on beneficiaries.","Simple impact tracking."]}
+        ]},
+      targets:{t:"Targets & KPIs",cap:"Targets 2025–2027",h:["Pillar","Target","Indicator (KPI)","Deadline"]},
+      faq:{t:"FAQ"}
+    },
+    cta:{t:"Questions about our ESG policy?",p:"Contact us to receive detailed policies and our latest reporting.",btn:"Get in touch"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance firm<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة (ESG)",contact:"اتصال"},
+    title:"الاستدامة في ريسكاليا",
+    subtitle:"الحوكمة والأخلاقيات • الرفاه والتنوع • البصمة البيئية • المشتريات المسؤولة • الأثر المجتمعي • المؤشرات والأهداف.",
+    badges:["مدونة السلوك","الرفاه والشمول","البصمة والرشادة"],
+    sec:{
+      intro:{t:"الالتزام",p:"تحدد سياسة الاستدامة لدينا كيفية اتخاذ القرار والتوظيف والشراء والتشغيل والإفصاح. وترتكز على مبادئ بسيطة: الامتثال والأخلاقيات، احترام الأشخاص، الرشادة البيئية، والأثر الإيجابي محليًا.",
+        kpi:[{v:"مدونة & بلاغات محمية",l:"قناة سرّية"},{v:"التدريب",l:"أخلاقيات، حماية بيانات، أمن سيبراني"},{v:"البصمة",l:"قياس النطاقات 1–3"}],
+        policies:["مدونة السلوك (PDF)","ميثاق المشتريات المسؤولة (PDF)","السياسة البيئية (PDF)"]},
+      gov:{t:"الحوكمة والأخلاقيات",
+        cards:[
+          {t:"النزاهة والامتثال",li:["منع الفساد وتضارب المصالح؛ تنظيم الهدايا والضيافة.","KYC/AML متناسب مع أنشطة الوساطة وإعادة التأمين.","برنامج تدريب سنوي إلزامي."]},
+          {t:"حماية البيانات والأمن السيبراني",li:["اللائحة الأوروبية GDPR: تقليل البيانات وحقوق الأفراد واتفاقيات المعالجة مع المزوّدين.","ممارسات أمنية: مصادقة متعددة، نُسخ احتياطية، وتشفير الأقراص والمرور.","تمارين تصيّد وخطة استجابة للحوادث."]},
+          {t:"الحوكمة والشفافية",li:["أدوار ESG على مستوى الإدارة العليا ومراجعة ربع سنوية للمؤشرات.","قناة للإبلاغ المجهول ومتابعة البلاغات.","شفافية الأتعاب والتعويضات."]}
+        ]},
+      people:{t:"الأفراد والتنوع",
+        cards:[
+          {t:"الرفاه وظروف العمل",li:["عمل هجين وحق الانفصال وساعات مرنة.","تغطية صحية ودعم للوالدية وإجازات تطوعية.","سلامة وبيئة عمل مريحة."]},
+          {t:"التنوع والشمول",li:["توظيف غير تمييزي وقواعد مواهب متنوّعة.","مراجعات سنوية للمساواة في الأجور وإجراءات تصحيحية.","توعية بالتحيز والإدارة الشمولية."]},
+          {t:"التطوير والمشاركة",li:["مسارات تعلم وميزانية فردية.","مقابلات نصف سنوية وخطط نمو.","استبيانات مشاركة وخطط عمل."]}
+        ]},
+      env:{t:"البيئة",lead:"الأولوية للرشادة: القياس ثم التجنّب فالخفض والتعويض كخيار أخير.",
+        cards:[
+          {t:"البصمة الكربونية",li:["جرد انبعاثات غازات الدفيئة للنطاقات 1–3 (المكاتب والطاقة والسفر والرقمية).","خطة خفض: الطاقة والتنقل والمشتريات واستخدام السحابة.","تعويض البصمة المتبقية عبر مشاريع موثوقة."]},
+          {t:"التنقل والسفر",li:["الاجتماعات المرئية والقطار كافتراض؛ سياسة سفر «حسب الضرورة».","تصنيف الرحلات وتحديد موازنات CO₂ لكل فريق.","تحفيز التنقل النظيف."]},
+          {t:"تقنية خضراء ونفايات",li:["إطالة عمر الأجهزة وتفضيل المُجدّد.","استضافة سحابية فعّالة ورشادة البيانات.","فرز النفايات ومسارات إلكترونية معتمدة."]}
+        ]},
+      procure:{t:"المشتريات المسؤولة",
+        cards:[
+          {t:"ميثاق المورّدين",li:["متطلبات اجتماعية وأخلاقية وبيئية وأمنية.","بنود مكافحة الفساد والسرية.","تقييمات دورية وخطط تحسين."]},
+          {t:"تفضيلات الشراء",li:["منتجات مصممة بيئياً ومورّدون محليون عند الملاءمة.","معيار CO₂ مدمج في التكلفة الكلية.","تنوع المورّدين (الشركات الصغيرة والاقتصاد الاجتماعي)."]}
+        ]},
+      community:{t:"المجتمع والعمل الخيري",
+        cards:[
+          {t:"عمل تطوعي وإرشاد",li:["ساعات تطوع لصالح الجمعيات والتعليم.","إرشاد المواهب الشابة والدعم المهني.","مساندة أثناء الأزمات الكبرى (خبرة تقنية)."]},
+          {t:"تبرعات ورعاية",li:["ميزانية سنوية ولجنة اختيار.","شفافية المستفيدين.","متابعة مبسطة للأثر."]}
+        ]},
+      targets:{t:"الأهداف والمؤشرات",cap:"أهداف 2025–2027",h:["المحور","الهدف","المؤشر (KPI)","الموعد النهائي"]},
+      faq:{t:"أسئلة شائعة"}
+    },
+    cta:{t:"هل لديك أسئلة حول سياسة الاستدامة؟",p:"تواصل معنا للحصول على السياسات التفصيلية وآخر تقاريرنا.",btn:"تواصل معنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+  }
 };
 
 /* ================== Helpers ================== */
@@ -417,6 +508,17 @@ function applyTexts(){
   $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
+
+  // Table headers / caption dynamiques
+  const H=t('sec.targets.h'); const cap=t('sec.targets.cap');
+  const map={
+    'sec.targets.cap':cap,
+    'sec.targets.h.0':H?.[0]||'Pilier',
+    'sec.targets.h.1':H?.[1]||'Objectif',
+    'sec.targets.h.2':H?.[2]||'Indicateur (KPI)',
+    'sec.targets.h.3':H?.[3]||'Échéance'
+  };
+  Object.entries(map).forEach(([k,v])=>{ const el=$(`[data-i18n="${k}"]`); if(el) el.innerHTML=v; });
 }
 
 function bindTabs(){
@@ -424,26 +526,19 @@ function bindTabs(){
   const panels=$$('.tabpanel');
 
   function show(id, pushHash=true){
-    // onglets
     tabs.forEach(btn=>{
       const active = btn.dataset.tab===id;
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-selected', active?'true':'false');
       btn.tabIndex = active?0:-1;
     });
-    // panneaux
     panels.forEach(p=> p.classList.toggle('active', p.id===id));
-    // hash (pour liens directs)
     if(pushHash) history.replaceState(null,'','#'+id);
-    // focus accessibilité
     $('#tab-'+id)?.focus({preventScroll:true});
   }
 
-  tabs.forEach(btn=>{
-    btn.addEventListener('click', ()=> show(btn.dataset.tab));
-  });
+  tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
 
-  // ouvrir selon l’ancre (#env, #gov…)
   function fromHash(){
     const id=(location.hash||'#intro').replace('#','');
     const known=['intro','gov','people','env','procure','community','targets','faq'];
