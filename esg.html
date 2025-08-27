@@ -3,15 +3,32 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — ESG & Risques Climat</title>
-  <meta name="description" content="Accompagnement ESG & climat : diagnostic de risques physiques/transition, scénarios NGFS, paramétriques météo, garanties vertes, reporting TCFD/ISSB & Taxonomie UE."/>
+  <title>Riskalia — ESG (Gouvernance, Social, Environnement)</title>
+  <meta name="description" content="Notre politique ESG interne : gouvernance & éthique, personnes & diversité, empreinte environnementale, achats responsables, engagement sociétal, objectifs & indicateurs."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <!-- Afficher le contenu même si JS est bloqué -->
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
   <!-- Fonts + CSS global -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
+  <style>
+    /* Image héro spécifique ESG (hérite du thème dans styles.css) */
+    .hero--esg{
+      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+                 url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
+      min-height:42vh;
+    }
+    /* petites cartes KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .p .v{font-weight:900;color:#0b5562}
+    /* liste politiques téléchargeables */
+    .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
+    .dl a{display:flex;align-items:center;gap:10px;border:1px solid #e2edf2;background:#f8fbfc;padding:12px;border-radius:12px;font-weight:800;color:#0b5562}
+  </style>
 </head>
-<body>
+<body class="spacious">
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
@@ -23,176 +40,306 @@
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Climate Risk</a></li>
         <li><a href="esg.html" class="active" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="lang-switch">
-      <button class="lang-btn" data-lang="fr">Français</button>
-      <button class="lang-btn" data-lang="en">English</button>
-      <button class="lang-btn" data-lang="ar">عربية</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
     </div>
   </div>
 </header>
 
-<!-- HÉRO (fond défini dans styles.css: .hero--esg) -->
 <section class="hero hero--esg">
   <div class="container">
-    <h1 data-i18n="title">ESG & Risques Climat — de l’analyse à l’action</h1>
-    <p data-i18n="subtitle">Cartographie physique/transition, scénarios NGFS, solutions d’assurance (dont paramétriques), reporting TCFD/ISSB et alignement Taxonomie UE/SFDR.</p>
+    <h1 data-i18n="title">ESG chez Riskalia</h1>
+    <p data-i18n="subtitle">Gouvernance & éthique • Bien-être & diversité • Empreinte environnementale • Achats responsables • Impact sociétal • Indicateurs & objectifs.</p>
     <div class="badges">
-      <span class="badge" data-i18n="badges.0">Diagnostic & scénarios</span>
-      <span class="badge" data-i18n="badges.1">Paramétriques & garanties vertes</span>
-      <span class="badge" data-i18n="badges.2">Reporting & bailleurs</span>
+      <span class="badge" data-i18n="badges.0">Code de conduite</span>
+      <span class="badge" data-i18n="badges.1">Bien-être & inclusion</span>
+      <span class="badge" data-i18n="badges.2">Empreinte & sobriété</span>
     </div>
   </div>
 </section>
 
-<!-- APERÇU OFFRE -->
 <section class="reveal">
-  <div class="container">
-    <div class="kicker" data-i18n="offer.kicker">Offre</div>
-    <h2 data-i18n="offer.h2">Notre accompagnement ESG & climat</h2>
-    <div class="grid-3 mt-1">
-      <article class="card">
-        <h3 data-i18n="cards.0.t">Diagnostic & scénarios</h3>
-        <p class="muted" data-i18n="cards.0.p">Évaluation des risques physiques (inondations, chaleur, vent…) et de transition (réglementaire, marché, techno). Scénarios NGFS & stress tests.</p>
-        <ul>
-          <li data-i18n="cards.0.li.0">Cartographie actifs/chaîne de valeur</li>
-          <li data-i18n="cards.0.li.1">Pertes attendues — horizons 2030/2050</li>
-          <li data-i18n="cards.0.li.2">Matérialité double & priorisation</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3 data-i18n="cards.1.t">Solutions d’assurance</h3>
-        <p class="muted" data-i18n="cards.1.p">Montage de couvertures climatiques & environnementales, y compris paramétriques basées sur indices météo.</p>
-        <ul>
-          <li data-i18n="cards.1.li.0">Paramétriques (pluie, vent, chaleur, NDVI)</li>
-          <li data-i18n="cards.1.li.1">Extensions environnement & supply chain</li>
-          <li data-i18n="cards.1.li.2">Approche “finance verte” des projets</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h3 data-i18n="cards.2.t">Reporting & financement</h3>
-        <p class="muted" data-i18n="cards.2.p">Alignement TCFD/ISSB, Taxonomie UE, SFDR et exigences des bailleurs (BM, BEI, AFD…).</p>
-        <ul>
-          <li data-i18n="cards.2.li.0">Gouvernance, stratégie, risques, métriques</li>
-          <li data-i18n="cards.2.li.1">Plans d’adaptation & indicateurs</li>
-          <li data-i18n="cards.2.li.2">Dossiers de financement & assurances</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
+  <div class="container main">
+    <!-- Sommaire (desktop) -->
+    <aside class="aside" aria-label="Sommaire">
+      <h4 data-i18n="toc">Sommaire</h4>
+      <a href="#intro" class="toc">1. <span data-i18n="sec.intro.t">Engagement</span></a>
+      <a href="#gov" class="toc">2. <span data-i18n="sec.gov.t">Gouvernance & éthique</span></a>
+      <a href="#people" class="toc">3. <span data-i18n="sec.people.t">Personnes & diversité</span></a>
+      <a href="#env" class="toc">4. <span data-i18n="sec.env.t">Environnement</span></a>
+      <a href="#procure" class="toc">5. <span data-i18n="sec.procure.t">Achats responsables</span></a>
+      <a href="#community" class="toc">6. <span data-i18n="sec.community.t">Sociétal & mécénat</span></a>
+      <a href="#targets" class="toc">7. <span data-i18n="sec.targets.t">Objectifs & KPI</span></a>
+      <a href="#faq" class="toc">8. <span data-i18n="sec.faq.t">FAQ</span></a>
+    </aside>
 
-<!-- FEUILLE DE ROUTE / PROCESS -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container">
-    <div class="kicker" data-i18n="road.kicker">Parcours</div>
-    <h2 data-i18n="road.h2">Feuille de route type</h2>
-    <div class="roadmap">
-      <div class="step">
-        <div class="num">1 — 🔎</div>
-        <div data-i18n="road.steps.0">Cadrage & collecte (2–3 semaines)</div>
-      </div>
-      <div class="step">
-        <div class="num">2 — 🧮</div>
-        <div data-i18n="road.steps.1">Cartographie & scénarios (3–5 semaines)</div>
-      </div>
-      <div class="step">
-        <div class="num">3 — 🛡️</div>
-        <div data-i18n="road.steps.2">Design des couvertures (2–4 semaines)</div>
-      </div>
-      <div class="step">
-        <div class="num">4 — 📊</div>
-        <div data-i18n="road.steps.3">Reporting & déploiement (continu)</div>
-      </div>
+    <!-- Chips (mobile) -->
+    <div class="chips" role="tablist" aria-label="Sections">
+      <button class="chip" data-jump="intro" data-i18n="sec.intro.t">Engagement</button>
+      <button class="chip" data-jump="gov" data-i18n="sec.gov.t">Gouvernance & éthique</button>
+      <button class="chip" data-jump="people" data-i18n="sec.people.t">Personnes & diversité</button>
+      <button class="chip" data-jump="env" data-i18n="sec.env.t">Environnement</button>
+      <button class="chip" data-jump="procure" data-i18n="sec.procure.t">Achats</button>
+      <button class="chip" data-jump="community" data-i18n="sec.community.t">Sociétal</button>
+      <button class="chip" data-jump="targets" data-i18n="sec.targets.t">Objectifs</button>
+      <button class="chip" data-jump="faq" data-i18n="sec.faq.t">FAQ</button>
     </div>
-  </div>
-</section>
 
-<!-- AUTO-DIAGNOSTIC (démo front) -->
-<section class="reveal">
-  <div class="container">
-    <div class="kicker" data-i18n="check.kicker">Auto-diagnostic</div>
-    <h2 data-i18n="check.h2">Où en êtes-vous ?</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="check.cards.0.t">Gouvernance ESG</h3>
-        <div class="check">
-          <div class="progress" aria-label="score"><span style="width: 60%"></span></div>
-          <div class="score">60%</div>
+    <!-- CONTENU -->
+    <div>
+      <!-- INTRO -->
+      <article id="intro" class="card">
+        <h2 data-i18n="sec.intro.t">1. Engagement</h2>
+        <p class="muted" data-i18n="sec.intro.p">
+          Notre politique ESG structure la façon dont nous décidons, recrutons, achetons, opérons et rendons compte.
+          Elle s’appuie sur des principes simples : conformité & éthique, respect des personnes, sobriété environnementale et impact positif local.
+        </p>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="sec.intro.kpi.0.v">Code & lanceur d’alerte</div><div data-i18n="sec.intro.kpi.0.l">Canal confidentiel</div></div>
+          <div class="p"><div class="v" data-i18n="sec.intro.kpi.1.v">Formation</div><div data-i18n="sec.intro.kpi.1.l">Éthique, RGPD, cyber</div></div>
+          <div class="p"><div class="v" data-i18n="sec.intro.kpi.2.v">Empreinte</div><div data-i18n="sec.intro.kpi.2.l">Mesure scopes 1–3</div></div>
         </div>
-        <p class="muted mt-1" data-i18n="check.cards.0.p">Comité, rôles et responsabilités, intégration des risques.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="check.cards.1.t">Données & indicateurs</h3>
-        <div class="check">
-          <div class="progress"><span style="width: 45%"></span></div>
-          <div class="score">45%</div>
+        <div class="dl">
+          <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.0">Code de conduite (PDF)</span></a>
+          <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.1">Charte achats responsables (PDF)</span></a>
+          <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.2">Politique environnementale (PDF)</span></a>
         </div>
-        <p class="muted mt-1" data-i18n="check.cards.1.p">Périmètre émissions, métriques physiques/transition, qualité des données.</p>
       </article>
-      <article class="card">
-        <h3 data-i18n="check.cards.2.t">Couvertures & résilience</h3>
-        <div class="check">
-          <div class="progress"><span style="width: 35%"></span></div>
-          <div class="score">35%</div>
+<br/>
+
+      <!-- GOUVERNANCE & ÉTHIQUE -->
+      <article id="gov" class="card">
+        <h2 data-i18n="sec.gov.t">2. Gouvernance & éthique</h2>
+        <div class="grid mt-2">
+          <section class="card">
+            <h3 data-i18n="sec.gov.cards.0.t">Intégrité & conformité</h3>
+            <ul>
+              <li data-i18n="sec.gov.cards.0.li.0">Prévention corruption & conflits d’intérêts, cadeaux & hospitalités encadrés.</li>
+              <li data-i18n="sec.gov.cards.0.li.1">KYC/AML proportionnés à nos activités de courtage & réassurance.</li>
+              <li data-i18n="sec.gov.cards.0.li.2">Programme de formation annuelle obligatoire.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.gov.cards.1.t">Protection des données & cyber</h3>
+            <ul>
+              <li data-i18n="sec.gov.cards.1.li.0">RGPD : minimisation, droits des personnes, DPA avec prestataires.</li>
+              <li data-i18n="sec.gov.cards.1.li.1">Hygiène cyber : MFA, backups, chiffrement disques & transit.</li>
+              <li data-i18n="sec.gov.cards.1.li.2">Exercices phishing & plan de réponse.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.gov.cards.2.t">Gouvernance & transparence</h3>
+            <ul>
+              <li data-i18n="sec.gov.cards.2.li.0">Rôles ESG au COMEX, revue trimestrielle des indicateurs.</li>
+              <li data-i18n="sec.gov.cards.2.li.1">Canal lanceur d’alerte anonyme et suivi des signalements.</li>
+              <li data-i18n="sec.gov.cards.2.li.2">Transparence des honoraires & rémunérations de marché.</li>
+            </ul>
+          </section>
         </div>
-        <p class="muted mt-1" data-i18n="check.cards.2.p">Assurances climatiques, extensions environnement, continuité d’activité.</p>
+      </article>
+<br/>
+
+      <!-- PERSONNES & DIVERSITÉ -->
+      <article id="people" class="card">
+        <h2 data-i18n="sec.people.t">3. Personnes & diversité</h2>
+        <div class="grid mt-2">
+          <section class="card">
+            <h3 data-i18n="sec.people.cards.0.t">Bien-être & conditions de travail</h3>
+            <ul>
+              <li data-i18n="sec.people.cards.0.li.0">Télétravail hybride, droit à la déconnexion, horaires souples.</li>
+              <li data-i18n="sec.people.cards.0.li.1">Couverture santé, soutien parentalité & congés solidaires.</li>
+              <li data-i18n="sec.people.cards.0.li.2">Ergonomie & sécurité des postes.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.people.cards.1.t">Diversité & inclusion</h3>
+            <ul>
+              <li data-i18n="sec.people.cards.1.li.0">Recrutements non-discriminants & viviers diversifiés.</li>
+              <li data-i18n="sec.people.cards.1.li.1">Égalité salariale : revues annuelles & correctifs.</li>
+              <li data-i18n="sec.people.cards.1.li.2">Sensibilisation biais & management inclusif.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.people.cards.2.t">Développement & engagement</h3>
+            <ul>
+              <li data-i18n="sec.people.cards.2.li.0">Parcours de formation & budget individuel.</li>
+              <li data-i18n="sec.people.cards.2.li.1">Entretiens semestriels & plans de progression.</li>
+              <li data-i18n="sec.people.cards.2.li.2">Enquêtes d’engagement & plans d’action.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+<br/>
+
+      <!-- ENVIRONNEMENT -->
+      <article id="env" class="card">
+        <h2 data-i18n="sec.env.t">4. Environnement</h2>
+        <p class="muted" data-i18n="sec.env.lead">Priorité à la sobriété : mesurer, éviter, réduire et compenser en dernier recours.</p>
+        <div class="grid mt-2">
+          <section class="card">
+            <h3 data-i18n="sec.env.cards.0.t">Empreinte carbone</h3>
+            <ul>
+              <li data-i18n="sec.env.cards.0.li.0">Bilan GES scopes 1–3 (bureaux, énergie, déplacements, numérique).</li>
+              <li data-i18n="sec.env.cards.0.li.1">Plan de réduction : énergie, mobilité, achats, usage cloud.</li>
+              <li data-i18n="sec.env.cards.0.li.2">Compenser les résiduelles via projets crédibles.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.env.cards.1.t">Mobilité & voyages</h3>
+            <ul>
+              <li data-i18n="sec.env.cards.1.li.0">Priorité visio & rail ; politique travel “nécessité justifiée”.</li>
+              <li data-i18n="sec.env.cards.1.li.1">Classer les vols et fixer des quotas CO₂ par équipe.</li>
+              <li data-i18n="sec.env.cards.1.li.2">Incitations mobilité douce.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.env.cards.2.t">Green IT & déchets</h3>
+            <ul>
+              <li data-i18n="sec.env.cards.2.li.0">Durée de vie allongée des équipements & reconditionné.</li>
+              <li data-i18n="sec.env.cards.2.li.1">Hébergement cloud efficient & sobriété data.</li>
+              <li data-i18n="sec.env.cards.2.li.2">Tri & filières DEEE certifiées.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+<br/>
+
+      <!-- ACHATS RESPONSABLES -->
+      <article id="procure" class="card">
+        <h2 data-i18n="sec.procure.t">5. Achats responsables</h2>
+        <div class="grid mt-2">
+          <section class="card">
+            <h3 data-i18n="sec.procure.cards.0.t">Charte fournisseurs</h3>
+            <ul>
+              <li data-i18n="sec.procure.cards.0.li.0">Exigences sociales, éthiques, environnementales & sécurité.</li>
+              <li data-i18n="sec.procure.cards.0.li.1">Clause anticorruption & confidentialité.</li>
+              <li data-i18n="sec.procure.cards.0.li.2">Évaluation périodique & plan de progrès.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.procure.cards.1.t">Préférences d’achat</h3>
+            <ul>
+              <li data-i18n="sec.procure.cards.1.li.0">Produits éco-conçus & prestataires locaux quand pertinent.</li>
+              <li data-i18n="sec.procure.cards.1.li.1">Critère CO₂ intégré dans le TCO.</li>
+              <li data-i18n="sec.procure.cards.1.li.2">Diversité fournisseurs (PME, ESS).</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+<br/>
+
+      <!-- SOCIÉTAL -->
+      <article id="community" class="card">
+        <h2 data-i18n="sec.community.t">6. Sociétal & mécénat</h2>
+        <div class="grid mt-2">
+          <section class="card">
+            <h3 data-i18n="sec.community.cards.0.t">Pro bono & mentoring</h3>
+            <ul>
+              <li data-i18n="sec.community.cards.0.li.0">Heures pro bono pour associations & éducation.</li>
+              <li data-i18n="sec.community.cards.0.li.1">Mentoring jeunes talents & insertion.</li>
+              <li data-i18n="sec.community.cards.0.li.2">Soutien sinistres majeurs (expertise bénévole).</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sec.community.cards.1.t">Dons & mécénat</h3>
+            <ul>
+              <li data-i18n="sec.community.cards.1.li.0">Budget annuel dédié & comité de sélection.</li>
+              <li data-i18n="sec.community.cards.1.li.1">Transparence des bénéficiaires.</li>
+              <li data-i18n="sec.community.cards.1.li.2">Suivi d’impact simple.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+<br/>
+
+      <!-- OBJECTIFS & KPI -->
+      <article id="targets" class="card">
+        <h2 data-i18n="sec.targets.t">7. Objectifs & indicateurs</h2>
+        <div class="table-wrap mt-2">
+          <table>
+            <caption data-i18n="sec.targets.cap">Cibles 2025–2027</caption>
+            <thead>
+              <tr>
+                <th data-i18n="sec.targets.h.0">Pilier</th>
+                <th data-i18n="sec.targets.h.1">Objectif</th>
+                <th data-i18n="sec.targets.h.2">Indicateur (KPI)</th>
+                <th data-i18n="sec.targets.h.3">Échéance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="sec.targets.r0.c0">Gouvernance</td>
+                <td data-i18n="sec.targets.r0.c1">100% des collaborateurs formés éthique/RGPD/cyber</td>
+                <td data-i18n="sec.targets.r0.c2">% formés / an</td>
+                <td>2025</td>
+              </tr>
+              <tr>
+                <td data-i18n="sec.targets.r1.c0">Social</td>
+                <td data-i18n="sec.targets.r1.c1">Réduire l’écart salarial inexpliqué &lt; 3%</td>
+                <td data-i18n="sec.targets.r1.c2">Écart médian F/H</td>
+                <td>2026</td>
+              </tr>
+              <tr>
+                <td data-i18n="sec.targets.r2.c0">Environnement</td>
+                <td data-i18n="sec.targets.r2.c1">-30% émissions par FTE vs. année de base</td>
+                <td data-i18n="sec.targets.r2.c2">kgCO₂e/FTE</td>
+                <td>2027</td>
+              </tr>
+              <tr>
+                <td data-i18n="sec.targets.r3.c0">Achats</td>
+                <td data-i18n="sec.targets.r3.c1">80% des fournisseurs critiques signent la charte</td>
+                <td data-i18n="sec.targets.r3.c2">% fournisseurs couverts</td>
+                <td>2026</td>
+              </tr>
+              <tr>
+                <td data-i18n="sec.targets.r4.c0">Sociétal</td>
+                <td data-i18n="sec.targets.r4.c1">1% du temps salarié en mécénat de compétences</td>
+                <td data-i18n="sec.targets.r4.c2">Heures pro bono / FTE</td>
+                <td>2027</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="roadmap" style="margin-top:14px">
+          <div class="step"><div class="num">1 — 📊</div><div data-i18n="sec.targets.road.0">Mesure de référence (bilan GES, équité salariale, baromètre social)</div></div>
+          <div class="step"><div class="num">2 — 🛠️</div><div data-i18n="sec.targets.road.1">Plans d’action & responsables par pilier</div></div>
+          <div class="step"><div class="num">3 — 🔁</div><div data-i18n="sec.targets.road.2">Revue trimestrielle & publication annuelle</div></div>
+        </div>
+      </article>
+<br/>
+
+      <!-- FAQ -->
+      <article id="faq" class="card">
+        <h2 data-i18n="sec.faq.t">8. FAQ</h2>
+        <details class="mt-1">
+          <summary>❓ <span data-i18n="faq.0.q">Êtes-vous certifiés ?</span></summary>
+          <div><p class="muted" data-i18n="faq.0.a">Nous nous alignons sur les meilleures pratiques et évaluons des certifications adaptées. Les progrès sont publiés chaque année.</p></div>
+        </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.1.q">Comment signaler un manquement ?</span></summary>
+          <div><p class="muted" data-i18n="faq.1.a">Un canal confidentiel est disponible pour les collaborateurs et partenaires. Chaque signalement est enregistré, évalué et traité.</p></div>
+        </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.2.q">Publiez-vous vos émissions ?</span></summary>
+          <div><p class="muted" data-i18n="faq.2.a">Oui, un bilan GES et les actions de réduction sont partagés avec nos parties prenantes.</p></div>
+        </details>
+      </article>
+
+      <!-- CTA -->
+      <article class="card center" style="margin-top:14px">
+        <h3 data-i18n="cta.t">Des questions sur notre politique ESG ?</h3>
+        <p class="muted" data-i18n="cta.p">Contactez-nous pour recevoir les politiques détaillées et notre dernier reporting.</p>
+        <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
       </article>
     </div>
-    <p class="muted mt-2" data-i18n="check.note">Ces scores illustratifs vous aident à prioriser les actions. Nous construisons un plan d’amélioration réaliste et mesurable.</p>
-  </div>
-</section>
-
-<!-- CAS D’USAGE -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container">
-    <div class="kicker" data-i18n="cases.kicker">Cas</div>
-    <h2 data-i18n="cases.h2">Exemples d’intervention</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="cases.0.t">Agro & supply chain</h3>
-        <p class="muted" data-i18n="cases.0.p">Indice pluie/NDVI pour sécuriser rendements et achats; clauses logistiques pour chocs climatiques.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="cases.1.t">Énergie & industrie</h3>
-        <p class="muted" data-i18n="cases.1.p">Stress tests chaleur/vent sur sites critiques; XoL BI et extensions environnementales.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="cases.2.t">Infrastructures & finance</h3>
-        <p class="muted" data-i18n="cases.2.p">Dossiers bailleurs conformes TCFD/ISSB; assurance paramétrique en complément des garanties classiques.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="reveal">
-  <div class="container center">
-    <h2 data-i18n="cta.t">Passons à l’action</h2>
-    <p class="muted" data-i18n="cta.p">Un atelier d’1h pour cadrer vos risques et vos priorités, sans engagement.</p>
-    <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un rendez-vous</a>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container">
-    <h2>FAQ</h2>
-    <details class="mt-1">
-      <summary>❓ <span data-i18n="faq.0.q">Quelles données faut-il pour un diagnostic climat ?</span></summary>
-      <div><p class="muted" data-i18n="faq.0.a">Inventaire des sites, données d’exposition, historique sinistres, et premières métriques d’émissions (si disponibles).</p></div>
-    </details>
-    <details>
-      <summary>❓ <span data-i18n="faq.1.q">Les paramétriques remplacent-elles les assurances classiques ?</span></summary>
-      <div><p class="muted" data-i18n="faq.1.a">Non — elles complètent les garanties traditionnelles avec des déclencheurs objectifs et des indemnisations rapides.</p></div>
-    </details>
-    <details>
-      <summary>❓ <span data-i18n="faq.2.q">Pouvez-vous aider sur le reporting TCFD/ISSB ?</span></summary>
-      <div><p class="muted" data-i18n="faq.2.a">Oui, de la gouvernance aux indicateurs, y compris l’alignement Taxonomie UE et les attentes des bailleurs.</p></div>
-    </details>
   </div>
 </section>
 
@@ -206,6 +353,7 @@
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
          <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
     <div>
@@ -215,103 +363,156 @@
   </div>
 </footer>
 
+<!-- SEO FAQPage -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Êtes-vous certifiés ?","acceptedAnswer":{"@type":"Answer","text":"Nous nous alignons sur les meilleures pratiques et évaluons des certifications adaptées. Les progrès sont publiés chaque année."}},
+{"@type":"Question","name":"Comment signaler un manquement ?","acceptedAnswer":{"@type":"Answer","text":"Un canal confidentiel est disponible pour les collaborateurs et partenaires. Chaque signalement est enregistré, évalué et traité."}},
+{"@type":"Question","name":"Publiez-vous vos émissions ?","acceptedAnswer":{"@type":"Answer","text":"Oui, un bilan GES et les actions de réduction sont partagés avec nos parties prenantes."}}
+]}
+</script>
+
 <script>
 /* ================== i18n ================== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    title:"ESG & Risques Climat — de l’analyse à l’action",
-    subtitle:"Cartographie physique/transition, scénarios NGFS, solutions d’assurance (dont paramétriques), reporting TCFD/ISSB et alignement Taxonomie UE/SFDR.",
-    badges:["Diagnostic & scénarios","Paramétriques & garanties vertes","Reporting & bailleurs"],
-    offer:{kicker:"Offre",h2:"Notre accompagnement ESG & climat"},
-    cards:[
-      {t:"Diagnostic & scénarios",p:"Évaluation des risques physiques (inondations, chaleur, vent…) et de transition (réglementaire, marché, techno). Scénarios NGFS & stress tests.",
-       li:["Cartographie actifs/chaîne de valeur","Pertes attendues — horizons 2030/2050","Matérialité double & priorisation"]},
-      {t:"Solutions d’assurance",p:"Montage de couvertures climatiques & environnementales, y compris paramétriques basées sur indices météo.",
-       li:["Paramétriques (pluie, vent, chaleur, NDVI)","Extensions environnement & supply chain","Approche “finance verte” des projets"]},
-      {t:"Reporting & financement",p:"Alignement TCFD/ISSB, Taxonomie UE, SFDR et exigences des bailleurs (BM, BEI, AFD…).",
-       li:["Gouvernance, stratégie, risques, métriques","Plans d’adaptation & indicateurs","Dossiers de financement & assurances"]}
-    ],
-    road:{kicker:"Parcours",h2:"Feuille de route type",steps:["Cadrage & collecte (2–3 semaines)","Cartographie & scénarios (3–5 semaines)","Design des couvertures (2–4 semaines)","Reporting & déploiement (continu)"]},
-    check:{kicker:"Auto-diagnostic",h2:"Où en êtes-vous ?",
-           cards:[{t:"Gouvernance ESG",p:"Comité, rôles et responsabilités, intégration des risques."},
-                  {t:"Données & indicateurs",p:"Périmètre émissions, métriques physiques/transition, qualité des données."},
-                  {t:"Couvertures & résilience",p:"Assurances climatiques, extensions environnement, continuité d’activité."}],
-           note:"Ces scores illustratifs vous aident à prioriser les actions. Nous construisons un plan d’amélioration réaliste et mesurable."},
-    cases:{kicker:"Cas",h2:"Exemples d’intervention",
-           0:{t:"Agro & supply chain",p:"Indice pluie/NDVI pour sécuriser rendements et achats; clauses logistiques pour chocs climatiques."},
-           1:{t:"Énergie & industrie",p:"Stress tests chaleur/vent sur sites critiques; XoL BI et extensions environnementales."},
-           2:{t:"Infrastructures & finance",p:"Dossiers bailleurs conformes TCFD/ISSB; assurance paramétrique en complément des garanties classiques."}},
-    cta:{t:"Passons à l’action",p:"Un atelier d’1h pour cadrer vos risques et vos priorités, sans engagement.",btn:"Demander un rendez-vous"},
-    faq:[
-      {q:"Quelles données faut-il pour un diagnostic climat ?",a:"Inventaire des sites, données d’exposition, historique sinistres, et premières métriques d’émissions (si disponibles)."},
-      {q:"Les paramétriques remplacent-elles les assurances classiques ?",a:"Non — elles complètent les garanties traditionnelles avec des déclencheurs objectifs et des indemnisations rapides."},
-      {q:"Pouvez-vous aider sur le reporting TCFD/ISSB ?",a:"Oui, de la gouvernance aux indicateurs, y compris l’alignement Taxonomie UE et les attentes des bailleurs."}
-    ],
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    title:"ESG chez Riskalia",
+    subtitle:"Gouvernance & éthique • Bien-être & diversité • Empreinte environnementale • Achats responsables • Impact sociétal • Indicateurs & objectifs.",
+    badges:["Code de conduite","Bien-être & inclusion","Empreinte & sobriété"],
+    toc:"Sommaire",
+    sec:{
+      intro:{t:"Engagement",p:"Notre politique ESG structure la façon dont nous décidons, recrutons, achetons, opérons et rendons compte. Elle s’appuie sur conformité & éthique, respect des personnes, sobriété environnementale et impact positif local.",
+            kpi:[{v:"Code & lanceur d’alerte",l:"Canal confidentiel"},{v:"Formation",l:"Éthique, RGPD, cyber"},{v:"Empreinte",l:"Mesure scopes 1–3"}],
+            policies:["Code de conduite (PDF)","Charte achats responsables (PDF)","Politique environnementale (PDF)"]},
+      gov:{t:"Gouvernance & éthique",
+           cards:[
+             {t:"Intégrité & conformité",li:["Prévention corruption & conflits d’intérêts.","KYC/AML proportionnés.","Formation annuelle obligatoire."]},
+             {t:"Protection des données & cyber",li:["RGPD & DPA prestataires.","MFA, backups, chiffrement.","Exercices phishing & IRP."]},
+             {t:"Gouvernance & transparence",li:["Rôles ESG au COMEX.","Canal lanceur d’alerte.","Transparence des honoraires."]}
+           ]},
+      people:{t:"Personnes & diversité",
+              cards:[
+                {t:"Bien-être & conditions de travail",li:["Télétravail hybride & droit à la déconnexion.","Santé & parentalité.","Ergonomie & sécurité."]},
+                {t:"Diversité & inclusion",li:["Recrutements non-discriminants.","Égalité salariale : revues annuelles.","Management inclusif."]},
+                {t:"Développement & engagement",li:["Parcours & budget formation.","Entretiens semestriels.","Baromètre d’engagement."]}
+              ]},
+      env:{t:"Environnement",lead:"Priorité à la sobriété : mesurer, éviter, réduire et compenser en dernier recours.",
+           cards:[
+             {t:"Empreinte carbone",li:["Bilan GES scopes 1–3.","Plan de réduction ciblé.","Compensation résiduelle crédible."]},
+             {t:"Mobilité & voyages",li:["Priorité visio & rail.","Quotas CO₂ par équipe.","Mobilité douce."]},
+             {t:"Green IT & déchets",li:["Allonger la durée de vie IT.","Cloud efficient & sobriété data.","Tri & DEEE."]}
+           ]},
+      procure:{t:"Achats responsables",
+               cards:[
+                 {t:"Charte fournisseurs",li:["Exigences sociales & environnementales.","Clauses anticorruption & confidentialité.","Évaluations & plans de progrès."]},
+                 {t:"Préférences d’achat",li:["Éco-conception & local.","Critère CO₂ au TCO.","Diversité fournisseurs."]}
+               ]},
+      community:{t:"Sociétal & mécénat",
+                 cards:[
+                   {t:"Pro bono & mentoring",li:["Heures pro bono.","Mentoring & insertion.","Soutien lors de crises."]},
+                   {t:"Dons & mécénat",li:["Budget dédié & comité.","Transparence bénéficiaires.","Suivi d’impact."]}
+                 ]},
+      targets:{t:"Objectifs & KPI",cap:"Cibles 2025–2027",
+               h:["Pilier","Objectif","Indicateur (KPI)","Échéance"],
+               road:["Mesure de référence (bilan GES, équité salariale, baromètre social)","Plans d’action & responsables par pilier","Revue trimestrielle & publication annuelle"]},
+      faq:{t:"FAQ"}
+    },
+    cta:{t:"Des questions sur notre politique ESG ?",p:"Contactez-nous pour recevoir les politiques détaillées et notre dernier reporting.",btn:"Nous contacter"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
   },
+
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    title:"ESG & Climate — from analysis to action",
-    subtitle:"Physical/transition mapping, NGFS scenarios, (incl. parametric) insurance solutions, TCFD/ISSB reporting and EU Taxonomy/SFDR alignment.",
-    badges:["Assessment & scenarios","Parametrics & green covers","Reporting & lenders"],
-    offer:{kicker:"Offer",h2:"Our ESG & climate support"},
-    cards:[
-      {t:"Assessment & scenarios",p:"Evaluate physical risks (flood, heat, wind…) and transition risks (policy, market, tech). NGFS scenarios & stress tests.",
-       li:["Asset & value-chain mapping","Expected loss — 2030/2050 horizons","Double materiality & prioritisation"]},
-      {t:"Insurance solutions",p:"Design of climate & environmental covers, including weather-index parametrics.",
-       li:["Parametrics (rain, wind, heat, NDVI)","Environmental & supply-chain extensions","Green-finance approach for projects"]},
-      {t:"Reporting & financing",p:"TCFD/ISSB alignment, EU Taxonomy, SFDR and lenders’ requirements (WB, EIB, AFD…).",
-       li:["Governance, strategy, risk, metrics","Adaptation plans & KPIs","Financing files & insurance placement"]}
-    ],
-    road:{kicker:"Journey",h2:"Typical roadmap",steps:["Scoping & data (2–3 wks)","Mapping & scenarios (3–5 wks)","Cover design (2–4 wks)","Reporting & rollout (ongoing)"]},
-    check:{kicker:"Self-check",h2:"Where are you now?",
-           cards:[{t:"ESG governance",p:"Committee, roles, responsibilities, risk integration."},
-                  {t:"Data & metrics",p:"GHG scope, physical/transition metrics, data quality."},
-                  {t:"Covers & resilience",p:"Climate insurance, environmental extensions, business continuity."}],
-           note:"Illustrative scores to prioritise actions. We build a realistic, measurable improvement plan."},
-    cases:{kicker:"Use cases",h2:"Examples",
-           0:{t:"Agri & supply chain",p:"Rain/NDVI indices to secure yields & procurement; logistics clauses for climate shocks."},
-           1:{t:"Energy & industry",p:"Heat/wind stress tests on critical sites; BI XoL and environmental extensions."},
-           2:{t:"Infrastructure & finance",p:"Lender-ready TCFD/ISSB files; parametrics complementing traditional covers."}},
-    cta:{t:"Let’s get to work",p:"A 1h scoping workshop to prioritise your actions.",btn:"Book a meeting"},
-    faq:[
-      {q:"What data is needed for a climate assessment?",a:"Site inventory, exposure data, loss history, and preliminary emissions metrics if available."},
-      {q:"Do parametrics replace traditional insurance?",a:"No—they complement with objective triggers and fast payouts."},
-      {q:"Can you support TCFD/ISSB reporting?",a:"Yes—from governance to metrics, including EU Taxonomy alignment and lenders’ expectations."}
-    ],
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    title:"ESG at Riskalia",
+    subtitle:"Governance & ethics • Wellbeing & diversity • Environmental footprint • Responsible procurement • Social impact • Targets & indicators.",
+    badges:["Code of conduct","Wellbeing & inclusion","Footprint & frugality"],
+    toc:"Contents",
+    sec:{
+      intro:{t:"Commitment",p:"Our ESG policy guides how we decide, hire, buy, operate and report. It rests on compliance & ethics, respect for people, environmental frugality and local positive impact.",
+            kpi:[{v:"Speak-up & code",l:"Confidential channel"},{v:"Training",l:"Ethics, privacy, cyber"},{v:"Footprint",l:"Scopes 1–3 measurement"}],
+            policies:["Code of conduct (PDF)","Responsible sourcing charter (PDF)","Environmental policy (PDF)"]},
+      gov:{t:"Governance & ethics",
+           cards:[
+             {t:"Integrity & compliance",li:["Anti-corruption & conflict-of-interest.","Risk-based KYC/AML.","Annual mandatory training."]},
+             {t:"Data protection & cyber",li:["GDPR & DPAs with vendors.","MFA, backups, encryption.","Phishing drills & IRP."]},
+             {t:"Governance & transparency",li:["ESG roles at ExCo.","Confidential whistleblowing.","Transparent fees."]}
+           ]},
+      people:{t:"People & diversity",
+              cards:[
+                {t:"Wellbeing & working conditions",li:["Hybrid work & right to disconnect.","Health cover & parental support.","Ergonomics & safety."]},
+                {t:"Diversity & inclusion",li:["Fair, non-discriminatory hiring.","Annual pay equity reviews.","Inclusive leadership."]},
+                {t:"Development & engagement",li:["Training pathways & budget.","Bi-annual reviews.","Engagement surveys."]}
+              ]},
+      env:{t:"Environment",lead:"Prioritise measure-avoid-reduce; offset only as a last resort.",
+           cards:[
+             {t:"Carbon footprint",li:["GHG inventory scopes 1–3.","Targeted reduction plan.","Credible residual offsetting."]},
+             {t:"Mobility & travel",li:["Video & rail first.","CO₂ budgets by team.","Soft mobility incentives."]},
+             {t:"Green IT & waste",li:["Extended device lifetime.","Efficient cloud & data frugality.","E-waste recycling."]}
+           ]},
+      procure:{t:"Responsible procurement",
+               cards:[
+                 {t:"Supplier charter",li:["Social, ethical, environmental & security requirements.","Anti-bribery & confidentiality clauses.","Periodic assessments & improvement plans."]},
+                 {t:"Buying preferences",li:["Eco-designed & local when relevant.","CO₂ as part of TCO.","Supplier diversity."]}
+               ]},
+      community:{t:"Community & philanthropy",
+                 cards:[
+                   {t:"Pro bono & mentoring",li:["Pro bono hours.","Youth mentoring & inclusion.","Support during disasters."]},
+                   {t:"Donations",li:["Annual budget & committee.","Beneficiaries transparency.","Simple impact follow-up."]}
+                 ]},
+      targets:{t:"Targets & KPIs",cap:"Targets 2025–2027",
+               h:["Pillar","Target","Indicator (KPI)","Deadline"],
+               road:["Baseline measurement (GHG, pay equity, engagement)","Action plans & owners","Quarterly review & annual disclosure"]},
+      faq:{t:"FAQ"}
+    },
+    cta:{t:"Questions about our ESG policy?",p:"Ask for our detailed policies and the latest ESG report.",btn:"Contact us"},
     footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
   },
+
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"الاستدامة والمناخ — من التحليل إلى التنفيذ",
-    subtitle:"خرائط المخاطر الفيزيائية/الانتقالية، سيناريوهات NGFS، حلول تأمينية (بما فيها البارامترية)، تقارير TCFD/ISSB ومواءمة التصنيف الأوروبي/SFDR.",
-    badges:["تشخيص وسيناريوهات","بارامترية وتغطيات خضراء","تقارير ومتطلبات الممولين"],
-    offer:{kicker:"العرض",h2:"خدمتنا في الاستدامة والمناخ"},
-    cards:[
-      {t:"تشخيص وسيناريوهات",p:"تقييم المخاطر الفيزيائية (فيضانات، حرارة، رياح…) والانتقالية (تشريعات، سوق، تقنية). سيناريوهات NGFS واختبارات ضغط.",
-       li:["خرائط الأصول وسلسلة القيمة","خسائر متوقعة لأفق 2030/2050","مادية مزدوجة وترتيب أولويات"]},
-      {t:"حلول تأمينية",p:"تصميم تغطيات مناخية وبيئية، بما فيها البارامترية المعتمدة على مؤشرات الطقس.",
-       li:["بارامترية (أمطار، رياح، حرارة، NDVI)","امتدادات بيئية وسلاسل الإمداد","مقاربة التمويل الأخضر للمشاريع"]},
-      {t:"تقارير وتمويل",p:"مواءمة TCFD/ISSB والتصنيف الأوروبي وSFDR ومتطلبات الممولين (البنك الدولي، بنك الاستثمار الأوروبي، AFD…).",
-       li:["حوكمة واستراتيجية ومخاطر ومؤشرات","خطط التكيف ومؤشرات الأداء","ملفات التمويل وترتيب التأمين"]}
-    ],
-    road:{kicker:"المسار",h2:"خارطة طريق نموذجية",steps:["تحديد النطاق والبيانات (2–3 أسابيع)","الخرائط والسيناريوهات (3–5 أسابيع)","تصميم التغطيات (2–4 أسابيع)","التقارير والتنفيذ (مستمر)"]},
-    check:{kicker:"فحص ذاتي",h2:"أين تقف الآن؟",
-           cards:[{t:"حوكمة الاستدامة",p:"لجان وأدوار ومسؤوليات ودمج المخاطر."},
-                  {t:"البيانات والمؤشرات",p:"نطاق الانبعاثات ومؤشرات الفيزيائي/الانتقالي وجودة البيانات."},
-                  {t:"التغطيات والمرونة",p:"تأمينات مناخية وامتدادات بيئية واستمرارية الأعمال."}],
-           note:"درجات توضيحية للمساعدة في ترتيب الأولويات. نبني خطة تحسين واقعية وقابلة للقياس."},
-    cases:{kicker:"حالات استخدام",h2:"أمثلة",
-           0:{t:"الزراعة وسلاسل الإمداد",p:"مؤشرات المطر/NDVI لتأمين الغلال والمشتريات؛ بنود لوجستية للصدمات المناخية."},
-           1:{t:"الطاقة والصناعة",p:"اختبارات حرارة/رياح للمواقع الحرجة؛ XoL خسارة أرباح وامتدادات بيئية."},
-           2:{t:"البنية التحتية والتمويل",p:"ملفات متوافقة مع TCFD/ISSB؛ بارامترية تكمل التغطيات التقليدية."}},
-    cta:{t:"لنبدأ الآن",p:"ورشة تمهيدية لمدة ساعة لتحديد الأولويات.",btn:"احجز موعداً"},
-    faq:[
-      {q:"ما البيانات المطلوبة لتشخيص المناخ؟",a:"قائمة المواقع وبيانات التعرض وسجل الخسائر ومقاييس الانبعاثات إن وجدت."},
-      {q:"هل تستبدل البارامترية التأمين التقليدي؟",a:"لا—بل تكمله بمشغلات موضوعية وتعويضات سريعة."},
-      {q:"هل تساندون تقارير TCFD/ISSB؟",a:"نعم—من الحوكمة إلى المؤشرات، مع مواءمة التصنيف الأوروبي وتوقعات الممولين."}
-    ],
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"الاستدامة في Riskalia",
+    subtitle:"الحوكمة والأخلاقيات • الرفاه والتنوع • البصمة البيئية • المشتريات المسؤولة • الأثر المجتمعي • الأهداف والمؤشرات.",
+    badges:["مدونة السلوك","الرفاه والشمول","البصمة والرشادة"],
+    toc:"المحتوى",
+    sec:{
+      intro:{t:"التزام",p:"توجّه سياسة الاستدامة لدينا أسلوب اتخاذ القرار والتوظيف والشراء والتشغيل والإفصاح.",
+            kpi:[{v:"الإبلاغ الآمن",l:"قناة سرية"},{v:"تدريب",l:"أخلاقيات وخصوصية وأمن"},{v:"البصمة",l:"قياس النطاقات 1–3"}],
+            policies:["مدونة السلوك (PDF)","ميثاق التوريد المسؤول (PDF)","السياسة البيئية (PDF)"]},
+      gov:{t:"الحوكمة والأخلاقيات",
+           cards:[
+             {t:"النزاهة والامتثال",li:["مكافحة الفساد وتضارب المصالح.","إجراءات KYC/AML متناسبة.","تدريب سنوي إلزامي."]},
+             {t:"حماية البيانات والأمن",li:["خصوصية وفق اللائحة الأوروبية.","توثيق متعدد العوامل ونسخ احتياطي وتشفير.","تدريبات تصيّد وخطة استجابة."]},
+             {t:"الحوكمة والشفافية",li:["أدوار ESG على مستوى الإدارة.","قناة مبلّغين سرّية.","شفافية الأتعاب."]}
+           ]},
+      people:{t:"الأفراد والتنوع",
+              cards:[
+                {t:"الرفاه وظروف العمل",li:["عمل هجين وحق قطع الاتصال.","تأمين صحي ودعم الوالدية.","سلامة وبيئة عمل مريحة."]},
+                {t:"التنوع والشمول",li:["توظيف منصف.","مراجعات سنوية للعدالة الأجرية.","قيادة شاملة."]},
+                {t:"التطوير والمشاركة",li:["مسارات تدريب وميزانية.","مراجعات نصف سنوية.","استطلاعات مشاركة."]}
+              ]},
+      env:{t:"البيئة",lead:"الأولوية للقياس ثم التجنّب والخفض، والتعويض أخيراً.",
+           cards:[
+             {t:"البصمة الكربونية",li:["جرد انبعاثات 1–3.","خطة خفض مستهدفة.","تعويض موثوق للمتبقي."]},
+             {t:"التنقّل والسفر",li:["الأولوية للاجتماعات عن بعد والقطارات.","حصص CO₂ حسب الفريق.","تشجيع التنقّل اللطيف."]},
+             {t:"تقنية خضراء ونفايات",li:["إطالة عمر الأجهزة.","حوسبة سحابية فعّالة.","إعادة تدوير المخلفات الإلكترونية."]}
+           ]},
+      procure:{t:"المشتريات المسؤولة",
+               cards:[
+                 {t:"ميثاق المورّدين",li:["متطلبات اجتماعية وبيئية وأمنية.","بنود مكافحة الرشوة والسرية.","تقييمات دورية وخطط تحسين."]},
+                 {t:"تفضيلات الشراء",li:["تصميم صديق للبيئة ومحلي عند الإمكان.","عامل CO₂ ضمن التكلفة الكلية.","تنوع المورّدين."]}
+               ]},
+      community:{t:"المجتمع والدعم",
+                 cards:[
+                   {t:"خدمة مجتمعية وإرشاد",li:["ساعات خدمة مجانية.","إرشاد الشباب.","دعم أثناء الكوارث."]},
+                   {t:"تبرعات",li:["ميزانية سنوية ولجنة.","شفافية المستفيدين.","متابعة الأثر."]}
+                 ]},
+      targets:{t:"الأهداف والمؤشرات",cap:"أهداف 2025–2027",
+               h:["الركن","الهدف","المؤشر","الموعد"],
+               road:["قياس خط الأساس","خطط عمل ومسؤولين","مراجعة ربع سنوية وإفصاح سنوي"]},
+      faq:{t:"الأسئلة الشائعة"}
+    },
+    cta:{t:"أسئلة حول سياسة الاستدامة؟",p:"تواصل معنا للحصول على السياسات المفصلة وآخر تقرير.",btn:"تواصل معنا"},
     footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
   }
 };
@@ -319,27 +520,23 @@ const I18N={
 /* ================== Helpers ================== */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $=(s,root=document)=>root.querySelector(s);
-const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('esg.html'))); }
 
-/* ================== Render ================== */
+/* ================== Rendu ================== */
 function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-
-  // éléments simples
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
   $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
 
-  // listes dynamiques (cartes offre)
-  // Déjà injectées via data-i18n pour titres/paragraphes/listes — rien d’autre à faire ici.
-
-  // FAQ dynamique (si tu veux générer via JS — ici on garde statique avec data-i18n)
+  // Remplir dynamiquement quelques tableaux/captions
+  const T=t('sec.targets.h'); ['0','1','2','3'].forEach(i=>{ const el=$(`[data-i18n="sec.targets.h.${i}"]`); if(el) el.textContent=T[i]; });
 }
 
-/* ================== UI ================== */
 function initUI(){
   // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
@@ -350,16 +547,28 @@ function initUI(){
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
 
-  // reveal
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  // chips scroll
+  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
+    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
+  }));
+
+  // reveal & TOC highlight
+  const rev=$$('.reveal');
+  const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); highlightTOC(); };
   window.addEventListener('scroll',onScroll); onScroll();
+}
+
+function highlightTOC(){
+  const ids=['intro','gov','people','env','procure','community','targets','faq'];
+  let active=ids[0];
+  for(const id of ids){
+    const el=document.getElementById(id);
+    if(el && el.getBoundingClientRect().top<window.innerHeight*0.35) active=id;
+  }
+  $$('.aside .toc').forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+active));
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
-
-
