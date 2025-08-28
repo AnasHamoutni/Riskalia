@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Assurance-vie & placements</title>
+  <meta name="description" content="Assurance-vie et placements : épargne long terme, transmission, supports en euros & unités de compte, options de gestion, rachats partiels/avances, fiscalité selon cadre."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+
+  <!-- Fonts + global CSS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+
+  <style>
+    /* Visuel produit */
+    .hero--product{
+      min-height:42vh;
+      background:
+        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+        url('https://images.unsplash.com/photo-1553729784-e91953dec042?auto=format&fit=crop&w=1600&q=70')
+        center/cover no-repeat;
+      display:flex; align-items:center; text-align:center;
+    }
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Onglets horizontaux collants */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Layout 2/1 */
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
+  </style>
+
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="spacious">
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="../index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero hero--product">
+  <div class="container">
+    <h1 data-i18n="title">Assurance-vie & placements</h1>
+    <p data-i18n="subtitle">Épargne long terme • Transmission • Supports en euros & unités de compte • Options de gestion • Rachats & avances • Fiscalité selon cadre.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">Épargne & succession</span>
+      <span class="badge" data-i18n="badges.1">Gestion pilotée</span>
+      <span class="badge" data-i18n="badges.2">Unités de compte</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="reveal">
+  <div class="container main main--single">
+
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Vie tabs">
+      <button class="tab active"  id="tab-over"  role="tab" aria-selected="true"  data-tab="over"  data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"   role="tab" aria-selected="false" data-tab="cov"   data-i18n="tabs.cov">Garanties</button>
+      <button class="tab"         id="tab-inv"   role="tab" aria-selected="false" data-tab="inv"   data-i18n="tabs.inv">Supports d’investissement</button>
+      <button class="tab"         id="tab-ops"   role="tab" aria-selected="false" data-tab="ops"   data-i18n="tabs.ops">Options & rachats</button>
+      <button class="tab"         id="tab-fees"  role="tab" aria-selected="false" data-tab="fees"  data-i18n="tabs.fees">Frais & fiscalité</button>
+      <button class="tab"         id="tab-faq"   role="tab" aria-selected="false" data-tab="faq"   data-i18n="tabs.faq">FAQ</button>
+    </nav>
+
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            L’assurance-vie est un cadre souple pour <strong>épargner</strong>, <strong>investir</strong> et <strong>transmettre</strong> dans la durée, via des versements libres ou programmés et un choix de supports.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Horizon conseillé : moyen/long terme (5–10 ans+).</li>
+            <li data-i18n="over.li.1">Clause bénéficiaire personnalisable (succession).</li>
+            <li data-i18n="over.li.2">Arbitrages et options de gestion automatiques.</li>
+          </ul>
+        </div>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Versements</div><div data-i18n="over.kpi.0l">libres / programmés</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Profil</div><div data-i18n="over.kpi.1l">prudent ↔ dynamique</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Horizon</div><div>5–10+ ans</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Garanties -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Prestations & garanties</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Décès</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Capital transmis aux bénéficiaires désignés.</li>
+            <li data-i18n="cov.c0.li.1">Possibilité de garanties plancher/majorées (selon contrat).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">Vie</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Rachats partiels programmés ou ponctuels.</li>
+            <li data-i18n="cov.c1.li.1">Avances (prêt adossé au contrat) possibles.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Options de sortie</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Capital ou rente (selon conditions).</li>
+            <li data-i18n="cov.c2.li.1">Clauses bénéficiaires démembrées ou à options.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Supports d’investissement -->
+    <article id="inv" class="card tabpanel" role="tabpanel" aria-labelledby="tab-inv">
+      <h2 data-i18n="inv.t">3. Supports d’investissement</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="inv.c0.t">Support en euros</h3>
+          <ul>
+            <li data-i18n="inv.c0.li.0">Objectif de préservation du capital (hors frais).</li>
+            <li data-i18n="inv.c0.li.1">Rendement annuel servi par l’assureur.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="inv.c1.t">Unités de compte (UC)</h3>
+          <ul>
+            <li data-i18n="inv.c1.li.0">Accès à des fonds actions/obligations/immobilier/monétaire…</li>
+            <li data-i18n="inv.c1.li.1">Risque et rendement variables, capital non garanti.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="inv.c2.t">Gestion</h3>
+          <ul>
+            <li data-i18n="inv.c2.li.0">Libre ou pilotée (mandats prudent/équilibré/dynamique).</li>
+            <li data-i18n="inv.c2.li.1">Rééquilibrage automatique, stop-loss, sécurisation des plus-values.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options & rachats -->
+    <article id="ops" class="card tabpanel" role="tabpanel" aria-labelledby="tab-ops">
+      <h2 data-i18n="ops.t">4. Options & rachats</h2>
+      <ul class="list-check">
+        <li data-i18n="ops.li.0">Rachats partiels sans clôture du contrat (selon frais/plafonds).</li>
+        <li data-i18n="ops.li.1">Arbitrages entre supports (frais possibles).</li>
+        <li data-i18n="ops.li.2">Avances possibles, remboursables, sans désinvestir.</li>
+        <li data-i18n="ops.li.3">Clause bénéficiaire modulable à tout moment.</li>
+      </ul>
+      <p class="muted mt-1" data-i18n="ops.note">Les modalités varient selon l’assureur (planchers, délais, frais, pièces). Nous vous guidons pour optimiser ces options.</p>
+    </article>
+
+    <!-- Frais & fiscalité -->
+    <article id="fees" class="card tabpanel" role="tabpanel" aria-labelledby="tab-fees">
+      <h2 data-i18n="fees.t">5. Frais & fiscalité (aperçu)</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="fees.c0.t">Frais</h3>
+          <ul>
+            <li data-i18n="fees.c0.li.0">Frais sur versements & gestion du contrat.</li>
+            <li data-i18n="fees.c0.li.1">Frais de gestion des unités de compte (propres aux fonds).</li>
+            <li data-i18n="fees.c0.li.2">Frais d’arbitrage selon grille.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="fees.c1.t">Fiscalité</h3>
+          <ul>
+            <li data-i18n="fees.c1.li.0">Traitement fiscal variable selon le cadre juridique local.</li>
+            <li data-i18n="fees.c1.li.1">Avantages possibles à long terme et en transmission.</li>
+            <li data-i18n="fees.c1.li.2">Nous ne rendons pas d’avis fiscal : rapprochez-vous de votre conseil.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Puis-je changer de profil de gestion ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Oui, via un arbitrage ou un passage en gestion pilotée. Des frais et délais peuvent s’appliquer.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Les performances passées sont-elles garanties ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Non. En unités de compte, le capital n’est pas garanti et peut fluctuer à la hausse comme à la baisse.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Comment désigner mes bénéficiaires ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">Par clause libre (personnalisée). Nous vous aidons à la formuler et à la mettre à jour.</p></div>
+      </details>
+    </article>
+
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Donnez du sens à votre épargne</h3>
+      <p class="muted" data-i18n="cta.p">Nous ajustons supports, frais et options à votre horizon, votre tolérance au risque et vos objectifs patrimoniaux.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
+
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./habitation.html">← <span data-i18n="pager.prev">Biens (Habitation)</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./schengen.html"><span data-i18n="pager.next">Voyage Schengen</span> →</a>
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAQ SEO -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Puis-je changer de profil de gestion ?","acceptedAnswer":{"@type":"Answer","text":"Oui, via un arbitrage ou un passage en gestion pilotée. Des frais et délais peuvent s’appliquer."}},
+{"@type":"Question","name":"Les performances passées sont-elles garanties ?","acceptedAnswer":{"@type":"Answer","text":"Non. En unités de compte, le capital n’est pas garanti et peut fluctuer à la hausse comme à la baisse."}},
+{"@type":"Question","name":"Comment désigner mes bénéficiaires ?","acceptedAnswer":{"@type":"Answer","text":"Par clause libre (personnalisée). Nous vous aidons à la formuler et à la mettre à jour."}}
+]}
+</script>
+
+<script>
+/* ================== I18N ================== */
+const I18N={
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    title:"Assurance-vie & placements",
+    subtitle:"Épargne long terme • Transmission • Supports en euros & unités de compte • Options de gestion • Rachats & avances • Fiscalité selon cadre.",
+    badges:["Épargne & succession","Gestion pilotée","Unités de compte"],
+    tabs:{over:"Aperçu",cov:"Garanties",inv:"Supports d’investissement",ops:"Options & rachats",fees:"Frais & fiscalité",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"L’assurance-vie est un cadre souple pour épargner, investir et transmettre dans la durée, via des versements libres ou programmés et un choix de supports.",
+          li:["Horizon conseillé : moyen/long terme (5–10 ans+).","Clause bénéficiaire personnalisable (succession).","Arbitrages et options de gestion automatiques."],
+          kpi:["Versements","Profil","Horizon"], "over.kpi.0l":"libres / programmés","over.kpi.1l":"prudent ↔ dynamique"},
+    cov:{t:"2. Prestations & garanties",
+         c0:{t:"Décès",li:["Capital transmis aux bénéficiaires désignés.","Possibilité de garanties plancher/majorées (selon contrat)."]},
+         c1:{t:"Vie",li:["Rachats partiels programmés ou ponctuels.","Avances (prêt adossé au contrat) possibles."]},
+         c2:{t:"Options de sortie",li:["Capital ou rente (selon conditions).","Clauses bénéficiaires démembrées ou à options."]}},
+    inv:{t:"3. Supports d’investissement",
+         c0:{t:"Support en euros",li:["Objectif de préservation du capital (hors frais).","Rendement annuel servi par l’assureur."]},
+         c1:{t:"Unités de compte (UC)",li:["Accès à des fonds actions/obligations/immobilier/monétaire…","Risque et rendement variables, capital non garanti."]},
+         c2:{t:"Gestion",li:["Libre ou pilotée (mandats prudent/équilibré/dynamique).","Rééquilibrage automatique, stop-loss, sécurisation des plus-values."]}},
+    ops:{t:"4. Options & rachats",
+         li:["Rachats partiels sans clôture du contrat (selon frais/plafonds).","Arbitrages entre supports (frais possibles).","Avances possibles, remboursables, sans désinvestir.","Clause bénéficiaire modulable à tout moment."],
+         note:"Les modalités varient selon l’assureur (planchers, délais, frais, pièces). Nous vous guidons pour optimiser ces options."},
+    fees:{t:"5. Frais & fiscalité (aperçu)",
+          c0:{t:"Frais",li:["Frais sur versements & gestion du contrat.","Frais de gestion des unités de compte (propres aux fonds).","Frais d’arbitrage selon grille."]},
+          c1:{t:"Fiscalité",li:["Traitement fiscal variable selon le cadre juridique local.","Avantages possibles à long terme et en transmission.","Nous ne rendons pas d’avis fiscal : rapprochez-vous de votre conseil."]}},
+    faq:{t:"6. FAQ",q0:"Puis-je changer de profil de gestion ?",a0:"Oui, via un arbitrage ou un passage en gestion pilotée. Des frais et délais peuvent s’appliquer.",
+         q1:"Les performances passées sont-elles garanties ?",a1:"Non. En unités de compte, le capital n’est pas garanti et peut fluctuer à la hausse comme à la baisse.",
+         q2:"Comment désigner mes bénéficiaires ?",a2:"Par clause libre (personnalisée). Nous vous aidons à la formuler et à la mettre à jour."},
+    cta:{t:"Donnez du sens à votre épargne",p:"Nous ajustons supports, frais et options à votre horizon, votre tolérance au risque et vos objectifs patrimoniaux.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    pager:{prev:"Biens (Habitation)",next:"Voyage Schengen"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+  },
+
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    title:"Life insurance & savings",
+    subtitle:"Long-term savings • Estate planning • Euro & unit-linked funds • Managed options • Withdrawals & policy loans • Tax per framework.",
+    badges:["Savings & estate","Managed portfolios","Unit-linked"],
+    tabs:{over:"Overview",cov:"Benefits",inv:"Investment options",ops:"Options & withdrawals",fees:"Fees & tax",faq:"FAQ"},
+    over:{t:"1. Overview",p:"Life insurance is a flexible wrapper to save, invest and pass on wealth over time, with lump-sum or recurring contributions and a choice of funds.",
+          li:["Suggested horizon: medium/long term (5–10y+).","Customisable beneficiary clause (estate planning).","Switches and automated management options."],
+          kpi:["Contributions","Risk profile","Horizon"], "over.kpi.0l":"lump-sum / recurring","over.kpi.1l":"cautious ↔ dynamic"},
+    cov:{t:"2. Benefits",
+         c0:{t:"Death",li:["Lump sum paid to designated beneficiaries.","Optional floor/boosted guarantees (per policy)."]},
+         c1:{t:"Survival",li:["Partial withdrawals scheduled or ad-hoc.","Policy loans (advances) where available."]},
+         c2:{t:"Exit options",li:["Capital or annuity (per terms).","Advanced beneficiary wording (split/option clauses)."]}},
+    inv:{t:"3. Investment options",
+         c0:{t:"Euro (general account)",li:["Capital preservation objective (net of market risk).","Annual return credited by insurer."]},
+         c1:{t:"Unit-linked funds",li:["Access to equity/bond/real-estate/money-market funds.","Variable risk/return; capital not guaranteed."]},
+         c2:{t:"Management",li:["Self-directed or managed mandates.","Auto-rebalancing, stop-loss, profit-lock."]}},
+    ops:{t:"4. Options & withdrawals",
+         li:["Partial withdrawals without closing the policy (limits/fees may apply).","Switches between funds (possible fees).","Policy loans without selling assets.","Beneficiary clause update at any time."],
+         note:"Terms differ by insurer (thresholds, timing, fees, documents). We help you optimise these levers."},
+    fees:{t:"5. Fees & tax (at a glance)",
+          c0:{t:"Fees",li:["Entry/ongoing contract fees.","Underlying unit-linked fund fees.","Switch fees as per schedule."]},
+          c1:{t:"Tax",li:["Tax treatment depends on local legal framework.","Potential long-term and estate advantages.","We don’t give tax advice — consult your advisor."]}},
+    faq:{t:"6. FAQ",q0:"Can I change risk profile?",a0:"Yes via a switch or by opting into managed mandates; fees/timing may apply.",
+         q1:"Are past returns guaranteed?",a1:"No. For unit-linked funds, capital is not guaranteed and values can go up or down.",
+         q2:"How do I set beneficiaries?",a2:"Through a free-form clause. We help you draft and update it."},
+    cta:{t:"Make your savings work",p:"We align funds, fees and options with your horizon, risk tolerance and wealth goals.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    pager:{prev:"Home (Property)",next:"Schengen Travel"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"تأمين الحياة والادخار",
+    subtitle:"ادخار طويل الأجل • تخطيط وراثي • صناديق بالعملة المحلية ووحدات استثمار • إدارة مؤتمتة • سحوبات وقروض على الوثيقة • ضرائب حسب الإطار.",
+    badges:["ادخار ونقل الثروة","إدارة مُدارة","وحدات استثمار"],
+    tabs:{over:"لمحة",cov:"المنافع",inv:"خيارات الاستثمار",ops:"الخيارات والسحوبات",fees:"الرسوم والضرائب",faq:"الأسئلة الشائعة"},
+    over:{t:"١. لمحة",p:"إطار مرن للادخار والاستثمار ونقل الثروة عبر دفعات حرة أو دورية وباقة من الصناديق.",
+          li:["أفق مقترح: متوسط/طويل (5–10 سنوات+).","بند مستفيد قابل للتخصيص (إرث).","تحويلات وخيارات إدارة مؤتمتة."],
+          kpi:["الدفعات","ملف المخاطر","الأفق"], "over.kpi.0l":"حرة / دورية","over.kpi.1l":"حذر ↔ ديناميكي"},
+    cov:{t:"٢. المنافع",
+         c0:{t:"الوفاة",li:["رأس مال للمستفيدين المحددين.","خيارات ضمانات دنيا/معزَّزة (حسب الوثيقة)."]},
+         c1:{t:"البقاء على قيد الحياة",li:["سحوبات جزئية مبرمجة أو فورية.","قروض على الوثيقة (إن توفرت)."]},
+         c2:{t:"خيارات الخروج",li:["رأس مال أو معاش (حسب الشروط).","بنود مستفيدين متقدمة."]}},
+    inv:{t:"٣. خيارات الاستثمار",
+         c0:{t:"حساب عام (يورو)",li:["هدف حماية رأس المال (بعد الرسوم).","عائد سنوي من شركة التأمين."]},
+         c1:{t:"وحدات استثمار",li:["وصول لصناديق أسهم/سندات/عقار/نقدي.","مخاطر وعوائد متغيرة، رأس المال غير مضمون."]},
+         c2:{t:"الإدارة",li:["حرة أو مُدارة.","موازنة تلقائية، إيقاف خسائر، تأمين الأرباح."]}},
+    ops:{t:"٤. الخيارات والسحوبات",
+         li:["سحوبات جزئية دون إقفال الوثيقة (قد توجد حدود/رسوم).","تحويلات بين الصناديق (رسوم محتملة).","قروض على الوثيقة دون البيع.","تعديل بند المستفيدين في أي وقت."],
+         note:"تختلف الشروط حسب الشركة (حدود، آجال، رسوم، مستندات). سنرشدك لتحسينها."},
+    fees:{t:"٥. الرسوم والضرائب (نظرة عامة)",
+          c0:{t:"رسوم",li:["رسوم على الدفعات وإدارة الوثيقة.","رسوم صناديق الوحدات الاستثمارية.","رسوم التحويل حسب الجدول."]},
+          c1:{t:"ضرائب",li:["المعاملة الضريبية بحسب الإطار القانوني المحلي.","مزايا محتملة على المدى الطويل وفي الإرث.","لا نقدم استشارات ضريبية — استشر خبيرك."]}},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"هل أستطيع تغيير ملف المخاطر؟",a0:"نعم عبر تحويلات أو إدارة مُدارة؛ قد تُطبق رسوم/آجال.",
+         q1:"هل عوائد الماضي مضمونة؟",a1:"لا. في الوحدات الاستثمارية رأس المال غير مضمون وقد يرتفع أو ينخفض.",
+         q2:"كيف أحدد المستفيدين؟",a2:"من خلال بند حر مخصص — نساعدك على صياغته وتحديثه."},
+    cta:{t:"اجعل ادخارك يعمل لصالحك",p:"نوفّق بين الصناديق والرسوم والخيارات وفق أفقك وتحملك للمخاطر وأهدافك.",
+         quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    pager:{prev:"السكن (الممتلكات)",next:"سفر شنغن"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+  }
+};
+
+/* ================== Helpers ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
+
+/* ================== Render & Tabs ================== */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+
+  // Remplir tous les data-i18n
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','inv','ops','fees','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+}
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+</body>
+</html>
