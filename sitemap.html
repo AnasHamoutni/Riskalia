@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — Plan du site</title>
-  <meta name="description" content="Plan du site Riskalia : accès rapide aux pages Solutions, Réassurance, ESG, Contact et Accueil."/>
+  <meta name="description" content="Plan du site Riskalia : accès rapide aux pages Solutions, Réassurance, Risques Climatiques, ESG, Contact et Accueil."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -64,7 +64,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
   {
     "@context":"https://schema.org",
     "@type":"SiteNavigationElement",
-    "name":["Home","Solutions","Reinsurance","Risques Climatiques","ESG","Contact","Sitemap"],
+    "name":["Home","Solutions","Reinsurance","Climate Risk","ESG","Contact","Sitemap"],
     "url":[
       "index.html",
       "solutions.html",
@@ -89,7 +89,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Risques climatiques</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -175,7 +175,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
 /* ================== i18n ================== */
 const I18N = {
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     hero:{title:"Plan du site",sub:"Trouvez rapidement la page dont vous avez besoin.",ph:"Rechercher…",clear:"Effacer",home:"Accueil"},
     badges:{static:"HTML static",langs:"FR | EN | AR",updated:"Mise à jour : "},
     mainK:"Pages principales",
@@ -210,7 +210,7 @@ const I18N = {
       {icon:"🧩",t:"Solutions",d:"Products for businesses and individuals.",href:"solutions.html"},
       {icon:"🧭", t:"Reinsurance", d:"Treaties, facultatives, claims & arbitrations.", href:"reinsurance.html"},
       {icon:"🌍",t:"Climate Risk",d:"Identification, Quantification, Management & Reporting.",href:"climate.html"},
-      {icon:"🌿",t:"ESG",d:"Governance, Ethics, , Wellbeing, Environmental footprint & Social impact.",href:"esg.html"},
+      {icon:"🌿",t:"ESG",d:"Governance, Ethics, Wellbeing, Environmental footprint & Social impact.",href:"esg.html"},
       {icon:"✉️",t:"Contact",d:"Quotes, claims and details.",href:"contact.html"}
     ],
     cardsOther:[
@@ -219,7 +219,7 @@ const I18N = {
     ]
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"المخاطر المناخية",esg:"الاستدامة",contact:"اتصل بنا"},
     hero:{title:"خريطة الموقع",sub:"ابحث بسرعة عن الصفحة المطلوبة.",ph:"ابحث…",clear:"مسح",home:"الرئيسية"},
     badges:{static:"HTML ثابت",langs:"FR | EN | AR",updated:"آخر تحديث: "},
     mainK:"الصفحات الرئيسية",
@@ -279,6 +279,7 @@ function applyTexts(){
   document.querySelectorAll('[data-i18n="nav.home"]').forEach(e=>e.textContent=t('nav.home'));
   document.querySelectorAll('[data-i18n="nav.solutions"]').forEach(e=>e.textContent=t('nav.solutions'));
   document.querySelectorAll('[data-i18n="nav.re"]').forEach(e=>e.textContent=t('nav.re'));
+  document.querySelectorAll('[data-i18n="nav.climate"]').forEach(e=>e.textContent=t('nav.climate'));
   document.querySelectorAll('[data-i18n="nav.esg"]').forEach(e=>e.textContent=t('nav.esg'));
   document.querySelectorAll('[data-i18n="nav.contact"]').forEach(e=>e.textContent=t('nav.contact'));
 
@@ -345,6 +346,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
