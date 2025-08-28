@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — 404</title>
-  <meta name="description" content="Page introuvable. Trouvez rapidement les pages Solutions, Réassurance, ESG ou Contact."/>
+  <meta name="description" content="Page introuvable. Trouvez rapidement les pages Solutions, Réassurance, Risques Climatiques, Politique ESG ou Contact."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -69,6 +69,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -92,7 +93,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
       <a class="btn" href="index.html" id="goHome">Aller à l’accueil</a>
     </div>
     <p class="muted" style="color:#e5fbff">
-      <span id="hint">Astuce : tapez “solution”, “réassurance”, “ESG” ou “contact”.</span>
+      <span id="hint">Astuce : tapez “solution”, “réassurance”, “risques climatiques”, “ESG” ou “contact”.</span>
     </p>
   </div>
 </section>
@@ -123,6 +124,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
       <p>
         <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
         <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </p>
@@ -138,8 +140,8 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
 /* ================== i18n ================== */
 const I18N = {
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    hero:{title:"404",sub:"Oups, cette page est introuvable ou a été déplacée.",hint:"Astuce : tapez “solution”, “réassurance”, “ESG” ou “contact”.",home:"Aller à l’accueil",clear:"Effacer"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
+    hero:{title:"404",sub:"Oups, cette page est introuvable ou a été déplacée.",hint:"Astuce : tapez “solution”, “réassurance”, “risques climatiques”, “ESG” ou “contact”.",home:"Aller à l’accueil",clear:"Effacer"},
     pagesTitle:"Pages principales",
     footerDesc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",
     report:{title:"Signaler un lien cassé",text:"Le lien suivant a échoué : {url} — {link} pour nous prévenir.",link:"cliquez ici"},
@@ -147,14 +149,15 @@ const I18N = {
       {icon:"🏠",t:"Accueil",d:"Présentation & atouts de Riskalia.",href:"index.html"},
       {icon:"🧩",t:"Solutions",d:"Produits pour entreprises et particuliers.",href:"solutions.html"},
       {icon:"🧭",t:"Réassurance",d:"Traités QS/Surplus/XoL, facultatives, sinistres.",href:"reinsurance.html"},
-      {icon:"🌿",t:"ESG",d:"Diagnostics, paramétriques, reporting TCFD/Taxonomie.",href:"esg.html"},
+      {icon:"🌍",t:"Risques Climatiques",d:"Identification, Quantification, Pilotage & Reporting.",href:"climate.html"},
+      {icon:"🌿", t:"ESG", d:"Gouvernance, Éthique, Bien-être, Empreinte environnementale et Impact social.", href:"esg.html"},
       {icon:"✉️",t:"Contact",d:"Demande de devis, sinistres, coordonnées.",href:"contact.html"}
     ],
     searchPH:"Rechercher…"
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    hero:{title:"404",sub:"Oops, this page can’t be found or was moved.",hint:"Tip: try “solutions”, “reinsurance”, “ESG” or “contact”.",home:"Back to home",clear:"Clear"},
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    hero:{title:"404",sub:"Oops, this page can’t be found or was moved.",hint:"Tip: try “solutions”, “reinsurance”, “climate risk”, “ESG” or “contact”.",home:"Back to home",clear:"Clear"},
     pagesTitle:"Main pages",
     footerDesc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",
     report:{title:"Report a broken link",text:"This link failed: {url} — {link} to notify us.",link:"click here"},
@@ -162,13 +165,14 @@ const I18N = {
       {icon:"🏠",t:"Home",d:"Overview & strengths of Riskalia.",href:"index.html"},
       {icon:"🧩",t:"Solutions",d:"Products for businesses and individuals.",href:"solutions.html"},
       {icon:"🧭",t:"Reinsurance",d:"QS/Surplus/XoL treaties, facultatives, claims.",href:"reinsurance.html"},
-      {icon:"🌿",t:"ESG",d:"Diagnostics, parametrics, TCFD/Taxonomy reporting.",href:"esg.html"},
+      {icon:"🌍", t:"Climate Risk", d:"Identification, Quantification, Management & Reporting.", href:"climate.html"},
+      {icon:"🌿",t:"ESG",d:"Governance, Ethics, Wellbeing, Environmental footprint & Social impact.",href:"esg.html"},
       {icon:"✉️",t:"Contact",d:"Quotes, claims and details.",href:"contact.html"}
     ],
     searchPH:"Search…"
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     hero:{title:"404",sub:"عذرًا، الصفحة غير موجودة أو تم نقلها.",hint:"نصيحة: جرّب “الحلول”، “إعادة التأمين”، “الاستدامة”، “اتصل”.",home:"العودة للرئيسية",clear:"مسح"},
     pagesTitle:"الصفحات الرئيسية",
     footerDesc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",
@@ -177,7 +181,8 @@ const I18N = {
       {icon:"🏠",t:"الرئيسية",d:"نظرة عامة ونقاط قوة Riskalia.",href:"index.html"},
       {icon:"🧩",t:"الحلول",d:"منتجات للشركات والأفراد.",href:"solutions.html"},
       {icon:"🧭",t:"إعادة التأمين",d:"اتفاقيات نسبية/فائض/فوق خسارة واختياريات.",href:"reinsurance.html"},
-      {icon:"🌿",t:"الاستدامة",d:"تشخيص وحلول بارامترية وتقارير TCFD.",href:"esg.html"},
+      {icon:"🌍", t:"المخاطر المناخية", d:"التحديد، القياس، التدبير والتقارير.", href:"climate.html"},
+      {icon:"🌿", t:"الاستدامة (ESG)", d:"الحوكمة، الأخلاقيات، الرفاه، البصمة البيئية والأثر الاجتماعي.", href:"esg.html"},
       {icon:"✉️",t:"اتصل بنا",d:"عروض أسعار ومطالبات وتواصل.",href:"contact.html"}
     ],
     searchPH:"ابحث…"
@@ -192,7 +197,7 @@ const redirects = {
   'accueil':'index.html','home':'index.html','index':'index.html',
   'solutions':'solutions.html','produits':'solutions.html','products':'solutions.html',
   'reinsurance':'reinsurance.html','reassurance':'reinsurance.html','re':'reinsurance.html',
-  'esg':'esg.html','climat':'esg.html','sustainability':'esg.html','climate':'esg.html',
+  'esg':'esg.html','climat':'climate.html','sustainability':'climate.html','climate':'climate.html',
   'contact':'contact.html','contacts':'contact.html','contact-us':'contact.html','contactez-nous':'contact.html'
 };
 
@@ -218,6 +223,7 @@ function applyTexts(){
   document.querySelectorAll('[data-i18n="nav.home"]').forEach(e=>e.textContent=t('nav.home'));
   document.querySelectorAll('[data-i18n="nav.solutions"]').forEach(e=>e.textContent=t('nav.solutions'));
   document.querySelectorAll('[data-i18n="nav.re"]').forEach(e=>e.textContent=t('nav.re'));
+  document.querySelectorAll('[data-i18n="nav.climate"]').forEach(e=>e.textContent=t('nav.climate'));
   document.querySelectorAll('[data-i18n="nav.esg"]').forEach(e=>e.textContent=t('nav.esg'));
   document.querySelectorAll('[data-i18n="nav.contact"]').forEach(e=>e.textContent=t('nav.contact'));
   // Hero
@@ -298,6 +304,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
