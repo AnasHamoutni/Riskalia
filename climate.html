@@ -3,23 +3,56 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Climate Risk (Stratégie, Scénarios, Paramétriques)</title>
-  <meta name="description" content="Services Climate Risk : stratégie & gouvernance, scénarios physiques/transition, modélisation PML/AAL, résilience supply-chain, couvertures paramétriques, reporting TCFD/ISSB."/>
+  <title>Riskalia — Risques climatiques (physiques & transition)</title>
+  <meta name="description" content="Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
+
+  <!-- Fonts + global CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
+
   <style>
-    /* Image héro spécifique */
+    /* Hero spécifique */
     .hero--climate{
-      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-                 url('https://images.unsplash.com/photo-1502303756787-90e6c1a3d1eb?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
+      background:
+        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+        url('https://images.unsplash.com/photo-1502303756781-9a24f127e65f?auto=format&fit=crop&w=1600&q=70')
+        center/cover no-repeat;
       min-height:42vh;
     }
-    /* petites cartes KPI */
+
+    /* Layout “onglets” */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+    }
+    .tabs.sticky .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    /* petites grilles */
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
     .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
     .kpi .p .v{font-weight:900;color:#0b5562}
+
+    .cards-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+    .cards-2 .card{margin:0}
+
+    /* table simple */
+    .table-wrap{overflow:auto;border:1px solid #e6eff3;border-radius:14px}
+    table{border-collapse:collapse;min-width:720px;width:100%;background:#fff}
+    th,td{padding:14px;border-top:1px solid #eef3f6;vertical-align:top}
+    th{background:#f6fafc;color:#0b5562;text-align:left}
+
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--climate h1{ font-size: clamp(1.25rem,5.5vw,1.6rem); line-height:1.2; }
+    }
   </style>
 </head>
 <body class="spacious">
@@ -34,7 +67,7 @@
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" class="active" data-i18n="nav.climate">Climate Risk</a></li>
+        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -49,211 +82,201 @@
 
 <section class="hero hero--climate">
   <div class="container">
-    <h1 data-i18n="title">Climate Risk</h1>
-    <p data-i18n="subtitle">Stratégie & gouvernance • Scénarios physiques & transition • Résilience & financements • Paramétriques & transfert de risque.</p>
+    <h1 data-i18n="title">Risques climatiques</h1>
+    <p data-i18n="subtitle">Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.</p>
     <div class="badges">
-      <span class="badge" data-i18n="badges.0">TCFD / ISSB</span>
-      <span class="badge" data-i18n="badges.1">Physical & Transition</span>
-      <span class="badge" data-i18n="badges.2">Paramétriques météo</span>
+      <span class="badge" data-i18n="badges.0">Cartographie & scénarios</span>
+      <span class="badge" data-i18n="badges.1">Adaptation & résilience</span>
+      <span class="badge" data-i18n="badges.2">Transfert & financement</span>
     </div>
   </div>
 </section>
 
 <section class="reveal">
-  <div class="container main">
-    <!-- Aside (desktop) -->
-    <aside class="aside" aria-label="Sommaire">
-      <h4 data-i18n="toc">Sommaire</h4>
-      <a href="#intro"   class="toc">1. <span data-i18n="sec.intro.t">Présentation</span></a>
-      <a href="#offers"  class="toc">2. <span data-i18n="sec.offers.t">Offre</span></a>
-      <a href="#data"    class="toc">3. <span data-i18n="sec.data.t">Données & scénarios</span></a>
-      <a href="#finance" class="toc">4. <span data-i18n="sec.finance.t">Transfert & financement</span></a>
-      <a href="#process" class="toc">5. <span data-i18n="sec.process.t">Feuille de route</span></a>
-      <a href="#faq"     class="toc">6. <span data-i18n="sec.faq.t">FAQ</span></a>
-    </aside>
+  <div class="container main main--single">
 
-    <!-- Chips (mobile) -->
-    <div class="chips" role="tablist" aria-label="Sections">
-      <button class="chip" data-jump="intro"   data-i18n="sec.intro.t">Présentation</button>
-      <button class="chip" data-jump="offers"  data-i18n="sec.offers.t">Offre</button>
-      <button class="chip" data-jump="data"    data-i18n="sec.data.t">Données & scénarios</button>
-      <button class="chip" data-jump="finance" data-i18n="sec.finance.t">Transfert & financement</button>
-      <button class="chip" data-jump="process" data-i18n="sec.process.t">Feuille de route</button>
-      <button class="chip" data-jump="faq"     data-i18n="sec.faq.t">FAQ</button>
-    </div>
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Sections climat">
+      <button class="tab active" role="tab" id="tab-intro"    aria-selected="true"  aria-controls="intro"    data-tab="intro"    data-i18n="sec.intro.t">Vue d’ensemble</button>
+      <button class="tab"         role="tab" id="tab-risks"    aria-selected="false" aria-controls="risks"    data-tab="risks"    data-i18n="sec.risks.t">Risques</button>
+      <button class="tab"         role="tab" id="tab-data"     aria-selected="false" aria-controls="data"     data-tab="data"     data-i18n="sec.data.t">Données & scénarios</button>
+      <button class="tab"         role="tab" id="tab-strategy" aria-selected="false" aria-controls="strategy" data-tab="strategy" data-i18n="sec.strategy.t">Stratégie & roadmap</button>
+      <button class="tab"         role="tab" id="tab-finance"  aria-selected="false" aria-controls="finance"  data-tab="finance"  data-i18n="sec.finance.t">Transfert & financement</button>
+      <button class="tab"         role="tab" id="tab-metrics"  aria-selected="false" aria-controls="metrics"  data-tab="metrics"  data-i18n="sec.metrics.t">Indicateurs & reporting</button>
+      <button class="tab"         role="tab" id="tab-faq"      aria-selected="false" aria-controls="faq"      data-tab="faq"      data-i18n="sec.faq.t">FAQ</button>
+    </nav>
 
-    <!-- Content -->
-    <div>
-      <!-- Intro -->
-      <article id="intro" class="card">
-        <h2 data-i18n="sec.intro.t">1. Présentation</h2>
-        <p class="muted" data-i18n="sec.intro.p">
-          Nous aidons les entreprises à comprendre, mesurer et piloter les risques climatiques — qu’ils soient
-          <strong>physiques</strong> (inondations, sécheresse, tempêtes, canicule…) ou de <strong>transition</strong> (réglementation,
-          technologies, marché, réputation). L’objectif : protéger le compte de résultat, renforcer la résilience des actifs et
-          aligner la stratégie avec TCFD / ISSB.
-        </p>
-        <div class="kpi">
-          <div class="p"><div class="v" data-i18n="sec.intro.kpi.0.v">2 familles de risque</div><div data-i18n="sec.intro.kpi.0.l">Physiques & Transition</div></div>
-          <div class="p"><div class="v" data-i18n="sec.intro.kpi.1.v">PML/AAL</div><div data-i18n="sec.intro.kpi.1.l">Indicateurs pertes attendues</div></div>
-          <div class="p"><div class="v" data-i18n="sec.intro.kpi.2.v">Scénarios</div><div data-i18n="sec.intro.kpi.2.l">RCP/SSP & stress-tests</div></div>
+    <!-- Panneaux -->
+    <article id="intro" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-intro">
+      <h2 data-i18n="sec.intro.t">Vue d’ensemble</h2>
+      <p class="muted" data-i18n="sec.intro.p">
+        Nous aidons les organisations à passer d’une exposition non mesurée à un plan d’action priorisé : cartographie des risques, quantification sous scénarios,
+        décisions « éviter-réduire-transférer » et conformité de reporting.
+      </p>
+      <div class="kpi">
+        <div class="p"><div class="v" data-i18n="sec.intro.kpi.0.v">Diagnostic 3–4 semaines</div><div data-i18n="sec.intro.kpi.0.l">Heatmap & quick-wins</div></div>
+        <div class="p"><div class="v" data-i18n="sec.intro.kpi.1.v">Scénarios RCP/SSP</div><div data-i18n="sec.intro.kpi.1.l">horizon 2030 / 2050</div></div>
+        <div class="p"><div class="v" data-i18n="sec.intro.kpi.2.v">TCFD/ISSB</div><div data-i18n="sec.intro.kpi.2.l">gouvernance, métriques & cibles</div></div>
+      </div>
+    </article>
+
+    <article id="risks" class="card tabpanel" role="tabpanel" aria-labelledby="tab-risks">
+      <h2 data-i18n="sec.risks.t">Risques physiques & de transition</h2>
+      <p class="muted" data-i18n="sec.risks.lead">
+        Nous distinguons les aléas climatiques (aigus/chroniques) et les risques de transition (réglementation, technologie, marché, réputation) pour prioriser les actions.
+      </p>
+      <div class="cards-2 mt-2">
+        <section class="card">
+          <h3 data-i18n="sec.risks.cards.0.t">Physiques</h3>
+          <ul>
+            <li data-i18n="sec.risks.cards.0.li.0">Inondations pluviales/fluviales, submersion, vagues de chaleur.</li>
+            <li data-i18n="sec.risks.cards.0.li.1">Sécheresse & contrainte hydrique, feux de forêt, vent/tempête.</li>
+            <li data-i18n="sec.risks.cards.0.li.2">Impacts actifs, opérations, santé & sécurité, chaîne logistique.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="sec.risks.cards.1.t">Transition</h3>
+          <ul>
+            <li data-i18n="sec.risks.cards.1.li.0">Politiques & prix du carbone, normes produits & reporting.</li>
+            <li data-i18n="sec.risks.cards.1.li.1">Changements technologiques & d’accès à l’énergie.</li>
+            <li data-i18n="sec.risks.cards.1.li.2">Évolution de la demande & attentes des parties prenantes.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article id="data" class="card tabpanel" role="tabpanel" aria-labelledby="tab-data">
+      <h2 data-i18n="sec.data.t">Données & scénarios</h2>
+      <p class="muted" data-i18n="sec.data.lead">
+        Nous croisons climat présent et projeté (RCP/SSP), données d’exposition et sensibilité métier pour quantifier l’impact.
+      </p>
+      <div class="table-wrap mt-2">
+        <table>
+          <caption style="text-align:left;font-weight:800;color:#0b5562" data-i18n="sec.data.cap">Cartographie rapide</caption>
+          <thead>
+            <tr>
+              <th data-i18n="sec.data.h.0">Domaine</th>
+              <th data-i18n="sec.data.h.1">Indicateurs clés</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-i18n="sec.data.r0.c0">Actifs & sites</td>
+              <td data-i18n="sec.data.r0.c1">Exposition chaleur, inondation, sécheresse, vent ; continuité d’activité.</td>
+            </tr>
+            <tr>
+              <td data-i18n="sec.data.r1.c0">Chaîne d’approvisionnement</td>
+              <td data-i18n="sec.data.r1.c1">Dépendance géographique, transport/ports, stocks critiques.</td>
+            </tr>
+            <tr>
+              <td data-i18n="sec.data.r2.c0">Opérations & IT</td>
+              <td data-i18n="sec.data.r2.c1">Énergie & eau, refroidissement data/locaux, santé & sécurité.</td>
+            </tr>
+            <tr>
+              <td data-i18n="sec.data.r3.c0">Produits & clients</td>
+              <td data-i18n="sec.data.r3.c1">Sensibilité prix/CO₂, évolution de la demande, couverture assurance.</td>
+            </tr>
+            <tr>
+              <td data-i18n="sec.data.r4.c0">Finance</td>
+              <td data-i18n="sec.data.r4.c1">Pertes attendues (AAL), stress tests, coût du capital.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="mt-2">
+        <summary>🧭 <span data-i18n="sec.data.src.t">Sources & méthodes</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="sec.data.src.li.0">Climat historique (reanalyses) & projections CMIP6/SSP, CORDEX.</li>
+            <li data-i18n="sec.data.src.li.1">Modèles aléas (inondation, chaleur, vent) et vulnérabilités sectorielles.</li>
+            <li data-i18n="sec.data.src.li.2">Scénarios 1.5–4°C / 2030–2050, probas & fourchettes d’incertitude.</li>
+          </ul>
         </div>
-      </article>
-<br/>
+      </details>
+    </article>
 
-      <!-- Offre -->
-      <article id="offers" class="card">
-        <h2 data-i18n="sec.offers.t">2. Offre de services</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="sec.offers.0.t">Stratégie & gouvernance</h3>
-            <ul>
-              <li data-i18n="sec.offers.0.li.0">Cartographie des expositions par activité & géographie.</li>
-              <li data-i18n="sec.offers.0.li.1">Cadres de gouvernance, appétence au risque, rôles & reporting.</li>
-              <li data-i18n="sec.offers.0.li.2">Alignement TCFD / ISSB et trajectoire Net Zéro.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.offers.1.t">Risque physique</h3>
-            <ul>
-              <li data-i18n="sec.offers.1.li.0">Scores multi-aléas (flood, vent, feu, chaleur, sécheresse).</li>
-              <li data-i18n="sec.offers.1.li.1">Modélisation dommages (PML/AAL) & continuité d’activité.</li>
-              <li data-i18n="sec.offers.1.li.2">Plans d’adaptation: protections, relocalisation, CAPEX résilience.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.offers.2.t">Risque de transition</h3>
-            <ul>
-              <li data-i18n="sec.offers.2.li.0">Stress-tests réglementation/prix du carbone & chaînes d’approvisionnement.</li>
-              <li data-i18n="sec.offers.2.li.1">Analyse de sensibilité revenus/coûts sous scénarios 1.5–3°C.</li>
-              <li data-i18n="sec.offers.2.li.2">Plan de décarbonation & courbe d’abattement.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.offers.3.t">Data & outils</h3>
-            <ul>
-              <li data-i18n="sec.offers.3.li.0">Données climatiques, satellite & cat-models combinés.</li>
-              <li data-i18n="sec.offers.3.li.1">Dashboards actifs/portefeuilles & API internes.</li>
-              <li data-i18n="sec.offers.3.li.2">Audit trail & documentation pour investisseurs.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.offers.4.t">Transfert & paramétriques</h3>
-            <ul>
-              <li data-i18n="sec.offers.4.li.0">Couvertures index météo (pluie, vent, température…).</li>
-              <li data-i18n="sec.offers.4.li.1">Optimisation assurance, captives, solutions multi-pays.</li>
-              <li data-i18n="sec.offers.4.li.2">Structuration indemnitaire & déclencheurs hybrides.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.offers.5.t">Reporting & notation</h3>
-            <ul>
-              <li data-i18n="sec.offers.5.li.0">Dossiers TCFD/ISSB et réponses investisseurs.</li>
-              <li data-i18n="sec.offers.5.li.1">KPI climat (Scope 1-3, intensités, spend).</li>
-              <li data-i18n="sec.offers.5.li.2">Plans d’amélioration notation & suivi annuel.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-<br/>
+    <article id="strategy" class="card tabpanel" role="tabpanel" aria-labelledby="tab-strategy">
+      <h2 data-i18n="sec.strategy.t">Stratégie & feuille de route</h2>
+      <div class="roadmap">
+        <div class="step"><div class="num">1 — 🔎</div><div data-i18n="sec.strategy.steps.0">Mesurer : cartographie, exposition & scénarios.</div></div>
+        <div class="step"><div class="num">2 — 🛠️</div><div data-i18n="sec.strategy.steps.1">Réduire : efficacité, adaptation physique, continuité.</div></div>
+        <div class="step"><div class="num">3 — 🛡️</div><div data-i18n="sec.strategy.steps.2">Transférer : assurance/captives/paramétriques.</div></div>
+        <div class="step"><div class="num">4 — 📊</div><div data-i18n="sec.strategy.steps.3">Déclarer : TCFD/ISSB, cibles & suivi annuel.</div></div>
+      </div>
+      <ul class="mt-2">
+        <li data-i18n="sec.strategy.deliv.0">Plan 12–24 mois priorisé avec budget & porteurs.</li>
+        <li data-i18n="sec.strategy.deliv.1">Tableau de bord risques/opportunités & quick-wins.</li>
+      </ul>
+    </article>
 
-      <!-- Données & scénarios -->
-      <article id="data" class="card">
-        <h2 data-i18n="sec.data.t">3. Données & scénarios</h2>
-        <p class="muted" data-i18n="sec.data.p">Nous croisons climat présent/projeté (RCP/SSP), vulnérabilité des actifs et profils financiers pour quantifier l’impact.</p>
-        <div class="table-wrap mt-2">
-          <table>
-            <caption data-i18n="sec.data.cap">Cartographie rapide</caption>
-            <thead>
-              <tr>
-                <th data-i18n="sec.data.h.0">Domaine</th>
-                <th data-i18n="sec.data.h.1">Indicateurs clés</th>
-                <th data-i18n="sec.data.h.2">Exemples de sources</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-i18n="sec.data.r0.c0">Physique</td>
-                <td data-i18n="sec.data.r0.c1">Scores aléas, PML/AAL, downtime, coûts CAPEX/OPEX</td>
-                <td data-i18n="sec.data.r0.c2">Données météo observées, projections SSP, cat-models</td>
-              </tr>
-              <tr>
-                <td data-i18n="sec.data.r1.c0">Transition</td>
-                <td data-i18n="sec.data.r1.c1">Coût carbone, marges, élasticités, intensité Scope 1-3</td>
-                <td data-i18n="sec.data.r1.c2">Prix ETS, scénarios IEA/NGFS, bases fournisseurs</td>
-              </tr>
-              <tr>
-                <td data-i18n="sec.data.r2.c0">Chaîne d’approvisionnement</td>
-                <td data-i18n="sec.data.r2.c1">Criticité fournisseurs & lead-times</td>
-                <td data-i18n="sec.data.r2.c2">Cartographie sites, ports, corridors logistiques</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </article>
-<br/>
+    <article id="finance" class="card tabpanel" role="tabpanel" aria-labelledby="tab-finance">
+      <h2 data-i18n="sec.finance.t">Transfert & financement</h2>
+      <div class="cards-2 mt-2">
+        <section class="card">
+          <h3 data-i18n="sec.finance.0.t">Assurance & paramétriques</h3>
+          <ul>
+            <li data-i18n="sec.finance.0.li.0">Programmes CatNat / dommages adaptés aux expositions.</li>
+            <li data-i18n="sec.finance.0.li.1">Paramétriques météo (pluie, vent, chaleur) pour pertes d’activité.</li>
+            <li data-i18n="sec.finance.0.li.2">Articulation avec prévention & continuité.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="sec.finance.1.t">Captives & alternatives</h3>
+          <ul>
+            <li data-i18n="sec.finance.1.li.0">Étude d’éligibilité aux captives et stop-loss.</li>
+            <li data-i18n="sec.finance.1.li.1">Solutions ILS/obligations cat selon taille d’exposition.</li>
+            <li data-i18n="sec.finance.1.li.2">Optimisation coût de risque vs. budget.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
 
-      <!-- Transfert & financement -->
-      <article id="finance" class="card">
-        <h2 data-i18n="sec.finance.t">4. Transfert & financement du risque</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="sec.finance.0.t">Paramétriques météo</h3>
-            <ul>
-              <li data-i18n="sec.finance.0.li.0">Déclencheurs pluie, vent, gel, chaleur, NDVI…</li>
-              <li data-i18n="sec.finance.0.li.1">Couvertures de marge, pertes d’exploitation, surplus sinistres.</li>
-              <li data-i18n="sec.finance.0.li.2">Structuration sur données publiques ou stations privées.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="sec.finance.1.t">Optimisation des programmes</h3>
-            <ul>
-              <li data-i18n="sec.finance.1.li.0">Modèles de rétention/limites par site & par région.</li>
-              <li data-i18n="sec.finance.1.li.1">Arbitrage indemnitaire vs indexé.</li>
-              <li data-i18n="sec.finance.1.li.2">Captive & solutions multi-juridictions.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
-<br/>
+    <article id="metrics" class="card tabpanel" role="tabpanel" aria-labelledby="tab-metrics">
+      <h2 data-i18n="sec.metrics.t">Indicateurs & reporting</h2>
+      <p class="muted" data-i18n="sec.metrics.lead">Alignement TCFD/ISSB : gouvernance, stratégie, gestion des risques, métriques & cibles.</p>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="sec.metrics.cards.0.t">Métriques</h3>
+          <ul>
+            <li data-i18n="sec.metrics.cards.0.li.0">Scopes 1–3 & intensité (kgCO₂e/FTE, par M€ CA).</li>
+            <li data-i18n="sec.metrics.cards.0.li.1">Exposition sites aux aléas (par type d’aléa).</li>
+            <li data-i18n="sec.metrics.cards.0.li.2">Pertes annuelles moyennes (AAL) & stress tests.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="sec.metrics.cards.1.t">Cibles</h3>
+          <ul>
+            <li data-i18n="sec.metrics.cards.1.li.0">-X% d’intensité carbone à 2027/2030.</li>
+            <li data-i18n="sec.metrics.cards.1.li.1">% sites avec plan d’adaptation déployé.</li>
+            <li data-i18n="sec.metrics.cards.1.li.2">% couverture risques par assurance/paramétrique.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
 
-      <!-- Process -->
-      <article id="process" class="card">
-        <h2 data-i18n="sec.process.t">5. Feuille de route</h2>
-        <div class="roadmap">
-          <div class="step"><div class="num">1 — 🧭</div><div data-i18n="sec.process.s0">Diagnostic & gouvernance (2–3 semaines)</div></div>
-          <div class="step"><div class="num">2 — 📊</div><div data-i18n="sec.process.s1">Mesure physique/transition & scénarios (3–6 semaines)</div></div>
-          <div class="step"><div class="num">3 — 🛡️</div><div data-i18n="sec.process.s2">Plans d’adaptation & options de transfert</div></div>
-          <div class="step"><div class="num">4 — 🤝</div><div data-i18n="sec.process.s3">Placement & mise en place (assurance/paramétriques)</div></div>
-          <div class="step"><div class="num">5 — 🔁</div><div data-i18n="sec.process.s4">Reporting TCFD/ISSB & revue annuelle</div></div>
-        </div>
-      </article>
-<br/>
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="sec.faq.t">FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.0.q">Par où commencer si nous n’avons pas de données ?</span></summary>
+        <div><p class="muted" data-i18n="faq.0.a">Par un diagnostic court : collecte minimale, données publiques/sectorielles, et priorisation des sites critiques.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.1.q">Quelle différence entre RCP et SSP ?</span></summary>
+        <div><p class="muted" data-i18n="faq.1.a">RCP : trajectoires de forçage radiatif (AR5). SSP : scénarios socio-éco couplés au climat (AR6). Nous pouvons travailler avec les deux.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.2.q">Combien de temps pour un premier livrable ?</span></summary>
+        <div><p class="muted" data-i18n="faq.2.a">En 3–4 semaines, vous disposez d’une heatmap, d’un jeu d’hypothèses et d’actions rapides.</p></div>
+      </details>
+    </article>
 
-      <!-- FAQ -->
-      <article id="faq" class="card">
-        <h2 data-i18n="sec.faq.t">6. FAQ</h2>
-        <details class="mt-1">
-          <summary>❓ <span data-i18n="faq.0.q">Quelle différence entre risque physique et de transition ?</span></summary>
-          <div><p class="muted" data-i18n="faq.0.a">Le risque physique provient des aléas météo/long terme ; la transition découle des changements réglementaires, technologiques, de marché et de réputation.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.1.q">Faut-il un jumeau numérique complet ?</span></summary>
-          <div><p class="muted" data-i18n="faq.1.a">Non. On peut démarrer par une cartographie simple des sites critiques, puis affiner avec des modèles et données enrichies.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.2.q">Les paramétriques remplacent-ils l’indemnitaire ?</span></summary>
-          <div><p class="muted" data-i18n="faq.2.a">Ils le complètent : paiement rapide sur indice pour couvrir les trous de garantie ou la perte de marge.</p></div>
-        </details>
-      </article>
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Besoin d’une cartographie climat ou d’un montage paramétrique ?</h3>
+      <p class="muted" data-i18n="cta.p">Parlons de vos sites & activités : nous préparons un plan d’action et des options de transfert adaptées.</p>
+      <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
+    </article>
 
-      <!-- CTA -->
-      <article class="card center" style="margin-top:14px">
-        <h3 data-i18n="cta.t">Parlons de votre cartographie & options de couverture</h3>
-        <p class="muted" data-i18n="cta.p">Un premier diagnostic en 2–3 semaines pour prioriser vos sites et définir les leviers.</p>
-        <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
-      </article>
-    </div>
   </div>
 </section>
 
@@ -261,13 +284,13 @@
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
+         <a href="climate.html" data-i18n="nav.climate">Risques climatiques</a><br/>
          <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
     <div>
@@ -281,84 +304,138 @@
 /* ================== i18n ================== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    title:"Climate Risk",
-    subtitle:"Stratégie & gouvernance • Scénarios physiques & transition • Résilience & financements • Paramétriques & transfert de risque.",
-    badges:["TCFD / ISSB","Physical & Transition","Paramétriques météo"],
-    toc:"Sommaire",
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques climatiques",esg:"ESG",contact:"Contact"},
+    title:"Risques climatiques",
+    subtitle:"Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.",
+    badges:["Cartographie & scénarios","Adaptation & résilience","Transfert & financement"],
     sec:{
-      intro:{t:"Présentation",
-        p:"Nous aidons les entreprises à comprendre, mesurer et piloter les risques climatiques — physiques (inondations, sécheresse, tempêtes, canicule…) et de transition (réglementation, technologies, marché, réputation).",
-        kpi:[{v:"2 familles de risque",l:"Physiques & Transition"},{v:"PML/AAL",l:"Indicateurs pertes attendues"},{v:"Scénarios",l:"RCP/SSP & stress-tests"}]},
-      offers:{t:"Offre"},
-      data:{t:"Données & scénarios",p:"Nous croisons climat présent/projeté (RCP/SSP), vulnérabilité des actifs et profils financiers pour quantifier l’impact.",
-            cap:"Cartographie rapide",h:["Domaine","Indicateurs clés","Exemples de sources"]},
-      finance:{t:"Transfert & financement"},
-      process:{t:"Feuille de route",s0:"Diagnostic & gouvernance (2–3 semaines)",s1:"Mesure physique/transition & scénarios (3–6 semaines)",s2:"Plans d’adaptation & options de transfert",s3:"Placement & mise en place (assurance/paramétriques)",s4:"Reporting TCFD/ISSB & revue annuelle"},
+      intro:{t:"Vue d’ensemble",p:"Nous aidons les organisations à passer d’une exposition non mesurée à un plan d’action priorisé : cartographie des risques, quantification sous scénarios, décisions « éviter-réduire-transférer » et conformité de reporting.",
+        kpi:[{v:"Diagnostic 3–4 semaines",l:"Heatmap & quick-wins"},{v:"Scénarios RCP/SSP",l:"horizon 2030 / 2050"},{v:"TCFD/ISSB",l:"gouvernance, métriques & cibles"}]},
+      risks:{t:"Risques physiques & de transition",lead:"Nous distinguons les aléas climatiques (aigus/chroniques) et les risques de transition (réglementation, technologie, marché, réputation) pour prioriser les actions.",
+        cards:[
+          {t:"Physiques",li:["Inondations pluviales/fluviales, submersion, vagues de chaleur.","Sécheresse & contrainte hydrique, feux de forêt, vent/tempête.","Impacts actifs, opérations, santé & sécurité, chaîne logistique."]},
+          {t:"Transition",li:["Politiques & prix du carbone, normes produits & reporting.","Changements technologiques & d’accès à l’énergie.","Évolution de la demande & attentes des parties prenantes."]}
+        ]},
+      data:{t:"Données & scénarios",lead:"Nous croisons climat présent et projeté (RCP/SSP), données d’exposition et sensibilité métier pour quantifier l’impact.",
+        cap:"Cartographie rapide",
+        h:["Domaine","Indicateurs clés"],
+        r0:{c0:"Actifs & sites",c1:"Exposition chaleur, inondation, sécheresse, vent ; continuité d’activité."},
+        r1:{c0:"Chaîne d’approvisionnement",c1:"Dépendance géographique, transport/ports, stocks critiques."},
+        r2:{c0:"Opérations & IT",c1:"Énergie & eau, refroidissement data/locaux, santé & sécurité."},
+        r3:{c0:"Produits & clients",c1:"Sensibilité prix/CO₂, évolution de la demande, couverture assurance."},
+        r4:{c0:"Finance",c1:"Pertes attendues (AAL), stress tests, coût du capital."},
+        src:{t:"Sources & méthodes",li:["Climat historique (reanalyses) & projections CMIP6/SSP, CORDEX.","Modèles aléas (inondation, chaleur, vent) et vulnérabilités sectorielles.","Scénarios 1.5–4°C / 2030–2050, probas & fourchettes d’incertitude."]}
+      },
+      strategy:{t:"Stratégie & roadmap",
+        steps:["Mesurer : cartographie, exposition & scénarios.","Réduire : efficacité, adaptation physique, continuité.","Transférer : assurance/captives/paramétriques.","Déclarer : TCFD/ISSB, cibles & suivi annuel."],
+        deliv:["Plan 12–24 mois priorisé avec budget & porteurs.","Tableau de bord risques/opportunités & quick-wins."]},
+      finance:{t:"Transfert & financement",
+        0:{t:"Assurance & paramétriques",li:["Programmes CatNat / dommages adaptés aux expositions.","Paramétriques météo (pluie, vent, chaleur) pour pertes d’activité.","Articulation avec prévention & continuité."]},
+        1:{t:"Captives & alternatives",li:["Étude d’éligibilité aux captives et stop-loss.","Solutions ILS/obligations cat selon taille d’exposition.","Optimisation coût de risque vs. budget."]}},
+      metrics:{t:"Indicateurs & reporting",lead:"Alignement TCFD/ISSB : gouvernance, stratégie, gestion des risques, métriques & cibles.",
+        cards:[
+          {t:"Métriques",li:["Scopes 1–3 & intensité (kgCO₂e/FTE, par M€ CA).","Exposition sites aux aléas (par type d’aléa).","Pertes annuelles moyennes (AAL) & stress tests."]},
+          {t:"Cibles",li:["-X% d’intensité carbone à 2027/2030.","% sites avec plan d’adaptation déployé.","% couverture risques par assurance/paramétrique."]}
+        ]},
       faq:{t:"FAQ"}
     },
-    sec_offers_cards:[
-      {t:"Stratégie & gouvernance",li:["Cartographie des expositions par activité & géographie.","Cadres de gouvernance, appétence au risque, rôles & reporting.","Alignement TCFD / ISSB et trajectoire Net Zéro."]},
-    ],
+    cta:{t:"Besoin d’une cartographie climat ou d’un montage paramétrique ?",p:"Parlons de vos sites & activités : nous préparons un plan d’action et des options de transfert adaptées.",btn:"Nous contacter"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"},
     faq:{
-      "0":{q:"Quelle différence entre risque physique et de transition ?",a:"Le risque physique provient des aléas météorologiques/long terme ; la transition découle des changements réglementaires, technologiques, de marché et de réputation."},
-      "1":{q:"Faut-il un jumeau numérique complet ?",a:"Non. On peut démarrer par une cartographie simple des sites critiques, puis affiner avec des modèles et données enrichies."},
-      "2":{q:"Les paramétriques remplacent-ils l’indemnitaire ?",a:"Ils le complètent : paiement rapide sur indice pour couvrir les trous de garantie ou la perte de marge."}
-    },
-    cta:{t:"Parlons de votre cartographie & options de couverture",p:"Un premier diagnostic en 2–3 semaines pour prioriser vos sites et définir les leviers.",btn:"Nous contacter"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
+      0:{q:"Par où commencer si nous n’avons pas de données ?",a:"Par un diagnostic court : collecte minimale, données publiques/sectorielles, et priorisation des sites critiques."},
+      1:{q:"Quelle différence entre RCP et SSP ?",a:"RCP : trajectoires de forçage (AR5). SSP : scénarios socio-éco couplés au climat (AR6). Nous travaillons avec les deux."},
+      2:{q:"Combien de temps pour un premier livrable ?",a:"En 3–4 semaines, vous disposez d’une heatmap, d’un jeu d’hypothèses et d’actions rapides."}
+    }
   },
 
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
     title:"Climate Risk",
-    subtitle:"Strategy & governance • Physical & transition scenarios • Resilience & financing • Weather parametrics & risk transfer.",
-    badges:["TCFD / ISSB","Physical & Transition","Weather parametrics"],
-    toc:"Contents",
+    subtitle:"Identify, quantify and manage climate impacts: physical (acute/chronic) and transition risks, scenarios (RCP/SSP), adaptation roadmap, risk transfer and TCFD/ISSB reporting.",
+    badges:["Risk mapping & scenarios","Adaptation & resilience","Transfer & financing"],
     sec:{
-      intro:{t:"Overview",
-        p:"We help organisations understand, quantify and manage climate risks — physical (flood, drought, windstorm, heat) and transition (policy, technology, market, reputation).",
-        kpi:[{v:"2 risk families",l:"Physical & Transition"},{v:"PML/AAL",l:"Loss metrics"},{v:"Scenarios",l:"RCP/SSP stress-tests"}]},
-      offers:{t:"Services"},
-      data:{t:"Data & scenarios",p:"We combine observed/projected climate (RCP/SSP), asset vulnerability and financial profiles to assess impact.",
-            cap:"Quick mapping",h:["Domain","Key indicators","Example sources"]},
-      finance:{t:"Transfer & financing"},
-      process:{t:"Roadmap",s0:"Diagnosis & governance (2–3 wks)",s1:"Physical/transition measurement & scenarios (3–6 wks)",s2:"Adaptation plans & transfer options",s3:"Placement & implementation",s4:"TCFD/ISSB reporting & annual review"},
+      intro:{t:"Overview",p:"We move clients from unmeasured exposure to a prioritised action plan: risk mapping, scenario-based quantification, avoid-reduce-transfer decisions, and compliant disclosure.",
+        kpi:[{v:"3–4 week diagnostic",l:"Heatmap & quick wins"},{v:"RCP/SSP scenarios",l:"2030 / 2050 horizons"},{v:"TCFD/ISSB",l:"governance, metrics & targets"}]},
+      risks:{t:"Physical & transition risks",lead:"We separate acute/chronic climate hazards from transition risks (policy, tech, market, reputation) to prioritise actions.",
+        cards:[
+          {t:"Physical",li:["Flood (pluvial/fluvial/coastal), heatwaves.","Drought & water stress, wildfires, windstorm.","Impacts on assets, operations, H&S, supply chain."]},
+          {t:"Transition",li:["Carbon policy & pricing, product/ disclosure standards.","Technology & energy access shifts.","Demand changes & stakeholder expectations."]}
+        ]},
+      data:{t:"Data & scenarios",lead:"We combine current/projected climate (RCP/SSP), exposure and business sensitivity to quantify impact.",
+        cap:"Quick mapping",
+        h:["Domain","Key indicators"],
+        r0:{c0:"Assets & sites",c1:"Heat, flood, drought, wind exposure; business continuity."},
+        r1:{c0:"Supply chain",c1:"Geographic dependency, transport/ports, critical stock."},
+        r2:{c0:"Operations & IT",c1:"Energy & water, cooling for data/sites, H&S."},
+        r3:{c0:"Products & clients",c1:"Price/CO₂ sensitivity, demand shifts, insurance coverage."},
+        r4:{c0:"Finance",c1:"Expected losses (AAL), stress tests, cost of capital."},
+        src:{t:"Sources & methods",li:["Historical climate & CMIP6/SSP projections, CORDEX.","Hazard models (flood/heat/wind) and sector vulnerabilities.","1.5–4°C scenarios (2030–2050) with probabilities & uncertainty bands."]}
+      },
+      strategy:{t:"Strategy & roadmap",
+        steps:["Measure: mapping, exposure & scenarios.","Reduce: efficiency, physical adaptation, continuity.","Transfer: insurance/captives/parametrics.","Disclose: TCFD/ISSB, targets & annual tracking."],
+        deliv:["12–24 month prioritised plan with owners & budget.","Risk/opportunity dashboard & quick wins."]},
+      finance:{t:"Transfer & financing",
+        0:{t:"Insurance & parametrics",li:["Cat/Property programmes aligned to exposure.","Weather parametrics (rain, wind, heat) for BI/volume losses.","Integrated with prevention & BCM."]},
+        1:{t:"Captives & alternatives",li:["Captive/stop-loss feasibility.","ILS/CAT bonds when exposure size allows.","Optimised cost of risk vs. budget."]}},
+      metrics:{t:"Metrics & reporting",lead:"Aligned to TCFD/ISSB: governance, strategy, risk management, metrics & targets.",
+        cards:[
+          {t:"Metrics",li:["Scopes 1–3 & intensity (kgCO₂e/FTE, per revenue).","Site exposure by hazard.","Average annual loss (AAL) & stress tests."]},
+          {t:"Targets",li:["-X% carbon intensity by 2027/2030.","% of sites with adaptation plans deployed.","% risk coverage via insurance/parametrics."]}
+        ]},
       faq:{t:"FAQ"}
     },
+    cta:{t:"Need a climate mapping or a parametric structure?",p:"Tell us about your sites & activities — we’ll prepare an action plan and transfer options.",btn:"Contact us"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"},
     faq:{
-      "0":{q:"What’s the difference between physical and transition risk?",a:"Physical risk stems from weather and long-term hazards; transition from policy, technology, market and reputation shifts."},
-      "1":{q:"Do we need a full digital twin?",a:"No. Start with a pragmatic hotspot map, then deepen with models and richer data."},
-      "2":{q:"Do parametrics replace indemnity covers?",a:"They complement them with fast, index-based payouts to fill gaps or protect margins."}
-    },
-    cta:{t:"Let’s discuss your mapping & cover options",p:"A first diagnostic in 2–3 weeks to prioritise assets and define levers.",btn:"Contact us"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
+      0:{q:"Where to start if we lack data?",a:"Start with a short diagnostic: minimal collection, public/sector data, and a focus on critical sites."},
+      1:{q:"RCP vs SSP?",a:"RCP are radiative forcing pathways (AR5). SSP are socio-economic scenarios combined with climate (AR6). We can work with both."},
+      2:{q:"Timeline for first deliverables?",a:"Within 3–4 weeks you get a heatmap, assumptions and quick actions."}
+    }
   },
 
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"مخاطر المناخ",
-    subtitle:"إستراتيجية وحوكمة • سيناريوهات المخاطر الفيزيائية والانتقالية • المرونة والتمويل • حلول مؤشر الطقس.",
-    badges:["TCFD / ISSB","فيزيائية وانتقالية","تأمين بارامتري"],
-    toc:"المحتوى",
+    subtitle:"تحديد وقياس وإدارة آثار المناخ: المخاطر الفيزيائية (حادّة/مزمنة) ومخاطر الانتقال، سيناريوهات RCP/SSP، خارطة طريق للتكيّف، نقل المخاطر والإفصاح TCFD/ISSB.",
+    badges:["خرائط المخاطر والسيناريوهات","التكيّف والمرونة","النقل والتمويل"],
     sec:{
-      intro:{t:"لمحة",
-        p:"نساعد المؤسسات على فهم وقياس وإدارة مخاطر المناخ — الفيزيائية (فيضانات، جفاف، عواصف، موجات حر) والانتقالية (تشريعات، تقنيات، سوق، سمعة).",
-        kpi:[{v:"عائلتا مخاطر",l:"فيزيائية وانتقالية"},{v:"PML/AAL",l:"مقاييس الخسائر"},{v:"سيناريوهات",l:"RCP/SSP واختبارات ضغط"}]},
-      offers:{t:"الخدمات"},
-      data:{t:"البيانات والسيناريوهات",p:"نمزج المناخ الحالي والمتوقع مع هشاشة الأصول والملفات المالية لتقدير الأثر.",
-            cap:"خريطة سريعة",h:["المجال","المؤشرات","مصادر"]},
-      finance:{t:"نقل وتمويل المخاطر"},
-      process:{t:"خارطة الطريق",s0:"تشخيص وحوكمة (2–3 أسابيع)",s1:"قياس فيزيائي/انتقالي وسيناريوهات (3–6 أسابيع)",s2:"خطط التكيف وخيارات النقل",s3:"الترتيب والتنفيذ",s4:"تقارير TCFD/ISSB ومراجعة سنوية"},
+      intro:{t:"نظرة عامة",p:"نحوّل التعرض غير المقاس إلى خطة عمل مُرتّبة حسب الأولويات: خرائط مخاطر، قياس بالسيناريوهات، قرارات تجنّب/تقليل/نقل، وإفصاح متوافق.",
+        kpi:[{v:"تشخيص 3–4 أسابيع",l:"خريطة حرارة وإجراءات سريعة"},{v:"سيناريوهات RCP/SSP",l:"آفاق 2030/2050"},{v:"TCFD/ISSB",l:"حوكمة ومقاييس وأهداف"}]},
+      risks:{t:"المخاطر الفيزيائية والانتقالية",lead:"نُميّز بين أخطار المناخ الحادّة/المزمنة ومخاطر الانتقال (سياسات، تقنيات، سوق، سمعة) لتحديد الأولويات.",
+        cards:[
+          {t:"فيزيائية",li:["فيضانات وسواحل وموجات حر.","جفاف وإجهاد مائي وحرائق وغُبار/رياح.","تأثير على الأصول والعمليات وسلامة العاملين وسلاسل التوريد."]},
+          {t:"انتقالية",li:["سياسات وتسعير الكربون ومعايير المنتجات والإفصاح.","تغيرات تقنية ونفاذ إلى الطاقة.","تبدل الطلب وتوقعات أصحاب المصلحة."]}
+        ]},
+      data:{t:"البيانات والسيناريوهات",lead:"نمزج المناخ الحالي والمتوقّع (RCP/SSP) مع التعرض وحساسية النشاط لقياس الأثر.",
+        cap:"خرائط سريعة",
+        h:["المجال","مؤشرات رئيسية"],
+        r0:{c0:"الأصول والمواقع",c1:"تعرض للحرارة والفيضانات والجفاف والرياح؛ استمرارية الأعمال."},
+        r1:{c0:"سلسلة الإمداد",c1:"اعتماد جغرافي ونقل/مرافئ ومخزون حرج."},
+        r2:{c0:"العمليات وتقنية المعلومات",c1:"طاقة ومياه وتبريد للبيانات/المواقع وسلامة."},
+        r3:{c0:"المنتجات والعملاء",c1:"حساسية للسعر/الكربون وتغير الطلب والتغطية التأمينية."},
+        r4:{c0:"المالية",c1:"خسائر سنوية متوقعة (AAL) واختبارات ضغط وكلفة رأس المال."},
+        src:{t:"المصادر والمنهجيات",li:["بيانات تاريخية وإسقاطات CMIP6/SSP وCORDEX.","نماذج أخطار فيضانات/حرارة/رياح وقابليات قطاعية.","سيناريوهات 1.5–4°C للأعوام 2030–2050 مع احتمالات وعدم يقين."]}
+      },
+      strategy:{t:"الاستراتيجية وخارطة الطريق",
+        steps:["القياس: خرائط وتعريض وسيناريوهات.","التقليل: كفاءة وتكيّف مادي واستمرارية.","النقل: تأمين/كابتف/بارامترية.","الإفصاح: TCFD/ISSB وأهداف وتتبع سنوي."],
+        deliv:["خطة 12–24 شهراً بميزانية ومسؤولين.","لوحة متابعة للمخاطر والفرص وإجراءات سريعة."]},
+      finance:{t:"نقل المخاطر والتمويل",
+        0:{t:"تأمين وحلول بارامترية",li:["برامج كوارث/ممتلكات ملائمة للتعريض.","بارامترية للطقس (أمطار/رياح/حر) لخسائر الأعمال.","تكامل مع الوقاية والاستمرارية."]},
+        1:{t:"كابتف وحلول بديلة",li:["دراسة أهلية للكابتف ووقف الخسارة.","أوراق مالية مرتبطة بالكوارث عند كِبَر التعريض.","تحسين كلفة المخاطر مقابل الميزانية."]}},
+      metrics:{t:"المقاييس والإفصاح",lead:"محاذاة مع TCFD/ISSB: الحوكمة والاستراتيجية وإدارة المخاطر والمقاييس والأهداف.",
+        cards:[
+          {t:"مقاييس",li:["انبعاثات النطاق 1–3 وكثافتها (لكل موظف/الإيراد).","تعرض المواقع للأخطار بحسب النوع.","خسارة سنوية متوسطة (AAL) واختبارات ضغط."]},
+          {t:"أهداف",li:["خفض كثافة الكربون -X% بحلول 2027/2030.","% المواقع ذات خطط تكيّف مطبقة.","% التغطية عبر التأمين/البارامترية."]}
+        ]},
       faq:{t:"الأسئلة الشائعة"}
     },
+    cta:{t:"تحتاجون خريطة مناخ أو ترتيباً بارامتركياً؟",p:"أخبرونا عن مواقعكم وأنشطتكم — نُعد خطة عمل وخيارات نقل مناسبة.",btn:"تواصلوا معنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"},
     faq:{
-      "0":{q:"ما الفرق بين المخاطر الفيزيائية والانتقالية؟",a:"الفيزيائية بسبب الأخطار المناخية؛ والانتقالية نتيجة تغيّر السياسات والتقنيات والسوق والسمعة."},
-      "1":{q:"هل نحتاج نموذجاً رقمياً كاملاً؟",a:"لا. نبدأ بخريطة أولية للمواقع الحرجة ثم نُعمّق بالنماذج والبيانات."},
-      "2":{q:"هل تحل المؤشرات محل التأمين التعويضي؟",a:"تكمله بدفع سريع قائم على المؤشر لسد الفجوات وحماية الهوامش."}
-    },
-    cta:{t:"لنبدأ برسم خريطة المخاطر وخيارات التغطية",p:"تشخيص أولي خلال 2–3 أسابيع لتحديد الأولويات.",btn:"تواصل معنا"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
+      0:{q:"من أين نبدأ إذا كانت البيانات محدودة؟",a:"بتشخيص قصير: تجميع أساسي وبيانات عامة/قطاعية وتركيز على المواقع الحرِجة."},
+      1:{q:"ما الفرق بين RCP وSSP؟",a:"RCP مسارات إشعاعية (AR5). وSSP سيناريوهات اجتماعية-اقتصادية مع المناخ (AR6). نعمل بهما."},
+      2:{q:"كم يلزم لنتيجة أولى؟",a:"خلال 3–4 أسابيع تحصلون على خريطة حرارة وفرضيات وخطوات سريعة."}
+    }
   }
 };
 
@@ -370,58 +447,72 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('climate.html'))); }
 
-/* ================== Render ================== */
+/* ================== Render & UI ================== */
 function applyTexts(){
-  document.documentElement.lang=lang;
-  document.body.dir=(lang==='ar'?'rtl':'ltr');
-
+  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
   $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
 
-  // Tableau headings dynamiques
-  const H=t('sec.data.h'); ['0','1','2'].forEach((i)=>{ const el=$(`[data-i18n="sec.data.h.${i}"]`); if(el) el.textContent=H[i]; });
+  // Fill table cells for "data" section (explicit mapping)
+  const map={
+    'sec.data.cap':t('sec.data.cap'),
+    'sec.data.h.0':t('sec.data.h')[0],
+    'sec.data.h.1':t('sec.data.h')[1],
+    'sec.data.r0.c0':t('sec.data.r0.c0'),
+    'sec.data.r0.c1':t('sec.data.r0.c1'),
+    'sec.data.r1.c0':t('sec.data.r1.c0'),
+    'sec.data.r1.c1':t('sec.data.r1.c1'),
+    'sec.data.r2.c0':t('sec.data.r2.c0'),
+    'sec.data.r2.c1':t('sec.data.r2.c1'),
+    'sec.data.r3.c0':t('sec.data.r3.c0'),
+    'sec.data.r3.c1':t('sec.data.r3.c1'),
+    'sec.data.r4.c0':t('sec.data.r4.c0'),
+    'sec.data.r4.c1':t('sec.data.r4.c1')
+  };
+  Object.entries(map).forEach(([k,v])=>{ const el=$(`[data-i18n="${k}"]`); if(el) el.innerHTML=v; });
+}
 
-  // KPI (intro)
-  const k=t('sec.intro.kpi'); if(k?.length){
-    const wrap=$('#intro .kpi'); if(wrap){
-      wrap.querySelectorAll('.p').forEach((card,idx)=>{
-        const v=card.querySelector('.v'); const l=card.querySelector('div:last-child');
-        v.textContent=k[idx].v; l.textContent=k[idx].l;
-      });
-    }
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const on = btn.dataset.tab===id;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-selected', on?'true':'false');
+      btn.tabIndex = on?0:-1;
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+    $('#tab-'+id)?.focus({preventScroll:true});
   }
+
+  tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
+
+  function fromHash(){
+    const id=(location.hash||'#intro').slice(1);
+    const known=['intro','risks','data','strategy','finance','metrics','faq'];
+    show( known.includes(id)?id:'intro', false );
+  }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
 }
 
 function initUI(){
   // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // langue
+  if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
+  // language
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // chips scroll
-  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
-    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  // reveal & TOC highlight
-  const rev=$$('.reveal');
-  const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); highlightTOC(); };
+  // reveal
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
-}
-
-function highlightTOC(){
-  const ids=['intro','offers','data','finance','process','faq'];
-  let active=ids[0];
-  for(const id of ids){
-    const el=document.getElementById(id);
-    if(el && el.getBoundingClientRect().top<window.innerHeight*0.35) active=id;
-  }
-  $$('.aside .toc').forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+active));
+  // tabs
+  bindTabs();
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
