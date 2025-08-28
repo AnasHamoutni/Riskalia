@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Accidents de la vie (Particuliers)</title>
+  <meta name="description" content="Assurance Accidents de la Vie : décès/invalidité suite à accident, barème IPP, frais médicaux d’urgence, indemnités journalières, fractures/brûlures, assistance & éducation. Couverture 24/7, monde."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+
+  <!-- Fonts + global CSS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+
+  <style>
+    /* Hero visuel pour produit */
+    .hero--product{
+      min-height:42vh;
+      background:
+        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+        url('https://images.unsplash.com/photo-1505753065532-68713e211a3a?auto=format&fit=crop&w=1600&q=70')
+        center/cover no-repeat;
+      display:flex; align-items:center; text-align:center;
+    }
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Onglets horizontaux collants */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
+  </style>
+
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="spacious">
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="../index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero hero--product">
+  <div class="container">
+    <h1 data-i18n="title">Accidents de la vie (Particuliers)</h1>
+    <p data-i18n="subtitle">Décès & invalidité par accident • Barème IPP • Frais médicaux d’urgence • Indemnités journalières • Fractures & brûlures • Assistance & éducation • 24/7 monde.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">Forfait en cas d’accident</span>
+      <span class="badge" data-i18n="badges.1">Famille & éducation</span>
+      <span class="badge" data-i18n="badges.2">Monde 24/7</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="reveal">
+  <div class="container main main--single">
+
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="ALV tabs">
+      <button class="tab active"  id="tab-over" role="tab" aria-selected="true"  data-tab="over" data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" data-tab="cov"  data-i18n="tabs.cov">Garanties</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" data-tab="opt"  data-i18n="tabs.opt">Options & extensions</button>
+      <button class="tab"         id="tab-admin"role="tab" aria-selected="false" data-tab="admin"data-i18n="tabs.admin">Tarifs & souscription</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" data-tab="claim"data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" data-tab="faq"  data-i18n="tabs.faq">FAQ</button>
+    </nav>
+
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            L’assurance <strong>Accidents de la Vie (ALV)</strong> verse des indemnités en cas de décès ou d’atteinte à l’intégrité physique consécutifs à un accident (vie privée, loisirs, sport…). Des forfaits couvrent également les <em>frais d’urgence</em>, les <em>fractures/brûlures</em>, l’<em>hospitalisation</em> et l’<em>assistance</em>.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Couverture 24/7, y compris à l’étranger (selon plan).</li>
+            <li data-i18n="over.li.1">Capitaux au choix, barème d’invalidité (IPP) transparent.</li>
+            <li data-i18n="over.li.2">Pack famille & option rente éducation.</li>
+          </ul>
+        </div>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Capital décès</div><div>jusqu’à 1 000 000 (devise selon marché)</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Invalidité</div><div>IPP/ITA selon barème contrat</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Franchise IJ</div><div>24–48 h (selon option)</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Garanties -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Garanties principales</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Décès & Invalidité par accident</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Capital en cas de décès accidentel.</li>
+            <li data-i18n="cov.c0.li.1">Capital/ rente selon IPP (barème contractuel).</li>
+            <li data-i18n="cov.c0.li.2">Aménagement du domicile (selon plan).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">Frais médicaux & hospitalisation</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Frais d’urgence (plafonds/an).</li>
+            <li data-i18n="cov.c1.li.1">Indemnité journalière d’hospitalisation (franchise 24–48 h).</li>
+            <li data-i18n="cov.c1.li.2">Prothèses/orthèses (selon plan).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Barèmes fractures & brûlures</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Indemnités selon localisation & gravité.</li>
+            <li data-i18n="cov.c2.li.1">Chirurgie réparatrice/cosmétique post-accident.</li>
+            <li data-i18n="cov.c2.li.2">Invalidité permanente partielle/total.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c3.t">Assistance & éducation</h3>
+          <ul>
+            <li data-i18n="cov.c3.li.0">Rapatriement, aide à domicile, garde d’enfants.</li>
+            <li data-i18n="cov.c3.li.1">Rente éducation/ou capital études (option).</li>
+            <li data-i18n="cov.c3.li.2">Accompagnement social & psychologique.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options & extensions -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options & extensions</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Capitaux & packs</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Choix de capitaux (décès/invalidité) par tranche.</li>
+            <li data-i18n="opt.c0.li.1">Pack famille : tous les membres couverts.</li>
+            <li data-i18n="opt.c0.li.2">Indexation annuelle (optionnelle).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">Sports & risques</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Rachat d’exclusions pour sports à risques (liste).</li>
+            <li data-i18n="opt.c1.li.1">Extensions “monde +” (séjours longs).</li>
+            <li data-i18n="opt.c1.li.2">Exclusions usuelles : maladies, actes intentionnels…</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Indemnités journalières</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Montant au choix (franchise 24–48 h).</li>
+            <li data-i18n="opt.c2.li.1">Plafond jours/an selon plan.</li>
+            <li data-i18n="opt.c2.li.2">Cumulable avec garanties principales.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Tarifs & souscription -->
+    <article id="admin" class="card tabpanel" role="tabpanel" aria-labelledby="tab-admin">
+      <h2 data-i18n="admin.t">4. Tarifs & souscription</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="admin.c0.t">Comment est fixé le tarif ?</h3>
+          <ul>
+            <li data-i18n="admin.c0.li.0">Âge et capitaux choisis.</li>
+            <li data-i18n="admin.c0.li.1">Activités & pratiques sportives déclarées.</li>
+            <li data-i18n="admin.c0.li.2">Options (IJ, extensions, pack famille).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c1.t">Souscription</h3>
+          <ul>
+            <li data-i18n="admin.c1.li.0">Déclaration simple (pas d’examen médical en général).</li>
+            <li data-i18n="admin.c1.li.1">Effet immédiat à l’adhésion (sous conditions).</li>
+            <li data-i18n="admin.c1.li.2">Âges limites d’adhésion/maintien précisés au contrat.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c2.t">Documents utiles</h3>
+          <ul>
+            <li data-i18n="admin.c2.li.0">Pièce d’identité et coordonnées.</li>
+            <li data-i18n="admin.c2.li.1">Déclaration d’activités/sports.</li>
+            <li data-i18n="admin.c2.li.2">RIB si prélèvement.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Déclaration & indemnisation</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Notre approche</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Déclaration en ligne sous 5 jours ouvrés après l’accident.</li>
+            <li data-i18n="claim.li.1">Pièces : rapport médical, factures, formulaire IPP.</li>
+            <li data-i18n="claim.li.2">Indemnisation sur base barème & capitaux.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Les accidents sportifs sont-ils couverts ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Oui pour la plupart des sports loisirs. Les sports à risques peuvent nécessiter une extension spécifique.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Et si l’accident implique un tiers ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">L’ALV indemnise indépendamment de la responsabilité d’un tiers. Les recours sont ensuite gérés par l’assureur.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Existe-t-il un délai de carence ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">Généralement non sur l’accident pur ; une franchise temps peut s’appliquer aux indemnités journalières.</p></div>
+      </details>
+    </article>
+
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Protégez votre famille contre les accidents de la vie</h3>
+      <p class="muted" data-i18n="cta.p">Nous comparons les offres et configurons les capitaux adaptés à vos besoins.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
+
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./sante.html">← <span data-i18n="nav.prev">Santé</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./habitation.html"><span data-i18n="nav.next">Biens (Habitation)</span> →</a>
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAQ SEO -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Les accidents sportifs sont-ils couverts ?","acceptedAnswer":{"@type":"Answer","text":"Oui pour la plupart des sports loisirs. Les sports à risques peuvent nécessiter une extension spécifique."}},
+{"@type":"Question","name":"Et si l’accident implique un tiers ?","acceptedAnswer":{"@type":"Answer","text":"L’ALV indemnise indépendamment de la responsabilité d’un tiers. Les recours sont ensuite gérés par l’assureur."}},
+{"@type":"Question","name":"Existe-t-il un délai de carence ?","acceptedAnswer":{"@type":"Answer","text":"Généralement non sur l’accident pur ; une franchise temps peut s’appliquer aux indemnités journalières."}}
+]}
+</script>
+
+<script>
+/* ================== I18N ================== */
+const I18N={
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    title:"Accidents de la vie (Particuliers)",
+    subtitle:"Décès & invalidité par accident • Barème IPP • Frais médicaux d’urgence • Indemnités journalières • Fractures & brûlures • Assistance & éducation • 24/7 monde.",
+    badges:["Forfait en cas d’accident","Famille & éducation","Monde 24/7"],
+    tabs:{over:"Aperçu",cov:"Garanties",opt:"Options & extensions",admin:"Tarifs & souscription",claim:"Sinistres",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"L’assurance Accidents de la Vie (ALV) verse des indemnités en cas de décès ou d’atteinte à l’intégrité physique consécutifs à un accident (vie privée, loisirs, sport…). Des forfaits couvrent également les frais d’urgence, les fractures/brûlures, l’hospitalisation et l’assistance.",
+          li:["Couverture 24/7, y compris à l’étranger (selon plan).","Capitaux au choix, barème d’invalidité (IPP) transparent.","Pack famille & option rente éducation."],
+          kpi:["Capital décès","Invalidité","Franchise IJ"]},
+    cov:{t:"2. Garanties principales",
+         c0:{t:"Décès & Invalidité par accident",li:["Capital en cas de décès accidentel.","Capital/ rente selon IPP (barème contractuel).","Aménagement du domicile (selon plan)."]},
+         c1:{t:"Frais médicaux & hospitalisation",li:["Frais d’urgence (plafonds/an).","Indemnité journalière d’hospitalisation (franchise 24–48 h).","Prothèses/orthèses (selon plan)."]},
+         c2:{t:"Barèmes fractures & brûlures",li:["Indemnités selon localisation & gravité.","Chirurgie réparatrice/cosmétique post-accident.","Invalidité permanente partielle/total."]},
+         c3:{t:"Assistance & éducation",li:["Rapatriement, aide à domicile, garde d’enfants.","Rente éducation/ou capital études (option).","Accompagnement social & psychologique."]}},
+    opt:{t:"3. Options & extensions",
+         c0:{t:"Capitaux & packs",li:["Choix de capitaux (décès/invalidité) par tranche.","Pack famille : tous les membres couverts.","Indexation annuelle (optionnelle)."]},
+         c1:{t:"Sports & risques",li:["Rachat d’exclusions pour sports à risques (liste).","Extensions “monde +” (séjours longs).","Exclusions usuelles : maladies, actes intentionnels…"]},
+         c2:{t:"Indemnités journalières",li:["Montant au choix (franchise 24–48 h).","Plafond jours/an selon plan.","Cumulable avec garanties principales."]}},
+    admin:{t:"4. Tarifs & souscription",
+         c0:{t:"Comment est fixé le tarif ?",li:["Âge et capitaux choisis.","Activités & pratiques sportives déclarées.","Options (IJ, extensions, pack famille)."]},
+         c1:{t:"Souscription",li:["Déclaration simple (pas d’examen médical en général).","Effet immédiat à l’adhésion (sous conditions).","Âges limites d’adhésion/maintien précisés au contrat."]},
+         c2:{t:"Documents utiles",li:["Pièce d’identité et coordonnées.","Déclaration d’activités/sports.","RIB si prélèvement."]}},
+    claim:{t:"5. Déclaration & indemnisation",sum:"Notre approche",li:["Déclaration en ligne sous 5 jours ouvrés après l’accident.","Pièces : rapport médical, factures, formulaire IPP.","Indemnisation sur base barème & capitaux."]},
+    faq:{t:"6. FAQ",q0:"Les accidents sportifs sont-ils couverts ?",a0:"Oui pour la plupart des sports loisirs. Les sports à risques peuvent nécessiter une extension spécifique.",
+         q1:"Et si l’accident implique un tiers ?",a1:"L’ALV indemnise indépendamment de la responsabilité d’un tiers. Les recours sont ensuite gérés par l’assureur.",
+         q2:"Existe-t-il un délai de carence ?",a2:"Généralement non sur l’accident pur ; une franchise temps peut s’appliquer aux indemnités journalières."},
+    cta:{t:"Protégez votre famille contre les accidents de la vie",p:"Nous comparons les offres et configurons les capitaux adaptés à vos besoins.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Santé",next:"Biens (Habitation)"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+  },
+
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    title:"Personal Accident (Individuals)",
+    subtitle:"Accidental death & disablement • Impairment scale • Emergency medical expenses • Daily hospital cash • Fractures/burns • Assistance & education • 24/7 worldwide.",
+    badges:["Accident lump sums","Family & education","24/7 worldwide"],
+    tabs:{over:"Overview",cov:"Benefits",opt:"Options & extensions",admin:"Pricing & enrollment",claim:"Claims",faq:"FAQ"},
+    over:{t:"1. Overview",p:"Personal Accident insurance pays benefits in case of accidental death or bodily impairment (private life, leisure, sports). Lump sums may also cover emergencies, fractures/burns, hospital cash and assistance.",
+          li:["24/7 cover including abroad (per plan).","Selectable sums insured with a transparent impairment scale.","Family pack & education annuity option."],
+          kpi:["Death sum insured","Disablement","Hospital cash excess"]},
+    cov:{t:"2. Core benefits",
+         c0:{t:"Accidental death & disablement",li:["Lump sum for accidental death.","Capital/annuity based on impairment scale.","Home adaptation (per plan)."]},
+         c1:{t:"Medical expenses & hospital cash",li:["Emergency expenses (annual limits).","Daily hospital cash (24–48h excess).","Prosthetics/orthotics (per plan)."]},
+         c2:{t:"Fracture & burn schedules",li:["Benefits by location/severity.","Reconstructive/cosmetic surgery after accident.","Permanent partial/total disablement."]},
+         c3:{t:"Assistance & education",li:["Repatriation, home help, childcare.","Education annuity / study capital (option).","Social & psychological support."]}},
+    opt:{t:"3. Options & extensions",
+         c0:{t:"Sums & packs",li:["Choose sums insured by tier.","Family pack: cover all members.","Optional annual indexation."]},
+         c1:{t:"Sports & risks",li:["Buy-back of hazardous sports exclusions (list).","“World+” long-stay extensions.","Usual exclusions: illness, intentional acts…"]},
+         c2:{t:"Daily hospital cash",li:["Amount selectable (24–48h excess).","Max days/year by plan.","Stackable with core benefits."]}},
+    admin:{t:"4. Pricing & enrollment",
+         c0:{t:"How is pricing set?",li:["Age and selected sums insured.","Activities & declared sports.","Options (cash, extensions, family pack)."]},
+         c1:{t:"Enrollment",li:["Simple declaration (no medical exam generally).","Immediate effect upon binding (conditions apply).","Entry/exit ages detailed in the policy."]},
+         c2:{t:"Documents",li:["ID & contact details.","Activities/sports declaration.","Bank details if direct debit."]}},
+    claim:{t:"5. Claim & payment",sum:"Our approach",li:["Notify within 5 business days after the accident.","Docs: medical report, invoices, impairment form.","Payment per schedule & sums insured."]},
+    faq:{t:"6. FAQ",q0:"Are sports accidents covered?",a0:"Yes for most leisure sports. Hazardous sports may require a specific extension.",
+         q1:"What if a third party is responsible?",a1:"PA pays regardless of third-party liability. Recourse is handled by the insurer.",
+         q2:"Is there a waiting period?",a2:"Usually no for pure accidents; a time excess may apply to hospital cash."},
+    cta:{t:"Protect your family against life’s accidents",p:"We compare offers and set sums that fit your needs.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Health",next:"Home (Property)"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"حوادث الحياة (الأفراد)",
+    subtitle:"وفاة/عجز بسبب حادث • مقياس نسبة العجز • مصاريف طبية طارئة • بدل يومي للمستشفى • كسور/حروق • مساعدة وتعليم • تغطية 24/7 حول العالم.",
+    badges:["تعويضات ثابتة للحوادث","العائلة والتعليم","تغطية عالمية 24/7"],
+    tabs:{over:"لمحة",cov:"المنافع",opt:"الخيارات والامتدادات",admin:"التسعير والاشتراك",claim:"المطالبات",faq:"الأسئلة"},
+    over:{t:"١. لمحة",p:"تأمين حوادث الحياة يدفع تعويضات عند الوفاة العرضية أو الإصابة الجسدية (الحياة الخاصة، الترفيه، الرياضة). يشمل مبالغ للمصاريف الطارئة والكسور/الحروق وبدل الإقامة بالمستشفى وخدمات المساعدة.",
+          li:["تغطية 24/7 بما في ذلك السفر (حسب الخطة).","مبالغ تأمينية اختيارية مع مقياس عجز واضح.","باقة عائلية وخيار راتب تعليم."],
+          kpi:["رأس مال الوفاة","العجز","تحمل بدل المستشفى"]},
+    cov:{t:"٢. المنافع الأساسية",
+         c0:{t:"وفاة/عجز بسبب حادث",li:["مبلغ مقطوع عند الوفاة العرضية.","رأس مال/راتب وفق نسبة العجز.","تهيئة المنزل (حسب الخطة)."]},
+         c1:{t:"مصاريف طبية وبدل مستشفى",li:["نفقات الطوارئ (حدود سنوية).","بدل يومي للإقامة (تحمل 24–48 ساعة).","أطراف صناعية (حسب الخطة)."]},
+         c2:{t:"جداول الكسور والحروق",li:["تعويض حسب المكان والشدة.","جراحات ترميمية/تجميلية بعد الحادث.","عجز دائم جزئي/كلي."]},
+         c3:{t:"مساعدة وتعليم",li:["إعادة للوطن ومساعدة منزلية ورعاية أطفال.","راتب تعليم/رأس مال للدراسة (اختياري).","دعم اجتماعي ونفسي."]}},
+    opt:{t:"٣. الخيارات والامتدادات",
+         c0:{t:"مبالغ وباقات",li:["اختيار مبالغ التأمين حسب الشرائح.","باقة عائلية تغطي الجميع.","فهرسة سنوية اختيارية."]},
+         c1:{t:"رياضات ومخاطر",li:["شراء استثناءات الرياضات الخطرة (قائمة).","امتدادات “عالمي+” للإقامات الطويلة.","استثناءات اعتيادية: أمراض، أفعال متعمدة…"]},
+         c2:{t:"بدل يومي للمستشفى",li:["مبلغ اختياري (تحمل 24–48 ساعة).","حد أقصى للأيام/سنوياً حسب الخطة.","يتكامل مع المنافع الأساسية."]}},
+    admin:{t:"٤. التسعير والاشتراك",
+         c0:{t:"كيف يُحدد السعر؟",li:["العمر ومبالغ التأمين المختارة.","الأنشطة والرياضات المعلنة.","الخيارات (بدل، امتدادات، باقة عائلية)."]},
+         c1:{t:"الاشتراك",li:["تصريح مبسط (عادة دون فحص طبي).","سريان فوري عند الإصدار (وفق الشروط).","أعمار الدخول/الاستمرار محددة بالوثيقة."]},
+         c2:{t:"المستندات",li:["هوية ووسائل تواصل.","تصريح الأنشطة/الرياضات.","بيانات بنكية عند السحب الآلي."]}},
+    claim:{t:"٥. التبليغ والتعويض",sum:"نهجنا",li:["الإبلاغ خلال 5 أيام عمل بعد الحادث.","مستندات: تقرير طبي، فواتير، نموذج نسبة العجز.","الدفع حسب الجداول ومبالغ التأمين."]},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"هل تغطى حوادث الرياضة؟",a0:"نعم لمعظم الرياضات الترفيهية. وقد تتطلب الرياضات الخطرة امتداداً خاصاً.",
+         q1:"ماذا لو كان طرف ثالث مسؤولاً؟",a1:"يدفع التأمين بغض النظر عن مسؤولية الطرف الثالث. والمتابعة القانونية على شركة التأمين.",
+         q2:"هل هناك فترة انتظار؟",a2:"عادة لا للحوادث البحتة؛ وقد يوجد تحمل زمني لبدل المستشفى."},
+    cta:{t:"احمِ عائلتك من حوادث الحياة",p:"نقارن العروض ونحدد المبالغ المناسبة لاحتياجاتك.",
+         quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    nav:{prev:"الصحة",next:"السكن (الممتلكات)"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+  }
+};
+
+/* ================== Helpers ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
+
+/* ================== Render & Tabs ================== */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','admin','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+}
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+</body>
+</html>
