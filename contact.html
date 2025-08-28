@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — Contact & Espace client</title>
-  <meta name="description" content="Contactez Riskalia pour un devis ou un conseil : courtage toutes branches, réassurance, ESG & risques climat."/>
+  <meta name="description" content="Contactez Riskalia pour un devis ou un conseil : courtage toutes branches, réassurance, risques climat, politique ESG."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 
   <!-- Feuille de styles globale -->
@@ -58,6 +58,7 @@
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -207,7 +208,8 @@
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
@@ -220,7 +222,7 @@
 /* ================== i18n ================== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     title:"Contact & Espace client",
     lead:"Une question ? Un besoin de couverture ? Remplissez le formulaire — un conseiller vous répond sous 24–48 h.",
     badges:["Devis sur mesure","Gestion des sinistres","Transparence des honoraires"],
@@ -244,7 +246,7 @@ const I18N={
     }
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
     title:"Contact & Client area",
     lead:"Got a question or need coverage? Fill in the form — we reply within 24–48h.",
     badges:["Tailored quotes","Claims handling","Transparent fees"],
@@ -268,7 +270,7 @@ const I18N={
     }
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"الاتصال ومساحة العملاء",
     lead:"لديك سؤال أو تحتاج تغطية؟ املأ النموذج — سنرد خلال 24–48 ساعة.",
     badges:["عروض مخصصة","إدارة المطالبات","شفافية الأتعاب"],
@@ -406,6 +408,7 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
+
 
 
 
