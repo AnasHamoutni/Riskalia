@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Retraite (épargne longue)</title>
+  <meta name="description" content="Épargne retraite : versements programmés ou libres, profils d’investissement (sécurisé/équilibré/dynamique), options rente ou capital, bénéficiaires, fiscalité selon cadre local, arbitrages et rachats encadrés."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+
+  <!-- Fonts + global CSS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+
+  <style>
+    /* Hero visuel pour produit */
+    .hero--product{
+      min-height:42vh;
+      background:
+        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
+        url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1600&q=70')
+        center/cover no-repeat;
+      display:flex; align-items:center; text-align:center;
+    }
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Onglets horizontaux collants */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
+  </style>
+
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="spacious">
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="../index.html">
+      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ar">ع</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero hero--product">
+  <div class="container">
+    <h1 data-i18n="title">Retraite (épargne longue)</h1>
+    <p data-i18n="subtitle">Versements programmés ou libres • Profils d’investissement • Sécurisation progressive • Sortie en rente et/ou capital • Bénéficiaires • Fiscalité selon cadre local.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">Long terme</span>
+      <span class="badge" data-i18n="badges.1">Profils d’allocation</span>
+      <span class="badge" data-i18n="badges.2">Rente ou capital</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="reveal">
+  <div class="container main main--single">
+
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Retraite tabs">
+      <button class="tab active"  id="tab-over" role="tab" aria-selected="true"  data-tab="over" data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" data-tab="cov"  data-i18n="tabs.cov">Avantages</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" data-tab="opt"  data-i18n="tabs.opt">Options d’investissement</button>
+      <button class="tab"         id="tab-admin"role="tab" aria-selected="false" data-tab="admin"data-i18n="tabs.admin">Frais & souscription</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" data-tab="claim"data-i18n="tabs.claim">Prestations & rachats</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" data-tab="faq"  data-i18n="tabs.faq">FAQ</button>
+    </nav>
+
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            La solution <strong>Retraite</strong> permet de constituer une épargne de long terme via des versements programmés ou libres, investis sur des supports adaptés à votre horizon. À l’échéance, vous choisissez <em>rente</em>, <em>capital</em> ou une combinaison des deux.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Allègement du risque à l’approche de la retraite (lifecycle).</li>
+            <li data-i18n="over.li.1">Arbitrages possibles entre supports (selon contrat).</li>
+            <li data-i18n="over.li.2">Bénéficiaires désignés en cas de décès.</li>
+          </ul>
+        </div>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Horizon conseillé</div><div>10–25 ans</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Versement min.</div><div>souple (mensuel/ponctuel)</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Sortie</div><div>rente, capital ou mixte</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Avantages -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Avantages clés</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Disciplines d’épargne</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Versements programmés automatisés.</li>
+            <li data-i18n="cov.c0.li.1">Possibilité de versements libres.</li>
+            <li data-i18n="cov.c0.li.2">Effet “coût moyen” dans le temps.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">Cadre & fiscalité</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Traitement fiscal selon réglementation locale.</li>
+            <li data-i18n="cov.c1.li.1">Transparence des frais et reporting.</li>
+            <li data-i18n="cov.c1.li.2">Portabilité possible (selon contrat).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Protection & transmission</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Bénéficiaires désignés.</li>
+            <li data-i18n="cov.c2.li.1">Option rente réversible (selon assureur).</li>
+            <li data-i18n="cov.c2.li.2">Options de sécurisation progressive.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options d’investissement -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options d’investissement</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Profils</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Sécurisé (obligataire/fonds euro).</li>
+            <li data-i18n="opt.c0.li.1">Équilibré (mixte obligations/actions).</li>
+            <li data-i18n="opt.c0.li.2">Dynamique (actions/Thèmes/ESG).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">Pilotage</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Arbitrages libres (plafonds selon contrat).</li>
+            <li data-i18n="opt.c1.li.1">Désensibilisation automatique à l’approche de l’échéance (lifecycle).</li>
+            <li data-i18n="opt.c1.li.2">Sécurisation des plus-values (optionnelle).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Garanties</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Plancher décès (selon support/assureur).</li>
+            <li data-i18n="opt.c2.li.1">Rente certaine / réversible.</li>
+            <li data-i18n="opt.c2.li.2">Indexation annuelle des rentes (optionnelle).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Frais & souscription -->
+    <article id="admin" class="card tabpanel" role="tabpanel" aria-labelledby="tab-admin">
+      <h2 data-i18n="admin.t">4. Frais & souscription</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="admin.c0.t">Frais (indicateurs)</h3>
+          <ul>
+            <li data-i18n="admin.c0.li.0">Frais d’entrée/versement : selon contrat.</li>
+            <li data-i18n="admin.c0.li.1">Frais de gestion annuels (supports).</li>
+            <li data-i18n="admin.c0.li.2">Frais d’arbitrage (si applicables).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c1.t">Souscription</h3>
+          <ul>
+            <li data-i18n="admin.c1.li.0">Formulaire + pièce d’identité.</li>
+            <li data-i18n="admin.c1.li.1">Désignation des bénéficiaires.</li>
+            <li data-i18n="admin.c1.li.2">Relevé d’identité bancaire.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c2.t">Âges & versements</h3>
+          <ul>
+            <li data-i18n="admin.c2.li.0">Âges d’adhésion/maintien selon cadre.</li>
+            <li data-i18n="admin.c2.li.1">Seuils minimum de versement.</li>
+            <li data-i18n="admin.c2.li.2">Modulation possible dans le temps.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Prestations & rachats -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Prestations & rachats</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Fonctionnement</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Sortie en rente viagère et/ou capital à l’échéance.</li>
+            <li data-i18n="claim.li.1">Rachats partiels/totaux encadrés (conditions locales).</li>
+            <li data-i18n="claim.li.2">Décès : transmission aux bénéficiaires désignés.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Puis-je changer de profil d’investissement ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Oui, via des arbitrages (gratuits ou payants selon contrat). Un nombre maximum annuel peut s’appliquer.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Y a-t-il des cas de rachat anticipé ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Selon la réglementation locale (ex. événements majeurs). Nous vous guidons au cas par cas.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Comment sont imposées les prestations ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">Le traitement fiscal dépend du cadre national et du type de sortie (rente/capital). Nous vous présentons les règles en vigueur avant la décision.</p></div>
+      </details>
+    </article>
+
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Construisez votre retraite sereinement</h3>
+      <p class="muted" data-i18n="cta.p">Définissons ensemble votre horizon, votre budget et un profil d’investissement adapté.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
+
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./schengen.html">← <span data-i18n="nav.prev">Voyage Schengen</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./sante.html"><span data-i18n="nav.next">Santé</span> →</a>
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- FAQ SEO -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Puis-je changer de profil d’investissement ?","acceptedAnswer":{"@type":"Answer","text":"Oui, via des arbitrages (gratuits ou payants selon contrat). Un nombre maximum annuel peut s’appliquer."}},
+{"@type":"Question","name":"Y a-t-il des cas de rachat anticipé ?","acceptedAnswer":{"@type":"Answer","text":"Selon la réglementation locale (ex. événements majeurs). Nous vous guidons au cas par cas."}},
+{"@type":"Question","name":"Comment sont imposées les prestations ?","acceptedAnswer":{"@type":"Answer","text":"Le traitement fiscal dépend du cadre national et du type de sortie (rente/capital). Nous vous présentons les règles en vigueur avant la décision."}}
+]}
+</script>
+
+<script>
+/* ================== I18N ================== */
+const I18N={
+  fr:{
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
+    title:"Retraite (épargne longue)",
+    subtitle:"Versements programmés ou libres • Profils d’investissement • Sécurisation progressive • Sortie en rente et/ou capital • Bénéficiaires • Fiscalité selon cadre local.",
+    badges:["Long terme","Profils d’allocation","Rente ou capital"],
+    tabs:{over:"Aperçu",cov:"Avantages",opt:"Options d’investissement",admin:"Frais & souscription",claim:"Prestations & rachats",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"La solution Retraite permet de constituer une épargne de long terme via des versements programmés ou libres, investis sur des supports adaptés à votre horizon. À l’échéance, vous choisissez rente, capital ou une combinaison des deux.",
+          li:["Allègement du risque à l’approche de la retraite (lifecycle).","Arbitrages possibles entre supports (selon contrat).","Bénéficiaires désignés en cas de décès."],
+          kpi:["Horizon conseillé","Versement min.","Sortie"]},
+    cov:{t:"2. Avantages clés",
+         c0:{t:"Disciplines d’épargne",li:["Versements programmés automatisés.","Possibilité de versements libres.","Effet coût moyen dans le temps."]},
+         c1:{t:"Cadre & fiscalité",li:["Traitement fiscal selon réglementation locale.","Transparence des frais et reporting.","Portabilité possible (selon contrat)."]},
+         c2:{t:"Protection & transmission",li:["Bénéficiaires désignés.","Option rente réversible (selon assureur).","Options de sécurisation progressive."]}},
+    opt:{t:"3. Options d’investissement",
+         c0:{t:"Profils",li:["Sécurisé (obligataire/fonds euro).","Équilibré (mixte obligations/actions).","Dynamique (actions/Thèmes/ESG)."]},
+         c1:{t:"Pilotage",li:["Arbitrages libres (plafonds selon contrat).","Désensibilisation automatique (lifecycle).","Sécurisation des plus-values (optionnelle)."]},
+         c2:{t:"Garanties",li:["Plancher décès (selon support/assureur).","Rente certaine / réversible.","Indexation des rentes (optionnelle)."]}},
+    admin:{t:"4. Frais & souscription",
+         c0:{t:"Frais (indicateurs)",li:["Frais d’entrée/versement : selon contrat.","Frais de gestion annuels (supports).","Frais d’arbitrage (si applicables)."]},
+         c1:{t:"Souscription",li:["Formulaire + pièce d’identité.","Désignation des bénéficiaires.","Relevé d’identité bancaire."]},
+         c2:{t:"Âges & versements",li:["Âges d’adhésion/maintien selon cadre.","Seuils minimum de versement.","Modulation possible dans le temps."]}},
+    claim:{t:"5. Prestations & rachats",sum:"Fonctionnement",li:["Sortie en rente viagère et/ou capital à l’échéance.","Rachats partiels/totaux encadrés (conditions locales).","Décès : transmission aux bénéficiaires désignés."]},
+    faq:{t:"6. FAQ",q0:"Puis-je changer de profil d’investissement ?",a0:"Oui, via des arbitrages (gratuits ou payants selon contrat). Un nombre maximum annuel peut s’appliquer.",
+         q1:"Y a-t-il des cas de rachat anticipé ?",a1:"Selon la réglementation locale (ex. événements majeurs). Nous vous guidons au cas par cas.",
+         q2:"Comment sont imposées les prestations ?",a2:"Le traitement fiscal dépend du cadre national et du type de sortie (rente/capital). Nous vous présentons les règles en vigueur avant la décision."},
+    cta:{t:"Construisez votre retraite sereinement",p:"Définissons ensemble votre horizon, votre budget et un profil d’investissement adapté.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Voyage Schengen",next:"Santé"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+  },
+
+  en:{
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    title:"Retirement (long-term savings)",
+    subtitle:"Scheduled or ad-hoc contributions • Investment profiles • Glide-path de-risking • Annuity and/or lump-sum payout • Beneficiaries • Tax per local framework.",
+    badges:["Long term","Allocation profiles","Annuity or lump sum"],
+    tabs:{over:"Overview",cov:"Key benefits",opt:"Investment options",admin:"Fees & enrollment",claim:"Benefits & withdrawals",faq:"FAQ"},
+    over:{t:"1. Overview",p:"The Retirement solution builds long-term savings through scheduled or ad-hoc contributions invested in wrappers suited to your horizon. At maturity, choose an annuity, a lump sum, or a mix.",
+          li:["Automatic de-risking as retirement nears (lifecycle).","Switches between funds allowed (per policy).","Designated beneficiaries on death."],
+          kpi:["Suggested horizon","Min. contribution","Payout"]},
+    cov:{t:"2. Key benefits",
+         c0:{t:"Savings discipline",li:["Automated scheduled contributions.","Top-ups allowed.","Cost-averaging over time."]},
+         c1:{t:"Framework & tax",li:["Tax treatment per national rules.","Transparent fees & reporting.","Possible portability (per policy)."]},
+         c2:{t:"Protection & legacy",li:["Designated beneficiaries.","Reversionary annuity option (per insurer).","Progressive de-risking options."]}},
+    opt:{t:"3. Investment options",
+         c0:{t:"Profiles",li:["Conservative (bonds/euro fund).","Balanced (bonds/equities mix).","Dynamic (equities/Thematics/ESG)."]},
+         c1:{t:"Steering",li:["Free switches (caps may apply).","Lifecycle glide-path to maturity.","Profit-lock mechanism (optional)."]},
+         c2:{t:"Guarantees",li:["Death floor (depending on fund/insurer).","Certain / reversionary annuity.","Optional annuity indexation."]}},
+    admin:{t:"4. Fees & enrollment",
+         c0:{t:"Fees (indicators)",li:["Entry/top-up fees as per policy.","Annual management fees (funds).","Switch fees where applicable."]},
+         c1:{t:"Enrollment",li:["Form + ID document.","Beneficiary designation.","Bank details."]},
+         c2:{t:"Ages & payments",li:["Entry/termination ages per framework.","Minimum contribution thresholds.","Amount can be adjusted over time."]}},
+    claim:{t:"5. Benefits & withdrawals",sum:"How it works",li:["Annuity and/or lump-sum payout at maturity.","Partial/full withdrawals subject to local rules.","On death: transfer to named beneficiaries."]},
+    faq:{t:"6. FAQ",q0:"Can I change my investment profile?",a0:"Yes, via fund switches (free or charged depending on policy). An annual cap may apply.",
+         q1:"Are early withdrawals allowed?",a1:"Subject to local regulations (e.g., major life events). We advise case by case.",
+         q2:"How are payouts taxed?",a2:"Taxation depends on the national framework and payout type (annuity/lump sum). We brief you on the current rules before you decide."},
+    cta:{t:"Build your retirement with confidence",p:"Let’s align your horizon, budget and an investment profile that fits.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Schengen Travel",next:"Health"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+  },
+
+  ar:{
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    title:"التقاعد (ادخار طويل الأجل)",
+    subtitle:"دفعات مجدولة أو مرنة • ملفات استثمارية • خفض المخاطر تدريجياً • صرف على شكل راتب تقاعدي و/أو رأسمال • مستفيدون • ضرائب حسب الإطار المحلي.",
+    badges:["طويل الأجل","ملفات توزيع","راتب أو رأسمال"],
+    tabs:{over:"لمحة",cov:"الفوائد الأساسية",opt:"خيارات الاستثمار",admin:"الرسوم والاشتراك",claim:"المنافع والسحب",faq:"الأسئلة الشائعة"},
+    over:{t:"١. لمحة",p:"تساعدك خطة التقاعد على بناء ادخار طويل الأجل عبر دفعات مجدولة أو مرنة تُستثمر بما يناسب الأفق الزمني. عند الاستحقاق يمكنك الاختيار بين راتب تقاعدي، رأسمال، أو مزيج منهما.",
+          li:["تقليل المخاطر تلقائياً مع الاقتراب من التقاعد (Lifecycle).","إمكانية التحويل بين الصناديق (حسب الوثيقة).","تحديد المستفيدين في حال الوفاة."],
+          kpi:["الأفق المقترح","الدفعة الدنيا","طريقة الصرف"]},
+    cov:{t:"٢. الفوائد الأساسية",
+         c0:{t:"انضباط الادخار",li:["دفعات مجدولة تلقائياً.","إتاحة الدفعات الإضافية.","متوسط التكلفة مع الزمن."]},
+         c1:{t:"الإطار والضرائب",li:["معاملة ضريبية حسب القوانين الوطنية.","رسوم وتقارير بشفافية.","إمكانية النقل (وفق الوثيقة)."]},
+         c2:{t:"الحماية والورثة",li:["تعيين المستفيدين.","خيار راتب تقاعدي قابل للاستمرار للورثة.","خيارات خفض المخاطر تدريجياً."]}},
+    opt:{t:"٣. خيارات الاستثمار",
+         c0:{t:"ملفات",li:["محافظ حذرة (سندات/صندوق مضمون).","متوازنة (مزيج سندات/أسهم).","ديناميكية (أسهم/محاور/ESG)."]},
+         c1:{t:"التوجيه",li:["تحويلات حرة (قد تُحدد بعدد/حدود).","خفض تلقائي للمخاطر قرب الاستحقاق.","قفل الأرباح (اختياري)."]},
+         c2:{t:"ضمانات",li:["حد أدنى للوفاة (بحسب الصندوق/الشركة).","راتب تقاعدي مؤكد/قابل للاستمرار.","فهرسة سنوية للرواتب (اختياري)."]}},
+    admin:{t:"٤. الرسوم والاشتراك",
+         c0:{t:"الرسوم (مؤشرات)",li:["رسوم دخول/دفعات بحسب الوثيقة.","رسوم إدارة سنوية للصناديق.","رسوم التحويل إن وُجدت."]},
+         c1:{t:"الاشتراك",li:["نموذج + هوية.","تحديد المستفيدين.","بيانات بنكية."]},
+         c2:{t:"الأعمار والدفعات",li:["أعمار الدخول/الاستمرار حسب الإطار.","حدود دنيا للدفعات.","إمكانية تعديل المبلغ مع الوقت."]}},
+    claim:{t:"٥. المنافع والسحب",sum:"آلية العمل",li:["صرف عند الاستحقاق كر راتب تقاعدي و/أو رأسمال.","سحب جزئي/كلي وفق القوانين المحلية.","في حالة الوفاة: تحويل للمستفيدين المحددين."]},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"هل أستطيع تغيير ملف الاستثمار؟",a0:"نعم عبر تحويلات بين الصناديق (قد تكون مجانية أو برسوم). قد يوجد حد سنوي.",
+         q1:"هل يسمح بالسحب المبكر؟",a1:"وفق القوانين المحلية (مثلاً ظروف قاهرة). نرشدك لكل حالة على حدة.",
+         q2:"كيف تُفرض الضرائب على الصرف؟",a2:"تختلف حسب الإطار الوطني ونوع الصرف (راتب/رأسمال). نوضح القواعد قبل القرار."},
+    cta:{t:"ابنِ تقاعدك بثقة",p:"نحدد معك الأفق والميزانية وملف الاستثمار الأنسب.",
+         quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    nav:{prev:"سفر شنغن",next:"الصحة"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+  }
+};
+
+/* ================== Helpers ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
+
+/* ================== Render & Tabs ================== */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','admin','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+}
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+</body>
+</html>
