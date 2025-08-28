@@ -109,7 +109,7 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <section class="hero">
   <div class="container">
     <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
-    <p data-i18n="hero.sub">Courtage toutes branches · Réassurance · Assurance ESG. Nous transformons vos aléas opérationnels en croissance durable.</p>
+    <p data-i18n="hero.sub">Courtage toutes branches · Réassurance · Risques Climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.</p>
     <div class="actions">
       <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
       <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
@@ -303,8 +303,8 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 /* ===== Données i18n ===== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    hero:{title:"L’expertise qui rassure",sub:"Courtage toutes branches · Réassurance · Risques climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
+    hero:{title:"L’expertise qui rassure",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
     cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
     offers:{kicker:"Offres",title:"Des solutions claires pour tous",sub:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.",link:"Voir toutes les solutions →",corp:{title:"Entreprises"},retail:{title:"Particuliers"}},
     re:{kicker:"Réassurance",title:"Traités & facultatives, de bout en bout",cards:[{t:"Traités QS/Surplus/XoL/Stop-Loss",p:"Structuration, modélisation PML/AAL et placements multicouches."},{t:"Facultatives ciblées",p:"Property, RC, énergie, construction, lignes financières, transport."},{t:"Sinistres & arbitrages 24/7",p:"Quantum review, coordination experts, cash-calls & reporting."}],cta:"Explorer la réassurance"},
@@ -330,12 +330,25 @@ const I18N={
     retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
-    hero:{title:"Expertise you can rely on",sub:"All-lines broking · Reinsurance · ESG/Climate insurance. Turning operational risk into sustainable growth.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",re:"Climate Risk",esg:"ESG",contact:"Contact"},
+    hero:{title:"Expertise you can rely on",sub:"All-lines broking · Reinsurance · Climate risk · ESG policy. Turning operational risk into sustainable growth.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
     cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
     offers:{kicker:"Offer",title:"Clear solutions for everyone",sub:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>, aligned with market best practices.",link:"See all solutions →",corp:{title:"Businesses"},retail:{title:"Individuals"}},
     re:{kicker:"Reinsurance",title:"Treaties & facultative, end-to-end",cards:[{t:"QS/Surplus/XoL/Stop-Loss treaties",p:"Structuring, PML/AAL modelling and layered placements."},{t:"Targeted facultative",p:"Property, Liability, Energy, Construction, Financial lines, Marine."},{t:"Claims & arbitration 24/7",p:"Quantum review, adjusters coordination, cash-calls & reporting."}],cta:"Explore reinsurance"},
-    esg:{title:"ESG & Climate — from analysis to action",cards:[{t:"Assessment & scenarios",p:"Physical/transition mapping, NGFS, stress tests & materiality."},{t:"Parametrics & green covers",p:"Weather indices, environmental extensions, supply chain."},{t:"Reporting & finance",p:"TCFD/ISSB, EU Taxonomy, SFDR and lenders’ requirements."}],cta:"Discover ESG offering"},
+  climate:{  title: "Climate Risk — from analysis to action",
+  cards: [
+    { t: "Diagnostics & scenarios", p: "Physical/transition mapping, NGFS scenarios, stress tests & materiality." },
+    { t: "Parametric & green covers", p: "Weather indices, environmental extensions, supply chain & business continuity." },
+    { t: "Reporting & financing", p: "TCFD/ISSB, EU Taxonomy, SFDR and lender/insurer requirements." }
+  ],
+  cta: "Explore our Climate Risk offering"},
+    esg:{title: "ESG policy (internal) — governance, people, environment",
+  cards: [
+    { t: "Integrity & compliance", p: "Code of conduct, anti-corruption, GDPR & cyber, whistleblowing channel." },
+    { t: "People & diversity", p: "Well-being, continuous learning, inclusion & pay equity." },
+    { t: "Environment & responsible procurement", p: "GHG inventory, energy/digital sobriety, soft mobility, supplier charter." }
+  ],
+  cta: "See our ESG policy"},
     why:{kicker:"Benefits",title:"Why choose Riskalia?",cards:[{t:"ACAPS licence (all lines)",p:"Regulatory compliance & policyholder protection."},{t:"Scoring & Placement method",p:"Market ratings, clauses, claims settlement speed."},{t:"Contract transparency",p:"Fees fully disclosed prior to signature."}]},
     team:{kicker:"Team",title:"A leadership team you can trust",a:"Partner, Actuary — 25y in risk modelling, solvency & ERM strategy.",n:"Partner, Lawyer — 22y in complex claims, compliance & reinsurance governance."},
     contact:{title:"Need coverage?",sub:"Describe your project — we reply within 24–48h."},
@@ -344,12 +357,25 @@ const I18N={
     retail:["Health","Personal Accident","Home (Property)","Life Insurance & Savings","Schengen Travel","Retirement"]
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
     hero:{title:"خبرة تعطيك الطمأنينة",sub:"وساطة شاملة · إعادة التأمين · تأمينات الاستدامة. نحو نمو مستدام بإدارة المخاطر.",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
     cta:{quote:"احصل على عرض",advisor:"تواصل مع مستشار"},
     offers:{kicker:"العروض",title:"حلول واضحة للجميع",sub:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong> وفق أفضل الممارسات.",link:"عرض جميع الحلول →",corp:{title:"الشركات"},retail:{title:"الأفراد"}},
     re:{kicker:"إعادة التأمين",title:"اتفاقيات واختياريات من الألف إلى الياء",cards:[{t:"اتفاقيات QS/فائض/XoL/ستوب-لوس",p:"هيكلة ونمذجة PML/AAL وترتيبات الطبقات."},{t:"اختياريات موجهة",p:"ممتلكات ومسؤولية وطاقة وإنشاءات وخطوط مالية وبحري."},{t:"مطالبات وتحكيم 24/7",p:"مراجعة كمّية وتنسيق خبراء وطلبات نقدية وتقارير."}],cta:"استكشف إعادة التأمين"},
-    esg:{title:"الاستدامة والمناخ — من التحليل إلى التنفيذ",cards:[{t:"تشخيص وسيناريوهات",p:"خرائط فيزيائية/انتقالية وNGFS واختبارات ضغط."},{t:"بارامترية وتغطيات خضراء",p:"مؤشرات الطقس وامتدادات بيئية وسلاسل الإمداد."},{t:"تقارير وتمويل",p:"TCFD/ISSB والتصنيف الأوروبي وSFDR ومتطلبات الممولين."}],cta:"اكتشف عرض الاستدامة"},
+    climate:{  title: "مخاطر المناخ — من التحليل إلى التنفيذ",
+    cards: [
+    { t: "التشخيص والسيناريوهات", p: "خرائط المخاطر الفيزيائية/الانتقالية، سيناريوهات <bdi dir=\"ltr\">NGFS</bdi>، اختبارات ضغط وتحديد المادية." },
+    { t: "تغطيات بارامترية وخضراء", p: "مؤشرات الطقس، امتدادات بيئية، سلسلة الإمداد واستمرارية الأعمال." },
+    { t: "الإفصاح والتمويل", p: "<bdi dir=\"ltr\">TCFD/ISSB</bdi>، <bdi dir=\"ltr\">EU Taxonomy</bdi>، <bdi dir=\"ltr\">SFDR</bdi> ومتطلبات الممولين/شركات التأمين." }
+  ],
+  cta: "استكشف عرض مخاطر المناخ"},
+    esg:{ title: "سياسة الاستدامة (ESG) الداخلية — الحوكمة، الأشخاص، البيئة",
+  cards: [
+    { t: "النزاهة والامتثال", p: "مدونة سلوك، مكافحة الفساد، حماية البيانات والأمن السيبراني، قناة للإبلاغ عن المخالفات." },
+    { t: "الأفراد والتنوع", p: "رفاهية العمل، التعلم المستمر، الشمول والمساواة في الأجر." },
+    { t: "البيئة والمشتريات المسؤولة", p: "جرد انبعاثات <bdi dir=\"ltr\">GHG</bdi>، ترشيد الطاقة والرقمنة، التنقل اللطيف، ميثاق الموردين." }
+  ],
+  cta: "اطّلع على سياسة ESG لدينا"},
     why:{kicker:"المزايا",title:"لماذا Riskalia؟",cards:[{t:"ترخيص ACAPS لجميع الفروع",p:"امتثال وحماية حملة الوثائق."},{t:"منهجية التقييم والترتيب",p:"تصنيف الأسواق والبنود وسرعة التعويض."},{t:"شفافية تعاقدية",p:"إعلان الأتعاب قبل التوقيع."}]},
     team:{kicker:"الفريق",title:"فريق قيادة موثوق",a:"شريك اكتواري — 25 سنة في نمذجة المخاطر والملاءة واستراتيجيات ERM.",n:"شريك قانوني — 22 سنة في المطالبات المعقدة والامتثال وحوكمة إعادة التأمين."},
     contact:{title:"تحتاج تغطية؟",sub:"صف مشروعك — نرد خلال 24–48 ساعة."},
@@ -402,6 +428,7 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
+
 
 
 
