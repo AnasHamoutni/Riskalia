@@ -89,10 +89,10 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques climatiques</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -168,27 +168,60 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
   </div>
 </section>
 
-<!-- ESG -->
+<!-- Climate Risk -->
+<section class="reveal">
+  <div class="container">
+    <div class="kicker">Risques Climatiques</div>
+    <h2 data-i18n="climate.title">Risques climatiques — de l’analyse à l’action</h2>
+
+    <div class="grid-3">
+      <article class="card">
+        <h3 data-i18n="climate.cards.0.t">Cartographie & scénarios</h3>
+        <p class="muted" data-i18n="climate.cards.0.p">Risques physique/transition, NGFS, downscaling & stress tests.</p>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="climate.cards.1.t">Modélisation & transfert</h3>
+        <p class="muted" data-i18n="climate.cards.1.p">PML/AAL climat, paramétriques météo, captives & réassurance.</p>
+      </article>
+
+      <article class="card">
+        <h3 data-i18n="climate.cards.2.t">Résilience & reporting</h3>
+        <p class="muted" data-i18n="climate.cards.2.p">Plans d’adaptation, CAPEX verts, TCFD/ISSB & exigences bailleurs.</p>
+      </article>
+    </div>
+
+    <div style="margin-top:12px">
+      <a href="climate.html" class="btn" data-i18n="climate.cta">Découvrir l’offre Risques Climatiques</a>
+    </div>
+  </div>
+</section>
+  
+<!-- ESG (politique interne) -->
 <section class="reveal">
   <div class="container">
     <div class="kicker">ESG</div>
-    <h2 data-i18n="esg.title">ESG & Risques Climat — de l’analyse à l’action</h2>
+    <h2 data-i18n="esg.title">Politique ESG — gouvernance, social, environnement</h2>
+
     <div class="grid-3">
       <article class="card">
-        <h3 data-i18n="esg.cards.0.t">Diagnostic & scénarios</h3>
-        <p class="muted" data-i18n="esg.cards.0.p">Carto physique/transition, NGFS, stress tests & matérialité.</p>
+        <h3 data-i18n="esg.cards.0.t">Gouvernance & éthique</h3>
+        <p class="muted" data-i18n="esg.cards.0.p">Code de conduite, anticorruption, RGPD & cyber, canal lanceur d’alerte.</p>
       </article>
+
       <article class="card">
-        <h3 data-i18n="esg.cards.1.t">Paramétriques & garanties vertes</h3>
-        <p class="muted" data-i18n="esg.cards.1.p">Indices météo, extensions environnement, supply-chain.</p>
+        <h3 data-i18n="esg.cards.1.t">Personnes & diversité</h3>
+        <p class="muted" data-i18n="esg.cards.1.p">Bien-être, formation continue, inclusion, égalité salariale, parcours de développement.</p>
       </article>
+
       <article class="card">
-        <h3 data-i18n="esg.cards.2.t">Reporting & financement</h3>
-        <p class="muted" data-i18n="esg.cards.2.p">TCFD/ISSB, Taxonomie, SFDR et exigences bailleurs.</p>
+        <h3 data-i18n="esg.cards.2.t">Environnement & achats responsables</h3>
+        <p class="muted" data-i18n="esg.cards.2.p">Bilan GES, sobriété énergétique & numérique, mobilité douce, charte fournisseurs.</p>
       </article>
     </div>
+
     <div style="margin-top:12px">
-      <a href="esg.html" class="btn" data-i18n="esg.cta">Découvrir l’offre ESG</a>
+      <a href="esg.html" class="btn" data-i18n="esg.cta">Découvrir notre politique ESG</a>
     </div>
   </div>
 </section>
@@ -256,6 +289,7 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
          <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
     <div>
@@ -270,11 +304,24 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",esg:"ESG",contact:"Contact"},
-    hero:{title:"L’expertise qui rassure",sub:"Courtage toutes branches · Réassurance · Assurance ESG. Nous transformons vos aléas opérationnels en croissance durable.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
+    hero:{title:"L’expertise qui rassure",sub:"Courtage toutes branches · Réassurance · Risques climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
     cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
     offers:{kicker:"Offres",title:"Des solutions claires pour tous",sub:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.",link:"Voir toutes les solutions →",corp:{title:"Entreprises"},retail:{title:"Particuliers"}},
     re:{kicker:"Réassurance",title:"Traités & facultatives, de bout en bout",cards:[{t:"Traités QS/Surplus/XoL/Stop-Loss",p:"Structuration, modélisation PML/AAL et placements multicouches."},{t:"Facultatives ciblées",p:"Property, RC, énergie, construction, lignes financières, transport."},{t:"Sinistres & arbitrages 24/7",p:"Quantum review, coordination experts, cash-calls & reporting."}],cta:"Explorer la réassurance"},
-    esg:{title:"ESG & Risques Climat — de l’analyse à l’action",cards:[{t:"Diagnostic & scénarios",p:"Carto physique/transition, NGFS, stress tests & matérialité."},{t:"Paramétriques & garanties vertes",p:"Indices météo, extensions environnement, supply-chain."},{t:"Reporting & financement",p:"TCFD/ISSB, Taxonomie, SFDR et exigences bailleurs."}],cta:"Découvrir l’offre ESG"},
+    climate : {
+  title: "Risques climatiques — de l’analyse à l’action",
+  cards: [
+    { t: "Diagnostic & scénarios", p: "Cartographie physique/transition, scénarios NGFS, stress tests & analyse de matérialité." },
+    { t: "Paramétriques & garanties vertes", p: "Indices météo, extensions environnement, continuité d’activité & supply-chain." },
+    { t: "Reporting & financement", p: "TCFD/ISSB, Taxonomie, SFDR et exigences des bailleurs/assureurs." }
+  ],
+  cta: "Découvrir l’offre Risques Climatiques"},esg:{  title: "Politique ESG interne — gouvernance, social, environnement",
+  cards: [
+    { t: "Gouvernance & éthique", p: "Code de conduite, anticorruption, RGPD & cyber, canal lanceur d’alerte." },
+    { t: "Personnes & diversité", p: "Bien-être, formation continue, inclusion & égalité salariale." },
+    { t: "Environnement & achats responsables", p: "Bilan GES, sobriété énergétique/numérique, mobilité douce, charte fournisseurs." }
+  ],
+  cta: "Découvrir notre politique ESG"},
     why:{kicker:"Atouts",title:"Pourquoi choisir Riskalia ?",cards:[{t:"Agrément ACAPS toutes branches",p:"Conformité & protection des assurés garanties."},{t:"Méthode « Scoring & Placement »",p:"Notation marchés, clauses, délais d’indemnisation."},{t:"Transparence contractuelle",p:"Commissions & honoraires communiqués avant signature."}]},
     team:{kicker:"Équipe",title:"Une équipe dirigeante d’exception",a:"Associé Actuaire — 25 ans d’expertise en modélisation des risques, solvabilité et stratégie ERM.",n:"Associé Juriste — 22 ans en sinistres complexes, conformité et gouvernance réassurance."},
     contact:{title:"Un besoin de couverture ?",sub:"Décrivez votre projet : nous répondons sous 24–48 h."},
@@ -355,6 +402,7 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
+
 
 
 
