@@ -64,11 +64,12 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
   {
     "@context":"https://schema.org",
     "@type":"SiteNavigationElement",
-    "name":["Home","Solutions","Reinsurance","ESG","Contact","Sitemap"],
+    "name":["Home","Solutions","Reinsurance","Risques Climatiques","ESG","Contact","Sitemap"],
     "url":[
       "index.html",
       "solutions.html",
       "reinsurance.html",
+      "climate.html",
       "esg.html",
       "contact.html",
       "sitemap.html"
@@ -88,7 +89,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques climatiques</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -158,6 +159,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
       <p>
         <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
         <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
         <a href="contact.html" data-i18n="nav.contact">Contact</a>
       </p>
@@ -185,7 +187,8 @@ const I18N = {
       {icon:"🏠",t:"Accueil",d:"Présentation et atouts de Riskalia.",href:"index.html"},
       {icon:"🧩",t:"Solutions",d:"Produits pour entreprises et particuliers.",href:"solutions.html"},
       {icon:"🧭",t:"Réassurance",d:"Traités, facultatives, sinistres & arbitrages.",href:"reinsurance.html"},
-      {icon:"🌿",t:"ESG",d:"Diagnostics, paramétriques, reporting TCFD/Taxonomie.",href:"esg.html"},
+      {icon:"🌍",t:"Risques Climatiques",d:"Identification, Quantification, Pilotage & Reporting.",href:"climate.html"},
+      {icon:"🌿",t:"ESG",d:"Gouvernance, Éthique, Bien-être, Diversité, Empreinte environmentale & Impact sociétal.",href:"esg.html"},
       {icon:"✉️",t:"Contact",d:"Demande de devis, sinistres, coordonnées.",href:"contact.html"}
     ],
     cardsOther:[
@@ -194,7 +197,7 @@ const I18N = {
     ]
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",esg:"ESG",contact:"Contact"},
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
     hero:{title:"Sitemap",sub:"Quickly find the page you need.",ph:"Search…",clear:"Clear",home:"Home"},
     badges:{static:"Static HTML",langs:"FR | EN | AR",updated:"Updated: "},
     mainK:"Main pages",
@@ -205,8 +208,9 @@ const I18N = {
     cardsMain:[
       {icon:"🏠",t:"Home",d:"Overview and strengths of Riskalia.",href:"index.html"},
       {icon:"🧩",t:"Solutions",d:"Products for businesses and individuals.",href:"solutions.html"},
-      {icon:"🧭",t:"Reinsurance",d:"Treaties, facultatives, claims & arbitration.",href:"reinsurance.html"},
-      {icon:"🌿",t:"ESG",d:"Diagnostics, parametrics, TCFD/Taxonomy reporting.",href:"esg.html"},
+      {icon:"🧭", t:"Reinsurance", d:"Treaties, facultatives, claims & arbitrations.", href:"reinsurance.html"},
+      {icon:"🌍",t:"Climate Risk",d:"Identification, Quantification, Management & Reporting.",href:"climate.html"},
+      {icon:"🌿",t:"ESG",d:"Governance, Ethics, , Wellbeing, Environmental footprint & Social impact.",href:"esg.html"},
       {icon:"✉️",t:"Contact",d:"Quotes, claims and details.",href:"contact.html"}
     ],
     cardsOther:[
@@ -227,7 +231,8 @@ const I18N = {
       {icon:"🏠",t:"الرئيسية",d:"نظرة عامة ونقاط قوة Riskalia.",href:"index.html"},
       {icon:"🧩",t:"الحلول",d:"منتجات للشركات والأفراد.",href:"solutions.html"},
       {icon:"🧭",t:"إعادة التأمين",d:"اتفاقيات، اختياريات، مطالبات وتحكيم.",href:"reinsurance.html"},
-      {icon:"🌿",t:"الاستدامة",d:"تشخيص وحلول بارامترية وتقارير TCFD/التصنيف.",href:"esg.html"},
+      {icon:"🌍", t:"المخاطر المناخية", d:"التحديد، القياس، التدبير والتقارير.", href:"climate.html"},
+      {icon:"🌿", t:"الاستدامة (ESG)", d:"الحوكمة، الأخلاقيات، الرفاه، البصمة البيئية والأثر الاجتماعي.", href:"esg.html"},
       {icon:"✉️",t:"اتصل بنا",d:"عروض أسعار ومطالبات وتواصل.",href:"contact.html"}
     ],
     cardsOther:[
@@ -340,6 +345,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
 
 
 
