@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Courtage · Réassurance · ESG</title>
+  <title>Riskalia — Courtage · Réassurance · Risques Climatiques · Politique ESG</title>
   <meta name="description" content="Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,7 +92,7 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
         <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
         <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
         <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Risques climatiques</a></li>
+        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
@@ -330,8 +330,8 @@ const I18N={
     retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",re:"Climate Risk",esg:"ESG",contact:"Contact"},
-    hero:{title:"Expertise you can rely on",sub:"All-lines broking · Reinsurance · Climate risk · ESG policy. Turning operational risk into sustainable growth.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
+    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    hero:{title:"Expertise you can rely on",sub:"All-lines broking · Reinsurance · Climate Risk · ESG policy. Turning operational risk into sustainable growth.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
     cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
     offers:{kicker:"Offer",title:"Clear solutions for everyone",sub:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>, aligned with market best practices.",link:"See all solutions →",corp:{title:"Businesses"},retail:{title:"Individuals"}},
     re:{kicker:"Reinsurance",title:"Treaties & facultative, end-to-end",cards:[{t:"QS/Surplus/XoL/Stop-Loss treaties",p:"Structuring, PML/AAL modelling and layered placements."},{t:"Targeted facultative",p:"Property, Liability, Energy, Construction, Financial lines, Marine."},{t:"Claims & arbitration 24/7",p:"Quantum review, adjusters coordination, cash-calls & reporting."}],cta:"Explore reinsurance"},
@@ -357,7 +357,7 @@ const I18N={
     retail:["Health","Personal Accident","Home (Property)","Life Insurance & Savings","Schengen Travel","Retirement"]
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"إعادة التأمين",esg:"الاستدامة",contact:"اتصل بنا"},
+    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     hero:{title:"خبرة تعطيك الطمأنينة",sub:"وساطة شاملة · إعادة التأمين · تأمينات الاستدامة. نحو نمو مستدام بإدارة المخاطر.",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
     cta:{quote:"احصل على عرض",advisor:"تواصل مع مستشار"},
     offers:{kicker:"العروض",title:"حلول واضحة للجميع",sub:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong> وفق أفضل الممارسات.",link:"عرض جميع الحلول →",corp:{title:"الشركات"},retail:{title:"الأفراد"}},
@@ -428,6 +428,7 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
+
 
 
 
