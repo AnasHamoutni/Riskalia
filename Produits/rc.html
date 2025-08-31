@@ -3,47 +3,76 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Responsabilité Civile</title>
-  <meta name="description" content="Responsabilité Civile Générale, Professionnelle (PI), Produits & Après livraison, Pollution/Environnement, extensions contractuelles et programmes internationaux. Gestion proactive des sinistres, attestations et revue contractuelle."/>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <title>Riskalia — Responsabilité Civile (GL / PI / Produits / Environnement)</title>
+  <meta name="description" content="RC Générale (Exploitation & Après livraison), RC Professionnelle (PI), Produits & rappel, Environnement & pollution. Options contractuelles & internationales, structuration des limites, attestations et gestion des sinistres."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
 
-  <!-- Fonts + Global CSS -->
+  <!-- Fonts + global CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css"/>
 
   <style>
-    /* Hero spécifique RC */
-    .hero--liab{
+    /* Hero visuel pour produit */
+    .hero--product{
+      min-height:42vh;
       background:
         linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
         url('https://images.unsplash.com/photo-1523958203904-cdcb402031fd?auto=format&fit=crop&w=1600&q=70')
         center/cover no-repeat;
-      min-height:42vh;
+      display:flex; align-items:center; text-align:center;
     }
-    /* Petites tuiles KPI */
-    .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
-    .tiles .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
-    .tiles .p .v{font-weight:900;color:#0b5562}
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Onglets horizontaux collants (même pattern que ton template) */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
   </style>
 
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
+<body class="spacious">
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html">
+    <a class="brand" href="../index.html">
       <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Climate Risk</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="lang-switch">
@@ -54,196 +83,202 @@
   </div>
 </header>
 
-<section class="hero hero--liab">
+<!-- HERO -->
+<section class="hero hero--product">
   <div class="container">
     <h1 data-i18n="title">Responsabilité Civile</h1>
-    <p data-i18n="subtitle">RC Générale, RC Professionnelle (PI), Produits & Après livraison et Pollution : protégez votre entreprise contre les dommages causés aux tiers et sécurisez vos contrats & appels d’offres.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Exploitation & Après livraison</span>
-      <span class="badge" data-i18n="badges.1">Professionnelle (PI)</span>
+    <p data-i18n="subtitle">GL (Exploitation & Après livraison) • PI (Responsabilité Professionnelle) • Produits & rappel • Environnement & pollution. Structuration des limites, options contractuelles & internationales, attestations, gestion des sinistres.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">GL & Après livraison</span>
+      <span class="badge" data-i18n="badges.1">PI / Professionnelle</span>
       <span class="badge" data-i18n="badges.2">Environnement & pollution</span>
     </div>
   </div>
 </section>
 
+<!-- CONTENT -->
 <section class="reveal">
-  <div class="container main">
-    <!-- Sommaire sticky (desktop) -->
-    <aside class="aside" aria-label="Sommaire">
-      <h4 data-i18n="toc">Sommaire</h4>
-      <a href="#intro"    class="toc" data-i18n="snav.0">Aperçu</a>
-      <a href="#cover"    class="toc" data-i18n="snav.1">Ce que ça couvre</a>
-      <a href="#options"  class="toc" data-i18n="snav.2">Options</a>
-      <a href="#services" class="toc" data-i18n="snav.3">Services & pilotage</a>
-      <a href="#claims"   class="toc" data-i18n="snav.4">Sinistres</a>
-      <a href="#faq"      class="toc" data-i18n="snav.5">FAQ</a>
-    </aside>
+  <div class="container main main--single">
 
-    <!-- Chips nav (mobile) -->
-    <div class="chips" role="tablist" aria-label="Sections">
-      <button class="chip" data-jump="intro" data-i18n="snav.0">Aperçu</button>
-      <button class="chip" data-jump="cover" data-i18n="snav.1">Ce que ça couvre</button>
-      <button class="chip" data-jump="options" data-i18n="snav.2">Options</button>
-      <button class="chip" data-jump="services" data-i18n="snav.3">Services & pilotage</button>
-      <button class="chip" data-jump="claims" data-i18n="snav.4">Sinistres</button>
-      <button class="chip" data-jump="faq" data-i18n="snav.5">FAQ</button>
-    </div>
+    <!-- Onglets sticky -->
+    <nav class="tabs sticky" role="tablist" aria-label="Liability tabs">
+      <button class="tab active"  id="tab-over"  role="tab" aria-selected="true"  data-tab="over"  data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"   role="tab" aria-selected="false" data-tab="cov"   data-i18n="tabs.cov">Couvertures</button>
+      <button class="tab"         id="tab-opt"   role="tab" aria-selected="false" data-tab="opt"   data-i18n="tabs.opt">Options & structure</button>
+      <button class="tab"         id="tab-admin" role="tab" aria-selected="false" data-tab="admin" data-i18n="tabs.admin">International & attestations</button>
+      <button class="tab"         id="tab-claim" role="tab" aria-selected="false" data-tab="claim" data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"   role="tab" aria-selected="false" data-tab="faq"   data-i18n="tabs.faq">FAQ</button>
+    </nav>
 
-    <!-- Corps -->
-    <div>
-      <!-- Intro -->
-      <article id="intro" class="card">
-        <h2 data-i18n="intro.t">1. Pourquoi un programme RC ?</h2>
-        <p class="muted" data-i18n="intro.p">
-          La Responsabilité Civile couvre les dommages corporels, matériels et immatériels causés à des tiers pendant l’exploitation ou du fait de vos produits & prestations. Un programme bien calibré protège vos flux, rassure vos partenaires et répond aux clauses contractuelles.
-        </p>
-        <div class="tiles">
-          <div class="p"><div class="v" data-i18n="intro.kpi.0.v">Contrats</div><div data-i18n="intro.kpi.0.l">Conformité clauses clients & bailleurs</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.1.v">Territoires</div><div data-i18n="intro.kpi.1.l">Couvertures locales & internationales</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.2.v">Pilotage</div><div data-i18n="intro.kpi.2.l">Fréquence / gravité / coûts moyens</div></div>
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            La RC protège contre les dommages corporels, matériels et pertes financières causés à des tiers pendant l’exploitation ou du fait de vos produits/prestations. Un programme calibré rassure vos donneurs d’ordre et répond aux clauses contractuelles.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">GL : exploitation & après livraison (completed ops).</li>
+            <li data-i18n="over.li.1">PI : erreurs/omissions, défense & intérêts.</li>
+            <li data-i18n="over.li.2">Produits & rappel, pollution & environnement.</li>
+          </ul>
         </div>
-      </article>
-
-      <!-- Couvertures -->
-      <article id="cover" class="card">
-        <h2 data-i18n="cover.t">2. Ce que ça couvre (exemples)</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="cover.cards.0.t">RC Générale (Exploitation & Après livraison)</h3>
-            <ul>
-              <li data-i18n="cover.cards.0.li.0">Atteintes corporelles & matérielles à des tiers.</li>
-              <li data-i18n="cover.cards.0.li.1">Après livraison / achèvement, locatifs & recours voisins.</li>
-              <li data-i18n="cover.cards.0.li.2">Immateriels consécutifs (perte financière après dommage).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.1.t">RC Professionnelle (PI)</h3>
-            <ul>
-              <li data-i18n="cover.cards.1.li.0">Fautes, erreurs ou omissions dans la prestation.</li>
-              <li data-i18n="cover.cards.1.li.1">Défense & intérêts, frais d’expertise.</li>
-              <li data-i18n="cover.cards.1.li.2">Sous-traitance & co-traitance (selon conditions).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.2.t">Produits & rappel</h3>
-            <ul>
-              <li data-i18n="cover.cards.2.li.0">Dommages causés par produits livrés.</li>
-              <li data-i18n="cover.cards.2.li.1">Frais de retrait/rappel et communication de crise.</li>
-              <li data-i18n="cover.cards.2.li.2">États-Unis/Canada en option (selon risque).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.3.t">Environnement & pollution</h3>
-            <ul>
-              <li data-i18n="cover.cards.3.li.0">Pollution soudaine/accidentelle & parfois graduelle.</li>
-              <li data-i18n="cover.cards.3.li.1">Frais de dépollution & atteintes à la biodiversité.</li>
-              <li data-i18n="cover.cards.3.li.2">Sites, chantiers et transport (selon montage).</li>
-            </ul>
-          </section>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Contrats</div><div data-i18n="over.kpi.0l">Clauses clients & bailleurs</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Territoires</div><div data-i18n="over.kpi.1l">Local & international</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Pilotage</div><div data-i18n="over.kpi.2l">Fréquence / sévérité / coût</div></div>
         </div>
-        <p class="muted mt-1" data-i18n="cover.note">Forme “occurrence” ou “claims-made” selon ligne. Limites, franchises et juridictions ajustables.</p>
-      </article>
+      </div>
+    </article>
 
-      <!-- Options -->
-      <article id="options" class="card">
-        <h2 data-i18n="opt.t">3. Options & extensions</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="opt.cards.0.t">Contractuelles & international</h3>
-            <ul>
-              <li data-i18n="opt.cards.0.li.0">Additional insured, waiver of subrogation, severability.</li>
-              <li data-i18n="opt.cards.0.li.1">Juridictions élargies, USA/Canada sous conditions.</li>
-              <li data-i18n="opt.cards.0.li.2">Programmes Master + polices locales.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.1.t">Limites & structure</h3>
-            <ul>
-              <li data-i18n="opt.cards.1.li.0">Couche primaire + excédents (umbrella).</li>
-              <li data-i18n="opt.cards.1.li.1">Franchises, SIR et stop-loss.</li>
-              <li data-i18n="opt.cards.1.li.2">Capacités partagées (coassurance).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.2.t">Secteurs & risques spéciaux</h3>
-            <ul>
-              <li data-i18n="opt.cards.2.li.0">Agro/Pharma : recall renforcé, traçabilité.</li>
-              <li data-i18n="opt.cards.2.li.1">Chantiers & maintenance : après livraison amplifié.</li>
-              <li data-i18n="opt.cards.2.li.2">Énergie & chimie : pollution dédiée.</li>
-            </ul>
-          </section>
+    <!-- Couvertures -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Couvertures principales</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">RC Générale (GL)</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Atteintes corporelles & matérielles à des tiers.</li>
+            <li data-i18n="cov.c0.li.1">Après livraison / achèvement, locatifs, recours voisins.</li>
+            <li data-i18n="cov.c0.li.2">Immatériels consécutifs.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">RC Professionnelle (PI)</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Fautes, erreurs ou omissions.</li>
+            <li data-i18n="cov.c1.li.1">Frais de défense, expertises.</li>
+            <li data-i18n="cov.c1.li.2">Sous-/co-traitance (selon conditions).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Produits & rappel</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Dommages causés par produits livrés.</li>
+            <li data-i18n="cov.c2.li.1">Retrait/rappel, communication de crise.</li>
+            <li data-i18n="cov.c2.li.2">USA/Canada en option.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c3.t">Environnement & pollution</h3>
+          <ul>
+            <li data-i18n="cov.c3.li.0">Pollution soudaine/accidentelle (et parfois graduelle).</li>
+            <li data-i18n="cov.c3.li.1">Frais de dépollution & biodiversité.</li>
+            <li data-i18n="cov.c3.li.2">Sites, chantiers, transport.</li>
+          </ul>
+        </section>
+      </div>
+      <p class="muted mt-1" data-i18n="cov.note">Forme “occurrence” ou “claims-made” selon la ligne. Limites, franchises et juridictions ajustables.</p>
+    </article>
+
+    <!-- Options & structure -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options & structure</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Contractuelles</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Additional insured, waiver of subrogation, severability.</li>
+            <li data-i18n="opt.c0.li.1">Juridictions élargies, USA/Canada sous conditions.</li>
+            <li data-i18n="opt.c0.li.2">Clauses spécifiques secteurs (agro/pharma, énergie…).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">Limites & capacités</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Primaire + excédents (umbrella).</li>
+            <li data-i18n="opt.c1.li.1">Franchises, SIR, stop-loss.</li>
+            <li data-i18n="opt.c1.li.2">Coassurance & placements multi-marchés.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Prévention & pilotage</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Revue clauses RC dans vos contrats.</li>
+            <li data-i18n="opt.c2.li.1">Plans d’action : procédures, LOTO, essais.</li>
+            <li data-i18n="opt.c2.li.2">KPI : fréquence, sévérité, coûts moyens.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- International & attestations -->
+    <article id="admin" class="card tabpanel" role="tabpanel" aria-labelledby="tab-admin">
+      <h2 data-i18n="admin.t">4. International & attestations</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="admin.c0.t">Programmes internationaux</h3>
+          <ul>
+            <li data-i18n="admin.c0.li.0">Master + polices locales (DIC/DIL).</li>
+            <li data-i18n="admin.c0.li.1">Conformité fiscale & réglementaire.</li>
+            <li data-i18n="admin.c0.li.2">Certificats & sinistres transfrontaliers.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c1.t">Attestations</h3>
+          <ul>
+            <li data-i18n="admin.c1.li.0">Multi-langues, formats clients/bailleurs.</li>
+            <li data-i18n="admin.c1.li.1">Suivi renouvellements & versions.</li>
+            <li data-i18n="admin.c1.li.2">Portails & centralisation.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c2.t">Données & reporting</h3>
+          <ul>
+            <li data-i18n="admin.c2.li.0">Tableaux de bord et tendances.</li>
+            <li data-i18n="admin.c2.li.1">Revue trimestrielle du programme.</li>
+            <li data-i18n="admin.c2.li.2">Arbitrages de structure.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Gestion des sinistres</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">De la mise en cause à la résolution</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Assistance réserves & préservation des preuves.</li>
+            <li data-i18n="claim.li.1">Experts & avocats spécialisés.</li>
+            <li data-i18n="claim.li.2">Médiation/transaction & RETEX.</li>
+          </ul>
         </div>
-      </article>
+      </details>
+      <div class="center mt-2" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
 
-      <!-- Services -->
-      <article id="services" class="card">
-        <h2 data-i18n="srv.t">4. Services & pilotage</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="srv.cards.0.t">Revue & prévention</h3>
-            <ul>
-              <li data-i18n="srv.cards.0.li.0">Lecture des clauses RC dans vos contrats.</li>
-              <li data-i18n="srv.cards.0.li.1">Plans d’action : procédures, consignations, tests.</li>
-              <li data-i18n="srv.cards.0.li.2">Campagnes rappel (si applicable).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="srv.cards.1.t">Attestations & data</h3>
-            <ul>
-              <li data-i18n="srv.cards.1.li.0">Attestations multi-langues & suivi des renouvellements.</li>
-              <li data-i18n="srv.cards.1.li.1">KPI : fréquence, sévérité, coûts moyens.</li>
-              <li data-i18n="srv.cards.1.li.2">Revues trimestrielles & arbitrages de structure.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Occurrence vs “claims-made” ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive).</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">USA/Canada inclus ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Souvent exclus d’office ; extensions et ajustements de limites possibles après analyse du risque.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">PI : pénalités contractuelles couvertes ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">La plupart des amendes/astreintes ne sont pas assurables ; on renforce la prévention contractuelle et les clauses de limitation.</p></div>
+      </details>
+    </article>
 
-      <!-- Sinistres -->
-      <article id="claims" class="card">
-        <h2 data-i18n="clm.t">5. Sinistres — notre démarche</h2>
-        <details class="mt-1">
-          <summary>🧭 <span data-i18n="clm.sum">De la mise en cause à la résolution</span></summary>
-          <div>
-            <ul>
-              <li data-i18n="clm.li.0">Assistance à la rédaction de réserves & à la conservation des preuves.</li>
-              <li data-i18n="clm.li.1">Experts & avocats spécialisés selon juridiction.</li>
-              <li data-i18n="clm.li.2">Suivi budgétaire, médiation / transaction, retour d’expérience.</li>
-            </ul>
-          </div>
-        </details>
-        <div class="center mt-2">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./flotte.html">← <span data-i18n="nav.prev">Automobile & Flotte</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./construction.html"><span data-i18n="nav.next">Construction (CAR/EAR)</span> →</a>
+      </p>
+    </article>
 
-      <!-- FAQ -->
-      <article id="faq" class="card">
-        <h2 data-i18n="faq.t">6. FAQ</h2>
-        <details class="mt-1">
-          <summary>❓ <span data-i18n="faq.q0">Occurrence ou “claims-made” : quelle différence ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a0">Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive).</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q1">Les USA/Canada sont-ils inclus ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a1">Souvent exclus de base ; des extensions et ajustements de limites sont possibles après analyse du risque.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q2">La RC Professionnelle couvre-t-elle les pénalités ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a2">La plupart des pénalités/astreintes ne sont pas assurables ; on travaille sur la prévention contractuelle et les clauses de limitation.</p></div>
-        </details>
-      </article>
-
-      <!-- CTA finale -->
-      <article class="card center">
-        <h3 data-i18n="cta.t">Sécurisons vos engagements contractuels</h3>
-        <p class="muted" data-i18n="cta.p">Benchmark marché, structure des limites/franchises et attestations conformes aux exigences de vos donneurs d’ordre.</p>
-        <div class="actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
-    </div>
   </div>
 </section>
 
@@ -258,10 +293,10 @@
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
       <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-        <a href="climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
       </p>
     </div>
     <div>
@@ -271,160 +306,121 @@
   </div>
 </footer>
 
-<!-- FAQPage SEO -->
+<!-- FAQ SEO -->
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org","@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Occurrence ou “claims-made” : quelle différence ?","acceptedAnswer":{"@type":"Answer","text":"Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive)."}},
-    {"@type":"Question","name":"Les USA/Canada sont-ils inclus ?","acceptedAnswer":{"@type":"Answer","text":"Souvent exclus de base ; des extensions et ajustements de limites sont possibles après analyse du risque."}},
-    {"@type":"Question","name":"La RC Professionnelle couvre-t-elle les pénalités ?","acceptedAnswer":{"@type":"Answer","text":"La plupart des pénalités/astreintes ne sont pas assurables ; on travaille sur la prévention contractuelle et les clauses de limitation."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Occurrence vs claims-made : quelle différence ?","acceptedAnswer":{"@type":"Answer","text":"Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive)."}},
+{"@type":"Question","name":"Les USA/Canada sont-ils inclus ?","acceptedAnswer":{"@type":"Answer","text":"Souvent exclus d’office ; des extensions et ajustements de limites sont possibles après analyse du risque."}},
+{"@type":"Question","name":"La RC Professionnelle couvre-t-elle les pénalités ?","acceptedAnswer":{"@type":"Answer","text":"La plupart des pénalités/astreintes ne sont pas assurables ; on renforce la prévention contractuelle et les clauses de limitation."}}
+]}
 </script>
 
 <script>
 /* ================== I18N ================== */
-const I18N = {
+const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     title:"Responsabilité Civile",
-    subtitle:"RC Générale, RC Professionnelle (PI), Produits & Après livraison et Pollution : protégez votre entreprise contre les dommages causés aux tiers et sécurisez vos contrats & appels d’offres.",
-    badges:["Exploitation & Après livraison","Professionnelle (PI)","Environnement & pollution"],
-    toc:"Sommaire",
-    snav:["Aperçu","Ce que ça couvre","Options","Services & pilotage","Sinistres","FAQ"],
-    intro:{
-      t:"1. Pourquoi un programme RC ?",
-      p:"La Responsabilité Civile couvre les dommages corporels, matériels et immatériels causés à des tiers pendant l’exploitation ou du fait de vos produits & prestations. Un programme bien calibré protège vos flux, rassure vos partenaires et répond aux clauses contractuelles.",
-      kpi:[
-        {v:"Contrats",l:"Conformité clauses clients & bailleurs"},
-        {v:"Territoires",l:"Couvertures locales & internationales"},
-        {v:"Pilotage",l:"Fréquence / gravité / coûts moyens"}
-      ]
+    subtitle:"GL (Exploitation & Après livraison) • PI (Responsabilité Professionnelle) • Produits & rappel • Environnement & pollution. Structuration des limites, options contractuelles & internationales, attestations, gestion des sinistres.",
+    badges:["GL & Après livraison","PI / Professionnelle","Environnement & pollution"],
+    tabs:{over:"Aperçu",cov:"Couvertures",opt:"Options & structure",admin:"International & attestations",claim:"Sinistres",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"La RC protège contre les dommages corporels, matériels et pertes financières causés à des tiers pendant l’exploitation ou du fait de vos produits/prestations. Un programme calibré rassure vos donneurs d’ordre et répond aux clauses contractuelles.",
+         li:["GL : exploitation & après livraison (completed ops).","PI : erreurs/omissions, défense & intérêts.","Produits & rappel, pollution & environnement."],
+         kpi:["Contrats","Territoires","Pilotage"],"over.kpi.0l":"Clauses clients & bailleurs","over.kpi.1l":"Local & international","over.kpi.2l":"Fréquence / sévérité / coût"},
+    cov:{t:"2. Couvertures principales",
+      c0:{t:"RC Générale (GL)",li:["Atteintes corporelles & matérielles à des tiers.","Après livraison / achèvement, locatifs, recours voisins.","Immatériels consécutifs."]},
+      c1:{t:"RC Professionnelle (PI)",li:["Fautes, erreurs ou omissions.","Frais de défense, expertises.","Sous-/co-traitance (selon conditions)."]},
+      c2:{t:"Produits & rappel",li:["Dommages causés par produits livrés.","Retrait/rappel, communication de crise.","USA/Canada en option."]},
+      c3:{t:"Environnement & pollution",li:["Pollution soudaine/accidentelle (et parfois graduelle).","Frais de dépollution & biodiversité.","Sites, chantiers, transport."]},
+      note:"Forme “occurrence” ou “claims-made” selon la ligne. Limites, franchises et juridictions ajustables."
     },
-    cover:{
-      t:"2. Ce que ça couvre (exemples)",
-      cards:[
-        {t:"RC Générale (Exploitation & Après livraison)",li:["Atteintes corporelles & matérielles à des tiers.","Après livraison / achèvement, locatifs & recours voisins.","Immatériels consécutifs (perte financière après dommage)."]},
-        {t:"RC Professionnelle (PI)",li:["Fautes, erreurs ou omissions dans la prestation.","Défense & intérêts, frais d’expertise.","Sous-traitance & co-traitance (selon conditions)."]},
-        {t:"Produits & rappel",li:["Dommages causés par produits livrés.","Frais de retrait/rappel et communication de crise.","États-Unis/Canada en option (selon risque)."]},
-        {t:"Environnement & pollution",li:["Pollution soudaine/accidentelle & parfois graduelle.","Frais de dépollution & atteintes à la biodiversité.","Sites, chantiers et transport (selon montage)."]}
-      ],
-      note:"Forme “occurrence” ou “claims-made” selon ligne. Limites, franchises et juridictions ajustables."
+    opt:{t:"3. Options & structure",
+      c0:{t:"Contractuelles",li:["Additional insured, waiver of subrogation, severability.","Juridictions élargies, USA/Canada sous conditions.","Clauses spécifiques secteurs (agro/pharma, énergie…)."]},
+      c1:{t:"Limites & capacités",li:["Primaire + excédents (umbrella).","Franchises, SIR, stop-loss.","Coassurance & placements multi-marchés."]},
+      c2:{t:"Prévention & pilotage",li:["Revue clauses RC dans vos contrats.","Plans d’action : procédures, LOTO, essais.","KPI : fréquence, sévérité, coûts moyens."]}
     },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Contractuelles & international",li:["Additional insured, waiver of subrogation, severability.","Juridictions élargies, USA/Canada sous conditions.","Programmes Master + polices locales."]},
-        {t:"Limites & structure",li:["Couche primaire + excédents (umbrella).","Franchises, SIR et stop-loss.","Capacités partagées (coassurance)."]},
-        {t:"Secteurs & risques spéciaux",li:["Agro/Pharma : recall renforcé, traçabilité.","Chantiers & maintenance : après livraison amplifié.","Énergie & chimie : pollution dédiée."]}
-      ]
+    admin:{t:"4. International & attestations",
+      c0:{t:"Programmes internationaux",li:["Master + polices locales (DIC/DIL).","Conformité fiscale & réglementaire.","Certificats & sinistres transfrontaliers."]},
+      c1:{t:"Attestations",li:["Multi-langues, formats clients/bailleurs.","Suivi renouvellements & versions.","Portails & centralisation."]},
+      c2:{t:"Données & reporting",li:["Tableaux de bord et tendances.","Revue trimestrielle du programme.","Arbitrages de structure."]}
     },
-    srv:{
-      t:"4. Services & pilotage",
-      cards:[
-        {t:"Revue & prévention",li:["Lecture des clauses RC dans vos contrats.","Plans d’action : procédures, consignations, tests.","Campagnes rappel (si applicable)."]},
-        {t:"Attestations & data",li:["Attestations multi-langues & suivi des renouvellements.","KPI : fréquence, sévérité, coûts moyens.","Revues trimestrielles & arbitrages de structure."]}
-      ]
-    },
-    clm:{t:"5. Sinistres — notre démarche",sum:"De la mise en cause à la résolution",li:["Assistance à la rédaction de réserves & à la conservation des preuves.","Experts & avocats spécialisés selon juridiction.","Suivi budgétaire, médiation / transaction, retour d’expérience."]},
-    faq:{t:"6. FAQ",q0:"Occurrence ou “claims-made” : quelle différence ?",a0:"Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive).",q1:"Les USA/Canada sont-ils inclus ?",a1:"Souvent exclus de base ; des extensions et ajustements de limites sont possibles après analyse du risque.",q2:"La RC Professionnelle couvre-t-elle les pénalités ?",a2:"La plupart des pénalités/astreintes ne sont pas assurables ; on travaille sur la prévention contractuelle et les clauses de limitation."},
-    cta:{t:"Sécurisons vos engagements contractuels",p:"Benchmark marché, structure des limites/franchises et attestations conformes aux exigences de vos donneurs d’ordre.",quote:"Obtenir un devis",contact:"Parler à un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
+    claim:{t:"5. Gestion des sinistres",sum:"De la mise en cause à la résolution",li:["Assistance réserves & préservation des preuves.","Experts & avocats spécialisés.","Médiation/transaction & RETEX."]},
+    faq:{t:"6. FAQ",q0:"Occurrence vs “claims-made” ?",a0:"Occurrence couvre les faits survenus pendant la période. Claims-made couvre les réclamations reçues pendant la période (avec date rétroactive).",
+         q1:"USA/Canada inclus ?",a1:"Souvent exclus d’office ; extensions et ajustements de limites possibles après analyse du risque.",
+         q2:"PI : pénalités contractuelles couvertes ?",a2:"La plupart des amendes/astreintes ne sont pas assurables ; on renforce la prévention contractuelle et les clauses de limitation."},
+    cta:{quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Automobile & Flotte",next:"Construction (CAR/EAR)"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
   },
 
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
     title:"Liability Insurance",
-    subtitle:"General Liability, Professional Indemnity, Products & Completed Operations, and Environmental Liability: protect against third-party claims and meet contractual requirements.",
+    subtitle:"GL (Operations & Completed) • PI (Professional Indemnity) • Products & Recall • Environmental/Pollution. Limit structuring, contractual & international options, certificates and claims handling.",
     badges:["GL & Completed ops","Professional Indemnity","Environmental/Pollution"],
-    toc:"Contents",
-    snav:["Overview","What it covers","Options","Services & stewardship","Claims","FAQ"],
-    intro:{
-      t:"1. Why a liability programme?",
-      p:"Liability insurance responds to bodily injury, property damage and financial losses suffered by third parties during your operations or arising from your products/services. A carefully structured programme protects cashflows, reassures partners and satisfies contract clauses.",
-      kpi:[
-        {v:"Contracts",l:"Compliant with client & lender clauses"},
-        {v:"Territories",l:"Local and cross-border coverage"},
-        {v:"Steering",l:"Frequency / severity / average cost"}
-      ]
+    tabs:{over:"Overview",cov:"Covers",opt:"Options & structure",admin:"International & certificates",claim:"Claims",faq:"FAQ"},
+    over:{t:"1. Overview",p:"Liability protects against bodily injury, property damage and financial loss suffered by third parties during operations or arising from products/services. A well-structured programme reassures principals and meets contractual clauses.",
+         li:["GL: operations & completed ops.","PI: errors/omissions, defence costs.","Products & recall, environmental/pollution."],
+         kpi:["Contracts","Territories","Steering"],"over.kpi.0l":"Client & lender clauses","over.kpi.1l":"Local & international","over.kpi.2l":"Frequency / severity / cost"},
+    cov:{t:"2. Core coverages",
+      c0:{t:"General Liability (GL)",li:["Bodily injury & property damage to third parties.","Completed ops, tenants’ liability, neighbours’ recourse.","Resulting financial loss."]},
+      c1:{t:"Professional Indemnity (PI)",li:["Negligence, errors or omissions.","Defence costs & experts’ fees.","Sub-/co-contracting (subject to terms)."]},
+      c2:{t:"Products & Recall",li:["Injury/damage caused by supplied products.","Withdrawal/recall and crisis communications.","USA/Canada optional."]},
+      c3:{t:"Environmental Liability",li:["Sudden/accidental (sometimes gradual) pollution.","Clean-up costs & biodiversity damages.","Sites, projects and transit."]},
+      note:"Occurrence or claims-made depending on the line. Limits, deductibles and jurisdictions configurable."
     },
-    cover:{
-      t:"2. What it covers (examples)",
-      cards:[
-        {t:"General Liability (Ops & Completed)",li:["Bodily injury & property damage to third parties.","Completed operations, tenants’ liability, neighbours’ recourse.","Resulting financial loss after physical damage."]},
-        {t:"Professional Indemnity (PI)",li:["Negligence, errors or omissions in services.","Defence costs & experts’ fees.","Sub-/co-contracting (subject to terms)."]},
-        {t:"Products & Recall",li:["Injury/damage caused by supplied products.","Recall/withdrawal expenses and crisis comms.","USA/Canada optional (risk-dependent)."]},
-        {t:"Environmental Liability",li:["Sudden/accidental and sometimes gradual pollution.","Clean-up costs and biodiversity damages.","Sites, projects and transit (structure-dependent)."]}
-      ],
-      note:"Occurrence or claims-made depending on the line. Limits, deductibles and jurisdictions are configurable."
+    opt:{t:"3. Options & structure",
+      c0:{t:"Contractual",li:["Additional insured, waiver of subrogation, severability.","Extended jurisdictions incl. USA/Canada where eligible.","Sector-specific clauses (agri/pharma, energy…)."]},
+      c1:{t:"Limits & capacity",li:["Primary + excess (umbrella).","Deductibles, SIR, stop-loss.","Co-insurance & multi-market placements."]},
+      c2:{t:"Prevention & steering",li:["Contract clause review (liability).","Action plans: procedures, LOTO, testing.","KPIs: frequency, severity, average cost."]}
     },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Contract & international",li:["Additional insured, waiver of subrogation, severability.","Extended jurisdictions, USA/Canada where eligible.","Master programmes + local policies."]},
-        {t:"Limits & structure",li:["Primary + excess (umbrella).","Deductibles, SIR and stop-loss.","Shared capacities (co-insurance)."]},
-        {t:"Sector specifics",li:["Agri/Pharma: reinforced recall & traceability.","Construction/MRO: enhanced completed ops.","Energy/Chemicals: dedicated pollution covers."]}
-      ]
+    admin:{t:"4. International & certificates",
+      c0:{t:"International programmes",li:["Master + local policies (DIC/DIL).","Tax & regulatory compliance.","Certificates & cross-border claims."]},
+      c1:{t:"Certificates",li:["Multilingual, client/lender formats.","Renewal & version tracking.","Portals & centralisation."]},
+      c2:{t:"Data & reporting",li:["Dashboards & trends.","Quarterly programme reviews.","Structure arbitrage."]}
     },
-    srv:{
-      t:"4. Services & stewardship",
-      cards:[
-        {t:"Review & prevention",li:["Contract clause review (liability sections).","Action plans: procedures, lock-out/tag-out, testing.","Recall campaigns (where relevant)."]},
-        {t:"Certificates & data",li:["Multilingual certificates & renewal tracking.","KPI: frequency, severity, average cost.","Quarterly reviews & structure arbitrage."]}
-      ]
-    },
-    clm:{t:"5. Claims — our approach",sum:"From allegation to resolution",li:["Support on reservations & evidence preservation.","Specialised adjusters and legal counsel.","Budget tracking, mediation/settlement, lessons learned."]},
-    faq:{t:"6. FAQ",q0:"Occurrence vs claims-made — what’s the difference?",a0:"Occurrence covers acts during the period. Claims-made covers claims first made during the period (with a retroactive date).",q1:"Are USA/Canada included?",a1:"Often excluded by default; extensions and limit adjustments are possible after risk review.",q2:"Does PI cover penalties/liquidated damages?",a2:"Most fines/penalties are uninsurable; we focus on contractual prevention and limitation clauses."},
-    cta:{t:"Secure your contractual commitments",p:"Market benchmark, limits/deductibles structure and certificates aligned with your principals’ requirements.",quote:"Get a quote",contact:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
+    claim:{t:"5. Claims handling",sum:"From allegation to resolution",li:["Support with reservations & evidence.","Specialised adjusters and counsel.","Mediation/settlement & lessons learned."]},
+    faq:{t:"6. FAQ",q0:"Occurrence vs claims-made?",a0:"Occurrence covers acts during the period; claims-made covers claims first made during the period (with a retroactive date).",
+         q1:"Are USA/Canada included?",a1:"Often excluded by default; extensions and limit changes possible after risk review.",
+         q2:"Does PI cover penalties?",a2:"Most fines/penalties are uninsurable; focus on contractual prevention and limitation clauses."},
+    cta:{quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Motor & Fleet",next:"Construction (CAR/EAR)"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
   },
 
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"المسؤولية المدنية",
-    subtitle:"مسؤولية عامة، مسؤولية مهنية، مسؤولية المنتجات وما بعد التسليم، والمسؤولية البيئية: حماية من مطالبات الغير والامتثال لشروط العقود.",
-    badges:["تشغيل وما بعد التسليم","مسؤولية مهنية","بيئية/تلوث"],
-    toc:"المحتوى",
-    snav:["لمحة","نطاق التغطية","الخيارات","الخدمات والإشراف","المطالبات","الأسئلة الشائعة"],
-    intro:{
-      t:"١. لماذا برنامج مسؤولية؟",
-      p:"تغطي المسؤولية الأضرار الجسدية والمادية والخسائر المالية للغير أثناء التشغيل أو الناتجة عن منتجاتكم وخدماتكم. الهيكلة الجيدة تحمي التدفقات وتطمئن الشركاء وتلبي شروط العقود.",
-      kpi:[
-        {v:"العقود",l:"امتثال لشروط العملاء والممولين"},
-        {v:"المناطق",l:"تغطيات محلية وعبر الحدود"},
-        {v:"التحكم",l:"التكرار/الحدّة/التكلفة المتوسطة"}
-      ]
-    },
-    cover:{
-      t:"٢. ما الذي تغطيه (أمثلة)",
-      cards:[
-        {t:"مسؤولية عامة (التشغيل وما بعد الإنجاز)",li:["أضرار بدنية ومادية للغير.","ما بعد التسليم، مسؤولية المستأجر، رجوع الجوار.","خسائر مالية تابعة بعد ضرر مادي."]},
-        {t:"مسؤولية مهنية",li:["إهمال أو خطأ أو سهو في تقديم الخدمة.","مصاريف الدفاع وأ honoraria الخبراء.","المقاولة من الباطن/المشتركة (وفق الشروط)."]},
-        {t:"المنتجات والسحب",li:["أضرار ناتجة عن المنتجات الموردة.","نفقات السحب/الاسترجاع وإدارة الأزمات.","الولايات المتحدة/كندا اختيارية حسب الخطر."]},
-        {t:"بيئية وتلوث",li:["تلوث مفاجئ/عرضي وأحياناً تدريجي.","تكاليف التنظيف وتعويضات التنوع البيولوجي.","مواقع ومشاريع ونقل (حسب الهيكلة)."]}
-      ],
+    subtitle:"عامّة (التشغيل وما بعد الإنجاز) • مهنية (PI) • المنتجات والسحب • البيئية/التلوث. هيكلة الحدود، خيارات تعاقدية ودولية، شهادات، وإدارة المطالبات.",
+    badges:["تشغيل وما بعد الإنجاز","مسؤولية مهنية","بيئية/تلوث"],
+    tabs:{over:"لمحة",cov:"التغطيات",opt:"الخيارات والهيكلة",admin:"الدولي والشهادات",claim:"المطالبات",faq:"الأسئلة"},
+    over:{t:"١. لمحة",p:"تحمي المسؤولية من الأضرار الجسدية والمادية والخسائر المالية للغير أثناء التشغيل أو الناتجة عن المنتجات/الخدمات. الهيكلة الجيدة تطمئن المتعاقدين وتلبي شروط العقود.",
+         li:["عامّة: تشغيل وما بعد الإنجاز.","مهنية: أخطاء/سهو، مصاريف دفاع.","المنتجات والسحب، بيئية/تلوث."],
+         kpi:["العقود","المناطق","الإدارة"],"over.kpi.0l":"شروط العملاء والممولين","over.kpi.1l":"محلي ودولي","over.kpi.2l":"التكرار/الحدّة/التكلفة"},
+    cov:{t:"٢. التغطيات الأساسية",
+      c0:{t:"مسؤولية عامة (GL)",li:["أذى بدني ومادي للغير.","ما بعد الإنجاز، مسؤولية المستأجر، رجوع الجوار.","خسائر مالية تابعة."]},
+      c1:{t:"مسؤولية مهنية (PI)",li:["إهمال/خطأ/سهو.","مصاريف الدفاع وأتعاب الخبراء.","مقاولة فرعية/مشتركة (حسب الشروط)."]},
+      c2:{t:"المنتجات والسحب",li:["أضرار ناتجة عن المنتجات المورَّدة.","نفقات السحب والتواصل أثناء الأزمة.","الولايات المتحدة/كندا اختيارية."]},
+      c3:{t:"بيئية وتلوث",li:["تلوث مفاجئ/عرضي (وأحياناً تدريجي).","تكاليف التنظيف وتعويضات التنوع الحيوي.","مواقع ومشاريع ونقل."]},
       note:"نموذج وقوع الحدث أو «مطالبات مقدّمة» حسب الخط. حدود وخصومات واختصاصات قابلة للضبط."
     },
-    opt:{
-      t:"٣. خيارات وامتدادات",
-      cards:[
-        {t:"تعاقد ودولي",li:["مؤمن إضافي، التنازل عن الرجوع، قابلية الفصل.","اختصاصات موسعة، الولايات المتحدة/كندا عند الأهلية.","برنامج رئيسي + وثائق محلية."]},
-        {t:"الحدود والهيكلة",li:["طبقة أساسية + فائض (مظلّة).","خصومات وSIR وستوب-لوس.","طاقة مشتركة (تأمين مشترك)."]},
-        {t:"قطاعات خاصة",li:["غذائي/دوائي: سحب معزز وتتبع.","إنشاءات وصيانة: ما بعد الإنجاز موسع.","طاقة وكيميائيات: تلوث مخصص."]}
-      ]
+    opt:{t:"٣. الخيارات والهيكلة",
+      c0:{t:"تعاقدية",li:["مؤمَّن إضافي، التنازل عن الرجوع، قابلية الفصل.","اختصاصات موسعة تشمل أمريكا/كندا عند الأهلية.","بنود خاصة بالقطاعات (غذائي/دوائي، طاقة…)."]},
+      c1:{t:"الحدود والطاقة",li:["طبقة أساسية + فائض (مظلّة).","خصومات وSIR وستوب-لوس.","تأمين مشترك وتوزيع متعدد الأسواق."]},
+      c2:{t:"الوقاية والإدارة",li:["مراجعة بنود المسؤولية في العقود.","خطط عمل: إجراءات، قفل/وسم، اختبارات.","مؤشرات: التكرار والحدّة والتكلفة."]}
     },
-    srv:{
-      t:"٤. الخدمات والإشراف",
-      cards:[
-        {t:"مراجعة ووقاية",li:["مراجعة بنود المسؤولية في العقود.","خطط عمل: إجراءات، قفل/وسم، اختبارات.","حملات سحب عند اللزوم."]},
-        {t:"شهادات وبيانات",li:["شهادات متعددة اللغات ومتابعة التجديد.","مؤشرات: التكرار والحدّة والتكلفة المتوسطة.","مراجعات ربع سنوية وضبط الهيكلة."]}
-      ]
+    admin:{t:"٤. الدولي والشهادات",
+      c0:{t:"برامج دولية",li:["وثيقة رئيسية + وثائق محلية (DIC/DIL).","امتثال ضريبي وتنظيمي.","شهادات ومطالبات عابرة للحدود."]},
+      c1:{t:"الشهادات",li:["متعددة اللغات وبصيغ العملاء/الممولين.","متابعة التجديد والإصدارات.","بوابات وإدارة مركزية."]},
+      c2:{t:"البيانات والتقارير",li:["لوحات مؤشرات واتجاهات.","مراجعات ربع سنوية.","مفاضلة هيكلية."]}
     },
-    clm:{t:"٥. المطالبات — نهجنا",sum:"من الادعاء إلى التسوية",li:["مساندة في تدوين التحفظات وحفظ الأدلة.","خبراء ومحامون متخصصون حسب الاختصاص.","تتبع الميزانية والوساطة/التسوية والدروس المستفادة."]},
-    faq:{t:"٦. أسئلة شائعة",q0:"ما الفرق بين وقوع الحدث و«مطالبات مقدّمة»؟",a0:"الأول يغطي الأفعال خلال المدة، والثاني يغطي المطالبات المقدّمة خلال المدة (مع تاريخ رجعي).",q1:"هل تشمل الولايات المتحدة/كندا؟",a1:"غالباً مستبعدة افتراضياً؛ ممكن التوسعة بعد دراسة الخطر.",q2:"هل تغطي المسؤولية المهنية الغرامات؟",a2:"معظم الغرامات غير قابلة للتأمين؛ نركّز على الوقاية التعاقدية وبنود الحد من المسؤولية."},
-    cta:{t:"لنؤمّن التزاماتك التعاقدية",p:"مقارنة سوق، هيكلة حدود/خصومات وشهادات متوافقة مع متطلبات المتعاقدين.",quote:"اطلب عرضاً",contact:"تحدث إلى مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
+    claim:{t:"٥. إدارة المطالبات",sum:"من الادعاء إلى التسوية",li:["مساندة في التحفظات وحفظ الأدلة.","خبراء ومحامون مختصون.","وساطة/تسوية ودروس مستفادة."]},
+    faq:{t:"٦. أسئلة شائعة",q0:"ما الفرق بين وقوع الحدث و«مطالبات مقدّمة»؟",a0:"الأول يغطي الأفعال خلال المدة، والثاني يغطي المطالبات المُقدّمة خلال المدة (مع تاريخ رجعي).",
+         q1:"هل تشمل أمريكا/كندا؟",a1:"غالباً مستبعدة افتراضياً؛ يمكن التوسعة بعد تقييم الخطر.",
+         q2:"هل تغطي المهنية الغرامات؟",a2:"معظم الغرامات غير قابلة للتأمين؛ نركّز على الوقاية التعاقدية وبنود الحد من المسؤولية."},
+    cta:{quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    nav:{prev:"السيارات والأساطيل",next:"الإنشاءات (CAR/EAR)"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
   }
 };
 
@@ -436,7 +432,7 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
 
-/* ================== Render ================== */
+/* ================== Render & Tabs ================== */
 function applyTexts(){
   document.documentElement.lang=lang;
   document.body.dir=(lang==='ar'?'rtl':'ltr');
@@ -444,49 +440,37 @@ function applyTexts(){
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
 }
-
-/* Sticky TOC highlight */
-function highlightTOC(){
-  const ids=['intro','cover','options','services','claims','faq'];
-  let active='intro';
-  ids.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el) return;
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight*0.35) active=id;
-  });
-  $$('.aside .toc').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+active);
-  });
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','admin','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 }
-
-/* ================== UI ================== */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // language switch
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // mobile chips jump
-  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
-    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  // reveal + toc highlight
-  const rev=$$('.reveal');
-  const onScroll=()=>{
-    const tr=window.innerHeight*0.85;
-    rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); });
-    highlightTOC();
-  };
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
 }
-
-/* init */
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
