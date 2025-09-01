@@ -402,12 +402,28 @@ function initUI(){
     window.location.href = mailto;
   });
 }
+    document.getElementById('contactForm').addEventListener('ok', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
+        emailjs.sendForm('service_z6rik9r', 'template_lmbrfrb', this)
+            .then(function() {
+                alert('Email sent successfully!');
+            }, function(error) {
+                alert('Failed to send email: ' + JSON.stringify(error));
+            });
+    });
 /* init */
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+      <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("zNiKD3DUIXJB_LXeO"); // Replace with your Public Key
+        })();
+    </script>
 </script>
 </body>
 </html>
+
 
 
 
