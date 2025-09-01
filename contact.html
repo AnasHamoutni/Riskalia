@@ -12,39 +12,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
 
-  <!-- Styles spécifiques page contact (layout + map) -->
+  <!-- Styles spécifiques page contact -->
   <style>
     .hero.hero--contact{
       min-height:42vh;
       background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
                  url('https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
     }
-
-    /* Nouveau layout : colonne formulaire plus large */
     .contact-layout{
       display:grid;
       grid-template-columns: minmax(280px,1fr) minmax(420px,1.6fr);
-      gap: 22px;
-      align-items: start;
+      gap:22px; align-items:start;
     }
-    @media (max-width: 980px){
-      .contact-layout{ grid-template-columns:1fr; }
-    }
-
-    /* Infos à gauche */
+    @media(max-width:980px){.contact-layout{grid-template-columns:1fr}}
     .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-
-    /* Formulaire : on s’appuie au maximum sur la feuille globale */
     .form{max-width:880px;margin:0 auto}
     .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media(max-width:700px){ .form .row{grid-template-columns:1fr} }
-
-    /* Carte Google Maps */
+    @media(max-width:700px){.form .row{grid-template-columns:1fr}}
     .map-embed{border:1px solid #e2edf2;border-radius:16px;overflow:hidden}
     .map-embed iframe{width:100%;height:280px;border:0;display:block}
-    @media(min-width:980px){ .map-embed iframe{height:320px} }
-
-    /* Bouton en cours d'envoi */
+    @media(min-width:980px){.map-embed iframe{height:320px}}
     .btn[aria-busy="true"]{opacity:.7;pointer-events:none}
   </style>
 </head>
@@ -86,10 +73,11 @@
   </div>
 </section>
 
-<section class="reveal">
+<!-- Ajout de 'active' pour éviter que le contenu reste masqué si le JS plante -->
+<section class="reveal active">
   <div class="container">
-    <div class="contact-layout"><!-- <- nouveau wrapper -->
-      <!-- Colonne gauche : coordonnées + Google Maps -->
+    <div class="contact-layout">
+      <!-- Colonne gauche -->
       <article class="card">
         <div class="kicker" data-i18n="box.contact.k">Contact</div>
         <h3 data-i18n="box.contact.t">Nos coordonnées</h3>
@@ -108,7 +96,6 @@
           </div>
         </div>
 
-        <!-- Google Maps Embed : change le paramètre 'q=' quand tu auras l’adresse exacte -->
         <div class="map-embed" style="margin-top:12px">
           <iframe
             title="Localisation Riskalia sur Google Maps"
@@ -222,15 +209,9 @@
 </footer>
 
 <!-- ================== EmailJS SDK ================== -->
-<script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
-<script>
-  // ⚙️ Renseigne tes identifiants EmailJS ici
-  const EMAILJS_PUBLIC_KEY = 'zNiKD3DUIXJB_LXeO';
-  const EMAILJS_SERVICE_ID = 'service_z6rik9r';
-  const EMAILJS_TEMPLATE_ID = 'template_lmbrfrb';
-
-  (function(){ emailjs.init(EMAILJS_PUBLIC_KEY); })();
-</script>
+<!-- Charge le SDK et initialise emailjs uniquement quand il est prêt -->
+<script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"
+        onload="emailjs.init('zNiKD3DUIXJB_LXeO')"></script>
 
 <script>
 /*********************** i18n ************************/
@@ -334,7 +315,7 @@ function applyTexts(){
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
   populateProducts();
-  // placeholders / aria
+  // placeholders
   $('#topic').placeholder = lang==='en'?'E.g. fleet renewal, XoL layer…'
                          : lang==='ar'?'مثال: تجديد أسطول، طبقة XoL…'
                          : 'Ex. renouvellement flotte, couche XoL…';
@@ -344,28 +325,37 @@ function applyTexts(){
 }
 
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // langue
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // reveal
   const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
-
-  // segment → produits
   $('#segment').addEventListener('change', populateProducts);
+}
 
-  // validation + EmailJS (sans mailto)
-  const F=$('#contactForm');
-  const BTN=$('#submitBtn');
+/*********************** EmailJS + Form ************************/
+// IDs EmailJS (service et template)
+const EMAILJS_SERVICE_ID = "service_z6rik9r";
+const EMAILJS_TEMPLATE_ID = "template_lmbrfrb";
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  applyTexts();
+  initUI();
+
+  const F   = document.getElementById("contactForm");
+  const BTN = document.getElementById("submitBtn");
+  const OK  = document.getElementById("ok");
+
+  // sécurité : si le SDK n’est pas chargé (bloqueur ou CDN), on évite l’erreur
+  if (!window.emailjs) {
+    console.error("EmailJS SDK not loaded");
+  }
+
   F.addEventListener('submit', async (e)=>{
     e.preventDefault();
-    // simple validation
+    // validation simple
     let allOk=true;
     const need = [['#name','#e-name'],['#email','#e-email'],['#product','#e-product'],['#consent','#e-consent']];
     need.forEach(([f,err])=>{
@@ -374,48 +364,53 @@ function initUI(){
       er.style.display = valid?'none':'block';
       if(!valid) allOk=false;
     });
-    // honeypot
-    if (F.company && F.company.value) allOk=false;
+    if (F.company && F.company.value) allOk=false; // honeypot
     if(!allOk) return;
 
-    // état UI
     BTN.setAttribute('aria-busy','true');
-
     try{
+      if (!window.emailjs) throw new Error('EmailJS SDK not loaded');
       const res = await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, F);
       console.log('EmailJS success:', res);
-      $('#ok').style.display='block';
+      OK.style.display='block';
       F.reset();
-      populateProducts(); // repop après reset pour garder options
+      populateProducts(); // repop après reset
     }catch(err){
-      // Affichage enrichi de l'erreur
       console.error('EmailJS error:', err);
-      const msg = (lang==='fr'? 'Erreur lors de l\'envoi' : (lang==='ar'? 'خطأ في الإرسال' : 'Send error'));
-      const details = err?.text || err?.message || (typeof err === 'string' ? err : JSON.stringify(err));
-      alert(msg + ' : ' + (details || '— aucune information renvoyée —'));
-      // Fallback optionnel : proposer un lien mailto prérempli
-      const name = encodeURIComponent($('#name').value.trim());
-      const email= encodeURIComponent($('#email').value.trim());
-      const phone= encodeURIComponent($('#phone').value.trim());
-      const seg = $('#segment').value;
+      // Fallback mailto propre
+      const name    = encodeURIComponent($('#name').value.trim());
+      const email   = encodeURIComponent($('#email').value.trim());
+      const phone   = encodeURIComponent($('#phone').value.trim());
+      const segRaw  = $('#segment').value;
+      const seg     = segRaw==='corp' ? (lang==='en'?'Business':'Entreprise') : (lang==='en'?'Individual':'Particulier');
       const product = encodeURIComponent($('#product').value);
-      const topic = encodeURIComponent($('#topic').value.trim());
+      const topic   = encodeURIComponent($('#topic').value.trim());
       const message = encodeURIComponent($('#message').value.trim());
-      const subject = encodeURIComponent('Demande devis / info — ' + (seg==='corp'?'Entreprise : ':'Particulier : ') + decodeURIComponent(product));
-      const body = encodeURIComponent(['Nom : '+decodeURIComponent(name),'Email: '+decodeURIComponent(email),'Téléphone : '+decodeURIComponent(phone),'Vous êtes : '+(seg==='corp'?'Entreprise':'Particulier'),'Produit : '+decodeURIComponent(product),'Objet : '+decodeURIComponent(topic||'—'),'','Message :',decodeURIComponent(message||'—')].join('
-'));
+
+      const lines = [
+        (lang==='en'?'Name: ':'Nom : ') + decodeURIComponent(name),
+        'Email: ' + decodeURIComponent(email),
+        (lang==='en'?'Phone: ':'Téléphone : ') + decodeURIComponent(phone),
+        (lang==='en'?'Segment: ':'Vous êtes : ') + seg,
+        (lang==='en'?'Product: ':'Produit : ') + decodeURIComponent(product),
+        (lang==='en'?'Subject: ':'Objet : ') + decodeURIComponent(topic || '—'),
+        '',
+        (lang==='en'?'Message:':'Message :'),
+        decodeURIComponent(message || '—')
+      ];
+      const subject = encodeURIComponent(
+        (lang==='en'?'Quote / Info — ':'Demande devis / info — ')
+        + seg + ' : ' + decodeURIComponent(product)
+      );
+      const body = encodeURIComponent(lines.join('\\n'));
       const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
-      if(confirm((lang==='fr'?'Souhaitez-vous utiliser votre application mail à la place ?':'Use your mail app instead?'))){
-        window.location.href = mailto;
-      }
+      alert(lang==='en'?'EmailJS failed, opening your mail app.':'Erreur EmailJS, ouverture de votre application mail.');
+      window.location.href = mailto;
     }finally{
       BTN.removeAttribute('aria-busy');
     }
   });
-}
-
-/* init */
-window.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+});
 </script>
 </body>
 </html>
