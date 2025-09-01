@@ -3,69 +3,30 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Réassurance (Traités, Facultatives, Conception)</title>
-  <meta name="description" content="Réassurance de bout en bout : traités (QS/Surplus/XoL/Stop-Loss), facultatives (Property, RC, construction…), conception de produits, sinistres & arbitrages, process et FAQ."/>
+  <title>Riskalia — Réassurance (Programmes & Conseil)</title>
+  <meta name="description" content="Réassurance proportionnelle et non proportionnelle, placement marché, sinistres & recouvrements, data & modélisation, optimisation des protections et cadre réglementaire SBR (Supervision Basée sur les Risques)."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <!-- Show content even if JS fails -->
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+
   <!-- Fonts + CSS global -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
 
-  <!-- ===== Overrides nécessaires pour le sticky ===== -->
   <style>
-    /* Empêche transform/overflow sur l’ancêtre du sticky */
-    section.reveal{ transform:none !important; filter:none !important; }
-    .container, .reveal{ overflow:visible !important; }
+    /* Héro spécifique Réassurance (image déjà stylée dans styles.css via .hero--re) */
+    .hero--re{ min-height:42vh; }
 
-    /* Layout 2 colonnes + sticky robuste (laisse .main de styles.css si tu veux) */
-    .main{
-      display:grid;
-      grid-template-columns: 280px minmax(0,1fr);
-      gap:28px;
-      align-items:start;
-      overflow:visible;
-    }
-    .content-col{ min-width:0; }
+    /* Séparateur visuel entre blocs longs */
+    .section-gap{ margin-top:12px; }
 
-    :root{ --sticky-top: 84px; --sticky-pad: 8px; }
-
-    .aside{
-      position:-webkit-sticky; /* Safari */
-      position:sticky;
-      top:var(--sticky-top);
-      max-height:calc(100vh - var(--sticky-top) - var(--sticky-pad));
-      overflow:auto;
-      padding-right:4px;
-      z-index:2;
-      scroll-behavior:smooth;
-    }
-    .aside h4{ margin-top:0; }
-    .aside .toc{ display:block; padding:6px 0; text-decoration:none; }
-    .aside .toc.active{ font-weight:600; }
-
-    /* Les ancres ne passent pas sous le header sticky */
-    article{ scroll-margin-top: calc(var(--sticky-top) + 12px); }
-
-    /* IMPORTANT : on ne cache plus la sidebar à 1100px comme dans styles.css.
-       On la garde visible jusqu’à 992px, puis on passe en mode mobile (chips). */
-    @media (max-width:1100px){ .aside{ display:block !important; } } /* annule le display:none du CSS global */
-    @media (max-width:992px){
-      .main{ grid-template-columns:1fr; }
-      .aside{ display:none !important; max-height:none; overflow:visible; padding-right:0; position:static; }
-      .chips{ display:flex !important; }
-    }
-
-    /* HERO page */
-    .hero--re{
-      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-                 url('https://images.unsplash.com/photo-1542744095-291d1f67b221?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
-      min-height:42vh;
-    }
+    /* Mobile: le sommaire bascule en "chips" (déjà prévu dans styles.css) */
+    .chips.toc{ margin-top:10px; }
   </style>
+
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
+<body class="spacious">
+
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
@@ -74,12 +35,12 @@
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" class="active" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="index.html" data-i18n="menu.home">Accueil</a></li>
+        <li><a href="solutions.html" data-i18n="menu.solutions">Solutions</a></li>
+        <li><a href="reinsurance.html" class="active" data-i18n="menu.re">Réassurance</a></li>
+        <li><a href="climate.html" data-i18n="menu.climate">Risques Climatiques</a></li>
+        <li><a href="esg.html" data-i18n="menu.esg">ESG</a></li>
+        <li><a href="contact.html" data-i18n="menu.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="lang-switch">
@@ -90,251 +51,317 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero hero--re">
   <div class="container">
-    <h1 data-i18n="title">Réassurance : traités, facultatives & accompagnement</h1>
-    <p data-i18n="subtitle">Structuration • Modélisation PML/AAL • Placements multicouches • Sinistres & arbitrages 24/7.</p>
+    <h1 data-i18n="hero.t">Réassurance — Programmes & Conseil</h1>
+    <p data-i18n="hero.p">Proportionnelle & non proportionnelle • Placement marché • Sinistres & recouvrements • Data & modélisation • Optimisation du coût et du capital • Cadre SBR.</p>
     <div class="badges">
-      <span class="badge" data-i18n="badges.0">QS / Surplus / XoL / Stop-Loss</span>
-      <span class="badge" data-i18n="badges.1">Facultatives ciblées</span>
-      <span class="badge" data-i18n="badges.2">Wordings LMA/IUA</span>
+      <span class="badge" data-i18n="hero.b0">Architecture & rétention</span>
+      <span class="badge" data-i18n="hero.b1">Placement & wordings</span>
+      <span class="badge" data-i18n="hero.b2">Conformité SBR</span>
     </div>
   </div>
 </section>
 
+<!-- CONTENT -->
 <section class="reveal">
   <div class="container main">
-    <!-- ASIDE -->
-    <aside class="aside" aria-label="Sommaire">
-      <h4 data-i18n="toc">Sommaire</h4>
-      <a href="#intro" class="toc"><span data-i18n="sec.intro.t">Présentation</span></a>
-      <a href="#treaty" class="toc"><span data-i18n="sec.treaty.t">Traités</span></a>
-      <a href="#fac" class="toc"><span data-i18n="sec.fac.t">Facultatives</span></a>
-      <a href="#design" class="toc"><span data-i18n="sec.design.t">Conception de produits</span></a>
-      <a href="#claims" class="toc"><span data-i18n="sec.claims.t">Sinistres & arbitrages</span></a>
-      <a href="#process" class="toc"><span data-i18n="sec.process.t">Processus</span></a>
-      <a href="#faq" class="toc"><span data-i18n="sec.faq.t">FAQ</span></a>
-    </aside>
+    <!-- Sommaire sticky (desktop) -->
+    <nav class="aside" aria-label="Sommaire">
+      <h4 data-i18n="toc.t">Sommaire</h4>
+      <a href="#intro" class="active" data-i18n="toc.intro">Introduction</a>
+      <a href="#programs" data-i18n="toc.programs">Programmes</a>
+      <a href="#placement" data-i18n="toc.placement">Placement & marchés</a>
+      <a href="#claims" data-i18n="toc.claims">Sinistres</a>
+      <a href="#data" data-i18n="toc.data">Données & modélisation</a>
+      <a href="#opt" data-i18n="toc.opt">Optimisation</a>
+      <a href="#sbr" data-i18n="toc.sbr">Cadre SBR</a>
+      <a href="#faq" data-i18n="toc.faq">FAQ</a>
+    </nav>
 
-    <!-- COLONNE CONTENU -->
-    <div class="content-col">
-      <!-- CHIPS (mobile) -->
-      <div class="chips" role="tablist" aria-label="Sections">
-        <button class="chip" data-jump="intro" data-i18n="sec.intro.t">Présentation</button>
-        <button class="chip" data-jump="treaty" data-i18n="sec.treaty.t">Traités</button>
-        <button class="chip" data-jump="fac" data-i18n="sec.fac.t">Facultatives</button>
-        <button class="chip" data-jump="design" data-i18n="sec.design.t">Conception</button>
-        <button class="chip" data-jump="claims" data-i18n="sec.claims.t">Sinistres</button>
-        <button class="chip" data-jump="process" data-i18n="sec.process.t">Processus</button>
-        <button class="chip" data-jump="faq" data-i18n="sec.faq.t">FAQ</button>
+    <!-- Colonne contenu -->
+    <div>
+
+      <!-- Nav mobile (chips) -->
+      <div class="chips toc">
+        <button class="chip" onclick="location.hash='#intro'" data-i18n="toc.intro">Introduction</button>
+        <button class="chip" onclick="location.hash='#programs'" data-i18n="toc.programs">Programmes</button>
+        <button class="chip" onclick="location.hash='#placement'" data-i18n="toc.placement">Placement</button>
+        <button class="chip" onclick="location.hash='#claims'" data-i18n="toc.claims">Sinistres</button>
+        <button class="chip" onclick="location.hash='#data'" data-i18n="toc.data">Données</button>
+        <button class="chip" onclick="location.hash='#opt'" data-i18n="toc.opt">Optimisation</button>
+        <button class="chip" onclick="location.hash='#sbr'" data-i18n="toc.sbr">SBR</button>
+        <button class="chip" onclick="location.hash='#faq'" data-i18n="toc.faq">FAQ</button>
       </div>
 
-      <!-- CONTENT -->
-      <div>
-        <!-- INTRO -->
-        <article id="intro" class="card">
-          <h2 data-i18n="sec.intro.t">1. Présentation</h2>
-          <p class="muted" data-i18n="sec.intro.p">Réassurance de bout en bout : de l’analyse d’appétence au risque à la rédaction des wordings, de la modélisation PML/AAL aux placements multicouches et au suivi annuel.</p>
-          <ul>
-            <li data-i18n="sec.intro.li.0">Accès direct aux réassureurs notés A/AA.</li>
-            <li data-i18n="sec.intro.li.1">Wordings et clauses LMA/IUA, respect des standards internationaux.</li>
-            <li data-i18n="sec.intro.li.2">Reporting cash-calls, sinistres majeurs, arbitrages.</li>
-          </ul>
-        </article>
-        <br/>
+      <!-- INTRO -->
+      <article id="intro" class="card">
+        <h2 data-i18n="intro.t">1. Introduction</h2>
+        <p class="muted" data-i18n="intro.p">
+          Nous concevons et plaçons des protections adaptées à votre profil de risque et à votre stratégie : stabilité
+          du résultat, protection du capital, soutien à la croissance et conformité réglementaire.
+        </p>
+        <div class="grid section-gap">
+          <section class="card">
+            <h3 data-i18n="intro.c0.t">Objectifs</h3>
+            <ul>
+              <li data-i18n="intro.c0.l0">Limiter les pics de pertes et la volatilité.</li>
+              <li data-i18n="intro.c0.l1">Optimiser coût vs. capital consommé.</li>
+              <li data-i18n="intro.c0.l2">Sécuriser la capacité sur les périls majeurs.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="intro.c1.t">Méthode</h3>
+            <ul>
+              <li data-i18n="intro.c1.l0">Analyse historique & exposition.</li>
+              <li data-i18n="intro.c1.l1">Scénarios/stress et matérialité.</li>
+              <li data-i18n="intro.c1.l2">Itérations marché & wordings.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
 
-        <!-- TRAITES -->
-        <article id="treaty" class="card">
-          <h2 data-i18n="sec.treaty.t">2. Traités</h2>
-          <p class="muted" data-i18n="sec.treaty.lead">Conception et placement de traités proportionnels et non proportionnels, adaptés au profil de risque et au plan de cession.</p>
+      <!-- PROGRAMMES -->
+      <article id="programs" class="card">
+        <h2 data-i18n="prog.t">2. Programmes de réassurance</h2>
+        <div class="grid section-gap">
+          <section class="card">
+            <h3 data-i18n="prog.c0.t">Proportionnels</h3>
+            <ul>
+              <li data-i18n="prog.c0.l0">Quota share (relief capital, montée en capacité).</li>
+              <li data-i18n="prog.c0.l1">Surplus (grands risques, lissage de sévérité).</li>
+              <li data-i18n="prog.c0.l2">Participation aux bénéfices, sliding scale.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="prog.c1.t">Non proportionnels</h3>
+            <ul>
+              <li data-i18n="prog.c1.l0">XL par risque/péril & événement cat.</li>
+              <li data-i18n="prog.c1.l1">Aggregate XL / stop-loss résultat.</li>
+              <li data-i18n="prog.c1.l2">Multi-annuel, reinstatements, indexation.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="prog.c2.t">Facultatives & paramétriques</h3>
+            <ul>
+              <li data-i18n="prog.c2.l0">Placements ciblés pour risques atypiques.</li>
+              <li data-i18n="prog.c2.l1">Paramétriques météo/climat pour pics.</li>
+              <li data-i18n="prog.c2.l2">Clauses d’agrégation & hours clause.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
 
-          <div class="cards-grid mt-2">
-            <section class="card">
-              <h3 data-i18n="sec.treaty.cards.0.t">Proportionnels (Quota-Share / Surplus)</h3>
-              <ul>
-                <li data-i18n="sec.treaty.cards.0.li.0">Stabilisation des ratios — partage primes/sinistres.</li>
-                <li data-i18n="sec.treaty.cards.0.li.1">Optimisation du capital & solvabilité.</li>
-                <li data-i18n="sec.treaty.cards.0.li.2">Clauses de commission & réglages glissants.</li>
-              </ul>
-            </section>
-            <section class="card">
-              <h3 data-i18n="sec.treaty.cards.1.t">Non proportionnels (XoL / Stop-Loss)</h3>
-              <ul>
-                <li data-i18n="sec.treaty.cards.1.li.0">Protection de fréquence/sévérité.</li>
-                <li data-i18n="sec.treaty.cards.1.li.1">Couverture volatilité & catastrophes.</li>
-                <li data-i18n="sec.treaty.cards.1.li.2">Stratégies multicouches & agrégations.</li>
-              </ul>
-            </section>
-          </div>
+      <!-- PLACEMENT -->
+      <article id="placement" class="card">
+        <h2 data-i18n="pl.t">3. Placement & marchés</h2>
+        <div class="grid section-gap">
+          <section class="card">
+            <h3 data-i18n="pl.c0.t">Stratégie de marché</h3>
+            <ul>
+              <li data-i18n="pl.c0.l0">Panel diversifié & critères de notation.</li>
+              <li data-i18n="pl.c0.l1">Séquençage & concurrence positive.</li>
+              <li data-i18n="pl.c0.l2">Capacité sécurisée sur périls critiques.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="pl.c1.t">Termes & wordings</h3>
+            <ul>
+              <li data-i18n="pl.c1.l0">Définitions périls, agrégation, heures.</li>
+              <li data-i18n="pl.c1.l1">Clauses coop/contrôle des sinistres.</li>
+              <li data-i18n="pl.c1.l2">Cut-through / dépôts / garanties.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="pl.c2.t">Gouvernance</h3>
+            <ul>
+              <li data-i18n="pl.c2.l0">Traçabilité des décisions & validations.</li>
+              <li data-i18n="pl.c2.l1">Matrix limites & concentrations.</li>
+              <li data-i18n="pl.c2.l2">Suivi créances & attestations.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
 
-          <div class="table-wrap mt-2">
-            <table>
-              <caption data-i18n="sec.treaty.table.cap" style="text-align:center;">Comparatif rapide des traités</caption>
-              <thead>
-                <tr>
-                  <th data-i18n="sec.treaty.table.h.0" style="text-align:center;">Type</th>
-                  <th data-i18n="sec.treaty.table.h.1" style="text-align:center;">Objectif</th>
-                  <th data-i18n="sec.treaty.table.h.2" style="text-align:center;">Points-clés</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Quota-Share</td>
-                  <td data-i18n="sec.treaty.table.qs.obj">Stabiliser & partager le portefeuille</td>
-                  <td data-i18n="sec.treaty.table.qs.k">Commission, glissante, cession par ligne</td>
-                </tr>
-                <tr>
-                  <td>Surplus</td>
-                  <td data-i18n="sec.treaty.table.sp.obj">Augmenter la capacité par risque</td>
-                  <td data-i18n="sec.treaty.table.sp.k">Lignes, limites, capitaux par branche</td>
-                </tr>
-                <tr>
-                  <td>XoL</td>
-                  <td data-i18n="sec.treaty.table.x.obj">Limiter la sévérité</td>
-                  <td data-i18n="sec.treaty.table.x.k">Attachment, limites, multi-layers</td>
-                </tr>
-                <tr>
-                  <td>Stop-Loss</td>
-                  <td data-i18n="sec.treaty.table.sl.obj">Limiter la sinistralité annuelle</td>
-                  <td data-i18n="sec.treaty.table.sl.k">Aggregate, corridor, franchise annuelle</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-        <br/>
+      <!-- CLAIMS -->
+      <article id="claims" class="card">
+        <h2 data-i18n="cl.t">4. Sinistres & recouvrements</h2>
+        <ul>
+          <li data-i18n="cl.l0">Notification précoce & réserves partagées.</li>
+          <li data-i18n="cl.l1">Calendrier comptes & intérêts de retard.</li>
+          <li data-i18n="cl.l2">Pré-accords & comités sinistres majeurs.</li>
+        </ul>
+      </article>
 
-        <!-- FACULTATIVES -->
-        <article id="fac" class="card">
-          <h2 data-i18n="sec.fac.t">3. Facultatives</h2>
-          <p class="muted" data-i18n="sec.fac.lead">Placements ciblés pour risques spécifiques : Property, RC, énergie, construction, lignes financières, transport…</p>
+      <!-- DATA -->
+      <article id="data" class="card">
+        <h2 data-i18n="dt.t">5. Données & modélisation</h2>
+        <ul>
+          <li data-i18n="dt.l0">Séries de sinistres 5–10 ans (freq/sév, ULAE/AC).</li>
+          <li data-i18n="dt.l1">Expositions par zone/péril (géocodage, sums insured).</li>
+          <li data-i18n="dt.l2">Stress climatiques & supply-chain (scénarios NGFS).</li>
+        </ul>
+      </article>
 
-          <div class="grid mt-2">
-            <section class="card">
-              <h3 data-i18n="sec.fac.cards.0.t">Property & CatNat</h3>
-              <ul>
-                <li data-i18n="sec.fac.cards.0.li.0">Grandes valeurs / sites sensibles.</li>
-                <li data-i18n="sec.fac.cards.0.li.1">Paramétriques météo en option.</li>
-                <li data-i18n="sec.fac.cards.0.li.2">PML site & agrégations.</li>
-              </ul>
-            </section>
-            <section class="card">
-              <h3 data-i18n="sec.fac.cards.1.t">RC / Financières</h3>
-              <ul>
-                <li data-i18n="sec.fac.cards.1.li.0">RC générale, produits, pollution.</li>
-                <li data-i18n="sec.fac.cards.1.li.1">D&O, PI, crime, cyber.</li>
-                <li data-i18n="sec.fac.cards.1.li.2">Wordings LMA/IUA.</li>
-              </ul>
-            </section>
-            <section class="card">
-              <h3 data-i18n="sec.fac.cards.2.t">Construction & Énergie</h3>
-              <ul>
-                <li data-i18n="sec.fac.cards.2.li.0">CAR/EAR, tous risques chantier.</li>
-                <li data-i18n="sec.fac.cards.2.li.1">Énergies & grands travaux.</li>
-                <li data-i18n="sec.fac.cards.2.li.2">Sur-mesure par phase.</li>
-              </ul>
-            </section>
-          </div>
-        </article>
-        <br/>
+      <!-- OPTIMISATION -->
+      <article id="opt" class="card">
+        <h2 data-i18n="opt.t">6. Optimisation de la réassurance</h2>
+        <p class="muted" data-i18n="opt.p">
+          Viser le meilleur compromis coût/protection/capital : calibrage des rétentions, choix des
+          architectures, leviers économiques et clauses opérationnelles.
+        </p>
+        <div class="grid section-gap">
+          <section class="card">
+            <h3 data-i18n="opt.c0.t">Architecture & rétention</h3>
+            <ul>
+              <li data-i18n="opt.c0.l0">Quota share/surplus pour stabiliser la marge.</li>
+              <li data-i18n="opt.c0.l1">XL par risque & événement, aggregate XL annuel.</li>
+              <li data-i18n="opt.c0.l2">Rétentions cibles via VaR/TVaR & burn.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="opt.c1.t">Efficience économique</h3>
+            <ul>
+              <li data-i18n="opt.c1.l0">Décomposer : perte attendue, capital, frais.</li>
+              <li data-i18n="opt.c1.l1">Multi-annuel, franchise/limite, reinstatements.</li>
+              <li data-i18n="opt.c1.l2">Paramétriques pour pics climatiques.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="opt.c2.t">Contreparties & wording</h3>
+            <ul>
+              <li data-i18n="opt.c2.l0">Qualité réassureurs & diversification.</li>
+              <li data-i18n="opt.c2.l1">Agrégation, hours clause, exclusions claires.</li>
+              <li data-i18n="opt.c2.l2">Bordereaux, cut-through, recouvrements.</li>
+            </ul>
+          </section>
+        </div>
 
-        <!-- CONCEPTION PRODUITS -->
-        <article id="design" class="card">
-          <h2 data-i18n="sec.design.t">4. Conception de produits</h2>
-          <p class="muted" data-i18n="sec.design.lead">De l’idéation au lancement : étude d’adéquation marché, tarification, wordings, réassurance support et pilotage performance.</p>
-          <div class="grid mt-2">
-            <section class="card">
-              <h3 data-i18n="sec.design.cards.0.t">Études & tarification</h3>
-              <ul>
-                <li data-i18n="sec.design.cards.0.li.0">Benchmark & faisabilité.</li>
-                <li data-i18n="sec.design.cards.0.li.1">Tarifs, segments & profils.</li>
-                <li data-i18n="sec.design.cards.0.li.2">Business plan & KPI.</li>
-              </ul>
-            </section>
-            <section class="card">
-              <h3 data-i18n="sec.design.cards.1.t">Wordings & conformité</h3>
-              <ul>
-                <li data-i18n="sec.design.cards.1.li.0">Clauses LMA/IUA.</li>
-                <li data-i18n="sec.design.cards.1.li.1">Cadres ACAPS & IFRS 17.</li>
-                <li data-i18n="sec.design.cards.1.li.2">Distribution & PRIIPs.</li>
-              </ul>
-            </section>
-            <section class="card">
-              <h3 data-i18n="sec.design.cards.2.t">Réassurance support</h3>
-              <ul>
-                <li data-i18n="sec.design.cards.2.li.0">Capacité & appétence.</li>
-                <li data-i18n="sec.design.cards.2.li.1">Commissions & corridors.</li>
-                <li data-i18n="sec.design.cards.2.li.2">Monitoring performance.</li>
-              </ul>
-            </section>
-          </div>
-        </article>
-        <br/>
+        <div class="table-wrap section-gap">
+          <table>
+            <caption data-i18n="opt.tab.cap">Leviers d’optimisation (exemples)</caption>
+            <thead>
+              <tr>
+                <th data-i18n="opt.tab.h0">Levier</th>
+                <th data-i18n="opt.tab.h1">Effet</th>
+                <th data-i18n="opt.tab.h2">Usage</th>
+                <th data-i18n="opt.tab.h3">Attention</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="opt.tab.r0.c0">Aggregate XL</td>
+                <td data-i18n="opt.tab.r0.c1">Lisse la fréquence annuelle</td>
+                <td data-i18n="opt.tab.r0.c2">Retail multi-sinistres</td>
+                <td data-i18n="opt.tab.r0.c3">Définition agrégation & hours</td>
+              </tr>
+              <tr>
+                <td data-i18n="opt.tab.r1.c0">Stop-loss résultat</td>
+                <td data-i18n="opt.tab.r1.c1">Cappe le ratio combiné</td>
+                <td data-i18n="opt.tab.r1.c2">Volatilité P&L</td>
+                <td data-i18n="opt.tab.r1.c3">Base comptable & indexation</td>
+              </tr>
+              <tr>
+                <td data-i18n="opt.tab.r2.c0">Quota share + surplus</td>
+                <td data-i18n="opt.tab.r2.c1">Relief capital + capacité</td>
+                <td data-i18n="opt.tab.r2.c2">Croissance/nouvelles lignes</td>
+                <td data-i18n="opt.tab.r2.c3">Profit commission</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
 
-        <!-- SINISTRES & ARBITRAGES -->
-        <article id="claims" class="card">
-          <h2 data-i18n="sec.claims.t">5. Sinistres & arbitrages 24/7</h2>
-          <p class="muted" data-i18n="sec.claims.lead">Cellule dédiée : quantum review, coordination loss adjusters, reporting & arbitrages (ARIAS…).</p>
-          <details class="mt-2">
-            <summary>🧭 <span data-i18n="sec.claims.sum">Notre approche</span></summary>
-            <div>
-              <ul>
-                <li data-i18n="sec.claims.li.0">Processus d’escalade & cash-calls.</li>
-                <li data-i18n="sec.claims.li.1">Partage documentation & audit trail.</li>
-                <li data-i18n="sec.claims.li.2">Médiation et arbitrage internationaux.</li>
-              </ul>
-            </div>
-          </details>
-        </article>
-        <br/>
+      <!-- SBR -->
+      <article id="sbr" class="card">
+        <h2 data-i18n="sbr.t">7. Cadre réglementaire SBR</h2>
+        <p class="muted" data-i18n="sbr.p">
+          Alignement ACAPS : politique de réassurance, ORSA, capital, reporting et contrôles internes. Notre
+          accompagnement est opérationnel (hors avis juridique).
+        </p>
+        <div class="grid section-gap">
+          <section class="card">
+            <h3 data-i18n="sbr.c0.t">Politique de réassurance</h3>
+            <ul>
+              <li data-i18n="sbr.c0.l0">Objectifs, appétit au risque, limites & concentrations.</li>
+              <li data-i18n="sbr.c0.l1">Sélection réassureurs (notation, garanties, dépôts).</li>
+              <li data-i18n="sbr.c0.l2">Gouvernance : validation & revue annuelle.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sbr.c1.t">ORSA & capital</h3>
+            <ul>
+              <li data-i18n="sbr.c1.l0">Scénarios/stress (cat, dérive fréquence, inflation).</li>
+              <li data-i18n="sbr.c1.l1">Effet sur solvabilité (SCR/MCR) & sensibilités.</li>
+              <li data-i18n="sbr.c1.l2">Back-testing & adéquation des protections.</li>
+            </ul>
+          </section>
+          <section class="card">
+            <h3 data-i18n="sbr.c2.t">Reporting & contrôles</h3>
+            <ul>
+              <li data-i18n="sbr.c2.l0">Suivi créances réassureurs (aging, provisions).</li>
+              <li data-i18n="sbr.c2.l1">Limites de concentration & exposition pays.</li>
+              <li data-i18n="sbr.c2.l2">Prudence comptable, dépôts & intérêts.</li>
+            </ul>
+          </section>
+        </div>
 
-        <!-- PROCESS -->
-        <article id="process" class="card">
-          <h2 data-i18n="sec.process.t">6. Processus & livrables</h2>
-          <div class="roadmap">
-            <div class="step">
-              <div class="num">1 — 🔎</div>
-              <div data-i18n="sec.process.steps.0">Diagnostic portefeuille & objectifs (2–3 semaines)</div>
-            </div>
-            <div class="step">
-              <div class="num">2 — 🧮</div>
-              <div data-i18n="sec.process.steps.1">Modélisation PML/AAL & scénarios (2–4 semaines)</div>
-            </div>
-            <div class="step">
-              <div class="num">3 — 🤝</div>
-              <div data-i18n="sec.process.steps.2">Market-test & placement (2–6 semaines)</div>
-            </div>
-            <div class="step">
-              <div class="num">4 — 📊</div>
-              <div data-i18n="sec.process.steps.3">Signature, bordereaux, reporting & suivi annuel</div>
-            </div>
-          </div>
-        </article>
-        <br/>
+        <div class="table-wrap section-gap">
+          <table>
+            <caption data-i18n="sbr.tab.cap">Exigences SBR — nos livrables</caption>
+            <thead>
+              <tr>
+                <th data-i18n="sbr.tab.h0">Exigence</th>
+                <th data-i18n="sbr.tab.h1">Livrable</th>
+                <th data-i18n="sbr.tab.h2">Périodicité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-i18n="sbr.tab.r0.c0">Politique & stratégie</td>
+                <td data-i18n="sbr.tab.r0.c1">Document + matrice limites/contreparties</td>
+                <td data-i18n="sbr.tab.r0.c2">Annuel</td>
+              </tr>
+              <tr>
+                <td data-i18n="sbr.tab.r1.c0">ORSA</td>
+                <td data-i18n="sbr.tab.r1.c1">Scénarios & note d’impact solvabilité</td>
+                <td data-i18n="sbr.tab.r1.c2">Annuel + ad hoc</td>
+              </tr>
+              <tr>
+                <td data-i18n="sbr.tab.r2.c0">Créances réassureurs</td>
+                <td data-i18n="sbr.tab.r2.c1">KPI aging & recouvrements</td>
+                <td data-i18n="sbr.tab.r2.c2">Trimestriel</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
 
-        <!-- CTA -->
-        <article class="card center">
-          <h3 data-i18n="cta.t">Besoin d’un montage ou d’un renouvellement traité ?</h3>
-          <p class="muted" data-i18n="cta.p">Parlez-nous de votre portefeuille : nous préparons un plan de cession et un calendrier de marché.</p>
-          <a class="btn" href="contact.html" data-i18n="cta.btn">Demander un devis</a>
-        </article>
-        <br/>
+      <!-- FAQ -->
+      <article id="faq" class="card">
+        <h2 data-i18n="faq.t">8. FAQ</h2>
+        <details class="mt-1">
+          <summary>❓ <span data-i18n="faq.q0">Comment fixer la rétention ?</span></summary>
+          <div><p class="muted" data-i18n="faq.a0">Par VaR/TVaR, burn historique et appétit au risque, en cohérence avec la solvabilité et le coût de la protection.</p></div>
+        </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.q1">Aggregate XL ou stop-loss ?</span></summary>
+          <div><p class="muted" data-i18n="faq.a1">Aggregate XL lisse la fréquence annuelle ; le stop-loss cappe le ratio combiné : le choix dépend du profil sinistre.</p></div>
+        </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.q2">Quelles exigences SBR clés ?</span></summary>
+          <div><p class="muted" data-i18n="faq.a2">Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration.</p></div>
+        </details>
+      </article>
 
-        <!-- ===== FAQ ===== -->
-        <article id="faq" class="card">
-          <h2 data-i18n="faq.title">7. FAQ</h2>
-          <p class="muted mb-1" data-i18n="faq.lead">
-            Les réponses rapides aux questions les plus courantes. Utilisez la recherche pour filtrer.
-          </p>
+      <!-- CTA -->
+      <article class="card center" style="margin-top:14px">
+        <h3 data-i18n="cta.t">Optimisons votre programme</h3>
+        <p class="muted" data-i18n="cta.p">Ateliers rapides : objectifs, données, scénarios et options d’architecture, puis consultation marché.</p>
+        <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
+      </article>
 
-          <div class="search" role="search" style="margin:10px 0 6px">
-            <input id="faqSearch" type="search" placeholder="Rechercher dans la FAQ…" aria-label="Rechercher dans la FAQ">
-            <button class="btn" id="faqClear" type="button" data-i18n="ui.clear">Effacer</button>
-          </div>
-
-          <div id="faqList" class="faq-list"></div>
-        </article>
-      </div>
     </div>
   </div>
 </section>
@@ -347,10 +374,12 @@
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
-      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+      <p>
+        <a href="solutions.html" data-i18n="menu.solutions">Solutions</a><br/>
+        <a href="reinsurance.html" data-i18n="menu.re">Réassurance</a><br/>
+        <a href="climate.html" data-i18n="menu.climate">Risques Climatiques</a><br/>
+        <a href="esg.html" data-i18n="menu.esg">ESG</a>
+      </p>
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
@@ -359,351 +388,184 @@
   </div>
 </footer>
 
-<!-- SEO FAQPage -->
+<!-- FAQ SEO -->
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Quel est le délai moyen pour un traité XoL ?","acceptedAnswer":{"@type":"Answer","text":"Selon la taille et la complexité, 4 à 8 semaines entre cadrage, placement et signature."}},
-    {"@type":"Question","name":"Intervenez-vous sur des sinistres en cours ?","acceptedAnswer":{"@type":"Answer","text":"Oui — quantum review, coordination des experts et arbitrages si nécessaire."}},
-    {"@type":"Question","name":"Quelle est votre couverture géographique ?","acceptedAnswer":{"@type":"Answer","text":"Afrique et Europe via marchés internationaux et partenaires locaux."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Comment fixer la rétention ?","acceptedAnswer":{"@type":"Answer","text":"Par VaR/TVaR, burn historique et appétit au risque, en cohérence avec la solvabilité et le coût de la protection."}},
+{"@type":"Question","name":"Aggregate XL ou stop-loss ?","acceptedAnswer":{"@type":"Answer","text":"Aggregate XL lisse la fréquence annuelle ; le stop-loss cappe le ratio combiné : le choix dépend du profil sinistre."}},
+{"@type":"Question","name":"Quelles exigences SBR clés ?","acceptedAnswer":{"@type":"Answer","text":"Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration."}}
+]}
 </script>
 
 <script>
-/* ================== i18n (inchangé) ================== */
-const I18N={
+/* ================== I18N (FR/EN/AR) ================== */
+const I18N = {
   fr:{
-    ui:{clear:"Effacer"},
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
-    title:"Réassurance : traités, facultatives & accompagnement",
-    subtitle:"Structuration • Modélisation PML/AAL • Placements multicouches • Sinistres & arbitrages 24/7.",
-    badges:["QS / Surplus / XoL / Stop-Loss","Facultatives ciblées","Wordings LMA/IUA"],
-    toc:"Sommaire",
-    sec:{
-      intro:{t:"1. Présentation",p:"Réassurance de bout en bout : de l’analyse d’appétence au risque à la rédaction des wordings, de la modélisation PML/AAL aux placements multicouches et au suivi annuel.",
-             li:["Accès direct aux réassureurs notés A/AA.","Wordings et clauses LMA/IUA, respect des standards internationaux.","Reporting cash-calls, sinistres majeurs, arbitrages."]},
-      treaty:{t:"2. Traités",lead:"Conception et placement de traités proportionnels et non proportionnels, adaptés au profil de risque et au plan de cession.",
-              cards:[
-                {t:"2.1. Proportionnels (Quota-Share / Surplus)",li:["Stabilisation des ratios — partage primes/sinistres.","Optimisation du capital & solvabilité.","Clauses de commission & réglages glissants."]},
-                {t:"2.2. Non proportionnels (XoL / Stop-Loss)",li:["Protection de fréquence/sévérité.","Couverture volatilité & catastrophes.","Stratégies multicouches & agrégations."]}
-              ],
-              table:{cap:"Comparatif rapide des traités",h:["Type","Objectif","Points-clés"],
-                     qs:{obj:"Stabiliser & partager le portefeuille",k:"Commission, glissante, cession par ligne"},
-                     sp:{obj:"Augmenter la capacité par risque",k:"Lignes, limites, capitaux par branche"},
-                     x:{obj:"Limiter la sévérité",k:"Attachment, limites, multi-layers"},
-                     sl:{obj:"Limiter la sinistralité annuelle",k:"Aggregate, corridor, franchise annuelle"}}
-            },
-      fac:{t:"3. Facultatives",lead:"Placements ciblés pour risques spécifiques : Property, RC, énergie, construction, lignes financières, transport…",
-           cards:[
-             {t:"3.1. Property & CatNat",li:["Grandes valeurs / sites sensibles.","Paramétriques météo en option.","PML site & agrégations."]},
-             {t:"3.2. RC / Financières",li:["RC générale, produits, pollution.","D&O, PI, crime, cyber.","Wordings LMA/IUA."]},
-             {t:"3.3. Construction & Énergie",li:["CAR/EAR, tous risques chantier.","Énergies & grands travaux.","Sur-mesure par phase."]}
-           ]},
-      design:{t:"4. Conception de produits",lead:"De l’idéation au lancement : étude d’adéquation marché, tarification, wordings, réassurance support et pilotage performance.",
-              cards:[
-                {t:"4.1. Études & tarification",li:["Benchmark & faisabilité.","Tarifs, segments & profils.","Business plan & KPI."]},
-                {t:"4.2. Wordings & conformité",li:["Clauses LMA/IUA.","Cadres ACAPS & IFRS 17.","Distribution & PRIIPs."]},
-                {t:"4.3. Réassurance support",li:["Capacité & appétence.","Commissions & corridors.","Monitoring performance."]}
-              ]},
-      claims:{t:"5. Sinistres & arbitrages 24/7",lead:"Cellule dédiée : quantum review, coordination loss adjusters, reporting & arbitrages (ARIAS…).",
-              sum:"Notre approche",li:["Processus d’escalade & cash-calls.","Partage documentation & audit trail.","Médiation et arbitrage internationaux."]},
-      process:{t:"6. Processus & livrables",steps:["Diagnostic portefeuille & objectifs (2–3 semaines)","Modélisation PML/AAL & scénarios (2–4 semaines)","Market-test & placement (2–6 semaines)","Signature, bordereaux, reporting & suivi annuel"]},
-      faq:{t:"7. FAQ"}
+    menu:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
+    hero:{t:"Réassurance — Programmes & Conseil",p:"Proportionnelle & non proportionnelle • Placement marché • Sinistres & recouvrements • Data & modélisation • Optimisation du coût et du capital • Cadre SBR.",b0:"Architecture & rétention",b1:"Placement & wordings",b2:"Conformité SBR"},
+    toc:{t:"Sommaire",intro:"Introduction",programs:"Programmes",placement:"Placement & marchés",claims:"Sinistres",data:"Données & modélisation",opt:"Optimisation",sbr:"Cadre SBR",faq:"FAQ"},
+    intro:{t:"1. Introduction",p:"Nous concevons et plaçons des protections adaptées à votre profil de risque et à votre stratégie : stabilité du résultat, protection du capital, soutien à la croissance et conformité réglementaire.",
+           c0:{t:"Objectifs",l0:"Limiter les pics de pertes et la volatilité.",l1:"Optimiser coût vs. capital consommé.",l2:"Sécuriser la capacité sur les périls majeurs."},
+           c1:{t:"Méthode",l0:"Analyse historique & exposition.",l1:"Scénarios/stress et matérialité.",l2:"Itérations marché & wordings."}},
+    prog:{t:"2. Programmes de réassurance",
+          c0:{t:"Proportionnels",l0:"Quota share (relief capital, montée en capacité).",l1:"Surplus (grands risques, lissage de sévérité).",l2:"Participation aux bénéfices, sliding scale."},
+          c1:{t:"Non proportionnels",l0:"XL par risque/péril & événement cat.",l1:"Aggregate XL / stop-loss résultat.",l2:"Multi-annuel, reinstatements, indexation."},
+          c2:{t:"Facultatives & paramétriques",l0:"Placements ciblés pour risques atypiques.",l1:"Paramétriques météo/climat pour pics.",l2:"Clauses d’agrégation & hours clause."}},
+    pl:{t:"3. Placement & marchés",
+        c0:{t:"Stratégie de marché",l0:"Panel diversifié & critères de notation.",l1:"Séquençage & concurrence positive.",l2:"Capacité sécurisée sur périls critiques."},
+        c1:{t:"Termes & wordings",l0:"Définitions périls, agrégation, heures.",l1:"Clauses coop/contrôle des sinistres.",l2:"Cut-through / dépôts / garanties."},
+        c2:{t:"Gouvernance",l0:"Traçabilité des décisions & validations.",l1:"Matrix limites & concentrations.",l2:"Suivi créances & attestations."}},
+    cl:{t:"4. Sinistres & recouvrements",l0:"Notification précoce & réserves partagées.",l1:"Calendrier comptes & intérêts de retard.",l2:"Pré-accords & comités sinistres majeurs."},
+    dt:{t:"5. Données & modélisation",l0:"Séries de sinistres 5–10 ans (freq/sév, ULAE/AC).",l1:"Expositions par zone/péril (géocodage, sums insured).",l2:"Stress climatiques & supply-chain (scénarios NGFS)."},
+    opt:{t:"6. Optimisation de la réassurance",p:"Viser le meilleur compromis coût/protection/capital : calibrage des rétentions, choix des architectures, leviers économiques et clauses opérationnelles.",
+         c0:{t:"Architecture & rétention",l0:"Quota share/surplus pour stabiliser la marge.",l1:"XL par risque & événement, aggregate XL annuel.",l2:"Rétentions cibles via VaR/TVaR & burn."},
+         c1:{t:"Efficience économique",l0:"Décomposer : perte attendue, capital, frais.",l1:"Multi-annuel, franchise/limite, reinstatements.",l2:"Paramétriques pour pics climatiques."},
+         c2:{t:"Contreparties & wording",l0:"Qualité réassureurs & diversification.",l1:"Agrégation, hours clause, exclusions claires.",l2:"Bordereaux, cut-through, recouvrements."},
+         tab:{cap:"Leviers d’optimisation (exemples)",h0:"Levier",h1:"Effet",h2:"Usage",h3:"Attention",
+              r0:{c0:"Aggregate XL",c1:"Lisse la fréquence annuelle",c2:"Retail multi-sinistres",c3:"Définition agrégation & hours"},
+              r1:{c0:"Stop-loss résultat",c1:"Cappe le ratio combiné",c2:"Volatilité P&L",c3:"Base comptable & indexation"},
+              r2:{c0:"Quota share + surplus",c1:"Relief capital + capacité",c2:"Croissance/nouvelles lignes",c3:"Profit commission"}},
     },
-    cta:{t:"Besoin d’un montage ou d’un renouvellement traité ?",p:"Parlez-nous de votre portefeuille : nous préparons un plan de cession et un calendrier de marché.",btn:"Demander un devis"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    faq:{
-      title:"7. FAQ",
-      lead:"Les réponses rapides aux questions les plus courantes. Utilisez la recherche pour filtrer.",
-      items:[
-        {q:"Quel est le délai moyen pour un traité XoL ?", a:"Selon la taille et la complexité, 4 à 8 semaines entre cadrage, placement et signature."},
-        {q:"Intervenez-vous sur des sinistres en cours ?", a:"Oui : quantum review, coordination des experts, préparation mémoires et arbitrages (ARIAS, ad hoc) si nécessaire."},
-        {q:"Quelle est votre couverture géographique ?", a:"Afrique et Europe, via marchés internationaux (Lloyd’s & compagnies) et partenaires locaux."},
-        {q:"Quelles données fournir pour lancer un placement ?", a:"Extrait portefeuille 3–5 ans (primes/sinistres), triangles si possible, PML/EML, wordings, objectifs de rétention/limites, organigramme & process sinistres."},
-        {q:"Travaillez-vous uniquement avec des réassureurs notés ?", a:"Nous privilégions des notations AM Best/S&P ≥ A-. Des exceptions sont possibles selon la solidité & la sécurité contractuelle, en accord avec la cédante."},
-        {q:"Comment êtes-vous rémunérés ?", a:"Courtages/commissions de réassurance et/ou honoraires convenus, divulgués en toute transparence avant signature."},
-        {q:"Proportionnel ou non-proportionnel : quand choisir ?", a:"QS/Surplus pour stabiliser résultats et capacité ; XoL/Stop-Loss pour chocs de fréquence/sévérité et protection du ratio combiné."},
-        {q:"Facultative ou traité ?", a:"La facultative pour risques atypiques, pointes et grands chantiers ; le traité pour mutualiser et sécuriser la capacité annuelle."},
-        {q:"Aidez-vous à la conception de produits ?", a:"Oui, cadrage marché, wording LMA/IUA, tarification, UW guidelines et pilotes avant déploiement."},
-        {q:"Et IFRS 17 / solvabilité ?", a:"Nous ne rendons pas d’avis réglementaire, mais alignons la structure (allocation de risques, flux, clauses) avec vos contraintes comptables et de capital."}
-      ]
-    }
+    sbr:{t:"7. Cadre réglementaire SBR",p:"Alignement ACAPS : politique de réassurance, ORSA, capital, reporting et contrôles internes. Notre accompagnement est opérationnel (hors avis juridique).",
+         c0:{t:"Politique de réassurance",l0:"Objectifs, appétit au risque, limites & concentrations.",l1:"Sélection réassureurs (notation, garanties, dépôts).",l2:"Gouvernance : validation & revue annuelle."},
+         c1:{t:"ORSA & capital",l0:"Scénarios/stress (cat, dérive fréquence, inflation).",l1:"Effet sur solvabilité (SCR/MCR) & sensibilités.",l2:"Back-testing & adéquation des protections."},
+         c2:{t:"Reporting & contrôles",l0:"Suivi créances réassureurs (aging, provisions).",l1:"Limites de concentration & exposition pays.",l2:"Prudence comptable, dépôts & intérêts."},
+         tab:{cap:"Exigences SBR — nos livrables",h0:"Exigence",h1:"Livrable",h2:"Périodicité",
+              r0:{c0:"Politique & stratégie",c1:"Document + matrice limites/contreparties",c2:"Annuel"},
+              r1:{c0:"ORSA",c1:"Scénarios & note d’impact solvabilité",c2:"Annuel + ad hoc"},
+              r2:{c0:"Créances réassureurs",c1:"KPI aging & recouvrements",c2:"Trimestriel"}},
+    },
+    faq:{t:"8. FAQ",q0:"Comment fixer la rétention ?",a0:"Par VaR/TVaR, burn historique et appétit au risque, en cohérence avec la solvabilité et le coût de la protection.",
+         q1:"Aggregate XL ou stop-loss ?",a1:"Aggregate XL lisse la fréquence annuelle ; le stop-loss cappe le ratio combiné : le choix dépend du profil sinistre.",
+         q2:"Quelles exigences SBR clés ?",a2:"Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration."},
+    cta:{t:"Optimisons votre programme",p:"Ateliers rapides : objectifs, données, scénarios et options d’architecture, puis consultation marché.",btn:"Nous contacter"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
   },
 
   en:{
-    ui:{clear:"Clear"},
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    title:"Reinsurance: treaties, facultative & advisory",
-    subtitle:"Structuring • PML/AAL modelling • Layered placements • 24/7 claims & arbitration.",
-    badges:["QS / Surplus / XoL / Stop-Loss","Targeted facultative","LMA/IUA wordings"],
-    toc:"Contents",
-    sec:{
-      intro:{t:"1. Overview",p:"End-to-end reinsurance: from risk appetite to wordings, from PML/AAL modelling to layered placements and annual stewardship.",
-             li:["Direct access to A/AA-rated markets.","LMA/IUA clauses and international standards.","Cash-call reporting, major claims, arbitration."]},
-      treaty:{t:"2. Treaties",lead:"Design and placement of proportional and non-proportional programs fitted to risk profile and cession plan.",
-              cards:[
-                {t:"2.1. Proportional (Quota-Share / Surplus)",li:["Stabilises ratios — shares premiums/losses.","Capital & solvency optimisation.","Sliding commissions & adjustments."]},
-                {t:"2.2. Non-proportional (XoL / Stop-Loss)",li:["Frequency/severity protection.","Cat & volatility cover.","Multi-layer strategies & aggregates."]}
-              ],
-              table:{cap:"Quick treaty comparison",h:["Type","Objective","Key points"],
-                     qs:{obj:"Stabilise & share portfolio",k:"Commission, sliding, line cession"},
-                     sp:{obj:"Increase per-risk capacity",k:"Lines, limits, branch sums insured"},
-                     x:{obj:"Limit severity",k:"Attachment, limits, multi-layers"},
-                     sl:{obj:"Limit annual loss ratio",k:"Aggregate, corridor, annual deductible"}}
-            },
-      fac:{t:"3. Facultative",lead:"Targeted placements for specific risks: Property, Liability, Energy, Construction, Financial lines, Marine…",
-           cards:[
-             {t:"3.1. Property & NatCat",li:["High-value/sensitive sites.","Optional weather parametrics.","Site PML & aggregates."]},
-             {t:"3.2. Liability / FinLines",li:["GL, product, pollution.","D&O, PI, crime, cyber.","LMA/IUA wordings."]},
-             {t:"3.3. Construction & Energy",li:["CAR/EAR, all-risks projects.","Energy & major works.","Phased bespoke covers."]}
-           ]},
-      design:{t:"4. Product design",lead:"From idea to launch: market fit, pricing, wordings, reinsurance support, performance steering.",
-              cards:[
-                {t:"4.1. Studies & pricing",li:["Benchmark & feasibility.","Rates, segments & profiles.","Business plan & KPIs."]},
-                {t:"4.2. Wordings & compliance",li:["LMA/IUA clauses.","ACAPS & IFRS 17 frameworks.","Distribution & PRIIPs."]},
-                {t:"4.3. Reinsurance support",li:["Capacity & appetite.","Commissions & corridors.","Performance monitoring."]}
-              ]},
-      claims:{t:"5. Claims & arbitration 24/7",lead:"Dedicated unit: quantum review, loss adjusters coordination, reporting & arbitration (ARIAS…).",
-              sum:"Our approach",li:["Escalation process & cash-calls.","Documentation sharing & audit trail.","International mediation & arbitration."]},
-      process:{t:"6. Process & deliverables",steps:["Portfolio review & objectives (2–3 wks)","PML/AAL modelling & scenarios (2–4 wks)","Market-test & placement (2–6 wks)","Signing, bordereaux, reporting & annual review"]},
-      faq:{t:"7. FAQ"}
+    menu:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    hero:{t:"Reinsurance — Programs & Advisory",p:"Proportional & non-proportional • Market placement • Claims & recoveries • Data & modelling • Cost & capital optimisation • Risk-Based Supervision (RBS).",b0:"Architecture & retention",b1:"Placement & wordings",b2:"RBS compliance"},
+    toc:{t:"Contents",intro:"Introduction",programs:"Programs",placement:"Placement & markets",claims:"Claims",data:"Data & modelling",opt:"Optimisation",sbr:"RBS framework",faq:"FAQ"},
+    intro:{t:"1. Introduction",p:"We design and place protections aligned with your risk profile and strategy: P&L stability, capital protection, growth support and regulatory compliance.",
+           c0:{t:"Objectives",l0:"Limit loss peaks and volatility.",l1:"Optimise cost vs. capital consumed.",l2:"Secure capacity for critical perils."},
+           c1:{t:"Method",l0:"Historic loss & exposure analysis.",l1:"Scenarios/stress & materiality.",l2:"Market iterations & wordings."}},
+    prog:{t:"2. Reinsurance programs",
+          c0:{t:"Proportional",l0:"Quota share (capital relief, capacity build-up).",l1:"Surplus (large risks, severity smoothing).",l2:"Profit commission, sliding scale."},
+          c1:{t:"Non-proportional",l0:"Per-risk/event and Cat XL.",l1:"Aggregate XL / stop-loss.",l2:"Multi-year, reinstatements, indexation."},
+          c2:{t:"Facultative & parametric",l0:"Targeted placements for atypical risks.",l1:"Weather/climate parametrics for peaks.",l2:"Aggregation & hours clauses."}},
+    pl:{t:"3. Placement & markets",
+        c0:{t:"Market strategy",l0:"Diversified panel & rating criteria.",l1:"Sequencing & constructive competition.",l2:"Capacity secured on key perils."},
+        c1:{t:"Terms & wordings",l0:"Peril definitions, aggregation, hours.",l1:"Claims coop/control clauses.",l2:"Cut-through / deposits / security."},
+        c2:{t:"Governance",l0:"Decision trail & approvals.",l1:"Limits & concentration matrix.",l2:"Reinsurer receivables monitoring."}},
+    cl:{t:"4. Claims & recoveries",l0:"Early notice & shared reserves.",l1:"Accounts timeline & late-interest.",l2:"Pre-agreements & major loss committees."},
+    dt:{t:"5. Data & modelling",l0:"5–10y loss series (freq/sev, ULAE/AC).",l1:"Geo-exposed sums by zone/peril.",l2:"Climate & supply-chain stress (NGFS)."},
+    opt:{t:"6. Reinsurance optimisation",p:"Find the best cost/protection/capital trade-off: retention tuning, architecture choices, economic levers and operational clauses.",
+         c0:{t:"Architecture & retention",l0:"Quota share/surplus to stabilise margin.",l1:"Per-risk/event XL and annual aggregate.",l2:"Target retentions via VaR/TVaR & burn."},
+         c1:{t:"Economic efficiency",l0:"Breakdown: expected loss, capital, fees.",l1:"Multi-year, deductible/limit, reinstatements.",l2:"Parametrics for climate peaks."},
+         c2:{t:"Counterparties & wording",l0:"Reinsurer quality & diversification.",l1:"Aggregation, hours clause, exclusions.",l2:"Bordereaux, cut-through, recoveries."},
+         tab:{cap:"Optimisation levers (examples)",h0:"Lever",h1:"Effect",h2:"Use case",h3:"Watch-outs",
+              r0:{c0:"Aggregate XL",c1:"Smooth annual frequency",c2:"Retail portfolios",c3:"Aggregation & hours definitions"},
+              r1:{c0:"Result stop-loss",c1:"Cap combined ratio",c2:"P&L volatility",c3:"Accounting basis & indexation"},
+              r2:{c0:"Quota share + surplus",c1:"Capital relief + capacity",c2:"Growth/new lines",c3:"Profit commission"}},
     },
-    cta:{t:"Need a treaty build or renewal?",p:"Tell us about your portfolio — we’ll prepare a cession plan and market calendar.",btn:"Request a quote"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    faq:{
-      title:"7. FAQ",
-      lead:"Quick answers to the most common questions. Use search to filter.",
-      items:[
-        {q:"What is a typical timeline for an XoL treaty?", a:"Around 4–8 weeks from scoping to placement and signing, depending on complexity."},
-        {q:"Do you step in on ongoing claims?", a:"Yes — quantum reviews, expert coordination and arbitration briefs (e.g., ARIAS) when required."},
-        {q:"What geographies do you cover?", a:"Africa and Europe through international markets (Lloyd’s & companies) and local partners."},
-        {q:"What data is needed to start a placement?", a:"3–5 years portfolio extract (premium/loss), triangles if available, PML/EML, wordings, target retentions/limits, claims process overview."},
-        {q:"Do you only work with rated reinsurers?", a:"We favour AM Best/S&P ratings ≥ A-. Exceptions may apply subject to strength and contractual safeguards agreed with the cedant."},
-        {q:"How are you remunerated?", a:"Reinsurance brokerage and/or agreed fees, fully disclosed upfront."},
-        {q:"Proportional vs non-proportional — when?", a:"QS/Surplus to stabilise results and add capacity; XoL/Stop-Loss for frequency/severity shocks and combined-ratio protection."},
-        {q:"Facultative vs treaty?", a:"Fac for atypical or peak risks and major projects; treaty to mutualise and secure annual capacity."},
-        {q:"Do you support product design?", a:"Yes — market scoping, LMA/IUA wordings, pricing, UW guidelines and pilots."},
-        {q:"What about IFRS 17 / solvency?", a:"We don’t provide regulatory advice; we align structures (risk allocation, flows, clauses) with your accounting and capital constraints."}
-      ]
-    }
+    sbr:{t:"7. Risk-Based Supervision (RBS)",p:"ACAPS alignment: reinsurance policy, ORSA, capital, reporting and controls. We support operational compliance (no legal advice).",
+         c0:{t:"Reinsurance policy",l0:"Objectives, risk appetite, limits & concentrations.",l1:"Reinsurer selection (ratings, security, deposits).",l2:"Governance: approval & annual review."},
+         c1:{t:"ORSA & capital",l0:"Scenarios/stress (cat, frequency drift, inflation).",l1:"Impact on solvency (SCR/MCR) & sensitivities.",l2:"Back-testing & adequacy of protections."},
+         c2:{t:"Reporting & controls",l0:"Reinsurer receivables (aging, provisions).",l1:"Concentration limits & country exposure.",l2:"Prudent accounting, deposits & interest."},
+         tab:{cap:"RBS requirements — our deliverables",h0:"Requirement",h1:"Deliverable",h2:"Frequency",
+              r0:{c0:"Policy & strategy",c1:"Document + limits/counterparty matrix",c2:"Annual"},
+              r1:{c0:"ORSA",c1:"Scenarios & solvency impact note",c2:"Annual + ad hoc"},
+              r2:{c0:"Reinsurer receivables",c1:"Aging KPIs & recoveries",c2:"Quarterly"}},
+    },
+    faq:{t:"8. FAQ",q0:"How to set retention?",a0:"By VaR/TVaR, historic burn and risk appetite, consistent with solvency and protection cost.",
+         q1:"Aggregate XL or stop-loss?",a1:"Aggregate XL smooths frequency; stop-loss caps the combined ratio — depends on loss profile.",
+         q2:"Key RBS requirements?",a2:"Formal reinsurance policy, ORSA integration, receivables monitoring & concentration controls."},
+    cta:{t:"Let’s optimise your program",p:"Fast workshops: objectives, data, scenarios and architecture options, then market consultation.",btn:"Contact us"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
   },
 
   ar:{
-    ui:{clear:"مسح"},
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"المخاطر المناخية",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"إعادة التأمين: اتفاقيات، اختياريات، واستشارات",
-    subtitle:"هيكلة • نمذجة PML/AAL • ترتيبات طبقية • مطالبات وتحكيم 24/7.",
-    badges:["QS / فائض / XoL / ستوب-لوس","اختياريات موجهة","صياغات LMA/IUA"],
-    toc:"المحتوى",
-    sec:{
-      intro:{t:"٠١ لمحة",p:"خدمة شاملة لإعادة التأمين: من شهية المخاطر إلى الصياغات، ومن نمذجة PML/AAL إلى الترتيب الطبقي والمتابعة السنوية.",
-             li:["وصول مباشر لأسواق بتصنيف A/AA.","بنود LMA/IUA ومعايير دولية.","تقارير طلبات نقدية ومطالبات كبرى وتحكيم."]},
-      treaty:{t:"٠٢ الاتفاقيات",lead:"تصميم وترتيب برامج نسبية وغير نسبية وفق ملف المخاطر وخطة التنازل.",
-        cards:[
-          {
-            t:'٠١٠٢ نسبية (<bdi>فائض)</bdi> / <bdi dir="ltr">Quota-Share</bdi>&lrm;)',
-            li:[
-              "استقرار المؤشرات — تقاسم الأقساط والخسائر.",
-              "تحسين رأس المال والملاءة.",
-              "عمولات متدرجة وتعديلات."
-            ]
-          },
-          {
-            t:'٠٢٠٢ غير نسبية (<bdi dir="ltr">XoL</bdi>&lrm; / ستوب-لوس)',
-            li:[
-              "حماية التكرار/الحدة.",
-              "تغطية الكوارث والتذبذب.",
-              "طبقات متعددة وتجميعات."
-            ]
-          }
-        ],
-        table:{cap:"مقارنة سريعة للاتفاقيات",h:["النوع","الهدف","نقاط أساسية"],
-               qs:{obj:"استقرار وتقاسم المحفظة",k:"عمولة، متدرج، تنازل حسب الخط"},
-               sp:{obj:"زيادة الطاقة لكل خطر",k:"خطوط وحدود ومبالغ حسب الفرع"},
-               x:{obj:"تحديد شدة الخسارة",k:"نقطة بدء وحدود وطبقات"},
-               sl:{obj:"تحديد خسارة السنة",k:"تجميعي وكوريدور وخصم سنوي"}}
-      },
-      fac:{t:"٠٣ الاختياريات",lead:"ترتيبات موجهة لمخاطر محددة: ممتلكات، مسؤولية، طاقة، إنشاءات، خطوط مالية، بحري…",
-           cards:[
-             {t:"٠١٠٣ ممتلكات وكوارث طبيعية",li:["قيم عالية/مواقع حساسة.","خيار بارامترية للطقس.","PML للموقع والتجميعات."]},
-             {t:"٠٢٠٣ مسؤولية وخطوط مالية",li:["عامة ومنتج وتلوث.","D&O وPI وجرائم وسيبر.","صياغات LMA/IUA."]},
-             {t:"٠٢٠٣ إنشاءات وطاقة",li:["CAR/EAR وجميع أخطار المشاريع.","الطاقة والأعمال الكبرى.","تغطيات مخصصة حسب المراحل."]}
-           ]},
-      design:{t:"٠٤ تصميم المنتجات",lead:"من الفكرة إلى الإطلاق: ملاءمة السوق والتسعير والصياغات ودعم إعادة التأمين وتوجيه الأداء.",
-              cards:[
-                {t:"٠١٠٤ دراسات وتسعير",li:["مقارنات وإمكانات.","أسعار وشرائح وملفات.","خطة عمل ومؤشرات."]},
-                {t:"٠٢٠٤ صياغات وامتثال",li:["بنود LMA/IUA.","أطر ACAPS وIFRS 17.","توزيع وPRIIPs."]},
-                {t:"٠٣٠٤ دعم إعادة التأمين",li:["الطاقة والشهية.","عمولات وكوريدورات.","متابعة الأداء."]}
-              ]},
-      claims:{t:"٠٥ مطالبات وتحكيم 24/7",lead:"فريق مخصص: مراجعة كمّية وتنسيق خبراء وتقارير وتحكيم (ARIAS…).",
-              sum:"منهجنا",li:["تصعيد وطلبات نقدية.","مشاركة وثائق وسجل تدقيق.","وساطة وتحكيم دوليان."]},
-      process:{t:"٠٦ العملية والمخرجات",steps:["تشخيص المحفظة والأهداف (2–3 أسابيع)","نمذجة PML/AAL وسيناريوهات (2–4 أسابيع)","اختبار السوق والترتيب (2–6 أسابيع)","توقيع وتقارير ومتابعة سنوية"]},
-      faq:{t:"٧. أسئلة شائعة"}
+    menu:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
+    hero:{t:"إعادة التأمين — برامج واستشارات",p:"نسبي وغير نسبي • ترتيب السوق • المطالبات والتحصيل • البيانات والنمذجة • تحسين الكلفة ورأس المال • الإشراف القائم على المخاطر.",b0:"الهندسة والاحتفاظ",b1:"الترتيب والصياغات",b2:"امتثال SBR"},
+    toc:{t:"المحتويات",intro:"مقدمة",programs:"البرامج",placement:"الترتيب والأسواق",claims:"المطالبات",data:"البيانات والنمذجة",opt:"التحسين",sbr:"إطار SBR",faq:"الأسئلة"},
+    intro:{t:"١. مقدمة",p:"نصمم ونرتب الحمايات بما يلائم ملف المخاطر والاستراتيجية: استقرار النتائج، حماية رأس المال، دعم النمو والامتثال النظامي.",
+           c0:{t:"الأهداف",l0:"خفض ذرى الخسائر والتذبذب.",l1:"تحسين الكلفة مقابل رأس المال.",l2:"تأمين السعة للمخاطر الحرجة."},
+           c1:{t:"المنهج",l0:"تحليل الخسائر والتعرض.",l1:"سيناريوهات وضغوط.",l2:"جولات سوق وصياغات."}},
+    prog:{t:"٢. برامج إعادة التأمين",
+          c0:{t:"نسبي",l0:"حصة نسبية (تخفيف رأس المال وزيادة السعة).",l1:"فائض (مخاطر كبيرة وتنعيم الشدة).",l2:"عمولة أرباح وسلايدينغ."},
+          c1:{t:"غير نسبي",l0:"فوق الخطر/الحدث وحالات الكوارث.",l1:"تجميعي سنوي / إيقاف الخسارة.",l2:"متعدد السنوات وإعادات إدراج."},
+          c2:{t:"اختياري وبارامتري",l0:"ترتيبات موجهة للمخاطر غير النمطية.",l1:"بارامتري طقس/مناخ للذرى.",l2:"بنود التجميع وساعات الحدث."}},
+    pl:{t:"٣. الترتيب والأسواق",
+        c0:{t:"استراتيجية السوق",l0:"لوحة متنوعة ومعايير تصنيف.",l1:"تدرج طرح ومنافسة بنّاءة.",l2:"تأمين السعة للمخاطر الرئيسة."},
+        c1:{t:"الشروط والصياغات",l0:"تعريف المخاطر والتجميع والساعات.",l1:"بنود تعاون/تحكم بالمطالبات.",l2:"قطع مباشر/ودائع/ضمانات."},
+        c2:{t:"الحوكمة",l0:"توثيق القرارات والموافقات.",l1:"مصفوفة الحدود والتركيز.",l2:"متابعة ذمم المعيدين."}},
+    cl:{t:"٤. المطالبات والتحصيل",l0:"تبليغ مبكر واحتياطيات مشتركة.",l1:"جداول الحسابات وفوائد التأخير.",l2:"اتفاقات مسبقة ولجان خسائر كبرى."},
+    dt:{t:"٥. البيانات والنمذجة",l0:"سلاسل خسائر 5–10 سنوات.",l1:"تعرضات جغرافية حسب المنطقة/الخطر.",l2:"ضغوط مناخ وسلاسل الإمداد."},
+    opt:{t:"٦. تحسين إعادة التأمين",p:"تحقيق أفضل مزيج بين الكلفة والحماية ورأس المال: ضبط الاحتفاظات، اختيار الهندسة، الرافعات الاقتصادية والبنود التشغيلية.",
+         c0:{t:"الهندسة والاحتفاظ",l0:"حصة نسبية/فائض لتثبيت الهوامش.",l1:"فوق الخطر والحدث وتجميعي سنوي.",l2:"احتفاظات مستهدفة عبر VaR/TVaR."},
+         c1:{t:"الكفاءة الاقتصادية",l0:"تفكيك: خسارة متوقعة ورأس مال ومصاريف.",l1:"متعدد السنوات وحدود/تحمل وإعادات.",l2:"بارامتري لذرى المناخ."},
+         c2:{t:"المقابلون والصياغة",l0:"جودة المعيدين والتنويع.",l1:"التجميع وبند الساعات والاستثناءات.",l2:"جداول وبنود دفع مباشر وتحصيل."},
+         tab:{cap:"رافعات التحسين (أمثلة)",h0:"الرافعة",h1:"الأثر",h2:"الاستخدام",h3:"ملاحظات",
+              r0:{c0:"تجميعي سنوي",c1:"تنعيم التكرار السنوي",c2:"محافظ التجزئة",c3:"تعريف التجميع والساعات"},
+              r1:{c0:"إيقاف الخسارة",c1:"تحديد نسبة الدمج",c2:"تذبذب النتائج",c3:"أساس محاسبي وفهرسة"},
+              r2:{c0:"حصة نسبية + فائض",c1:"تخفيف رأس مال + سعة",c2:"النمو/خطوط جديدة",c3:"عمولة الأرباح"}},
     },
-    cta:{t:"تحتاج هيكلة أو تجديد اتفاقية؟",p:"حدّثنا عن محفظتك — نُعد خطة تنازل ورزنامة سوق.",btn:"اطلب عرضاً"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    faq:{
-      title:"٧. أسئلة شائعة",
-      lead:"إجابات سريعة على أكثر الأسئلة تكراراً. استخدم البحث للتصفية.",
-      items:[
-        {q:"ما المدة المعتادة لمعاهدة XoL؟", a:"حوالي ٤–٨ أسابيع من التحديد إلى الإبرام حسب التعقيد."},
-        {q:"هل تتدخلون في المطالبات الجارية؟", a:"نعم — مراجعة الكوانتم، تنسيق الخبراء، وتجهيز مذكرات التحكيم عند الحاجة."},
-        {q:"ما النطاق الجغرافي؟", a:"أفريقيا وأوروبا عبر أسواق دولية وشركاء محليين."},
-        {q:"ما البيانات المطلوبة لبدء الطرح؟", a:"استخراج محفظة ٣–٥ سنوات (أقساط/خسائر)، مثلثات إن توفرت، PML/EML، الشروط، حدود/احتفاظات مستهدفة، ونظرة عامة لإدارة المطالبات."},
-        {q:"هل تعملون فقط مع معيدي تأمين ذوي تصنيف؟", a:"نفضّل تصنيف AM Best/S&P بدرجة A- فأعلى، مع استثناءات مشروطة بالمتانة والضمانات التعاقدية."},
-        {q:"كيف تتم الأتعاب؟", a:"عمولات وساطة إعادة التأمين و/أو أتعاب متفق عليها تُفصح بشفافية."},
-        {q:"متى نختار نسبة/غير نسبة؟", a:"QS/Surplus للاستقرار والقدرة؛ XoL/Stop-Loss لامتصاص صدمات التكرار/الشدة وحماية النسبة المشتركة."},
-        {q:"اختيارية أم معاهدة؟", a:"الاختيارية للمخاطر غير النمطية والقمم والمشاريع الكبرى؛ المعاهدة للتجميع وتأمين القدرة السنوية."},
-        {q:"هل تدعمون تصميم المنتجات؟", a:"نعم — تحديد سوق، صياغات LMA/IUA، التسعير وإرشادات الاكتتاب والتجارب."},
-        {q:"وماذا عن IFRS 17/الملاءة؟", a:"لا نقدم استشارات تنظيمية، لكن نلائم الهيكل مع قيود المحاسبة ورأس المال."}
-      ]
-    }
+    sbr:{t:"٧. إطار SBR",p:"مواءمة ACAPS: سياسة إعادة التأمين وORSA ورأس المال والتقارير والرقابة. دعمنا تشغيلي (دون استشارات قانونية).",
+         c0:{t:"سياسة إعادة التأمين",l0:"أهداف وشهية مخاطر وحدود وتركيز.",l1:"اختيار المعيدين (تصنيفات وضمانات).",l2:"حوكمة ومراجعة سنوية."},
+         c1:{t:"ORSA ورأس المال",l0:"سيناريوهات/ضغوط (كوارث وانحراف تكرار وتضخم).",l1:"أثر على الملاءة وحساسيات.",l2:"اختبار رجعي وكفاية الحمايات."},
+         c2:{t:"التقارير والرقابة",l0:"ذمم المعيدين (شيخوخة ومؤونات).",l1:"حدود التركّز والتعرّض القطري.",l2:"تحفظ محاسبي وودائع وفوائد."},
+         tab:{cap:"متطلبات SBR — مخرجاتنا",h0:"متطلب",h1:"مخرج",h2:"دورية",
+              r0:{c0:"السياسة والاستراتيجية",c1:"وثيقة + مصفوفة حدود/مقابلين",c2:"سنوي"},
+              r1:{c0:"ORSA",c1:"سيناريوهات ومذكرة أثر الملاءة",c2:"سنوي وحسب الحاجة"},
+              r2:{c0:"ذمم المعيدين",c1:"مؤشرات شيخوخة وتحصل",c2:"ربع سنوي"}},
+    },
+    faq:{t:"٨. الأسئلة الشائعة",q0:"كيف نحدد الاحتفاظ؟",a0:"عبر VaR/TVaR وحرق تاريخي وشهية المخاطر بما ينسجم مع الملاءة وكلفة الحماية.",
+         q1:"تجميعي أم إيقاف خسارة؟",a1:"التجميعي ينعّم التكرار السنوي؛ إيقاف الخسارة يحدد نسبة الدمج — حسب نمط الخسائر.",
+         q2:"أهم متطلبات SBR؟",a2:"سياسة رسمية ودمج ORSA ومتابعة الذمم وحدود التركّز."},
+    cta:{t:"لنحسّن برنامجكم",p:"ورش سريعة: أهداف وبيانات وسيناريوهات وخيارات هندسية ثم طرح سوق.",btn:"اتصل بنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
   }
 };
 
-/* ================== Helpers ================== */
-let lang = localStorage.getItem('riskalia_lang')||'fr';
+/* ================== Helpers & UI ================== */
+let lang = localStorage.getItem('riskalia_lang') || 'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $=(s,root=document)=>root.querySelector(s);
-const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('reinsurance.html'))); }
-
-/* ===== Rendu & filtre de la FAQ ===== */
-function renderFAQ(){
-  const wrap = document.getElementById('faqList');
-  if(!wrap) return;
-  wrap.innerHTML = '';
-  const data = I18N[lang]?.faq?.items || [];
-  data.forEach((it, i)=>{
-    const det = document.createElement('details');
-    if (i === 0) det.className = 'mt-1';
-    det.innerHTML = `<summary>❓ ${it.q}</summary><div><p class="muted">${it.a}</p></div>`;
-    wrap.appendChild(det);
-  });
-  const ph = lang==='en' ? 'Search the FAQ…' : (lang==='ar' ? 'ابحث في الأسئلة…' : 'Rechercher dans la FAQ…');
-  const inp = document.getElementById('faqSearch'); if (inp) inp.placeholder = ph;
-}
-
-function bindFAQSearch(){
-  const input = document.getElementById('faqSearch');
-  const clear = document.getElementById('faqClear');
-  if(!input) return;
-  const doFilter = ()=>{
-    const q = input.value.trim().toLowerCase();
-    document.querySelectorAll('#faqList details').forEach(d=>{
-      const txt = (d.querySelector('summary')?.textContent || '') + ' ' + (d.querySelector('div')?.textContent || '');
-      d.style.display = (!q || txt.toLowerCase().includes(q)) ? '' : 'none';
-    });
-  };
-  input.addEventListener('input', doFilter);
-  if (clear) clear.addEventListener('click', ()=>{ input.value=''; doFilter(); });
-}
-
-/* ================== Rendu texte ================== */
 function applyTexts(){
   document.documentElement.lang=lang;
-  document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
-  setActiveNav();
+  document.body.dir = (lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=>{ el.innerHTML = t(el.dataset.i18n); });
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-
-  // table headings dynamiques (identique)
-  const H=t('sec.treaty.table.h'), cap=t('sec.treaty.table.cap');
-  const map={
-    'sec.treaty.table.cap':cap,
-    'sec.treaty.table.h.0':H[0],'sec.treaty.table.h.1':H[1],'sec.treaty.table.h.2':H[2],
-    'sec.treaty.table.qs.obj':t('sec.treaty.table.qs.obj'),
-    'sec.treaty.table.qs.k':t('sec.treaty.table.qs.k'),
-    'sec.treaty.table.sp.obj':t('sec.treaty.table.sp.obj'),
-    'sec.treaty.table.sp.k':t('sec.treaty.table.sp.k'),
-    'sec.treaty.table.x.obj':t('sec.treaty.table.x.obj'),
-    'sec.treaty.table.x.k':t('sec.treaty.table.x.k'),
-    'sec.treaty.table.sl.obj':t('sec.treaty.table.sl.obj'),
-    'sec.treaty.table.sl.k':t('sec.treaty.table.sl.k'),
-  };
-  Object.entries(map).forEach(([k,v])=>{ const el=$(`[data-i18n="${k}"]`); if(el) el.innerHTML=v; });
-
-  renderFAQ();
-  bindFAQSearch();
+  // menu active
+  $$('#menu a').forEach(a=> a.classList.toggle('active', a.getAttribute('href').endsWith('reinsurance.html')));
 }
-
-/* ================== UI ================== */
+// sticky aside: active link on scroll
+function highlightTOC(){
+  const ids=['intro','programs','placement','claims','data','opt','sbr','faq'];
+  let current = ids[0];
+  for(const id of ids){
+    const el = $('#'+id);
+    if(el && el.getBoundingClientRect().top <= 120) current = id;
+  }
+  $$('.aside a').forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+current));
+}
 function initUI(){
+  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
+  // langue
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
-    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang);
-    applyTexts();
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
-    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  // reveal on scroll + TOC highlight
-  const rev=$$('.reveal');
-  const onScroll=()=>{
-    const tr=window.innerHeight*0.85;
-    rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); });
-    highlightTOC();
-  };
+  // reveal on scroll
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); highlightTOC(); };
   window.addEventListener('scroll',onScroll); onScroll();
+  // hash change
+  window.addEventListener('hashchange', highlightTOC);
 }
-
-/* Active le lien du sommaire + auto-scroll de la sidebar si besoin */
-function highlightTOC(){
-  const ids=['intro','treaty','fac','design','claims','process','faq'];
-  let activeId=ids[0];
-  for(const id of ids){
-    const el=document.getElementById(id);
-    if(!el) continue;
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight*0.35) activeId=id;
-  }
-  let activeLink=null;
-  document.querySelectorAll('.aside .toc').forEach(a=>{
-    const isActive = a.getAttribute('href') === ('#'+activeId);
-    a.classList.toggle('active', isActive);
-    if(isActive) activeLink=a;
-  });
-  if(activeLink){
-    const aside=document.querySelector('.aside');
-    if(aside){
-      const linkTop=activeLink.offsetTop;
-      const linkBottom=linkTop+activeLink.offsetHeight;
-      const viewTop=aside.scrollTop;
-      const viewBottom=viewTop+aside.clientHeight;
-      if(linkTop<viewTop || linkBottom>viewBottom){
-        const target = linkTop - aside.clientHeight/2 + activeLink.offsetHeight/2;
-        aside.scrollTo({ top: Math.max(0,target), behavior:'smooth' });
-      }
-    }
-  }
-}
-
-/* Ajuste le top sticky en fonction du header */
-function setStickyOffset(){
-  const header = document.querySelector('header');
-  if(header){
-    const h = header.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--sticky-top', (h + 16) + 'px');
-  }
-}
-
-/* init */
-document.addEventListener('DOMContentLoaded', ()=>{
-  applyTexts();
-  initUI();
-  setStickyOffset();
-  window.addEventListener('resize', setStickyOffset);
-});
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
