@@ -3,47 +3,76 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Automobile & Flotte</title>
-  <meta name="description" content="Assurance automobile & flotte : RC obligatoire, dommages, bris de glace, vol/événements naturels, assistance & véhicule de remplacement, protection du conducteur, options télématiques, véhicules électriques et GAP leasing."/>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <title>Riskalia — Automobile & Flotte (Motor & Fleet)</title>
+  <meta name="description" content="RC auto, dommages (tous risques/tiers), bris de glace, vol & incendie, conducteur & passagers, assistance & véhicule de remplacement, télé­matique & prévention. Flottes VL/VP/PL, gestion sinistres 24/7, réseau de garages agréés."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
 
-  <!-- Fonts + Global CSS -->
+  <!-- Fonts + global CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css"/>
 
   <style>
-    /* Hero spécifique flotte */
-    .hero--fleet{
+    /* Product hero */
+    .hero--product{
+      min-height:42vh;
       background:
         linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-        url('https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1600&q=70')
+        url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?auto=format&fit=crop&w=1600&q=70')
         center/cover no-repeat;
-      min-height:42vh;
+      display:flex; align-items:center; text-align:center;
     }
-    /* Tuiles KPI compactes */
-    .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
-    .tiles .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
-    .tiles .p .v{font-weight:900;color:#0b5562}
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Sticky tabs */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* KPI tiles */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
   </style>
 
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
+<body class="spacious">
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html">
+    <a class="brand" href="../index.html">
       <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Climate Risk</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="lang-switch">
@@ -54,188 +83,199 @@
   </div>
 </header>
 
-<section class="hero hero--fleet">
+<!-- HERO -->
+<section class="hero hero--product">
   <div class="container">
     <h1 data-i18n="title">Automobile & Flotte</h1>
-    <p data-i18n="subtitle">De 5 à 5 000 véhicules — RC obligatoire, dommages tous risques, assistance & véhicule de remplacement, protection du conducteur et télématique pour piloter votre sinistralité.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">RC & Dommages</span>
-      <span class="badge" data-i18n="badges.1">Télématique & prévention</span>
-      <span class="badge" data-i18n="badges.2">Dashboards sinistres</span>
+    <p data-i18n="subtitle">RC auto • Dommages (tous risques/tiers) • Bris de glace • Vol & incendie • Conducteur & passagers • Assistance & véhicule de remplacement • Télématique & prévention.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">VL / VP / PL & engins</span>
+      <span class="badge" data-i18n="badges.1">Télématique & data</span>
+      <span class="badge" data-i18n="badges.2">Gestion sinistres 24/7</span>
     </div>
   </div>
 </section>
 
+<!-- CONTENT -->
 <section class="reveal">
-  <div class="container main">
-    <!-- Sommaire sticky -->
-    <aside class="aside" aria-label="Sommaire">
-      <h4 data-i18n="toc">Sommaire</h4>
-      <a href="#intro"    class="toc" data-i18n="snav.0">Aperçu</a>
-      <a href="#cover"    class="toc" data-i18n="snav.1">Ce que ça couvre</a>
-      <a href="#options"  class="toc" data-i18n="snav.2">Options</a>
-      <a href="#services" class="toc" data-i18n="snav.3">Services & pilotage</a>
-      <a href="#claims"   class="toc" data-i18n="snav.4">Sinistres</a>
-      <a href="#faq"      class="toc" data-i18n="snav.5">FAQ</a>
-    </aside>
+  <div class="container main main--single">
 
-    <!-- Chips nav (mobile) -->
-    <div class="chips" role="tablist" aria-label="Sections">
-      <button class="chip" data-jump="intro" data-i18n="snav.0">Aperçu</button>
-      <button class="chip" data-jump="cover" data-i18n="snav.1">Ce que ça couvre</button>
-      <button class="chip" data-jump="options" data-i18n="snav.2">Options</button>
-      <button class="chip" data-jump="services" data-i18n="snav.3">Services & pilotage</button>
-      <button class="chip" data-jump="claims" data-i18n="snav.4">Sinistres</button>
-      <button class="chip" data-jump="faq" data-i18n="snav.5">FAQ</button>
-    </div>
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Motor & Fleet tabs">
+      <button class="tab active"  id="tab-over" role="tab" aria-selected="true"  data-tab="over" data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" data-tab="cov"  data-i18n="tabs.cov">Couvertures</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" data-tab="opt"  data-i18n="tabs.opt">Options & services</button>
+      <button class="tab"         id="tab-admin"role="tab" aria-selected="false" data-tab="admin"data-i18n="tabs.admin">Tarification & mise en place</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" data-tab="claim"data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" data-tab="faq"  data-i18n="tabs.faq">FAQ</button>
+    </nav>
 
-    <!-- Corps -->
-    <div>
-      <!-- Intro -->
-      <article id="intro" class="card">
-        <h2 data-i18n="intro.t">1. Pourquoi une police flotte ?</h2>
-        <p class="muted" data-i18n="intro.p">
-          Mutualiser vos risques auto dans une police unique simplifie la gestion (un seul contrat, un seul renouvellement) et donne du levier sur la sinistralité via des franchises adaptées et des actions de prévention (télématique, formation conducteurs).
-        </p>
-        <div class="tiles">
-          <div class="p"><div class="v" data-i18n="intro.kpi.0.v">Parc</div><div data-i18n="intro.kpi.0.l">VL/VP, utilitaires, poids lourds, 2-roues, engins.</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.1.v">Volume</div><div data-i18n="intro.kpi.1.l">De 5 à 5 000 véhicules (multi-sites).</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.2.v">Pilotage</div><div data-i18n="intro.kpi.2.l">Tableaux de bord & plans d’action trimestriels.</div></div>
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            Des programmes <strong>flotte auto</strong> pour véhicules légers (VL/VP), poids lourds (PL) et engins. Structure <em>tiers / tous risques</em>, franchises adaptées, car policy et prévention pour réduire la sinistralité. Pilotage par <strong>télématique</strong> et réseau de <strong>garages agréés</strong>.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Tarification flotte (bonus-malus agrégé, SRCC/EVN selon marché).</li>
+            <li data-i18n="over.li.1">Car policy : conducteurs, usages, zones et horaires.</li>
+            <li data-i18n="over.li.2">Tableaux de bord : fréquence, gravité, coûts & immobilisation.</li>
+          </ul>
         </div>
-      </article>
-
-      <!-- Couvertures -->
-      <article id="cover" class="card">
-        <h2 data-i18n="cover.t">2. Ce que ça couvre (exemples)</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="cover.cards.0.t">Responsabilité civile (RC)</h3>
-            <ul>
-              <li data-i18n="cover.cards.0.li.0">Dommages corporels & matériels causés aux tiers.</li>
-              <li data-i18n="cover.cards.0.li.1">Conducteurs nommés, tout conducteur, usages pro.</li>
-              <li data-i18n="cover.cards.0.li.2">Extensions marchandises transportées (selon besoins).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.1.t">Dommages au véhicule</h3>
-            <ul>
-              <li data-i18n="cover.cards.1.li.0">Collision, incendie, vol, bris de glace, événements naturels.</li>
-              <li data-i18n="cover.cards.1.li.1">Catastrophes & événements climatiques renforcés.</li>
-              <li data-i18n="cover.cards.1.li.2">Équipements & aménagements (selon déclaration).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.2.t">Assistance & protection</h3>
-            <ul>
-              <li data-i18n="cover.cards.2.li.0">Dépannage/remorquage 0 km, véhicule relais.</li>
-              <li data-i18n="cover.cards.2.li.1">Protection du conducteur (individuelle accident).</li>
-              <li data-i18n="cover.cards.2.li.2">Protection juridique circulation.</li>
-            </ul>
-          </section>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Taille de flotte</div><div>5 – 5 000+ véhicules</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Orientation garage</div><div>&lt; 48 h</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Télématique</div><div>Boîtiers / app conducteur</div></div>
         </div>
-        <p class="muted mt-1" data-i18n="cover.note">Garanties, limites et franchises sont modulables par segment de parc et selon l’historique de sinistres.</p>
-      </article>
+      </div>
+    </article>
 
-      <!-- Options -->
-      <article id="options" class="card">
-        <h2 data-i18n="opt.t">3. Options & extensions</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="opt.cards.0.t">Télématique & prévention</h3>
-            <ul>
-              <li data-i18n="opt.cards.0.li.0">Boîtiers/Applis : vitesse, freinages, trajets, éco-conduite.</li>
-              <li data-i18n="opt.cards.0.li.1">Coaching conducteurs & challenges sécurité.</li>
-              <li data-i18n="opt.cards.0.li.2">Tarification comportementale (selon assureur).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.1.t">Électrique & hybride</h3>
-            <ul>
-              <li data-i18n="opt.cards.1.li.0">Batterie & charge (câbles, wallbox, assistance dédiée).</li>
-              <li data-i18n="opt.cards.1.li.1">Véhicule relais compatible, réseau réparateurs EV.</li>
-              <li data-i18n="opt.cards.1.li.2">Valeur à neuf/allongée (selon âge & usage).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.2.t">Leasing & finance</h3>
-            <ul>
-              <li data-i18n="opt.cards.2.li.0">GAP (valeur d’achat) pour véhicules financés.</li>
-              <li data-i18n="opt.cards.2.li.1">Perte financière & immobilisation.</li>
-              <li data-i18n="opt.cards.2.li.2">Carte verte internationale & zones spéciales.</li>
-            </ul>
-          </section>
+    <!-- Couvertures -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Couvertures principales</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Responsabilité civile & défense</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">RC obligatoire : dommages corporels et matériels aux tiers.</li>
+            <li data-i18n="cov.c0.li.1">Défense/recours & protection juridique (option).</li>
+            <li data-i18n="cov.c0.li.2">Conducteurs nommés / tous conducteurs.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">Dommages au véhicule</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Tous risques / Tiers étendu (collision, vandalisme, EVN).</li>
+            <li data-i18n="cov.c1.li.1">Vol & incendie, bris de glace (pare-brise, optiques, capteurs).</li>
+            <li data-i18n="cov.c1.li.2">Valeur à neuf / valeur agréée selon l’âge.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Personnes & assistance</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Individuelle conducteur & passagers.</li>
+            <li data-i18n="cov.c2.li.1">Assistance 24/7, remorquage, <em>véhicule de remplacement</em>.</li>
+            <li data-i18n="cov.c2.li.2">Étendue géographique (pays/UE) & carte verte.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options & services -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options & services</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Télématique & prévention</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Scoring conducteur, éco-conduite, alertes vitesse & fatigue.</li>
+            <li data-i18n="opt.c0.li.1">Géofencing, vol/immobilisation, récupération.</li>
+            <li data-i18n="opt.c0.li.2">Coaching & formations ciblées.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">Réseau & pièces</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Garages agréés, pièces d’origine ou équivalents qualité.</li>
+            <li data-i18n="opt.c1.li.1">Contrôle devis/factures & délais.</li>
+            <li data-i18n="opt.c1.li.2">Service mobile bris de glace.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Financier & équipements</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Perte financière / GAP (LOA/LLD).</li>
+            <li data-i18n="opt.c2.li.1">Aménagements & équipements (benne, frigo, gyro…).</li>
+            <li data-i18n="opt.c2.li.2">Extensions conducteurs jeunes/occasionnels.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Tarification & mise en place -->
+    <article id="admin" class="card tabpanel" role="tabpanel" aria-labelledby="tab-admin">
+      <h2 data-i18n="admin.t">4. Tarification & mise en place</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="admin.c0.t">Données requises</h3>
+          <ul>
+            <li data-i18n="admin.c0.li.0">Parc (immat., marque/modèle, énergie, âge, valeur).</li>
+            <li data-i18n="admin.c0.li.1">Usages & zones (pro/pre, urbain/route), km/an.</li>
+            <li data-i18n="admin.c0.li.2">Sinistres 3–5 ans (fréquence, coûts, responsabilités).</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c1.t">Processus</h3>
+          <ul>
+            <li data-i18n="admin.c1.li.0">Police flotte (ajouts/retraits) & cartes vertes.</li>
+            <li data-i18n="admin.c1.li.1">Paramétrage franchises & car policy.</li>
+            <li data-i18n="admin.c1.li.2">Déploiement télématique & reporting.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c2.t">Documents utiles</h3>
+          <ul>
+            <li data-i18n="admin.c2.li.0">Cartes grises & permis.</li>
+            <li data-i18n="admin.c2.li.1">Constats amiables, photos, PV police.</li>
+            <li data-i18n="admin.c2.li.2">Devis/ factures & ordres de mission.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Gestion des sinistres</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Notre approche</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Déclaration digitale ou via courtier — prise en charge immédiate.</li>
+            <li data-i18n="claim.li.1">Orientation réseau & expertise rapide, pièces contrôlées.</li>
+            <li data-i18n="claim.li.2">Recours tiers & suivi immobilisation jusqu’à restitution.</li>
+          </ul>
         </div>
-      </article>
+      </details>
+    </article>
 
-      <!-- Services -->
-      <article id="services" class="card">
-        <h2 data-i18n="srv.t">4. Services & pilotage</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="srv.cards.0.t">Gouvernance flotte</h3>
-            <ul>
-              <li data-i18n="srv.cards.0.li.0">Car policy, règles d’usage & gestion des conducteurs.</li>
-              <li data-i18n="srv.cards.0.li.1">Ajustement des franchises & stop-loss.</li>
-              <li data-i18n="srv.cards.0.li.2">Revues trimestrielles & plans d’action.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="srv.cards.1.t">Sinistres & data</h3>
-            <ul>
-              <li data-i18n="srv.cards.1.li.0">Circuit de déclaration simplifié, réseau agréé.</li>
-              <li data-i18n="srv.cards.1.li.1">Reporting : fréquence, gravité, coûts, temps d’immobilisation.</li>
-              <li data-i18n="srv.cards.1.li.2">Prévention ciblée sur points noirs (lieux/heures/types).</li>
-            </ul>
-          </section>
-        </div>
-      </article>
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Jeunes conducteurs : conditions ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Couvertures possibles avec franchises/conditions spécifiques selon car policy et usage.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Bris de glace sans franchise ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Oui sur certains niveaux, avec réseau agréé et service mobile.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Véhicule de remplacement garanti ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">Selon formule (pannes/sinistres), durée et catégorie à définir au contrat.</p></div>
+      </details>
+    </article>
 
-      <!-- Sinistres -->
-      <article id="claims" class="card">
-        <h2 data-i18n="clm.t">5. Sinistres — notre démarche</h2>
-        <details class="mt-1">
-          <summary>🧭 <span data-i18n="clm.sum">Du constat à la reprise d’activité</span></summary>
-          <div>
-            <ul>
-              <li data-i18n="clm.li.0">Assistance immédiate & véhicule de remplacement.</li>
-              <li data-i18n="clm.li.1">Réseau réparateurs, pièces d’origine/équivalentes.</li>
-              <li data-i18n="clm.li.2">Analyse des causes & actions correctives.</li>
-            </ul>
-          </div>
-        </details>
-        <div class="center mt-2">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Optimisons votre flotte</h3>
+      <p class="muted" data-i18n="cta.p">Couvertures & franchises adaptées, réseau efficace et télé­matique pour moins d’accidents et d’immobilisation.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
 
-      <!-- FAQ -->
-      <article id="faq" class="card">
-        <h2 data-i18n="faq.t">6. FAQ</h2>
-        <details class="mt-1">
-          <summary>❓ <span data-i18n="faq.q0">Bonus-malus et police flotte, compatible ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a0">En flotte, l’assureur raisonne surtout en fréquence/gravité globales, mais l’historique peut influencer la tarification et les règles de conduite.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q1">Télématique = suivi permanent des conducteurs ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a1">Paramétrable et anonymisable (scores agrégés). Objectif : prévention et sécurisation, pas de flicage individuel.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q2">Batterie EV, câble et wallbox sont-ils couverts ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a2">Oui si l’option EV est souscrite : batterie, accessoires de charge et assistance dédiée (selon conditions).</p></div>
-        </details>
-      </article>
+    <!-- Prev/Next -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./transport.html">← <span data-i18n="nav.prev">Transport (marchandises)</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./rc.html"><span data-i18n="nav.next">Responsabilité Civile</span> →</a>
+      </p>
+    </article>
 
-      <!-- CTA finale -->
-      <article class="card center">
-        <h3 data-i18n="cta.t">Optimisons le coût total de mobilité</h3>
-        <p class="muted" data-i18n="cta.p">Audit de parc, structure de garanties & franchises, prévention ciblée et reporting opérationnel.</p>
-        <div class="actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
-    </div>
   </div>
 </section>
 
@@ -243,17 +283,15 @@
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">
-        Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]
-      </p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
       <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-        <a href="climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
       </p>
     </div>
     <div>
@@ -263,157 +301,109 @@
   </div>
 </footer>
 
-<!-- FAQPage SEO -->
+<!-- FAQ SEO -->
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org","@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Bonus-malus et police flotte, compatible ?","acceptedAnswer":{"@type":"Answer","text":"En flotte, l’assureur raisonne sur la fréquence/gravité globales, mais l’historique peut influencer la tarification et les règles de conduite."}},
-    {"@type":"Question","name":"Télématique = suivi permanent des conducteurs ?","acceptedAnswer":{"@type":"Answer","text":"La télématique est paramétrable et anonymisable (scores agrégés). Objectif : prévention et sécurisation."}},
-    {"@type":"Question","name":"Batterie EV, câble et wallbox couverts ?","acceptedAnswer":{"@type":"Answer","text":"Oui si l’option EV est souscrite : batterie, accessoires de charge et assistance dédiée (selon conditions)."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Jeunes conducteurs : conditions ?","acceptedAnswer":{"@type":"Answer","text":"Couvertures possibles avec franchises/conditions spécifiques selon car policy et usage."}},
+{"@type":"Question","name":"Bris de glace sans franchise ?","acceptedAnswer":{"@type":"Answer","text":"Oui sur certains niveaux, avec réseau agréé et service mobile."}},
+{"@type":"Question","name":"Véhicule de remplacement garanti ?","acceptedAnswer":{"@type":"Answer","text":"Selon formule (pannes/sinistres), durée et catégorie à définir au contrat."}}
+]}
 </script>
 
 <script>
 /* ================== I18N ================== */
-const I18N = {
+const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     title:"Automobile & Flotte",
-    subtitle:"De 5 à 5 000 véhicules — RC obligatoire, dommages tous risques, assistance & véhicule de remplacement, protection du conducteur et télématique pour piloter votre sinistralité.",
-    badges:["RC & Dommages","Télématique & prévention","Dashboards sinistres"],
-    toc:"Sommaire",
-    snav:["Aperçu","Ce que ça couvre","Options","Services & pilotage","Sinistres","FAQ"],
-    intro:{
-      t:"1. Pourquoi une police flotte ?",
-      p:"Mutualiser vos risques auto dans une police unique simplifie la gestion (un seul contrat, un seul renouvellement) et donne du levier sur la sinistralité via des franchises adaptées et des actions de prévention (télématique, formation conducteurs).",
-      kpi:[
-        {v:"Parc",l:"VL/VP, utilitaires, poids lourds, 2-roues, engins."},
-        {v:"Volume",l:"De 5 à 5 000 véhicules (multi-sites)."},
-        {v:"Pilotage",l:"Tableaux de bord & plans d’action trimestriels."}
-      ]
-    },
-    cover:{
-      t:"2. Ce que ça couvre (exemples)",
-      cards:[
-        {t:"Responsabilité civile (RC)",li:["Dommages corporels & matériels causés aux tiers.","Conducteurs nommés, tout conducteur, usages pro.","Extensions marchandises transportées (selon besoins)."]},
-        {t:"Dommages au véhicule",li:["Collision, incendie, vol, bris de glace, événements naturels.","Catastrophes & événements climatiques renforcés.","Équipements & aménagements (selon déclaration)."]},
-        {t:"Assistance & protection",li:["Dépannage/remorquage 0 km, véhicule relais.","Protection du conducteur (individuelle accident).","Protection juridique circulation."]}
-      ],
-      note:"Garanties, limites et franchises sont modulables par segment de parc et selon l’historique de sinistres."
-    },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Télématique & prévention",li:["Boîtiers/Applis : vitesse, freinages, trajets, éco-conduite.","Coaching conducteurs & challenges sécurité.","Tarification comportementale (selon assureur)."]},
-        {t:"Électrique & hybride",li:["Batterie & charge (câbles, wallbox, assistance dédiée).","Véhicule relais compatible, réseau réparateurs EV.","Valeur à neuf/allongée (selon âge & usage)."]},
-        {t:"Leasing & finance",li:["GAP (valeur d’achat) pour véhicules financés.","Perte financière & immobilisation.","Carte verte internationale & zones spéciales."]}
-      ]
-    },
-    srv:{
-      t:"4. Services & pilotage",
-      cards:[
-        {t:"Gouvernance flotte",li:["Car policy, règles d’usage & gestion des conducteurs.","Ajustement des franchises & stop-loss.","Revues trimestrielles & plans d’action."]},
-        {t:"Sinistres & data",li:["Circuit de déclaration simplifié, réseau agréé.","Reporting : fréquence, gravité, coûts, temps d’immobilisation.","Prévention ciblée sur points noirs (lieux/heures/types)."]}
-      ]
-    },
-    clm:{t:"5. Sinistres — notre démarche",sum:"Du constat à la reprise d’activité",li:["Assistance immédiate & véhicule de remplacement.","Réseau réparateurs, pièces d’origine/équivalentes.","Analyse des causes & actions correctives."]},
-    faq:{t:"6. FAQ",q0:"Bonus-malus et police flotte, compatible ?",a0:"En flotte, l’assureur raisonne surtout en fréquence/gravité globales, mais l’historique peut influencer la tarification et les règles de conduite.",q1:"Télématique = suivi permanent des conducteurs ?",a1:"Paramétrable et anonymisable (scores agrégés). Objectif : prévention et sécurisation, pas de flicage individuel.",q2:"Batterie EV, câble et wallbox sont-ils couverts ?",a2:"Oui si l’option EV est souscrite : batterie, accessoires de charge et assistance dédiée (selon conditions)."},
-    cta:{t:"Optimisons le coût total de mobilité",p:"Audit de parc, structure de garanties & franchises, prévention ciblée et reporting opérationnel.",quote:"Obtenir un devis",contact:"Parler à un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
+    subtitle:"RC auto • Dommages (tous risques/tiers) • Bris de glace • Vol & incendie • Conducteur & passagers • Assistance & véhicule de remplacement • Télématique & prévention.",
+    badges:["VL / VP / PL & engins","Télématique & data","Gestion sinistres 24/7"],
+    tabs:{over:"Aperçu",cov:"Couvertures",opt:"Options & services",admin:"Tarification & mise en place",claim:"Sinistres",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"Des programmes flotte auto pour véhicules légers (VL/VP), poids lourds (PL) et engins. Structure tiers / tous risques, franchises adaptées, car policy et prévention pour réduire la sinistralité. Pilotage par télématique et réseau de garages agréés.",
+         li:["Tarification flotte (bonus-malus agrégé, SRCC/EVN selon marché).","Car policy : conducteurs, usages, zones et horaires.","Tableaux de bord : fréquence, gravité, coûts & immobilisation."],
+         kpi:["Taille de flotte","Orientation garage","Télématique"]},
+    cov:{t:"2. Couvertures principales",
+         c0:{t:"Responsabilité civile & défense",li:["RC obligatoire : dommages corporels et matériels aux tiers.","Défense/recours & protection juridique (option).","Conducteurs nommés / tous conducteurs."]},
+         c1:{t:"Dommages au véhicule",li:["Tous risques / Tiers étendu (collision, vandalisme, EVN).","Vol & incendie, bris de glace (pare-brise, optiques, capteurs).","Valeur à neuf / valeur agréée selon l’âge."]},
+         c2:{t:"Personnes & assistance",li:["Individuelle conducteur & passagers.","Assistance 24/7, remorquage, véhicule de remplacement.","Étendue géographique (pays/UE) & carte verte."]}},
+    opt:{t:"3. Options & services",
+         c0:{t:"Télématique & prévention",li:["Scoring conducteur, éco-conduite, alertes vitesse & fatigue.","Géofencing, vol/immobilisation, récupération.","Coaching & formations ciblées."]},
+         c1:{t:"Réseau & pièces",li:["Garages agréés, pièces d’origine ou équivalents qualité.","Contrôle devis/factures & délais.","Service mobile bris de glace."]},
+         c2:{t:"Financier & équipements",li:["Perte financière / GAP (LOA/LLD).","Aménagements & équipements (benne, frigo, gyro…).","Extensions conducteurs jeunes/occasionnels."]}},
+    admin:{t:"4. Tarification & mise en place",
+         c0:{t:"Données requises",li:["Parc (immat., marque/modèle, énergie, âge, valeur).","Usages & zones (pro/pre, urbain/route), km/an.","Sinistres 3–5 ans (fréquence, coûts, responsabilités)."]},
+         c1:{t:"Processus",li:["Police flotte (ajouts/retraits) & cartes vertes.","Paramétrage franchises & car policy.","Déploiement télématique & reporting."]},
+         c2:{t:"Documents utiles",li:["Cartes grises & permis.","Constats amiables, photos, PV police.","Devis/ factures & ordres de mission."]}},
+    claim:{t:"5. Gestion des sinistres",sum:"Notre approche",li:["Déclaration digitale ou via courtier — prise en charge immédiate.","Orientation réseau & expertise rapide, pièces contrôlées.","Recours tiers & suivi immobilisation jusqu’à restitution."]},
+    faq:{t:"6. FAQ",q0:"Jeunes conducteurs : conditions ?",a0:"Couvertures possibles avec franchises/conditions spécifiques selon car policy et usage.",
+         q1:"Bris de glace sans franchise ?",a1:"Oui sur certains niveaux, avec réseau agréé et service mobile.",
+         q2:"Véhicule de remplacement garanti ?",a2:"Selon formule (pannes/sinistres), durée et catégorie à définir au contrat."},
+    cta:{t:"Optimisons votre flotte",p:"Couvertures & franchises adaptées, réseau efficace et télématique pour moins d’accidents et d’immobilisation.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Transport (marchandises)",next:"Responsabilité Civile"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
   },
 
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
     title:"Motor & Fleet",
-    subtitle:"From 5 to 5,000 vehicles — compulsory TPL, comprehensive damage, roadside assistance & replacement vehicle, driver PA and telematics to steer loss ratio.",
-    badges:["TPL & Damage","Telematics & prevention","Claims dashboards"],
-    toc:"Contents",
-    snav:["Overview","What it covers","Options","Services & stewardship","Claims","FAQ"],
-    intro:{
-      t:"1. Why a fleet policy?",
-      p:"Pooling your motor risks under one master policy simplifies admin (one contract, one renewal) and gives leverage on loss ratio via tailored deductibles and prevention (telematics, driver training).",
-      kpi:[
-        {v:"Fleet scope",l:"Cars, vans, trucks, 2-wheelers, plant & equipment."},
-        {v:"Scale",l:"From 5 to 5,000 vehicles (multi-site)."},
-        {v:"Steering",l:"Dashboards & quarterly action plans."}
-      ]
-    },
-    cover:{
-      t:"2. What it covers (examples)",
-      cards:[
-        {t:"Third-party liability (TPL)",li:["Bodily injury & property damage to third parties.","Named/any driver, professional use.","Extensions for carried goods (if required)."]},
-        {t:"Own-damage",li:["Collision, fire, theft, glass, natural events.","Strengthened NatCat/climate perils.","Accessories & fittings (declared)."]},
-        {t:"Assistance & protection",li:["Roadside/towing from 0 km, replacement vehicle.","Driver personal accident.","Legal protection in traffic."]}
-      ],
-      note:"Covers, limits and deductibles can be tailored by fleet segment and claims history."
-    },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Telematics & prevention",li:["Devices/Apps: speed, harsh events, routes, eco-driving.","Driver coaching & safety challenges.","Behaviour-based pricing (where available)."]},
-        {t:"Electric & hybrid",li:["Battery & charging (cables, wallbox, dedicated assistance).","EV-compatible replacement, approved repairer network.","New/extended replacement value (eligibility by age/use)."]},
-        {t:"Leasing & finance",li:["GAP (purchase price) for financed vehicles.","Financial loss & downtime.","International Green Card & special territories."]}
-      ]
-    },
-    srv:{
-      t:"4. Services & stewardship",
-      cards:[
-        {t:"Fleet governance",li:["Car policy, usage rules & driver management.","Deductible strategy & stop-loss.","Quarterly reviews & action plans."]},
-        {t:"Claims & data",li:["Simple FNOL process, approved repairers.","Reporting: frequency, severity, cost, downtime.","Targeted prevention on black spots (place/time/type)."]}
-      ]
-    },
-    clm:{t:"5. Claims — our approach",sum:"From incident to getting back on the road",li:["Immediate assistance & replacement vehicle.","Repair network, OEM/Equivalent parts.","Root-cause analysis & corrective actions."]},
-    faq:{t:"6. FAQ",q0:"Is bonus-malus relevant in fleet policies?",a0:"Insurers mainly price fleets on frequency/severity aggregates, but individual history may inform pricing and conduct rules.",q1:"Does telematics track drivers permanently?",a1:"Configurable and anonymisable (aggregated scores). Aim is prevention & safety, not surveillance.",q2:"Are EV battery, cable and wallbox covered?",a2:"Yes with the EV option: traction battery, charging accessories and dedicated assistance (subject to terms)."},
-    cta:{t:"Optimise total mobility cost",p:"Fleet audit, tailored covers & deductibles, targeted prevention and operational reporting.",quote:"Get a quote",contact:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
+    subtitle:"TPL • Own damage (comprehensive/third-party) • Glass • Theft & fire • Driver & passengers • Assistance & courtesy car • Telematics & prevention.",
+    badges:["Cars / LCV / HGV & plant","Telematics & data","24/7 claims handling"],
+    tabs:{over:"Overview",cov:"Covers",opt:"Options & services",admin:"Pricing & rollout",claim:"Claims",faq:"FAQ"},
+    over:{t:"1. Overview",p:"Fleet programmes for cars/LCV, HGV and plant. Third-party/comprehensive structures with tailored deductibles, a clear car policy and prevention to cut losses. Steering via telematics and an approved repair network.",
+         li:["Fleet rating (aggregate B/M; SRCC/Nat per market).","Car policy on drivers, usage, zones and hours.","Dashboards on frequency, severity, costs & downtime."],
+         kpi:["Fleet size","Repair routing","Telematics"]},
+    cov:{t:"2. Core covers",
+         c0:{t:"Third-party liability & legal",li:["Mandatory TPL for bodily injury and property damage.","Defense/recourse & legal protection (optional).","Named drivers / any driver."]},
+         c1:{t:"Own damage",li:["Comprehensive / Extended third-party (collision, vandalism, NatCat).","Theft & fire, glass (windscreen, optics, ADAS sensors).","New-for-old / agreed value per vehicle age."]},
+         c2:{t:"People & assistance",li:["Driver personal accident & passengers.","24/7 assistance, towing, courtesy car.","Geographical scope (country/EU) & Green Card."]}},
+    opt:{t:"3. Options & services",
+         c0:{t:"Telematics & prevention",li:["Driver scoring, eco-driving, speed/fatigue alerts.","Geo-fencing, theft/immobiliser, recovery.","Coaching & focused training."]},
+         c1:{t:"Repair network & parts",li:["Approved repairers, OEM or equivalent parts.","Quote/invoice & lead-time control.","Mobile glass service."]},
+         c2:{t:"Financial & equipment",li:["GAP/finance shortfall (leasing).","Body/build & equipment (tipper, fridge, beacons…).","Young/occasional driver extensions."]}},
+    admin:{t:"4. Pricing & rollout",
+         c0:{t:"Required data",li:["Fleet list (plate, make/model, energy, age, value).","Use & zones (private/pro, urban/road), km/year.","3–5 year loss history (frequency, severity, liability)."]},
+         c1:{t:"Process",li:["Fleet policy (add/delete) & Green Cards.","Deductible & car-policy set-up.","Telematics deployment & reporting."]},
+         c2:{t:"Helpful docs",li:["Registrations & licences.","Accident statements, photos, police reports.","Quotes/invoices & work orders."]}},
+    claim:{t:"5. Claims handling",sum:"Our approach",li:["Digital/broker notification — immediate handling.","Directed to network & fast survey, parts controlled.","Third-party recovery & downtime tracking until return."]},
+    faq:{t:"6. FAQ",q0:"Young drivers — conditions?",a0:"Possible with specific deductibles/terms depending on the car policy and usage.",
+         q1:"Glass without deductible?",a1:"Yes on some levels when using the approved network/mobile service.",
+         q2:"Courtesy car guaranteed?",a2:"Depending on option (breakdown/accident), duration and category set in the policy."},
+    cta:{t:"Let’s optimise your fleet",p:"Right covers & deductibles, efficient repair network and telematics to reduce accidents and downtime.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Cargo / Transport",next:"General / Professional Liability"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
   },
 
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"السيارات والأساطيل",
-    subtitle:"من 5 إلى 5000 مركبة — مسؤولية تجاه الغير، تغطية شاملة للأضرار، مساعدة وسيارة بديلة، تأمين سائق وحلول تتبّع لخفض الخسائر.",
-    badges:["مسؤولية وأضرار","تليماتكس ووقاية","لوحات المطالبات"],
-    toc:"المحتوى",
-    snav:["لمحة","نطاق التغطية","الخيارات","الخدمات والإشراف","المطالبات","الأسئلة الشائعة"],
-    intro:{
-      t:"١. لماذا وثيقة أسطول؟",
-      p:"تجميع مخاطر المركبات في وثيقة واحدة يبسّط الإدارة ويمنحك رافعة على نسب الخسائر عبر خصومات مناسبة وإجراءات وقائية (تليماتكس وتدريب السائقين).",
-      kpi:[
-        {v:"نطاق الأسطول",l:"سيارات ركاب، فانّات، شاحنات، دراجات، معدات."},
-        {v:"الحجم",l:"من 5 إلى 5000 مركبة (مواقع متعددة)."},
-        {v:"التحكّم",l:"لوحات متابعة وخطط عمل ربع سنوية."}
-      ]
-    },
-    cover:{
-      t:"٢. ما الذي تغطيه (أمثلة)",
-      cards:[
-        {t:"مسؤولية تجاه الغير",li:["أضرار بدنية ومادية للغير.","سائقون محددون أو أي سائق، استخدام مهني.","امتدادات للبضائع المحمولة (عند الحاجة)."]},
-        {t:"أضرار المركبة",li:["تصادم، حريق، سرقة، زجاج، ظواهر طبيعية.","تعزيز مخاطر الكوارث والمناخ.","الملحقات والتجهيزات (حسب التصريح)."]},
-        {t:"مساعدة وحماية",li:["سحب/مساعدة من الكيلو 0، سيارة بديلة.","تأمين حوادث شخصية للسائق.","حماية قانونية مرورية."]}
-      ],
-      note:"يمكن تخصيص التغطيات والحدود والخصومات حسب شرائح الأسطول وتاريخ المطالبات."
-    },
-    opt:{
-      t:"٣. خيارات وامتدادات",
-      cards:[
-        {t:"تليماتكس ووقاية",li:["أجهزة/تطبيقات: السرعة، الفرامل الحادّة، المسارات، القيادة الاقتصادية.","تدريب وتحفيز السائقين على السلامة.","تسعير سلوكي (حيث يتاح)."]},
-        {t:"هجين وكهربائي",li:["البطارية والشحن (كوابل، والبوكس، مساعدة مخصّصة).","سيارة بديلة متوافقة، شبكة ورش معتمدة EV.","قيمة جديدة/ممدّدة (وفق العمر والاستخدام)."]},
-        {t:"تأجير وتمويل",li:["تأمين GAP لقيمة الشراء للمركبات المموّلة.","خسارة مالية وزمن التوقف.","البطاقة الخضراء الدولية ومناطق خاصة."]}
-      ]
-    },
-    srv:{
-      t:"٤. الخدمات والإشراف",
-      cards:[
-        {t:"حوكمة الأسطول",li:["سياسة استخدام المركبات وإدارة السائقين.","استراتيجية الخصومات وحدود الخسارة.","مراجعات ربع سنوية وخطط عمل."]},
-        {t:"المطالبات والبيانات",li:["تبليغ مبسّط وشبكة ورش معتمدة.","تقارير: التكرار، الشدة، التكلفة، زمن التوقّف.","وقاية موجهة لنقاط سوداء (مكان/وقت/نوع)."]}
-      ]
-    },
-    clm:{t:"٥. المطالبات — نهجنا",sum:"من الحادث إلى العودة للطريق",li:["مساعدة فورية وسيارة بديلة.","شبكة إصلاح وقطع أصلية/مماثلة.","تحليل جذور الأسباب وإجراءات تصحيحية."]},
-    faq:{t:"٦. أسئلة شائعة",q0:"هل نظام البونص/مالوس مهم في وثائق الأسطول؟",a0:"تسعير الأساطيل يعتمد أساساً على التكرار والشدة الإجمالية، لكن التاريخ الفردي قد يؤثر على التسعير وقواعد السلوك.",q1:"هل التليماتكس يعني مراقبة دائمة للسائقين؟",a1:"قابل للتهيئة ومجهّل (درجات مجمّعة). الهدف الوقاية والسلامة لا المراقبة.",q2:"هل بطارية المركبة الكهربائية وكابل ووالبوكس مشمولة؟",a2:"نعم مع خيار EV: بطارية الدفع وإكسسوارات الشحن ومساعدة مخصّصة (وفق الشروط)."},
-    cta:{t:"لنحسّن كلفة التنقّل الكلية",p:"تدقيق الأسطول، هيكلة التغطيات والخصومات، وقاية موجهة وتقارير تشغيلية.",quote:"اطلب عرضاً",contact:"تحدث إلى مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
+    subtitle:"مسؤولية تجاه الغير • أضرار المركبة (شامل/طرف ثالث) • الزجاج • سرقة وحريق • السائق والركاب • مساعدة وسيارة بديلة • تتبّع سلوكي وتيليماتكس.",
+    badges:["سيارات/نقل خفيف/ثقيل وآليات","تيليماتكس وبيانات","مطالبات 24/7"],
+    tabs:{over:"لمحة",cov:"التغطيات",opt:"الخيارات والخدمات",admin:"التسعير والتنفيذ",claim:"المطالبات",faq:"الأسئلة"},
+    over:{t:"١. لمحة",p:"برامج أسطول للمركبات الخفيفة والثقيلة والآليات. هياكل طرف ثالث/شامل مع تحملات مناسبة، وسياسة استخدام واضحة، ووقاية لتقليل الحوادث. إدارة عبر التيليماتكس وشبكة ورش معتمدة.",
+         li:["تسعير أسطولي (مكافأة/جزاء مجمّع، مخاطر شغب/طبيعة حسب السوق).","سياسة استخدام: السائقون، الاستعمال، المناطق والأوقات.","لوحات قياس للتواتر والحدة والتكلفة وفترات التعطل."],
+         kpi:["حجم الأسطول","توجيه للإصلاح","تيليماتكس"]},
+    cov:{t:"٢. التغطيات الأساسية",
+         c0:{t:"مسؤولية مدنية وقانونية",li:["مسؤولية إلزامية عن الإصابات والأضرار للغير.","دفاع/رجوع وحماية قانونية (اختياري).","سائقون محددون أو أي سائق."]},
+         c1:{t:"أضرار المركبة",li:["شامل/طرف ثالث موسّع (تصادم، تخريب، كوارث).","سرقة وحريق، زجاج (باربريس، حساسات ADAS).","قيمة جديدة/متفق عليها حسب عمر المركبة."]},
+         c2:{t:"الأشخاص والمساعدة",li:["تأمين سائق وحوادث ركاب.","مساعدة 24/7 وقطر وسيارة بديلة.","نطاق جغرافي (محلي/أوروبي) وبطاقة خضراء."]}},
+    opt:{t:"٣. الخيارات والخدمات",
+         c0:{t:"تيليماتكس ووقاية",li:["تقييم سلوك السائق، قيادة اقتصادية، تنبيهات سرعة/إرهاق.","سياج جغرافي ومنع تشغيل واسترجاع عند السرقة.","تدريب وتوعية مركّزة."]},
+         c1:{t:"شبكة الإصلاح وقطع الغيار",li:["ورش معتمدة وقطع أصلية أو مكافئة.","مراقبة عروض الأسعار والفواتير والمواعيد.","خدمة متنقلة لإصلاح الزجاج."]},
+         c2:{t:"مالية وتجهيزات",li:["فجوة تمويل (GAP) للتأجير.","هياكل وتجهيزات (قلاب، تبريد، إنارة...).","توسعات للسائقين الجدد/غير الدائمين."]}},
+    admin:{t:"٤. التسعير والتنفيذ",
+         c0:{t:"البيانات المطلوبة",li:["قائمة الأسطول (لوحة، طراز، طاقة، عمر، قيمة).","الاستخدام والمناطق والكم/سنة.","سجل خسائر 3–5 سنوات (تواتر/حدة/مسؤولية)."]},
+         c1:{t:"العملية",li:["وثيقة أسطول (إضافة/حذف) وبطاقات خضراء.","إعداد التحملات وسياسة الاستخدام.","نشر التيليماتكس والتقارير."]},
+         c2:{t:"وثائق مساعدة",li:["استمارات المركبات ورخص القيادة.","نماذج الحوادث وصور وتقارير الشرطة.","عروض أسعار وفواتير وأوامر عمل."]}},
+    claim:{t:"٥. إدارة المطالبات",sum:"نهجنا",li:["تبليغ رقمي أو عبر الوسيط — معالجة فورية.","توجيه لشبكة الإصلاح وخبرة سريعة ومراقبة القطع.","رجوع على الطرف الثالث وتتبع التعطّل حتى التسليم."]},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"شروط السائقين الجدد؟",a0:"ممكن مع تحملات/شروط خاصة بحسب سياسة الاستخدام والاستعمال.",
+         q1:"هل زجاج المركبة دون تحمّل؟",a1:"نعم في بعض المستويات ومع خدمة الشبكة/المتنقلة.",
+         q2:"هل السيارة البديلة مضمونة؟",a2:"بحسب الخيار (عطل/حادث)، المدة والفئة تُحدد بالوثيقة."},
+    cta:{t:"لنُحسّن أسطولك",p:"تغطيات وتحملات مناسبة وشبكة فعّالة وتيليماتكس لخفض الحوادث وفترات التوقف.",
+         quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    nav:{prev:"تأمين نقل البضائع",next:"المسؤولية العامة/المهنية"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
   }
 };
 
@@ -425,58 +415,45 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
 
-/* ================== Render ================== */
+/* ================== Render & Tabs ================== */
 function applyTexts(){
   document.documentElement.lang=lang;
   document.body.dir=(lang==='ar'?'rtl':'ltr');
-
   $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
 }
-
-/* Sticky TOC highlight */
-function highlightTOC(){
-  const ids=['intro','cover','options','services','claims','faq'];
-  let active='intro';
-  ids.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el) return;
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight*0.35) active=id;
-  });
-  $$('.aside .toc').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+active);
-  });
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','admin','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 }
-
-/* ================== UI ================== */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // language switch
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // mobile chips jump
-  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
-    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  // reveal + toc highlight
-  const rev=$$('.reveal');
-  const onScroll=()=>{
-    const tr=window.innerHeight*0.85;
-    rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); });
-    highlightTOC();
-  };
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
 }
-
-/* init */
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
