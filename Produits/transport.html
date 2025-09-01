@@ -3,47 +3,76 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Transport (marchandises)</title>
-  <meta name="description" content="Assurance transport de marchandises : tous risques facultés, responsabilité transporteur/commissionnaire, stock throughput, projets & manutentions lourdes, options guerre/émeutes et paramétriques météo."/>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <title>Riskalia — Transport (marchandises) / Cargo</title>
+  <meta name="description" content="Assurance transport de marchandises : tous risques facultés, RC transporteur/commissionnaire, Stock Throughput, War & SRCC, options température et paramétriques météo. Conseil Incoterms & prévention emballage/traçabilité."/>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
 
-  <!-- Fonts + Global CSS -->
+  <!-- Fonts + global CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css"/>
 
   <style>
-    /* Hero spécifique transport/cargo */
-    .hero--cargo{
+    /* Hero visuel pour produit */
+    .hero--product{
+      min-height:42vh;
       background:
         linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-        url('https://images.unsplash.com/photo-1505575972945-2804b4a5d6b5?auto=format&fit=crop&w=1600&q=70')
+        url('https://images.unsplash.com/photo-1544651983-8fa89a4a9a14?auto=format&fit=crop&w=1600&q=70')
         center/cover no-repeat;
-      min-height:42vh;
+      display:flex; align-items:center; text-align:center;
     }
-    /* Tuiles compactes */
-    .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
-    .tiles .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
-    .tiles .p .v{font-weight:900;color:#0b5562}
+    .hero--product h1{ color:#fff; font-size:clamp(1.9rem,3.6vw,3.1rem); }
+    .hero--product p{ color:#fff; opacity:.98; max-width:980px; margin:6px auto 0; }
+
+    /* Onglets horizontaux collants */
+    .main--single{ display:block; }
+    .tabs.sticky{
+      position:sticky; top:72px; z-index:30;
+      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
+      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    .tabs .tab{ flex:0 0 auto; }
+    .tabpanel{ display:none; }
+    .tabpanel.active{ display:block; }
+
+    .grid-2x1{ display:grid; grid-template-columns:2fr 1fr; gap:18px; }
+    @media(max-width:900px){ .grid-2x1{ grid-template-columns:1fr; } }
+
+    .list-check{ padding-inline-start:18px; }
+    .list-check li{ margin:6px 0; }
+
+    /* Encarts KPI */
+    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
+    .kpi .v{font-weight:900;color:#0b5562}
+
+    /* Mobile confort */
+    @media(max-width:600px){
+      .tabs.sticky{ top:66px; padding:6px; }
+      .tab{ padding:10px 12px; }
+      .hero--product{ min-height:36vh; }
+    }
   </style>
 
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+  <noscript><style>.tabpanel{display:block}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-<body>
+<body class="spacious">
 <header>
   <div class="container nav-wrap">
-    <a class="brand" href="index.html">
+    <a class="brand" href="../index.html">
       <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
     </a>
     <nav aria-label="Navigation principale">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" data-i18n="nav.climate">Climate Risk</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../index.html" data-i18n="nav.home">Accueil</a></li>
+        <li><a href="../solutions.html" class="active" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+        <li><a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="../esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="lang-switch">
@@ -54,188 +83,199 @@
   </div>
 </header>
 
-<section class="hero hero--cargo">
+<!-- HERO -->
+<section class="hero hero--product">
   <div class="container">
     <h1 data-i18n="title">Transport (marchandises)</h1>
-    <p data-i18n="subtitle">Facultés tous risques, responsabilité des transporteurs, “stock throughput” et projets hors gabarit — couverture de bout en bout de votre chaîne logistique.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Tous risques facultés</span>
-      <span class="badge" data-i18n="badges.1">CMR / RC transporteur</span>
-      <span class="badge" data-i18n="badges.2">Stock Throughput (STP)</span>
+    <p data-i18n="subtitle">Tous risques facultés • RC transporteur/commissionnaire • Stock Throughput • War & SRCC • Conseils Incoterms • Options température & paramétriques météo.</p>
+    <div class="badges" style="margin-top:12px">
+      <span class="badge" data-i18n="badges.0">Maritime • Aérien • Route • Rail</span>
+      <span class="badge" data-i18n="badges.1">Flux import/export & domestiques</span>
+      <span class="badge" data-i18n="badges.2">Traçabilité & prévention emballage</span>
     </div>
   </div>
 </section>
 
+<!-- CONTENT -->
 <section class="reveal">
-  <div class="container main">
-    <!-- Sommaire sticky -->
-    <aside class="aside" aria-label="Sommaire">
-      <h4 data-i18n="toc">Sommaire</h4>
-      <a href="#intro"   class="toc" data-i18n="snav.0">Aperçu</a>
-      <a href="#cover"   class="toc" data-i18n="snav.1">Ce que ça couvre</a>
-      <a href="#options" class="toc" data-i18n="snav.2">Options</a>
-      <a href="#services" class="toc" data-i18n="snav.3">Services & prévention</a>
-      <a href="#claims"  class="toc" data-i18n="snav.4">Sinistres</a>
-      <a href="#faq"     class="toc" data-i18n="snav.5">FAQ</a>
-    </aside>
+  <div class="container main main--single">
 
-    <!-- Chips nav (mobile) -->
-    <div class="chips" role="tablist" aria-label="Sections">
-      <button class="chip" data-jump="intro" data-i18n="snav.0">Aperçu</button>
-      <button class="chip" data-jump="cover" data-i18n="snav.1">Ce que ça couvre</button>
-      <button class="chip" data-jump="options" data-i18n="snav.2">Options</button>
-      <button class="chip" data-jump="services" data-i18n="snav.3">Services & prévention</button>
-      <button class="chip" data-jump="claims" data-i18n="snav.4">Sinistres</button>
-      <button class="chip" data-jump="faq" data-i18n="snav.5">FAQ</button>
-    </div>
+    <!-- Onglets -->
+    <nav class="tabs sticky" role="tablist" aria-label="Cargo tabs">
+      <button class="tab active"  id="tab-over" role="tab" aria-selected="true"  data-tab="over" data-i18n="tabs.over">Aperçu</button>
+      <button class="tab"         id="tab-cov"  role="tab" aria-selected="false" data-tab="cov"  data-i18n="tabs.cov">Couvertures</button>
+      <button class="tab"         id="tab-opt"  role="tab" aria-selected="false" data-tab="opt"  data-i18n="tabs.opt">Options & services</button>
+      <button class="tab"         id="tab-admin"role="tab" aria-selected="false" data-tab="admin"data-i18n="tabs.admin">Tarification & mise en place</button>
+      <button class="tab"         id="tab-claim"role="tab" aria-selected="false" data-tab="claim"data-i18n="tabs.claim">Sinistres</button>
+      <button class="tab"         id="tab-faq"  role="tab" aria-selected="false" data-tab="faq"  data-i18n="tabs.faq">FAQ</button>
+    </nav>
 
-    <!-- Corps -->
-    <div>
-      <!-- Intro -->
-      <article id="intro" class="card">
-        <h2 data-i18n="intro.t">1. Pourquoi assurer vos marchandises ?</h2>
-        <p class="muted" data-i18n="intro.p">
-          Les Incoterms et responsabilités varient, mais votre intérêt sur la marchandise demeure. Une police cargo bien structurée sécurise vos flux import/export, transferts internes et stockages intermédiaires.
-        </p>
-        <div class="tiles">
-          <div class="p"><div class="v" data-i18n="intro.kpi.0.v">Modes couverts</div><div data-i18n="intro.kpi.0.l">Maritime, aérien, routier, ferroviaire, combiné.</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.1.v">Approche</div><div data-i18n="intro.kpi.1.l">Police annuelle déclarative ou “voyage par voyage”.</div></div>
-          <div class="p"><div class="v" data-i18n="intro.kpi.2.v">Valeur</div><div data-i18n="intro.kpi.2.l">Valeur facture + fret + 10% (usages) — ajustable.</div></div>
+    <!-- Aperçu -->
+    <article id="over" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-over">
+      <h2 data-i18n="over.t">1. Aperçu</h2>
+      <div class="grid-2x1 mt-1">
+        <div>
+          <p class="muted" data-i18n="over.p">
+            Nous protégeons vos flux <strong>import/export et domestiques</strong> sur tous modes (mer, air, route, rail). La police cargo couvre les <em>facultés</em> (marchandises), la <strong>responsabilité des transporteurs/commissionnaires</strong> et, si besoin, un <strong>Stock Throughput</strong> (STP) continu entre sites, dépôts et transit.
+          </p>
+          <ul class="list-check">
+            <li data-i18n="over.li.0">Analyse des <strong>Incoterms</strong> pour clarifier le transfert de risques.</li>
+            <li data-i18n="over.li.1">Paramétrage des limites par expédition, véhicule, navire ou site.</li>
+            <li data-i18n="over.li.2">Conseils emballage, arrimage & traçabilité pour réduire la casse.</li>
+          </ul>
         </div>
-      </article>
-
-      <!-- Couvertures -->
-      <article id="cover" class="card">
-        <h2 data-i18n="cover.t">2. Ce que ça couvre (exemples)</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="cover.cards.0.t">Facultés — Tous risques</h3>
-            <ul>
-              <li data-i18n="cover.cards.0.li.0">ICC(A) / Tous risques : perte/dommage fortuit à la marchandise.</li>
-              <li data-i18n="cover.cards.0.li.1">Périls maritimes : échouement, abordage, avaries communes.</li>
-              <li data-i18n="cover.cards.0.li.2">Vol, casse, mouille, contamination (selon marchandises).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.1.t">Responsabilités transport</h3>
-            <ul>
-              <li data-i18n="cover.cards.1.li.0">RC Transporteur (CMR), RC commissionnaire/forwarder.</li>
-              <li data-i18n="cover.cards.1.li.1">Limites conventionnelles & clauses spécifiques.</li>
-              <li data-i18n="cover.cards.1.li.2">Défense/recours & assistance documentaire.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="cover.cards.2.t">Stock Throughput (STP)</h3>
-            <ul>
-              <li data-i18n="cover.cards.2.li.0">Chaîne continue : production → stockage → transport → livraison.</li>
-              <li data-i18n="cover.cards.2.li.1">Réduction des trous de garantie entre polices.</li>
-              <li data-i18n="cover.cards.2.li.2">Optimisation des primes via agrégation des expositions.</li>
-            </ul>
-          </section>
+        <div class="kpi">
+          <div class="p"><div class="v" data-i18n="over.kpi.0">Modes</div><div>Mer • Air • Route • Rail</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.1">Forme</div><div>Police ouverte annuelle</div></div>
+          <div class="p"><div class="v" data-i18n="over.kpi.2">Déclaration</div><div>Mensuelle / par envoi</div></div>
         </div>
-        <p class="muted mt-1" data-i18n="cover.note">Les clauses, limites et exclusions varient selon la nature de la marchandise, les trajets et les Incoterms.</p>
-      </article>
+      </div>
+    </article>
 
-      <!-- Options -->
-      <article id="options" class="card">
-        <h2 data-i18n="opt.t">3. Options & extensions</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="opt.cards.0.t">Spécifiques marchandises</h3>
-            <ul>
-              <li data-i18n="opt.cards.0.li.0">Température dirigée (rupture de froid, variation).</li>
-              <li data-i18n="opt.cards.0.li.1">Haute valeur (électronique, pharma, luxe) avec mesures renforcées.</li>
-              <li data-i18n="opt.cards.0.li.2">Project cargo & manutentions exceptionnelles (grues, heavy lift).</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.1.t">Périls politiques</h3>
-            <ul>
-              <li data-i18n="opt.cards.1.li.0">Guerre & SRCC (grèves, émeutes, mouvements populaires), zones listées.</li>
-              <li data-i18n="opt.cards.1.li.1">Détournement, piraterie (selon conditions).</li>
-              <li data-i18n="opt.cards.1.li.2">Exclusions sanctions & OFAC à surveiller.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="opt.cards.2.t">Paramétriques</h3>
-            <ul>
-              <li data-i18n="opt.cards.2.li.0">Indices météo (vent, houle, pluie) pour retards/coûts additionnels.</li>
-              <li data-i18n="opt.cards.2.li.1">Déclenchement clair, règlement accéléré.</li>
-              <li data-i18n="opt.cards.2.li.2">Complément utile aux clauses traditionnelles.</li>
-            </ul>
-          </section>
+    <!-- Couvertures -->
+    <article id="cov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-cov">
+      <h2 data-i18n="cov.t">2. Couvertures principales</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="cov.c0.t">Facultés (cargo) — All Risks</h3>
+          <ul>
+            <li data-i18n="cov.c0.li.0">Couvertures type ICC (A/B/C) selon profils & valeurs.</li>
+            <li data-i18n="cov.c0.li.1">Marchandises générales, vrac, conteneur, projets.</li>
+            <li data-i18n="cov.c0.li.2">Extensions : War & SRCC lorsque disponible.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c1.t">RC transporteur / commissionnaire</h3>
+          <ul>
+            <li data-i18n="cov.c1.li.0">Responsabilités légales du transport, stockage & manutention.</li>
+            <li data-i18n="cov.c1.li.1">Limites par événement / véhicule / privilège de limitation.</li>
+            <li data-i18n="cov.c1.li.2">Contrats & conditions standard gérés avec nos équipes.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="cov.c2.t">Stock Throughput (STP)</h3>
+          <ul>
+            <li data-i18n="cov.c2.li.0">Chaîne continue : origine → transit → dépôts → distribution.</li>
+            <li data-i18n="cov.c2.li.1">Pics saisonniers & valeurs cumulées par site.</li>
+            <li data-i18n="cov.c2.li.2">Paramètres température & rupture de chaîne du froid (option).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Options & services -->
+    <article id="opt" class="card tabpanel" role="tabpanel" aria-labelledby="tab-opt">
+      <h2 data-i18n="opt.t">3. Options & services</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="opt.c0.t">Température & denrées sensibles</h3>
+          <ul>
+            <li data-i18n="opt.c0.li.0">Clauses température / enregistreurs & IoT.</li>
+            <li data-i18n="opt.c0.li.1">Deviations froid/chaud & frais de sauvetage.</li>
+            <li data-i18n="opt.c0.li.2">Emballage & procédures HACCP.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c1.t">Paramétriques météo & projet</h3>
+          <ul>
+            <li data-i18n="opt.c1.li.0">Typhon, pluie extrême, vent — déclenchement rapide.</li>
+            <li data-i18n="opt.c1.li.1">Project cargo & heavy-lift : survey & escortes.</li>
+            <li data-i18n="opt.c1.li.2">Plans de route & escales à risques.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="opt.c2.t">Sécurité & prévention</h3>
+          <ul>
+            <li data-i18n="opt.c2.li.0">Itinéraires sécurisés, parkings agréés, double équipage.</li>
+            <li data-i18n="opt.c2.li.1">Scellés & géolocalisation, contrôle des sous-traitants.</li>
+            <li data-i18n="opt.c2.li.2">Audit emballage & arrimage (CTU Code).</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Tarification & mise en place -->
+    <article id="admin" class="card tabpanel" role="tabpanel" aria-labelledby="tab-admin">
+      <h2 data-i18n="admin.t">4. Tarification & mise en place</h2>
+      <div class="grid mt-2">
+        <section class="card">
+          <h3 data-i18n="admin.c0.t">Données requises</h3>
+          <ul>
+            <li data-i18n="admin.c0.li.0">Flux par mode, origines/destinations, valeurs par envoi.</li>
+            <li data-i18n="admin.c0.li.1">Incoterms, emballages, fréquences & pics saisonniers.</li>
+            <li data-i18n="admin.c0.li.2">Sinistralité 3–5 ans & procédures de sûreté.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c1.t">Processus</h3>
+          <ul>
+            <li data-i18n="admin.c1.li.0">Police ouverte annuelle + déclarations (EDI possible).</li>
+            <li data-i18n="admin.c1.li.1">Certificats cargo pour lettres de crédit si besoin.</li>
+            <li data-i18n="admin.c1.li.2">Paramétrage des limites véhicules/navires/sites.</li>
+          </ul>
+        </section>
+        <section class="card">
+          <h3 data-i18n="admin.c2.t">Documents utiles</h3>
+          <ul>
+            <li data-i18n="admin.c2.li.0">B/L, AWB, CMR, listes de colisage & preuves d’emballage.</li>
+            <li data-i18n="admin.c2.li.1">Rapports de température / traceurs.</li>
+            <li data-i18n="admin.c2.li.2">Contrats transport & consignes aux transitaires.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <!-- Sinistres -->
+    <article id="claim" class="card tabpanel" role="tabpanel" aria-labelledby="tab-claim">
+      <h2 data-i18n="claim.t">5. Gestion des sinistres</h2>
+      <details class="mt-1">
+        <summary>🧭 <span data-i18n="claim.sum">Notre approche</span></summary>
+        <div>
+          <ul>
+            <li data-i18n="claim.li.0">Instructions d’urgence : réserves, survey, sauvegarde des preuves.</li>
+            <li data-i18n="claim.li.1">Lettre de protestation au transporteur dans les délais.</li>
+            <li data-i18n="claim.li.2">Process digital & SLA de règlement accéléré.</li>
+          </ul>
         </div>
-      </article>
+      </details>
+    </article>
 
-      <!-- Services -->
-      <article id="services" class="card">
-        <h2 data-i18n="srv.t">4. Services & prévention</h2>
-        <div class="grid mt-2">
-          <section class="card">
-            <h3 data-i18n="srv.cards.0.t">Ingénierie logistique</h3>
-            <ul>
-              <li data-i18n="srv.cards.0.li.0">Conseil emballage/arrimage, scellements, itinéraires.</li>
-              <li data-i18n="srv.cards.0.li.1">Surveys départ/arrivée & recommandations assureurs.</li>
-              <li data-i18n="srv.cards.0.li.2">Veille risques ports & corridors.</li>
-            </ul>
-          </section>
-          <section class="card">
-            <h3 data-i18n="srv.cards.1.t">Pilotage & documentation</h3>
-            <ul>
-              <li data-i18n="srv.cards.1.li.0">Paramétrage déclarations (EDI), certificats d’assurance.</li>
-              <li data-i18n="srv.cards.1.li.1">Support Incoterms & obligations contractuelles.</li>
-              <li data-i18n="srv.cards.1.li.2">Tableaux de bord sinistres & temps de transit.</li>
-            </ul>
-          </section>
-        </div>
-      </article>
+    <!-- FAQ -->
+    <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
+      <h2 data-i18n="faq.t">6. FAQ</h2>
+      <details class="mt-1">
+        <summary>❓ <span data-i18n="faq.q0">Quand le risque passe-t-il avec les Incoterms ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a0">Selon l’Incoterm choisi (EXW, FOB, CIF, DDP…). Nous vérifions vos contrats pour aligner transfert des risques et police.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q1">Les biens d’occasion sont-ils couverts ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a1">Oui sous conditions (état, emballage, test), parfois avec franchises/clauses spécifiques.</p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.q2">Les retards sont-ils indemnisés ?</span></summary>
+        <div><p class="muted" data-i18n="faq.a2">Généralement non en dommage classique ; des solutions paramétriques peuvent compléter sur des seuils météo.</p></div>
+      </details>
+    </article>
 
-      <!-- Sinistres -->
-      <article id="claims" class="card">
-        <h2 data-i18n="clm.t">5. Sinistres — notre démarche</h2>
-        <details class="mt-1">
-          <summary>🧭 <span data-i18n="clm.sum">Du constat à la récupération</span></summary>
-          <div>
-            <ul>
-              <li data-i18n="clm.li.0">Instructions immédiates (lettre de réserve, surveyor, preuves).</li>
-              <li data-i18n="clm.li.1">Gestion avarie commune & contributions.</li>
-              <li data-i18n="clm.li.2">Subrogation/recours contre le responsable.</li>
-            </ul>
-          </div>
-        </details>
-        <div class="center mt-2">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
+    <!-- CTA -->
+    <article class="card center" style="margin-top:14px">
+      <h3 data-i18n="cta.t">Sécurisons votre supply chain</h3>
+      <p class="muted" data-i18n="cta.p">Nous calibrons vos couvertures cargo, RC & STP avec des options adaptées aux routes et marchandises.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="btn" href="../contact.html" data-i18n="cta.quote">Obtenir un devis</a>
+        <a class="btn secondary" href="../contact.html" data-i18n="cta.talk">Parler à un conseiller</a>
+      </div>
+    </article>
 
-      <!-- FAQ -->
-      <article id="faq" class="card">
-        <h2 data-i18n="faq.t">6. FAQ</h2>
-        <details class="mt-1">
-          <summary>❓ <span data-i18n="faq.q0">ICC(A), (B) ou (C), quelle différence ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a0">ICC(A) = tous risques (sauf exclusions), ICC(B)/(C) = périls nommés plus restreints. Le choix dépend de la marchandise et du profil de risque.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q1">Police annuelle ou “par voyage” ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a1">Volumes réguliers → police annuelle déclarative. Expéditions ponctuelles → certificats au voyage.</p></div>
-        </details>
-        <details>
-          <summary>❓ <span data-i18n="faq.q2">Qui doit assurer selon l’Incoterm ?</span></summary>
-          <div><p class="muted" data-i18n="faq.a2">Selon le transfert de risques (ex. CIF/CIP vendeur assure, FOB/EXW acheteur). Nous vous aidons à clarifier responsabilités & documents.</p></div>
-        </details>
-      </article>
+    <!-- Liens produits (précédent/suivant) -->
+    <article class="card center" style="margin-top:10px">
+      <p class="muted">
+        <a class="link" href="./multirisques.html">← <span data-i18n="nav.prev">Multirisques Entreprise</span></a>
+        &nbsp;|&nbsp;
+        <a class="link" href="./flotte.html"><span data-i18n="nav.next">Automobile & Flotte</span> →</a>
+      </p>
+    </article>
 
-      <!-- CTA finale -->
-      <article class="card center">
-        <h3 data-i18n="cta.t">Sécurisons vos flux logistiques</h3>
-        <p class="muted" data-i18n="cta.p">Devis rapide sur vos routes, volumes et marchandises. Montage adapté : garanties, limites, franchises et options.</p>
-        <div class="actions" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-          <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-          <a class="btn secondary" href="contact.html" data-i18n="cta.contact">Parler à un conseiller</a>
-        </div>
-      </article>
-    </div>
   </div>
 </section>
 
@@ -243,17 +283,15 @@
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">
-        Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]
-      </p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
       <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-        <a href="climate.html" data-i18n="nav.climate">Climate Risk</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a>
+        <a href="../solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="../reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="../climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="../esg.html" data-i18n="nav.esg">ESG</a>
       </p>
     </div>
     <div>
@@ -263,157 +301,109 @@
   </div>
 </footer>
 
-<!-- FAQPage SEO -->
+<!-- FAQ SEO -->
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org","@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"ICC(A), (B) ou (C) ?","acceptedAnswer":{"@type":"Answer","text":"ICC(A) tous risques (sauf exclusions). ICC(B)/(C) périls nommés plus restreints. Dépend de la marchandise et du profil de risque."}},
-    {"@type":"Question","name":"Police annuelle ou par voyage ?","acceptedAnswer":{"@type":"Answer","text":"Flux réguliers : police annuelle déclarative. Expéditions ponctuelles : certificats au voyage."}},
-    {"@type":"Question","name":"Qui assure selon l’Incoterm ?","acceptedAnswer":{"@type":"Answer","text":"Selon transfert de risques (CIF/CIP vendeur, FOB/EXW acheteur). Nous aidons à clarifier responsabilités et documents."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Quand le risque passe-t-il avec les Incoterms ?","acceptedAnswer":{"@type":"Answer","text":"Selon l’Incoterm choisi (EXW, FOB, CIF, DDP…). Nous vérifions vos contrats pour aligner transfert des risques et police."}},
+{"@type":"Question","name":"Les biens d’occasion sont-ils couverts ?","acceptedAnswer":{"@type":"Answer","text":"Oui sous conditions (état, emballage, test), parfois avec franchises/clauses spécifiques."}},
+{"@type":"Question","name":"Les retards sont-ils indemnisés ?","acceptedAnswer":{"@type":"Answer","text":"Généralement non en dommage classique ; des solutions paramétriques peuvent compléter sur des seuils météo."}}
+]}
 </script>
 
 <script>
 /* ================== I18N ================== */
-const I18N = {
+const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     title:"Transport (marchandises)",
-    subtitle:"Facultés tous risques, responsabilité des transporteurs, “stock throughput” et projets hors gabarit — couverture de bout en bout de votre chaîne logistique.",
-    badges:["Tous risques facultés","CMR / RC transporteur","Stock Throughput (STP)"],
-    toc:"Sommaire",
-    snav:["Aperçu","Ce que ça couvre","Options","Services & prévention","Sinistres","FAQ"],
-    intro:{
-      t:"1. Pourquoi assurer vos marchandises ?",
-      p:"Les Incoterms et responsabilités varient, mais votre intérêt sur la marchandise demeure. Une police cargo bien structurée sécurise vos flux import/export, transferts internes et stockages intermédiaires.",
-      kpi:[
-        {v:"Modes couverts",l:"Maritime, aérien, routier, ferroviaire, combiné."},
-        {v:"Approche",l:"Police annuelle déclarative ou “voyage par voyage”."},
-        {v:"Valeur",l:"Valeur facture + fret + 10% (usages) — ajustable."}
-      ]
-    },
-    cover:{
-      t:"2. Ce que ça couvre (exemples)",
-      cards:[
-        {t:"Facultés — Tous risques",li:["ICC(A) / Tous risques : perte/dommage fortuit à la marchandise.","Périls maritimes : échouement, abordage, avaries communes.","Vol, casse, mouille, contamination (selon marchandises)."]},
-        {t:"Responsabilités transport",li:["RC Transporteur (CMR), RC commissionnaire/forwarder.","Limites conventionnelles & clauses spécifiques.","Défense/recours & assistance documentaire."]},
-        {t:"Stock Throughput (STP)",li:["Chaîne continue : production → stockage → transport → livraison.","Réduction des trous de garantie entre polices.","Optimisation des primes via agrégation des expositions."]}
-      ],
-      note:"Les clauses, limites et exclusions varient selon la nature de la marchandise, les trajets et les Incoterms."
-    },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Spécifiques marchandises",li:["Température dirigée (rupture de froid, variation).","Haute valeur (électronique, pharma, luxe) avec mesures renforcées.","Project cargo & manutentions exceptionnelles (grues, heavy lift)."]},
-        {t:"Périls politiques",li:["Guerre & SRCC (grèves, émeutes, mouvements populaires), zones listées.","Détournement, piraterie (selon conditions).","Exclusions sanctions & OFAC à surveiller."]},
-        {t:"Paramétriques",li:["Indices météo (vent, houle, pluie) pour retards/coûts additionnels.","Déclenchement clair, règlement accéléré.","Complément utile aux clauses traditionnelles."]}
-      ]
-    },
-    srv:{
-      t:"4. Services & prévention",
-      cards:[
-        {t:"Ingénierie logistique",li:["Conseil emballage/arrimage, scellements, itinéraires.","Surveys départ/arrivée & recommandations assureurs.","Veille risques ports & corridors."]},
-        {t:"Pilotage & documentation",li:["Paramétrage déclarations (EDI), certificats d’assurance.","Support Incoterms & obligations contractuelles.","Tableaux de bord sinistres & temps de transit."]}
-      ]
-    },
-    clm:{t:"5. Sinistres — notre démarche",sum:"Du constat à la récupération",li:["Instructions immédiates (lettre de réserve, surveyor, preuves).","Gestion avarie commune & contributions.","Subrogation/recours contre le responsable."]},
-    faq:{t:"6. FAQ",q0:"ICC(A), (B) ou (C), quelle différence ?",a0:"ICC(A) = tous risques (sauf exclusions), ICC(B)/(C) = périls nommés plus restreints. Le choix dépend de la marchandise et du profil de risque.",q1:"Police annuelle ou “par voyage” ?",a1:"Volumes réguliers → police annuelle déclarative. Expéditions ponctuelles → certificats au voyage.",q2:"Qui doit assurer selon l’Incoterm ?",a2:"Selon le transfert de risques (ex. CIF/CIP vendeur assure, FOB/EXW acheteur). Nous vous aidons à clarifier responsabilités & documents."},
-    cta:{t:"Sécurisons vos flux logistiques",p:"Devis rapide sur vos routes, volumes et marchandises. Montage adapté : garanties, limites, franchises et options.",quote:"Obtenir un devis",contact:"Parler à un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
+    subtitle:"Tous risques facultés • RC transporteur/commissionnaire • Stock Throughput • War & SRCC • Conseils Incoterms • Options température & paramétriques météo.",
+    badges:["Maritime • Aérien • Route • Rail","Flux import/export & domestiques","Traçabilité & prévention emballage"],
+    tabs:{over:"Aperçu",cov:"Couvertures",opt:"Options & services",admin:"Tarification & mise en place",claim:"Sinistres",faq:"FAQ"},
+    over:{t:"1. Aperçu",p:"Nous protégeons vos flux import/export et domestiques sur tous modes (mer, air, route, rail). La police cargo couvre les facultés, la responsabilité des transporteurs/commissionnaires et, si besoin, un Stock Throughput continu entre sites, dépôts et transit.",
+          li:["Analyse des Incoterms pour clarifier le transfert de risques.","Paramétrage des limites par expédition, véhicule, navire ou site.","Conseils emballage, arrimage & traçabilité pour réduire la casse."],
+          kpi:["Modes","Forme","Déclaration"]},
+    cov:{t:"2. Couvertures principales",
+         c0:{t:"Facultés (cargo) — All Risks",li:["Couvertures type ICC (A/B/C) selon profils & valeurs.","Marchandises générales, vrac, conteneur, projets.","Extensions : War & SRCC lorsque disponible."]},
+         c1:{t:"RC transporteur / commissionnaire",li:["Responsabilités légales du transport, stockage & manutention.","Limites par événement / véhicule / privilège de limitation.","Contrats & conditions standard gérés avec nos équipes."]},
+         c2:{t:"Stock Throughput (STP)",li:["Chaîne continue : origine → transit → dépôts → distribution.","Pics saisonniers & valeurs cumulées par site.","Paramètres température & rupture de chaîne du froid (option)."]}},
+    opt:{t:"3. Options & services",
+         c0:{t:"Température & denrées sensibles",li:["Clauses température / enregistreurs & IoT.","Déviations froid/chaud & frais de sauvetage.","Emballage & procédures HACCP."]},
+         c1:{t:"Paramétriques météo & projet",li:["Typhon, pluie extrême, vent — déclenchement rapide.","Project cargo & heavy-lift : survey & escortes.","Plans de route & escales à risques."]},
+         c2:{t:"Sécurité & prévention",li:["Itinéraires sécurisés, parkings agréés, double équipage.","Scellés & géolocalisation, contrôle des sous-traitants.","Audit emballage & arrimage (CTU Code)."]}},
+    admin:{t:"4. Tarification & mise en place",
+         c0:{t:"Données requises",li:["Flux par mode, origines/destinations, valeurs par envoi.","Incoterms, emballages, fréquences & pics saisonniers.","Sinistralité 3–5 ans & procédures de sûreté."]},
+         c1:{t:"Processus",li:["Police ouverte annuelle + déclarations (EDI possible).","Certificats cargo pour lettres de crédit si besoin.","Paramétrage des limites véhicules/navires/sites."]},
+         c2:{t:"Documents utiles",li:["B/L, AWB, CMR, listes de colisage & preuves d’emballage.","Rapports de température / traceurs.","Contrats transport & consignes aux transitaires."]}},
+    claim:{t:"5. Gestion des sinistres",sum:"Notre approche",li:["Instructions d’urgence : réserves, survey, sauvegarde des preuves.","Lettre de protestation au transporteur dans les délais.","Process digital & SLA de règlement accéléré."]},
+    faq:{t:"6. FAQ",q0:"Quand le risque passe-t-il avec les Incoterms ?",a0:"Selon l’Incoterm choisi (EXW, FOB, CIF, DDP…). Nous vérifions vos contrats pour aligner transfert des risques et police.",
+         q1:"Les biens d’occasion sont-ils couverts ?",a1:"Oui sous conditions (état, emballage, test), parfois avec franchises/clauses spécifiques.",
+         q2:"Les retards sont-ils indemnisés ?",a2:"Généralement non en dommage classique ; des solutions paramétriques peuvent compléter sur des seuils météo."},
+    cta:{t:"Sécurisons votre supply chain",p:"Nous calibrons vos couvertures cargo, RC & STP avec des options adaptées aux routes et marchandises.",
+         quote:"Obtenir un devis",talk:"Parler à un conseiller"},
+    nav:{prev:"Multirisques Entreprise",next:"Automobile & Flotte"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
   },
 
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    title:"Cargo / Goods in Transit",
-    subtitle:"All-risks cargo, carrier/forwarder liability, stock throughput and project cargo — end-to-end protection of your logistics chain.",
-    badges:["All-risks cargo","CMR / Carrier’s liability","Stock Throughput (STP)"],
-    toc:"Contents",
-    snav:["Overview","What it covers","Options","Services & prevention","Claims","FAQ"],
-    intro:{
-      t:"1. Why insure your cargo?",
-      p:"Incoterms and liabilities shift, but your insurable interest remains. A well-structured cargo policy secures imports/exports, inter-company moves and interim storage.",
-      kpi:[
-        {v:"Modes covered",l:"Ocean, air, road, rail, intermodal."},
-        {v:"Approach",l:"Annual open policy or shipment-by-shipment certificates."},
-        {v:"Insured value",l:"Invoice value + freight + 10% (customary) — adjustable."}
-      ]
-    },
-    cover:{
-      t:"2. What it covers (examples)",
-      cards:[
-        {t:"All-risks cargo",li:["ICC(A) / All risks (subject to exclusions).","Marine perils: stranding, collision, general average.","Theft, breakage, wet damage, contamination (as applicable)."]},
-        {t:"Transport liabilities",li:["Carrier’s liability (e.g., CMR), freight forwarder liability.","Convention limits and special clauses.","Defence/recovery & documentation support."]},
-        {t:"Stock Throughput (STP)",li:["Continuous chain: production → storage → transit → delivery.","Fewer gaps between separate policies.","Premium efficiency via aggregated exposures."]}
-      ],
-      note:"Clauses, limits and exclusions depend on the goods, routes and Incoterms."
-    },
-    opt:{
-      t:"3. Options & extensions",
-      cards:[
-        {t:"Goods-specific",li:["Temperature-controlled (cold-chain deviation).","High-value (electronics, pharma, luxury) with enhanced security.","Project cargo & heavy lifts."]},
-        {t:"Political perils",li:["War & SRCC (strikes, riots, civil commotion), listed areas.","Hijacking, piracy (subject to terms).","Sanctions/OFAC compliance watchouts."]},
-        {t:"Parametric",li:["Weather indices (wind, swell, rain) for delays/extra costs.","Simple triggers, faster payouts.","Complements traditional clauses."]}
-      ]
-    },
-    srv:{
-      t:"4. Services & prevention",
-      cards:[
-        {t:"Logistics engineering",li:["Packing/lashing advice, seals, routing.","Pre-/post-shipment surveys, insurer recommendations.","Port/corridor risk monitoring."]},
-        {t:"Stewardship & documentation",li:["Declaration setup (EDI), insurance certificates.","Incoterms guidance & contractual duties.","Loss runs & transit-time dashboards."]}
-      ]
-    },
-    clm:{t:"5. Claims — our approach",sum:"From notice to recovery",li:["Immediate instructions (letter of reserve, surveyor, evidence).","General average handling & contributions.","Subrogation/recovery against liable parties."]},
-    faq:{t:"6. FAQ",q0:"ICC(A), (B) or (C) — differences?",a0:"ICC(A) is all risks (subject to exclusions). ICC(B)/(C) are named perils with narrower scope. Choice depends on goods and risk profile.",q1:"Annual policy or per shipment?",a1:"Regular flows → annual open policy. Occasional shipments → single certificates.",q2:"Who insures under the Incoterm?",a2:"Depends on risk transfer (e.g., CIF/CIP seller, FOB/EXW buyer). We help clarify responsibilities & documents."},
-    cta:{t:"Let’s secure your logistics flows",p:"Quick quote based on routes, volumes and goods. Tailored structure: covers, limits, deductibles and options.",quote:"Get a quote",contact:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"}
+    title:"Cargo / Transport",
+    subtitle:"All-risks cargo • Carrier/Freight forwarder liability • Stock Throughput • War & SRCC • Incoterms advisory • Temperature & weather parametrics options.",
+    badges:["Sea • Air • Road • Rail","Import/export & domestic flows","Traceability & packaging prevention"],
+    tabs:{over:"Overview",cov:"Covers",opt:"Options & services",admin:"Pricing & rollout",claim:"Claims",faq:"FAQ"},
+    over:{t:"1. Overview",p:"We protect your import/export and domestic flows across all modes. Cargo insurance covers the goods (faculties), carrier/forwarder liability and, where needed, a continuous Stock Throughput from origin to storage and distribution.",
+          li:["Incoterms review to clarify risk transfer.","Limit setup per shipment, vehicle, vessel or site.","Packaging, lashing & traceability advice to cut breakage."],
+          kpi:["Modes","Form","Declaration"]},
+    cov:{t:"2. Core covers",
+         c0:{t:"Cargo (faculties) — All Risks",li:["ICC (A/B/C)-type covers adapted to profile & values.","General goods, bulk, containerised, project cargo.","Extensions: War & SRCC where available."]},
+         c1:{t:"Carrier / Freight Forwarder Liability",li:["Legal liabilities for transport, storage & handling.","Event/vehicle limits & limitation privileges.","Contracts & standard terms managed with our team."]},
+         c2:{t:"Stock Throughput (STP)",li:["Continuous chain: origin → transit → warehouses → distribution.","Seasonal peaks & accumulated values per site.","Temperature parameters & cold-chain break (optional)."]}},
+    opt:{t:"3. Options & services",
+         c0:{t:"Temperature & perishables",li:["Temperature clauses / data loggers & IoT.","Hot/cold deviations & salvage costs.","Packaging & HACCP procedures."]},
+         c1:{t:"Weather parametrics & project",li:["Typhoon, heavy rain, wind — fast trigger.","Project/heavy-lift cargo: surveys & escorts.","Route plans & high-risk stops."]},
+         c2:{t:"Security & prevention",li:["Secure routes, approved parking, dual crew.","Seals & geofencing, subcontractor vetting.","Packaging & lashing audit (CTU Code)."]}},
+    admin:{t:"4. Pricing & rollout",
+         c0:{t:"Required data",li:["Flows by mode, O/D pairs, shipment values.","Incoterms, packaging, frequencies & seasonal peaks.","3–5 year loss history & security procedures."]},
+         c1:{t:"Process",li:["Annual open policy + declarations (EDI possible).","Cargo certificates for L/C where needed.","Vehicle/vessel/site limit configuration."]},
+         c2:{t:"Helpful docs",li:["B/L, AWB, CMR, packing lists & packing evidence.","Temperature reports / trackers.","Transport contracts & forwarder instructions."]}},
+    claim:{t:"5. Claims handling",sum:"Our approach",li:["Emergency instructions: reservations, survey, preserve evidence.","Protest letter to carrier within time bars.","Digital process & accelerated settlement SLA."]},
+    faq:{t:"6. FAQ",q0:"When does risk transfer under Incoterms?",a0:"Depends on the chosen term (EXW, FOB, CIF, DDP…). We align contracts and policy accordingly.",
+         q1:"Are used goods covered?",a1:"Yes under conditions (state, packing, testing) and sometimes specific deductibles/clauses.",
+         q2:"Are delays covered?",a2:"Typically not under traditional damage covers; parametric add-ons can complement."},
+    cta:{t:"Secure your supply chain",p:"We calibrate cargo, liability & STP covers with options tailored to routes and goods.",
+         quote:"Get a quote",talk:"Talk to an advisor"},
+    nav:{prev:"Commercial Property (All Risks)",next:"Motor & Fleet"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
   },
 
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"نقل البضائع",
-    subtitle:"تأمين جميع أخطار البضائع، مسؤولية الناقل/الملخّص، Stock Throughput ومشاريع الرفع الثقيل — حماية شاملة لسلسلة الإمداد.",
-    badges:["جميع أخطار البضائع","مسؤولية الناقل (CMR)","Stock Throughput"],
-    toc:"المحتوى",
-    snav:["لمحة","نطاق التغطية","الخيارات","الخدمات والوقاية","المطالبات","الأسئلة الشائعة"],
-    intro:{
-      t:"١. لماذا التأمين على البضائع؟",
-      p:"تتبدّل المسؤوليات حسب Incoterms لكن مصلحتك التأمينية قائمة. وثيقة شحن مُهيكلة تؤمّن الاستيراد/التصدير والنقل الداخلي والتخزين الوسيط.",
-      kpi:[
-        {v:"وسائط النقل",l:"بحري، جوي، بري، سكة حديد، متعدد الوسائط."},
-        {v:"النهج",l:"وثيقة سنوية مفتوحة أو شهادات لكل شحنة."},
-        {v:"قيمة التأمين",l:"قيمة الفاتورة + الشحن + 10٪ (متعارف) — قابلة للتعديل."}
-      ]
-    },
-    cover:{
-      t:"٢. ما الذي تغطيه (أمثلة)",
-      cards:[
-        {t:"جميع أخطار البضائع",li:["ICC(A) جميع الأخطار (مع الاستثناءات).","مخاطر بحرية: جنوح، تصادم، عوارية عامة.","سرقة، كسر، بلل، تلوث (بحسب البضاعة)."]},
-        {t:"مسؤوليات النقل",li:["مسؤولية الناقل (مثل CMR) ومسؤولية المخلّص/الوسيـط.","حدود اتفاقية وبنود خاصة.","دعم قانوني واستردادات ومستندات."]},
-        {t:"Stock Throughput",li:["سلسلة متصلة: إنتاج → تخزين → نقل → تسليم.","تقليل الثغرات بين الوثائق المنفصلة.","كفاءة في الأقساط عبر تجميع التعرضات."]}
-      ],
-      note:"تختلف البنود والحدود والاستثناءات حسب نوع البضاعة وخطوط السير وIncoterms."
-    },
-    opt:{
-      t:"٣. خيارات وامتدادات",
-      cards:[
-        {t:"خاصة بالبضائع",li:["سلسلة التبريد (انحراف الحرارة).","قيم عالية (إلكترونيات، أدوية، فخامة) بإجراءات أمنية إضافية.","مشاريع ورفع ثقيل."]},
-        {t:"مخاطر سياسية",li:["حرب واضطرابات مدنية (SRCC) ومناطق مدرجة.","خطف/قرصنة (وفق الشروط).","الامتثال للعقوبات واللوائح."]},
-        {t:"بارامترية",li:["مؤشرات الطقس (رياح، أمواج، أمطار) للتأخيرات/التكاليف الإضافية.","مشغلات واضحة وتعويض أسرع.","متمّمة للبنود التقليدية."]}
-      ]
-    },
-    srv:{
-      t:"٤. الخدمات والوقاية",
-      cards:[
-        {t:"هندسة لوجستية",li:["نصائح تغليف وربط وأختام ومسارات.","معاينات قبل/بعد الشحن وتوصيات شركات التأمين.","رصد مخاطر الموانئ والممرات."]},
-        {t:"إدارة ومستندات",li:["إعداد التصاريح (EDI) وشهادات التأمين.","إرشاد Incoterms والالتزامات التعاقدية.","سجلات المطالبات ولوحات أزمنة العبور."]}
-      ]
-    },
-    clm:{t:"٥. المطالبات — نهجنا",sum:"من الإخطار إلى الاسترداد",li:["تعليمات فورية (خطاب تحفظ، خبير معاينة، أدلة).","إدارة العوارية العامة والمساهمات.","الرجوع على المتسبب بالضرر."]},
-    faq:{t:"٦. أسئلة شائعة",q0:"فروق ICC(A)/(B)/(C)؟",a0:"ICC(A) جميع الأخطار (مع الاستثناءات). ICC(B)/(C) مخاطر مسماة أضيق. الاختيار حسب البضاعة والمخاطر.",q1:"وثيقة سنوية أم لكل شحنة؟",a1:"تدفّقات منتظمة → وثيقة سنوية مفتوحة. شحنات متفرقة → شهادة لكل شحنة.",q2:"من يؤمّن حسب Incoterm؟",a2:"حسب انتقال الخطر (CIF/CIP البائع، FOB/EXW المشتري). نساعد في توضيح المسؤوليات والمستندات."},
-    cta:{t:"لنؤمّن تدفّقاتكم اللوجستية",p:"عرض سريع وفق المسارات والأحجام وأنواع البضائع. هيكلة مناسبة: تغطيات وحدود وخصومات وخيارات.",quote:"اطلب عرضاً",contact:"تحدث إلى مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"}
+    title:"تأمين نقل البضائع",
+    subtitle:"جميع أخطار البضائع • مسؤولية الناقل/المخلص • تغطية المخزون عبر السلسلة (STP) • مخاطر حرب واضطرابات • استشارات الإنكوترمز • خيارات الحرارة والطقس البارامتري.",
+    badges:["بحر • جو • بر • سكة","تدفقات استيراد/تصدير ومحلية","تتبع ووقاية في التغليف"],
+    tabs:{over:"لمحة",cov:"التغطيات",opt:"الخيارات والخدمات",admin:"التسعير والتنفيذ",claim:"المطالبات",faq:"الأسئلة"},
+    over:{t:"١. لمحة",p:"نؤمّن تدفقاتكم محلياً ودولياً عبر جميع الوسائط. تشمل الوثيقة بضائعكم، ومسؤولية الناقل/الوسيط، ويمكن توسيعها إلى تغطية سلسلة المخزون STP من المنشأ حتى المخازن والتوزيع.",
+          li:["مراجعة الإنكوترمز لتحديد انتقال الخطر.","تحديد حدود لكل شحنة/مركبة/سفينة/موقع.","نصائح التغليف والربط والتتبع للحد من التلف."],
+          kpi:["الوسائط","الصيغة","التصريح"]},
+    cov:{t:"٢. التغطيات الأساسية",
+         c0:{t:"البضائع — جميع الأخطار",li:["تغطيات على نمط ICC (A/B/C) حسب الملف والقيم.","بضائع عامة وسائبة وحاويات ومشاريع.","امتدادات حرب واضطرابات عند التوفر."]},
+         c1:{t:"مسؤولية الناقل/الوسيط",li:["المسؤوليات القانونية للنقل والتخزين والمناولة.","حدود لكل حادث/مركبة وحقوق تحديد المسؤولية.","إدارة العقود والشروط القياسية مع فريقنا."]},
+         c2:{t:"تغطية المخزون عبر السلسلة (STP)",li:["سلسلة مستمرة: منشأ → عبور → مخازن → توزيع.","ذروات موسمية وقيم مجمعة لكل موقع.","معلمات الحرارة وكسر سلسلة التبريد (اختيارية)."]}},
+    opt:{t:"٣. الخيارات والخدمات",
+         c0:{t:"الحرارة والمواد الحساسة",li:["بنود حرارة ومسجلات بيانات وإنترنت الأشياء.","انحرافات باردة/حارة وتكاليف إنقاذ.","تغليف وإجراءات HACCP."]},
+         c1:{t:"الطقس البارامتري والمشاريع",li:["إعصار/أمطار غزيرة/رياح — تفعيل سريع.","شحنات المشاريع والرفع الثقيل: خبرة ومرافقة.","خطط مسارات ومحطات عالية المخاطر."]},
+         c2:{t:"الأمن والوقاية",li:["مسارات آمنة ومواقف معتمدة وطاقمان للسائقين.","أختام وتتبع جغرافي وتدقيق المتعاقدين الفرعيين.","تدقيق التغليف والربط (مدونة CTU)."]}},
+    admin:{t:"٤. التسعير والتنفيذ",
+         c0:{t:"البيانات المطلوبة",li:["التدفقات حسب الوسيط ومناشئ/وجهات وقيم الشحنات.","الإنكوترمز والتغليف والتواتر والذروات الموسمية.","سجل خسائر 3–5 سنوات وإجراءات الأمن."]},
+         c1:{t:"العملية",li:["وثيقة سنوية مفتوحة + تصاريح (إمكانية EDI).","شهادات بضائع للاعتمادات المستندية عند الحاجة.","تهيئة حدود المركبات/السفن/المواقع."]},
+         c2:{t:"وثائق مساعدة",li:["بوليصة شحن بحري B/L، جوي AWB، بري CMR، قوائم تعبئة وأدلة تغليف.","تقارير حرارة/موقع.","عقود النقل وتعليمات للوكلاء."]}},
+    claim:{t:"٥. إدارة المطالبات",sum:"نهجنا",li:["تعليمات عاجلة: تحفظات وخبير وحفظ الأدلة.","خطاب اعتراض للناقل ضمن المدد القانونية.","عملية رقمية ومدة تسوية معجلة."]},
+    faq:{t:"٦. الأسئلة الشائعة",q0:"متى ينتقل الخطر وفق الإنكوترمز؟",a0:"بحسب الشرط المختار (EXW/FOB/CIF/DDP...). نطابق العقود مع الوثيقة.",
+         q1:"هل تُغطّى السلع المستعملة؟",a1:"نعم بشروط (الحالة، التغليف، الاختبار) وقد تُطبق تحملات/بنود خاصة.",
+         q2:"هل يشمل التأخير؟",a2:"عادة لا ضمن أضرار الممتلكات؛ يمكن إضافة حلول بارامترية."},
+    cta:{t:"أمّن سلسلة التوريد",p:"نضبط تغطيات البضائع والمسؤولية وSTP مع خيارات ملائمة للمسارات والبضائع.",
+         quote:"اطلب عرضاً",talk:"تحدث إلى مستشار"},
+    nav:{prev:"متعدد المخاطر للشركات",next:"السيارات والأساطيل"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
   }
 };
 
@@ -425,7 +415,7 @@ const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
 
-/* ================== Render ================== */
+/* ================== Render & Tabs ================== */
 function applyTexts(){
   document.documentElement.lang=lang;
   document.body.dir=(lang==='ar'?'rtl':'ltr');
@@ -434,49 +424,38 @@ function applyTexts(){
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
 }
-
-/* Sticky TOC highlight */
-function highlightTOC(){
-  const ids=['intro','cover','options','services','claims','faq'];
-  let active='intro';
-  ids.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el) return;
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight*0.35) active=id;
-  });
-  $$('.aside .toc').forEach(a=>{
-    a.classList.toggle('active', a.getAttribute('href')==='#'+active);
-  });
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const act = btn.dataset.tab===id;
+      btn.classList.toggle('active',act);
+      btn.setAttribute('aria-selected', act?'true':'false');
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=>show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#over').slice(1);
+    const known=['over','cov','opt','admin','claim','faq'];
+    show( known.includes(id)?id:'over', false );
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 }
-
-/* ================== UI ================== */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // language switch
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-
-  // mobile chips jump
-  $$('.chip').forEach(ch=> ch.addEventListener('click', ()=>{
-    document.getElementById(ch.dataset.jump)?.scrollIntoView({behavior:'smooth',block:'start'});
-  }));
-
-  // reveal + toc highlight
-  const rev=$$('.reveal');
-  const onScroll=()=>{
-    const tr=window.innerHeight*0.85;
-    rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); });
-    highlightTOC();
-  };
+  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
+  bindTabs();
 }
 
-/* init */
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
