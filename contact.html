@@ -382,12 +382,32 @@ function initUI(){
     BTN.setAttribute('aria-busy','true');
 
     try{
-      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, F);
+      const res = await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, F);
+      console.log('EmailJS success:', res);
       $('#ok').style.display='block';
       F.reset();
       populateProducts(); // repop après reset pour garder options
     }catch(err){
-      alert((lang==='fr'? 'Erreur lors de l\'envoi : ' : (lang==='ar'? 'خطأ في الإرسال: ' : 'Send error: ')) + JSON.stringify(err));
+      // Affichage enrichi de l'erreur
+      console.error('EmailJS error:', err);
+      const msg = (lang==='fr'? 'Erreur lors de l\'envoi' : (lang==='ar'? 'خطأ في الإرسال' : 'Send error'));
+      const details = err?.text || err?.message || (typeof err === 'string' ? err : JSON.stringify(err));
+      alert(msg + ' : ' + (details || '— aucune information renvoyée —'));
+      // Fallback optionnel : proposer un lien mailto prérempli
+      const name = encodeURIComponent($('#name').value.trim());
+      const email= encodeURIComponent($('#email').value.trim());
+      const phone= encodeURIComponent($('#phone').value.trim());
+      const seg = $('#segment').value;
+      const product = encodeURIComponent($('#product').value);
+      const topic = encodeURIComponent($('#topic').value.trim());
+      const message = encodeURIComponent($('#message').value.trim());
+      const subject = encodeURIComponent('Demande devis / info — ' + (seg==='corp'?'Entreprise : ':'Particulier : ') + decodeURIComponent(product));
+      const body = encodeURIComponent(['Nom : '+decodeURIComponent(name),'Email: '+decodeURIComponent(email),'Téléphone : '+decodeURIComponent(phone),'Vous êtes : '+(seg==='corp'?'Entreprise':'Particulier'),'Produit : '+decodeURIComponent(product),'Objet : '+decodeURIComponent(topic||'—'),'','Message :',decodeURIComponent(message||'—')].join('
+'));
+      const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
+      if(confirm((lang==='fr'?'Souhaitez-vous utiliser votre application mail à la place ?':'Use your mail app instead?'))){
+        window.location.href = mailto;
+      }
     }finally{
       BTN.removeAttribute('aria-busy');
     }
