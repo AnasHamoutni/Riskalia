@@ -43,6 +43,9 @@
     .map-embed{border:1px solid #e2edf2;border-radius:16px;overflow:hidden}
     .map-embed iframe{width:100%;height:280px;border:0;display:block}
     @media(min-width:980px){ .map-embed iframe{height:320px} }
+
+    /* Bouton en cours d'envoi */
+    .btn[aria-busy="true"]{opacity:.7;pointer-events:none}
   </style>
 </head>
 <body>
@@ -62,7 +65,7 @@
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
       </ul>
-    </nav>    
+    </nav>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
@@ -173,7 +176,7 @@
           <div class="row" style="align-items:center;margin-top:6px">
             <div class="field">
               <label style="display:flex;gap:8px;align-items:center">
-                <input type="checkbox" id="consent" required/>
+                <input type="checkbox" id="consent" name="consent" value="yes" required/>
                 <span class="hint" data-i18n="f.consent">J’accepte d’être recontacté(e) par Riskalia concernant ma demande.</span>
               </label>
               <div class="error" id="e-consent" data-i18n="f.err">Ce champ est requis.</div>
@@ -183,7 +186,7 @@
             </div>
           </div>
 
-          <div class="ok" id="ok" data-i18n="form.ok">Merci ! Votre application mail va s’ouvrir pour finaliser l’envoi.</div>
+          <div class="ok" id="ok" style="display:none" data-i18n="form.ok">Merci ! Votre message a été envoyé.</div>
         </form>
       </article>
     </div>
@@ -218,8 +221,19 @@
   </div>
 </footer>
 
+<!-- ================== EmailJS SDK ================== -->
+<script src="https://cdn.emailjs.com/sdk/3.11.0/email.min.js"></script>
 <script>
-/* ================== i18n ================== */
+  // ⚙️ Renseigne tes identifiants EmailJS ici
+  const EMAILJS_PUBLIC_KEY = 'zNiKD3DUIXJB_LXeO';
+  const EMAILJS_SERVICE_ID = 'service_z6rik9r';
+  const EMAILJS_TEMPLATE_ID = 'template_lmbrfrb';
+
+  (function(){ emailjs.init(EMAILJS_PUBLIC_KEY); })();
+</script>
+
+<script>
+/*********************** i18n ************************/
 const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
@@ -227,7 +241,7 @@ const I18N={
     lead:"Une question ? Un besoin de couverture ? Remplissez le formulaire — un conseiller vous répond sous 24–48 h.",
     badges:["Devis sur mesure","Gestion des sinistres","Transparence des honoraires"],
     box:{contact:{k:"Contact",t:"Nos coordonnées",phone:{t:"Téléphone"},addr:{t:"Adresse",v:"[Adresse complète], Maroc"},hours:"Lun–Ven, 9:00–18:00 (UTC+1)"}},
-    form:{k:"Formulaire",t:"Demande d’information / Devis",hint:"Les champs marqués <span class='req'>*</span> sont obligatoires.",submit:"Envoyer",ok:"Merci ! Votre application mail va s’ouvrir pour finaliser l’envoi."},
+    form:{k:"Formulaire",t:"Demande d’information / Devis",hint:"Les champs marqués <span class='req'>*</span> sont obligatoires.",submit:"Envoyer",ok:"Merci ! Votre message a été envoyé."},
     f:{
       err:"Ce champ est requis.",
       name:{l:"Nom & Prénom"},
@@ -251,7 +265,7 @@ const I18N={
     lead:"Got a question or need coverage? Fill in the form — we reply within 24–48h.",
     badges:["Tailored quotes","Claims handling","Transparent fees"],
     box:{contact:{k:"Contact",t:"Our details",phone:{t:"Phone"},addr:{t:"Address",v:"[Full address], Morocco"},hours:"Mon–Fri, 9:00–18:00 (UTC+1)"}},
-    form:{k:"Form",t:"Information / Quote request",hint:"Fields marked <span class='req'>*</span> are required.",submit:"Send",ok:"Thanks! Your email app will open to finalise the send."},
+    form:{k:"Form",t:"Information / Quote request",hint:"Fields marked <span class='req'>*</span> are required.",submit:"Send",ok:"Thanks! Your message has been sent."},
     f:{
       err:"This field is required.",
       name:{l:"Full name"},
@@ -275,7 +289,7 @@ const I18N={
     lead:"لديك سؤال أو تحتاج تغطية؟ املأ النموذج — سنرد خلال 24–48 ساعة.",
     badges:["عروض مخصصة","إدارة المطالبات","شفافية الأتعاب"],
     box:{contact:{k:"الاتصال",t:"بياناتنا",phone:{t:"الهاتف"},addr:{t:"العنوان",v:"[العنوان الكامل]، المغرب"},hours:"الإثنين–الجمعة، 18:00–9:00 (+1 UTC)"}},
-    form:{k:"النموذج",t:"طلب معلومات / عرض سعر",hint:"الحقول المشار إليها بـ <span class='req'>*</span> إلزامية.",submit:"إرسال",ok:"شكراً! سيفتح تطبيق البريد لإتمام الإرسال."},
+    form:{k:"النموذج",t:"طلب معلومات / عرض سعر",hint:"الحقول المشار إليها بـ <span class='req'>*</span> إلزامية.",submit:"إرسال",ok:"تم إرسال رسالتك بنجاح."},
     f:{
       err:"هذا الحقل مطلوب.",
       name:{l:"الاسم الكامل"},
@@ -295,7 +309,7 @@ const I18N={
   }
 };
 
-/* ================== Helpers ================== */
+/*********************** Helpers ************************/
 let lang = localStorage.getItem('riskalia_lang') || 'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
 const $ = (s,root=document)=>root.querySelector(s);
@@ -303,7 +317,7 @@ const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
 function t(path){const nodes=path.split('.');let cur=I18N[lang];for(const n of nodes){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
 function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('contact.html'))); }
 
-/* ================== UI & i18n ================== */
+/*********************** UI & i18n ************************/
 function populateProducts(){
   const seg=$('#segment').value;
   const list = seg==='corp' ? t('prods.corp') : t('prods.retail');
@@ -346,85 +360,42 @@ function initUI(){
   // segment → produits
   $('#segment').addEventListener('change', populateProducts);
 
-  // validation + mailto
+  // validation + EmailJS (sans mailto)
   const F=$('#contactForm');
-  F.addEventListener('submit', (e)=>{
+  const BTN=$('#submitBtn');
+  F.addEventListener('submit', async (e)=>{
     e.preventDefault();
     // simple validation
-    let ok=true;
+    let allOk=true;
     const need = [['#name','#e-name'],['#email','#e-email'],['#product','#e-product'],['#consent','#e-consent']];
     need.forEach(([f,err])=>{
       const el=$(f), er=$(err);
       const valid = (el.type==='checkbox') ? el.checked : !!el.value.trim();
       er.style.display = valid?'none':'block';
-      if(!valid) ok=false;
+      if(!valid) allOk=false;
     });
     // honeypot
-    if (F.company && F.company.value) ok=false;
+    if (F.company && F.company.value) allOk=false;
+    if(!allOk) return;
 
-    if(!ok) return;
+    // état UI
+    BTN.setAttribute('aria-busy','true');
 
-    // build mailto
-    const seg = $('#segment').value;
-    const name = encodeURIComponent($('#name').value.trim());
-    const email= encodeURIComponent($('#email').value.trim());
-    const phone= encodeURIComponent($('#phone').value.trim());
-    const product = encodeURIComponent($('#product').value);
-    const topic = encodeURIComponent($('#topic').value.trim());
-    const message = encodeURIComponent($('#message').value.trim());
-
-    const subject = encodeURIComponent(
-      (lang==='en'?'Quote / Info — ':'Demande devis / info — ')
-      + (seg==='corp' ? (lang==='en'?'Business: ':'Entreprise : ') : (lang==='en'?'Individual: ':'Particulier : '))
-      + decodeURIComponent(product)
-    );
-
-    const bodyLines = [
-      (lang==='en'?'Name: ':'Nom : ')+decodeURIComponent(name),
-      'Email: '+decodeURIComponent(email),
-      (lang==='en'?'Phone: ':'Téléphone : ')+decodeURIComponent(phone),
-      (lang==='en'?'Segment: ':'Vous êtes : ')+(seg==='corp'?(lang==='en'?'Business':'Entreprise'):(lang==='en'?'Individual':'Particulier')),
-      (lang==='en'?'Product: ':'Produit : ')+decodeURIComponent(product),
-      (lang==='en'?'Subject: ':'Objet : ')+decodeURIComponent(topic||'—'),
-      '',
-      (lang==='en'?'Message:':'Message :'),
-      decodeURIComponent(message||'—'),
-      '',
-      '—',
-      'Riskalia website'
-    ];
-
-    const body = encodeURIComponent(bodyLines.join('\n'));
-    const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
-
-    // confirmation visuelle + ouverture
-    document.getElementById('ok').style.display='block';
-    window.location.href = mailto;
+    try{
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, F);
+      $('#ok').style.display='block';
+      F.reset();
+      populateProducts(); // repop après reset pour garder options
+    }catch(err){
+      alert((lang==='fr'? 'Erreur lors de l\'envoi : ' : (lang==='ar'? 'خطأ في الإرسال: ' : 'Send error: ')) + JSON.stringify(err));
+    }finally{
+      BTN.removeAttribute('aria-busy');
+    }
   });
 }
-    document.getElementById('contactForm').addEventListener('ok', function(event) {
-        event.preventDefault(); // Prevent default form submission
 
-        emailjs.sendForm('service_z6rik9r', 'template_lmbrfrb', this)
-            .then(function() {
-                alert('Email sent successfully!');
-            }, function(error) {
-                alert('Failed to send email: ' + JSON.stringify(error));
-            });
-    });
 /* init */
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
-      <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("zNiKD3DUIXJB_LXeO"); // Replace with your Public Key
-        })();
+window.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
-
-
-
-
