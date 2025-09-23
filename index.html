@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Courtage · Réassurance · Risques Climatiques · Politique ESG</title>
+  <title>Riskalia — Courtage Assurance· Réassurance · Risques Climatiques · Politique ESG</title>
   <meta name="description" content="Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,63 @@ nav a:hover::after,nav a.active::after{width:100%}
   nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
   .menu-toggle{display:block}
 }
+/* === Dropdown (desktop) === */
+#menu li.dropdown { position: relative; }
+#menu li.dropdown > a.has-caret { padding-right: 18px; }
+#menu li .caret { display:inline-block; transition: transform .2s; transform-origin: 50% 40%; }
+
+/* boîte du sous-menu */
+#menu li .submenu{
+  display:none; position:absolute; top:calc(100% + 10px);
+  left:0; background:#fff; border:1px solid #e6eef0; border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  list-style:none; margin:0; padding:8px; min-width:220px; z-index:1000;
+}
+
+/* liens du sous-menu */
+#menu li .submenu li a{
+  display:block; padding:10px 12px; border-radius:8px;
+  color:#0b4e5b; text-decoration:none; font-weight:700;
+}
+#menu li .submenu li a:hover{ background:#eef6f8; }
+
+/* affichage au survol et au focus clavier */
+/* show submenu when li or submenu hovered */
+#menu li.dropdown:hover > .submenu,
+#menu li.dropdown:focus-within > .submenu,
+#menu li.dropdown .submenu:hover {
+  display: block;
+}
+/* === Dropdown open/close logic === */
+#menu li .submenu { 
+  display: none; 
+}
+#menu li.open > .submenu { 
+  display: block; 
+}
+#menu li.dropdown:hover > a .caret,
+#menu li.dropdown:focus-within > a .caret{ transform: rotate(180deg); }
+
+/* === RTL (si tu actives body[dir="rtl"]) === */
+body[dir="rtl"] #menu li .submenu{ left:auto; right:0; }
+
+/* === Mobile (<=900px) : menu vertical + accordéon === */
+@media (max-width:900px){
+  /* Le UL principal est déjà transformé en panneau latéral via ton CSS */
+  #menu li.dropdown { width:100%; }
+  #menu li.dropdown > a.has-caret{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  #menu li .submenu{
+    position:static; display:none; box-shadow:none; border:0; padding:6px 0;
+    background:transparent; margin-top:4px; min-width:auto;
+  }
+  #menu li .submenu li a{ padding:8px 6px 8px 12px; }
+  /* état ouvert en mobile (classe .open ajoutée via JS) */
+  #menu li.dropdown.open > .submenu{ display:block; }
+  #menu li.dropdown.open > a .caret{ transform: rotate(180deg); }
+  body[dir="rtl"] #menu li .submenu li a{ padding:8px 12px 8px 6px; }
+}
 
 /* hero */
 .hero{min-height:20vh;  max-height: 380px;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center;padding-top:24px;}
@@ -92,12 +149,24 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+
+        <!-- Solutions + sous-menu -->
+        <li class="dropdown">
+          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
+            Solutions <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul class="submenu" aria-label="Sous-menu Solutions">
+            <li><a href="assurance.html" data-i18n="nav.ins">Assurance</a></li>
+            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+          </ul>
+        </li>
+
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="risk-management.html" data-i18n="nav.risk">Services de Conseil</a></li>
+        <li><a href="risk-management.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
+
     </nav>
     <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">Français</button>
@@ -112,7 +181,7 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
   <div class="container">
     <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
     <p class="slogan" data-i18n="hero.slogan">Nous transformons vos aléas opérationnels en croissance durable.</h2>
-    <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques.</p>
+    <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques</p>
     <div class="actions">
       <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
       <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
@@ -312,8 +381,8 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
 /* ===== Données i18n ===== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
-    hero:{title:"L’expertise qui rassure",slogan:"Nous transformons vos aléas opérationnels en croissance durable.",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en Gestion des Risques.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
+    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",risk:"Gestion des risques",esg:"ESG",contact:"Contact"},
+    hero:{title:"L’expertise qui rassure",slogan:"Nous transformons vos aléas opérationnels en croissance durable.",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en Gestion des Risques",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
     cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
     offers:{kicker:"Offres",title:"Des solutions claires pour tous",sub:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.",link:"Voir toutes les solutions →",corp:{title:"Entreprises"},retail:{title:"Particuliers"}},
     re:{kicker:"Réassurance",title:"Traités & facultatives, de bout en bout",cards:[{t:"Traités QS/Surplus/XoL/Stop-Loss",p:"Structuration, modélisation PML/AAL et placements multicouches."},{t:"Facultatives ciblées",p:"Property, RC, énergie, construction, lignes financières, transport."},{t:"Sinistres & arbitrages 24/7",p:"Quantum review, coordination experts, cash-calls & reporting."}],cta:"Explorer la réassurance"},
@@ -339,8 +408,8 @@ const I18N={
     retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    hero:{title:"Expertise you can rely on",slogan: "Turning operational risk into sustainable growth",sub:"All-lines broking · Reinsurance · Climate Risk · Risk Management Consulting Services.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
+    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",risk:"Consulting Services",esg:"ESG",contact:"Contact"},
+    hero:{title:"Expertise you can rely on",slogan: "Turning operational risk into sustainable growth",sub:"All-lines broking · Reinsurance · Climate Risk · Risk Management Consulting Services",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
     cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
     offers:{kicker:"Offer",title:"Clear solutions for everyone",sub:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>, aligned with market best practices.",link:"See all solutions →",corp:{title:"Businesses"},retail:{title:"Individuals"}},
     re:{kicker:"Reinsurance",title:"Treaties & facultative, end-to-end",cards:[{t:"QS/Surplus/XoL/Stop-Loss treaties",p:"Structuring, PML/AAL modelling and layered placements."},{t:"Targeted facultative",p:"Property, Liability, Energy, Construction, Financial lines, Marine."},{t:"Claims & arbitration 24/7",p:"Quantum review, adjusters coordination, cash-calls & reporting."}],cta:"Explore reinsurance"},
@@ -366,8 +435,8 @@ const I18N={
     retail:["Health","Personal Accident","Home (Property)","Life Insurance & Savings","Schengen Travel","Retirement"]
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
-    hero:{title:"خبرة تعطيك الطمأنينة",slogan: "نحو نمو مستدام بإدارة المخاطر",sub:"وساطة شاملة · إعادة التأمين · خدمات استشارية في إدارة المخاطر.",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"التأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",risk:"خدمات استشارية",esg:"الاستدامة",contact:"اتصل بنا"},
+    hero:{title:"خبرة تعطيك الطمأنينة",slogan: "نحو نمو مستدام بإدارة المخاطر",sub:"وساطة شاملة · إعادة التأمين · خدمات استشارية في إدارة المخاطر",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
     cta:{quote:"احصل على عرض",advisor:"تواصل مع مستشار"},
     offers:{kicker:"العروض",title:"حلول واضحة للجميع",sub:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong> وفق أفضل الممارسات.",link:"عرض جميع الحلول →",corp:{title:"الشركات"},retail:{title:"الأفراد"}},
     re:{kicker:"إعادة التأمين",title:"اتفاقيات واختياريات من الألف إلى الياء",cards:[{t:"اتفاقيات QS/فائض/XoL/ستوب-لوس",p:"هيكلة ونمذجة PML/AAL وترتيبات الطبقات."},{t:"اختياريات موجهة",p:"ممتلكات ومسؤولية وطاقة وإنشاءات وخطوط مالية وبحري."},{t:"مطالبات وتحكيم 24/7",p:"مراجعة كمّية وتنسيق خبراء وطلبات نقدية وتقارير."}],cta:"استكشف إعادة التأمين"},
@@ -434,6 +503,44 @@ function initUI(){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
+<script>
+  (function(){
+    const trigger = document.querySelector('#menu .dropdown > a.has-caret');
+    if(!trigger) return;
+
+    function toggleMobileDropdown(e){
+      if (window.innerWidth <= 900){
+        e.preventDefault();
+        const li = trigger.parentElement;
+        const open = li.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    }
+
+    trigger.addEventListener('click', toggleMobileDropdown);
+    window.addEventListener('resize', () => {
+      // Réinitialise l'état en desktop
+      if (window.innerWidth > 900){
+        trigger.parentElement.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+<script>
+document.querySelectorAll('#menu li.dropdown').forEach(drop => {
+  let timer;
+
+  drop.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    drop.classList.add('open');
+  });
+
+  drop.addEventListener('mouseleave', () => {
+    timer = setTimeout(() => drop.classList.remove('open'), 200); // 200ms delay
+  });
+});
 </script>
 </body>
 </html>
