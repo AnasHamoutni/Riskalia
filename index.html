@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Courtage en Assurance / Réassurance · Risques Climatiques · Gestion des risques · Politique ESG</title>
-  <meta name="description" content="Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement climat (diagnostic, scénarios, paramétriques, reporting) & gestion des risques."/>
+  <title>Riskalia — Courtage · Réassurance · Risques Climatiques · Politique ESG</title>
+  <meta name="description" content="Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -20,11 +20,12 @@ body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
+.slogan{color:white;margin-top:0px;font-size:1.47em;font-weight:bold}
 .container{max-width:1180px;margin:auto;padding:0 18px}
 .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
 .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
 .muted{color:#5f7781}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;font-weight:800}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:transparent;color:#ffffff;font-weight:1000; font-size: 1.15em;}
 .btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent}
 .btn:hover{background:var(--c2)}
 .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
@@ -50,9 +51,10 @@ nav a:hover::after,nav a.active::after{width:100%}
 }
 
 /* hero */
-.hero{min-height:20vh;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center}
-.hero h1{color:#fff;font-size:clamp(2.2rem,3.8vw,3.3rem);letter-spacing:-.4px;margin-bottom:10px}
-.hero p{color:#fff;opacity:.98;max-width:920px;margin:0 auto 14px}
+.hero{min-height:20vh;  max-height: 380px;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center;padding-top:24px;}
+.hero h1{color:#fff;font-size:clamp(2.2rem,3.8vw,3.3rem);letter-spacing:-.4px}
+.hero .slogan{color:#fff;opacity:.98;max-width:920px;margin-bottom:15px}
+.hero p{color:#fff;opacity:.98;max-width:920px;margin:0 auto 20px}
 .hero .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
 
@@ -109,14 +111,17 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <section class="hero">
   <div class="container">
     <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
-    <p data-i18n="hero.sub">Courtage toutes branches · Réassurance · Risques Climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.</p>
+    <p class="slogan" data-i18n="hero.slogan">Nous transformons vos aléas opérationnels en croissance durable.</h2>
+    <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques.</p>
     <div class="actions">
       <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
       <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
     </div>
     <div class="badges">
       <span class="badge" data-i18n="hero.badges.0">Accès marchés A+/AA</span>
+      <span class="badge" > • </span>      
       <span class="badge" data-i18n="hero.badges.1">Wordings LMA/IUA</span>
+      <span class="badge" > • </span>    
       <span class="badge" data-i18n="hero.badges.2">Transparence & conformité</span>
     </div>
   </div>
@@ -308,7 +313,7 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
 const I18N={
   fr:{
     nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
-    hero:{title:"L’expertise qui rassure",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Politique ESG. Nous transformons vos aléas opérationnels en croissance durable.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
+    hero:{title:"L’expertise qui rassure",slogan:"Nous transformons vos aléas opérationnels en croissance durable.",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en Gestion des Risques.",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
     cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
     offers:{kicker:"Offres",title:"Des solutions claires pour tous",sub:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.",link:"Voir toutes les solutions →",corp:{title:"Entreprises"},retail:{title:"Particuliers"}},
     re:{kicker:"Réassurance",title:"Traités & facultatives, de bout en bout",cards:[{t:"Traités QS/Surplus/XoL/Stop-Loss",p:"Structuration, modélisation PML/AAL et placements multicouches."},{t:"Facultatives ciblées",p:"Property, RC, énergie, construction, lignes financières, transport."},{t:"Sinistres & arbitrages 24/7",p:"Quantum review, coordination experts, cash-calls & reporting."}],cta:"Explorer la réassurance"},
@@ -335,7 +340,7 @@ const I18N={
   },
   en:{
     nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    hero:{title:"Expertise you can rely on",sub:"All-lines broking · Reinsurance · Climate Risk · ESG policy. Turning operational risk into sustainable growth.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
+    hero:{title:"Expertise you can rely on",slogan: "Turning operational risk into sustainable growth",sub:"All-lines broking · Reinsurance · Climate Risk · Risk Management Consulting Services.",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
     cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
     offers:{kicker:"Offer",title:"Clear solutions for everyone",sub:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>, aligned with market best practices.",link:"See all solutions →",corp:{title:"Businesses"},retail:{title:"Individuals"}},
     re:{kicker:"Reinsurance",title:"Treaties & facultative, end-to-end",cards:[{t:"QS/Surplus/XoL/Stop-Loss treaties",p:"Structuring, PML/AAL modelling and layered placements."},{t:"Targeted facultative",p:"Property, Liability, Energy, Construction, Financial lines, Marine."},{t:"Claims & arbitration 24/7",p:"Quantum review, adjusters coordination, cash-calls & reporting."}],cta:"Explore reinsurance"},
@@ -362,7 +367,7 @@ const I18N={
   },
   ar:{
     nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
-    hero:{title:"خبرة تعطيك الطمأنينة",sub:"وساطة شاملة · إعادة التأمين · تأمينات الاستدامة. نحو نمو مستدام بإدارة المخاطر.",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
+    hero:{title:"خبرة تعطيك الطمأنينة",slogan: "نحو نمو مستدام بإدارة المخاطر",sub:"وساطة شاملة · إعادة التأمين · خدمات استشارية في إدارة المخاطر.",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
     cta:{quote:"احصل على عرض",advisor:"تواصل مع مستشار"},
     offers:{kicker:"العروض",title:"حلول واضحة للجميع",sub:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong> وفق أفضل الممارسات.",link:"عرض جميع الحلول →",corp:{title:"الشركات"},retail:{title:"الأفراد"}},
     re:{kicker:"إعادة التأمين",title:"اتفاقيات واختياريات من الألف إلى الياء",cards:[{t:"اتفاقيات QS/فائض/XoL/ستوب-لوس",p:"هيكلة ونمذجة PML/AAL وترتيبات الطبقات."},{t:"اختياريات موجهة",p:"ممتلكات ومسؤولية وطاقة وإنشاءات وخطوط مالية وبحري."},{t:"مطالبات وتحكيم 24/7",p:"مراجعة كمّية وتنسيق خبراء وطلبات نقدية وتقارير."}],cta:"استكشف إعادة التأمين"},
@@ -432,9 +437,6 @@ document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
-
 
 
 
