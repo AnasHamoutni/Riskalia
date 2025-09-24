@@ -29,7 +29,22 @@ img{max-width:100%;display:block}
 .btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent}
 .btn:hover{background:var(--c2)}
 .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
-section{padding:64px 0}
+section{padding:40px 0}
+.hero { padding: 50px 0 !important; }
+@media(max-width: 768px) {
+  section { padding: 25px 0; }
+  .hero { padding: 35px 0 !important; }
+}
+.search-highlight {
+  background-color: yellow !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  animation: highlight-pulse 2s ease-in-out;
+}
+@keyframes highlight-pulse {
+  0%, 100% { background-color: yellow; }
+  50% { background-color: orange; }
+}
 
 /* nav */
 header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
@@ -176,10 +191,26 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
       </ul>
 
     </nav>
-    <div class="lang-switch">
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <!-- Search Bar -->
+      <div style="position: relative;">
+        <input type="text" id="search-input" placeholder="Rechercher..." 
+               style="padding: 8px 35px 8px 12px; border: 1px solid #ddd; border-radius: 20px; 
+                      font-size: 14px; width: 200px; outline: none;"
+               onkeypress="handleSearch(event)">
+        <button onclick="performSearch()" style="
+          position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+          background: none; border: none; cursor: pointer; font-size: 16px;">
+          🔍
+      
+        </button>
+      </div>
+          <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
       <button class="lang-btn" data-lang="ar">عربية</button>
+      </div>
+    </div>
     </div>
   </div>
 </header>
@@ -356,6 +387,54 @@ Parallèlement à ses responsabilités de conseil, il intervient comme maître d
 Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au cabinet sa vision, son réseau et son expertise, afin de garantir des fondations solides en gestion des risques, d’orienter les choix structurants et de renforcer le positionnement différenciant du cabinet sur un marché en pleine évolution.</p>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="reveal">
+  <div class="container">
+    <div class="kicker">Témoignages</div>
+    <h2>Ce que disent nos clients</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 32px;">
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "Riskalia nous a accompagnés dans la structuration d'un programme d'assurance complexe pour notre projet d'infrastructure solaire. Leur expertise en financement vert et leur accès aux marchés internationaux ont été déterminants."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c1); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">DA</div>
+          <div>
+            <strong>Directeur Général</strong><br>
+            <small style="color: #5f7781;">Société d'Énergies Renouvelables</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "L'approche méthodologique de Riskalia et leur transparence sur les commissions nous ont convaincus. Anasse et Nabil forment un binôme très complémentaire entre expertise actuarielle et juridique."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c2); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">MK</div>
+          <div>
+            <strong>CFO</strong><br>
+            <small style="color: #5f7781;">Groupe Industriel Marocain</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "Pour notre programme de réassurance, Riskalia a négocié d'excellentes conditions avec des réassureurs notés A+. Leur scoring propriétaire des marchés apporte une vraie valeur ajoutée."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c3); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">SB</div>
+          <div>
+            <strong>Directeur Technique</strong><br>
+            <small style="color: #5f7781;">Compagnie d'Assurance Locale</small>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
