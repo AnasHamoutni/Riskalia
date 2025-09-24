@@ -156,14 +156,22 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
             Solutions <span class="caret" aria-hidden="true">▾</span>
           </a>
           <ul class="submenu" aria-label="Sous-menu Solutions">
-            <li><a href="assurance.html" data-i18n="nav.ins">Assurance</a></li>
+            <li class="dropdown">
+              <a href="assurance.html" class="has-caret" data-i18n="nav.ins">
+                Assurance <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <ul class="submenu" aria-label="Sous-menu Assurance">
+                <li><a href="assurance-particulier.html">Particulier</a></li>
+                <li><a href="assurance-entreprise.html">Entreprise</a></li>
+              </ul>
+            </li>
             <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
           </ul>
         </li>
 
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="risk-management.html" data-i18n="nav.risk">Services de Conseil</a></li>
-        <li><a href="risk-management.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
@@ -179,9 +187,14 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
-    <p class="slogan" data-i18n="hero.slogan">Nous transformons vos aléas opérationnels en croissance durable.</h2>
+    <h1 data-i18n="hero.title">RISKALIA</h1>
+    <h2 style="color: white; margin-top: 10px; font-size: 1.8em;">Courtage & Stratégies</h2>
+    <h3 style="color: white; margin-top: 5px; font-size: 1.4em; font-weight: 600;">Expertise, Innovation & Résilience</h3>
+    <p class="slogan" data-i18n="hero.slogan">Précision actuarielle. Performance financière. Protection juridique : Nous transformons vos aléas opérationnels en croissance durable.</p>
     <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques</p>
+    <p style="color: white; font-size: 1.1em; font-weight: 600; margin-top: 15px; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 8px; display: inline-block;">
+      🌍 Nous sommes une expertise unique sur le marché Africain
+    </p>
     <div class="actions">
       <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
       <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
@@ -344,7 +357,7 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
       </div>
 
     </div>
-  </div>a
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -372,11 +385,58 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <p><strong>Nabil Cherkaoui</strong><br/>
+         Professionnel : <a href="tel:+212666756991">+212-666-756991</a><br/>
+         Personnel : <a href="tel:+212675208909">+212-675-208909</a><br/>
+         Email : <a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a></p>
+      <p style="margin-top: 10px;">
+         Support & infos : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
     </div>
   </div>
 </footer>
 
+
+<!-- CHATBOT -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+  <div id="chatbot-button" onclick="toggleChat()" style="
+    background: var(--c2); color: white; border-radius: 50%; width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,139,155,0.3); font-size: 24px;">
+    💬
+  </div>
+  
+  <div id="chatbot-window" style="
+    display: none; position: absolute; bottom: 70px; right: 0;
+    width: 300px; height: 400px; background: white; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid #e6eef0;">
+    
+    <div style="background: var(--c1); color: white; padding: 15px; border-radius: 12px 12px 0 0;">
+      <h4 style="margin: 0; font-size: 14px;">💬 Assistant Riskalia</h4>
+      <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.9;">Comment puis-je vous aider ?</p>
+    </div>
+    
+    <div id="chat-messages" style="height: 280px; overflow-y: auto; padding: 15px; font-size: 13px;">
+      <div class="bot-message" style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+        Bonjour ! Je suis l'assistant virtuel de Riskalia. Je peux vous aider avec :
+        <br><br>
+        🔹 Informations sur nos services<br>
+        🔹 Contact avec nos experts<br>
+        🔹 Questions sur l'assurance/réassurance<br>
+        🔹 Navigation sur le site
+        <br><br>
+        <button onclick="showServices()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">Nos services</button>
+        <button onclick="showContact()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">Contact</button>
+        <button onclick="showAbout()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">À propos</button>
+      </div>
+    </div>
+    
+    <div style="padding: 10px; border-top: 1px solid #eee;">
+      <input type="text" id="chat-input" placeholder="Tapez votre question..." 
+        style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px;"
+        onkeypress="handleChatInput(event)">
+    </div>
+  </div>
+</div>
 <script>
 /* ===== Données i18n ===== */
 const I18N={
