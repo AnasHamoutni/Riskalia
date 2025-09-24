@@ -3,558 +3,280 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Courtage Assurance· Réassurance · Risques Climatiques · Politique ESG</title>
-  <meta name="description" content="Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."/>
+  <title>Riskalia — Courtage & Stratégies</title>
+  <meta name="description" content="Riskalia : courtage toutes branches, assurance durable, réassurance et conseil en gestion des risques."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-:root{
-  --c1:#005c73;--c2:#00849b;--c3:#00b0c8;--cl:#fff;--cm:#f6fafc;--cd:#243238;
-  --radius:16px;--shadow:0 12px 26px rgba(0,0,0,.07);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{overflow-x:hidden}
-body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.75;background:#fff}
-body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.slogan{color:white;margin-top:0px;font-size:1.47em;font-weight:bold}
-.container{max-width:1180px;margin:auto;padding:0 18px}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
-.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
-.muted{color:#5f7781}
-.badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:transparent;color:#ffffff;font-weight:1000; font-size: 1.15em;}
-.btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent}
-.btn:hover{background:var(--c2)}
-.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
-section{padding:64px 0}
-
-/* nav */
-header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
-.brand img{height:50px;width:auto;border-radius:10px}
-nav ul{list-style:none;display:flex;gap:1rem;font-weight:700}
-nav a{position:relative;padding:6px}
-nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
-nav a:hover::after,nav a.active::after{width:100%}
-.menu-toggle{display:none;font-size:2rem;cursor:pointer}
-.lang-switch{display:flex;gap:6px}
-.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
-.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
-@media(max-width:900px){
-  nav ul{flex-direction:column;position:absolute;top:70px;right:-100%;background:#fff;width:260px;padding:18px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-  nav ul.show{right:0} body[dir="rtl"] nav ul{right:auto;left:-100%} body[dir="rtl"] nav ul.show{left:0}
-  .menu-toggle{display:block}
-}
-/* === Dropdown (desktop) === */
-#menu li.dropdown { position: relative; }
-#menu li.dropdown > a.has-caret { padding-right: 18px; }
-#menu li .caret { display:inline-block; transition: transform .2s; transform-origin: 50% 40%; }
-
-/* boîte du sous-menu */
-#menu li .submenu{
-  display:none; position:absolute; top:calc(100% + 10px);
-  left:0; background:#fff; border:1px solid #e6eef0; border-radius:10px;
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
-  list-style:none; margin:0; padding:8px; min-width:220px; z-index:1000;
-}
-
-/* liens du sous-menu */
-#menu li .submenu li a{
-  display:block; padding:10px 12px; border-radius:8px;
-  color:#0b4e5b; text-decoration:none; font-weight:700;
-}
-#menu li .submenu li a:hover{ background:#eef6f8; }
-
-/* affichage au survol et au focus clavier */
-/* show submenu when li or submenu hovered */
-#menu li.dropdown:hover > .submenu,
-#menu li.dropdown:focus-within > .submenu,
-#menu li.dropdown .submenu:hover {
-  display: block;
-}
-/* === Dropdown open/close logic === */
-#menu li .submenu { 
-  display: none; 
-}
-#menu li.open > .submenu { 
-  display: block; 
-}
-#menu li.dropdown:hover > a .caret,
-#menu li.dropdown:focus-within > a .caret{ transform: rotate(180deg); }
-
-/* === RTL (si tu actives body[dir="rtl"]) === */
-body[dir="rtl"] #menu li .submenu{ left:auto; right:0; }
-
-/* === Mobile (<=900px) : menu vertical + accordéon === */
-@media (max-width:900px){
-  /* Le UL principal est déjà transformé en panneau latéral via ton CSS */
-  #menu li.dropdown { width:100%; }
-  #menu li.dropdown > a.has-caret{
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  #menu li .submenu{
-    position:static; display:none; box-shadow:none; border:0; padding:6px 0;
-    background:transparent; margin-top:4px; min-width:auto;
-  }
-  #menu li .submenu li a{ padding:8px 6px 8px 12px; }
-  /* état ouvert en mobile (classe .open ajoutée via JS) */
-  #menu li.dropdown.open > .submenu{ display:block; }
-  #menu li.dropdown.open > a .caret{ transform: rotate(180deg); }
-  body[dir="rtl"] #menu li .submenu li a{ padding:8px 12px 8px 6px; }
-}
-
-/* hero */
-.hero{min-height:20vh;  max-height: 380px;background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),url('https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;display:flex;align-items:center;text-align:center;padding-top:24px;}
-.hero h1{color:#fff;font-size:clamp(2.2rem,3.8vw,3.3rem);letter-spacing:-.4px}
-.hero .slogan{color:#fff;opacity:.98;max-width:920px;margin-bottom:15px}
-.hero p{color:#fff;opacity:.98;max-width:920px;margin:0 auto 20px}
-.hero .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-
-/* highlights */
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.card h3{margin:6px 0 10px}
-.card ul{padding-left:18px}
-.card li{margin:8px 0}
-.link{display:inline-flex;align-items:center;gap:8px;color:var(--c2);font-weight:800;margin-top:10px}
-
-/* team */
-.assoc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:start}
-.assoc .p{background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:18px;text-align:center}
-.assoc img{width:200px;height:200px;border-radius:50%;object-fit:cover;margin:0 auto 10px}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease, transform .6s ease}
-.reveal.active{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important} .reveal{opacity:1;transform:none}}
-
-/* footer */
-footer{background:var(--c1);color:#fff;padding:50px 0;margin-top:30px}
-.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-footer h4{color:#a8ecf4;margin-bottom:10px}
-  </style>
+  <link rel="stylesheet" href="./assets/css/styles.css"/>
 </head>
-<body>
-<header>
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-      <img src="./assets/Riskalia-Logo.png" alt="Riskalia"><span></span>
-    </a>
-    <nav aria-label="Navigation principale">
-      <span class="menu-toggle" aria-label="Menu">☰</span>
-      <ul id="menu">
-        <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
-
-        <!-- Solutions + sous-menu -->
-        <li class="dropdown">
-          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
-            Solutions <span class="caret" aria-hidden="true">▾</span>
-          </a>
-          <ul class="submenu" aria-label="Sous-menu Solutions">
-            <li><a href="assurance.html" data-i18n="nav.ins">Assurance</a></li>
-            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-          </ul>
-        </li>
-
-        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
-        <li><a href="risk-management.html" data-i18n="nav.risk">Services de Conseil</a></li>
-        <li><a href="risk-management.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-      </ul>
-
-    </nav>
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="fr">Français</button>
-      <button class="lang-btn" data-lang="en">English</button>
-      <button class="lang-btn" data-lang="ar">عربية</button>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
-    <p class="slogan" data-i18n="hero.slogan">Nous transformons vos aléas opérationnels en croissance durable.</h2>
-    <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques</p>
-    <div class="actions">
-      <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
-      <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
-    </div>
-    <div class="badges">
-      <span class="badge" data-i18n="hero.badges.0">Accès marchés A+/AA</span>
-      <span class="badge" > • </span>      
-      <span class="badge" data-i18n="hero.badges.1">Wordings LMA/IUA</span>
-      <span class="badge" > • </span>    
-      <span class="badge" data-i18n="hero.badges.2">Transparence & conformité</span>
-    </div>
-  </div>
-</section>
-
-<!-- OFFRES -->
-<section class="reveal">
-  <div class="container">
-    <div class="kicker" data-i18n="offers.kicker">Offres</div>
-    <h2 data-i18n="offers.title">Des solutions claires pour tous</h2>
-    <p class="muted" style="margin:6px 0 18px" data-i18n="offers.sub">Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.</p>
-    <div class="grid-2">
-      <article class="card">
-        <h3 data-i18n="offers.corp.title">Entreprises</h3>
-        <ul id="corpList"></ul>
-        <a href="solutions.html" class="link" data-i18n="offers.link">Voir toutes les solutions →</a>
-      </article>
-      <article class="card">
-        <h3 data-i18n="offers.retail.title">Particuliers</h3>
-        <ul id="retailList"></ul>
-        <a href="solutions.html" class="link" data-i18n="offers.link">Voir toutes les solutions →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- REASSURANCE -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container">
-    <div class="kicker" data-i18n="re.kicker">Réassurance</div>
-    <h2 data-i18n="re.title">Traités & facultatives, de bout en bout</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="re.cards.0.t">Traités QS/Surplus/XoL/Stop-Loss</h3>
-        <p class="muted" data-i18n="re.cards.0.p">Structuration, modélisation PML/AAL et placements multicouches.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="re.cards.1.t">Facultatives ciblées</h3>
-        <p class="muted" data-i18n="re.cards.1.p">Property, RC, énergie, construction, lignes financières, transport.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="re.cards.2.t">Sinistres & arbitrages 24/7</h3>
-        <p class="muted" data-i18n="re.cards.2.p">Quantum review, coordination experts, cash-calls & reporting.</p>
-      </article>
-    </div>
-    <div style="margin-top:12px">
-      <a href="reinsurance.html" class="btn" data-i18n="re.cta">Explorer la réassurance</a>
-    </div>
-  </div>
-</section>
-
-<!-- Climate Risk -->
-<section class="reveal">
-  <div class="container">
-    <div class="kicker">Risques Climatiques</div>
-    <h2 data-i18n="climate.title">Risques climatiques — de l’analyse à l’action</h2>
-
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="climate.cards.0.t">Cartographie & scénarios</h3>
-        <p class="muted" data-i18n="climate.cards.0.p">Risques physique/transition, NGFS, downscaling & stress tests.</p>
-      </article>
-
-      <article class="card">
-        <h3 data-i18n="climate.cards.1.t">Modélisation & transfert</h3>
-        <p class="muted" data-i18n="climate.cards.1.p">PML/AAL climat, paramétriques météo, captives & réassurance.</p>
-      </article>
-
-      <article class="card">
-        <h3 data-i18n="climate.cards.2.t">Résilience & reporting</h3>
-        <p class="muted" data-i18n="climate.cards.2.p">Plans d’adaptation, CAPEX verts, TCFD/ISSB & exigences bailleurs.</p>
-      </article>
-    </div>
-
-    <div style="margin-top:12px">
-      <a href="climate.html" class="btn" data-i18n="climate.cta">Découvrir l’offre Risques Climatiques</a>
-    </div>
-  </div>
-</section>
-  
-<!-- ESG (politique interne) -->
-<section class="reveal">
-  <div class="container">
-    <div class="kicker">ESG</div>
-    <h2 data-i18n="esg.title">Politique ESG — gouvernance, social, environnement</h2>
-
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="esg.cards.0.t">Gouvernance & éthique</h3>
-        <p class="muted" data-i18n="esg.cards.0.p">Code de conduite, anticorruption, RGPD & cyber, canal lanceur d’alerte.</p>
-      </article>
-
-      <article class="card">
-        <h3 data-i18n="esg.cards.1.t">Personnes & diversité</h3>
-        <p class="muted" data-i18n="esg.cards.1.p">Bien-être, formation continue, inclusion, égalité salariale, parcours de développement.</p>
-      </article>
-
-      <article class="card">
-        <h3 data-i18n="esg.cards.2.t">Environnement & achats responsables</h3>
-        <p class="muted" data-i18n="esg.cards.2.p">Bilan GES, sobriété énergétique & numérique, mobilité douce, charte fournisseurs.</p>
-      </article>
-    </div>
-
-    <div style="margin-top:12px">
-      <a href="esg.html" class="btn" data-i18n="esg.cta">Découvrir notre politique ESG</a>
-    </div>
-  </div>
-</section>
-
-<!-- POURQUOI -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container">
-    <div class="kicker" data-i18n="why.kicker">Atouts</div>
-    <h2 data-i18n="why.title">Pourquoi choisir Riskalia ?</h2>
-    <div class="grid-3">
-      <article class="card">
-        <h3 data-i18n="why.cards.0.t">Agrément ACAPS toutes branches</h3>
-        <p class="muted" data-i18n="why.cards.0.p">Conformité & protection des assurés garanties.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="why.cards.1.t">Méthode « Scoring & Placement »</h3>
-        <p class="muted" data-i18n="why.cards.1.p">Notation marchés, clauses, délais d’indemnisation.</p>
-      </article>
-      <article class="card">
-        <h3 data-i18n="why.cards.2.t">Transparence contractuelle</h3>
-        <p class="muted" data-i18n="why.cards.2.p">Commissions & honoraires communiqués avant signature.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- EQUIPE -->
-<section class="reveal">
-  <div class="container">
-    <div class="kicker" data-i18n="team.kicker">Équipe</div>
-    <h2 data-i18n="team.title">Une équipe dirigeante d’exception</h2>
-    <div class="assoc">
-      <div class="p">
-        <img src="./assets/Nabil-Cherkaoui.jfif" alt="Nabil Cherkaoui">
-        <h3>Nabil Cherkaoui</h3>
-        <p class="muted" data-i18n="team.n">Associé Juriste — 22 ans en sinistres complexes, conformité et gouvernance réassurance.</p>
+<body data-page="home">
+  <div class="topbar">
+    <div class="container">
+      <div class="contact-list" data-role="topbar-contacts"></div>
+      <div class="actions-right">
+        <span class="tagline" data-common="topbar.tagline"></span>
+        <button class="search-trigger" type="button" aria-label="Recherche">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.65" y1="16.65" x2="21" y2="21"></line></svg>
+        </button>
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="fr">Français</button>
+          <button class="lang-btn" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="ar">عربية</button>
+        </div>
       </div>
-      <div class="p">
-        <img src="./assets/Anasse-Yousfi.jfif" alt="Anasse Youssfi">
-        <h3>Anasse Youssfi</h3>
-        <p class="muted" data-i18n="team.a">Cofondateur & Associé Stratégique / Actuaire de formation et dirigeant expérimenté, Anasse Youssfi est reconnu comme un expert de référence en gestion des risques et en actuariat, avec plus de vingt ans d’expérience au service des assureurs, réassureurs et institutions financières en Afrique et à l’international.<br>
+    </div>
+  </div>
 
-Parallèlement à ses responsabilités de conseil, il intervient comme maître de conférences dans plusieurs universités et grandes écoles, contribuant à la formation des nouvelles générations d’actuaires et de risk managers. Son expertise est régulièrement sollicitée par des instances internationales et régulateurs dans le cadre de travaux stratégiques sur la résilience financière, la régulation prudentielle et l’adaptation aux risques émergents.<br>
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="./assets/Riskalia-Logo.png" alt="Riskalia"/>
+      </a>
+      <nav aria-label="Navigation principale">
+        <span class="menu-toggle" aria-label="Menu">☰</span>
+        <ul id="menu">
+          <li><a data-nav="home" data-common="nav.home" href="index.html">Accueil</a></li>
+          <li class="dropdown">
+            <a class="has-caret" data-common="nav.solutions" href="solutions.html" aria-haspopup="true" aria-expanded="false">Solutions <span class="caret">▾</span></a>
+            <ul class="submenu" aria-label="Sous-menu Solutions">
+              <li class="dropdown">
+                <a class="has-caret" data-common="nav.assurance" href="solutions.html#assurance" aria-haspopup="true" aria-expanded="false">Assurance <span class="caret">▸</span></a>
+                <ul class="submenu">
+                  <li><a data-nav="solutions" data-common="nav.assuranceIndividuals" href="solutions.html#particuliers">Particuliers</a></li>
+                  <li><a data-nav="solutions" data-common="nav.assuranceCorporate" href="solutions.html#entreprises">Entreprises</a></li>
+                </ul>
+              </li>
+              <li><a data-nav="reinsurance" data-common="nav.reinsurance" href="reinsurance.html">Réassurance</a></li>
+            </ul>
+          </li>
+          <li><a data-nav="climate" data-common="nav.climate" href="climate.html">Risques Climatiques</a></li>
+          <li><a data-nav="consulting" data-common="nav.consulting" href="consulting.html">Services de Conseil</a></li>
+          <li><a data-nav="esg" data-common="nav.esg" href="esg.html">ESG</a></li>
+          <li><a data-nav="contact" data-common="nav.contact" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au cabinet sa vision, son réseau et son expertise, afin de garantir des fondations solides en gestion des risques, d’orienter les choix structurants et de renforcer le positionnement différenciant du cabinet sur un marché en pleine évolution.</p>
+  <section class="hero hero--home reveal" id="hero">
+    <div class="container">
+      <div class="kicker" data-i18n="home.hero.kicker"></div>
+      <h1 data-i18n="home.hero.title"></h1>
+      <p class="slogan" data-i18n="home.hero.subtitle"></p>
+      <p data-i18n="home.hero.lead"></p>
+      <div class="actions">
+        <a href="contact.html" class="btn" data-i18n="home.hero.ctaPrimary"></a>
+        <a href="contact.html" class="btn secondary" data-i18n="home.hero.ctaSecondary"></a>
       </div>
-
+      <div class="badges" data-role="home-hero-badges"></div>
+      <div class="highlight-grid mt-3" data-role="home-highlight"></div>
     </div>
-  </div>a
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="reveal" style="background:var(--cm)">
-  <div class="container" style="text-align:center">
-    <h2 data-i18n="contact.title">Un besoin de couverture ?</h2>
-    <p class="muted" data-i18n="contact.sub">Décrivez votre projet : nous répondons sous 24–48 h.</p>
-    <a class="btn" href="contact.html" data-i18n="cta.quote">Obtenir un devis</a>
-    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.advisor">Contacter un conseiller</a>
+  <section class="reveal" id="acaps">
+    <div class="container">
+      <div class="accred">
+        <h2 data-i18n="home.acaps.title"></h2>
+        <p data-i18n="home.acaps.text"></p>
+        <ul data-role="home-acaps-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal bg-soft" id="vision">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.vision.kicker"></div>
+        <h2 data-i18n="home.vision.title"></h2>
+        <p class="section-intro" data-i18n="home.vision.lead"></p>
+      </div>
+      <div class="vision-grid" data-role="home-vision-cards"></div>
+      <div class="signature-card mt-3" data-i18n="home.vision.signature"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="cabinet">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.cabinet.kicker"></div>
+        <h2 data-i18n="home.cabinet.title"></h2>
+        <p class="section-intro" data-i18n="home.cabinet.intro"></p>
+      </div>
+      <p class="lead-paragraph" data-i18n="home.cabinet.lead"></p>
+      <div class="pillars" data-role="home-cabinet-pillars"></div>
+      <div class="quote-box mt-3" data-i18n="home.cabinet.duo"></div>
+    </div>
+  </section>
+
+  <section class="reveal bg-texture" id="associes">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.associates.kicker"></div>
+        <h2 data-i18n="home.associates.title"></h2>
+      </div>
+      <div class="bio-grid" data-role="home-associates"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="durable">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.sustainable.kicker"></div>
+        <h2 data-i18n="home.sustainable.title"></h2>
+        <p class="section-intro" data-i18n="home.sustainable.lead"></p>
+      </div>
+      <div class="timeline" data-role="home-sustainable-steps"></div>
+      <div class="table-wrap mt-3">
+        <table class="modules-table" data-role="home-sustainable-table"></table>
+      </div>
+      <div class="quote-box mt-3" data-role="home-sustainable-quote"></div>
+      <div class="solutions-grid mt-3" data-role="home-sustainable-benefits"></div>
+    </div>
+  </section>
+
+  <section class="reveal bg-soft" id="brokerage">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.brokerage.kicker"></div>
+        <h2 data-i18n="home.brokerage.title"></h2>
+        <p class="section-intro" data-i18n="home.brokerage.lead"></p>
+      </div>
+      <div class="solutions-grid" data-role="home-brokerage"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="reinsurance">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.reinsurance.kicker"></div>
+        <h2 data-i18n="home.reinsurance.title"></h2>
+        <p class="section-intro" data-i18n="home.reinsurance.lead"></p>
+      </div>
+      <div class="reassurance-panel" data-role="home-reinsurance"></div>
+    </div>
+  </section>
+
+  <section class="reveal bg-soft" id="why">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.why.kicker"></div>
+        <h2 data-i18n="home.why.title"></h2>
+      </div>
+      <div class="grid-3" data-role="home-why"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.testimonials.kicker"></div>
+        <h2 data-i18n="home.testimonials.title"></h2>
+      </div>
+      <div class="testimonials" data-role="home-testimonials"></div>
+    </div>
+  </section>
+
+  <section class="reveal bg-soft" id="client">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.client.kicker"></div>
+        <h2 data-i18n="home.client.title"></h2>
+        <p class="section-intro" data-i18n="home.client.lead"></p>
+      </div>
+      <div class="solutions-grid" data-role="home-client"></div>
+      <div class="quote-box mt-3" data-i18n="home.client.note"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="blog">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.blog.kicker"></div>
+        <h2 data-i18n="home.blog.title"></h2>
+        <p class="section-intro" data-i18n="home.blog.lead"></p>
+      </div>
+      <div class="grid-3" data-role="home-blog"></div>
+    </div>
+  </section>
+
+  <section class="reveal bg-soft" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="kicker" data-i18n="home.faq.kicker"></div>
+        <h2 data-i18n="home.faq.title"></h2>
+      </div>
+      <div class="faq-grid" data-role="home-faq"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="compliance">
+    <div class="container">
+      <div class="compliance">
+        <h3 data-i18n="home.commitments.title"></h3>
+        <p data-i18n="home.commitments.lead"></p>
+        <ul data-role="home-commitments"></ul>
+        <div class="quote-box mt-3" data-i18n="home.commitments.legal"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="cta">
+    <div class="container" style="text-align:center">
+      <h2 data-i18n="home.cta.title"></h2>
+      <p class="section-intro" data-i18n="home.cta.lead"></p>
+      <div class="cta-stack">
+        <a href="contact.html" class="btn" data-i18n="home.cta.primary"></a>
+        <a href="contact.html" class="btn secondary" data-i18n="home.cta.secondary"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Riskalia</h4>
+        <p class="muted" data-i18n="home.footer.desc"></p>
+      </div>
+      <div>
+        <h4 data-i18n="home.footer.links"></h4>
+        <p>
+          <a href="solutions.html" data-common="nav.solutions">Solutions</a><br/>
+          <a href="reinsurance.html" data-common="nav.reinsurance">Réassurance</a><br/>
+          <a href="climate.html" data-common="nav.climate">Risques Climatiques</a><br/>
+          <a href="consulting.html" data-common="nav.consulting">Services de Conseil</a>
+        </p>
+      </div>
+      <div>
+        <h4 data-i18n="home.footer.contact"></h4>
+        <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a><br/>
+        Tel : <a href="tel:+212666756991">+212-666-756991</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-box" role="dialog" aria-modal="true">
+      <header>
+        <h3 data-common="search.title"></h3>
+        <button class="search-close" type="button" data-role="search-close" aria-label="Fermer">×</button>
+      </header>
+      <input type="search" id="searchInput" class="search-input" placeholder="Rechercher…"/>
+      <div class="search-results" id="searchResults"></div>
+    </div>
   </div>
-</section>
 
-<footer>
-  <div class="container footer-grid">
-    <div>
-      <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+  <button class="chatbot-toggle" id="chatbotToggle" type="button" aria-label="Chatbot">💬</button>
+  <div class="chatbot-panel" id="chatbotPanel" aria-live="polite">
+    <div class="chatbot-header">
+      <h3 data-common="chatbot.title"></h3>
+      <p data-common="chatbot.lead"></p>
     </div>
-    <div>
-      <h4 data-i18n="footer.links">Liens</h4>
-      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
-    </div>
-    <div>
-      <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
-    </div>
+    <div class="chatbot-body" id="chatbotMessages"></div>
+    <div class="chatbot-quick" id="chatbotQuick"></div>
   </div>
-</footer>
 
-<script>
-/* ===== Données i18n ===== */
-const I18N={
-  fr:{
-    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",risk:"Gestion des risques",esg:"ESG",contact:"Contact"},
-    hero:{title:"L’expertise qui rassure",slogan:"Nous transformons vos aléas opérationnels en croissance durable.",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en Gestion des Risques",badges:["Accès marchés A+/AA","Wordings LMA/IUA","Transparence & conformité"]},
-    cta:{quote:"Obtenir un devis",advisor:"Contacter un conseiller"},
-    offers:{kicker:"Offres",title:"Des solutions claires pour tous",sub:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>, inspirés des meilleures pratiques du marché.",link:"Voir toutes les solutions →",corp:{title:"Entreprises"},retail:{title:"Particuliers"}},
-    re:{kicker:"Réassurance",title:"Traités & facultatives, de bout en bout",cards:[{t:"Traités QS/Surplus/XoL/Stop-Loss",p:"Structuration, modélisation PML/AAL et placements multicouches."},{t:"Facultatives ciblées",p:"Property, RC, énergie, construction, lignes financières, transport."},{t:"Sinistres & arbitrages 24/7",p:"Quantum review, coordination experts, cash-calls & reporting."}],cta:"Explorer la réassurance"},
-    climate : {
-  title: "Risques climatiques — de l’analyse à l’action",
-  cards: [
-    { t: "Diagnostic & scénarios", p: "Cartographie physique/transition, scénarios NGFS, stress tests & analyse de matérialité." },
-    { t: "Paramétriques & garanties vertes", p: "Indices météo, extensions environnement, continuité d’activité & supply-chain." },
-    { t: "Reporting & financement", p: "TCFD/ISSB, Taxonomie, SFDR et exigences des bailleurs/assureurs." }
-  ],
-  cta: "Découvrir l’offre Risques Climatiques"},esg:{  title: "Politique ESG interne — gouvernance, social, environnement",
-  cards: [
-    { t: "Gouvernance & éthique", p: "Code de conduite, anticorruption, RGPD & cyber, canal lanceur d’alerte." },
-    { t: "Personnes & diversité", p: "Bien-être, formation continue, inclusion & égalité salariale." },
-    { t: "Environnement & achats responsables", p: "Bilan GES, sobriété énergétique/numérique, mobilité douce, charte fournisseurs." }
-  ],
-  cta: "Découvrir notre politique ESG"},
-    why:{kicker:"Atouts",title:"Pourquoi choisir Riskalia ?",cards:[{t:"Agrément ACAPS toutes branches",p:"Conformité & protection des assurés garanties."},{t:"Méthode « Scoring & Placement »",p:"Notation marchés, clauses, délais d’indemnisation."},{t:"Transparence contractuelle",p:"Commissions & honoraires communiqués avant signature."}]},
-    team:{kicker:"Équipe",title:"Une équipe dirigeante d’exception",a:"Cofondateur & Associé Stratégique / Actuaire de formation et dirigeant expérimenté, Anasse Youssfi est reconnu comme un expert de référence en gestion des risques et en actuariat, avec plus de vingt ans d’expérience au service des assureurs, réassureurs et institutions financières en Afrique et à l’international.\n\nParallèlement à ses responsabilités de conseil, il intervient comme maître de conférences dans plusieurs universités et grandes écoles, contribuant à la formation des nouvelles générations d’actuaires et de risk managers. Son expertise est régulièrement sollicitée par des instances internationales et régulateurs dans le cadre de travaux stratégiques sur la résilience financière, la régulation prudentielle et l’adaptation aux risques émergents.\n\nDans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au cabinet sa vision, son réseau et son expertise, afin de garantir des fondations solides en gestion des risques, d’orienter les choix structurants et de renforcer le positionnement différenciant du cabinet sur un marché en pleine évolution.",n:"Associé Juriste — 22 ans en sinistres complexes, conformité et gouvernance réassurance."},
-    contact:{title:"Un besoin de couverture ?",sub:"Décrivez votre projet : nous répondons sous 24–48 h."},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    corp:["Multirisques Entreprise","Transport (marchandises)","Automobile & flotte","Responsabilité civile","Construction","Santé collective & prévoyance"],
-    retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
-  },
-  en:{
-    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",risk:"Consulting Services",esg:"ESG",contact:"Contact"},
-    hero:{title:"Expertise you can rely on",slogan: "Turning operational risk into sustainable growth",sub:"All-lines broking · Reinsurance · Climate Risk · Risk Management Consulting Services",badges:["Access to A+/AA markets","LMA/IUA wordings","Transparency & compliance"]},
-    cta:{quote:"Get a quote",advisor:"Talk to an advisor"},
-    offers:{kicker:"Offer",title:"Clear solutions for everyone",sub:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>, aligned with market best practices.",link:"See all solutions →",corp:{title:"Businesses"},retail:{title:"Individuals"}},
-    re:{kicker:"Reinsurance",title:"Treaties & facultative, end-to-end",cards:[{t:"QS/Surplus/XoL/Stop-Loss treaties",p:"Structuring, PML/AAL modelling and layered placements."},{t:"Targeted facultative",p:"Property, Liability, Energy, Construction, Financial lines, Marine."},{t:"Claims & arbitration 24/7",p:"Quantum review, adjusters coordination, cash-calls & reporting."}],cta:"Explore reinsurance"},
-  climate:{  title: "Climate Risk — from analysis to action",
-  cards: [
-    { t: "Diagnostics & scenarios", p: "Physical/transition mapping, NGFS scenarios, stress tests & materiality." },
-    { t: "Parametric & green covers", p: "Weather indices, environmental extensions, supply chain & business continuity." },
-    { t: "Reporting & financing", p: "TCFD/ISSB, EU Taxonomy, SFDR and lender/insurer requirements." }
-  ],
-  cta: "Explore our Climate Risk offering"},
-    esg:{title: "ESG policy (internal) — governance, people, environment",
-  cards: [
-    { t: "Integrity & compliance", p: "Code of conduct, anti-corruption, GDPR & cyber, whistleblowing channel." },
-    { t: "People & diversity", p: "Well-being, continuous learning, inclusion & pay equity." },
-    { t: "Environment & responsible procurement", p: "GHG inventory, energy/digital sobriety, soft mobility, supplier charter." }
-  ],
-  cta: "See our ESG policy"},
-    why:{kicker:"Benefits",title:"Why choose Riskalia?",cards:[{t:"ACAPS licence (all lines)",p:"Regulatory compliance & policyholder protection."},{t:"Scoring & Placement method",p:"Market ratings, clauses, claims settlement speed."},{t:"Contract transparency",p:"Fees fully disclosed prior to signature."}]},
-    team:{kicker:"Team",title:"A leadership team you can trust",a:"Co-founder & Strategic Partner / Trained Actuary and Experienced Executive, Anasse Youssfi is recognized as a leading expert in risk management and actuarial science, with more than twenty years of experience serving insurers, reinsurers, and financial institutions in Africa and internationally.\n\nAlongside his consulting responsibilities, he lectures at several universities and business schools, contributing to the training of new generations of actuaries and risk managers. His expertise is regularly sought by international bodies and regulators for strategic work on financial resilience, prudential regulation, and adaptation to emerging risks.\n\nIn this brokerage project, Anasse plays a strategic role: he brings to the firm his vision, network, and expertise in order to ensure solid foundations in risk management, guide key structural choices, and strengthen the firm’s distinctive positioning in a rapidly evolving market.",n:"Partner, Lawyer — 22y in complex claims, compliance & reinsurance governance."},
-    contact:{title:"Need coverage?",sub:"Describe your project — we reply within 24–48h."},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    corp:["Commercial Property (All Risks)","Cargo/Transport","Motor & Fleet","General/Professional Liability","Construction (CAR/EAR)","Group Health & Benefits"],
-    retail:["Health","Personal Accident","Home (Property)","Life Insurance & Savings","Schengen Travel","Retirement"]
-  },
-  ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",ins:"التأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",risk:"خدمات استشارية",esg:"الاستدامة",contact:"اتصل بنا"},
-    hero:{title:"خبرة تعطيك الطمأنينة",slogan: "نحو نمو مستدام بإدارة المخاطر",sub:"وساطة شاملة · إعادة التأمين · خدمات استشارية في إدارة المخاطر",badges:["وصول لأسواق A+/AA","صياغات LMA/IUA","شفافية وامتثال"]},
-    cta:{quote:"احصل على عرض",advisor:"تواصل مع مستشار"},
-    offers:{kicker:"العروض",title:"حلول واضحة للجميع",sub:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong> وفق أفضل الممارسات.",link:"عرض جميع الحلول →",corp:{title:"الشركات"},retail:{title:"الأفراد"}},
-    re:{kicker:"إعادة التأمين",title:"اتفاقيات واختياريات من الألف إلى الياء",cards:[{t:"اتفاقيات QS/فائض/XoL/ستوب-لوس",p:"هيكلة ونمذجة PML/AAL وترتيبات الطبقات."},{t:"اختياريات موجهة",p:"ممتلكات ومسؤولية وطاقة وإنشاءات وخطوط مالية وبحري."},{t:"مطالبات وتحكيم 24/7",p:"مراجعة كمّية وتنسيق خبراء وطلبات نقدية وتقارير."}],cta:"استكشف إعادة التأمين"},
-    climate:{  title: "مخاطر المناخ — من التحليل إلى التنفيذ",
-    cards: [
-    { t: "التشخيص والسيناريوهات", p: "خرائط المخاطر الفيزيائية/الانتقالية، سيناريوهات <bdi dir=\"ltr\">NGFS</bdi>، اختبارات ضغط وتحديد المادية." },
-    { t: "تغطيات بارامترية وخضراء", p: "مؤشرات الطقس، امتدادات بيئية، سلسلة الإمداد واستمرارية الأعمال." },
-    { t: "الإفصاح والتمويل", p: "<bdi dir=\"ltr\">TCFD/ISSB</bdi>، <bdi dir=\"ltr\">EU Taxonomy</bdi>، <bdi dir=\"ltr\">SFDR</bdi> ومتطلبات الممولين/شركات التأمين." }
-  ],
-  cta: "استكشف عرض مخاطر المناخ"},
-    esg:{ title: "سياسة الاستدامة (ESG) الداخلية — الحوكمة، الأشخاص، البيئة",
-  cards: [
-    { t: "النزاهة والامتثال", p: "مدونة سلوك، مكافحة الفساد، حماية البيانات والأمن السيبراني، قناة للإبلاغ عن المخالفات." },
-    { t: "الأفراد والتنوع", p: "رفاهية العمل، التعلم المستمر، الشمول والمساواة في الأجر." },
-    { t: "البيئة والمشتريات المسؤولة", p: "جرد انبعاثات <bdi dir=\"ltr\">GHG</bdi>، ترشيد الطاقة والرقمنة، التنقل اللطيف، ميثاق الموردين." }
-  ],
-  cta: "اطّلع على سياسة ESG لدينا"},
-    why:{kicker:"المزايا",title:"لماذا Riskalia؟",cards:[{t:"ترخيص ACAPS لجميع الفروع",p:"امتثال وحماية حملة الوثائق."},{t:"منهجية التقييم والترتيب",p:"تصنيف الأسواق والبنود وسرعة التعويض."},{t:"شفافية تعاقدية",p:"إعلان الأتعاب قبل التوقيع."}]},
-    team:{kicker:"الفريق",title:"فريق قيادة موثوق",a:"شريك اكتواري — 25 سنة في نمذجة المخاطر والملاءة واستراتيجيات ERM.",n:"شريك قانوني — 22 سنة في المطالبات المعقدة والامتثال وحوكمة إعادة التأمين."},
-    contact:{title:"تحتاج تغطية؟",sub:"صف مشروعك — نرد خلال 24–48 ساعة."},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    corp:["متعدد المخاطر للشركات","نقل البضائع","السيارات والأساطيل","المسؤولية العامة/المهنية","الإنشاءات (CAR/EAR)","الصحة الجماعية والمزايا"],
-    retail:["الصحة","حوادث الحياة","المسكن (الممتلكات)","تأمين الحياة والادخار","سفر شنغن","التقاعد"]
-  }
-};
-
-/* ===== Helpers & rendering ===== */
-let lang = localStorage.getItem('riskalia_lang')||'fr';
-if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $ = (s,root=document)=>root.querySelector(s);
-const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
-function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){
-  $$('#menu a').forEach(a=>{
-    const href=a.getAttribute('href');
-    const isHome = href.endsWith('index.html');
-    a.classList.toggle('active', isHome);
-  });
-}
-function fillList(id, arr){ $(id).innerHTML = arr.map(x=>`<li>${x}</li>`).join(''); }
-
-/* ===== Apply texts ===== */
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
-  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  setActiveNav();
-  fillList('#corpList', t('corp'));
-  fillList('#retailList', t('retail'));
-}
-
-/* ===== UI ===== */
-function initUI(){
-  // burger
-  const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-
-  // language switch
-  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{ lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts(); }));
-
-  // reveal on scroll
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll',onScroll); onScroll();
-}
-
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
-</script>
-<script>
-  (function(){
-    const trigger = document.querySelector('#menu .dropdown > a.has-caret');
-    if(!trigger) return;
-
-    function toggleMobileDropdown(e){
-      if (window.innerWidth <= 900){
-        e.preventDefault();
-        const li = trigger.parentElement;
-        const open = li.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-    }
-
-    trigger.addEventListener('click', toggleMobileDropdown);
-    window.addEventListener('resize', () => {
-      // Réinitialise l'état en desktop
-      if (window.innerWidth > 900){
-        trigger.parentElement.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-  })();
-</script>
-<script>
-document.querySelectorAll('#menu li.dropdown').forEach(drop => {
-  let timer;
-
-  drop.addEventListener('mouseenter', () => {
-    clearTimeout(timer);
-    drop.classList.add('open');
-  });
-
-  drop.addEventListener('mouseleave', () => {
-    timer = setTimeout(() => drop.classList.remove('open'), 200); // 200ms delay
-  });
-});
-</script>
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/home.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

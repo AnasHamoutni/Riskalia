@@ -3,480 +3,134 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Solutions (Entreprises & Particuliers)</title>
-  <meta name="description" content="Solutions d’assurance pour entreprises (multirisques, transport, flotte, RC, construction, santé collective) et particuliers (santé, accidents, habitation, vie & placements, voyage Schengen, retraite)."/>
+  <title>Riskalia — Solutions d’assurance</title>
+  <meta name="description" content="Parcours Entreprises et Particuliers, offres toutes branches, mise en concurrence et accompagnement ESG."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <!-- Fonts + CSS global -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/styles.css"/>
-  <style>
-    /* HÉRO spécifique à la page (le reste vient de styles.css) */
-    .hero--solutions{
-      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-                 url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
-      min-height:42vh;
-    }
-    /* images légères d’illustration (optionnelles) */
-    .illus{height:120px;border-radius:14px;object-fit:cover;width:100%;border:1px solid #e6eff3;background:#f8fbfc}
-  </style>
 </head>
-<body>
-<header>
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
-    </a>
-    <nav aria-label="Navigation principale">
-      <span class="menu-toggle" aria-label="Menu">☰</span>
-      <ul id="menu">
-        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques climatiques</a></li>
-        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="lang-switch">
-      <button class="lang-btn" data-lang="fr">Français</button>
-      <button class="lang-btn" data-lang="en">English</button>
-      <button class="lang-btn" data-lang="ar">عربية</button>
-    </div>
-  </div>
-</header>
-
-<section class="hero hero--solutions">
-  <div class="container">
-    <h1 data-i18n="title">Solutions d’assurance</h1>
-    <p data-i18n="subtitle">Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>. Produits inspirés des meilleures pratiques du marché (multirisques, transport, flotte, RC, construction… / santé, habitation, vie, voyage Schengen, retraite).</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Mise en concurrence</span>
-      <span class="badge" data-i18n="badges.1">Gestion des sinistres</span>
-      <span class="badge" data-i18n="badges.2">Transparence totale</span>
-    </div>
-  </div>
-</section>
-
-<section class="reveal">
-  <div class="container">
-    <!-- Onglets -->
-    <div class="tabs" role="tablist" aria-label="Segments">
-      <button class="tab active" id="tab-corp" role="tab" aria-selected="true" data-seg="corp" data-i18n="tabs.corp">Entreprises</button>
-      <button class="tab" id="tab-retail" role="tab" aria-selected="false" data-seg="retail" data-i18n="tabs.retail">Particuliers</button>
-    </div>
-
-    <!-- Outils -->
-    <div class="tools">
-      <div class="search" role="search">
-        <input id="q" type="search" placeholder="Rechercher…" aria-label="Rechercher"/>
-        <button class="btn" id="clear" type="button" data-i18n="ui.clear">Effacer</button>
+<body data-page="solutions">
+  <div class="topbar">
+    <div class="container">
+      <div class="contact-list" data-role="topbar-contacts"></div>
+      <div class="actions-right">
+        <span class="tagline" data-common="topbar.tagline"></span>
+        <button class="search-trigger" type="button" aria-label="Recherche">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="16.65" y1="16.65" x2="21" y2="21"></line></svg>
+        </button>
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="fr">Français</button>
+          <button class="lang-btn" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="ar">عربية</button>
+        </div>
       </div>
     </div>
-
-    <!-- Filtres (chips) -->
-    <div class="chips" id="chips"></div>
-
-    <!-- Grille produits -->
-    <div id="grid" class="grid mt-2" aria-live="polite"></div>
   </div>
-</section>
 
-<footer>
-  <div class="container footer-grid">
-    <div>
-      <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
-    </div>
-    <div>
-      <h4 data-i18n="footer.links">Liens</h4>
-      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Risques Climatiqes</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
-    </div>
-    <div>
-      <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
-    </div>
-  </div>
-</footer>
-
-<script>
-/* ================== Données (FR/EN/AR) ================== */
-const I18N = {
-  fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
-    title:"Solutions d’assurance",
-    subtitle:"Deux parcours : <strong>Entreprises</strong> et <strong>Particuliers</strong>. Produits inspirés des meilleures pratiques du marché (multirisques, transport, flotte, RC, construction… / santé, habitation, vie, voyage Schengen, retraite).",
-    badges:["Mise en concurrence","Gestion des sinistres","Transparence totale"],
-    tabs:{corp:"Entreprises",retail:"Particuliers"},
-    ui:{clear:"Effacer",search:"Rechercher…",nores:"Aucun produit ne correspond à votre recherche."},
-    cta:{quote:"Obtenir un devis",learn:"Savoir plus",more:"Parler à un conseiller"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    filters:{
-      corp:[["all","Tous"],["prop","Biens"],["trans","Transport"],["fleet","Flotte"],["liab","Responsabilité"],["const","Construction"],["health","Santé"]],
-      retail:[["all","Tous"],["health","Santé"],["acc","Accident"],["home","Habitation"],["life","Vie & placements"],["travel","Voyage"],["ret","Retraite"]]
-    },
-    products:{
-      corp:[
-        {id:"multirisques", url:"Produits/multirisques.html",
-         img:"https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1200&q=60",
-         cat:["prop"], t:"Multirisques Entreprise",
-         p:"Biens & pertes d’exploitation pour locaux, stocks, machines.",
-         bul:["Incendie, dégâts des eaux, bris de machines","Pertes d’exploitation (PDB)","Options CatNat & événements climatiques"]},
-        {id:"transport", url:"Produits/transport.html",
-         img:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=60",
-         cat:["trans"], t:"Transport (marchandises)",
-         p:"Couvre vos expéditions import/export & logistique.",
-         bul:["Tous risques facultés","RC transporteur / commissionnaire","Paramétriques météo en option"]},
-        {id:"flotte", url:"Produits/flotte.html",
-         img:"https://images.unsplash.com/photo-1704488473677-ae044ef0d289?auto=format&fit=crop&w=1200&q=60",
-         cat:["fleet"], t:"Automobile & Flotte",
-         p:"De 5 à 5 000 véhicules, gestion sinistres & télématique.",
-         bul:["Tiers / Tous risques / Bris de glace","Assistance & véhicules de remplacement","Tableaux de bord sinistres"]},
-        {id:"rc", url:"Produits/rc.html",
-         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
-         cat:["liab"], t:"Responsabilité Civile",
-         p:"RC Générale / Professionnelle / Pollution / Produits.",
-         bul:["RC exploitation et après livraison","RC professionnelle (PI)","RC environnementale"]},
-        {id:"construction", url:"Produits/construction.html",
-         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
-         cat:["const"], t:"Construction (CAR/EAR)",
-         p:"Tous risques chantier & décennale selon projet.",
-         bul:["Chantiers BTP, énergie, infrastructures","Pertes d’exploitation chantier","Couvertures par phase"]},
-        {id:"santecollective", url:"Produits/santecollective.html",
-         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"], t:"Santé collective & Prévoyance",
-         p:"Contrats pour salariés : frais médicaux et prévoyance.",
-         bul:["Réseaux de soins & tiers payant","Couvertures cadres/non-cadres","Pilotage coûts & prévention"]}
-      ],
-      retail:[
-        {id:"sante", url:"Produits/sante.html",
-         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"], t:"Santé",
-         p:"Remboursement soins, hospitalisation, optique & dentaire.",
-         bul:["Réseau partenaires & tiers payant","Formules modulaires","Assistance 24/7"]},
-        {id:"alv", url:"Produits/alv.html",
-         img:"https://images.unsplash.com/photo-1633158832532-f71e9c7ac6d6?auto=format&fit=crop&w=1200&q=60",
-         cat:["acc"], t:"Accidents de la vie",
-         p:"Indemnisation des accidents domestiques & loisirs.",
-         bul:["Incapacité & invalidité","Rente éducation","Assistance à domicile"]},
-        {id:"habitation", url:"Produits/habitation.html",
-         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
-         cat:["home"], t:"Biens (Habitation)",
-         p:"Incendie, vol, dégâts des eaux, RC vie privée.",
-         bul:["Valeur à neuf selon options","Protection juridique","Objets de valeur"]},
-        {id:"vie", url:"Produits/vie.html",
-         img:"https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=1200&q=60",
-         cat:["life"], t:"Assurance-vie & placements",
-         p:"Épargne, transmission & capitalisation.",
-         bul:["Fonds euros & unités de compte","Arbitrages & fiscalité","Options bénéficiaires"]},
-        {id:"schengen", url:"Produits/schengen.html",
-         img:"https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=1200&q=60",
-         cat:["travel"], t:"Voyage Schengen",
-         p:"Attestation conforme, visa & assistance.",
-         bul:["Frais médicaux & rapatriement","Bagages & retard","Formules courte/longue durée"]},
-        {id:"retraite", url:"Produits/retraite.html",
-         img:"https://images.unsplash.com/photo-1562557082-7f2785d741e7?auto=format&fit=crop&w=1200&q=60",
-         cat:["ret"], t:"Retraite",
-         p:"Constitution d’une rente/épargne long terme.",
-         bul:["Versements programmés","Avantages fiscaux (selon cadre)","Options réversibilité"]}
-      ]
-    }
-  },
-
-  en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    title:"Insurance solutions",
-    subtitle:"Two paths: <strong>Businesses</strong> and <strong>Individuals</strong>. Products aligned with market best practices (property, cargo, fleet, liability, construction… / health, home, life & savings, Schengen travel, retirement).",
-    badges:["Market benchmarking","Claims handling","Full transparency"],
-    tabs:{corp:"Businesses",retail:"Individuals"},
-    ui:{clear:"Clear",search:"Search…",nores:"No product matches your search."},
-    cta:{quote:"Get a quote",learn:"Learn more",more:"Talk to an advisor"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    filters:{
-      corp:[["all","All"],["prop","Property"],["trans","Cargo"],["fleet","Fleet"],["liab","Liability"],["const","Construction"],["health","Health"]],
-      retail:[["all","All"],["health","Health"],["acc","Accident"],["home","Home"],["life","Life & savings"],["travel","Travel"],["ret","Retirement"]]
-    },
-    products:{
-      corp:[
-        {id:"multirisques",url:"Produits/multirisques.html",
-         img:"https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1200&q=60",
-         cat:["prop"],t:"Commercial Property (All Risks)",
-         p:"Assets & Business Interruption for premises, stock, machinery.",
-         bul:["Fire, water damage, machinery breakdown","Business interruption","NatCat & climate options"]},
-        {id:"transport",url:"Produits/transport.html",
-         img:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=60",
-         cat:["trans"],t:"Cargo / Transport",
-         p:"Covers imports/exports and logistics chain.",
-         bul:["All-risks cargo","Carrier/Freight forwarder liability","Optional weather parametrics"]},
-        {id:"flotte",url:"Produits/flotte.html",
-         img:"https://images.unsplash.com/photo-1704488473677-ae044ef0d289?auto=format&fit=crop&w=1200&q=60",
-         cat:["fleet"],t:"Motor & Fleet",
-         p:"From 5 to 5,000 vehicles, claims & telematics.",
-         bul:["TPL / Comprehensive / Glass","Roadside assistance","Claims dashboards"]},
-        {id:"rc",url:"Produits/rc.html",
-         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
-         cat:["liab"],t:"General / Professional Liability",
-         p:"GL, PI, pollution, product liability.",
-         bul:["Operations & post-delivery","Professional indemnity","Environmental liability"]},
-        {id:"construction",url:"Produits/construction.html",
-         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
-         cat:["const"],t:"Construction (CAR/EAR)",
-         p:"All-risks projects & decennial where applicable.",
-         bul:["BTP, energy, infrastructure","Project delay/BI options","Phase-based covers"]},
-        {id:"santecollective",url:"Produits/santecollective.html",
-         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"],t:"Group Health & Benefits",
-         p:"Employee medical + risk benefits packages.",
-         bul:["Provider networks & direct billing","Schemes by grade","Cost control & prevention"]}
-      ],
-      retail:[
-        {id:"sante",url:"Produits/sante.html",
-         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"],t:"Health",
-         p:"Outpatient, hospital, optical & dental.",
-         bul:["Partner networks & cashless","Modular plans","24/7 assistance"]},
-        {id:"alv",url:"Produits/alv.html",
-         img:"https://images.unsplash.com/photo-1633158832532-f71e9c7ac6d6?auto=format&fit=crop&w=1200&q=60",
-         cat:["acc"],t:"Personal Accident",
-         p:"Indemnities for domestic/leisure accidents.",
-         bul:["Disability benefits","Education annuity","Home assistance"]},
-        {id:"habitation",url:"Produits/habitation.html",
-         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
-         cat:["home"],t:"Home (Property)",
-         p:"Fire, theft, water damage, personal liability.",
-         bul:["New-for-old options","Legal protection","Valuables cover"]},
-        {id:"vie",url:"Produits/vie.html",
-         img:"https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=1200&q=60",
-         cat:["life"],t:"Life Insurance & Savings",
-         p:"Wealth, succession & capital growth.",
-         bul:["Euro funds & UC","Arbitrage & tax","Beneficiary options"]},
-        {id:"schengen",url:"Produits/schengen.html",
-         img:"https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=1200&q=60",
-         cat:["travel"],t:"Schengen Travel",
-         p:"Visa-compliant certificate & assistance.",
-         bul:["Medical & repatriation","Baggage & delay","Short/long stays"]},
-        {id:"retraite",url:"Produits/retraite.html",
-         img:"https://images.unsplash.com/photo-1562557082-7f2785d741e7?auto=format&fit=crop&w=1200&q=60",
-         cat:["ret"],t:"Retirement",
-         p:"Build long-term income/savings.",
-         bul:["Programmed contributions","Tax efficiency (framework)","Reversion options"]}
-      ]
-    }
-  },
-
-  ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"المخاطر المناخية",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"حلول التأمين",
-    subtitle:"مساران: <strong>الشركات</strong> و<strong>الأفراد</strong>. منتجات وفق أفضل الممارسات (ممتلكات، نقل بضائع، أساطيل، مسؤولية، إنشاءات… / صحة، سكن، حياة وادخار، سفر شنغن، تقاعد).",
-    badges:["مقارنة عروض السوق","إدارة المطالبات","شفافية كاملة"],
-    tabs:{corp:"الشركات",retail:"الأفراد"},
-    ui:{clear:"مسح",search:"ابحث…",nores:"لا توجد منتجات مطابقة لبحثك."},
-    cta:{quote:"اطلب عرضاً",learn:"تعرّف أكثر",more:"تحدث إلى مستشار"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    filters:{
-      corp:[["all","الكل"],["prop","ممتلكات"],["trans","نقل"],["fleet","أساطيل"],["liab","مسؤولية"],["const","إنشاءات"],["health","صحة"]],
-      retail:[["all","الكل"],["health","صحة"],["acc","حوادث"],["home","سكن"],["life","حياة وادخار"],["travel","سفر"],["ret","تقاعد"]]
-    },
-    products:{
-      corp:[
-        {id:"multirisques",url:"Produits/multirisques.html",
-         img:"https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1200&q=60",
-         cat:["prop"],t:"متعدد المخاطر للشركات",
-         p:"الممتلكات وخسارة الأرباح للمقار والمخازن والآلات.",
-         bul:["حريق وتسرب مياه وكسر آلات","خسارة الأرباح","خيارات كوارث طبيعية ومناخ"]},
-        {id:"transport",url:"Produits/transport.html",
-         img:"https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=60",
-         cat:["trans"],t:"نقل البضائع",
-         p:"يغطي الاستيراد/التصدير وسلاسل الإمداد.",
-         bul:["جميع الأخطار للبضائع","مسؤولية الناقل/المخلص","بارامترية للطقس (اختياري)"]},
-        {id:"flotte",url:"Produits/flotte.html",
-         img:"https://images.unsplash.com/photo-1704488473677-ae044ef0d289?auto=format&fit=crop&w=1200&q=60",
-         cat:["fleet"],t:"السيارات والأساطيل",
-         p:"من 5 إلى 5000 مركبة، إدارة مطالبات وتتبع.",
-         bul:["طرف ثالث/شامل/زجاج","مساعدة على الطريق","لوحات مؤشرات للمطالبات"]},
-        {id:"rc",url:"Produits/rc.html",
-         img:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=60",
-         cat:["liab"],t:"المسؤولية العامة/المهنية",
-         p:"عامة ومهنية وتلوث ومسؤولية المنتج.",
-         bul:["أثناء التشغيل وبعد التسليم","المسؤولية المهنية","المسؤولية البيئية"]},
-        {id:"construction",url:"Produits/construction.html",
-         img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=60",
-         cat:["const"],t:"الإنشاءات (CAR/EAR)",
-         p:"جميع أخطار المشاريع والضمانات اللاحقة حيث تنطبق.",
-         bul:["بناء وطاقة وبنية تحتية","تأخير المشروع/خسارة الأرباح","تغطيات حسب المراحل"]},
-        {id:"santecollective",url:"Produits/santecollective.html",
-         img:"https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"],t:"الصحة الجماعية والمزايا",
-         p:"برامج طبية ومخاطر للموظفين.",
-         bul:["شبكات مقدمي الخدمة والدفع المباشر","خطط حسب الدرجات","تحكم في التكاليف والوقاية"]}
-      ],
-      retail:[
-        {id:"sante",url:"Produits/sante.html",
-         img:"https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=60",
-         cat:["health"],t:"الصحة",
-         p:"عيادات وتنويم ونظارات وأسنان.",
-         bul:["شبكات شركاء ودفع مباشر","خطط مرنة","مساعدة 24/7"]},
-        {id:"alv",url:"Produits/alv.html",
-         img:"https://images.unsplash.com/photo-1633158832532-f71e9c7ac6d6?auto=format&fit=crop&w=1200&q=60",
-         cat:["acc"],t:"حوادث الحياة",
-         p:"تعويض عن الحوادث المنزلية والترفيهية.",
-         bul:["عوائد عجز","راتب تعليم","مساعدة منزلية"]},
-        {id:"habitation",url:"Produits/habitation.html",
-         img:"https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=60",
-         cat:["home"],t:"السكن (الممتلكات)",
-         p:"حريق وسرقة وتسرب مياه ومسؤولية خاصة.",
-         bul:["قيمة جديدة حسب الخيارات","حماية قانونية","تغطية المقتنيات الثمينة"]},
-        {id:"vie",url:"Produits/vie.html",
-         img:"https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=1200&q=60",
-         cat:["life"],t:"تأمين الحياة والادخار",
-         p:"ادخار ونقل الثروة وتنمية رأس المال.",
-         bul:["صناديق بالعملة المحلية ووحدات","تحويلات وضريبة","خيارات المستفيد"]},
-        {id:"schengen",url:"Produits/schengen.html",
-         img:"https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=1200&q=60",
-         cat:["travel"],t:"سفر شنغن",
-         p:"شهادة مطابقة للتأشيرة ومساعدة.",
-         bul:["نفقات طبية وإعادة للوطن","أمتعة وتأخير","قصير/طويل الأجل"]},
-        {id:"retraite",url:"Produits/retraite.html",
-         img:"https://images.unsplash.com/photo-1562557082-7f2785d741e7?auto=format&fit=crop&w=1200&q=60",
-         cat:["ret"],t:"التقاعد",
-         p:"بناء دخل/ادخار طويل الأجل.",
-         bul:["مساهمات مبرمجة","كفاءة ضريبية (حسب الإطار)","خيارات الاستحقاق"]}
-      ]
-    }
-  }
-};
-
-/* ================== Helpers ================== */
-let lang = localStorage.getItem('riskalia_lang') || 'fr';
-if(!['fr','en','ar'].includes(lang)) lang='fr';
-let seg = 'corp';            // segment actif
-let chip = 'all';            // filtre catégorie
-let query = '';              // recherche
-
-const $ = (s,root=document)=>root.querySelector(s);
-const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
-function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('solutions.html'))); }
-
-/* ================== Rendu ================== */
-function renderChips(){
-  const wrap = $('#chips'); wrap.innerHTML='';
-  const items = t('filters.'+seg);
-  (items||[]).forEach(([id,label])=>{
-    const b=document.createElement('button');
-    b.className='chip'+(chip===id?' active':'');
-    b.dataset.id=id; b.textContent=label;
-    b.addEventListener('click', ()=>{ chip=id; renderGrid(); highlightChip(); });
-    wrap.appendChild(b);
-  });
-}
-function highlightChip(){
-  $$('#chips .chip').forEach(c=> c.classList.toggle('active', c.dataset.id===chip));
-}
-function renderGrid(){
-  const grid = $('#grid'); grid.innerHTML='';
-  const list = t('products.'+seg) || [];
-  const q = query.trim().toLowerCase();
-
-  const filtered = list.filter(it=>{
-    const okCat = (chip==='all') || it.cat.includes(chip);
-    const okText = !q || (it.t.toLowerCase().includes(q) || (it.p||'').toLowerCase().includes(q) || (it.bul||[]).some(b=>b.toLowerCase().includes(q)));
-    return okCat && okText;
-  });
-
-  if(filtered.length===0){
-    const p=document.createElement('p');
-    p.className='muted'; p.textContent=t('ui.nores'); grid.appendChild(p);
-    return;
-  }
-
-  filtered.forEach(it=>{
-    const img = it.img || "https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?auto=format&fit=crop&w=1200&q=60";
-    const url = it.url || "#";
-    const card=document.createElement('article');
-    card.className='card';
-    card.innerHTML = `
-      <a href="${url}" aria-label="${it.t}">
-        <img class="illus" src="${img}" alt="">
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="./assets/Riskalia-Logo.png" alt="Riskalia"/>
       </a>
-      <h3 style="margin-top:10px">${it.t}</h3>
-      <p class="muted">${it.p || ''}</p>
-      ${ (it.bul && it.bul.length) ? `<ul>${it.bul.map(x=>`<li>${x}</li>`).join('')}</ul>` : '' }
-      <div class="actions">
-        <a class="btn" href="${url}">${t('cta.learn')}</a>
-        <a class="btn secondary" href="contact.html">${t('cta.quote')}</a>
+      <nav aria-label="Navigation principale">
+        <span class="menu-toggle" aria-label="Menu">☰</span>
+        <ul id="menu">
+          <li><a data-nav="home" data-common="nav.home" href="index.html">Accueil</a></li>
+          <li class="dropdown">
+            <a class="has-caret" data-common="nav.solutions" href="solutions.html" aria-haspopup="true" aria-expanded="false">Solutions <span class="caret">▾</span></a>
+            <ul class="submenu">
+              <li class="dropdown">
+                <a class="has-caret" data-common="nav.assurance" href="solutions.html#assurance" aria-haspopup="true" aria-expanded="false">Assurance <span class="caret">▸</span></a>
+                <ul class="submenu">
+                  <li><a data-nav="solutions" data-common="nav.assuranceIndividuals" href="solutions.html#particuliers">Particuliers</a></li>
+                  <li><a data-nav="solutions" data-common="nav.assuranceCorporate" href="solutions.html#entreprises">Entreprises</a></li>
+                </ul>
+              </li>
+              <li><a data-nav="reinsurance" data-common="nav.reinsurance" href="reinsurance.html">Réassurance</a></li>
+            </ul>
+          </li>
+          <li><a data-nav="climate" data-common="nav.climate" href="climate.html">Risques Climatiques</a></li>
+          <li><a data-nav="consulting" data-common="nav.consulting" href="consulting.html">Services de Conseil</a></li>
+          <li><a data-nav="esg" data-common="nav.esg" href="esg.html">ESG</a></li>
+          <li><a data-nav="contact" data-common="nav.contact" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero hero--solutions reveal">
+    <div class="container">
+      <div class="kicker" data-i18n="solutions.hero.kicker"></div>
+      <h1 data-i18n="solutions.hero.title"></h1>
+      <p data-i18n="solutions.hero.subtitle"></p>
+      <div class="badges" data-role="solutions-hero-badges"></div>
+    </div>
+  </section>
+
+  <section class="reveal" id="catalogue">
+    <div class="container">
+      <div id="entreprises" class="anchor-marker" aria-hidden="true"></div>
+      <div id="particuliers" class="anchor-marker" aria-hidden="true"></div>
+      <div class="tabs" role="tablist" aria-label="Segments">
+        <button class="tab active" data-seg="corp" data-i18n="solutions.tabs.corp" aria-selected="true" role="tab"></button>
+        <button class="tab" data-seg="retail" data-i18n="solutions.tabs.retail" aria-selected="false" role="tab"></button>
       </div>
-    `;
-    grid.appendChild(card);
-  });
-}
+      <div class="tools">
+        <div class="search" role="search">
+          <input id="solutionsSearch" type="search" aria-label="Search"/>
+          <button class="btn" id="solutionsClear" type="button" data-i18n="solutions.ui.clear"></button>
+        </div>
+      </div>
+      <div class="chips" id="solutionsChips"></div>
+      <div id="solutionsGrid" class="grid mt-2" aria-live="polite"></div>
+    </div>
+  </section>
 
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
-  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  $('#q').placeholder = t('ui.search');
-  setActiveNav();
-  renderChips(); renderGrid();
-  $$('.tab').forEach(b=> b.classList.toggle('active', b.dataset.seg===seg));
-}
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Riskalia</h4>
+        <p class="muted" data-i18n="solutions.footer.desc"></p>
+      </div>
+      <div>
+        <h4 data-i18n="solutions.footer.links"></h4>
+        <p>
+          <a href="solutions.html" data-common="nav.solutions">Solutions</a><br/>
+          <a href="reinsurance.html" data-common="nav.reinsurance">Réassurance</a><br/>
+          <a href="climate.html" data-common="nav.climate">Risques Climatiques</a><br/>
+          <a href="consulting.html" data-common="nav.consulting">Services de Conseil</a>
+        </p>
+      </div>
+      <div>
+        <h4 data-i18n="solutions.footer.contact"></h4>
+        <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a><br/>Tel : <a href="tel:+212666756991">+212-666-756991</a></p>
+      </div>
+    </div>
+  </footer>
 
-/* ================== UI ================== */
-function initUI(){
-  const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-box" role="dialog" aria-modal="true">
+      <header>
+        <h3 data-common="search.title"></h3>
+        <button class="search-close" type="button" data-role="search-close" aria-label="Fermer">×</button>
+      </header>
+      <input type="search" id="searchInput" class="search-input" placeholder="Rechercher…"/>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
 
-  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
-    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
-  }));
+  <button class="chatbot-toggle" id="chatbotToggle" type="button" aria-label="Chatbot">💬</button>
+  <div class="chatbot-panel" id="chatbotPanel" aria-live="polite">
+    <div class="chatbot-header">
+      <h3 data-common="chatbot.title"></h3>
+      <p data-common="chatbot.lead"></p>
+    </div>
+    <div class="chatbot-body" id="chatbotMessages"></div>
+    <div class="chatbot-quick" id="chatbotQuick"></div>
+  </div>
 
-  $$('#tab-corp,#tab-retail').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      seg = btn.dataset.seg;
-      chip='all'; query='';
-      $('#q').value='';
-      applyTexts();
-    });
-  });
-
-  $('#q').addEventListener('input', (e)=>{ query=e.target.value; renderGrid(); });
-  $('#clear').addEventListener('click', ()=>{ query=''; $('#q').value=''; renderGrid(); });
-
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll',onScroll); onScroll();
-}
-
-/* init */
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
-</script>
-
+  <script src="./assets/js/app.js" defer></script>
+  <script src="./assets/js/solutions.js" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
