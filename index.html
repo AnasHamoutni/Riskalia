@@ -16,6 +16,33 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
 body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.75;background:#fff}
+/* === Background patterns === */
+.hero {
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  background-attachment: fixed;
+}
+section:nth-child(even) {
+  background: linear-gradient(45deg, #f8fbfc 0%, #ffffff 100%);
+}
+.reveal {
+  background: linear-gradient(to right, #ffffff 0%, #f6fafc 50%, #ffffff 100%);
+}
+footer {
+  background: linear-gradient(135deg, var(--c1) 0%, #003d52 100%) !important;
+}
+/* Add subtle pattern overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,139,155,0.05) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
+}
 body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
 a{color:inherit;text-decoration:none}
