@@ -16,6 +16,33 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden}
 body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.75;background:#fff}
+/* === Background patterns === */
+.hero {
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  background-attachment: fixed;
+}
+section:nth-child(even) {
+  background: linear-gradient(45deg, #f8fbfc 0%, #ffffff 100%);
+}
+.reveal {
+  background: linear-gradient(to right, #ffffff 0%, #f6fafc 50%, #ffffff 100%);
+}
+footer {
+  background: linear-gradient(135deg, var(--c1) 0%, #003d52 100%) !important;
+}
+/* Add subtle pattern overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,139,155,0.05) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
+}
 body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
 a{color:inherit;text-decoration:none}
@@ -29,7 +56,22 @@ img{max-width:100%;display:block}
 .btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent}
 .btn:hover{background:var(--c2)}
 .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
-section{padding:64px 0}
+section{padding:40px 0}
+.hero { padding: 50px 0 !important; }
+@media(max-width: 768px) {
+  section { padding: 25px 0; }
+  .hero { padding: 35px 0 !important; }
+}
+.search-highlight {
+  background-color: yellow !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  animation: highlight-pulse 2s ease-in-out;
+}
+@keyframes highlight-pulse {
+  0%, 100% { background-color: yellow; }
+  50% { background-color: orange; }
+}
 
 /* nav */
 header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
@@ -156,22 +198,46 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
             Solutions <span class="caret" aria-hidden="true">▾</span>
           </a>
           <ul class="submenu" aria-label="Sous-menu Solutions">
-            <li><a href="assurance.html" data-i18n="nav.ins">Assurance</a></li>
+            <li class="dropdown">
+              <a href="assurance.html" class="has-caret" data-i18n="nav.ins">
+                Assurance <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <ul class="submenu" aria-label="Sous-menu Assurance">
+                <li><a href="assurance-particulier.html">Particulier</a></li>
+                <li><a href="assurance-entreprise.html">Entreprise</a></li>
+              </ul>
+            </li>
             <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
           </ul>
         </li>
 
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="risk-management.html" data-i18n="nav.risk">Services de Conseil</a></li>
-        <li><a href="risk-management.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
 
     </nav>
-    <div class="lang-switch">
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <!-- Search Bar -->
+      <div style="position: relative;">
+        <input type="text" id="search-input" placeholder="Rechercher..." 
+               style="padding: 8px 35px 8px 12px; border: 1px solid #ddd; border-radius: 20px; 
+                      font-size: 14px; width: 200px; outline: none;"
+               onkeypress="handleSearch(event)">
+        <button onclick="performSearch()" style="
+          position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+          background: none; border: none; cursor: pointer; font-size: 16px;">
+          🔍
+      
+        </button>
+      </div>
+          <div class="lang-switch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
       <button class="lang-btn" data-lang="ar">عربية</button>
+      </div>
+    </div>
     </div>
   </div>
 </header>
@@ -179,9 +245,14 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <h1 data-i18n="hero.title">L’expertise qui rassure</h1>
-    <p class="slogan" data-i18n="hero.slogan">Nous transformons vos aléas opérationnels en croissance durable.</h2>
+    <h1 data-i18n="hero.title">RISKALIA</h1>
+    <h2 style="color: white; margin-top: 10px; font-size: 1.8em;">Courtage & Stratégies</h2>
+    <h3 style="color: white; margin-top: 5px; font-size: 1.4em; font-weight: 600;">Expertise, Innovation & Résilience</h3>
+    <p class="slogan" data-i18n="hero.slogan">Précision actuarielle. Performance financière. Protection juridique : Nous transformons vos aléas opérationnels en croissance durable.</p>
     <p data-i18n="hero.sub" style="font-size: 1em;">Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en gestion des risques</p>
+    <p style="color: white; font-size: 1.1em; font-weight: 600; margin-top: 15px; background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 8px; display: inline-block;">
+      🌍 Nous sommes une expertise unique sur le marché Africain
+    </p>
     <div class="actions">
       <a href="contact.html" class="btn" data-i18n="cta.quote">Obtenir un devis</a>
       <a href="contact.html" class="btn secondary" data-i18n="cta.advisor">Contacter un conseiller</a>
@@ -325,7 +396,7 @@ footer h4{color:#a8ecf4;margin-bottom:10px}
 <!-- EQUIPE -->
 <section class="reveal">
   <div class="container">
-    <div class="kicker" data-i18n="team.kicker">Équipe</div>
+    <div class="kicker" data-i18n="team.kicker">Associés</div>
     <h2 data-i18n="team.title">Une équipe dirigeante d’exception</h2>
     <div class="assoc">
       <div class="p">
@@ -344,7 +415,55 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
       </div>
 
     </div>
-  </div>a
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="reveal">
+  <div class="container">
+    <div class="kicker">Témoignages</div>
+    <h2>Ce que disent nos clients</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 32px;">
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "Riskalia nous a accompagnés dans la structuration d'un programme d'assurance complexe pour notre projet d'infrastructure solaire. Leur expertise en financement vert et leur accès aux marchés internationaux ont été déterminants."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c1); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">DA</div>
+          <div>
+            <strong>Directeur Général</strong><br>
+            <small style="color: #5f7781;">Société d'Énergies Renouvelables</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "L'approche méthodologique de Riskalia et leur transparence sur les commissions nous ont convaincus. Anasse et Nabil forment un binôme très complémentaire entre expertise actuarielle et juridique."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c2); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">MK</div>
+          <div>
+            <strong>CFO</strong><br>
+            <small style="color: #5f7781;">Groupe Industriel Marocain</small>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <p style="font-style: italic; color: #4e6a74; line-height: 1.6;">
+          "Pour notre programme de réassurance, Riskalia a négocié d'excellentes conditions avec des réassureurs notés A+. Leur scoring propriétaire des marchés apporte une vraie valeur ajoutée."
+        </p>
+        <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--c3); color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">SB</div>
+          <div>
+            <strong>Directeur Technique</strong><br>
+            <small style="color: #5f7781;">Compagnie d'Assurance Locale</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
@@ -372,11 +491,58 @@ Dans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au 
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <p><strong>Nabil Cherkaoui</strong><br/>
+         Professionnel : <a href="tel:+212666756991">+212-666-756991</a><br/>
+         Personnel : <a href="tel:+212675208909">+212-675-208909</a><br/>
+         Email : <a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a></p>
+      <p style="margin-top: 10px;">
+         Support & infos : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
     </div>
   </div>
 </footer>
 
+
+<!-- CHATBOT -->
+<div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+  <div id="chatbot-button" onclick="toggleChat()" style="
+    background: var(--c2); color: white; border-radius: 50%; width: 60px; height: 60px;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,139,155,0.3); font-size: 24px;">
+    💬
+  </div>
+  
+  <div id="chatbot-window" style="
+    display: none; position: absolute; bottom: 70px; right: 0;
+    width: 300px; height: 400px; background: white; border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15); border: 1px solid #e6eef0;">
+    
+    <div style="background: var(--c1); color: white; padding: 15px; border-radius: 12px 12px 0 0;">
+      <h4 style="margin: 0; font-size: 14px;">💬 Assistant Riskalia</h4>
+      <p style="margin: 5px 0 0; font-size: 12px; opacity: 0.9;">Comment puis-je vous aider ?</p>
+    </div>
+    
+    <div id="chat-messages" style="height: 280px; overflow-y: auto; padding: 15px; font-size: 13px;">
+      <div class="bot-message" style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+        Bonjour ! Je suis l'assistant virtuel de Riskalia. Je peux vous aider avec :
+        <br><br>
+        🔹 Informations sur nos services<br>
+        🔹 Contact avec nos experts<br>
+        🔹 Questions sur l'assurance/réassurance<br>
+        🔹 Navigation sur le site
+        <br><br>
+        <button onclick="showServices()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">Nos services</button>
+        <button onclick="showContact()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">Contact</button>
+        <button onclick="showAbout()" style="background: var(--c3); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin: 5px 2px; cursor: pointer; font-size: 11px;">À propos</button>
+      </div>
+    </div>
+    
+    <div style="padding: 10px; border-top: 1px solid #eee;">
+      <input type="text" id="chat-input" placeholder="Tapez votre question..." 
+        style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px;"
+        onkeypress="handleChatInput(event)">
+    </div>
+  </div>
+</div>
 <script>
 /* ===== Données i18n ===== */
 const I18N={
@@ -401,7 +567,7 @@ const I18N={
   ],
   cta: "Découvrir notre politique ESG"},
     why:{kicker:"Atouts",title:"Pourquoi choisir Riskalia ?",cards:[{t:"Agrément ACAPS toutes branches",p:"Conformité & protection des assurés garanties."},{t:"Méthode « Scoring & Placement »",p:"Notation marchés, clauses, délais d’indemnisation."},{t:"Transparence contractuelle",p:"Commissions & honoraires communiqués avant signature."}]},
-    team:{kicker:"Équipe",title:"Une équipe dirigeante d’exception",a:"Cofondateur & Associé Stratégique / Actuaire de formation et dirigeant expérimenté, Anasse Youssfi est reconnu comme un expert de référence en gestion des risques et en actuariat, avec plus de vingt ans d’expérience au service des assureurs, réassureurs et institutions financières en Afrique et à l’international.\n\nParallèlement à ses responsabilités de conseil, il intervient comme maître de conférences dans plusieurs universités et grandes écoles, contribuant à la formation des nouvelles générations d’actuaires et de risk managers. Son expertise est régulièrement sollicitée par des instances internationales et régulateurs dans le cadre de travaux stratégiques sur la résilience financière, la régulation prudentielle et l’adaptation aux risques émergents.\n\nDans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au cabinet sa vision, son réseau et son expertise, afin de garantir des fondations solides en gestion des risques, d’orienter les choix structurants et de renforcer le positionnement différenciant du cabinet sur un marché en pleine évolution.",n:"Associé Juriste — 22 ans en sinistres complexes, conformité et gouvernance réassurance."},
+    team:{kicker:"Associés",title:"Une équipe dirigeante d’exception",a:"Cofondateur & Associé Stratégique / Actuaire de formation et dirigeant expérimenté, Anasse Youssfi est reconnu comme un expert de référence en gestion des risques et en actuariat, avec plus de vingt ans d’expérience au service des assureurs, réassureurs et institutions financières en Afrique et à l’international.\n\nParallèlement à ses responsabilités de conseil, il intervient comme maître de conférences dans plusieurs universités et grandes écoles, contribuant à la formation des nouvelles générations d’actuaires et de risk managers. Son expertise est régulièrement sollicitée par des instances internationales et régulateurs dans le cadre de travaux stratégiques sur la résilience financière, la régulation prudentielle et l’adaptation aux risques émergents.\n\nDans ce projet de courtage, Anasse occupe un rôle stratégique : il apporte au cabinet sa vision, son réseau et son expertise, afin de garantir des fondations solides en gestion des risques, d’orienter les choix structurants et de renforcer le positionnement différenciant du cabinet sur un marché en pleine évolution.",n:"Associé Juriste — 22 ans en sinistres complexes, conformité et gouvernance réassurance."},
     contact:{title:"Un besoin de couverture ?",sub:"Décrivez votre projet : nous répondons sous 24–48 h."},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
     corp:["Multirisques Entreprise","Transport (marchandises)","Automobile & flotte","Responsabilité civile","Construction","Santé collective & prévoyance"],
