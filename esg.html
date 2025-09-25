@@ -4,68 +4,234 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — ESG (Gouvernance, Social, Environnement)</title>
-  <meta name="description" content="Notre politique ESG interne : gouvernance & éthique, personnes & diversité, empreinte environnementale, achats responsables, engagement sociétal, objectifs & indicateurs."/>
+  <meta name="description" content="Notre démarche ESG : gouvernance responsable, engagement social, respect de l’environnement, impact sociétal et achats responsables — alignée avec les attentes ACAPS et les meilleures pratiques."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
 
-  <!-- Fonts + CSS global -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/styles.css"/>
 
   <style>
-    /* Héro spécifique ESG */
-    .hero--esg{
-      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-                 url('https://images.unsplash.com/photo-1744656160802-c1a63908fee3?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
-      min-height:42vh;
+    /* ================== Design tokens ================== */
+    :root{
+      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f7fcfe; --cd:#243238;
+      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+      --border:1px solid rgba(0,93,115,.18);
+      --fs-nav:0.95rem; --fs-body:1rem; --fs-kicker:0.8rem;
+      --fs-h1:clamp(2rem,3.2vw,3rem); --fs-h2:clamp(1.25rem,2.2vw,1.6rem); --fs-h3:1.05rem;
+      --fw-bold:700; --fw-semi:600;
     }
 
-    /* ----- Layout “onglets” */
-    .main--single{ display:block; }                 /* neutralise la grille 2 colonnes */
-    .tabs.sticky{
-      position:sticky; top:72px; z-index:30;
-      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
-      overflow:auto; white-space:nowrap;
-      box-shadow:var(--shadow);
-      display:flex; gap:10px;
-    }
-    .tabs.sticky .tab{ flex:0 0 auto; }
-    .tabpanel{ display:none; }
-    .tabpanel.active{ display:block; }
+    /* ================== Base ================== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{overflow-x:hidden}
+    body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff;font-size:var(--fs-body)}
+    body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+    h1{font-size:var(--fs-h1)}
+    h2{font-size:var(--fs-h2); margin-bottom:6px}
+    h3{font-size:var(--fs-h3); margin:8px 0 4px}
+    body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:auto;padding:0 18px}
+    .muted{color:#5f7781}
+    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
+    section{padding:20px 0}
 
-    /* Petites cartes KPI + “documents” */
-    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
-    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
-    .kpi .p .v{font-weight:900;color:#0b5562}
-    .dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:10px}
-    .dl a{display:flex;align-items:center;gap:10px;border:1px solid #e2edf2;background:#f8fbfc;padding:12px;border-radius:12px;font-weight:800;color:#0b5562}
+    /* ================== Buttons ================== */
+    .btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
+    .btn:hover{background:var(--c2);transform:translateY(-1px)}
+    .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
 
-    /* Mobile : onglets plus compacts */
-    @media(max-width:600px){
-      .tabs.sticky{ top:66px; padding:6px; }
-      .tab{ padding:10px 12px; }
+    /* ================== Header / Nav (with dropdown option) ================== */
+    header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:var(--fw-bold)}
+    .brand img{height:48px;width:auto;border-radius:10px}
+    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:var(--fw-bold);font-size:var(--fs-nav)}
+    nav a{position:relative;padding:6px;line-height:1.2}
+    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+    nav a:hover::after,nav a.active::after{width:100%}
+    .menu-toggle{display:none;font-size:2rem;cursor:pointer;line-height:1}
+    .lang-switch{display:flex;gap:6px}
+    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:var(--fw-bold);font-size:0.9rem}
+    .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+
+    /* Dropdown base (optional) */
+    #menu li.dropdown{position:relative}
+    #menu li.dropdown > a.has-caret{padding-right:18px}
+    body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
+    #menu li .caret{display:inline-block;transition:transform .2s}
+    #menu li .submenu{
+      display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;
+      border:1px solid #e6eef0;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.08);
+      list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
     }
+    #menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
+    #menu li .submenu li a:hover{background:#eef6f8}
+    #menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
+    #menu li.open > .submenu{display:block}
+    #menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
+    body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+
+    /* Mobile nav */
+    @media(max-width:900px){
+      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+      nav ul.show{right:0}
+      body[dir="rtl"] nav ul{right:auto;left:-100%}
+      body[dir="rtl"] nav ul.show{left:0}
+      .menu-toggle{display:block}
+      #menu li.dropdown{width:100%}
+      #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
+      #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
+      #menu li.dropdown.open > .submenu{display:block}
+      #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
+    }
+
+    /* ================== Hero with wave ================== */
+    .hero{
+      min-height:28vh;
+      background:
+        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+      display:flex;align-items:center;text-align:center;padding:20px 0 80px;
+      position:relative;overflow:hidden;color:#fff;
+    }
+    .hero h1{color:#fff}
+    .hero p{color:#fff;opacity:.98;max-width:920px;margin:6px auto}
+    .hero .method{margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#ecf9ff}
+    .hero-wave{
+      position:absolute; left:0; right:0; bottom:-1px; height:68px; pointer-events:none;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="68" viewBox="0 0 1440 68" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,68 L0,68 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      opacity:1; animation: waveFloat 8s ease-in-out infinite;
+    }
+    @keyframes waveFloat{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(4px) } }
+    .section-wave{ height:22px; margin-top:-30px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="22" viewBox="0 0 1440 22" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C240,24 480,0 720,9 C960,18 1200,4 1440,9 L1440,22 L0,22 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+    }
+
+    /* ================== Premium BG ================== */
+    .main-wrapper{
+      position:relative;z-index:0;isolation:isolate;
+      background:
+        radial-gradient(1100px 460px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+        linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
+    }
+    .main-wrapper::before{
+      content:"";position:absolute;inset:0;
+      background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
+      opacity:.12;filter:saturate(105%) contrast(102%) blur(.3px);
+      mix-blend-mode:normal;pointer-events:none;z-index:0;
+    }
+    .main-wrapper::after{
+      content:"";position:absolute;left:0;right:0;top:0;height:48px;
+      background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
+      pointer-events:none;z-index:0;
+    }
+    .main-wrapper > *{position:relative;z-index:1}
+
+    /* ================== Tabs ================== */
+    .tabs{ margin:10px auto 14px; display:grid;grid-template-columns:repeat(6,1fr); gap:10px;max-width:980px;padding:0 8px }
+    @media (max-width:1100px){ .tabs{grid-template-columns:repeat(4,1fr)} }
+    @media (max-width:750px){ .tabs{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:520px){ .tabs{grid-template-columns:repeat(2,1fr)} }
+    .tab{
+      padding:10px 12px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
+      font-weight:var(--fw-bold);font-size:0.95rem;color:#0b4e5b;text-align:center;cursor:pointer;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      backdrop-filter:saturate(115%) blur(4px); box-shadow:0 3px 10px rgba(0,0,0,.04);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .tab.active{
+      background:
+        linear-gradient(135deg, rgba(0,176,200,.18), rgba(0,92,115,.10)),
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      border-color:rgba(0,92,115,.25);
+      box-shadow:0 8px 22px rgba(0,176,200,.18);
+    }
+
+    /* ================== Cards / Panels ================== */
+    .tabpanel{display:none}
+    .tabpanel.active{display:block}
+    .card{
+      position:relative;border-radius:18px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
+      backdrop-filter:saturate(110%) blur(4px);
+      box-shadow:0 12px 26px rgba(0,0,0,.07);
+      border:1px solid rgba(0,93,115,.16);
+      padding:14px 18px;
+      transition:transform .22s ease, box-shadow .22s ease;
+      max-width:980px;margin:0 auto 16px;
+    }
+    .card::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+      background:linear-gradient(180deg, var(--c3), var(--c2));opacity:.55;
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
+    .card > h2{
+      display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
+      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:6px 10px;color:var(--c1);
+      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:8px;
+    }
+    .grid{ display:grid; gap:14px }
+    .grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
+    .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px }
+    @media (max-width:860px){ .grid-3,.grid-2{ grid-template-columns:1fr } }
+    .mini-card{
+      border:1px solid rgba(0,93,115,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86));
+      border-radius:14px; padding:12px;
+      box-shadow:0 6px 14px rgba(0,0,0,.05);
+    }
+    .callout{
+      border:1px dashed rgba(0,92,115,.28);
+      background:linear-gradient(180deg, rgba(0,176,200,.08), rgba(255,255,255,.92));
+      border-radius:14px; padding:12px; color:#085160;
+    }
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.active{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+    /* Footer */
+    footer{background:var(--c1);color:#fff;padding:36px 0;margin-top:0}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer h4{color:#a8ecf4;margin-bottom:8px}
   </style>
 </head>
-<body class="spacious">
+<body>
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+      <img src="./assets/Riskalia-Logo.png" alt="Riskalia" loading="eager" decoding="async">
     </a>
-    <nav aria-label="Navigation principale">
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label:aria.nav">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+
+        <!-- Optional dropdown grouping like climate page -->
+        <li class="dropdown">
+          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
+            Solutions <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul class="submenu" aria-label="Sous-menu Solutions" data-i18n-attr="aria-label:aria.submenu_solutions">
+            <li><a href="solutions.html" data-i18n="nav.ins">Assurance</a></li>
+            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+          </ul>
+        </li>
+
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services de Conseil</a></li>
         <li><a href="esg.html" class="active" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="lang-switch">
+    <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
       <button class="lang-btn" data-lang="ar">عربية</button>
@@ -73,195 +239,214 @@
   </div>
 </header>
 
-<section class="hero hero--esg">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
     <h1 data-i18n="title">ESG chez Riskalia</h1>
-    <p data-i18n="subtitle">Gouvernance & éthique • Bien-être & diversité • Empreinte environnementale • Achats responsables • Impact sociétal.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Code de conduite</span>
-      <span class="badge" data-i18n="badges.1">Bien-être & inclusion</span>
-      <span class="badge" data-i18n="badges.2">Empreinte & sobriété</span>
-    </div>
+    <p data-i18n="subtitle">
+      Gouvernance responsable • Engagement social • Respect de l’environnement • Impact sociétal • Achats responsables.
+    </p>
+    <p class="method" data-i18n="method">
+      Nous voulons être plus qu’un intermédiaire financier : un acteur responsable, transparent et utile à la société.
+    </p>
   </div>
+  <div class="hero-wave" aria-hidden="true"></div>
 </section>
+<div class="section-wave" aria-hidden="true"></div>
 
-<section class="reveal">
-  <div class="container main main--single">
+<!-- MAIN -->
+<div class="main-wrapper">
+  <section class="reveal">
+    <!-- Tabs -->
+    <div class="tabs" role="tablist" aria-label="Sections ESG" data-i18n-attr="aria-label:aria.tabs">
+      <button class="tab active" role="tab" id="tab-intro"      aria-selected="true"  aria-controls="intro"      data-tab="intro"      data-i18n="sec.intro.t">Engagement</button>
+      <button class="tab"         role="tab" id="tab-gov"        aria-selected="false" aria-controls="gov"        data-tab="gov"        data-i18n="sec.gov.t">Gouvernance</button>
+      <button class="tab"         role="tab" id="tab-social"     aria-selected="false" aria-controls="social"     data-tab="social"     data-i18n="sec.social.t">Engagement social</button>
+      <button class="tab"         role="tab" id="tab-env"        aria-selected="false" aria-controls="env"        data-tab="env"        data-i18n="sec.env.t">Environnement</button>
+      <button class="tab"         role="tab" id="tab-societal"   aria-selected="false" aria-controls="societal"   data-tab="societal"   data-i18n="sec.societal.t">Impact sociétal</button>
+      <button class="tab"         role="tab" id="tab-procure"    aria-selected="false" aria-controls="procure"    data-tab="procure"    data-i18n="sec.procure.t">Achats responsables</button>
+    </div>
 
-    <!-- ONGLETs horizontaux -->
-    <nav class="tabs sticky" role="tablist" aria-label="Sections ESG">
-      <button class="tab active" role="tab" id="tab-intro"     aria-selected="true"  aria-controls="intro"     data-tab="intro"     data-i18n="sec.intro.t">Engagement</button>
-      <button class="tab"         role="tab" id="tab-gov"       aria-selected="false" aria-controls="gov"       data-tab="gov"       data-i18n="sec.gov.t">Gouvernance & éthique</button>
-      <button class="tab"         role="tab" id="tab-people"    aria-selected="false" aria-controls="people"    data-tab="people"    data-i18n="sec.people.t">Personnes & diversité</button>
-      <button class="tab"         role="tab" id="tab-env"       aria-selected="false" aria-controls="env"       data-tab="env"       data-i18n="sec.env.t">Environnement</button>
-      <button class="tab"         role="tab" id="tab-procure"   aria-selected="false" aria-controls="procure"   data-tab="procure"   data-i18n="sec.procure.t">Achats responsables</button>
-      <button class="tab"         role="tab" id="tab-community" aria-selected="false" aria-controls="community" data-tab="community" data-i18n="sec.community.t">Sociétal & mécénat</button>
-    </nav>
-
-    <!-- PANNEAUX -->
+    <!-- Intro -->
     <article id="intro" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-intro">
-      <h2 data-i18n="sec.intro.t">1. Engagement</h2>
-      <p class="muted" data-i18n="sec.intro.p">
-        Notre politique ESG structure la façon dont nous décidons, recrutons, achetons, opérons et rendons compte.
-        Elle s’appuie sur des principes simples : conformité & éthique, respect des personnes, sobriété environnementale et impact positif local.
-      </p>
-      <div class="kpi">
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.0.v">Code & lanceur d’alerte</div><div data-i18n="sec.intro.kpi.0.l">Canal confidentiel</div></div>
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.1.v">Formation</div><div data-i18n="sec.intro.kpi.1.l">Éthique, RGPD, cyber</div></div>
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.2.v">Empreinte</div><div data-i18n="sec.intro.kpi.2.l">Mesure scopes 1–3</div></div>
+      <h2 data-i18n="sec.intro.t">Notre engagement</h2>
+      <p class="muted" data-i18n="sec.intro.lead"></p>
+      <div class="callout" style="margin-top:8px">
+        <p class="muted" data-i18n="sec.intro.p"></p>
       </div>
-      <div class="dl">
-        <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.0">Code de conduite (PDF)</span></a>
-        <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.1">Charte achats responsables (PDF)</span></a>
-        <a href="#" aria-disabled="true">📄 <span data-i18n="sec.intro.policies.2">Politique environnementale (PDF)</span></a>
+      <div class="grid-3" style="margin-top:10px">
+        <div class="mini-card">
+          <h3 data-i18n="sec.intro.badges.0.t"></h3>
+          <p class="muted" data-i18n="sec.intro.badges.0.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.intro.badges.1.t"></h3>
+          <p class="muted" data-i18n="sec.intro.badges.1.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.intro.badges.2.t"></h3>
+          <p class="muted" data-i18n="sec.intro.badges.2.p"></p>
+        </div>
       </div>
     </article>
 
+    <!-- Gouvernance -->
     <article id="gov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-gov">
-      <h2 data-i18n="sec.gov.t">2. Gouvernance & éthique</h2>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.gov.cards.0.t">Intégrité & conformité</h3>
-          <ul>
-            <li data-i18n="sec.gov.cards.0.li.0">Prévention corruption & conflits d’intérêts, cadeaux & hospitalités encadrés.</li>
-            <li data-i18n="sec.gov.cards.0.li.1">KYC/AML proportionnés à nos activités de courtage & réassurance.</li>
-            <li data-i18n="sec.gov.cards.0.li.2">Programme de formation annuelle obligatoire.</li>
+      <h2 data-i18n="sec.gov.t">Gouvernance responsable</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.gov.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.gov.cards.0.li.0"></li>
+            <li data-i18n="sec.gov.cards.0.li.1"></li>
+            <li data-i18n="sec.gov.cards.0.li.2"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.gov.cards.1.t">Protection des données & cyber</h3>
-          <ul>
-            <li data-i18n="sec.gov.cards.1.li.0">RGPD : minimisation, droits des personnes, DPA avec prestataires.</li>
-            <li data-i18n="sec.gov.cards.1.li.1">Hygiène cyber : MFA, backups, chiffrement disques & transit.</li>
-            <li data-i18n="sec.gov.cards.1.li.2">Exercices phishing & plan de réponse.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.gov.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.gov.cards.1.li.0"></li>
+            <li data-i18n="sec.gov.cards.1.li.1"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.gov.cards.2.t">Gouvernance & transparence</h3>
-          <ul>
-            <li data-i18n="sec.gov.cards.2.li.0">Rôles ESG au COMEX, revue trimestrielle des indicateurs.</li>
-            <li data-i18n="sec.gov.cards.2.li.1">Canal lanceur d’alerte anonyme et suivi des signalements.</li>
-            <li data-i18n="sec.gov.cards.2.li.2">Transparence des honoraires & rémunérations de marché.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.gov.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.gov.cards.2.li.0"></li>
+            <li data-i18n="sec.gov.cards.2.li.1"></li>
           </ul>
-        </section>
+        </div>
       </div>
     </article>
 
-    <article id="people" class="card tabpanel" role="tabpanel" aria-labelledby="tab-people">
-      <h2 data-i18n="sec.people.t">3. Personnes & diversité</h2>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.people.cards.0.t">Bien-être & conditions de travail</h3>
-          <ul>
-            <li data-i18n="sec.people.cards.0.li.0">Télétravail hybride, droit à la déconnexion, horaires souples.</li>
-            <li data-i18n="sec.people.cards.0.li.1">Couverture santé, soutien parentalité & congés solidaires.</li>
-            <li data-i18n="sec.people.cards.0.li.2">Ergonomie & sécurité des postes.</li>
+    <!-- Social -->
+    <article id="social" class="card tabpanel" role="tabpanel" aria-labelledby="tab-social">
+      <h2 data-i18n="sec.social.t">Engagement social</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.0.li.0"></li>
+            <li data-i18n="sec.social.cards.0.li.1"></li>
+            <li data-i18n="sec.social.cards.0.li.2"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.people.cards.1.t">Diversité & inclusion</h3>
-          <ul>
-            <li data-i18n="sec.people.cards.1.li.0">Recrutements non-discriminants & viviers diversifiés.</li>
-            <li data-i18n="sec.people.cards.1.li.1">Égalité salariale : revues annuelles & correctifs.</li>
-            <li data-i18n="sec.people.cards.1.li.2">Sensibilisation biais & management inclusif.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.1.li.0"></li>
+            <li data-i18n="sec.social.cards.1.li.1"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.people.cards.2.t">Développement & engagement</h3>
-          <ul>
-            <li data-i18n="sec.people.cards.2.li.0">Parcours de formation & budget individuel.</li>
-            <li data-i18n="sec.people.cards.2.li.1">Entretiens semestriels & plans de progression.</li>
-            <li data-i18n="sec.people.cards.2.li.2">Enquêtes d’engagement & plans d’action.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.2.li.0"></li>
+            <li data-i18n="sec.social.cards.2.li.1"></li>
           </ul>
-        </section>
+        </div>
       </div>
     </article>
 
+    <!-- Environnement -->
     <article id="env" class="card tabpanel" role="tabpanel" aria-labelledby="tab-env">
-      <h2 data-i18n="sec.env.t">4. Environnement</h2>
-      <p class="muted" data-i18n="sec.env.lead">Priorité à la sobriété : mesurer, éviter, réduire et compenser en dernier recours.</p>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.env.cards.0.t">Empreinte carbone</h3>
-          <ul>
-            <li data-i18n="sec.env.cards.0.li.0">Bilan GES scopes 1–3 (bureaux, énergie, déplacements, numérique).</li>
-            <li data-i18n="sec.env.cards.0.li.1">Plan de réduction : énergie, mobilité, achats, usage cloud.</li>
-            <li data-i18n="sec.env.cards.0.li.2">Compenser les résiduelles via projets crédibles.</li>
+      <h2 data-i18n="sec.env.t">Respect de l’environnement</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.env.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.env.cards.0.li.0"></li>
+            <li data-i18n="sec.env.cards.0.li.1"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.env.cards.1.t">Mobilité & voyages</h3>
-          <ul>
-            <li data-i18n="sec.env.cards.1.li.0">Priorité visio & rail ; politique travel “nécessité justifiée”.</li>
-            <li data-i18n="sec.env.cards.1.li.1">Classer les vols et fixer des quotas CO₂ par équipe.</li>
-            <li data-i18n="sec.env.cards.1.li.2">Incitations mobilité douce.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.env.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.env.cards.1.li.0"></li>
+            <li data-i18n="sec.env.cards.1.li.1"></li>
+            <li data-i18n="sec.env.cards.1.li.2"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.env.cards.2.t">Green IT & déchets</h3>
-          <ul>
-            <li data-i18n="sec.env.cards.2.li.0">Durée de vie allongée des équipements & reconditionné.</li>
-            <li data-i18n="sec.env.cards.2.li.1">Hébergement cloud efficient & sobriété data.</li>
-            <li data-i18n="sec.env.cards.2.li.2">Tri & filières DEEE certifiées.</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.env.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.env.cards.2.li.0"></li>
+            <li data-i18n="sec.env.cards.2.li.1"></li>
           </ul>
-        </section>
+        </div>
       </div>
     </article>
 
+    <!-- Impact sociétal -->
+    <article id="societal" class="card tabpanel" role="tabpanel" aria-labelledby="tab-societal">
+      <h2 data-i18n="sec.societal.t">Impact sociétal</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.societal.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.societal.cards.0.li.0"></li>
+            <li data-i18n="sec.societal.cards.0.li.1"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.societal.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.societal.cards.1.li.0"></li>
+            <li data-i18n="sec.societal.cards.1.li.1"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.societal.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.societal.cards.2.li.0"></li>
+            <li data-i18n="sec.societal.cards.2.li.1"></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Achats responsables -->
     <article id="procure" class="card tabpanel" role="tabpanel" aria-labelledby="tab-procure">
-      <h2 data-i18n="sec.procure.t">5. Achats responsables</h2>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.procure.cards.0.t">Charte fournisseurs</h3>
-          <ul>
-            <li data-i18n="sec.procure.cards.0.li.0">Exigences sociales, éthiques, environnementales & sécurité.</li>
-            <li data-i18n="sec.procure.cards.0.li.1">Clause anticorruption & confidentialité.</li>
-            <li data-i18n="sec.procure.cards.0.li.2">Évaluation périodique & plan de progrès.</li>
+      <h2 data-i18n="sec.procure.t">Achats responsables</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.procure.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.procure.cards.0.li.0"></li>
+            <li data-i18n="sec.procure.cards.0.li.1"></li>
+            <li data-i18n="sec.procure.cards.0.li.2"></li>
           </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.procure.cards.1.t">Préférences d’achat</h3>
-          <ul>
-            <li data-i18n="sec.procure.cards.1.li.0">Produits éco-conçus & prestataires locaux quand pertinent.</li>
-            <li data-i18n="sec.procure.cards.1.li.1">Critère CO₂ intégré dans le TCO.</li>
-            <li data-i18n="sec.procure.cards.1.li.2">Diversité fournisseurs (PME, ESS).</li>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.procure.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.procure.cards.1.li.0"></li>
+            <li data-i18n="sec.procure.cards.1.li.1"></li>
+            <li data-i18n="sec.procure.cards.1.li.2"></li>
           </ul>
-        </section>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.procure.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.procure.cards.2.li.0"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:10px">
+        <p class="muted" data-i18n="sec.procure.note"></p>
       </div>
     </article>
 
-    <article id="community" class="card tabpanel" role="tabpanel" aria-labelledby="tab-community">
-      <h2 data-i18n="sec.community.t">6. Sociétal & mécénat</h2>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.community.cards.0.t">Pro bono & mentoring</h3>
-          <ul>
-            <li data-i18n="sec.community.cards.0.li.0">Heures pro bono pour associations & éducation.</li>
-            <li data-i18n="sec.community.cards.0.li.1">Mentoring jeunes talents & insertion.</li>
-            <li data-i18n="sec.community.cards.0.li.2">Soutien sinistres majeurs (expertise bénévole).</li>
-          </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.community.cards.1.t">Dons & mécénat</h3>
-          <ul>
-            <li data-i18n="sec.community.cards.1.li.0">Budget annuel dédié & comité de sélection.</li>
-            <li data-i18n="sec.community.cards.1.li.1">Transparence des bénéficiaires.</li>
-            <li data-i18n="sec.community.cards.1.li.2">Suivi d’impact simple.</li>
-          </ul>
-        </section>
-      </div>
-    </article>
-    
-    <!-- CTA globale -->
-    <article class="card center" style="margin-top:14px">
-      <h3 data-i18n="cta.t">Des questions sur notre politique ESG ?</h3>
-      <p class="muted" data-i18n="cta.p">Contactez-nous pour recevoir les politiques détaillées et notre dernier reporting.</p>
+    <!-- CTA -->
+    <article class="card" style="text-align:center">
+      <h2 data-i18n="cta.t">Aller plus loin</h2>
+      <p class="muted" data-i18n="cta.p"></p>
       <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
     </article>
+  </section>
+</div>
 
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="container footer-grid">
     <div>
@@ -270,232 +455,454 @@
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
-      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+      <p>
+        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+        <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </p>
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <p><span data-i18n="footer.email_label">Email</span> :
+        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
     </div>
   </div>
 </footer>
 
-<!-- SEO FAQPage -->
+<!-- ===== SEO FAQPage (short) ===== -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Êtes-vous certifiés ?","acceptedAnswer":{"@type":"Answer","text":"Nous nous alignons sur les meilleures pratiques et évaluons des certifications adaptées. Les progrès sont publiés chaque année."}},
-{"@type":"Question","name":"Comment signaler un manquement ?","acceptedAnswer":{"@type":"Answer","text":"Un canal confidentiel est disponible pour les collaborateurs et partenaires. Chaque signalement est enregistré, évalué et traité."}},
-{"@type":"Question","name":"Publiez-vous vos émissions ?","acceptedAnswer":{"@type":"Answer","text":"Oui, un bilan GES et les actions de réduction sont partagés avec nos parties prenantes."}}
+{"@type":"Question","name":"Quelle est l’ambition ESG de Riskalia ?","acceptedAnswer":{"@type":"Answer","text":"Accompagner nos clients tout en créant un impact positif et durable pour nos équipes, nos partenaires et la société."}},
+{"@type":"Question","name":"Comment intégrez-vous l’environnement ?","acceptedAnswer":{"@type":"Answer","text":"Sobriété énergétique & numérique, mobilité raisonnée, gestes simples à impact concret."}}
 ]}
 </script>
 
+<!-- ================== SCRIPTS: i18n & UI ================== -->
 <script>
-/* ================== i18n ================== */
+/* ================== i18n (FR/EN/AR) ================== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
+    aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue",tabs:"Sections ESG"},
+    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
     title:"ESG chez Riskalia",
-    subtitle:"Gouvernance & éthique • Bien-être & diversité • Empreinte environnementale • Achats responsables • Impact sociétal.",
-    badges:["Code de conduite","Bien-être & inclusion","Empreinte & sobriété"],
+    subtitle:"Gouvernance responsable • Engagement social • Respect de l’environnement • Impact sociétal • Achats responsables.",
+    method:"Nous voulons être plus qu’un intermédiaire financier : un acteur responsable, transparent et utile à la société.",
     sec:{
-      intro:{t:"Engagement",p:"Notre politique ESG structure la façon dont nous décidons, recrutons, achetons, opérons et rendons compte. Elle s’appuie sur conformité & éthique, respect des personnes, sobriété environnementale et impact positif local.",
-        kpi:[{v:"Code & lanceur d’alerte",l:"Canal confidentiel"},{v:"Formation",l:"Éthique, RGPD, cyber"},{v:"Empreinte",l:"Mesure scopes 1–3"}],
-        policies:["Code de conduite (PDF)","Charte achats responsables (PDF)","Politique environnementale (PDF)"]},
-      gov:{t:"Gouvernance & éthique",
+      intro:{
+        t:"Notre engagement",
+        lead:"🌱 Notre engagement ESG",
+        p:"Chez Riskalia, nous croyons qu’un cabinet de courtage doit être plus qu’un intermédiaire financier : il doit être un acteur responsable, transparent et engagé pour la société. Notre démarche ESG est conçue pour refléter nos valeurs, répondre aux attentes de nos clients et partenaires, et contribuer au développement durable du Maroc.",
+        badges:[
+          {t:"Transparence",p:"Décisions claires et traçables, alignées avec les meilleures pratiques."},
+          {t:"Éthique",p:"Déontologie, indépendance et gestion des conflits d’intérêt."},
+          {t:"Impact",p:"Actions concrètes à l’échelle de notre cabinet et de notre écosystème."}
+        ]
+      },
+      gov:{
+        t:"Gouvernance responsable",
         cards:[
-          {t:"Intégrité & conformité",li:["Prévention corruption & conflits d’intérêts, cadeaux & hospitalités encadrés.","KYC/AML proportionnés à nos activités de courtage & réassurance.","Programme de formation annuelle obligatoire."]},
-          {t:"Protection des données & cyber",li:["RGPD : minimisation, droits des personnes, DPA avec prestataires.","Hygiène cyber : MFA, backups, chiffrement disques & transit.","Exercices phishing & plan de réponse."]},
-          {t:"Gouvernance & transparence",li:["Rôles ESG au COMEX, revue trimestrielle des indicateurs.","Canal lanceur d’alerte anonyme et suivi des signalements.","Transparence des honoraires & rémunérations de marché."]}
-        ]},
-      people:{t:"Personnes & diversité",
+          {t:"Intégrité & transparence",li:[
+            "Transparence vis-à-vis des clients, partenaires et régulateurs (ACAPS).",
+            "Reddition claire des honoraires et modalités de rémunération.",
+            "Traçabilité des décisions proportionnée à notre taille."
+          ]},
+          {t:"Déontologie & indépendance",li:[
+            "Gestion stricte des conflits d’intérêt et règles de marché respectées.",
+            "Cadeaux/hospitalités encadrés, registre et contrôles."
+          ]},
+          {t:"Gouvernance claire",li:[
+            "Rôles et responsabilités définis, comités ad hoc si besoin.",
+            "Revue périodique des engagements ESG et des incidents."
+          ]}
+        ]
+      },
+      social:{
+        t:"Engagement social",
         cards:[
-          {t:"Bien-être & conditions de travail",li:["Télétravail hybride, droit à la déconnexion, horaires souples.","Couverture santé, soutien parentalité & congés solidaires.","Ergonomie & sécurité des postes."]},
-          {t:"Diversité & inclusion",li:["Recrutements non-discriminants & viviers diversifiés.","Égalité salariale : revues annuelles & correctifs.","Sensibilisation biais & management inclusif."]},
-          {t:"Développement & engagement",li:["Parcours de formation & budget individuel.","Entretiens semestriels & plans de progression.","Enquêtes d’engagement & plans d’action."]}
-        ]},
-      env:{t:"Environnement",lead:"Priorité à la sobriété : mesurer, éviter, réduire et compenser en dernier recours.",
+          {t:"Égalité & diversité",li:[
+            "Recrutements ouverts aux talents sans distinction de genre, origine ou parcours.",
+            "Vivier de candidatures diversifié."
+          ]},
+          {t:"Développement des compétences",li:[
+            "Plan de formation continue (technique et humaine) pour chaque collaborateur.",
+            "Entretiens réguliers et parcours d’évolution."
+          ]},
+          {t:"Bien-être au travail",li:[
+            "Environnement respectueux et collaboratif.",
+            "Équilibre vie pro/vie perso (flex, télétravail quand possible)."
+          ]}
+        ]
+      },
+      env:{
+        t:"Respect de l’environnement",
         cards:[
-          {t:"Empreinte carbone",li:["Bilan GES scopes 1–3 (bureaux, énergie, déplacements, numérique).","Plan de réduction : énergie, mobilité, achats, usage cloud.","Compenser les résiduelles via projets crédibles."]},
-          {t:"Mobilité & voyages",li:["Priorité visio & rail ; politique travel “nécessité justifiée”.","Classer les vols et fixer des quotas CO₂ par équipe.","Incitations mobilité douce."]},
-          {t:"Green IT & déchets",li:["Durée de vie allongée des équipements & reconditionné.","Hébergement cloud efficient & sobriété data.","Tri & filières DEEE certifiées."]}
-        ]},
-      procure:{t:"Achats responsables",
+          {t:"Sobriété énergétique & numérique",li:[
+            "Réduction des consommations au bureau (éclairage, climatisation).",
+            "Outils digitaux responsables et durée de vie des équipements allongée."
+          ]},
+          {t:"Mobilité raisonnée",li:[
+            "Limitation des déplacements non essentiels, visio par défaut.",
+            "Encouragement de la mobilité douce et du rail."
+          ]},
+          {t:"Gestes simples, impacts concrets",li:[
+            "Moins de papier, tri des déchets, économies d’eau et d’électricité."
+          ]}
+        ]
+      },
+      societal:{
+        t:"Impact sociétal",
         cards:[
-          {t:"Charte fournisseurs",li:["Exigences sociales, éthiques, environnementales & sécurité.","Clause anticorruption & confidentialité.","Évaluation périodique & plan de progrès."]},
-          {t:"Préférences d’achat",li:["Produits éco-conçus & prestataires locaux quand pertinent.","Critère CO₂ intégré dans le TCO.","Diversité fournisseurs (PME, ESS)."]}
-        ]},
-      community:{t:"Sociétal & mécénat",
+          {t:"Assurance inclusive",li:[
+            "Faciliter l’accès à l’assurance pour les PME, agriculteurs et collectivités."
+          ]},
+          {t:"Résilience climatique",li:[
+            "Solutions innovantes (paramétriques, mutualisées) face aux aléas climatiques."
+          ]},
+          {t:"Contribution locale",li:[
+            "Partenariats avec associations, soutien à l’éducation et mentorat des jeunes talents."
+          ]}
+        ]
+      },
+      procure:{
+        t:"Achats responsables",
         cards:[
-          {t:"Pro bono & mentoring",li:["Heures pro bono pour associations & éducation.","Mentoring jeunes talents & insertion.","Soutien sinistres majeurs (expertise bénévole)."]},
-          {t:"Dons & mécénat",li:["Budget annuel dédié & comité de sélection.","Transparence des bénéficiaires.","Suivi d’impact simple."]}
-        ]},
+          {t:"Priorité locale",li:[
+            "Fournisseurs locaux et PME marocaines privilégiés."
+          ]},
+          {t:"Critères éthiques",li:[
+            "Intégration de critères sociaux, éthiques et environnementaux dans la sélection.",
+            "Confidentialité et conformité exigées."
+          ]},
+          {t:"Économie sociale & solidaire",li:[
+            "Soutien aux acteurs de l’ESS dès que possible."
+          ]}
+        ],
+        note:"👉 Notre ambition est simple : accompagner nos clients tout en créant un impact positif et durable pour nos collaborateurs, nos partenaires et la société."
+      }
     },
-    cta:{t:"Des questions sur notre politique ESG ?",p:"Contactez-nous pour recevoir les politiques détaillées et notre dernier reporting.",btn:"Nous contacter"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"}
+    cta:{t:"Aller plus loin",p:"Demandez nos politiques détaillées (PDF) et notre trame d’indicateurs/KPIs.",btn:"Nous contacter"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"}
   },
 
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher",tabs:"ESG sections"},
+    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
     title:"ESG at Riskalia",
-    subtitle:"Governance & ethics • Wellbeing & diversity • Environmental footprint • Responsible procurement • Social impact.",
-    badges:["Code of conduct","Wellbeing & inclusion","Footprint & frugality"],
+    subtitle:"Responsible governance • Social commitment • Environmental stewardship • Societal impact • Responsible procurement.",
+    method:"We aim to be more than a financial intermediary: a responsible, transparent, and useful actor for society.",
     sec:{
-      intro:{t:"Commitment",p:"Our ESG policy frames how we decide, hire, buy, operate and report. It rests on simple principles: compliance & ethics, respect for people, environmental sobriety and positive local impact.",
-        kpi:[{v:"Code & whistleblowing",l:"Confidential channel"},{v:"Training",l:"Ethics, GDPR, cyber"},{v:"Footprint",l:"Scopes 1–3 measurement"}],
-        policies:["Code of conduct (PDF)","Responsible purchasing charter (PDF)","Environmental policy (PDF)"]},
-      gov:{t:"Governance & ethics",
+      intro:{
+        t:"Our commitment",
+        lead:"🌱 Our ESG commitment",
+        p:"At Riskalia, a brokerage must be more than a financial go-between: it must be responsible, transparent and engaged. Our ESG approach reflects our values, meets client and partner expectations, and contributes to Morocco’s sustainable development.",
+        badges:[
+          {t:"Transparency",p:"Clear, traceable decisions aligned to best practices."},
+          {t:"Ethics",p:"Professional conduct, independence and conflict-of-interest controls."},
+          {t:"Impact",p:"Concrete actions within our firm and ecosystem."}
+        ]
+      },
+      gov:{
+        t:"Responsible governance",
         cards:[
-          {t:"Integrity & compliance",li:["Anti-corruption & conflict-of-interest prevention; gifts & hospitality rules.","Risk-based KYC/AML for broking & reinsurance activities.","Mandatory annual training programme."]},
-          {t:"Data protection & cyber",li:["GDPR: minimisation, data subject rights, DPAs with vendors.","Cyber hygiene: MFA, backups, disk & transit encryption.","Phishing drills & incident response plan."]},
-          {t:"Governance & transparency",li:["ESG roles at ExCo; quarterly review of indicators.","Anonymous whistleblowing channel with tracking.","Transparent fees & market remuneration."]}
-        ]},
-      people:{t:"People & diversity",
+          {t:"Integrity & transparency",li:[
+            "Transparency with clients, partners and the regulator (ACAPS).",
+            "Clear disclosure of fees and remuneration mechanisms.",
+            "Decision traceability proportional to our size."
+          ]},
+          {t:"Ethics & independence",li:[
+            "Strict conflict-of-interest management; market rules enforced.",
+            "Gifts/hospitality controlled with registers and checks."
+          ]},
+          {t:"Clear governance",li:[
+            "Defined roles and responsibilities; ad-hoc committees when needed.",
+            "Periodic review of ESG commitments and incidents."
+          ]}
+        ]
+      },
+      social:{
+        t:"Social engagement",
         cards:[
-          {t:"Wellbeing & working conditions",li:["Hybrid work, right to disconnect, flexible hours.","Health cover, parental support & volunteer leave.","Ergonomics & workplace safety."]},
-          {t:"Diversity & inclusion",li:["Non-discriminatory hiring & diverse talent pools.","Pay equity: yearly reviews & corrections.","Bias awareness & inclusive management."]},
-          {t:"Development & engagement",li:["Learning paths & personal budget.","Bi-annual reviews & growth plans.","Engagement surveys & action plans."]}
-        ]},
-      env:{t:"Environment",lead:"We prioritise sobriety: measure, avoid, reduce and offset as a last resort.",
+          {t:"Equal opportunity & diversity",li:[
+            "Hiring focused on talent regardless of gender, origin or background.",
+            "Diverse candidate pools."
+          ]},
+          {t:"Skills development",li:[
+            "Continuous learning (technical & soft skills) for every employee.",
+            "Regular reviews and growth pathways."
+          ]},
+          {t:"Wellbeing at work",li:[
+            "Respectful, collaborative environment.",
+            "Work-life balance (flex, remote where relevant)."
+          ]}
+        ]
+      },
+      env:{
+        t:"Environmental stewardship",
         cards:[
-          {t:"Carbon footprint",li:["GHG inventory scopes 1–3 (offices, energy, travel, digital).","Reduction plan: energy, mobility, purchasing, cloud use.","Offset residuals through credible projects."]},
-          {t:"Mobility & travel",li:["Video & rail by default; “business-need” travel policy.","Classify flights and set CO₂ budgets per team.","Incentives for soft mobility."]},
-          {t:"Green IT & waste",li:["Extend device lifetime & prefer refurbished.","Efficient cloud hosting & data sobriety.","Sorting & certified e-waste streams."]}
-        ]},
-      procure:{t:"Responsible procurement",
+          {t:"Energy & digital sobriety",li:[
+            "Lower office consumption (lighting, cooling).",
+            "Responsible digital tools and longer device lifetimes."
+          ]},
+          {t:"Reasoned mobility",li:[
+            "Limit non-essential travel, video-first.",
+            "Encourage soft mobility and rail."
+          ]},
+          {t:"Simple actions, real impact",li:[
+            "Less paper, waste sorting, water & electricity savings."
+          ]}
+        ]
+      },
+      societal:{
+        t:"Societal impact",
         cards:[
-          {t:"Supplier charter",li:["Social, ethical, environmental & security requirements.","Anti-corruption & confidentiality clauses.","Periodic assessment & improvement plans."]},
-          {t:"Buying preferences",li:["Eco-designed products & local providers where relevant.","CO₂ criterion integrated in TCO.","Supplier diversity (SMEs, social economy)."]}
-        ]},
-      community:{t:"Community & philanthropy",
+          {t:"Inclusive insurance",li:[
+            "Improving access to insurance for SMEs, farmers and municipalities."
+          ]},
+          {t:"Climate resilience",li:[
+            "Innovative solutions (parametric, pooled) for climate perils."
+          ]},
+          {t:"Local contribution",li:[
+            "Partnerships with NGOs, education support and youth mentoring."
+          ]}
+        ]
+      },
+      procure:{
+        t:"Responsible procurement",
         cards:[
-          {t:"Pro bono & mentoring",li:["Pro bono hours for NGOs & education.","Mentoring young talent & inclusion.","Support during major crises (expertise)."]},
-          {t:"Donations & sponsorship",li:["Dedicated annual budget & selection committee.","Transparency on beneficiaries.","Simple impact tracking."]}
-        ]},
+          {t:"Local first",li:[
+            "Preference for local suppliers and Moroccan SMEs."
+          ]},
+          {t:"Ethical criteria",li:[
+            "Social, ethical and environmental criteria embedded in selection.",
+            "Confidentiality and compliance required."
+          ]},
+          {t:"Social & solidarity economy",li:[
+            "Support ESS actors whenever possible."
+          ]}
+        ],
+        note:"👉 Our ambition is simple: support clients while creating positive, lasting impact for our people, partners and society."
+      }
     },
-    cta:{t:"Questions about our ESG policy?",p:"Contact us to receive detailed policies and our latest reporting.",btn:"Get in touch"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance firm<br/>Head office: [full address]<br/>Licence no.: [to be completed]"}
+    cta:{t:"Go further",p:"Ask for our detailed policies (PDF) and KPI template.",btn:"Get in touch"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"}
   },
 
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصال"},
+    aria:{nav:"التنقّل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة",tabs:"أقسام الاستدامة"},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"اتصال"},
     title:"الاستدامة في ريسكاليا",
-    subtitle:"الحوكمة والأخلاقيات • الرفاه والتنوع • البصمة البيئية • المشتريات المسؤولة • الأثر المجتمعي • المؤشرات والأهداف.",
-    badges:["مدونة السلوك","الرفاه والشمول","البصمة والرشادة"],
+    subtitle:"حوكمة مسؤولة • التزام اجتماعي • احترام البيئة • أثر مجتمعي • مشتريات مسؤولة.",
+    method:"نهدف لأن نكون أكثر من وسيط مالي: فاعلاً مسؤولاً وشفافاً ومفيداً للمجتمع.",
     sec:{
-      intro:{t:"الالتزام",p:"تحدد سياسة الاستدامة لدينا كيفية اتخاذ القرار والتوظيف والشراء والتشغيل والإفصاح. وترتكز على مبادئ بسيطة: الامتثال والأخلاقيات، احترام الأشخاص، الرشادة البيئية، والأثر الإيجابي محليًا.",
-        kpi:[{v:"مدونة & بلاغات محمية",l:"قناة سرّية"},{v:"التدريب",l:"أخلاقيات، حماية بيانات، أمن سيبراني"},{v:"البصمة",l:"قياس النطاقات 1–3"}],
-        policies:["مدونة السلوك (PDF)","ميثاق المشتريات المسؤولة (PDF)","السياسة البيئية (PDF)"]},
-      gov:{t:"الحوكمة والأخلاقيات",
+      intro:{
+        t:"التزامنا",
+        lead:"🌱 التزامنا بالاستدامة",
+        p:"في ريسكاليا، ينبغي لوسيط التأمين أن يكون أكثر من مجرّد وسيط مالي؛ يجب أن يكون فاعلاً مسؤولاً وشفافاً ومنخرطاً في خدمة المجتمع. صُمّمت مقاربتنا للاستدامة لتعكس قيمنا وتلبي توقعات العملاء والشركاء وتُسهم في التنمية المستدامة للمغرب.",
+        badges:[
+          {t:"شفافية",p:"قرارات واضحة وقابلة للتتبع وفق أفضل الممارسات."},
+          {t:"أخلاقيات",p:"مهنيّة واستقلالية وإدارة تضارب المصالح."},
+          {t:"أثر",p:"إجراءات ملموسة داخل الشركة وفي المنظومة المحيطة."}
+        ]
+      },
+      gov:{
+        t:"حوكمة مسؤولة",
         cards:[
-          {t:"النزاهة والامتثال",li:["منع الفساد وتضارب المصالح؛ تنظيم الهدايا والضيافة.","KYC/AML متناسب مع أنشطة الوساطة وإعادة التأمين.","برنامج تدريب سنوي إلزامي."]},
-          {t:"حماية البيانات والأمن السيبراني",li:["اللائحة الأوروبية GDPR: تقليل البيانات وحقوق الأفراد واتفاقيات المعالجة مع المزوّدين.","ممارسات أمنية: مصادقة متعددة، نُسخ احتياطية، وتشفير الأقراص والمرور.","تمارين تصيّد وخطة استجابة للحوادث."]},
-          {t:"الحوكمة والشفافية",li:["أدوار ESG على مستوى الإدارة العليا ومراجعة ربع سنوية للمؤشرات.","قناة للإبلاغ المجهول ومتابعة البلاغات.","شفافية الأتعاب والتعويضات."]}
-        ]},
-      people:{t:"الأفراد والتنوع",
+          {t:"النزاهة والشفافية",li:[
+            "شفافية مع العملاء والشركاء والجهة المنظمة (ACAPS).",
+            "إفصاح واضح عن الأتعاب وآليات التعويض.",
+            "قابلية تتبّع القرارات بما يتناسب مع حجمنا."
+          ]},
+          {t:"الأخلاقيات والاستقلالية",li:[
+            "إدارة صارمة لتضارب المصالح والالتزام بقواعد السوق.",
+            "تنظيم الهدايا والضيافة مع سجلات ورقابة."
+          ]},
+          {t:"حوكمة واضحة",li:[
+            "أدوار ومسؤوليات محددة ولجان عند الحاجة.",
+            "مراجعات دورية لالتزامات الاستدامة والحوادث."
+          ]}
+        ]
+      },
+      social:{
+        t:"التزام اجتماعي",
         cards:[
-          {t:"الرفاه وظروف العمل",li:["عمل هجين وحق الانفصال وساعات مرنة.","تغطية صحية ودعم للوالدية وإجازات تطوعية.","سلامة وبيئة عمل مريحة."]},
-          {t:"التنوع والشمول",li:["توظيف غير تمييزي وقواعد مواهب متنوّعة.","مراجعات سنوية للمساواة في الأجور وإجراءات تصحيحية.","توعية بالتحيز والإدارة الشمولية."]},
-          {t:"التطوير والمشاركة",li:["مسارات تعلم وميزانية فردية.","مقابلات نصف سنوية وخطط نمو.","استبيانات مشاركة وخطط عمل."]}
-        ]},
-      env:{t:"البيئة",lead:"الأولوية للرشادة: القياس ثم التجنّب فالخفض والتعويض كخيار أخير.",
+          {t:"تكافؤ الفرص والتنوّع",li:[
+            "توظيف قائم على الكفاءة دون تمييز في النوع أو الأصل أو المسار.",
+            "قواعد مرشحين متنوّعة."
+          ]},
+          {t:"تطوير الكفاءات",li:[
+            "تعلّم مستمر (تقني وبشري) لكل موظف.",
+            "مراجعات منتظمة ومسارات نمو."
+          ]},
+          {t:"الرفاه في العمل",li:[
+            "بيئة عمل محترمة وتعاونية.",
+            "توازن بين الحياة المهنية والشخصية (مرونة/عمل عن بعد عند الملاءمة)."
+          ]}
+        ]
+      },
+      env:{
+        t:"احترام البيئة",
         cards:[
-          {t:"البصمة الكربونية",li:["جرد انبعاثات غازات الدفيئة للنطاقات 1–3 (المكاتب والطاقة والسفر والرقمية).","خطة خفض: الطاقة والتنقل والمشتريات واستخدام السحابة.","تعويض البصمة المتبقية عبر مشاريع موثوقة."]},
-          {t:"التنقل والسفر",li:["الاجتماعات المرئية والقطار كافتراض؛ سياسة سفر «حسب الضرورة».","تصنيف الرحلات وتحديد موازنات CO₂ لكل فريق.","تحفيز التنقل النظيف."]},
-          {t:"تقنية خضراء ونفايات",li:["إطالة عمر الأجهزة وتفضيل المُجدّد.","استضافة سحابية فعّالة ورشادة البيانات.","فرز النفايات ومسارات إلكترونية معتمدة."]}
-        ]},
-      procure:{t:"المشتريات المسؤولة",
+          {t:"رشادة الطاقة والرقمنة",li:[
+            "خفض الاستهلاك في المكاتب (إنارة/تبريد).",
+            "أدوات رقمية مسؤولة وإطالة عمر الأجهزة."
+          ]},
+          {t:"تنقّل رشيد",li:[
+            "تقليل السفر غير الضروري واعتماد الاجتماعات المرئية.",
+            "تشجيع التنقّل النظيف والقطارات."
+          ]},
+          {t:"خطوات بسيطة وأثر ملموس",li:[
+            "تقليل الورق وفرز النفايات وترشيد الماء والكهرباء."
+          ]}
+        ]
+      },
+      societal:{
+        t:"أثر مجتمعي",
         cards:[
-          {t:"ميثاق المورّدين",li:["متطلبات اجتماعية وأخلاقية وبيئية وأمنية.","بنود مكافحة الفساد والسرية.","تقييمات دورية وخطط تحسين."]},
-          {t:"تفضيلات الشراء",li:["منتجات مصممة بيئياً ومورّدون محليون عند الملاءمة.","معيار CO₂ مدمج في التكلفة الكلية.","تنوع المورّدين (الشركات الصغيرة والاقتصاد الاجتماعي)."]}
-        ]},
-      community:{t:"المجتمع والعمل الخيري",
+          {t:"تأمين شامل",li:[
+            "تحسين الوصول إلى التأمين للشركات الصغرى والمتوسطة والمزارعين والبلديات."
+          ]},
+          {t:"مرونة مناخية",li:[
+            "حلول مبتكرة (بارامترية وتجميعية) لمواجهة أخطار المناخ."
+          ]},
+          {t:"مساهمة محلية",li:[
+            "شراكات مع جمعيات، دعم للتعليم وإرشاد للشباب."
+          ]}
+        ]
+      },
+      procure:{
+        t:"مشتريات مسؤولة",
         cards:[
-          {t:"عمل تطوعي وإرشاد",li:["ساعات تطوع لصالح الجمعيات والتعليم.","إرشاد المواهب الشابة والدعم المهني.","مساندة أثناء الأزمات الكبرى (خبرة تقنية)."]},
-          {t:"تبرعات ورعاية",li:["ميزانية سنوية ولجنة اختيار.","شفافية المستفيدين.","متابعة مبسطة للأثر."]}
-        ]},
+          {t:"أولوية للمحلي",li:[
+            "تفضيل المورّدين المحليين والشركات المغربية الصغرى والمتوسطة."
+          ]},
+          {t:"معايير أخلاقية",li:[
+            "دمج معايير اجتماعية وأخلاقية وبيئية في الاختيار.",
+            "اشتراط السرية والامتثال."
+          ]},
+          {t:"اقتصاد اجتماعي وتضامني",li:[
+            "دعم الفاعلين في هذا القطاع كلما أمكن."
+          ]}
+        ],
+        note:"👉 طموحُنا بسيط: مواكبة عملائنا مع صناعة أثر إيجابي ومستدام لموظفينا وشركائنا والمجتمع."
+      }
     },
-    cta:{t:"هل لديك أسئلة حول سياسة الاستدامة؟",p:"تواصل معنا للحصول على السياسات التفصيلية وآخر تقاريرنا.",btn:"تواصل معنا"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"}
+    cta:{t:"للمتابعة",p:"اطلبوا سياساتنا التفصيلية (PDF) ونموذج المؤشرات.",btn:"تواصل معنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"}
   }
 };
 
-/* ================== Helpers ================== */
+/* ================== Helpers & UI ================== */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('esg.html'))); }
-
-/* ================== Rendu & UI ================== */
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
-  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  setActiveNav();
-
-  // Table headers / caption dynamiques
-  const H=t('sec.targets.h'); const cap=t('sec.targets.cap');
-  const map={
-    'sec.targets.cap':cap,
-    'sec.targets.h.0':H?.[0]||'Pilier',
-    'sec.targets.h.1':H?.[1]||'Objectif',
-    'sec.targets.h.2':H?.[2]||'Indicateur (KPI)',
-    'sec.targets.h.3':H?.[3]||'Échéance'
-  };
-  Object.entries(map).forEach(([k,v])=>{ const el=$(`[data-i18n="${k}"]`); if(el) el.innerHTML=v; });
+function applyI18nAttrs(){
+  $$('[data-i18n-attr]').forEach(el=>{
+    const pairs = el.dataset.i18nAttr?.split(',').map(x=>x.trim()).filter(Boolean) || [];
+    for(const pair of pairs){
+      const [attr,key]=pair.split(':').map(s=>s.trim());
+      const val = t(key);
+      if(attr && val) el.setAttribute(attr, val);
+    }
+  });
+}
+function setActiveNav(){
+  const path = location.pathname.split('/').pop() || 'esg.html';
+  $$('#menu a').forEach(a=>{
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === path);
+  });
 }
 
+/* Apply translations & nav state */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  applyI18nAttrs();
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+
+/* Tabs */
 function bindTabs(){
   const tabs=$$('.tabs .tab');
   const panels=$$('.tabpanel');
-
-  function show(id, pushHash=true){
+  function show(id, push=true){
     tabs.forEach(btn=>{
-      const active = btn.dataset.tab===id;
-      btn.classList.toggle('active', active);
-      btn.setAttribute('aria-selected', active?'true':'false');
-      btn.tabIndex = active?0:-1;
+      const on = btn.dataset.tab===id;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-selected', on?'true':'false');
+      btn.tabIndex = on?0:-1;
     });
     panels.forEach(p=> p.classList.toggle('active', p.id===id));
-    if(pushHash) history.replaceState(null,'','#'+id);
+    if(push) history.replaceState(null,'','#'+id);
     $('#tab-'+id)?.focus({preventScroll:true});
   }
-
   tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
-
   function fromHash(){
-    const id=(location.hash||'#intro').replace('#','');
-    const known=['intro','gov','people','env','procure','community'];
+    const id=(location.hash||'#intro').slice(1);
+    const known=['intro','gov','social','env','societal','procure'];
     show( known.includes(id)?id:'intro', false );
   }
-  window.addEventListener('hashchange', fromHash);
+  window.addEventListener('hashchange',fromHash);
   fromHash();
 }
 
+/* Reveal on scroll */
+function activateReveal(){
+  const rev=$$('.reveal');
+  const onScroll=()=>{ const tr=window.innerHeight*0.9; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll', onScroll); onScroll();
+}
+
+/* Dropdown (desktop hover + mobile click) */
+(function(){
+  const li = document.querySelector('#menu li.dropdown');
+  const trigger = li?.querySelector('a.has-caret');
+  if(!li || !trigger) return;
+
+  function open(){ li.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function close(){ li.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+
+  function toggleMobile(e){
+    if (window.innerWidth <= 900){
+      e.preventDefault();
+      li.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+    }
+  }
+
+  trigger.addEventListener('click', toggleMobile);
+  trigger.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      if (window.innerWidth <= 900) toggleMobile(e); else open();
+    } else if(e.key==='Escape'){ close(); trigger.focus(); }
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
+
+  let timer;
+  li.addEventListener('mouseenter', ()=>{ if (window.innerWidth > 900){ clearTimeout(timer); open(); }});
+  li.addEventListener('mouseleave', ()=>{ if (window.innerWidth > 900){ timer=setTimeout(close, 180); }});
+  window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
+})();
+
+/* Mobile menu & lang */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
-  // langue
+  if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-  // reveal simple
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll',onScroll); onScroll();
-  // tabs
   bindTabs();
+  activateReveal();
 }
-
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-
-
-
-
