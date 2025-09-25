@@ -2,319 +2,866 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Services de Conseil — Riskalia</title>
-  <meta name="description" content="Conseil en gestion des risques, ERM, actuariat, conformité ACAPS, gouvernance, scoring & placement, optimisation IFRS 17. Expertise unique sur le marché Africain."/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Riskalia — Services de Conseil</title>
+  <meta name="description" content="Conseil en gestion des risques, évaluation des engagements sociaux et formations sur mesure. Cartographies vivantes, hypothèses auditées, ateliers pratiques."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <link rel="stylesheet" href="styles.css"/>
-  <script src="i18n.js" defer></script>
-  <script src="site.js" defer></script>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8}
+    /* ================== Design tokens ================== */
+    :root{
+      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f7fcfe; --cd:#243238;
+      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+      --border:1px solid rgba(0,93,115,.18);
+      --fs-nav:0.95rem; --fs-body:1rem; --fs-kicker:0.8rem;
+      --fs-h1:clamp(2rem,3.2vw,3rem); --fs-h2:clamp(1.25rem,2.2vw,1.6rem); --fs-h3:1.05rem;
+      --fw-bold:700; --fw-semi:600;
+    }
+
+    /* ================== Base ================== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{overflow-x:hidden}
+    body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff;font-size:var(--fs-body)}
+    body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+    h1{font-size:var(--fs-h1)}
+    h2{font-size:var(--fs-h2); margin-bottom:6px}
+    h3{font-size:var(--fs-h3); margin:8px 0 4px}
+    body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:auto;padding:0 18px}
+    .muted{color:#5f7781}
+    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
+    section{padding:20px 0}
+
+    /* ================== Buttons ================== */
+    .btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
+    .btn:hover{background:var(--c2);transform:translateY(-1px)}
+    .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+
+    /* ================== Header / Nav ================== */
+    header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:var(--fw-bold)}
+    .brand img{height:48px;width:auto;border-radius:10px}
+    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:var(--fw-bold);font-size:var(--fs-nav)}
+    nav a{position:relative;padding:6px;line-height:1.2}
+    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+    nav a:hover::after,nav a.active::after{width:100%}
+    .menu-toggle{display:none;font-size:2rem;cursor:pointer;line-height:1}
+    .lang-switch{display:flex;gap:6px}
+    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:var(--fw-bold);font-size:0.9rem}
+    .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+
+    /* Dropdown (optional) */
+    #menu li.dropdown{position:relative}
+    #menu li.dropdown > a.has-caret{padding-right:18px}
+    body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
+    #menu li .caret{display:inline-block;transition:transform .2s}
+    #menu li .submenu{
+      display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;
+      border:1px solid #e6eef0;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.08);
+      list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
+    }
+    #menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
+    #menu li .submenu li a:hover{background:#eef6f8}
+    #menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
+    #menu li.open > .submenu{display:block}
+    #menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
+    body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+
+    /* Mobile nav */
+    @media(max-width:900px){
+      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+      nav ul.show{right:0}
+      body[dir="rtl"] nav ul{right:auto;left:-100%}
+      body[dir="rtl"] nav ul.show{left:0}
+      .menu-toggle{display:block}
+      #menu li.dropdown{width:100%}
+      #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
+      #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
+      #menu li.dropdown.open > .submenu{display:block}
+      #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
+    }
+
+    /* ================== Hero ================== */
     .hero{
-      min-height:30vh;display:flex;align-items:center;text-align:center;
+      min-height:28vh;
       background:
-        linear-gradient(rgba(0,92,115,.80),rgba(0,92,115,.80)),
-        url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80")
-        center/cover no-repeat;
-      color:#fff;padding:3rem 1.4rem
+        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+        url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+      display:flex;align-items:center;text-align:center;padding:20px 0 80px;
+      position:relative;overflow:hidden;color:#fff;
     }
-    .hero h1,.hero p{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.35)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-    .card{background:#fff;border-radius:16px;box-shadow:0 12px 26px rgba(0,0,0,.07);padding:20px}
-    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
-    .muted{color:#546972}
-    .strip{background:linear-gradient(90deg,#ffffff,#f7fbfc)}
-    .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;font-weight:700}
-    .tick{margin:0;padding-left:18px}
-    .tick li{margin:.3rem 0}
-    .pillbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
-    .pill{padding:8px 12px;border-radius:999px;border:1px solid #cfe1e6;background:#eef6f8;color:#0b4e5b;font-weight:700}
-    .thumb{border-radius:12px;overflow:hidden;border:1px solid #e6eff3;aspect-ratio:16/9;background:#f2f7f9;margin-bottom:10px}
-    /* Chatbot */
-    .bot-btn{position:fixed;right:18px;bottom:18px;background:var(--c3);color:#fff;border:none;border-radius:999px;width:56px;height:56px;box-shadow:0 12px 26px rgba(0,0,0,.15);font-size:24px;cursor:pointer;z-index:50}
-    .bot{position:fixed;right:18px;bottom:86px;width:340px;max-width:94vw;background:#fff;border:1px solid #e6eff3;border-radius:16px;box-shadow:0 12px 26px rgba(0,0,0,.12);overflow:hidden;display:none;z-index:50}
-    .bot header{background:#005c73;color:#fff;padding:10px;font-weight:700}
-    .bot main{max-height:52vh;overflow:auto;padding:12px}
-    .bot .msg{background:#f6fbfd;border:1px solid #e6eff3;padding:10px;border-radius:12px;margin:8px 0}
-    .bot footer{background:#f9fbfc;color:#333;padding:8px 12px;margin:0}
-    .chip{display:inline-block;background:#eef6f8;border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;margin:4px 6px 0 0;font-weight:700;cursor:pointer}
-    @media(max-width:960px){
-      .menu-toggle{display:block;font-size:1.8rem;background:none;border:none}
-      nav ul#menu{position:absolute;right:-100%;top:64px;background:#fff;padding:16px;width:280px;box-shadow:0 12px 26px rgba(0,0,0,.12);border-radius:14px;transition:right .25s}
-      nav ul#menu.show{right:0}
+    .hero h1{color:#fff}
+    .hero p{color:#fff;opacity:.98;max-width:920px;margin:6px auto}
+    .hero .method{margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#ecf9ff}
+    .hero-wave{
+      position:absolute; left:0; right:0; bottom:-1px; height:68px; pointer-events:none;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="68" viewBox="0 0 1440 68" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,68 L0,68 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      opacity:1; animation: waveFloat 8s ease-in-out infinite;
     }
+    @keyframes waveFloat{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(4px) } }
+    .section-wave{ height:22px; margin-top:-30px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="22" viewBox="0 0 1440 22" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C240,24 480,0 720,9 C960,18 1200,4 1440,9 L1440,22 L0,22 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+    }
+
+    /* ================== Main wrapper ================== */
+    .main-wrapper{
+      position:relative;z-index:0;isolation:isolate;
+      background:
+        radial-gradient(1100px 460px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+        linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
+    }
+    .main-wrapper::before{
+      content:"";position:absolute;inset:0;
+      background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
+      opacity:.12;filter:saturate(105%) contrast(102%) blur(.3px);
+      mix-blend-mode:normal;pointer-events:none;z-index:0;
+    }
+    .main-wrapper::after{
+      content:"";position:absolute;left:0;right:0;top:0;height:48px;
+      background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
+      pointer-events:none;z-index:0;
+    }
+    .main-wrapper > *{position:relative;z-index:1}
+
+    /* ================== Tabs ================== */
+    .tabs{ margin:10px auto 14px; display:grid;grid-template-columns:repeat(6,1fr); gap:10px;max-width:980px;padding:0 8px }
+    @media (max-width:1100px){ .tabs{grid-template-columns:repeat(4,1fr)} }
+    @media (max-width:750px){ .tabs{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:520px){ .tabs{grid-template-columns:repeat(2,1fr)} }
+    .tab{
+      padding:10px 12px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
+      font-weight:var(--fw-bold);font-size:0.95rem;color:#0b4e5b;text-align:center;cursor:pointer;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      backdrop-filter:saturate(115%) blur(4px); box-shadow:0 3px 10px rgba(0,0,0,.04);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .tab.active{
+      background:
+        linear-gradient(135deg, rgba(0,176,200,.18), rgba(0,92,115,.10)),
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      border-color:rgba(0,92,115,.25);
+      box-shadow:0 8px 22px rgba(0,176,200,.18);
+    }
+
+    /* ================== Cards ================== */
+    .tabpanel{display:none}
+    .tabpanel.active{display:block}
+    .card{
+      position:relative;border-radius:18px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
+      backdrop-filter:saturate(110%) blur(4px);
+      box-shadow:0 12px 26px rgba(0,0,0,.07);
+      border:1px solid rgba(0,93,115,.16);
+      padding:14px 18px;
+      transition:transform .22s ease, box-shadow .22s ease;
+      max-width:980px;margin:0 auto 16px;
+    }
+    .card::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+      background:linear-gradient(180deg, var(--c3), var(--c2));opacity:.55;
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
+    .card > h2{
+      display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
+      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:6px 10px;color:var(--c1);
+      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:8px;
+    }
+    .grid{ display:grid; gap:14px }
+    .grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
+    .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px }
+    @media (max-width:860px){ .grid-3,.grid-2{ grid-template-columns:1fr } }
+    .mini-card{
+      border:1px solid rgba(0,93,115,.14);
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86));
+      border-radius:14px; padding:12px;
+      box-shadow:0 6px 14px rgba(0,0,0,.05);
+    }
+    .callout{
+      border:1px dashed rgba(0,92,115,.28);
+      background:linear-gradient(180deg, rgba(0,176,200,.08), rgba(255,255,255,.92));
+      border-radius:14px; padding:12px; color:#085160;
+    }
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.active{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+    /* Footer */
+    footer{background:var(--c1);color:#fff;padding:36px 0;margin-top:0}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer h4{color:#a8ecf4;margin-bottom:8px}
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container nav-wrap">
-      <a class="brand" href="index.html"><img src="logo.png" alt="Riskalia"/></a>
-      <nav aria-label="Navigation principale">
-        <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('show')">☰</button>
-        <ul id="menu">
-          <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-          <li class="has-dd">
-            <a href="solutions.html" data-i18n="nav.solutions">Solutions ▾</a>
-            <ul class="dd">
-              <li class="sub">
-                <a href="solutions.html#assurance" data-i18n="nav.insurance">Assurance ▶</a>
-                <ul class="dd">
-                  <li><a href="solutions.html#retail" data-i18n="nav.insurance.retail">Particulier</a></li>
-                  <li><a href="solutions.html#enterprise" data-i18n="nav.insurance.corp">Entreprise</a></li>
-                </ul>
-              </li>
-              <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-            </ul>
-          </li>
-          <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
-          <li><a href="services.html" class="active" data-i18n="nav.consulting">Services de Conseil</a></li>
-          <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
-          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div style="display:flex;align-items:center;gap:10px">
-        <form class="searchbar" role="search" onsubmit="return siteSearch(event)">
-          <input id="q" type="search" placeholder="Rechercher…" aria-label="Rechercher"/>
-          <button type="submit" title="Rechercher" aria-label="Rechercher">🔎</button>
-        </form>
-        <div class="lang-switch" id="lang-switch">
-          <button data-lang="fr" class="lang-btn">FR</button>
-          <button data-lang="en" class="lang-btn">EN</button>
-          <button data-lang="ar" class="lang-btn">AR</button>
+<header>
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <img src="./assets/Riskalia-Logo.png" alt="Riskalia" loading="eager" decoding="async">
+    </a>
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label:aria.nav">
+      <span class="menu-toggle" aria-label="Menu">☰</span>
+      <ul id="menu">
+        <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+
+        <!-- Dropdown Solutions -->
+        <li class="dropdown">
+          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
+            Solutions <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul class="submenu" aria-label="Sous-menu Solutions" data-i18n-attr="aria-label:aria.submenu_solutions">
+            <li><a href="solutions.html" data-i18n="nav.ins">Assurance</a></li>
+            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+          </ul>
+        </li>
+
+        <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="services.html" class="active" data-i18n="nav.services">Services de Conseil</a></li>
+        <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
+      <button class="lang-btn" data-lang="fr">Français</button>
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ar">عربية</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1 data-i18n="title">Services de Conseil</h1>
+    <p data-i18n="subtitle">
+      Gestion des risques, évaluation des engagements sociaux et formation sur mesure — clairs, mesurables et orientés mise en œuvre.
+    </p>
+    <p class="method" data-i18n="method">
+      Cartographies vivantes, hypothèses auditées et ateliers pratiques pour ancrer les acquis et accélérer l’exécution.
+    </p>
+  </div>
+  <div class="hero-wave" aria-hidden="true"></div>
+</section>
+<div class="section-wave" aria-hidden="true"></div>
+
+<!-- MAIN -->
+<div class="main-wrapper">
+  <section class="reveal">
+    <!-- Tabs -->
+    <div class="tabs" role="tablist" aria-label="Sections services" data-i18n-attr="aria-label:aria.tabs">
+      <button class="tab active" role="tab" id="tab-overview" aria-selected="true" aria-controls="overview" data-tab="overview" data-i18n="sec.overview.t">Vue d’ensemble</button>
+      <button class="tab" role="tab" id="tab-risk" aria-selected="false" aria-controls="risk" data-tab="risk" data-i18n="sec.risk.t">Gestion des risques</button>
+      <button class="tab" role="tab" id="tab-social" aria-selected="false" aria-controls="social" data-tab="social" data-i18n="sec.social.t">Engagements sociaux</button>
+      <button class="tab" role="tab" id="tab-training" aria-selected="false" aria-controls="training" data-tab="training" data-i18n="sec.training.t">Formation sur mesure</button>
+      <button class="tab" role="tab" id="tab-approach" aria-selected="false" aria-controls="approach" data-tab="approach" data-i18n="sec.approach.t">Notre approche</button>
+      <button class="tab" role="tab" id="tab-value" aria-selected="false" aria-controls="value" data-tab="value" data-i18n="sec.value.t">Pourquoi Riskalia</button>
+    </div>
+
+    <!-- Overview -->
+    <article id="overview" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-overview">
+      <h2 data-i18n="sec.overview.t">Vue d’ensemble</h2>
+      <p class="muted" data-i18n="sec.overview.p"></p>
+      <div class="grid-3" style="margin-top:10px">
+        <div class="mini-card">
+          <h3 data-i18n="sec.overview.cards.0.t"></h3>
+          <p class="muted" data-i18n="sec.overview.cards.0.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.overview.cards.1.t"></h3>
+          <p class="muted" data-i18n="sec.overview.cards.1.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.overview.cards.2.t"></h3>
+          <p class="muted" data-i18n="sec.overview.cards.2.p"></p>
         </div>
       </div>
-    </div>
-  </header>
+    </article>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1 data-i18n="svc.title">Conseil en gestion des risques</h1>
-      <p data-i18n="svc.sub">Approche ERM, convergence actuariat–finance–juridique, conformité ACAPS et gouvernance. Méthode « Scoring & Placement » pour transformer la conformité en avantage compétitif.</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px">
-        <span class="badge" data-i18n="hero.badge1">Expertise unique sur le marché Africain</span>
-        <span class="badge" data-i18n="hero.badge2">Cabinet agréé ACAPS — toutes branches</span>
+    <!-- Risk Management -->
+    <article id="risk" class="card tabpanel" role="tabpanel" aria-labelledby="tab-risk">
+      <h2 data-i18n="sec.risk.t">Conseil en Gestion des Risques</h2>
+      <p class="muted" data-i18n="sec.risk.lead"></p>
+      <div class="grid-3" style="margin-top:10px">
+        <div class="mini-card">
+          <h3 data-i18n="sec.risk.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.risk.cards.0.li.0"></li>
+            <li data-i18n="sec.risk.cards.0.li.1"></li>
+            <li data-i18n="sec.risk.cards.0.li.2"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.risk.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.risk.cards.1.li.0"></li>
+            <li data-i18n="sec.risk.cards.1.li.1"></li>
+            <li data-i18n="sec.risk.cards.1.li.2"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.risk.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.risk.cards.2.li.0"></li>
+            <li data-i18n="sec.risk.cards.2.li.1"></li>
+            <li data-i18n="sec.risk.cards.2.li.2"></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </article>
 
-  <!-- Axes d'intervention -->
-  <section class="strip">
-    <div class="container grid">
-      <article class="card">
-        <div class="kicker">ERM</div>
-        <h2 data-i18n="svc.erm.h2">Enterprise Risk Management</h2>
-        <ul class="tick">
-          <li data-i18n="svc.erm.li1">Cartographie des risques & appétence au risque</li>
-          <li data-i18n="svc.erm.li2">Cadre de contrôle interne et indicateurs clés (KRI)</li>
-          <li data-i18n="svc.erm.li3">Plans de continuité & scénarios</li>
-          <li data-i18n="svc.erm.li4">Intégration aux exigences ACAPS & gouvernance</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="kicker">Actuariat</div>
-        <h3 data-i18n="svc.act.h3">Modélisation & solvabilité</h3>
-        <ul class="tick">
-          <li data-i18n="svc.act.li1">Tarification & modélisation prospective</li>
-          <li data-i18n="svc.act.li2">Provisionnement & stress testing</li>
-          <li data-i18n="svc.act.li3">Optimisation du capital / adéquation</li>
-          <li data-i18n="svc.act.li4">IFRS 17 & reporting actuariel</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- Méthode & Transparence -->
-  <section>
-    <div class="container grid">
-      <article class="card">
-        <div class="kicker">Méthode</div>
-        <h3 data-i18n="svc.meth.h3">Scoring & Placement</h3>
-        <p class="muted" data-i18n="svc.meth.p">
-          Méthodologie propriétaire combinant analyse financière/qualitative, performance historique des engagements, robustesse des garanties et qualité des wordings.
-        </p>
-        <ul class="tick">
-          <li data-i18n="svc.meth.li1">Mise en concurrence documentée</li>
-          <li data-i18n="svc.meth.li2">Traçabilité des recommandations</li>
-          <li data-i18n="svc.meth.li3">Alignement back-to-back et prévention des « fuites d’assurance »</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="kicker">Transparence</div>
-        <h3 data-i18n="svc.transp.h3">Devoir de conseil & information</h3>
-        <p class="muted" data-i18n="svc.transp.p">
-          Détail des honoraires/commissions remis systématiquement. Recommandations justifiées, signées et conformes au Code marocain des assurances et aux instructions ACAPS.
-        </p>
-        <ul class="tick">
-          <li data-i18n="svc.transp.li1">Conformité Loi 09-08 (données personnelles)</li>
-          <li data-i18n="svc.transp.li2">Suivi de la relation et du devoir de conseil dans le temps</li>
-          <li data-i18n="svc.transp.li3">Documentation opposable & audit trail</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- Offres de conseil -->
-  <section class="strip">
-    <div class="container grid">
-      <article class="card">
-        <div class="kicker">Pour assureurs & banques</div>
-        <h3 data-i18n="svc.off.h3a">Conseil technique & gouvernance</h3>
-        <ul class="tick">
-          <li>Revue de portefeuille & recalibrage des garanties</li>
-          <li>Politiques de souscription & appétence au risque</li>
-          <li>Wording & clauses (LMA/IUA), contrôle de cohérence</li>
-          <li>Programme de réassurance : sizing & négociation</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="kicker">Pour entreprises & collectivités</div>
-        <h3 data-i18n="svc.off.h3b">Risk advisory & optimisation</h3>
-        <ul class="tick">
-          <li>Diagnostic de programmes en cours</li>
-          <li>Benchmark & mise en concurrence</li>
-          <li>Gestion de sinistres & précontentieux</li>
-          <li>Convergence Climat/ESG et finance durable</li>
-        </ul>
-      </article>
-      <article class="card">
-        <div class="kicker">Formation</div>
-        <h3 data-i18n="svc.off.h3c">Actuariat, réassurance & conformité</h3>
-        <ul class="tick">
-          <li>Formations exécutives sur mesure</li>
-          <li>Wordings internationaux & arbitrage</li>
-          <li>IFRS 17 & pilotage technique</li>
-          <li>ACAPS : digitalisation & protection des assurés</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <!-- Extranet client -->
-  <section>
-    <div class="container grid">
-      <article class="card">
-        <div class="kicker">Extranet</div>
-        <h3 data-i18n="svc.extranet.h3">Espace client sécurisé</h3>
-        <ul class="tick">
-          <li>Documents (contrats, quittances, attestations)</li>
-          <li>Déclaration & suivi de sinistres</li>
-          <li>Suivi des demandes & réclamations</li>
-          <li>Transmission sécurisée de pièces</li>
-        </ul>
-        <p class="muted">Conformité Loi 09-08 • Données hébergées localement • Authentification renforcée</p>
-        <p><a class="btn" href="contact.html" data-i18n="svc.extranet.cta">Demander un accès</a></p>
-      </article>
-      <article class="card">
-        <div class="kicker">Coordonnées</div>
-        <h3>Contact</h3>
-        <p>
-          📞 <strong>+212-666-756991</strong> (Nabil — pro)<br/>
-          📱 <strong>+212-675-208909</strong> (Nabil — perso)<br/>
-          ✉️ <a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a> — <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a>
-        </p>
-        <p><a class="btn" href="contact.html" data-i18n="cta.contact">Obtenir un devis</a></p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <h4>Riskalia</h4>
-        <p class="muted" style="color:white">Courtage & réassurance agréé ACAPS — Casablanca</p>
+    <!-- Social Liabilities -->
+    <article id="social" class="card tabpanel" role="tabpanel" aria-labelledby="tab-social">
+      <h2 data-i18n="sec.social.t">Évaluation des engagements sociaux</h2>
+      <p class="muted" data-i18n="sec.social.lead2"></p>
+      <div class="grid-3" style="margin-top:10px">
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.0.li.0"></li>
+            <li data-i18n="sec.social.cards.0.li.1"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.1.li.0"></li>
+            <li data-i18n="sec.social.cards.1.li.1"></li>
+            <li data-i18n="sec.social.cards.1.li.2"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.social.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.social.cards.2.li.0"></li>
+            <li data-i18n="sec.social.cards.2.li.1"></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h4>Liens</h4>
-        <p>
-          <a href="index.html">Accueil</a><br/>
-          <a href="solutions.html">Solutions</a><br/>
-          <a href="reinsurance.html">Réassurance</a><br/>
-          <a href="climate.html">Risques climatiques</a><br/>
-          <a href="esg.html">ESG</a><br/>
-          <a href="sitemap.html">Plan du site</a>
-        </p>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a><br/>Tel : <a href="tel:+212666756991">+212-666-756991</a></p>
-      </div>
-    </div>
-  </footer>
+    </article>
 
-  <!-- Chatbot -->
-  <button class="bot-btn" id="botToggle" aria-label="Ouvrir l’assistant">💬</button>
-  <div class="bot" id="bot" role="dialog" aria-label="Assistant Riskalia">
-    <header><strong>Assistant Riskalia</strong></header>
-    <main id="botLog">
-      <div class="msg">Bonjour 👋 Je peux vous guider.</div>
-      <div>
-        <span class="chip" onclick="botAsk('devis')">Obtenir un devis</span>
-        <span class="chip" onclick="botAsk('reassurance')">Réassurance</span>
-        <span class="chip" onclick="botAsk('solutions')">Solutions</span>
-        <span class="chip" onclick="botAsk('contact')">Coordonnées</span>
-        <span class="chip" onclick="botAsk('climat')">Climat & ESG</span>
+    <!-- Training -->
+    <article id="training" class="card tabpanel" role="tabpanel" aria-labelledby="tab-training">
+      <h2 data-i18n="sec.training.t">Formation sur mesure</h2>
+      <p class="muted" data-i18n="sec.training.lead"></p>
+      <div class="grid-3" style="margin-top:10px">
+        <div class="mini-card">
+          <h3 data-i18n="sec.training.cards.0.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.training.cards.0.li.0"></li>
+            <li data-i18n="sec.training.cards.0.li.1"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.training.cards.1.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.training.cards.1.li.0"></li>
+            <li data-i18n="sec.training.cards.1.li.1"></li>
+            <li data-i18n="sec.training.cards.1.li.2"></li>
+          </ul>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.training.cards.2.t"></h3>
+          <ul class="muted">
+            <li data-i18n="sec.training.cards.2.li.0"></li>
+            <li data-i18n="sec.training.cards.2.li.1"></li>
+          </ul>
+        </div>
       </div>
-    </main>
-    <footer>
-      <form onsubmit="return botSubmit(event)" style="display:flex;gap:6px">
-        <input id="botInput" type="text" placeholder="Posez une question…" style="flex:1;padding:10px;border:1px solid #e1e8ee;border-radius:10px"/>
-        <button class="btn" type="submit">Envoyer</button>
-      </form>
-    </footer>
+    </article>
+
+    <!-- Approach -->
+    <article id="approach" class="card tabpanel" role="tabpanel" aria-labelledby="tab-approach">
+      <h2 data-i18n="sec.approach.t">Notre approche</h2>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3 data-i18n="sec.approach.cards.0.t"></h3>
+          <p class="muted" data-i18n="sec.approach.cards.0.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.approach.cards.1.t"></h3>
+          <p class="muted" data-i18n="sec.approach.cards.1.p"></p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.approach.cards.2.t"></h3>
+          <p class="muted" data-i18n="sec.approach.cards.2.p"></p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:10px">
+        <p class="muted" data-i18n="sec.approach.note"></p>
+      </div>
+    </article>
+
+    <!-- Value -->
+    <article id="value" class="card tabpanel" role="tabpanel" aria-labelledby="tab-value">
+      <h2 data-i18n="sec.value.t">Pourquoi Riskalia</h2>
+      <div class="grid-2">
+        <div class="mini-card" data-i18n="sec.value.li.0"></div>
+        <div class="mini-card" data-i18n="sec.value.li.1"></div>
+        <div class="mini-card" data-i18n="sec.value.li.2"></div>
+        <div class="mini-card" data-i18n="sec.value.li.3"></div>
+      </div>
+      <div style="text-align:center;margin-top:10px">
+        <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
+      </div>
+    </article>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Riskalia</h4>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.links">Liens</h4>
+      <p>
+        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+        <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+        <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-i18n="footer.contact">Contact</h4>
+      <p><span data-i18n="footer.email_label">Email</span> :
+        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+    </div>
   </div>
+</footer>
 
-  <!-- Scripts : recherche & chatbot -->
-  <script>
-    // Recherche
-    function siteSearch(e){
-      e.preventDefault();
-      const q=(document.getElementById('q').value||'').trim().toLowerCase();
-      if(!q) return false;
-      const map=[
-        ['réassurance','reinsurance.html'],['reassurance','reinsurance.html'],
-        ['solution','solutions.html'],['assurance','solutions.html'],
-        ['climat','climate.html'],['climate','climate.html'],
-        ['esg','esg.html'],['contact','contact.html'],
-        ['services','services.html'],['conseil','services.html']
-      ];
-      const hit=map.find(([k])=>q.includes(k));
-      location.href = hit ? hit[1] : 'sitemap.html';
-      return false;
-    }
+<!-- ===== SEO FAQPage (short) ===== -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Que couvre votre offre de services ?","acceptedAnswer":{"@type":"Answer","text":"Gestion des risques (cartographies, appétence, tableaux de bord), évaluations actuarielles des engagements sociaux et formations sur mesure avec cas sectoriels."}},
+{"@type":"Question","name":"Peut-on démarrer sans beaucoup de données ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Nous proposons un diagnostic rapide pour cadrer les priorités et construire une feuille de route pragmatique."}}
+]}
+</script>
 
-    // Chatbot
-    const bot=document.getElementById('bot');
-    const botToggle=document.getElementById('botToggle');
-    if(botToggle) botToggle.addEventListener('click',()=>{ bot.style.display=bot.style.display==='block'?'none':'block'; });
-    function botMsg(html){const d=document.createElement('div');d.className='msg';d.innerHTML=html;document.getElementById('botLog').appendChild(d);d.scrollIntoView({behavior:'smooth',block:'end'});}
-    function botAsk(tag){
-      const routes={
-        devis:()=>{botMsg('➡️ <strong>Devis</strong> — j’ouvre le formulaire.'); location.href='contact.html';},
-        reassurance:()=>{botMsg('➡️ Réassurance — j’ouvre la page.'); location.href='reinsurance.html';},
-        solutions:()=>{botMsg('➡️ Solutions — j’ouvre la page.'); location.href='solutions.html';},
-        contact:()=>{botMsg('📞 <strong>Coordonnées</strong><br>+212-666-756991 — Nabil (pro)<br>+212-675-208909 — Nabil (perso)<br><a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a>');},
-        climat:()=>{botMsg('➡️ Risques climatiques — j’ouvre la page.'); location.href='climate.html';}
-      };
-      (routes[tag]||(()=>botMsg('Je peux vous guider vers : Solutions, Réassurance, Contact, Climat.')))();
+<!-- ================== SCRIPTS: i18n & UI ================== -->
+<script>
+/* ================== i18n (FR/EN/AR) ================== */
+const I18N={
+  fr:{
+    aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue",tabs:"Sections services"},
+    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
+    title:"Services de Conseil",
+    subtitle:"Gestion des risques, évaluation des engagements sociaux et formation sur mesure — clairs, mesurables et orientés mise en œuvre.",
+    method:"Cartographies vivantes, hypothèses auditées et ateliers pratiques pour ancrer les acquis et accélérer l’exécution.",
+    sec:{
+      overview:{
+        t:"Vue d’ensemble",
+        p:"Nos services sont conçus pour aider les dirigeants à décider vite et bien : clarifier les risques, objectiver les engagements sociaux et transmettre les compétences pour durer.",
+        cards:[
+          {t:"Gestion des risques",p:"Cartographies vivantes, appétence clarifiée, tableaux de bord lisibles."},
+          {t:"Engagements sociaux",p:"Évaluations actuarielles alignées normes locales/IFRS, hypothèses auditées."},
+          {t:"Formation sur mesure",p:"Parcours modulaires, cas sectoriels et ateliers pratiques."}
+        ]
+      },
+      risk:{
+        t:"Conseil en Gestion des Risques",
+        lead:"Nous identifions, quantifions et priorisons les risques stratégiques, opérationnels et financiers pour un pilotage décidé et mesurable.",
+        cards:[
+          {t:"Cartographier & prioriser",li:[
+            "Ateliers métiers, registres de risques et scoring d’impact/vraisemblance.",
+            "Lien avec objectifs, processus et contrôles existants.",
+            "Plan d’actions daté et responsables assignés."
+          ]},
+          {t:"Appétence & indicateurs",li:[
+            "Seuils d’appétence/tolérance documentés et validés par la direction.",
+            "KPI/KRI intégrés dans des tableaux de bord lisibles.",
+            "Alertes et routines de revue trimestrielle."
+          ]},
+          {t:"Intégration & transfert",li:[
+            "Alignement ISO 31000 / COSO avec vos pratiques.",
+            "Volet assurance & transfert (dont paramétriques si pertinent).",
+            "Traçabilité pour audits et comités."
+          ]}
+        ]
+      },
+      social:{
+        t:"Évaluation des engagements sociaux",
+        lead2:"Évaluations actuarielles (IFC, retraite, prévoyance) alignées normes locales et IFRS. Hypothèses auditées, trajectoires de charges expliquées et leviers d’optimisation présentés avec transparence.",
+        cards:[
+          {t:"Cadrage & données",li:[
+            "Périmètre des régimes, historique et fichiers individuels.",
+            "Nettoyage, contrôles et documentation."
+          ]},
+          {t:"Méthodes & hypothèses",li:[
+            "Hypothèses biométriques/financières justifiées et traçables.",
+            "Approches PUC/ILM selon référentiels en vigueur.",
+            "Sensibilités et scénarios (taux, turnover, salaires)."
+          ]},
+          {t:"Résultats & pilotage",li:[
+            "Provisionnement, charge de service, gains/pertes d’actuariat.",
+            "Passerelles IFRS/local et impacts sur comptes.",
+            "Pistes d’optimisation et feuille de route."
+          ]}
+        ]
+      },
+      training:{
+        t:"Formation sur mesure",
+        lead:"Parcours modulaires mêlant gouvernance, outils d’analyse, assurance et transfert. Études de cas sectorielles et ateliers pratiques.",
+        cards:[
+          {t:"Design pédagogique",li:[
+            "Objectifs opérationnels et pré-requis clarifiés.",
+            "Formats présentiel/distanciel, micro-learning et évaluations."
+          ]},
+          {t:"Contenus & cas",li:[
+            "Modules risques (ISO 31000), assurance/réassurance, data & modélisation.",
+            "Cas sectoriels (banque, assurance, industrie, secteur public).",
+            "Mises en situation et jeux de rôle."
+          ]},
+          {t:"Mesure d’impact",li:[
+            "Évaluations pré/post-formation et feedback 360°.",
+            "Kits de mise en œuvre et coaching terrain."
+          ]}
+        ]
+      },
+      approach:{
+        t:"Notre approche",
+        cards:[
+          {t:"Pragmatique & incrémentale",p:"Diagnostic rapide, quick wins, puis déploiement par vagues courtes."},
+          {t:"Traçable & conforme",p:"Dossiers d’hypothèses, versions et annexes prêts pour audit/comités."},
+          {t:"Co-construction",p:"Ateliers avec vos équipes pour ancrer les pratiques et transférer les compétences."}
+        ],
+        note:"➡️ Objectif : des livrables utiles, adoptés par les équipes et faciles à maintenir."
+      },
+      value:{
+        t:"Pourquoi Riskalia",
+        li:[
+          "Double culture locale/internationale et connaissance des régulateurs.",
+          "Pédagogie claire : synthèses lisibles, KPIs actionnables.",
+          "Solutions innovantes (paramétriques, mutualisation, data).",
+          "Orientation résultats et mise en œuvre rapide."
+        ]
+      }
+    },
+    cta:{btn:"Nous contacter"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"}
+  },
+
+  en:{
+    aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher",tabs:"Service sections"},
+    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
+    title:"Advisory Services",
+    subtitle:"Risk management, social liabilities valuation and custom training — clear, measurable, execution-oriented.",
+    method:"Living risk maps, audited assumptions and hands-on workshops to anchor learning and speed up delivery.",
+    sec:{
+      overview:{
+        t:"Overview",
+        p:"We help leaders decide fast and well: clarify risks, objectify social liabilities and build capabilities that last.",
+        cards:[
+          {t:"Risk management",p:"Living maps, clarified risk appetite, readable dashboards."},
+          {t:"Social liabilities",p:"Actuarial valuations aligned with local/IFRS standards, audited assumptions."},
+          {t:"Custom training",p:"Modular tracks, sector case studies and practical workshops."}
+        ]
+      },
+      risk:{
+        t:"Risk Management Advisory",
+        lead:"We identify, quantify and prioritise strategic, operational and financial risks for decisive, measurable steering.",
+        cards:[
+          {t:"Map & prioritise",li:[
+            "Business workshops, risk registers and impact/likelihood scoring.",
+            "Link to objectives, processes and controls.",
+            "Dated action plan with accountable owners."
+          ]},
+          {t:"Appetite & indicators",li:[
+            "Documented appetite/tolerance thresholds validated by management.",
+            "KPIs/KRIs in readable dashboards.",
+            "Alerts and quarterly review routines."
+          ]},
+          {t:"Integration & transfer",li:[
+            "ISO 31000 / COSO alignment with your practices.",
+            "Insurance & risk transfer (incl. parametrics where relevant).",
+            "Traceability for audits and committees."
+          ]}
+        ]
+      },
+      social:{
+        t:"Social Liabilities Valuation",
+        lead2:"Actuarial valuations (IFC, pension, benefits) aligned with local and IFRS standards. Audited assumptions, explained cost trajectories and transparent optimisation levers.",
+        cards:[
+          {t:"Scoping & data",li:[
+            "Plan perimeters, histories and individual files.",
+            "Data cleaning, checks and documentation."
+          ]},
+          {t:"Methods & assumptions",li:[
+            "Justified, traceable biometric/financial assumptions.",
+            "PUC/ILM methods per applicable frameworks.",
+            "Sensitivities and scenarios (rates, turnover, salaries)."
+          ]},
+          {t:"Results & steering",li:[
+            "Provisions, service cost, actuarial gains/losses.",
+            "IFRS/local bridges and P&L impacts.",
+            "Optimisation levers and roadmap."
+          ]}
+        ]
+      },
+      training:{
+        t:"Custom Training",
+        lead:"Modular learning mixing governance, analytics, insurance & transfer. Sector cases and hands-on workshops.",
+        cards:[
+          {t:"Learning design",li:[
+            "Operational objectives and prerequisites clarified.",
+            "On-site/remote formats, micro-learning and assessments."
+          ]},
+          {t:"Content & cases",li:[
+            "Risk (ISO 31000), insurance/reinsurance, data & modelling.",
+            "Sector cases (banking, insurance, industry, public sector).",
+            "Role-plays and simulations."
+          ]},
+          {t:"Impact measurement",li:[
+            "Pre/post assessments and 360° feedback.",
+            "Implementation kits and field coaching."
+          ]}
+        ]
+      },
+      approach:{
+        t:"Our approach",
+        cards:[
+          {t:"Pragmatic & incremental",p:"Quick diagnostic, quick wins, then short-wave deployment."},
+          {t:"Traceable & compliant",p:"Assumption files, versions and annexes ready for audit/committees."},
+          {t:"Co-built",p:"Workshops with your teams to embed practices and transfer skills."}
+        ],
+        note:"➡️ Goal: deliverables that are useful, adopted by teams and easy to maintain."
+      },
+      value:{
+        t:"Why Riskalia",
+        li:[
+          "Local/international experience and regulator familiarity.",
+          "Clear pedagogy: readable syntheses and actionable KPIs.",
+          "Innovative solutions (parametrics, pooling, data).",
+          "Results-oriented with rapid implementation."
+        ]
+      }
+    },
+    cta:{btn:"Get in touch"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"}
+  },
+
+  ar:{
+    aria:{nav:"التنقّل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة",tabs:"أقسام الخدمات"},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"اتصال"},
+    title:"الخدمات الاستشارية",
+    subtitle:"إدارة المخاطر، تقييم الالتزامات الاجتماعية، وتدريب مخصص — واضح وقابل للقياس وموجّه للتنفيذ.",
+    method:"خرائط مخاطر حيّة، افتراضات مُدقّقة وورش عمل تطبيقية لتثبيت المكتسبات وتسريع التنفيذ.",
+    sec:{
+      overview:{
+        t:"نظرة عامة",
+        p:"نساعد القادة على اتخاذ قرارات سريعة وجيدة: توضيح المخاطر، موضوعية الالتزامات الاجتماعية وبناء قدرات مستدامة.",
+        cards:[
+          {t:"إدارة المخاطر",p:"خرائط حيّة، شهية مخاطرة واضحة، ولوحات مؤشرات سهلة القراءة."},
+          {t:"الالتزامات الاجتماعية",p:"تقييمات اكتوارية متوافقة مع المعايير المحلية/الدولية وإفتراضات مُوثّقة."},
+          {t:"تدريب مخصص",p:"مسارات وحداتية، دراسات حالة قطاعية وورش تطبيقية."}
+        ]
+      },
+      risk:{
+        t:"استشارات إدارة المخاطر",
+        lead:"نحدّد ونقيس ونرتّب أولويات المخاطر الاستراتيجية والتشغيلية والمالية لقيادة حاسمة قابلة للقياس.",
+        cards:[
+          {t:"رسم الخرائط وترتيب الأولويات",li:[
+            "ورش عمل مع الفرق، سجلات مخاطر وتقييم أثر/احتمال.",
+            "ربط بالأهداف والعمليات والضوابط.",
+            "خطة عمل مؤرخة ومسؤوليات محددة."
+          ]},
+          {t:"شهية المخاطر والمؤشرات",li:[
+            "حدود شهية/تحمّل موثّقة ومصدّق عليها من الإدارة.",
+            "مؤشرات KPI/KRI بلوحات سهلة القراءة.",
+            "تنبيهات وروتين مراجعة ربع سنوي."
+          ]},
+          {t:"الدمج والنقل",li:[
+            "مواءمة ISO 31000 / COSO مع ممارساتكم.",
+            "التأمين ونقل المخاطر (بما فيها البارامترية عند الملاءمة).",
+            "قابلية تتبّع للتدقيق واللجان."
+          ]}
+        ]
+      },
+      social:{
+        t:"تقييم الالتزامات الاجتماعية",
+        lead2:"تقييمات اكتوارية (IFC، تقاعد، مزايا) متوافقة مع المعايير المحلية والدولية. افتراضات مدققة ومسارات كلفة مُفسّرة ورافعات تحسين شفافة.",
+        cards:[
+          {t:"النطاق والبيانات",li:[
+            "نطاق الأنظمة والسجلات والملفات الفردية.",
+            "تنقية البيانات والضوابط والتوثيق."
+          ]},
+          {t:"المنهجيات والافتراضات",li:[
+            "افتراضات بشرية/مالية مبرّرة وقابلة للتتبع.",
+            "أساليب PUC/ILM وفق الأطر المعتمدة.",
+            "حساسيات وسيناريوهات (فوائد، دوران، أجور)."
+          ]},
+          {t:"النتائج والقيادة",li:[
+            "المؤونات وكلفة الخدمة والأرباح/الخسائر الاكتوارية.",
+            "جسور محاسبية بين المحلي والدولي وأثرها على النتائج.",
+            "مسارات تحسين وخارطة طريق."
+          ]}
+        ]
+      },
+      training:{
+        t:"تدريب مخصص",
+        lead:"مسارات وحداتية تجمع الحوكمة والتحليل والتأمين ونقل المخاطر. دراسات حالة وورش عملية.",
+        cards:[
+          {t:"تصميم تعليمي",li:[
+            "أهداف تشغيلية ومتطلبات سابقة واضحة.",
+            "حضوري/عن بعد، تعلّم قصير واختبارات."
+          ]},
+          {t:"المحتوى والحالات",li:[
+            "مخاطر (ISO 31000)، تأمين/إعادة تأمين، بيانات ونمذجة.",
+            "حالات قطاعية: بنوك، تأمين، صناعة، قطاع عام.",
+            "تمارين ومحاكاة."
+          ]},
+          {t:"قياس الأثر",li:[
+            "اختبارات قبل/بعد وتغذية راجعة شاملة.",
+            "حزم تطبيق ومرافقة ميدانية."
+          ]}
+        ]
+      },
+      approach:{
+        t:"منهجيتنا",
+        cards:[
+          {t:"براغماتية ومتدرجة",p:"تشخيص سريع وإنجازات سريعة ثم نشر على موجات قصيرة."},
+          {t:"موثّقة ومتوافقة",p:"ملفات افتراضات وإصدارات وملاحق جاهزة للتدقيق."},
+          {t:"بناء مشترك",p:"ورش مع فرقكم لترسيخ الممارسات ونقل المعرفة."}
+        ],
+        note:"➡️ الهدف: مخرجات مفيدة يتبنّاها الفريق وسهلة الصيانة."
+      },
+      value:{
+        t:"لماذا ريسكاليا",
+        li:[
+          "خبرة محلية ودولية ومعرفة بالجهات المنظمة.",
+          "بيداغوجيا واضحة ومؤشرات قابلة للتنفيذ.",
+          "حلول مبتكرة (بارامترية، تجميع، بيانات).",
+          "تركيز على النتائج وتنفيذ سريع."
+        ]
+      }
+    },
+    cta:{btn:"تواصل معنا"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"}
+  }
+};
+
+/* ================== Helpers & UI ================== */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+function applyI18nAttrs(){
+  $$('[data-i18n-attr]').forEach(el=>{
+    const pairs = el.dataset.i18nAttr?.split(',').map(x=>x.trim()).filter(Boolean) || [];
+    for(const pair of pairs){
+      const [attr,key]=pair.split(':').map(s=>s.trim());
+      const val = t(key);
+      if(attr && val) el.setAttribute(attr, val);
     }
-    function botSubmit(e){
+  });
+}
+function setActiveNav(){
+  const path = location.pathname.split('/').pop() || 'services.html';
+  $$('#menu a').forEach(a=>{
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === path);
+  });
+}
+
+/* Apply translations & nav state */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  applyI18nAttrs();
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+
+/* Tabs */
+function bindTabs(){
+  const tabs=$$('.tabs .tab');
+  const panels=$$('.tabpanel');
+  function show(id, push=true){
+    tabs.forEach(btn=>{
+      const on = btn.dataset.tab===id;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-selected', on?'true':'false');
+      btn.tabIndex = on?0:-1;
+    });
+    panels.forEach(p=> p.classList.toggle('active', p.id===id));
+    if(push) history.replaceState(null,'','#'+id);
+    $('#tab-'+id)?.focus({preventScroll:true});
+  }
+  tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
+  function fromHash(){
+    const id=(location.hash||'#overview').slice(1);
+    const known=['overview','risk','social','training','approach','value'];
+    show( known.includes(id)?id:'overview', false );
+  }
+  window.addEventListener('hashchange',fromHash);
+  fromHash();
+}
+
+/* Reveal on scroll */
+function activateReveal(){
+  const rev=$$('.reveal');
+  const onScroll=()=>{ const tr=window.innerHeight*0.9; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll', onScroll); onScroll();
+}
+
+/* Dropdown (desktop hover + mobile click) */
+(function(){
+  const li = document.querySelector('#menu li.dropdown');
+  const trigger = li?.querySelector('a.has-caret');
+  if(!li || !trigger) return;
+
+  function open(){ li.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function close(){ li.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+
+  function toggleMobile(e){
+    if (window.innerWidth <= 900){
       e.preventDefault();
-      const v=(document.getElementById('botInput').value||'').trim().toLowerCase();
-      if(!v) return false;
-      botMsg('Vous : '+v);
-      if(v.includes('devis')||v.includes('quote')) botAsk('devis');
-      else if(v.includes('réassurance')||v.includes('reinsurance')) botAsk('reassurance');
-      else if(v.includes('solution')||v.includes('assurance')) botAsk('solutions');
-      else if(v.includes('contact')||v.includes('phone')||v.includes('tel')) botAsk('contact');
-      else if(v.includes('climat')||v.includes('climate')||v.includes('esg')) botAsk('climat');
-      else botMsg("Assistant simple. Essayez : ‘devis’, ‘réassurance’, ‘solutions’, ‘contact’, ‘climat’. ");
-      document.getElementById('botInput').value='';
-      return false;
+      li.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
     }
-  </script>
+  }
+
+  trigger.addEventListener('click', toggleMobile);
+  trigger.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      if (window.innerWidth <= 900) toggleMobile(e); else open();
+    } else if(e.key==='Escape'){ close(); trigger.focus(); }
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
+
+  let timer;
+  li.addEventListener('mouseenter', ()=>{ if (window.innerWidth > 900){ clearTimeout(timer); open(); }});
+  li.addEventListener('mouseleave', ()=>{ if (window.innerWidth > 900){ timer=setTimeout(close, 180); }});
+  window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
+})();
+
+/* Mobile menu & lang */
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+  }));
+  bindTabs();
+  activateReveal();
+}
+document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
+</script>
 </body>
 </html>
