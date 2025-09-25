@@ -604,7 +604,6 @@ const I18N = {
     hero:{t:"Réassurance — Programmes & Conseil",p:"Proportionnelle & non proportionnelle • Placement marché • Sinistres & recouvrements • Data & modélisation • Optimisation coût/capital • Cadre SBR.",b0:"Architecture & rétention",b1:"Placement & wordings",b2:"Conformité SBR"},
     toc:{intro:"Introduction",programs:"Programmes",placement:"Placement & marchés",claims:"Sinistres",data:"Données & modélisation",opt:"Optimisation",sbr:"Cadre SBR",faq:"FAQ"},
 
-    /* Section 1 */
     sec1:{
       t:"1) Notre promesse : des protections qui soutiennent votre stratégie",
       lead:"Nous concevons et plaçons des protections alignées sur vos priorités : stabilité des résultats, protection du capital, soutien à la croissance et conformité.",
@@ -614,7 +613,6 @@ const I18N = {
       side:{t:"Bénéfices clés",l0:"P&L lissé et prévisible",l1:"Protection du capital",l2:"Accès facilité aux marchés",l3:"Conformité démontrable"}
     },
 
-    /* Section 2 */
     sec2:{
       t:"2) Vos programmes de réassurance, simplement expliqués",
       p0:{t:"Partage du risque (proportionnel)",l0:"Quota-share : capital & capacité.",l1:"Surplus : grands risques, lissage de sévérité.",l2:"Participation aux bénéfices / sliding scale.",k:"Repère :",kp:"Le proportionnel sert à stabiliser et accompagner la croissance."},
@@ -622,7 +620,6 @@ const I18N = {
       p2:{t:"Ciblé & innovant",l0:"Facultatives pour risques atypiques.",l1:"Paramétriques sur indice (pluie, vent, séisme).",note:"On choisit l’outil selon le problème à résoudre."}
     },
 
-    /* Section 3 */
     sec3:{
       t:"3) Accéder aux meilleurs marchés, dans les meilleures conditions",
       b0:{t:"Stratégie de marché claire",l0:"Panel diversifié et noté.",l1:"Séquençage & concurrence saine.",l2:"Périls critiques priorisés."},
@@ -631,7 +628,6 @@ const I18N = {
       end:"Bénéfice : visibilité sur qui couvre quoi, quand et comment."
     },
 
-    /* Section 4 */
     sec4:{
       t:"4) Sinistres : agir tôt, recouvrer vite",
       l0:"Notification précoce = moins de friction.",
@@ -641,7 +637,6 @@ const I18N = {
       goal:"Objectif : prévisibilité, rapidité, cash-in."
     },
 
-    /* Section 5 */
     sec5:{
       t:"5) Données & modélisation au service de décisions simples",
       l0:"Historique 5–10 ans nettoyé et expliqué.",
@@ -651,7 +646,6 @@ const I18N = {
       end:"But : une réponse proportionnée, en connaissance de cause."
     },
 
-    /* Section 6 */
     sec6:{
       t:"6) Optimiser le trio coût / protection / capital",
       b0:{t:"Architecture & rétention",l0:"Quota/surplus (base) + XL (chocs) + aggregate (dérive).",l1:"Franchise via burn + VaR/TVaR vulgarisée.",l2:"Limites par évènement/année selon tolérance."},
@@ -660,7 +654,6 @@ const I18N = {
       ex:{t:"Exemples de leviers",l0:"Aggregate XL : lisser une année à fréquence élevée.",l1:"Stop-loss : plafond sur ratio combiné (P&L first).",l2:"Quota-share + surplus : capital + capacité + profit commission."}
     },
 
-    /* Section 7 */
     sec7:{
       t:"7) Conformité : réassurance alignée SBR (prudentiel)",
       lead:"Nous alignons vos programmes avec les exigences ACAPS sans jargon.",
@@ -675,7 +668,6 @@ const I18N = {
       end:"Finalité : un dispositif propre, traçable, défendable."
     },
 
-    /* Section 8 */
     sec8:{t:"8) FAQ – les questions qu’on nous pose le plus"},
     faq:{
       q0:"Comment fixer la rétention ?",a0:"Seuils testés vs pertes passées et tolérance : on retient l’équilibre coût/protection/capital.",
@@ -689,24 +681,174 @@ const I18N = {
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"}
   },
 
-  /* Concise EN/AR placeholders (so nothing breaks if language switch is clicked) */
   en:{
     aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher"},
     nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risks",services:"Advisory Services",esg:"ESG",contact:"Contact"},
-    hero:{t:"Reinsurance — Programs & Advisory",p:"Proportional & non-proportional • Placement • Claims • Data & modelling • Cost/capital optimisation • RBS.",b0:"Architecture & retention",b1:"Placement & wordings",b2:"RBS compliance"},
+    hero:{t:"Reinsurance — Programs & Advisory",p:"Proportional & non-proportional • Market placement • Claims & recoveries • Data & modelling • Cost/capital optimisation • Risk-Based Supervision.",b0:"Architecture & retention",b1:"Placement & wordings",b2:"RBS compliance"},
     toc:{intro:"Introduction",programs:"Programs",placement:"Placement & markets",claims:"Claims",data:"Data & modelling",opt:"Optimisation",sbr:"RBS",faq:"FAQ"},
+
+    sec1:{
+      t:"1) Our promise: protections that support your strategy",
+      lead:"We design and place protections aligned with your priorities: earnings stability, capital protection, growth support and compliance.",
+      block0:{t:"Concretely, for you",l0:"Less volatility: buffer heavy years to smooth performance.",l1:"Fair price: link cost to actual losses and capital at risk.",l2:"Secured capacity: prioritise critical perils first."},
+      block1:{t:"How we work",l0:"Fact-based read: history, portfolio, zones & perils.",l1:"Simple tests: what-if scenarios (deductible, limit, #events).",l2:"Short market iterations & precise wording work."},
+      block2:{t:"Example",p:"If 2–3 losses per year skew results, we target those shocks—not the day-to-day."},
+      side:{t:"Key benefits",l0:"Smoother, predictable P&L",l1:"Capital protection",l2:"Easier market access",l3:"Demonstrable compliance"}
+    },
+
+    sec2:{
+      t:"2) Your reinsurance programs—plainly explained",
+      p0:{t:"Risk sharing (proportional)",l0:"Quota share: capital & capacity uplift.",l1:"Surplus: large risks, severity smoothing.",l2:"Aligned remuneration: profit commission / sliding scale.",k:"Rule of thumb:",kp:"Use proportional to stabilise and support growth."},
+      p1:{t:"Big-shock protection (non-proportional)",l0:"Excess of Loss by risk/peril or by event.",l1:"Aggregate XL / Stop-loss to cap the annual result."},
+      p2:{t:"Targeted & innovative",l0:"Facultative for atypical/off-framework risks.",l1:"Parametric on index (rain, wind, quake).",note:"Choose the tool for the problem—stability, capital, growth, exceptional shock."}
+    },
+
+    sec3:{
+      t:"3) Access the right markets on the right terms",
+      b0:{t:"Clear market strategy",l0:"Diversified, rated panel.",l1:"Placement sequencing & healthy competition.",l2:"Critical perils prioritised."},
+      b1:{t:"Readable, useful terms",l0:"Clear peril/aggregation/hours clause.",l1:"Claims governance: roles, timelines, evidence.",l2:"Trust devices: cut-through, deposits, guarantees (if needed)."},
+      b2:{t:"Traceability & control",l0:"Documented decisions.",l1:"Limits & concentration matrix.",l2:"Reinsurer receivables: aging, certificates, chasers."},
+      end:"Benefit: you know who covers what, when and how—plus the quality behind it."
+    },
+
+    sec4:{
+      t:"4) Claims: act early, recover fast",
+      l0:"Early notification = less friction.",
+      l1:"Shared reserving: aligned assumptions.",
+      l2:"‘Major claims’ committees: technical points settled, milestones agreed.",
+      l3:"Recoveries: focus on timing, interest, escalation.",
+      goal:"Goal: more predictability, less wasted time, more cash-in."
+    },
+
+    sec5:{
+      t:"5) Data & modelling for simple decisions",
+      l0:"5–10 year history: frequency/severity, ULAE, adjustments—cleaned and explained.",
+      l1:"Exposures: zones & perils (geocoding), clear sums insured view.",
+      l2:"Stress scenarios: extreme weather, inflation, supplier disruption…",
+      l3:"Readable outputs: suggested retentions, safety margins, pros/cons.",
+      end:"Aim: a proportionate response—neither over- nor under-insurance."
+    },
+
+    sec6:{
+      t:"6) Optimise the cost / protection / capital trio",
+      b0:{t:"Architecture & retention",l0:"Quota/surplus for the base, XL for shocks, aggregate for drift.",l1:"Deductible from burn + simplified VaR/TVaR cues.",l2:"Cap uncertainty: per-event and/or annual limits."},
+      b1:{t:"Economic efficiency",l0:"Price = expected loss + cost of capital + expenses.",l1:"Levers: multi-year, calibrated reinstatements, adjust deductible/limit.",l2:"Parametrics for costly/contestable climate peaks."},
+      b2:{t:"Counterparties & wording",l0:"Reinsurer quality and diversification.",l1:"Key clauses explained: aggregation, hours, exclusions.",l2:"Execution: simple bordereaux, cut-through when useful, tight recoveries."},
+      ex:{t:"Lever examples",l0:"Aggregate XL to smooth many medium losses (retail).",l1:"Result stop-loss to cap combined ratio (P&L first).",l2:"Quota share + surplus: capital + capacity—mind profit commission alignment."}
+    },
+
+    sec7:{
+      t:"7) Compliance: SBR-aligned reinsurance",
+      lead:"We align your programs with ACAPS requirements—minus the jargon.",
+      b0:{t:"Reinsurance policy",l0:"Objectives, risk appetite, limits/concentrations.",l1:"Reinsurer selection: rating, guarantees, deposits.",l2:"Governance: approval, documented annual review."},
+      b1:{t:"ORSA & capital",l0:"Realistic scenarios: cat, frequency drift, claims inflation.",l1:"Solvency impact (SCR/MCR) & sensitivities explained.",l2:"Back-testing: did covers deliver as intended?"},
+      b2:{t:"Reporting & controls",l0:"Receivables: aging, provisions, chasers.",l1:"Concentrations by counterparty/country.",l2:"Accounting prudence: deposits, interest, supporting docs."},
+      tab:{cap:"Your deliverables (clear & actionable)",h0:"Requirement",h1:"Deliverable",h2:"Frequency",
+        r0:{c0:"Policy & strategy",c1:"Document + limits/counterparties matrix",c2:"Annual"},
+        r1:{c0:"ORSA",c1:"Scenarios & solvency-impact memo",c2:"Annual + ad hoc"},
+        r2:{c0:"Reinsurer receivables",c1:"Aging & recovery KPIs",c2:"Quarterly"}
+      },
+      end:"Outcome: a clean, traceable, defensible framework."
+    },
+
+    sec8:{t:"8) FAQ – most common questions"},
+    faq:{
+      q0:"How do we set retention?",a0:"Test thresholds against past losses and risk tolerance; keep the best balance of cost/protection/capital.",
+      q1:"Aggregate XL or stop-loss?",a1:"Aggregate XL triggers on annual accumulation; stop-loss caps the combined ratio.",
+      q2:"Proportional or XL?",a2:"Proportional to stabilise/grow; XL for shocks. Often, a mix is optimal.",
+      q3:"How do parametrics work?",a3:"Objective index (rain, wind, quake) → faster settlement, fewer proof disputes.",
+      q4:"What does the regulator (SBR) expect?",a4:"Clear policy, credible ORSA scenarios, serious receivables & concentration tracking."
+    },
+
     cta:{t:"Let’s optimise your program",p:"Fast workshops to align objectives, data, scenarios and architecture options, then market consultation.",btn:"Contact us"},
     footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"}
   },
+
   ar:{
-    aria:{nav:"التنقل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة"},
-    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"تواصل"},
-    hero:{t:"إعادة التأمين — برامج واستشارات",p:"نسبي/غير نسبي • الترتيب • المطالبات • البيانات والنمذجة • تحسين الكلفة/رأس المال • SBR.",b0:"الهندسة والاحتفاظ",b1:"الترتيب والصياغات",b2:"امتثال SBR"},
-    toc:{intro:"مقدمة",programs:"البرامج",placement:"الترتيب والأسواق",claims:"المطالبات",data:"البيانات والنمذجة",opt:"التحسين",sbr:"إطار SBR",faq:"الأسئلة"},
-    cta:{t:"لنحسّن برنامجكم",p:"ورش سريعة لمواءمة الأهداف والبيانات والسيناريوهات وخيارات الهندسة، ثم طرح السوق.",btn:"اتصل بنا"},
+    aria:{nav:"التنقّل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة"},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"التأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"تواصل"},
+    hero:{t:"إعادة التأمين — برامج واستشارات",p:"نسبي وغير نسبي • ترتيب السوق • المطالبات والتحصيل • البيانات والنمذجة • تحسين الكلفة/رأس المال • الإشراف القائم على المخاطر.",b0:"الهندسة والاحتفاظ",b1:"الترتيب والصياغات",b2:"امتثال SBR"},
+    toc:{intro:"مقدمة",programs:"البرامج",placement:"الترتيب والأسواق",claims:"المطالبات",data:"البيانات والنمذجة",opt:"التحسين",sbr:"إطار SBR",faq:"الأسئلة الشائعة"},
+
+    sec1:{
+      t:"1) وعدنا: حماية تدعم استراتيجيتكم",
+      lead:"نصمّم ونرتّب برامج تتماشى مع أولوياتكم: استقرار النتائج، حماية رأس المال، دعم النمو والامتثال.",
+      block0:{t:"عمليًا، لكم",l0:"تقليل التذبذب: امتصاص سنوات الخسائر الثقيلة.",l1:"سعر عادل: ربط الكلفة بالخسائر الفعلية ورأس المال.",l2:"طاقة مؤمّنة: إعطاء الأولوية للأخطار الحرجة."},
+      block1:{t:"طريقتنا",l0:"قراءة وقائعية: التاريخ، المحفظة، المناطق والأخطار.",l1:"اختبارات بسيطة: سيناريوهات ماذا لو (خصم، حد، عدد الأحداث).",l2:"جولات سوق قصيرة وصياغات دقيقة."},
+      block2:{t:"مثال",p:"إذا كانت 2–3 مطالبات سنويًا تقلب النتيجة، نستهدف هذه الصدمات لا الروتين اليومي."},
+      side:{t:"فوائد أساسية",l0:"قائمة دخل أكثر سلاسة وتنبؤًا",l1:"حماية رأس المال",l2:"وصول أسهل إلى الأسواق",l3:"امتثال يمكن إثباته"}
+    },
+
+    sec2:{
+      t:"2) برامج إعادة التأمين — شرح مبسّط",
+      p0:{t:"تقاسم الخطر (نسبي)",l0:"حصة نسبية (Quota Share): رفع رأس المال والطاقة.",l1:"فائض (Surplus): أخطار كبيرة وتنعيم الشدة.",l2:"مكافأة أرباح / مقياس انزلاقي.",k:"قاعدة عامة:",kp:"نستخدم النسبي للاستقرار ودعم النمو."},
+      p1:{t:"حماية الصدمات الكبيرة (غير نسبي)",l0:"فائض الخسارة حسب الخطر/الخطر أو حسب الحدث.",l1:"تراكمي سنوي/إيقاف الخسارة لتحديد نتيجة السنة."},
+      p2:{t:"مستهدف ومبتكر",l0:"اختياري (Fac) للأخطار غير النمطية.",l1:"بارامتري على مؤشرات (أمطار، رياح، زلازل).",note:"نختار الأداة حسب المشكلة: استقرار، رأس مال، نمو، صدمة استثنائية."}
+    },
+
+    sec3:{
+      t:"3) الوصول إلى أفضل الأسواق بأفضل الشروط",
+      b0:{t:"استراتيجية سوق واضحة",l0:"لوحة شركات متنوعة ومصنّفة ائتمانيًا.",l1:"تسلسل الترتيب ومنافسة صحية.",l2:"أولوية للأخطار الحرجة."},
+      b1:{t:"شروط واضحة ومفيدة",l0:"تعريف الأخطار والتجميع وبند الساعات.",l1:"حوكمة المطالبات: الأدوار والجداول والمستندات.",l2:"آليات ثقة: الدفع المباشر، الودائع، الضمانات (عند الحاجة)."},
+      b2:{t:"التتبّع والرقابة",l0:"قرارات موثّقة.",l1:"مصفوفة الحدود والتركيزات.",l2:"ذمم المعيدين: أعمار الديون، شهادات، متابعات."},
+      end:"الفائدة: تعلمون من يغطي ماذا ومتى وكيف — وبأي جودة."
+    },
+
+    sec4:{
+      t:"4) المطالبات: التحرّك مبكرًا، والتحصيل سريعًا",
+      l0:"إخطار مبكر = احتكاك أقل.",
+      l1:"مخصّصات مشتركة: افتراضات موحّدة.",
+      l2:"لجان «المطالبات الكبرى»: نقاط تقنية محسومة وخطّة زمنية.",
+      l3:"التحصيل: تركيز على الآجال والفوائد والتصعيد.",
+      goal:"الهدف: قابلية توقّع أعلى ووقت أقل مهدور ونقد داخل أسرع."
+    },
+
+    sec5:{
+      t:"5) البيانات والنمذجة لاتخاذ قرارات بسيطة",
+      l0:"تاريخ 5–10 سنوات مُنظّف ومشروح (تواتر/شدة، ULAE، تعديلات).",
+      l1:"التعرّضات حسب المناطق/الأخطار (ترميز جغرافي) ورؤية واضحة لقيم التأمين.",
+      l2:"سيناريوهات ضغط: طقس قاسٍ، تضخم، تعطل سلاسل التوريد…",
+      l3:"مخرجات قابلة للقراءة: احتفاظات مقترحة وهوامش أمان ومزايا/عيوب.",
+      end:"الغاية: استجابة متناسبة — لا إفراط ولا تفريط."
+    },
+
+    sec6:{
+      t:"6) تحسين ثلاثية الكلفة/الحماية/رأس المال",
+      b0:{t:"الهندسة والاحتفاظ",l0:"حصة/فائض للأساس، فائض الخسارة للصدمات، تراكمي للانحراف السنوي.",l1:"الخصم من حرق الخسائر + مؤشرات مبسّطة (VaR/TVaR).",l2:"تحديد عدم اليقين: حدود لكل حدث و/أو سنوية."},
+      b1:{t:"كفاءة اقتصادية",l0:"السعر = خسارة متوقعة + كلفة رأس المال + مصاريف.",l1:"عوّامات: عقود متعددة السنوات، إعادة تأسيس مدروسة، ضبط خصم/حد.",l2:"بارامتري لأقمّة مناخية مكلفة/محل نزاع."},
+      b2:{t:"المقابلات والصياغة",l0:"جودة وتنوّع معيدي التأمين.",l1:"بنود رئيسية: التجميع، الساعات، الاستبعادات — مع الأثر.",l2:"تنفيذ بسيط: كشوفات، دفع مباشر عند اللزوم، تحصيل محكم."},
+      ex:{t:"أمثلة روافع",l0:"تراكمي سنوي لتنعيم كثرة المطالبات المتوسطة (تجزئة).",l1:"إيقاف الخسارة لحدّ نسبة الخسارة المجمّعة (الربحية أولًا).",l2:"حصة نسبية + فائض: رأس مال + طاقة — مع مواءمة عمولة الأرباح."}
+    },
+
+    sec7:{
+      t:"7) الامتثال: إعادة تأمين متّسقة مع SBR",
+      lead:"نوافق برامجكم مع متطلبات ACAPS — بدون تعقيد لغوي.",
+      b0:{t:"سياسة إعادة التأمين",l0:"الأهداف وشهية المخاطر والحدود/التركيزات.",l1:"اختيار المعدين: التصنيف والضمانات والودائع.",l2:"الحوكمة: المصادقة ومراجعة سنوية موثقة."},
+      b1:{t:"ORSA ورأس المال",l0:"سيناريوهات واقعية: كوارث، انجراف التواتر، تضخم المطالبات.",l1:"أثر على الملاءة (SCR/MCR) مع الحساسيات.",l2:"اختبار رجعي: هل أدّت الحمايات الغرض؟"},
+      b2:{t:"التقارير والرقابات",l0:"ذمم المعدين: أعمار الديون، مخصصات، متابعات.",l1:"التركيزات حسب النظير/البلد.",l2:"تحفّظ محاسبي: ودائع، فوائد، مستندات داعمة."},
+      tab:{cap:"مخرجاتكم (واضحة وقابلة للتنفيذ)",h0:"متطلب",h1:"المخرج",h2:"الدورية",
+        r0:{c0:"السياسة والاستراتيجية",c1:"وثيقة + مصفوفة الحدود/النظراء",c2:"سنوي"},
+        r1:{c0:"ORSA",c1:"سيناريوهات + مذكرة أثر على الملاءة",c2:"سنوي + حسب الحاجة"},
+        r2:{c0:"ذمم معيدي التأمين",c1:"مؤشرات أعمار الديون والتحصيل",c2:"ربع سنوي"}
+      },
+      end:"النتيجة: منظومة نظيفة وقابلة للتتبّع والدفاع."
+    },
+
+    sec8:{t:"8) الأسئلة الشائعة — الأكثر طرحًا"},
+    faq:{
+      q0:"كيف نحدد الاحتفاظ؟",a0:"نختبر عتبات مختلفة مقابل الخسائر السابقة وتحمّل المخاطر ونختار أفضل توازن كلفة/حماية/رأس مال.",
+      q1:"تراكمي أم إيقاف خسارة؟",a1:"التراكمي يفعل التغطية بتجميع سنوي؛ إيقاف الخسارة يحد نسبة الخسارة المجمّعة.",
+      q2:"نسبي أم فائض خسارة؟",a2:"النسبي للاستقرار والنمو؛ فائض الخسارة للصدمات. غالبًا المزج هو الأمثل.",
+      q3:"كيف تعمل البارامتريات؟",a3:"مؤشر موضوعي (مطر، رياح، زلزال) ⇒ تسوية أسرع ونقاش أقل حول الإثبات.",
+      q4:"ماذا يتوقع المنظّم (SBR)؟",a4:"سياسة واضحة، سيناريوهات ORSA موثوقة، وتتبع جدي للذمم والتركيزات."
+    },
+
+    cta:{t:"لنحسّن برنامجكم",p:"ورش سريعة لمواءمة الأهداف والبيانات والسيناريوهات وخيارات الهندسة ثم عرض السوق.",btn:"اتصل بنا"},
     footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقًا]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"}
   }
 };
+</script>
+
 
 /* ===== Helpers & Apply ===== */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
@@ -797,3 +939,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
 </script>
 </body>
 </html>
+
