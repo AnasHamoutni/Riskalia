@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services de Conseil — Riskalia</title>
+  <meta name="description" content="Conseil en gestion des risques, ERM, actuariat, conformité ACAPS, gouvernance, scoring & placement, optimisation IFRS 17. Expertise unique sur le marché Africain."/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="i18n.js" defer></script>
+  <script src="site.js" defer></script>
+  <style>
+    :root{--c1:#005c73;--c2:#00849b;--c3:#00b0c8}
+    .hero{
+      min-height:30vh;display:flex;align-items:center;text-align:center;
+      background:
+        linear-gradient(rgba(0,92,115,.80),rgba(0,92,115,.80)),
+        url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80")
+        center/cover no-repeat;
+      color:#fff;padding:3rem 1.4rem
+    }
+    .hero h1,.hero p{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.35)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:#fff;border-radius:16px;box-shadow:0 12px 26px rgba(0,0,0,.07);padding:20px}
+    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
+    .muted{color:#546972}
+    .strip{background:linear-gradient(90deg,#ffffff,#f7fbfc)}
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef6f8;border:1px solid #cfe1e6;color:#0b4e5b;font-weight:700}
+    .tick{margin:0;padding-left:18px}
+    .tick li{margin:.3rem 0}
+    .pillbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+    .pill{padding:8px 12px;border-radius:999px;border:1px solid #cfe1e6;background:#eef6f8;color:#0b4e5b;font-weight:700}
+    .thumb{border-radius:12px;overflow:hidden;border:1px solid #e6eff3;aspect-ratio:16/9;background:#f2f7f9;margin-bottom:10px}
+    /* Chatbot */
+    .bot-btn{position:fixed;right:18px;bottom:18px;background:var(--c3);color:#fff;border:none;border-radius:999px;width:56px;height:56px;box-shadow:0 12px 26px rgba(0,0,0,.15);font-size:24px;cursor:pointer;z-index:50}
+    .bot{position:fixed;right:18px;bottom:86px;width:340px;max-width:94vw;background:#fff;border:1px solid #e6eff3;border-radius:16px;box-shadow:0 12px 26px rgba(0,0,0,.12);overflow:hidden;display:none;z-index:50}
+    .bot header{background:#005c73;color:#fff;padding:10px;font-weight:700}
+    .bot main{max-height:52vh;overflow:auto;padding:12px}
+    .bot .msg{background:#f6fbfd;border:1px solid #e6eff3;padding:10px;border-radius:12px;margin:8px 0}
+    .bot footer{background:#f9fbfc;color:#333;padding:8px 12px;margin:0}
+    .chip{display:inline-block;background:#eef6f8;border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;margin:4px 6px 0 0;font-weight:700;cursor:pointer}
+    @media(max-width:960px){
+      .menu-toggle{display:block;font-size:1.8rem;background:none;border:none}
+      nav ul#menu{position:absolute;right:-100%;top:64px;background:#fff;padding:16px;width:280px;box-shadow:0 12px 26px rgba(0,0,0,.12);border-radius:14px;transition:right .25s}
+      nav ul#menu.show{right:0}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html"><img src="logo.png" alt="Riskalia"/></a>
+      <nav aria-label="Navigation principale">
+        <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('show')">☰</button>
+        <ul id="menu">
+          <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
+          <li class="has-dd">
+            <a href="solutions.html" data-i18n="nav.solutions">Solutions ▾</a>
+            <ul class="dd">
+              <li class="sub">
+                <a href="solutions.html#assurance" data-i18n="nav.insurance">Assurance ▶</a>
+                <ul class="dd">
+                  <li><a href="solutions.html#retail" data-i18n="nav.insurance.retail">Particulier</a></li>
+                  <li><a href="solutions.html#enterprise" data-i18n="nav.insurance.corp">Entreprise</a></li>
+                </ul>
+              </li>
+              <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+            </ul>
+          </li>
+          <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+          <li><a href="services.html" class="active" data-i18n="nav.consulting">Services de Conseil</a></li>
+          <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div style="display:flex;align-items:center;gap:10px">
+        <form class="searchbar" role="search" onsubmit="return siteSearch(event)">
+          <input id="q" type="search" placeholder="Rechercher…" aria-label="Rechercher"/>
+          <button type="submit" title="Rechercher" aria-label="Rechercher">🔎</button>
+        </form>
+        <div class="lang-switch" id="lang-switch">
+          <button data-lang="fr" class="lang-btn">FR</button>
+          <button data-lang="en" class="lang-btn">EN</button>
+          <button data-lang="ar" class="lang-btn">AR</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 data-i18n="svc.title">Conseil en gestion des risques</h1>
+      <p data-i18n="svc.sub">Approche ERM, convergence actuariat–finance–juridique, conformité ACAPS et gouvernance. Méthode « Scoring & Placement » pour transformer la conformité en avantage compétitif.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+        <span class="badge" data-i18n="hero.badge1">Expertise unique sur le marché Africain</span>
+        <span class="badge" data-i18n="hero.badge2">Cabinet agréé ACAPS — toutes branches</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Axes d'intervention -->
+  <section class="strip">
+    <div class="container grid">
+      <article class="card">
+        <div class="kicker">ERM</div>
+        <h2 data-i18n="svc.erm.h2">Enterprise Risk Management</h2>
+        <ul class="tick">
+          <li data-i18n="svc.erm.li1">Cartographie des risques & appétence au risque</li>
+          <li data-i18n="svc.erm.li2">Cadre de contrôle interne et indicateurs clés (KRI)</li>
+          <li data-i18n="svc.erm.li3">Plans de continuité & scénarios</li>
+          <li data-i18n="svc.erm.li4">Intégration aux exigences ACAPS & gouvernance</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="kicker">Actuariat</div>
+        <h3 data-i18n="svc.act.h3">Modélisation & solvabilité</h3>
+        <ul class="tick">
+          <li data-i18n="svc.act.li1">Tarification & modélisation prospective</li>
+          <li data-i18n="svc.act.li2">Provisionnement & stress testing</li>
+          <li data-i18n="svc.act.li3">Optimisation du capital / adéquation</li>
+          <li data-i18n="svc.act.li4">IFRS 17 & reporting actuariel</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Méthode & Transparence -->
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <div class="kicker">Méthode</div>
+        <h3 data-i18n="svc.meth.h3">Scoring & Placement</h3>
+        <p class="muted" data-i18n="svc.meth.p">
+          Méthodologie propriétaire combinant analyse financière/qualitative, performance historique des engagements, robustesse des garanties et qualité des wordings.
+        </p>
+        <ul class="tick">
+          <li data-i18n="svc.meth.li1">Mise en concurrence documentée</li>
+          <li data-i18n="svc.meth.li2">Traçabilité des recommandations</li>
+          <li data-i18n="svc.meth.li3">Alignement back-to-back et prévention des « fuites d’assurance »</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="kicker">Transparence</div>
+        <h3 data-i18n="svc.transp.h3">Devoir de conseil & information</h3>
+        <p class="muted" data-i18n="svc.transp.p">
+          Détail des honoraires/commissions remis systématiquement. Recommandations justifiées, signées et conformes au Code marocain des assurances et aux instructions ACAPS.
+        </p>
+        <ul class="tick">
+          <li data-i18n="svc.transp.li1">Conformité Loi 09-08 (données personnelles)</li>
+          <li data-i18n="svc.transp.li2">Suivi de la relation et du devoir de conseil dans le temps</li>
+          <li data-i18n="svc.transp.li3">Documentation opposable & audit trail</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Offres de conseil -->
+  <section class="strip">
+    <div class="container grid">
+      <article class="card">
+        <div class="kicker">Pour assureurs & banques</div>
+        <h3 data-i18n="svc.off.h3a">Conseil technique & gouvernance</h3>
+        <ul class="tick">
+          <li>Revue de portefeuille & recalibrage des garanties</li>
+          <li>Politiques de souscription & appétence au risque</li>
+          <li>Wording & clauses (LMA/IUA), contrôle de cohérence</li>
+          <li>Programme de réassurance : sizing & négociation</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="kicker">Pour entreprises & collectivités</div>
+        <h3 data-i18n="svc.off.h3b">Risk advisory & optimisation</h3>
+        <ul class="tick">
+          <li>Diagnostic de programmes en cours</li>
+          <li>Benchmark & mise en concurrence</li>
+          <li>Gestion de sinistres & précontentieux</li>
+          <li>Convergence Climat/ESG et finance durable</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="kicker">Formation</div>
+        <h3 data-i18n="svc.off.h3c">Actuariat, réassurance & conformité</h3>
+        <ul class="tick">
+          <li>Formations exécutives sur mesure</li>
+          <li>Wordings internationaux & arbitrage</li>
+          <li>IFRS 17 & pilotage technique</li>
+          <li>ACAPS : digitalisation & protection des assurés</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Extranet client -->
+  <section>
+    <div class="container grid">
+      <article class="card">
+        <div class="kicker">Extranet</div>
+        <h3 data-i18n="svc.extranet.h3">Espace client sécurisé</h3>
+        <ul class="tick">
+          <li>Documents (contrats, quittances, attestations)</li>
+          <li>Déclaration & suivi de sinistres</li>
+          <li>Suivi des demandes & réclamations</li>
+          <li>Transmission sécurisée de pièces</li>
+        </ul>
+        <p class="muted">Conformité Loi 09-08 • Données hébergées localement • Authentification renforcée</p>
+        <p><a class="btn" href="contact.html" data-i18n="svc.extranet.cta">Demander un accès</a></p>
+      </article>
+      <article class="card">
+        <div class="kicker">Coordonnées</div>
+        <h3>Contact</h3>
+        <p>
+          📞 <strong>+212-666-756991</strong> (Nabil — pro)<br/>
+          📱 <strong>+212-675-208909</strong> (Nabil — perso)<br/>
+          ✉️ <a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a> — <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a>
+        </p>
+        <p><a class="btn" href="contact.html" data-i18n="cta.contact">Obtenir un devis</a></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Riskalia</h4>
+        <p class="muted" style="color:white">Courtage & réassurance agréé ACAPS — Casablanca</p>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <p>
+          <a href="index.html">Accueil</a><br/>
+          <a href="solutions.html">Solutions</a><br/>
+          <a href="reinsurance.html">Réassurance</a><br/>
+          <a href="climate.html">Risques climatiques</a><br/>
+          <a href="esg.html">ESG</a><br/>
+          <a href="sitemap.html">Plan du site</a>
+        </p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a><br/>Tel : <a href="tel:+212666756991">+212-666-756991</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chatbot -->
+  <button class="bot-btn" id="botToggle" aria-label="Ouvrir l’assistant">💬</button>
+  <div class="bot" id="bot" role="dialog" aria-label="Assistant Riskalia">
+    <header><strong>Assistant Riskalia</strong></header>
+    <main id="botLog">
+      <div class="msg">Bonjour 👋 Je peux vous guider.</div>
+      <div>
+        <span class="chip" onclick="botAsk('devis')">Obtenir un devis</span>
+        <span class="chip" onclick="botAsk('reassurance')">Réassurance</span>
+        <span class="chip" onclick="botAsk('solutions')">Solutions</span>
+        <span class="chip" onclick="botAsk('contact')">Coordonnées</span>
+        <span class="chip" onclick="botAsk('climat')">Climat & ESG</span>
+      </div>
+    </main>
+    <footer>
+      <form onsubmit="return botSubmit(event)" style="display:flex;gap:6px">
+        <input id="botInput" type="text" placeholder="Posez une question…" style="flex:1;padding:10px;border:1px solid #e1e8ee;border-radius:10px"/>
+        <button class="btn" type="submit">Envoyer</button>
+      </form>
+    </footer>
+  </div>
+
+  <!-- Scripts : recherche & chatbot -->
+  <script>
+    // Recherche
+    function siteSearch(e){
+      e.preventDefault();
+      const q=(document.getElementById('q').value||'').trim().toLowerCase();
+      if(!q) return false;
+      const map=[
+        ['réassurance','reinsurance.html'],['reassurance','reinsurance.html'],
+        ['solution','solutions.html'],['assurance','solutions.html'],
+        ['climat','climate.html'],['climate','climate.html'],
+        ['esg','esg.html'],['contact','contact.html'],
+        ['services','services.html'],['conseil','services.html']
+      ];
+      const hit=map.find(([k])=>q.includes(k));
+      location.href = hit ? hit[1] : 'sitemap.html';
+      return false;
+    }
+
+    // Chatbot
+    const bot=document.getElementById('bot');
+    const botToggle=document.getElementById('botToggle');
+    if(botToggle) botToggle.addEventListener('click',()=>{ bot.style.display=bot.style.display==='block'?'none':'block'; });
+    function botMsg(html){const d=document.createElement('div');d.className='msg';d.innerHTML=html;document.getElementById('botLog').appendChild(d);d.scrollIntoView({behavior:'smooth',block:'end'});}
+    function botAsk(tag){
+      const routes={
+        devis:()=>{botMsg('➡️ <strong>Devis</strong> — j’ouvre le formulaire.'); location.href='contact.html';},
+        reassurance:()=>{botMsg('➡️ Réassurance — j’ouvre la page.'); location.href='reinsurance.html';},
+        solutions:()=>{botMsg('➡️ Solutions — j’ouvre la page.'); location.href='solutions.html';},
+        contact:()=>{botMsg('📞 <strong>Coordonnées</strong><br>+212-666-756991 — Nabil (pro)<br>+212-675-208909 — Nabil (perso)<br><a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a>');},
+        climat:()=>{botMsg('➡️ Risques climatiques — j’ouvre la page.'); location.href='climate.html';}
+      };
+      (routes[tag]||(()=>botMsg('Je peux vous guider vers : Solutions, Réassurance, Contact, Climat.')))();
+    }
+    function botSubmit(e){
+      e.preventDefault();
+      const v=(document.getElementById('botInput').value||'').trim().toLowerCase();
+      if(!v) return false;
+      botMsg('Vous : '+v);
+      if(v.includes('devis')||v.includes('quote')) botAsk('devis');
+      else if(v.includes('réassurance')||v.includes('reinsurance')) botAsk('reassurance');
+      else if(v.includes('solution')||v.includes('assurance')) botAsk('solutions');
+      else if(v.includes('contact')||v.includes('phone')||v.includes('tel')) botAsk('contact');
+      else if(v.includes('climat')||v.includes('climate')||v.includes('esg')) botAsk('climat');
+      else botMsg("Assistant simple. Essayez : ‘devis’, ‘réassurance’, ‘solutions’, ‘contact’, ‘climat’. ");
+      document.getElementById('botInput').value='';
+      return false;
+    }
+  </script>
+</body>
+</html>

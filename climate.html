@@ -3,75 +3,258 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Risques climatiques (physiques & transition)</title>
-  <meta name="description" content="Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB."/>
+  <title>Riskalia — Risques climatiques</title>
+  <meta name="description" content="Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
 
-  <!-- Fonts + global CSS -->
+  <!-- Fonts (match index) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/styles.css"/>
 
   <style>
-    /* Hero spécifique */
-    .hero--climate{
+    /* ================== Tokens (aligned with index) ================== */
+    :root{
+      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+      --border:1px solid rgba(0,93,115,.18);
+
+      --fs-nav:0.95rem;
+      --fs-body:1rem;
+      --fs-kicker:0.8rem;
+      --fs-h1:clamp(2rem,3.2vw,3rem);
+      --fs-h2:clamp(1.25rem,2.2vw,1.6rem);
+      --fs-h3:1.05rem;
+      --fw-bold:700;
+      --fw-semi:600;
+    }
+
+    /* ================== Base ================== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{overflow-x:hidden}
+    body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff;font-size:var(--fs-body)}
+    body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+    h1{font-size:var(--fs-h1)}
+    h2{font-size:var(--fs-h2); margin-bottom:6px}
+    h3{font-size:var(--fs-h3); margin:8px 0 4px}
+    body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:auto;padding:0 18px}
+    .muted{color:#5f7781}
+    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
+    section{padding:20px 0}
+
+    /* ================== Buttons ================== */
+    .btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
+    .btn:hover{background:var(--c2);transform:translateY(-1px)}
+    .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+
+    /* ================== Header / Nav (with dropdown, like index) ================== */
+    header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:var(--fw-bold)}
+    .brand img{height:48px;width:auto;border-radius:10px}
+    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:var(--fw-bold);font-size:var(--fs-nav)}
+    nav a{position:relative;padding:6px;line-height:1.2}
+    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+    nav a:hover::after,nav a.active::after{width:100%}
+    .menu-toggle{display:none;font-size:2rem;cursor:pointer;line-height:1}
+    .lang-switch{display:flex;gap:6px}
+    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:var(--fw-bold);font-size:0.9rem}
+    .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+
+    /* Dropdown base */
+    #menu li.dropdown{position:relative}
+    #menu li.dropdown > a.has-caret{padding-right:18px}
+    body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
+    #menu li .caret{display:inline-block;transition:transform .2s}
+    #menu li .submenu{
+      display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;
+      border:1px solid #e6eef0;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.08);
+      list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
+    }
+    #menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
+    #menu li .submenu li a:hover{background:#eef6f8}
+    #menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
+    #menu li.open > .submenu{display:block}
+    #menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
+    body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+
+    /* Mobile nav */
+    @media(max-width:900px){
+      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+      nav ul.show{right:0}
+      body[dir="rtl"] nav ul{right:auto;left:-100%}
+      body[dir="rtl"] nav ul.show{left:0}
+      .menu-toggle{display:block}
+
+      /* Dropdown in mobile: inline expansion */
+      #menu li.dropdown{width:100%}
+      #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
+      #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
+      #menu li.dropdown.open > .submenu{display:block}
+      #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
+    }
+
+    /* ================== Hero (tight) ================== */
+    .hero{
+      min-height:26vh;
       background:
-        linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
-      min-height:42vh;
+        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+        url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+      display:flex;align-items:center;text-align:center;padding:10px 0 12px;
+      position:relative;overflow:hidden;color:#fff;
+    }
+    .hero h1{color:#fff}
+    .hero p{color:#fff;opacity:.98;max-width:920px;margin:6px auto}
+    .hero .method{margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#ecf9ff}
+
+    /* Wave divider (tiny gap) */
+    .section-wave{
+      height:22px; margin-top:-22px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="22" viewBox="0 0 1440 22" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C240,24 480,0 720,9 C960,18 1200,4 1440,9 L1440,22 L0,22 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
     }
 
-    /* Layout “onglets” */
-    .main--single{ display:block; }
-    .tabs.sticky{
-      position:sticky; top:72px; z-index:30;
-      background:#fff; padding:8px; border:1px solid #e2edf2; border-radius:14px;
-      overflow:auto; white-space:nowrap; box-shadow:var(--shadow);
+    /* ================== Premium BG (like index) ================== */
+    .main-wrapper{
+      position:relative;z-index:0;isolation:isolate;
+      background:
+        radial-gradient(1100px 460px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+        linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
     }
-    .tabs.sticky .tab{ flex:0 0 auto; }
-    .tabpanel{ display:none; }
-    .tabpanel.active{ display:block; }
-
-    /* petites grilles */
-    .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:10px}
-    .kpi .p{background:#f8fbfc;border:1px solid #e2edf2;border-radius:12px;padding:12px}
-    .kpi .p .v{font-weight:900;color:#0b5562}
-
-    .cards-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
-    .cards-2 .card{margin:0}
-
-    /* table simple */
-    .table-wrap{overflow:auto;border:1px solid #e6eff3;border-radius:14px}
-    table{border-collapse:collapse;min-width:720px;width:100%;background:#fff}
-    th,td{padding:14px;border-top:1px solid #eef3f6;vertical-align:top}
-    th{background:#f6fafc;color:#0b5562;text-align:left}
-
-    @media(max-width:600px){
-      .tabs.sticky{ top:66px; padding:6px; }
-      .tab{ padding:10px 12px; }
-      .hero--climate h1{ font-size: clamp(1.25rem,5.5vw,1.6rem); line-height:1.2; }
+    .main-wrapper::before{
+      content:"";position:absolute;inset:0;
+      background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
+      opacity:.12;filter:saturate(105%) contrast(102%) blur(.3px);
+      mix-blend-mode:normal;pointer-events:none;z-index:0;
     }
+    .main-wrapper::after{
+      content:"";position:absolute;left:0;right:0;top:0;height:48px;
+      background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
+      pointer-events:none;z-index:0;
+    }
+    .main-wrapper > *{position:relative;z-index:1}
+
+    /* ================== Tabs (grid, no scroll) ================== */
+    .tabs{
+      margin:10px auto 14px;
+      display:grid;grid-template-columns:repeat(7,1fr);
+      gap:10px;max-width:1180px;padding:0 18px;
+    }
+    /* Wrap into rows responsively */
+    @media (max-width:1100px){ .tabs{grid-template-columns:repeat(4,1fr)} }
+    @media (max-width:750px){ .tabs{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:520px){ .tabs{grid-template-columns:repeat(2,1fr)} }
+
+    .tab{
+      padding:10px 12px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
+      font-weight:var(--fw-bold);font-size:0.95rem;color:#0b4e5b;text-align:center;cursor:pointer;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      backdrop-filter:saturate(115%) blur(4px);
+      box-shadow:0 3px 10px rgba(0,0,0,.04);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .tab.active{
+      background:
+        linear-gradient(135deg, rgba(0,176,200,.18), rgba(0,92,115,.10)),
+        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+      border-color:rgba(0,92,115,.25);
+      box-shadow:0 8px 22px rgba(0,176,200,.18);
+    }
+
+    /* ================== Panels / Cards (glass style) ================== */
+    .tabpanel{display:none}
+    .tabpanel.active{display:block}
+
+    .card{
+      position:relative;border-radius:18px;overflow:hidden;margin:0 18px 18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
+      backdrop-filter:saturate(110%) blur(4px);
+      box-shadow:0 12px 26px rgba(0,0,0,.07);
+      border:1px solid rgba(0,93,115,.16);
+      padding:16px;
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .card::before{
+      content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+      background:linear-gradient(180deg, var(--c3), var(--c2));opacity:.55;
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
+    .card > h2{
+      display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
+      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:8px 12px;color:var(--c1);
+      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:10px;
+    }
+    .card ul{padding-left:18px}
+    .card ol{padding-left:18px}
+/* Tighter panel width + padding */
+.card{
+  max-width: 920px;        /* ← keeps cards from becoming too wide */
+  margin: 0 auto 16px;     /* ← centers the card under the tabs */
+  padding: 14px 18px;      /* ← slightly tighter spacing inside */
+}
+
+/* Optional: limit text measure for better readability */
+.card p,
+.card ul,
+.card ol{
+  max-width: 68ch;         /* ← ~ideal line length */
+}
+
+/* Slightly reduce heading chip size inside cards */
+.card > h2{
+  padding: 6px 10px;
+  margin-bottom: 8px;
+}
+
+/* (Optional) a touch more compact lists */
+.card ul{ padding-left: 16px }
+.card ol{ padding-left: 16px }
+.card li{ margin: 4px 0 }
+    /* ================== Reveal ================== */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
+    .reveal.active{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+    /* ================== Footer ================== */
+    footer{background:var(--c1);color:#fff;padding:36px 0;margin-top:0}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer h4{color:#a8ecf4;margin-bottom:8px}
   </style>
 </head>
-<body class="spacious">
+<body>
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia"><span></span>
+      <img src="./assets/Riskalia-Logo.png" alt="Riskalia" loading="eager" decoding="async">
     </a>
-    <nav aria-label="Navigation principale">
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label:aria.nav">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
-        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques climatiques</a></li>
+
+        <!-- DROPDOWN like index.html -->
+        <li class="dropdown">
+          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
+            Solutions <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul class="submenu" aria-label="Sous-menu Solutions" data-i18n-attr="aria-label:aria.submenu_solutions">
+            <li><a href="solutions.html" data-i18n="nav.ins">Assurance</a></li>
+            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+          </ul>
+        </li>
+
+        <li><a href="climate.html" class="active" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services de Conseil</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="lang-switch">
+    <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
       <button class="lang-btn" data-lang="ar">عربية</button>
@@ -79,206 +262,176 @@ url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fi
   </div>
 </header>
 
-<section class="hero hero--climate">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
     <h1 data-i18n="title">Risques climatiques</h1>
-    <p data-i18n="subtitle">Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Cartographie & scénarios</span>
-      <span class="badge" data-i18n="badges.1">Adaptation & résilience</span>
-      <span class="badge" data-i18n="badges.2">Transfert & financement</span>
-    </div>
+    <p data-i18n="subtitle">
+      Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.
+    </p>
+    <p class="method" data-i18n="method">
+      On part de vos pertes passées et de votre tolérance au risque. On simule plusieurs seuils et on retient celui qui équilibre coût, protection et capital.
+    </p>
   </div>
 </section>
+<div class="section-wave" aria-hidden="true"></div>
 
-<section class="reveal">
-  <div class="container main main--single">
-
-    <!-- Onglets -->
-    <nav class="tabs sticky" role="tablist" aria-label="Sections climat">
-      <button class="tab active" role="tab" id="tab-intro"    aria-selected="true"  aria-controls="intro"    data-tab="intro"    data-i18n="sec.intro.t">Vue d’ensemble</button>
-      <button class="tab"         role="tab" id="tab-risks"    aria-selected="false" aria-controls="risks"    data-tab="risks"    data-i18n="sec.risks.t">Risques</button>
+<!-- MAIN -->
+<div class="main-wrapper">
+  <section class="reveal">
+    <div class="tabs" role="tablist" aria-label="Sections climat">
+      <button class="tab active" role="tab" id="tab-intro"    aria-selected="true"  aria-controls="intro"    data-tab="intro"    data-i18n="sec.intro.t">Introduction</button>
+      <button class="tab"         role="tab" id="tab-risks"    aria-selected="false" aria-controls="risks"    data-tab="risks"    data-i18n="sec.risks.t">Risques physiques & transition</button>
       <button class="tab"         role="tab" id="tab-data"     aria-selected="false" aria-controls="data"     data-tab="data"     data-i18n="sec.data.t">Données & scénarios</button>
       <button class="tab"         role="tab" id="tab-strategy" aria-selected="false" aria-controls="strategy" data-tab="strategy" data-i18n="sec.strategy.t">Stratégie & roadmap</button>
-      <button class="tab"         role="tab" id="tab-finance"  aria-selected="false" aria-controls="finance"  data-tab="finance"  data-i18n="sec.finance.t">Transfert & financement</button>
-      <button class="tab"         role="tab" id="tab-metrics"  aria-selected="false" aria-controls="metrics"  data-tab="metrics"  data-i18n="sec.metrics.t">Indicateurs & reporting</button>
+      <button class="tab"         role="tab" id="tab-finance"  aria-selected="false" aria-controls="finance"  data-tab="finance"  data-i18n="sec.finance.t">Financement & transfert</button>
+      <button class="tab"         role="tab" id="tab-value"    aria-selected="false" aria-controls="value"    data-tab="value"    data-i18n="sec.value.t">Valeur ajoutée</button>
       <button class="tab"         role="tab" id="tab-faq"      aria-selected="false" aria-controls="faq"      data-tab="faq"      data-i18n="sec.faq.t">FAQ</button>
-    </nav>
+    </div>
 
-    <!-- Panneaux -->
+    <!-- Panels -->
     <article id="intro" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-intro">
-      <h2 data-i18n="sec.intro.t">Vue d’ensemble</h2>
-      <p class="muted" data-i18n="sec.intro.p">
-        Nous aidons les organisations à passer d’une exposition non mesurée à un plan d’action priorisé : cartographie des risques, quantification sous scénarios,
-        décisions « éviter-réduire-transférer » et conformité de reporting.
-      </p>
-      <div class="kpi">
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.0.v">Diagnostic 3–4 semaines</div><div data-i18n="sec.intro.kpi.0.l">Heatmap & quick-wins</div></div>
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.1.v">Scénarios RCP/SSP</div><div data-i18n="sec.intro.kpi.1.l">horizon 2030 / 2050</div></div>
-        <div class="p"><div class="v" data-i18n="sec.intro.kpi.2.v">TCFD/ISSB</div><div data-i18n="sec.intro.kpi.2.l">gouvernance, métriques & cibles</div></div>
-      </div>
+      <h2 data-i18n="sec.intro.t">Introduction</h2>
+      <p class="muted" data-i18n="sec.intro.p1"></p>
+      <p class="muted" data-i18n="sec.intro.p2"></p>
+      <ul class="muted">
+        <li data-i18n="sec.intro.bul.0"></li>
+        <li data-i18n="sec.intro.bul.1"></li>
+        <li data-i18n="sec.intro.bul.2"></li>
+        <li data-i18n="sec.intro.bul.3"></li>
+      </ul>
+      <p class="muted" data-i18n="sec.intro.p3"></p>
     </article>
 
     <article id="risks" class="card tabpanel" role="tabpanel" aria-labelledby="tab-risks">
       <h2 data-i18n="sec.risks.t">Risques physiques & de transition</h2>
-      <p class="muted" data-i18n="sec.risks.lead">
-        Nous distinguons les aléas climatiques (aigus/chroniques) et les risques de transition (réglementation, technologie, marché, réputation) pour prioriser les actions.
-      </p>
-      <div class="cards-2 mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.risks.cards.0.t">Physiques</h3>
-          <ul>
-            <li data-i18n="sec.risks.cards.0.li.0">Inondations pluviales/fluviales, submersion, vagues de chaleur.</li>
-            <li data-i18n="sec.risks.cards.0.li.1">Sécheresse & contrainte hydrique, feux de forêt, vent/tempête.</li>
-            <li data-i18n="sec.risks.cards.0.li.2">Impacts actifs, opérations, santé & sécurité, chaîne logistique.</li>
-          </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.risks.cards.1.t">Transition</h3>
-          <ul>
-            <li data-i18n="sec.risks.cards.1.li.0">Politiques & prix du carbone, normes produits & reporting.</li>
-            <li data-i18n="sec.risks.cards.1.li.1">Changements technologiques & d’accès à l’énergie.</li>
-            <li data-i18n="sec.risks.cards.1.li.2">Évolution de la demande & attentes des parties prenantes.</li>
-          </ul>
-        </section>
-      </div>
+      <h3 data-i18n="sec.risks.phys.t"></h3>
+      <ul class="muted">
+        <li data-i18n="sec.risks.phys.li.0"></li>
+        <li data-i18n="sec.risks.phys.li.1"></li>
+      </ul>
+      <h3 class="mt-1" data-i18n="sec.risks.trans.t"></h3>
+      <ul class="muted">
+        <li data-i18n="sec.risks.trans.li.0"></li>
+        <li data-i18n="sec.risks.trans.li.1"></li>
+        <li data-i18n="sec.risks.trans.li.2"></li>
+        <li data-i18n="sec.risks.trans.li.3"></li>
+      </ul>
+      <p class="muted" data-i18n="sec.risks.why"></p>
     </article>
 
     <article id="data" class="card tabpanel" role="tabpanel" aria-labelledby="tab-data">
       <h2 data-i18n="sec.data.t">Données & scénarios</h2>
-      <p class="muted" data-i18n="sec.data.lead">
-        Nous croisons climat présent et projeté (RCP/SSP), données d’exposition et sensibilité métier pour quantifier l’impact.
-      </p>
-      <div class="table-wrap mt-2">
-        <table>
-          <caption style="text-align:left;font-weight:800;color:#0b5562" data-i18n="sec.data.cap">Cartographie rapide</caption>
-          <thead>
-            <tr>
-              <th data-i18n="sec.data.h.0">Domaine</th>
-              <th data-i18n="sec.data.h.1">Indicateurs clés</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-i18n="sec.data.r0.c0">Actifs & sites</td>
-              <td data-i18n="sec.data.r0.c1">Exposition chaleur, inondation, sécheresse, vent ; continuité d’activité.</td>
-            </tr>
-            <tr>
-              <td data-i18n="sec.data.r1.c0">Chaîne d’approvisionnement</td>
-              <td data-i18n="sec.data.r1.c1">Dépendance géographique, transport/ports, stocks critiques.</td>
-            </tr>
-            <tr>
-              <td data-i18n="sec.data.r2.c0">Opérations & IT</td>
-              <td data-i18n="sec.data.r2.c1">Énergie & eau, refroidissement data/locaux, santé & sécurité.</td>
-            </tr>
-            <tr>
-              <td data-i18n="sec.data.r3.c0">Produits & clients</td>
-              <td data-i18n="sec.data.r3.c1">Sensibilité prix/CO₂, évolution de la demande, couverture assurance.</td>
-            </tr>
-            <tr>
-              <td data-i18n="sec.data.r4.c0">Finance</td>
-              <td data-i18n="sec.data.r4.c1">Pertes attendues (AAL), stress tests, coût du capital.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <details class="mt-2">
-        <summary>🧭 <span data-i18n="sec.data.src.t">Sources & méthodes</span></summary>
-        <div>
-          <ul>
-            <li data-i18n="sec.data.src.li.0">Climat historique (reanalyses) & projections CMIP6/SSP, CORDEX.</li>
-            <li data-i18n="sec.data.src.li.1">Modèles aléas (inondation, chaleur, vent) et vulnérabilités sectorielles.</li>
-            <li data-i18n="sec.data.src.li.2">Scénarios 1.5–4°C / 2030–2050, probas & fourchettes d’incertitude.</li>
-          </ul>
-        </div>
-      </details>
+      <h3 data-i18n="sec.data.collect.t"></h3>
+      <p class="muted" data-i18n="sec.data.collect.p"></p>
+
+      <h3 class="mt-1" data-i18n="sec.data.map.t"></h3>
+      <ul class="muted">
+        <li data-i18n="sec.data.map.li.0"></li>
+        <li data-i18n="sec.data.map.li.1"></li>
+        <li data-i18n="sec.data.map.li.2"></li>
+      </ul>
+
+      <h3 class="mt-1" data-i18n="sec.data.scen.t"></h3>
+      <ul class="muted">
+        <li data-i18n="sec.data.scen.li.0"></li>
+        <li data-i18n="sec.data.scen.li.1"></li>
+        <li data-i18n="sec.data.scen.li.2"></li>
+      </ul>
+
+      <h3 class="mt-1" data-i18n="sec.data.kpi.t"></h3>
+      <ul class="muted">
+        <li data-i18n="sec.data.kpi.li.0"></li>
+        <li data-i18n="sec.data.kpi.li.1"></li>
+        <li data-i18n="sec.data.kpi.li.2"></li>
+        <li data-i18n="sec.data.kpi.li.3"></li>
+      </ul>
+      <p class="muted" data-i18n="sec.data.kpi.note"></p>
     </article>
 
     <article id="strategy" class="card tabpanel" role="tabpanel" aria-labelledby="tab-strategy">
       <h2 data-i18n="sec.strategy.t">Stratégie & feuille de route</h2>
-      <div class="roadmap">
-        <div class="step"><div class="num">1 — 🔎</div><div data-i18n="sec.strategy.steps.0">Mesurer : cartographie, exposition & scénarios.</div></div>
-        <div class="step"><div class="num">2 — 🛠️</div><div data-i18n="sec.strategy.steps.1">Réduire : efficacité, adaptation physique, continuité.</div></div>
-        <div class="step"><div class="num">3 — 🛡️</div><div data-i18n="sec.strategy.steps.2">Transférer : assurance/captives/paramétriques.</div></div>
-        <div class="step"><div class="num">4 — 📊</div><div data-i18n="sec.strategy.steps.3">Déclarer : TCFD/ISSB, cibles & suivi annuel.</div></div>
-      </div>
-      <ul class="mt-2">
-        <li data-i18n="sec.strategy.deliv.0">Plan 12–24 mois priorisé avec budget & porteurs.</li>
-        <li data-i18n="sec.strategy.deliv.1">Tableau de bord risques/opportunités & quick-wins.</li>
+      <p class="muted" data-i18n="sec.strategy.lead"></p>
+      <ol>
+        <li data-i18n="sec.strategy.steps.0"></li>
+        <li data-i18n="sec.strategy.steps.1"></li>
+        <li data-i18n="sec.strategy.steps.2"></li>
+        <li data-i18n="sec.strategy.steps.3"></li>
+      </ol>
+      <h3 class="mt-1" data-i18n="sec.strategy.roadmap.t"></h3>
+      <ul>
+        <li data-i18n="sec.strategy.deliv.0"></li>
+        <li data-i18n="sec.strategy.deliv.1"></li>
+        <li data-i18n="sec.strategy.deliv.2"></li>
       </ul>
+      <p class="muted" data-i18n="sec.strategy.benefit"></p>
     </article>
 
     <article id="finance" class="card tabpanel" role="tabpanel" aria-labelledby="tab-finance">
-      <h2 data-i18n="sec.finance.t">Transfert & financement</h2>
-      <div class="cards-2 mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.finance.0.t">Assurance & paramétriques</h3>
-          <ul>
-            <li data-i18n="sec.finance.0.li.0">Programmes CatNat / dommages adaptés aux expositions.</li>
-            <li data-i18n="sec.finance.0.li.1">Paramétriques météo (pluie, vent, chaleur) pour pertes d’activité.</li>
-            <li data-i18n="sec.finance.0.li.2">Articulation avec prévention & continuité.</li>
-          </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.finance.1.t">Captives & alternatives</h3>
-          <ul>
-            <li data-i18n="sec.finance.1.li.0">Étude d’éligibilité aux captives et stop-loss.</li>
-            <li data-i18n="sec.finance.1.li.1">Solutions ILS/obligations cat selon taille d’exposition.</li>
-            <li data-i18n="sec.finance.1.li.2">Optimisation coût de risque vs. budget.</li>
-          </ul>
-        </section>
-      </div>
+      <h2 data-i18n="sec.finance.t">Financement & transfert de risque</h2>
+      <h3 data-i18n="sec.finance.fund.t"></h3>
+      <ul>
+        <li data-i18n="sec.finance.fund.li.0"></li>
+        <li data-i18n="sec.finance.fund.li.1"></li>
+        <li data-i18n="sec.finance.fund.li.2"></li>
+        <li data-i18n="sec.finance.fund.li.3"></li>
+      </ul>
+
+      <h3 class="mt-1" data-i18n="sec.finance.transfer.t"></h3>
+      <ul>
+        <li data-i18n="sec.finance.transfer.li.0"></li>
+        <li data-i18n="sec.finance.transfer.li.1"></li>
+        <li data-i18n="sec.finance.transfer.li.2"></li>
+        <li data-i18n="sec.finance.transfer.li.3"></li>
+      </ul>
+
+      <h3 class="mt-1" data-i18n="sec.finance.blended.t"></h3>
+      <p class="muted" data-i18n="sec.finance.blended.p"></p>
+
+      <h3 class="mt-1" data-i18n="sec.finance.role.t"></h3>
+      <ul>
+        <li data-i18n="sec.finance.role.li.0"></li>
+        <li data-i18n="sec.finance.role.li.1"></li>
+        <li data-i18n="sec.finance.role.li.2"></li>
+        <li data-i18n="sec.finance.role.li.3"></li>
+      </ul>
+      <p class="muted" data-i18n="sec.finance.promise"></p>
     </article>
 
-    <article id="metrics" class="card tabpanel" role="tabpanel" aria-labelledby="tab-metrics">
-      <h2 data-i18n="sec.metrics.t">Indicateurs & reporting</h2>
-      <p class="muted" data-i18n="sec.metrics.lead">Alignement TCFD/ISSB : gouvernance, stratégie, gestion des risques, métriques & cibles.</p>
-      <div class="grid mt-2">
-        <section class="card">
-          <h3 data-i18n="sec.metrics.cards.0.t">Métriques</h3>
-          <ul>
-            <li data-i18n="sec.metrics.cards.0.li.0">Scopes 1–3 & intensité (kgCO₂e/FTE, par M€ CA).</li>
-            <li data-i18n="sec.metrics.cards.0.li.1">Exposition sites aux aléas (par type d’aléa).</li>
-            <li data-i18n="sec.metrics.cards.0.li.2">Pertes annuelles moyennes (AAL) & stress tests.</li>
-          </ul>
-        </section>
-        <section class="card">
-          <h3 data-i18n="sec.metrics.cards.1.t">Cibles</h3>
-          <ul>
-            <li data-i18n="sec.metrics.cards.1.li.0">-X% d’intensité carbone à 2027/2030.</li>
-            <li data-i18n="sec.metrics.cards.1.li.1">% sites avec plan d’adaptation déployé.</li>
-            <li data-i18n="sec.metrics.cards.1.li.2">% couverture risques par assurance/paramétrique.</li>
-          </ul>
-        </section>
-      </div>
+    <article id="value" class="card tabpanel" role="tabpanel" aria-labelledby="tab-value">
+      <h2 data-i18n="sec.value.t">La valeur ajoutée de Riskalia</h2>
+      <ul>
+        <li data-i18n="sec.value.li.0"></li>
+        <li data-i18n="sec.value.li.1"></li>
+        <li data-i18n="sec.value.li.2"></li>
+        <li data-i18n="sec.value.li.3"></li>
+      </ul>
     </article>
 
     <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
       <h2 data-i18n="sec.faq.t">FAQ</h2>
       <details class="mt-1">
-        <summary>❓ <span data-i18n="faq.0.q">Par où commencer si nous n’avons pas de données ?</span></summary>
-        <div><p class="muted" data-i18n="faq.0.a">Par un diagnostic court : collecte minimale, données publiques/sectorielles, et priorisation des sites critiques.</p></div>
+        <summary>❓ <span data-i18n="faq.0.q"></span></summary>
+        <div><p class="muted" data-i18n="faq.0.a"></p></div>
       </details>
       <details>
-        <summary>❓ <span data-i18n="faq.1.q">Quelle différence entre RCP et SSP ?</span></summary>
-        <div><p class="muted" data-i18n="faq.1.a">RCP : trajectoires de forçage radiatif (AR5). SSP : scénarios socio-éco couplés au climat (AR6). Nous pouvons travailler avec les deux.</p></div>
+        <summary>❓ <span data-i18n="faq.1.q"></span></summary>
+        <div><p class="muted" data-i18n="faq.1.a"></p></div>
       </details>
       <details>
-        <summary>❓ <span data-i18n="faq.2.q">Combien de temps pour un premier livrable ?</span></summary>
-        <div><p class="muted" data-i18n="faq.2.a">En 3–4 semaines, vous disposez d’une heatmap, d’un jeu d’hypothèses et d’actions rapides.</p></div>
+        <summary>❓ <span data-i18n="faq.2.q"></span></summary>
+        <div><p class="muted" data-i18n="faq.2.a"></p></div>
+      </details>
+      <details>
+        <summary>❓ <span data-i18n="faq.3.q"></span></summary>
+        <div><p class="muted" data-i18n="faq.3.a"></p></div>
       </details>
     </article>
 
-    <!-- CTA -->
-    <article class="card center" style="margin-top:14px">
-      <h3 data-i18n="cta.t">Besoin d’une cartographie climat ou d’un montage paramétrique ?</h3>
-      <p class="muted" data-i18n="cta.p">Parlons de vos sites & activités : nous préparons un plan d’action et des options de transfert adaptées.</p>
-      <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
-    </article>
+  </section>
+</div>
 
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="container footer-grid">
     <div>
@@ -289,193 +442,401 @@ url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fi
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-         <a href="climate.html" data-i18n="nav.climate">Risques climatiques</a><br/>
-         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+         <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
+         <a href="contact.html" data-i18n="nav.contact">Contact</a></p>
     </div>
     <div>
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <p><span data-i18n="footer.email_label">Email</span> :
+        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
     </div>
   </div>
 </footer>
 
+<!-- ===== SCRIPTS: i18n & UI ===== -->
 <script>
-/* ================== i18n ================== */
+/* ================== i18n (FR/EN/AR) ================== */
 const I18N={
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques climatiques",esg:"ESG",contact:"Contact"},
+    aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue"},
+    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
     title:"Risques climatiques",
     subtitle:"Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.",
-    badges:["Cartographie & scénarios","Adaptation & résilience","Transfert & financement"],
+    method:"On part de vos pertes passées et de votre tolérance au risque. On simule plusieurs seuils et on retient celui qui équilibre coût, protection et capital.",
     sec:{
-      intro:{t:"Vue d’ensemble",p:"Nous aidons les organisations à passer d’une exposition non mesurée à un plan d’action priorisé : cartographie des risques, quantification sous scénarios, décisions « éviter-réduire-transférer » et conformité de reporting.",
-        kpi:[{v:"Diagnostic 3–4 semaines",l:"Heatmap & quick-wins"},{v:"Scénarios RCP/SSP",l:"horizon 2030 / 2050"},{v:"TCFD/ISSB",l:"gouvernance, métriques & cibles"}]},
-      risks:{t:"Risques physiques & de transition",lead:"Nous distinguons les aléas climatiques (aigus/chroniques) et les risques de transition (réglementation, technologie, marché, réputation) pour prioriser les actions.",
-        cards:[
-          {t:"Physiques",li:["Inondations pluviales/fluviales, submersion, vagues de chaleur.","Sécheresse & contrainte hydrique, feux de forêt, vent/tempête.","Impacts actifs, opérations, santé & sécurité, chaîne logistique."]},
-          {t:"Transition",li:["Politiques & prix du carbone, normes produits & reporting.","Changements technologiques & d’accès à l’énergie.","Évolution de la demande & attentes des parties prenantes."]}
-        ]},
-      data:{t:"Données & scénarios",lead:"Nous croisons climat présent et projeté (RCP/SSP), données d’exposition et sensibilité métier pour quantifier l’impact.",
-        cap:"Cartographie rapide",
-        h:["Domaine","Indicateurs clés"],
-        r0:{c0:"Actifs & sites",c1:"Exposition chaleur, inondation, sécheresse, vent ; continuité d’activité."},
-        r1:{c0:"Chaîne d’approvisionnement",c1:"Dépendance géographique, transport/ports, stocks critiques."},
-        r2:{c0:"Opérations & IT",c1:"Énergie & eau, refroidissement data/locaux, santé & sécurité."},
-        r3:{c0:"Produits & clients",c1:"Sensibilité prix/CO₂, évolution de la demande, couverture assurance."},
-        r4:{c0:"Finance",c1:"Pertes attendues (AAL), stress tests, coût du capital."},
-        src:{t:"Sources & méthodes",li:["Climat historique (reanalyses) & projections CMIP6/SSP, CORDEX.","Modèles aléas (inondation, chaleur, vent) et vulnérabilités sectorielles.","Scénarios 1.5–4°C / 2030–2050, probas & fourchettes d’incertitude."]}
+      intro:{
+        t:"Introduction",
+        p1:"Le changement climatique est devenu l’un des premiers facteurs de risque pour les économies africaines et marocaines.",
+        p2:"Sécheresses récurrentes, stress hydrique, vagues de chaleur, inondations soudaines et feux de forêts : ces phénomènes ne sont plus exceptionnels mais tendent à se répéter et à s’intensifier.",
+        bul:[
+          "pertes agricoles et baisse de rendements,",
+          "dégâts aux infrastructures et perturbations des chaînes logistiques,",
+          "hausse des coûts de l’énergie et de l’eau,",
+          "effets sur la santé et la productivité des salariés."
+        ],
+        p3:"Ces risques touchent toutes les catégories d’acteurs. Il est indispensable de passer d’une logique réactive (gérer après coup) à une approche anticipative (mesurer, planifier et couvrir)."
       },
-      strategy:{t:"Stratégie & roadmap",
-        steps:["Mesurer : cartographie, exposition & scénarios.","Réduire : efficacité, adaptation physique, continuité.","Transférer : assurance/captives/paramétriques.","Déclarer : TCFD/ISSB, cibles & suivi annuel."],
-        deliv:["Plan 12–24 mois priorisé avec budget & porteurs.","Tableau de bord risques/opportunités & quick-wins."]},
-      finance:{t:"Transfert & financement",
-        0:{t:"Assurance & paramétriques",li:["Programmes CatNat / dommages adaptés aux expositions.","Paramétriques météo (pluie, vent, chaleur) pour pertes d’activité.","Articulation avec prévention & continuité."]},
-        1:{t:"Captives & alternatives",li:["Étude d’éligibilité aux captives et stop-loss.","Solutions ILS/obligations cat selon taille d’exposition.","Optimisation coût de risque vs. budget."]}},
-      metrics:{t:"Indicateurs & reporting",lead:"Alignement TCFD/ISSB : gouvernance, stratégie, gestion des risques, métriques & cibles.",
-        cards:[
-          {t:"Métriques",li:["Scopes 1–3 & intensité (kgCO₂e/FTE, par M€ CA).","Exposition sites aux aléas (par type d’aléa).","Pertes annuelles moyennes (AAL) & stress tests."]},
-          {t:"Cibles",li:["-X% d’intensité carbone à 2027/2030.","% sites avec plan d’adaptation déployé.","% couverture risques par assurance/paramétrique."]}
+      risks:{
+        t:"Risques physiques & de transition",
+        phys:{t:"Risques physiques",li:[
+          "Aigus : événements soudains (inondations urbaines, tempêtes, vagues de chaleur extrêmes, feux de forêts) causant dommages immédiats et interruption d’activité.",
+          "Chroniques : hausse des températures, raréfaction de l’eau, érosion côtière — fragilisation des cultures, hausse des coûts d’irrigation, contraintes industrielles."
         ]},
+        trans:{t:"Risques de transition",li:[
+          "nouvelles réglementations (taxes carbone, normes de reporting ESG),",
+          "exigences des bailleurs et assureurs internationaux,",
+          "transformation des chaînes de valeur mondiales,",
+          "attentes sociétales et réputationnelles."
+        ]},
+        why:"➡️ Pourquoi c’est important ? Sans anticipation, on peut perdre des financements, voir les coûts grimper, ou rater des opportunités."
+      },
+      data:{
+        t:"Données & scénarios",
+        collect:{t:"Collecte et analyse",p:"Historiques de sinistres, bases climatiques (Maroc/international), données locales de pluviométrie/température, retours des équipes."},
+        map:{t:"Cartographie",li:[
+          "zones agricoles exposées à la sécheresse,",
+          "villes à risque d’inondation,",
+          "régions industrielles confrontées aux vagues de chaleur."
+        ]},
+        scen:{t:"Scénarios prospectifs (2030/2050)",li:[
+          "combien de jours de chaleur extrême supplémentaires ?",
+          "quelle fréquence d’inondations par région ?",
+          "quel impact sur la productivité agricole/industrielle ?"
+        ]},
+        kpi:{t:"Indicateurs clés",li:[
+          "pertes annuelles moyennes (AAL),",
+          "perte maximale probable (PML),",
+          "évolution des coûts d’eau ou d’énergie,",
+          "impact potentiel sur les résultats financiers."
+        ],note:"➡️ Objectif : rendre la donnée climatique lisible, comparable et exploitable pour la gestion, le financement et l’assurance."}
+      },
+      strategy:{
+        t:"Stratégie & roadmap",
+        lead:"Une bonne stratégie débouche sur un plan d’action hiérarchisé et opérationnel.",
+        steps:[
+          "Mesurer : identifier les vulnérabilités et estimer leur coût.",
+          "Réduire : adaptation (infrastructures, irrigation efficiente, continuité d’activité).",
+          "Transférer : assurance & réassurance, y compris paramétriques.",
+          "Piloter : suivre l’évolution des risques et mettre à jour les protections."
+        ],
+        roadmap:{t:"La feuille de route Riskalia"},
+        deliv:[
+          "Quick wins : faible coût / fort impact immédiat.",
+          "Investissements prioritaires : actions de résilience à planifier et financer.",
+          "Programme de couverture : assurance traditionnelle et/ou paramétrique."
+        ],
+        benefit:"➡️ Bénéfice : un plan clair, compréhensible et suivi dans le temps."
+      },
+      finance:{
+        t:"Financement & transfert de risque",
+        fund:{t:"Financer l’adaptation",li:[
+          "subventions et programmes publics,",
+          "lignes de crédit vert locales et internationales,",
+          "garanties publiques (p.ex. Tamwilcom),",
+          "partenariats public-privé."
+        ]},
+        transfer:{t:"Transférer le risque",li:[
+          "Produits traditionnels : dommages, catastrophes naturelles, multirisque agricole.",
+          "Paramétriques météo : déclenchement par indice (pluie, chaleur, vent, sécheresse).",
+          "Programmes mutualisés : agriculteurs, coopératives, collectivités.",
+          "Réassurance et pools : capacité sur périls majeurs."
+        ]},
+        blended:{t:"Blended finance",p:"Combiner subventions, prêts concessionnels et assurance pour bancabiliser les projets et réduire le coût final."},
+        role:{t:"Rôle de Riskalia",li:[
+          "montage financier,",
+          "conception des couvertures,",
+          "sourcing de capacité,",
+          "gouvernance et traçabilité."
+        ]},
+        promise:"➡️ Notre promesse : transformer une contrainte financière en solution soutenable."
+      },
+      value:{
+        t:"La valeur ajoutée de Riskalia",
+        li:[
+          "Expertise locale et internationale.",
+          "Approche pédagogique et mobilisatrice.",
+          "Solutions innovantes (paramétrique, mutualisation, PPP).",
+          "Impact concret : résilience et accès au financement."
+        ]
+      },
       faq:{t:"FAQ"}
     },
-    cta:{t:"Besoin d’une cartographie climat ou d’un montage paramétrique ?",p:"Parlons de vos sites & activités : nous préparons un plan d’action et des options de transfert adaptées.",btn:"Nous contacter"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]"},
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"},
     faq:{
-      0:{q:"Par où commencer si nous n’avons pas de données ?",a:"Par un diagnostic court : collecte minimale, données publiques/sectorielles, et priorisation des sites critiques."},
-      1:{q:"Quelle différence entre RCP et SSP ?",a:"RCP : trajectoires de forçage (AR5). SSP : scénarios socio-éco couplés au climat (AR6). Nous travaillons avec les deux."},
-      2:{q:"Combien de temps pour un premier livrable ?",a:"En 3–4 semaines, vous disposez d’une heatmap, d’un jeu d’hypothèses et d’actions rapides."}
+      0:{q:"Par où commencer si nous avons peu de données ?",a:"Un diagnostic rapide permet d’obtenir une première vision en 3–4 semaines, même avec des données limitées."},
+      1:{q:"Combien de temps pour avoir un plan d’action ?",a:"Un premier plan priorisé peut être livré en moins d’un mois, avec des actions rapides et une vision sur 12–24 mois."},
+      2:{q:"La réassurance peut-elle couvrir les aléas climatiques ?",a:"Oui, via des traités CatNat et des solutions paramétriques (sécheresse, inondations, vagues de chaleur)."},
+      3:{q:"Qu’est-ce qu’une couverture paramétrique ?",a:"Une assurance déclenchée par un indice (ex. pluie/température). L’indemnité est versée automatiquement et rapidement."}
     }
   },
 
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
+    aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher"},
+    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
     title:"Climate Risk",
     subtitle:"Identify, quantify and manage climate impacts: physical (acute/chronic) and transition risks, scenarios (RCP/SSP), adaptation roadmap, risk transfer and TCFD/ISSB reporting.",
-    badges:["Risk mapping & scenarios","Adaptation & resilience","Transfer & financing"],
+    method:"We start from your historical losses and risk tolerance, simulate several thresholds, and retain the one that balances cost, protection and capital.",
     sec:{
-      intro:{t:"Overview",p:"We move clients from unmeasured exposure to a prioritised action plan: risk mapping, scenario-based quantification, avoid-reduce-transfer decisions, and compliant disclosure.",
-        kpi:[{v:"3–4 week diagnostic",l:"Heatmap & quick wins"},{v:"RCP/SSP scenarios",l:"2030 / 2050 horizons"},{v:"TCFD/ISSB",l:"governance, metrics & targets"}]},
-      risks:{t:"Physical & transition risks",lead:"We separate acute/chronic climate hazards from transition risks (policy, tech, market, reputation) to prioritise actions.",
-        cards:[
-          {t:"Physical",li:["Flood (pluvial/fluvial/coastal), heatwaves.","Drought & water stress, wildfires, windstorm.","Impacts on assets, operations, H&S, supply chain."]},
-          {t:"Transition",li:["Carbon policy & pricing, product/ disclosure standards.","Technology & energy access shifts.","Demand changes & stakeholder expectations."]}
-        ]},
-      data:{t:"Data & scenarios",lead:"We combine current/projected climate (RCP/SSP), exposure and business sensitivity to quantify impact.",
-        cap:"Quick mapping",
-        h:["Domain","Key indicators"],
-        r0:{c0:"Assets & sites",c1:"Heat, flood, drought, wind exposure; business continuity."},
-        r1:{c0:"Supply chain",c1:"Geographic dependency, transport/ports, critical stock."},
-        r2:{c0:"Operations & IT",c1:"Energy & water, cooling for data/sites, H&S."},
-        r3:{c0:"Products & clients",c1:"Price/CO₂ sensitivity, demand shifts, insurance coverage."},
-        r4:{c0:"Finance",c1:"Expected losses (AAL), stress tests, cost of capital."},
-        src:{t:"Sources & methods",li:["Historical climate & CMIP6/SSP projections, CORDEX.","Hazard models (flood/heat/wind) and sector vulnerabilities.","1.5–4°C scenarios (2030–2050) with probabilities & uncertainty bands."]}
+      intro:{
+        t:"Introduction",
+        p1:"Climate change is a top risk driver for African and Moroccan economies.",
+        p2:"Droughts, water stress, heatwaves, flash floods and wildfires are recurring and intensifying.",
+        bul:[
+          "agricultural losses and yield decline,",
+          "infrastructure damage and supply chain disruptions,",
+          "rising energy and water costs,",
+          "health impacts and reduced productivity."
+        ],
+        p3:"All actors are affected. Shift from reactive to anticipatory: measure, plan and cover."
       },
-      strategy:{t:"Strategy & roadmap",
-        steps:["Measure: mapping, exposure & scenarios.","Reduce: efficiency, physical adaptation, continuity.","Transfer: insurance/captives/parametrics.","Disclose: TCFD/ISSB, targets & annual tracking."],
-        deliv:["12–24 month prioritised plan with owners & budget.","Risk/opportunity dashboard & quick wins."]},
-      finance:{t:"Transfer & financing",
-        0:{t:"Insurance & parametrics",li:["Cat/Property programmes aligned to exposure.","Weather parametrics (rain, wind, heat) for BI/volume losses.","Integrated with prevention & BCM."]},
-        1:{t:"Captives & alternatives",li:["Captive/stop-loss feasibility.","ILS/CAT bonds when exposure size allows.","Optimised cost of risk vs. budget."]}},
-      metrics:{t:"Metrics & reporting",lead:"Aligned to TCFD/ISSB: governance, strategy, risk management, metrics & targets.",
-        cards:[
-          {t:"Metrics",li:["Scopes 1–3 & intensity (kgCO₂e/FTE, per revenue).","Site exposure by hazard.","Average annual loss (AAL) & stress tests."]},
-          {t:"Targets",li:["-X% carbon intensity by 2027/2030.","% of sites with adaptation plans deployed.","% risk coverage via insurance/parametrics."]}
+      risks:{
+        t:"Physical & transition risks",
+        phys:{t:"Physical risks",li:[
+          "Acute: sudden events (urban floods, severe storms, extreme heatwaves, wildfires) causing immediate damage and business interruption.",
+          "Chronic: rising temperatures, water scarcity, coastal erosion — higher irrigation costs, crop fragility, industrial constraints."
         ]},
+        trans:{t:"Transition risks",li:[
+          "new regulations (carbon pricing, ESG reporting),",
+          "requirements from international lenders/insurers,",
+          "global value chain transformation,",
+          "societal and reputational expectations."
+        ]},
+        why:"➡️ Why it matters: without anticipation, funding may dry up, costs rise, and opportunities are missed."
+      },
+      data:{
+        t:"Data & scenarios",
+        collect:{t:"Collection & analysis",p:"Loss histories, climate databases (Morocco/international), local rainfall/temperature, and team insights."},
+        map:{t:"Mapping",li:[
+          "agricultural areas exposed to drought,",
+          "cities at flood risk,",
+          "industrial regions facing heatwaves."
+        ]},
+        scen:{t:"Forward scenarios (2030/2050)",li:[
+          "how many additional extreme-heat days?",
+          "what flood frequency by region?",
+          "impact on agricultural/industrial productivity?"
+        ]},
+        kpi:{t:"Key indicators",li:[
+          "Average Annual Loss (AAL),",
+          "Probable Maximum Loss (PML),",
+          "water/energy cost evolution,",
+          "potential impact on financial results."
+        ],note:"➡️ Goal: make climate data readable, comparable and usable for management, financing and insurance decisions."}
+      },
+      strategy:{
+        t:"Strategy & roadmap",
+        lead:"Strategy must end in a prioritised, operational action plan.",
+        steps:[
+          "Measure: identify vulnerabilities and estimate their cost.",
+          "Reduce: adaptation (asset hardening, efficient irrigation, BCM).",
+          "Transfer: insurance & reinsurance, including parametrics.",
+          "Steer: track risk evolution and update protections."
+        ],
+        roadmap:{t:"Riskalia roadmap"},
+        deliv:[
+          "Quick wins: low cost / high immediate impact.",
+          "Priority investments: plan & finance resilience actions.",
+          "Coverage programme: traditional and/or parametric insurance."
+        ],
+        benefit:"➡️ Benefit: a clear plan, understood and trackable over time."
+      },
+      finance:{
+        t:"Financing & risk transfer",
+        fund:{t:"Financing adaptation",li:[
+          "public grants and programmes,",
+          "green credit lines (local/international),",
+          "public guarantees (e.g., Tamwilcom),",
+          "public–private partnerships."
+        ]},
+        transfer:{t:"Transferring risk",li:[
+          "Traditional covers: Property/CatNat, agricultural multi-peril.",
+          "Weather parametrics: index triggers (rain/heat/wind/drought).",
+          "Mutualised programmes: farmers, co-ops, municipalities.",
+          "Reinsurance & pools for major perils."
+        ]},
+        blended:{t:"Blended finance",p:"Combine grants, concessional loans and insurance to make projects bankable and reduce end-user cost."},
+        role:{t:"Riskalia’s role",li:[
+          "financial structuring,",
+          "coverage design,",
+          "capacity sourcing,",
+          "governance and audit trail."
+        ]},
+        promise:"➡️ Our promise: turn a financial constraint into a sustainable solution."
+      },
+      value:{
+        t:"Riskalia value added",
+        li:[
+          "Local and international expertise.",
+          "Clear, pedagogical approach.",
+          "Innovative solutions (parametrics, pooling, PPP).",
+          "Tangible impact: resilience and access to finance."
+        ]
+      },
       faq:{t:"FAQ"}
     },
-    cta:{t:"Need a climate mapping or a parametric structure?",p:"Tell us about your sites & activities — we’ll prepare an action plan and transfer options.",btn:"Contact us"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]"},
+    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"},
     faq:{
-      0:{q:"Where to start if we lack data?",a:"Start with a short diagnostic: minimal collection, public/sector data, and a focus on critical sites."},
-      1:{q:"RCP vs SSP?",a:"RCP are radiative forcing pathways (AR5). SSP are socio-economic scenarios combined with climate (AR6). We can work with both."},
-      2:{q:"Timeline for first deliverables?",a:"Within 3–4 weeks you get a heatmap, assumptions and quick actions."}
+      0:{q:"Where to start with little data?",a:"A quick diagnostic gives a first view in 3–4 weeks, even with limited data."},
+      1:{q:"How long for an action plan?",a:"A prioritised plan in under a month, with quick actions and a 12–24 month view."},
+      2:{q:"Can reinsurance cover climate perils?",a:"Yes — Cat treaties and parametric solutions (drought, flood, heatwaves)."},
+      3:{q:"What is parametric insurance?",a:"Index-triggered cover (e.g., rainfall/temperature) with fast, predictable payouts."}
     }
   },
 
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
+    aria:{nav:"التنقل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"اختيار اللغة"},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"مخاطر المناخ",
     subtitle:"تحديد وقياس وإدارة آثار المناخ: المخاطر الفيزيائية (حادّة/مزمنة) ومخاطر الانتقال، سيناريوهات RCP/SSP، خارطة طريق للتكيّف، نقل المخاطر والإفصاح TCFD/ISSB.",
-    badges:["خرائط المخاطر والسيناريوهات","التكيّف والمرونة","النقل والتمويل"],
+    method:"نبدأ من خسائركم السابقة وتحمّل المخاطر لديكم، نحاكي عدة عتبات ونختار ما يوازن الكلفة والحماية ورأس المال.",
     sec:{
-      intro:{t:"نظرة عامة",p:"نحوّل التعرض غير المقاس إلى خطة عمل مُرتّبة حسب الأولويات: خرائط مخاطر، قياس بالسيناريوهات، قرارات تجنّب/تقليل/نقل، وإفصاح متوافق.",
-        kpi:[{v:"تشخيص 3–4 أسابيع",l:"خريطة حرارة وإجراءات سريعة"},{v:"سيناريوهات RCP/SSP",l:"آفاق 2030/2050"},{v:"TCFD/ISSB",l:"حوكمة ومقاييس وأهداف"}]},
-      risks:{t:"المخاطر الفيزيائية والانتقالية",lead:"نُميّز بين أخطار المناخ الحادّة/المزمنة ومخاطر الانتقال (سياسات، تقنيات، سوق، سمعة) لتحديد الأولويات.",
-        cards:[
-          {t:"فيزيائية",li:["فيضانات وسواحل وموجات حر.","جفاف وإجهاد مائي وحرائق وغُبار/رياح.","تأثير على الأصول والعمليات وسلامة العاملين وسلاسل التوريد."]},
-          {t:"انتقالية",li:["سياسات وتسعير الكربون ومعايير المنتجات والإفصاح.","تغيرات تقنية ونفاذ إلى الطاقة.","تبدل الطلب وتوقعات أصحاب المصلحة."]}
-        ]},
-      data:{t:"البيانات والسيناريوهات",lead:"نمزج المناخ الحالي والمتوقّع (RCP/SSP) مع التعرض وحساسية النشاط لقياس الأثر.",
-        cap:"خرائط سريعة",
-        h:["المجال","مؤشرات رئيسية"],
-        r0:{c0:"الأصول والمواقع",c1:"تعرض للحرارة والفيضانات والجفاف والرياح؛ استمرارية الأعمال."},
-        r1:{c0:"سلسلة الإمداد",c1:"اعتماد جغرافي ونقل/مرافئ ومخزون حرج."},
-        r2:{c0:"العمليات وتقنية المعلومات",c1:"طاقة ومياه وتبريد للبيانات/المواقع وسلامة."},
-        r3:{c0:"المنتجات والعملاء",c1:"حساسية للسعر/الكربون وتغير الطلب والتغطية التأمينية."},
-        r4:{c0:"المالية",c1:"خسائر سنوية متوقعة (AAL) واختبارات ضغط وكلفة رأس المال."},
-        src:{t:"المصادر والمنهجيات",li:["بيانات تاريخية وإسقاطات CMIP6/SSP وCORDEX.","نماذج أخطار فيضانات/حرارة/رياح وقابليات قطاعية.","سيناريوهات 1.5–4°C للأعوام 2030–2050 مع احتمالات وعدم يقين."]}
+      intro:{
+        t:"مقدمة",
+        p1:"أضحى تغيّر المناخ من أكبر عوامل المخاطر لاقتصادات إفريقيا والمغرب.",
+        p2:"الجفاف وإجهاد المياه وموجات الحر والفيضانات السريعة وحرائق الغابات باتت تتكرر وتشتد.",
+        bul:[
+          "خسائر زراعية وتراجع المردودية،",
+          "أضرار بالبنى التحتية واضطراب سلاسل الإمداد،",
+          "ارتفاع تكاليف الطاقة والمياه،",
+          "آثار صحية وتراجع الإنتاجية."
+        ],
+        p3:"تطال المخاطر جميع الفاعلين. المطلوب الانتقال من رد الفعل إلى الاستباق: قياس، تخطيط وتغطية."
       },
-      strategy:{t:"الاستراتيجية وخارطة الطريق",
-        steps:["القياس: خرائط وتعريض وسيناريوهات.","التقليل: كفاءة وتكيّف مادي واستمرارية.","النقل: تأمين/كابتف/بارامترية.","الإفصاح: TCFD/ISSB وأهداف وتتبع سنوي."],
-        deliv:["خطة 12–24 شهراً بميزانية ومسؤولين.","لوحة متابعة للمخاطر والفرص وإجراءات سريعة."]},
-      finance:{t:"نقل المخاطر والتمويل",
-        0:{t:"تأمين وحلول بارامترية",li:["برامج كوارث/ممتلكات ملائمة للتعريض.","بارامترية للطقس (أمطار/رياح/حر) لخسائر الأعمال.","تكامل مع الوقاية والاستمرارية."]},
-        1:{t:"كابتف وحلول بديلة",li:["دراسة أهلية للكابتف ووقف الخسارة.","أوراق مالية مرتبطة بالكوارث عند كِبَر التعريض.","تحسين كلفة المخاطر مقابل الميزانية."]}},
-      metrics:{t:"المقاييس والإفصاح",lead:"محاذاة مع TCFD/ISSB: الحوكمة والاستراتيجية وإدارة المخاطر والمقاييس والأهداف.",
-        cards:[
-          {t:"مقاييس",li:["انبعاثات النطاق 1–3 وكثافتها (لكل موظف/الإيراد).","تعرض المواقع للأخطار بحسب النوع.","خسارة سنوية متوسطة (AAL) واختبارات ضغط."]},
-          {t:"أهداف",li:["خفض كثافة الكربون -X% بحلول 2027/2030.","% المواقع ذات خطط تكيّف مطبقة.","% التغطية عبر التأمين/البارامترية."]}
+      risks:{
+        t:"المخاطر الفيزيائية والانتقالية",
+        phys:{t:"المخاطر الفيزيائية",li:[
+          "حادّة: فيضانات حضرية، عواصف شديدة، موجات حر قصوى، حرائق — أضرار فورية وتوقف الأعمال.",
+          "مزمنة: ارتفاع درجات الحرارة، ندرة المياه، تآكل السواحل — كلف ري أعلى وهشاشة المحاصيل وقيود صناعية."
         ]},
+        trans:{t:"مخاطر الانتقال",li:[
+          "تنظيمات جديدة (تسعير الكربون، تقارير ESG)،",
+          "متطلبات الممولين/المؤمّنين الدوليين،",
+          "تحولات سلاسل القيمة العالمية،",
+          "توقعات المجتمع والسمعة."
+        ]},
+        why:"➡️ لماذا يهم؟ من دون استباق قد تتقلص مصادر التمويل وترتفع الكلف وتضيع الفرص."
+      },
+      data:{
+        t:"البيانات والسيناريوهات",
+        collect:{t:"جمع وتحليل",p:"سجلات الخسائر، قواعد مناخية (المغرب/دولية)، مطر/حرارة محلية، وملاحظات فرقكم."},
+        map:{t:"الخرائط",li:[
+          "مناطق زراعية معرضة للجفاف،",
+          "مدن مهددة بالفيضانات،",
+          "أقاليم صناعية تواجه موجات حر."
+        ]},
+        scen:{t:"سيناريوهات 2030/2050",li:[
+          "كم يوماً إضافياً من الحر الشديد؟",
+          "ما تواتر الفيضانات حسب المنطقة؟",
+          "ما الأثر على الإنتاجية الزراعية/الصناعية؟"
+        ]},
+        kpi:{t:"مؤشرات رئيسية",li:[
+          "الخسارة السنوية المتوسطة (AAL)،",
+          "الخسارة العظمى المتوقعة (PML)،",
+          "تطور كلفة المياه/الطاقة،",
+          "الأثر المحتمل على النتائج المالية."
+        ],note:"➡️ الهدف: جعل بيانات المناخ قابلة للقراءة والمقارنة والتطبيق في قرارات الإدارة والتمويل والتأمين."}
+      },
+      strategy:{
+        t:"الاستراتيجية وخارطة الطريق",
+        lead:"يجب أن تنتهي الاستراتيجية بخطة عملية مرتّبة حسب الأولويات.",
+        steps:[
+          "القياس: تحديد نقاط الضعف وتقدير كلفتها.",
+          "التقليل: تكيّف بنيوي وريّ فعّال واستمرارية الأعمال.",
+          "النقل: تأمين وإعادة تأمين بما فيها الحلول البارامترية.",
+          "التحكم: تتبع تطور المخاطر وتحديث الحماية."
+        ],
+        roadmap:{t:"خارطة طريق Riskalia"},
+        deliv:[
+          "إجراءات سريعة منخفضة الكلفة عالية الأثر.",
+          "استثمارات أولوية للمرونة للتمويل والتخطيط.",
+          "برنامج تغطية تقليدي و/أو بارامتري."
+        ],
+        benefit:"➡️ الفائدة: خطة واضحة قابلة للمتابعة عبر الزمن."
+      },
+      finance:{
+        t:"التمويل ونقل المخاطر",
+        fund:{t:"تمويل التكيّف",li:[
+          "منح وبرامج عامة،",
+          "خطوط ائتمان خضراء محلية ودولية،",
+          "ضمانات عامة (مثل تمويلكم)،",
+          "شراكات عام–خاص."
+        ]},
+        transfer:{t:"نقل المخاطر",li:[
+          "منتجات تقليدية: ممتلكات/كوارث، تعدد أخطار زراعية.",
+          "بارامترية للطقس: مؤشرات مطر/حرارة/رياح/جفاف.",
+          "برامج مُجمّعة: مزارعون وتعاونيات وبلديات.",
+          "إعادة التأمين وتجميع القدرات."
+        ]},
+        blended:{t:"تمويل مُركّب",p:"مزج المنح والقروض الميسّرة والتأمين لزيادة قابلية التمويل وخفض كلفة المستفيد."},
+        role:{t:"دور Riskalia",li:[
+          "الهيكلة المالية،",
+          "تصميم التغطيات،",
+          "تأمين السعات،",
+          "الحوكمة والتتبع."
+        ]},
+        promise:"➡️ وعدنا: تحويل القيد المالي إلى حل مستدام."
+      },
+      value:{
+        t:"القيمة المضافة لـ Riskalia",
+        li:[
+          "خبرة محلية ودولية.",
+          "نهج تعليمي مبسط.",
+          "حلول مبتكرة (بارامترية، تجميع، شراكات).",
+          "أثر ملموس: مرونة أفضل وتمويل أسهل."
+        ]
+      },
       faq:{t:"الأسئلة الشائعة"}
     },
-    cta:{t:"تحتاجون خريطة مناخ أو ترتيباً بارامتركياً؟",p:"أخبرونا عن مواقعكم وأنشطتكم — نُعد خطة عمل وخيارات نقل مناسبة.",btn:"تواصلوا معنا"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]"},
+    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"},
     faq:{
-      0:{q:"من أين نبدأ إذا كانت البيانات محدودة؟",a:"بتشخيص قصير: تجميع أساسي وبيانات عامة/قطاعية وتركيز على المواقع الحرِجة."},
-      1:{q:"ما الفرق بين RCP وSSP؟",a:"RCP مسارات إشعاعية (AR5). وSSP سيناريوهات اجتماعية-اقتصادية مع المناخ (AR6). نعمل بهما."},
-      2:{q:"كم يلزم لنتيجة أولى؟",a:"خلال 3–4 أسابيع تحصلون على خريطة حرارة وفرضيات وخطوات سريعة."}
+      0:{q:"من أين نبدأ إذا كانت البيانات قليلة؟",a:"تشخيص سريع يوفّر رؤية أولى خلال 3–4 أسابيع حتى مع بيانات محدودة."},
+      1:{q:"كم يلزم للحصول على خطة عمل؟",a:"خطة مرتّبة بأقل من شهر مع إجراءات سريعة ورؤية لـ 12–24 شهراً."},
+      2:{q:"هل تغطي إعادة التأمين أخطار المناخ؟",a:"نعم — معاهدات كوارث وحلول بارامترية (جفاف، فيضانات، موجات حر)."},
+      3:{q:"ما التأمين البارامتري؟",a:"تغطية تُفَعَّل بمؤشر (أمطار/حرارة) مع تعويض سريع ومتوقع."}
     }
   }
 };
 
-/* ================== Helpers ================== */
+/* ================== Helpers & UI ================== */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
 function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('climate.html'))); }
-
-/* ================== Render & UI ================== */
-function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
-  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
-  setActiveNav();
-
-  // Fill table cells for "data" section (explicit mapping)
-  const map={
-    'sec.data.cap':t('sec.data.cap'),
-    'sec.data.h.0':t('sec.data.h')[0],
-    'sec.data.h.1':t('sec.data.h')[1],
-    'sec.data.r0.c0':t('sec.data.r0.c0'),
-    'sec.data.r0.c1':t('sec.data.r0.c1'),
-    'sec.data.r1.c0':t('sec.data.r1.c0'),
-    'sec.data.r1.c1':t('sec.data.r1.c1'),
-    'sec.data.r2.c0':t('sec.data.r2.c0'),
-    'sec.data.r2.c1':t('sec.data.r2.c1'),
-    'sec.data.r3.c0':t('sec.data.r3.c0'),
-    'sec.data.r3.c1':t('sec.data.r3.c1'),
-    'sec.data.r4.c0':t('sec.data.r4.c0'),
-    'sec.data.r4.c1':t('sec.data.r4.c1')
-  };
-  Object.entries(map).forEach(([k,v])=>{ const el=$(`[data-i18n="${k}"]`); if(el) el.innerHTML=v; });
+function applyI18nAttrs(){
+  $$('[data-i18n-attr]').forEach(el=>{
+    const pairs = el.dataset.i18nAttr?.split(',').map(x=>x.trim()).filter(Boolean) || [];
+    for(const pair of pairs){
+      const [attr,key]=pair.split(':').map(s=>s.trim());
+      const val = t(key);
+      if(attr && val) el.setAttribute(attr, val);
+    }
+  });
+}
+function setActiveNav(){
+  const path = location.pathname.split('/').pop() || 'climate.html';
+  $$('#menu a').forEach(a=>{
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === path);
+  });
 }
 
+/* Apply translations & nav state */
+function applyTexts(){
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  applyI18nAttrs();
+  $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
+  setActiveNav();
+}
+
+/* Tabs */
 function bindTabs(){
   const tabs=$$('.tabs .tab');
   const panels=$$('.tabpanel');
-
   function show(id, push=true){
     tabs.forEach(btn=>{
       const on = btn.dataset.tab===id;
@@ -487,36 +848,68 @@ function bindTabs(){
     if(push) history.replaceState(null,'','#'+id);
     $('#tab-'+id)?.focus({preventScroll:true});
   }
-
   tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
-
   function fromHash(){
     const id=(location.hash||'#intro').slice(1);
-    const known=['intro','risks','data','strategy','finance','metrics','faq'];
+    const known=['intro','risks','data','strategy','finance','value','faq'];
     show( known.includes(id)?id:'intro', false );
   }
   window.addEventListener('hashchange',fromHash);
   fromHash();
 }
 
+/* Reveal on scroll */
+function activateReveal(){
+  const rev=$$('.reveal');
+  const onScroll=()=>{ const tr=window.innerHeight*0.9; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll', onScroll); onScroll();
+}
+
+/* Dropdown (accessibility + mobile/desktop) */
+(function(){
+  const li = document.querySelector('#menu li.dropdown');
+  const trigger = li?.querySelector('a.has-caret');
+  if(!li || !trigger) return;
+
+  function open(){ li.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function close(){ li.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+
+  function toggleMobile(e){
+    if (window.innerWidth <= 900){
+      e.preventDefault();
+      li.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+    }
+  }
+
+  trigger.addEventListener('click', toggleMobile);
+
+  trigger.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      if (window.innerWidth <= 900) toggleMobile(e); else open();
+    } else if(e.key==='Escape'){ close(); trigger.focus(); }
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
+
+  let timer;
+  li.addEventListener('mouseenter', ()=>{ if (window.innerWidth > 900){ clearTimeout(timer); open(); }});
+  li.addEventListener('mouseleave', ()=>{ if (window.innerWidth > 900){ timer=setTimeout(close, 180); }});
+
+  window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
+})();
+
+/* Mobile menu & lang */
 function initUI(){
-  // burger
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
-  // language
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
   }));
-  // reveal
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll',onScroll); onScroll();
-  // tabs
   bindTabs();
+  activateReveal();
 }
-
 document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
 </body>
 </html>
-
-

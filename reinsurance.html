@@ -139,7 +139,6 @@
             <ul>
               <li data-i18n="prog.c1.l0">XL par risque/péril & événement cat.</li>
               <li data-i18n="prog.c1.l1">Aggregate XL / stop-loss résultat.</li>
-              <li data-i18n="prog.c1.l2">Multi-annuel, reinstatements, indexation.</li>
             </ul>
           </section>
           <section class="card">
@@ -147,7 +146,6 @@
             <ul>
               <li data-i18n="prog.c2.l0">Placements ciblés pour risques atypiques.</li>
               <li data-i18n="prog.c2.l1">Paramétriques météo/climat pour pics.</li>
-              <li data-i18n="prog.c2.l2">Clauses d’agrégation & hours clause.</li>
             </ul>
           </section>
         </div>
@@ -207,10 +205,6 @@
       <!-- OPTIMISATION -->
       <article id="opt" class="card">
         <h2 data-i18n="opt.t">6. Optimisation de la réassurance</h2>
-        <p class="muted" data-i18n="opt.p">
-          Viser le meilleur compromis coût/protection/capital : calibrage des rétentions, choix des
-          architectures, leviers économiques et clauses opérationnelles.
-        </p>
         <div class="grid section-gap">
           <section class="card">
             <h3 data-i18n="opt.c0.t">Architecture & rétention</h3>
@@ -238,39 +232,6 @@
           </section>
         </div>
 
-        <div class="table-wrap section-gap">
-          <table>
-            <caption data-i18n="opt.tab.cap">Leviers d’optimisation (exemples)</caption>
-            <thead>
-              <tr>
-                <th data-i18n="opt.tab.h0">Levier</th>
-                <th data-i18n="opt.tab.h1">Effet</th>
-                <th data-i18n="opt.tab.h2">Usage</th>
-                <th data-i18n="opt.tab.h3">Attention</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-i18n="opt.tab.r0.c0">Aggregate XL</td>
-                <td data-i18n="opt.tab.r0.c1">Lisse la fréquence annuelle</td>
-                <td data-i18n="opt.tab.r0.c2">Retail multi-sinistres</td>
-                <td data-i18n="opt.tab.r0.c3">Définition agrégation & hours</td>
-              </tr>
-              <tr>
-                <td data-i18n="opt.tab.r1.c0">Stop-loss résultat</td>
-                <td data-i18n="opt.tab.r1.c1">Cappe le ratio combiné</td>
-                <td data-i18n="opt.tab.r1.c2">Volatilité P&L</td>
-                <td data-i18n="opt.tab.r1.c3">Base comptable & indexation</td>
-              </tr>
-              <tr>
-                <td data-i18n="opt.tab.r2.c0">Quota share + surplus</td>
-                <td data-i18n="opt.tab.r2.c1">Relief capital + capacité</td>
-                <td data-i18n="opt.tab.r2.c2">Croissance/nouvelles lignes</td>
-                <td data-i18n="opt.tab.r2.c3">Profit commission</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </article>
 
       <!-- SBR -->
@@ -353,6 +314,14 @@
           <summary>❓ <span data-i18n="faq.q2">Quelles exigences SBR clés ?</span></summary>
           <div><p class="muted" data-i18n="faq.a2">Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration.</p></div>
         </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.q3">Quelles exigences SBR clés ?</span></summary>
+          <div><p class="muted" data-i18n="faq.a3">Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration.</p></div>
+        </details>
+        <details>
+          <summary>❓ <span data-i18n="faq.q4">Quelles exigences SBR clés ?</span></summary>
+          <div><p class="muted" data-i18n="faq.a4">Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration.</p></div>
+        </details>
       </article>
 
       <!-- CTA -->
@@ -404,41 +373,41 @@ const I18N = {
     menu:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
     hero:{t:"Réassurance — Programmes & Conseil",p:"Proportionnelle & non proportionnelle • Placement marché • Sinistres & recouvrements • Data & modélisation • Optimisation du coût et du capital • Cadre SBR.",b0:"Architecture & rétention",b1:"Placement & wordings",b2:"Conformité SBR"},
     toc:{t:"Sommaire",intro:"Introduction",programs:"Programmes",placement:"Placement & marchés",claims:"Sinistres",data:"Données & modélisation",opt:"Optimisation",sbr:"Cadre SBR",faq:"FAQ"},
-    intro:{t:"1. Introduction",p:"Nous concevons et plaçons des protections adaptées à votre profil de risque et à votre stratégie : stabilité du résultat, protection du capital, soutien à la croissance et conformité réglementaire.",
-           c0:{t:"Objectifs",l0:"Limiter les pics de pertes et la volatilité.",l1:"Optimiser coût vs. capital consommé.",l2:"Sécuriser la capacité sur les périls majeurs."},
-           c1:{t:"Méthode",l0:"Analyse historique & exposition.",l1:"Scénarios/stress et matérialité.",l2:"Itérations marché & wordings."}},
-    prog:{t:"2. Programmes de réassurance",
-          c0:{t:"Proportionnels",l0:"Quota share (relief capital, montée en capacité).",l1:"Surplus (grands risques, lissage de sévérité).",l2:"Participation aux bénéfices, sliding scale."},
-          c1:{t:"Non proportionnels",l0:"XL par risque/péril & événement cat.",l1:"Aggregate XL / stop-loss résultat.",l2:"Multi-annuel, reinstatements, indexation."},
-          c2:{t:"Facultatives & paramétriques",l0:"Placements ciblés pour risques atypiques.",l1:"Paramétriques météo/climat pour pics.",l2:"Clauses d’agrégation & hours clause."}},
-    pl:{t:"3. Placement & marchés",
-        c0:{t:"Stratégie de marché",l0:"Panel diversifié & critères de notation.",l1:"Séquençage & concurrence positive.",l2:"Capacité sécurisée sur périls critiques."},
-        c1:{t:"Termes & wordings",l0:"Définitions périls, agrégation, heures.",l1:"Clauses coop/contrôle des sinistres.",l2:"Cut-through / dépôts / garanties."},
-        c2:{t:"Gouvernance",l0:"Traçabilité des décisions & validations.",l1:"Matrix limites & concentrations.",l2:"Suivi créances & attestations."}},
-    cl:{t:"4. Sinistres & recouvrements",l0:"Notification précoce & réserves partagées.",l1:"Calendrier comptes & intérêts de retard.",l2:"Pré-accords & comités sinistres majeurs."},
-    dt:{t:"5. Données & modélisation",l0:"Séries de sinistres 5–10 ans (freq/sév, ULAE/AC).",l1:"Expositions par zone/péril (géocodage, sums insured).",l2:"Stress climatiques & supply-chain (scénarios NGFS)."},
-    opt:{t:"6. Optimisation de la réassurance",p:"Viser le meilleur compromis coût/protection/capital : calibrage des rétentions, choix des architectures, leviers économiques et clauses opérationnelles.",
-         c0:{t:"Architecture & rétention",l0:"Quota share/surplus pour stabiliser la marge.",l1:"XL par risque & événement, aggregate XL annuel.",l2:"Rétentions cibles via VaR/TVaR & burn."},
-         c1:{t:"Efficience économique",l0:"Décomposer : perte attendue, capital, frais.",l1:"Multi-annuel, franchise/limite, reinstatements.",l2:"Paramétriques pour pics climatiques."},
-         c2:{t:"Contreparties & wording",l0:"Qualité réassureurs & diversification.",l1:"Agrégation, hours clause, exclusions claires.",l2:"Bordereaux, cut-through, recouvrements."},
-         tab:{cap:"Leviers d’optimisation (exemples)",h0:"Levier",h1:"Effet",h2:"Usage",h3:"Attention",
-              r0:{c0:"Aggregate XL",c1:"Lisse la fréquence annuelle",c2:"Retail multi-sinistres",c3:"Définition agrégation & hours"},
-              r1:{c0:"Stop-loss résultat",c1:"Cappe le ratio combiné",c2:"Volatilité P&L",c3:"Base comptable & indexation"},
-              r2:{c0:"Quota share + surplus",c1:"Relief capital + capacité",c2:"Croissance/nouvelles lignes",c3:"Profit commission"}},
-    },
-    sbr:{t:"7. Cadre réglementaire SBR",p:"Alignement ACAPS : politique de réassurance, ORSA, capital, reporting et contrôles internes. Notre accompagnement est opérationnel (hors avis juridique).",
-         c0:{t:"Politique de réassurance",l0:"Objectifs, appétit au risque, limites & concentrations.",l1:"Sélection réassureurs (notation, garanties, dépôts).",l2:"Gouvernance : validation & revue annuelle."},
-         c1:{t:"ORSA & capital",l0:"Scénarios/stress (cat, dérive fréquence, inflation).",l1:"Effet sur solvabilité (SCR/MCR) & sensibilités.",l2:"Back-testing & adéquation des protections."},
-         c2:{t:"Reporting & contrôles",l0:"Suivi créances réassureurs (aging, provisions).",l1:"Limites de concentration & exposition pays.",l2:"Prudence comptable, dépôts & intérêts."},
-         tab:{cap:"Exigences SBR — nos livrables",h0:"Exigence",h1:"Livrable",h2:"Périodicité",
+    intro:{t:"1. Notre promesse : des protections qui soutiennent votre stratégie",p:"Nous concevons et plaçons des protections alignées sur vos priorités : stabilité des résultats, protection du capital, soutien à la croissance et conformité.",
+           c0:{t:"Concrètement, pour vous",l0:"Moins de volatilité : on amortit les années “chargées” pour lisser la performance.",l1:"Juste prix : on relie le coût de la couverture à la réalité de vos pertes et du capital mobilisé.",l2:"Capacité sécurisée : on priorise d’abord vos périls critiques (cat nat, grands risques, lignes sensibles)"},
+           c1:{t:"Notre manière de faire",l0:"Lecture des faits : historique de sinistres, structure du portefeuille, zones et périls.",l1:"Tests simples : scénarios “et si ?” pour mesurer l’impact réel (franchise, limite, nombre d’événements).",l2:"Allers-retours marché : itérations courtes avec les réassureurs et travail précis sur les termes."}},
+    prog:{t:"2. Vos programmes de réassurance, simplement expliqués",
+          c0:{t:"Partage du risque (proportionnel)",l0:"Quota-share : vous cédez une part fixe des primes et des sinistres. Utilité : soulager le capital et monter en capacité (croissance, nouvelles gammes).",l1:"Surplus : vous gardez une base et cédez l’excédent. Utilité : grands risques (sommes assurées élevées), lissage de la sévérité.",l2:"Rémunération alignée : participation aux bénéfices, sliding scale (si les résultats sont bons, vous en profitez)."},
+          c1:{t:"Protection des gros chocs (non proportionnel)",l0:"Excess of Loss (XL) par risque/péril ou par événement : déclenchement au-delà d’une franchise. Utilité : absorber les sinistres majeurs.",l1:"Aggregate XL / Stop-loss : capper la perte annuelle ou le ratio combiné. Utilité : maîtriser le P&L quand l’année est ponctuée de nombreux sinistres moyens."},
+          c2:{t:"Ciblé & innovant",l0:"Facultatives : placement à l’unité pour un risque atypique ou hors cadre des traités.",l1:"Paramétriques : déclenchement sur indices objectifs (pluie, vent, séisme). Utilité : réponse rapide, utile quand la preuve de dommage est lente ou disputée."}},
+    pl:{t:"3. Accéder aux meilleurs marchés, dans les meilleures conditions",
+        c0:{t:"Stratégie de marché claire",l0:"Panel diversifié et noté : on combine solidité financière et appétit pour votre risque.",l1:"Séquençage du placement : créer une concurrence saine, sécuriser la capacité au bon moment.",l2:"Focus périls critiques : sécuriser d’abord ce qui peut faire dérailler votre année."},
+        c1:{t:"Termes lisibles et utiles",l0:"Définitions claires : périls, regroupement d’événements (aggregation), fenêtres temporelles (hours clause).",l1:"Gouvernance des sinistres : rôles, délais, documents attendus.",l2:"Dispositifs de confiance : cut-through, dépôts, garanties… quand le contexte l’exige."},
+        c2:{t:"Traçabilité & contrôle",l0:"Décisions documentées : pourquoi ce seuil, cette limite, ce choix de marché.",l1:"Matrice des limites et concentrations : suivi simple dans le temps.",l2:"Créances réassureurs : aging, attestations, relances."}},
+    cl:{t:"4. Sinistres : agir tôt, recouvrer vite",l0:"Notification précoce : mettre les réassureurs dans la boucle tôt = moins de friction.",l1:"Réserves partagées : on s’accorde sur les hypothèses pour éviter les surprises.",l2:"Comités “sinistres majeurs” : clarifier les points techniques, acter les étapes, tenir le calendrier.",l3:"Recouvrements : focus délais, intérêts, voies d’escalade."},
+    dt:{t:"5. Données & modélisation au service de décisions simples",l0:"Historique 5–10 ans : fréquence/sévérité, frais (ULAE), ajustements comptables — on nettoie et on explique.",l1:"Expositions : par zones et périls (géocodage), vision claire des sommes assurées.",l2:"Scénarios de stress : météo extrême, inflation des coûts, rupture fournisseurs… à impact business lisible.",l3:"Livrables lisibles : graphiques, rétentions conseillées, marges de sécurité, tableau “pour/contre” des options."},
+    opt:{t:"6. Optimiser le trio coût / protection / capital",
+         c0:{t:"Architecture & rétention",l0:"Stabiliser la marge : quota-share/surplus pour la base, XL pour les chocs, aggregate pour la dérive annuelle.",l1:"Choisir la franchise : mix expérience passée (burn) + indicateurs de risque (on vulgarise VaR/TVaR).",l2:"Limiter l’aléa : limite par événement et/ou par an, selon votre tolérance."},
+         c1:{t:"Efficience économique",l0:"Décomposer le prix : perte attendue, coût du capital, frais — transparente.",l1:"Leviers : contrats multi-annuels, reinstatements calibrés, ajustement franchise/limite.",l2:"Paramétriques : complément utile sur pics climatiques coûteux/difficiles à prouver."},
+         c2:{t:"Contreparties & rédaction",l0:"Qualité et diversification : pas d’œufs dans le même panier.",l1:"Clauses clés : agrégation, hours, exclusions — on explique l’impact.",l2:"Exécution : bordereaux simples, cut-through si utile, suivi recouvrements serré."},
+         c3:{t:"Exemples de leviers (clairs & concrets)",l0:"Aggregate XL : lisse une année à nombreux sinistres moyens (retail) → vigilance sur “comment on additionne”.",l1:"Stop-loss résultat : plafond sur ratio combiné → utile si l’objectif est P&L first.",l2:"Quota-share + surplus : capital + capacité → soigner la profit commission pour aligner les intérêts."},
+        },
+    sbr:{t:"7. Conformité : réassurance alignée SBR (prudentiel)",p:"Nous alignons vos programmes avec les exigences ACAPS sans jargon.",
+         c0:{t:"Politique de réassurance",l0:"Clarté : objectifs, appétit au risque, limites/concentrations.",l1:"Sélection des réassureurs : notation, garanties, dépôts.",l2:"Gouvernance : validation, revue annuelle documentée."},
+         c1:{t:"ORSA & capital",l0:"Scénarios réels : cat, dérive fréquence, inflation sinistres.",l1:"Impact solvabilité : SCR/MCR et sensibilités expliquées simplement.",l2:"Back-testing : les protections ont-elles fait ce qui était prévu ?"},
+         c2:{t:"Reporting & contrôles",l0:"Créances réassureurs : aging, provisions, relances.",l1:"Concentrations : par contrepartie/pays.",l2:"Prudence comptable : dépôts, intérêts, pièces justificatives."},
+         tab:{cap:"Des livrables clairs et actionnables",h0:"Exigence",h1:"Livrable",h2:"Périodicité",
               r0:{c0:"Politique & stratégie",c1:"Document + matrice limites/contreparties",c2:"Annuel"},
               r1:{c0:"ORSA",c1:"Scénarios & note d’impact solvabilité",c2:"Annuel + ad hoc"},
               r2:{c0:"Créances réassureurs",c1:"KPI aging & recouvrements",c2:"Trimestriel"}},
     },
-    faq:{t:"8. FAQ",q0:"Comment fixer la rétention ?",a0:"Par VaR/TVaR, burn historique et appétit au risque, en cohérence avec la solvabilité et le coût de la protection.",
-         q1:"Aggregate XL ou stop-loss ?",a1:"Aggregate XL lisse la fréquence annuelle ; le stop-loss cappe le ratio combiné : le choix dépend du profil sinistre.",
-         q2:"Quelles exigences SBR clés ?",a2:"Politique de réassurance formalisée, intégration ORSA, suivi des créances & contrôles de concentration."},
-    cta:{t:"Optimisons votre programme",p:"Ateliers rapides : objectifs, données, scénarios et options d’architecture, puis consultation marché.",btn:"Nous contacter"},
+    faq:{t:"8. FAQ",q0:"Comment fixer la rétention ?",a0:"On part de vos pertes passées et de votre tolérance au risque. On simule plusieurs seuils et on retient celui qui équilibre coût, protection et capital.",
+         q1:"Aggregate XL ou stop-loss ?",a1:"Aggregate XL additionne des sinistres sur l’année pour déclencher la couverture ; le stop-loss plafonne le ratio combiné. On choisit selon où se situe votre douleur (fréquence vs résultat global).",
+         q2:"Proportionnel ou XL ?",a2:"Proportionnel si vous voulez stabiliser et soutenir la croissance ; XL si vous voulez protéger les chocs. Souvent, le mix des deux est optimal.",
+         q3:"Les paramétriques, ça marche comment ?",a3:"La couverture est liée à un indice objectif (pluie, vent, séisme). Avantage : rapidité de règlement et moins de débat sur la preuve de dommage. Idéal pour certains pics climatiques.",
+         q4:"Qu’attend le régulateur (SBR) ?",a4:"Une politique claire, des scénarios crédibles dans l’ORSA, et un suivi sérieux des créances et concentrations. Nos gabarits vous font gagner du temps et sécurisent vos échanges."},
+
+         cta:{t:"Optimisons votre programme",p:"Ateliers rapides : objectifs, données, scénarios et options d’architecture, puis consultation marché.",btn:"Nous contacter"},
     footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"}
   },
 
