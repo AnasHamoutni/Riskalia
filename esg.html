@@ -3,204 +3,382 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — ESG (Gouvernance, Social, Environnement)</title>
-  <meta name="description" content="Notre démarche ESG : gouvernance responsable, engagement social, respect de l’environnement, impact sociétal et achats responsables — alignée avec les attentes ACAPS et les meilleures pratiques."/>
+  <title>Riskalia — ESG & Développement Durable</title>
+  <meta name="description" content="Notre engagement ESG : gouvernance responsable, développement social, respect environnemental et impact sociétal positif pour un courtage durable au Maroc."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
-    /* ================== Design tokens ================== */
-    :root{
-      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f7fcfe; --cd:#243238;
-      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
-      --border:1px solid rgba(0,93,115,.18);
-      --fs-nav:0.95rem; --fs-body:1rem; --fs-kicker:0.8rem;
-      --fs-h1:clamp(2rem,3.2vw,3rem); --fs-h2:clamp(1.25rem,2.2vw,1.6rem); --fs-h3:1.05rem;
-      --fw-bold:700; --fw-semi:600;
-    }
+:root{
+  --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+  --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+  --border:1px solid rgba(0,93,115,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
+body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff}
+body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1180px;margin:auto;padding:0 18px}
+.kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:800;margin-bottom:6px}
+.muted{color:#5f7781}
+.btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:800;border:1px solid transparent;transition:.25s}
+.btn:hover{background:var(--c2);transform:translateY(-1px)}
+.btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+section{padding:30px 0}
 
-    /* ================== Base ================== */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{overflow-x:hidden}
-    body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff;font-size:var(--fs-body)}
-    body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
-    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
-    h1{font-size:var(--fs-h1)}
-    h2{font-size:var(--fs-h2); margin-bottom:6px}
-    h3{font-size:var(--fs-h3); margin:8px 0 4px}
-    body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{max-width:1180px;margin:auto;padding:0 18px}
-    .muted{color:#5f7781}
-    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
-    section{padding:20px 0}
+/* NAV */
+header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+/* ===== NAV LAYOUT ===== */
+header .nav-wrap{
+  display:grid;
+  grid-template-columns:auto 1fr auto; /* brand | nav+search | lang */
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+}
 
-    /* ================== Buttons ================== */
-    .btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
-    .btn:hover{background:var(--c2);transform:translateY(-1px)}
-    .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+header nav{ display:flex; align-items:center; gap:12px; }
+#menu{ display:flex; gap:.8rem; align-items:center; flex:0 1 auto; }
 
-    /* ================== Header / Nav (with dropdown option) ================== */
-    header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
-    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:var(--fw-bold)}
-    .brand img{height:48px;width:auto;border-radius:10px}
-    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:var(--fw-bold);font-size:var(--fs-nav)}
-    nav a{position:relative;padding:6px;line-height:1.2}
-    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
-    nav a:hover::after,nav a.active::after{width:100%}
-    .menu-toggle{display:none;font-size:2rem;cursor:pointer;line-height:1}
-    .lang-switch{display:flex;gap:6px}
-    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:var(--fw-bold);font-size:0.9rem}
-    .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+/* === Compact navbar search === */
+.nav-search{
+  position:relative;
+  flex:0 0 100px;
+  max-width:260px;
+  min-width:100px;
+  margin-left:1px;
+  z-index:1000;
+}
+body[dir="rtl"] .nav-search{ margin-left:0; margin-right:2px; }
 
-    /* Dropdown base (optional) */
-    #menu li.dropdown{position:relative}
-    #menu li.dropdown > a.has-caret{padding-right:18px}
-    body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
-    #menu li .caret{display:inline-block;transition:transform .2s}
-    #menu li .submenu{
-      display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;
-      border:1px solid #e6eef0;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.08);
-      list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
-    }
-    #menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
-    #menu li .submenu li a:hover{background:#eef6f8}
-    #menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
-    #menu li.open > .submenu{display:block}
-    #menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
-    body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+.nav-search input{
+  height:30px;
+  width:100%;
+  padding:0 38px 0 12px; /* room for buttons */
+  border:1px solid #cfe1e6;
+  border-radius:999px;
+  background:#f7fcfe;
+  color:#0b4e5b;
+  font-weight:700;
+  font-size:.92rem;
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+  box-shadow:inset 0 0 0 1px rgba(0,176,200,.03);
+}
+.nav-search input:focus{
+  border-color:#00b0c8;
+  box-shadow:0 0 0 3px rgba(0,176,200,.15);
+}
 
-    /* Mobile nav */
-    @media(max-width:900px){
-      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-      nav ul.show{right:0}
-      body[dir="rtl"] nav ul{right:auto;left:-100%}
-      body[dir="rtl"] nav ul.show{left:0}
-      .menu-toggle{display:block}
-      #menu li.dropdown{width:100%}
-      #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
-      #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
-      #menu li.dropdown.open > .submenu{display:block}
-      #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
-    }
+/* Buttons inside the pill */
+.nav-search .nav-go,
+.nav-search .nav-clear{
+  position:absolute; top:50%; transform:translateY(-50%);
+  height:24px; min-width:24px;
+  border:0; background:transparent; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:999px;
+  opacity:.75; transition:opacity .15s, background-color .15s;
+}
+.nav-search .nav-go:hover,
+.nav-search .nav-clear:hover{ opacity:1; background:rgba(0,176,200,.08); }
 
-    /* ================== Hero with wave ================== */
-    .hero{
-      min-height:28vh;
-      background:
-        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
-        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
-      display:flex;align-items:center;text-align:center;padding:20px 0 80px;
-      position:relative;overflow:hidden;color:#fff;
-    }
-    .hero h1{color:#fff}
-    .hero p{color:#fff;opacity:.98;max-width:920px;margin:6px auto}
-    .hero .method{margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#ecf9ff}
-    .hero-wave{
-      position:absolute; left:0; right:0; bottom:-1px; height:68px; pointer-events:none;
-      background:url('data:image/svg+xml;utf8,<svg width="1440" height="68" viewBox="0 0 1440 68" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,68 L0,68 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
-      opacity:1; animation: waveFloat 8s ease-in-out infinite;
-    }
-    @keyframes waveFloat{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(4px) } }
-    .section-wave{ height:22px; margin-top:-30px;
-      background:url('data:image/svg+xml;utf8,<svg width="1440" height="22" viewBox="0 0 1440 22" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C240,24 480,0 720,9 C960,18 1200,4 1440,9 L1440,22 L0,22 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
-    }
+.nav-search .nav-go{ right:6px; padding:0 6px; }
 
-    /* ================== Premium BG ================== */
-    .main-wrapper{
-      position:relative;z-index:0;isolation:isolate;
-      background:
-        radial-gradient(1100px 460px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
-        linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
-    }
-    .main-wrapper::before{
-      content:"";position:absolute;inset:0;
-      background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
-      opacity:.12;filter:saturate(105%) contrast(102%) blur(.3px);
-      mix-blend-mode:normal;pointer-events:none;z-index:0;
-    }
-    .main-wrapper::after{
-      content:"";position:absolute;left:0;right:0;top:0;height:48px;
-      background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
-      pointer-events:none;z-index:0;
-    }
-    .main-wrapper > *{position:relative;z-index:1}
+.nav-search .nav-clear{
+  right:34px; width:24px; font-size:16px; line-height:1; display:none;
+}
+.nav-search.has-value .nav-clear{ display:inline-flex; }
 
-    /* ================== Tabs ================== */
-    .tabs{ margin:10px auto 14px; display:grid;grid-template-columns:repeat(6,1fr); gap:10px;max-width:980px;padding:0 8px }
-    @media (max-width:1100px){ .tabs{grid-template-columns:repeat(4,1fr)} }
-    @media (max-width:750px){ .tabs{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:520px){ .tabs{grid-template-columns:repeat(2,1fr)} }
-    .tab{
-      padding:10px 12px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
-      font-weight:var(--fw-bold);font-size:0.95rem;color:#0b4e5b;text-align:center;cursor:pointer;
-      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
-      backdrop-filter:saturate(115%) blur(4px); box-shadow:0 3px 10px rgba(0,0,0,.04);
-      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-    }
-    .tab:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
-    .tab.active{
-      background:
-        linear-gradient(135deg, rgba(0,176,200,.18), rgba(0,92,115,.10)),
-        linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
-      border-color:rgba(0,92,115,.25);
-      box-shadow:0 8px 22px rgba(0,176,200,.18);
-    }
+body[dir="rtl"] .nav-search .nav-go{ right:auto; left:6px; }
+body[dir="rtl"] .nav-search .nav-clear{ right:auto; left:34px; }
+body[dir="rtl"] .nav-search input{ padding:0 12px 0 38px; }
 
-    /* ================== Cards / Panels ================== */
-    .tabpanel{display:none}
-    .tabpanel.active{display:block}
-    .card{
-      position:relative;border-radius:18px;overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
-      backdrop-filter:saturate(110%) blur(4px);
-      box-shadow:0 12px 26px rgba(0,0,0,.07);
-      border:1px solid rgba(0,93,115,.16);
-      padding:14px 18px;
-      transition:transform .22s ease, box-shadow .22s ease;
-      max-width:980px;margin:0 auto 16px;
-    }
-    .card::before{
-      content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
-      background:linear-gradient(180deg, var(--c3), var(--c2));opacity:.55;
-    }
-    .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
-    .card > h2{
-      display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
-      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:6px 10px;color:var(--c1);
-      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:8px;
-    }
-    .grid{ display:grid; gap:14px }
-    .grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
-    .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px }
-    @media (max-width:860px){ .grid-3,.grid-2{ grid-template-columns:1fr } }
-    .mini-card{
-      border:1px solid rgba(0,93,115,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86));
-      border-radius:14px; padding:12px;
-      box-shadow:0 6px 14px rgba(0,0,0,.05);
-    }
-    .callout{
-      border:1px dashed rgba(0,92,115,.28);
-      background:linear-gradient(180deg, rgba(0,176,200,.08), rgba(255,255,255,.92));
-      border-radius:14px; padding:12px; color:#085160;
-    }
+/* Suggestions panel — expand to content, stay on-screen */
+#nav-search-list{
+  position:absolute; left:0; top:calc(100% + 8px);
+  display:none;
+  background:#fff; border:1px solid #e6eef0; border-radius:12px;
+  box-shadow:0 16px 36px rgba(0,0,0,.10);
+  padding:6px;
+  list-style:none; margin:0;
 
-    /* Reveal */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
-    .reveal.active{opacity:1;transform:none}
-    @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+  white-space:nowrap;                 /* keep items in one line */
+  width:max-content;                  /* grow to longest option */
+  min-width:100%;                     /* but at least input width */
+  max-width:min(90vw, 800px);         /* keep it on-screen */
+  z-index:2000;
+}
+#nav-search-list[aria-hidden="false"]{ display:block; }
+#nav-search-list li[role="option"]{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px; cursor:pointer;
+  color:#0b4e5b; font-weight:700;
+  white-space:nowrap;
+}
+#nav-search-list li[role="option"][aria-selected="true"],
+#nav-search-list li[role="option"]:hover{ background:#eef6f8; }
+#nav-search-list .opt-kicker, #nav-search-list .opt-sub{ flex:0 0 auto; }
 
-    /* Footer */
-    footer{background:var(--c1);color:#fff;padding:36px 0;margin-top:0}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    footer h4{color:#a8ecf4;margin-bottom:8px}
+/* Mid screens */
+@media (max-width:1100px){
+  .nav-search{ flex-basis:220px; max-width:240px; }
+  .nav-search input{ height:30px; }
+}
+
+/* Mobile: full width row */
+@media (max-width:900px){
+  header .nav-wrap{
+    grid-template-columns:auto auto; /* brand | hamburger */
+    grid-template-rows:auto auto;    /* nav | search */
+  }
+  .nav-search{
+    order:4; grid-column:1 / -1; width:100%;
+    max-width:none; min-width:0; margin:8px 0 0 0;
+  }
+  .nav-search input{ height:34px; }
+}
+
+.brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+.brand img{height:48px;width:auto;border-radius:10px}
+nav ul{list-style:none;display:flex;gap:.8rem;font-weight:700}
+nav a{position:relative;padding:6px}
+nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+nav a:hover::after,nav a.active::after{width:100%}
+.menu-toggle{display:none;font-size:2rem;cursor:pointer}
+.lang-switch{display:flex;gap:6px}
+.lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+.lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+
+@media(max-width:900px){
+  nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+  nav ul.show{right:0}
+  body[dir="rtl"] nav ul{right:auto;left:-100%}
+  body[dir="rtl"] nav ul.show{left:0}
+  .menu-toggle{display:block}
+}
+
+/* Dropdown (Solutions) */
+#menu li.dropdown{position:relative}
+#menu li.dropdown > a.has-caret{padding-right:18px}
+body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
+#menu li .caret{display:inline-block;transition:transform .2s}
+#menu li .submenu{
+  display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;border:1px solid #e6eef0;border-radius:10px;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
+}
+#menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
+#menu li .submenu li a:hover{background:#eef6f8}
+#menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
+#menu li.open > .submenu{display:block}
+#menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
+body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+
+@media (max-width:900px){
+  #menu li.dropdown{width:100%}
+  #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
+  #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
+  #menu li.dropdown.open > .submenu{display:block}
+  #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
+}
+
+/* HERO */
+.hero{
+  min-height:38vh;
+  background:
+    linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+    url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+  display:flex;align-items:center;text-align:center;padding:20px 0 80px;
+  position:relative; overflow:hidden;
+}
+.hero h1{color:#fff;font-size:clamp(2rem,3.2vw,3rem)}
+.hero p{color:#fff;opacity:.98;max-width:920px;margin:8px auto 14px}
+.hero .actions{gap:8px;margin-top:4px}
+.hero::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:64px;
+  background:url('data:image/svg+xml;utf8,<svg width="1440" height="64" viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,64 L0,64 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+  pointer-events:none;
+}
+
+/* SMOOTH BACKGROUND (between Hero and Contact) */
+.main-wrapper{
+  position:relative; z-index:0; isolation:isolate;
+  background:
+    radial-gradient(1200px 500px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+    linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
+}
+.main-wrapper::before{
+  content:""; position:absolute; inset:0;
+  background:url('https://i.pinimg.com/originals/c3/37/73/c337735f6392960d4cf7028cd2ac9d23.gif') center/cover no-repeat;
+  opacity:.13; filter:saturate(105%) contrast(102%) blur(.3px);
+  mix-blend-mode:normal; pointer-events:none; z-index:0;
+}
+.main-wrapper::after{
+  content:""; position:absolute; left:0; right:0; top:0; height:88px;
+  background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
+  pointer-events:none; z-index:0;
+}
+.main-wrapper > *{ position:relative; z-index:1; }
+.end-fade{height:72px; position:relative; margin-top:8px}
+.end-fade::before{content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--cm) 100%)}
+
+/* Divider under hero */
+.section-wave{
+  height:44px; margin-top:-44px;
+  background:url('data:image/svg+xml;utf8,<svg width="1440" height="44" viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 C240,44 480,0 720,18 C960,36 1200,8 1440,18 L1440,44 L0,44 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+  position:relative;
+}
+.section-wave::after{content:""; position:absolute; left:0; right:0; top:100%; height:48px;
+  background:linear-gradient(to bottom, rgba(247,252,254,1) 0%, rgba(247,252,254,0) 100%); pointer-events:none}
+
+/* ESG Specific Styles */
+.esg-intro{
+  background:linear-gradient(135deg, rgba(0,176,200,.08), rgba(0,92,115,.04));
+  border-radius:18px;
+  padding:24px;
+  margin:24px 0;
+  border:1px solid rgba(0,95,115,.12);
+}
+
+.esg-intro h2{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.esg-intro .icon{
+  font-size:1.8em;
+}
+
+/* Grids & Cards */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:stretch}
+.card{
+  position:relative;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.96);
+  backdrop-filter:saturate(110%) blur(3px); box-shadow:0 12px 26px rgba(0,0,0,.07);
+  transition:transform .22s ease, box-shadow .22s ease;
+  border:var(--border);
+  display:flex; flex-direction:column; /* equal heights */
+}
+.card:hover{transform:translateY(-3px); box-shadow:0 18px 40px rgba(0,0,0,.10)}
+.card h3{margin:0 0 4px}
+.card-header{padding:12px 16px;border-bottom:1px solid rgba(0,0,0,.05);color:#053b46;font-weight:800;
+  background:linear-gradient(135deg, rgba(0,176,200,.12), rgba(0,92,115,.06))}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card-body p{color:#586e77;text-align:justify;margin:0}
+.card-list{padding:0 0 0 16px;margin-top:6px}
+.card-list li{color:#586e77;margin:5px 0}
+
+/* ESG Cards - special styling */
+.esg-card{
+  background:rgba(255,255,255,.98);
+  border-radius:16px;
+  padding:20px;
+  border:1px solid rgba(0,95,115,.15);
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+  transition:all .3s ease;
+}
+
+.esg-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+}
+
+.esg-card h3{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  color:var(--c1);
+}
+
+.esg-card .icon{
+  font-size:1.5em;
+}
+
+.esg-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.esg-list li{
+  position:relative;
+  padding-left:20px;
+  margin:8px 0;
+  color:#586e77;
+  line-height:1.5;
+}
+
+.esg-list li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--c3);
+  font-weight:800;
+}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease, transform .5s ease}
+.reveal.active{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+/* Footer */
+footer{background:var(--c1);color:#fff;padding:40px 0;margin-top:0}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+footer h4{color:#a8ecf4;margin-bottom:8px}
+
+/* RTL fixes */
+:root {
+  --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+  --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+  --border:1px solid rgba(0,93,115,.18);
+}
+
+ul.card-list {
+  list-style-position: inside;
+  padding-inline-start: 0;
+}
+body[dir="rtl"] ul.card-list {
+  text-align: right;
+  list-style-position: inside;
+}
+ul.card-list li {
+  padding-inline-start: 1ch;
+  margin-block: 5px;
+}
+
+/* RTL fix pour nav-search */
+body[dir="rtl"] .nav-search input {
+  text-align: right;
+  padding-right: 14px;
+  padding-left: 64px;
+}
+body[dir="rtl"] .nav-search .nav-go {
+  right: auto;
+  left: 6px;
+}
+body[dir="rtl"] .nav-search .nav-clear {
+  right: auto;
+  left: 34px;
+}
+body[dir="rtl"] #nav-search-list li[role="option"] {
+  direction: rtl;
+  justify-content: space-between;
+}
+
+/* Lang switch RTL fix */
+body[dir="rtl"] .lang-switch {
+  direction: ltr;
+}
   </style>
 </head>
 <body>
@@ -213,8 +391,6 @@
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-
-        <!-- Optional dropdown grouping like climate page -->
         <li class="dropdown">
           <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
             Solutions <span class="caret" aria-hidden="true">▾</span>
@@ -224,12 +400,25 @@
             <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
           </ul>
         </li>
-
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
         <li><a href="services.html" data-i18n="nav.services">Services de Conseil</a></li>
         <li><a href="esg.html" class="active" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="nav-search"
+           role="combobox"
+           aria-haspopup="listbox"
+           aria-owns="nav-search-list"
+           aria-expanded="false">
+        <input id="nav-search-input"
+               type="search"
+               autocomplete="off"
+               placeholder="🔎…"
+               aria-label="Recherche"
+               aria-controls="nav-search-list"
+               aria-autocomplete="list" />
+        <ul id="nav-search-list" role="listbox" tabindex="-1"></ul>
+      </div>
     </nav>
     <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
@@ -242,567 +431,751 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <h1 data-i18n="title">ESG chez Riskalia</h1>
-    <p data-i18n="subtitle">
-      Gouvernance responsable • Engagement social • Respect de l’environnement • Impact sociétal • Achats responsables.
+    <h1 data-i18n="hero.title">🌱 Notre engagement ESG</h1>
+    <p data-i18n="hero.subtitle">
+      Un cabinet de courtage responsable, transparent et engagé pour la société marocaine
     </p>
-    <p class="method" data-i18n="method">
-      Nous voulons être plus qu’un intermédiaire financier : un acteur responsable, transparent et utile à la société.
-    </p>
+    <div class="actions">
+      <a href="contact.html" class="btn" data-i18n="cta.contact">Nous contacter</a>
+      <a href="#governance" class="btn secondary" data-i18n="cta.discover">Découvrir nos actions</a>
+    </div>
   </div>
-  <div class="hero-wave" aria-hidden="true"></div>
 </section>
 <div class="section-wave" aria-hidden="true"></div>
 
-<!-- MAIN -->
+<!-- SMOOTH IMAGE-BACKED AREA -->
 <div class="main-wrapper">
-  <section class="reveal">
-    <!-- Tabs -->
-    <div class="tabs" role="tablist" aria-label="Sections ESG" data-i18n-attr="aria-label:aria.tabs">
-      <button class="tab active" role="tab" id="tab-intro"      aria-selected="true"  aria-controls="intro"      data-tab="intro"      data-i18n="sec.intro.t">Engagement</button>
-      <button class="tab"         role="tab" id="tab-gov"        aria-selected="false" aria-controls="gov"        data-tab="gov"        data-i18n="sec.gov.t">Gouvernance</button>
-      <button class="tab"         role="tab" id="tab-social"     aria-selected="false" aria-controls="social"     data-tab="social"     data-i18n="sec.social.t">Engagement social</button>
-      <button class="tab"         role="tab" id="tab-env"        aria-selected="false" aria-controls="env"        data-tab="env"        data-i18n="sec.env.t">Environnement</button>
-      <button class="tab"         role="tab" id="tab-societal"   aria-selected="false" aria-controls="societal"   data-tab="societal"   data-i18n="sec.societal.t">Impact sociétal</button>
-      <button class="tab"         role="tab" id="tab-procure"    aria-selected="false" aria-controls="procure"    data-tab="procure"    data-i18n="sec.procure.t">Achats responsables</button>
-    </div>
+  <div class="main-bloc">
 
-    <!-- Intro -->
-    <article id="intro" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-intro">
-      <h2 data-i18n="sec.intro.t">Notre engagement</h2>
-      <p class="muted" data-i18n="sec.intro.lead"></p>
-      <div class="callout" style="margin-top:8px">
-        <p class="muted" data-i18n="sec.intro.p"></p>
-      </div>
-      <div class="grid-3" style="margin-top:10px">
-        <div class="mini-card">
-          <h3 data-i18n="sec.intro.badges.0.t"></h3>
-          <p class="muted" data-i18n="sec.intro.badges.0.p"></p>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.intro.badges.1.t"></h3>
-          <p class="muted" data-i18n="sec.intro.badges.1.p"></p>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.intro.badges.2.t"></h3>
-          <p class="muted" data-i18n="sec.intro.badges.2.p"></p>
+    <!-- Introduction ESG -->
+    <section class="reveal">
+      <div class="container">
+        <div class="esg-intro">
+          <h2>
+            <span class="icon">🌱</span>
+            <span data-i18n="intro.title">Notre vision ESG</span>
+          </h2>
+          <p data-i18n="intro.content">
+            Chez Riskalia, nous croyons qu'un cabinet de courtage doit être plus qu'un intermédiaire financier : 
+            il doit être un acteur responsable, transparent et engagé pour la société. Notre démarche ESG 
+            (Environnement, Social, Gouvernance) est conçue pour refléter nos valeurs, répondre aux attentes 
+            de nos clients et partenaires, et contribuer au développement durable du Maroc.
+          </p>
         </div>
       </div>
-    </article>
+    </section>
 
     <!-- Gouvernance -->
-    <article id="gov" class="card tabpanel" role="tabpanel" aria-labelledby="tab-gov">
-      <h2 data-i18n="sec.gov.t">Gouvernance responsable</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3 data-i18n="sec.gov.cards.0.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.gov.cards.0.li.0"></li>
-            <li data-i18n="sec.gov.cards.0.li.1"></li>
-            <li data-i18n="sec.gov.cards.0.li.2"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.gov.cards.1.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.gov.cards.1.li.0"></li>
-            <li data-i18n="sec.gov.cards.1.li.1"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.gov.cards.2.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.gov.cards.2.li.0"></li>
-            <li data-i18n="sec.gov.cards.2.li.1"></li>
-          </ul>
+    <section class="reveal" id="governance">
+      <div class="container">
+        <div class="kicker" data-i18n="governance.kicker">Gouvernance</div>
+        <h2 data-i18n="governance.title">🔹 Gouvernance responsable</h2>
+        
+        <div class="grid-3">
+          <div class="esg-card">
+            <h3>
+              <span class="icon">⚖️</span>
+              <span data-i18n="governance.integrity.title">Intégrité et transparence</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="governance.integrity.item1">Relations transparentes avec clients, partenaires et régulateurs (ACAPS)</li>
+              <li data-i18n="governance.integrity.item2">Respect strict des règles du marché</li>
+              <li data-i18n="governance.integrity.item3">Communication claire et honnête sur nos pratiques</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🎯</span>
+              <span data-i18n="governance.ethics.title">Déontologie et indépendance</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="governance.ethics.item1">Gestion rigoureuse des conflits d'intérêt</li>
+              <li data-i18n="governance.ethics.item2">Indépendance dans nos conseils et recommandations</li>
+              <li data-i18n="governance.ethics.item3">Code de conduite strict appliqué par tous</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🏛️</span>
+              <span data-i18n="governance.structure.title">Gouvernance claire</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="governance.structure.item1">Décisions structurées et documentées</li>
+              <li data-i18n="governance.structure.item2">Processus proportionnés à notre taille</li>
+              <li data-i18n="governance.structure.item3">Alignement avec les meilleures pratiques du secteur</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </article>
+    </section>
 
     <!-- Social -->
-    <article id="social" class="card tabpanel" role="tabpanel" aria-labelledby="tab-social">
-      <h2 data-i18n="sec.social.t">Engagement social</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3 data-i18n="sec.social.cards.0.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.social.cards.0.li.0"></li>
-            <li data-i18n="sec.social.cards.0.li.1"></li>
-            <li data-i18n="sec.social.cards.0.li.2"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.social.cards.1.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.social.cards.1.li.0"></li>
-            <li data-i18n="sec.social.cards.1.li.1"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.social.cards.2.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.social.cards.2.li.0"></li>
-            <li data-i18n="sec.social.cards.2.li.1"></li>
-          </ul>
+    <section class="reveal" id="social">
+      <div class="container">
+        <div class="kicker" data-i18n="social.kicker">Social</div>
+        <h2 data-i18n="social.title">🔹 Engagement social</h2>
+        
+        <div class="grid-2">
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🤝</span>
+              <span data-i18n="social.diversity.title">Égalité des chances et diversité</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="social.diversity.item1">Recrutements basés sur les talents sans discrimination</li>
+              <li data-i18n="social.diversity.item2">Égalité de genre, d'origine et de parcours</li>
+              <li data-i18n="social.diversity.item3">Promotion de la diversité à tous les niveaux</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">📚</span>
+              <span data-i18n="social.development.title">Développement des compétences</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="social.development.item1">Plan de formation continue pour chaque collaborateur</li>
+              <li data-i18n="social.development.item2">Formation technique et développement personnel</li>
+              <li data-i18n="social.development.item3">Accompagnement dans l'évolution de carrière</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">💼</span>
+              <span data-i18n="social.wellbeing.title">Bien-être au travail</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="social.wellbeing.item1">Environnement respectueux et collaboratif</li>
+              <li data-i18n="social.wellbeing.item2">Équilibre vie professionnelle - vie personnelle</li>
+              <li data-i18n="social.wellbeing.item3">Conditions de travail favorisant l'épanouissement</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🌍</span>
+              <span data-i18n="social.impact.title">Impact sociétal</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="social.impact.item1">Assurance inclusive pour PME et agriculteurs</li>
+              <li data-i18n="social.impact.item2">Solutions innovantes face aux aléas climatiques</li>
+              <li data-i18n="social.impact.item3">Partenariats associatifs et soutien à l'éducation</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </article>
+    </section>
 
     <!-- Environnement -->
-    <article id="env" class="card tabpanel" role="tabpanel" aria-labelledby="tab-env">
-      <h2 data-i18n="sec.env.t">Respect de l’environnement</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3 data-i18n="sec.env.cards.0.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.env.cards.0.li.0"></li>
-            <li data-i18n="sec.env.cards.0.li.1"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.env.cards.1.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.env.cards.1.li.0"></li>
-            <li data-i18n="sec.env.cards.1.li.1"></li>
-            <li data-i18n="sec.env.cards.1.li.2"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.env.cards.2.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.env.cards.2.li.0"></li>
-            <li data-i18n="sec.env.cards.2.li.1"></li>
-          </ul>
-        </div>
-      </div>
-    </article>
+    <section class="reveal" id="environment">
+      <div class="container">
+        <div class="kicker" data-i18n="environment.kicker">Environnement</div>
+        <h2 data-i18n="environment.title">🔹 Respect de l'environnement</h2>
+        
+        <div class="grid-3">
+          <div class="esg-card">
+            <h3>
+              <span class="icon">💡</span>
+              <span data-i18n="environment.energy.title">Sobriété énergétique et numérique</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="environment.energy.item1">Réduction des consommations dans nos bureaux</li>
+              <li data-i18n="environment.energy.item2">Outils digitaux responsables</li>
+              <li data-i18n="environment.energy.item3">Optimisation de l'éclairage et climatisation</li>
+            </ul>
+          </div>
 
-    <!-- Impact sociétal -->
-    <article id="societal" class="card tabpanel" role="tabpanel" aria-labelledby="tab-societal">
-      <h2 data-i18n="sec.societal.t">Impact sociétal</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3 data-i18n="sec.societal.cards.0.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.societal.cards.0.li.0"></li>
-            <li data-i18n="sec.societal.cards.0.li.1"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.societal.cards.1.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.societal.cards.1.li.0"></li>
-            <li data-i18n="sec.societal.cards.1.li.1"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.societal.cards.2.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.societal.cards.2.li.0"></li>
-            <li data-i18n="sec.societal.cards.2.li.1"></li>
-          </ul>
-        </div>
-      </div>
-    </article>
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🚲</span>
+              <span data-i18n="environment.mobility.title">Mobilité raisonnée</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="environment.mobility.item1">Limitation des déplacements inutiles</li>
+              <li data-i18n="environment.mobility.item2">Recours privilégié à la visioconférence</li>
+              <li data-i18n="environment.mobility.item3">Encouragement de la mobilité douce</li>
+            </ul>
+          </div>
 
-    <!-- Achats responsables -->
-    <article id="procure" class="card tabpanel" role="tabpanel" aria-labelledby="tab-procure">
-      <h2 data-i18n="sec.procure.t">Achats responsables</h2>
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3 data-i18n="sec.procure.cards.0.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.procure.cards.0.li.0"></li>
-            <li data-i18n="sec.procure.cards.0.li.1"></li>
-            <li data-i18n="sec.procure.cards.0.li.2"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.procure.cards.1.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.procure.cards.1.li.0"></li>
-            <li data-i18n="sec.procure.cards.1.li.1"></li>
-            <li data-i18n="sec.procure.cards.1.li.2"></li>
-          </ul>
-        </div>
-        <div class="mini-card">
-          <h3 data-i18n="sec.procure.cards.2.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.procure.cards.2.li.0"></li>
-          </ul>
+          <div class="esg-card">
+            <h3>
+              <span class="icon">♻️</span>
+              <span data-i18n="environment.waste.title">Gestes simples, impacts concrets</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="environment.waste.item1">Optimisation de l'usage du papier</li>
+              <li data-i18n="environment.waste.item2">Réduction et tri des déchets</li>
+              <li data-i18n="environment.waste.item3">Économies d'eau et d'électricité</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="callout" style="margin-top:10px">
-        <p class="muted" data-i18n="sec.procure.note"></p>
-      </div>
-    </article>
+    </section>
 
-    <!-- CTA -->
-    <article class="card" style="text-align:center">
-      <h2 data-i18n="cta.t">Aller plus loin</h2>
-      <p class="muted" data-i18n="cta.p"></p>
-      <a class="btn" href="contact.html" data-i18n="cta.btn">Nous contacter</a>
-    </article>
-  </section>
+    <!-- Achats Responsables -->
+    <section class="reveal" id="procurement">
+      <div class="container">
+        <div class="kicker" data-i18n="procurement.kicker">Achats Responsables</div>
+        <h2 data-i18n="procurement.title">🔹 Achats responsables</h2>
+        
+        <div class="grid-2">
+          <div class="esg-card">
+            <h3>
+              <span class="icon">🇲🇦</span>
+              <span data-i18n="procurement.local.title">Priorité au local</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="procurement.local.item1">Privilégier les fournisseurs locaux</li>
+              <li data-i18n="procurement.local.item2">Soutien aux PME marocaines</li>
+              <li data-i18n="procurement.local.item3">Contribution au développement économique régional</li>
+            </ul>
+          </div>
+
+          <div class="esg-card">
+            <h3>
+              <span class="icon">✅</span>
+              <span data-i18n="procurement.ethics.title">Critères éthiques</span>
+            </h3>
+            <ul class="esg-list">
+              <li data-i18n="procurement.ethics.item1">Intégration de critères éthiques dans nos choix</li>
+              <li data-i18n="procurement.ethics.item2">Soutien à l'économie sociale et solidaire</li>
+              <li data-i18n="procurement.ethics.item3">Évaluation de l'impact social de nos prestataires</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact et Vision -->
+    <section class="reveal">
+      <div class="container">
+        <div class="esg-intro">
+          <h2>
+            <span class="icon">🚀</span>
+            <span data-i18n="vision.title">Notre ambition</span>
+          </h2>
+          <p data-i18n="vision.content">
+            Avec cette démarche, Riskalia se positionne comme un courtier engagé, ancré dans son territoire 
+            et tourné vers l'avenir. Notre ambition est simple : accompagner nos clients tout en créant un 
+            impact positif et durable pour nos collaborateurs, nos partenaires et la société.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="end-fade" aria-hidden="true"></div>
 </div>
+
+<!-- CONTACT -->
+<section class="reveal" style="background:var(--cm);background:linear-gradient(200deg, var(--c1), var(--c2));color:white">
+  <div class="container" style="text-align:center">
+    <h2 data-i18n="contact.title" style="color:white">Rejoignez notre démarche ESG</h2>
+    <p class="muted" data-i18n="contact.subtitle" style="color:white">
+      Découvrez comment nous pouvons collaborer pour un avenir plus durable
+    </p>
+    <a class="btn" href="contact.html" data-i18n="cta.contact" style="color:white">Nous contacter</a>
+    <a class="btn secondary" href="contact.html" style="margin-left:8px" data-i18n="cta.partnership">Partenariat ESG</a>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
-      <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-        <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-      </p>
+      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+         <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
-    <div>
+    <div class="footer-contact">
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p><span data-i18n="footer.email_label">Email</span> :
-        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <div><strong data-i18n="footer.contactBlock.tel">Tél1:</strong> <span data-i18n="footer.contactBlock.telNum1">+212-666-756991</span></div>
+      <div><strong data-i18n="footer.contactBlock.tel2">Tél2:</strong> <span data-i18n="footer.contactBlock.telNum2">+212-675-208909</span></div>
+      <div><strong data-i18n="footer.contactBlock.nabil">Nabil:</strong> <a href="mailto:nabil.cherkaoui@riskalia.ma"> nabil.cherkaoui@riskalia.ma</a></div>
+      <div><strong data-i18n="footer.contactBlock.infos">Infos:</strong> <a href="mailto:contact@riskalia.ma"> contact@riskalia.ma</a></div>
     </div>
   </div>
 </footer>
 
-<!-- ===== SEO FAQPage (short) ===== -->
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Quelle est l’ambition ESG de Riskalia ?","acceptedAnswer":{"@type":"Answer","text":"Accompagner nos clients tout en créant un impact positif et durable pour nos équipes, nos partenaires et la société."}},
-{"@type":"Question","name":"Comment intégrez-vous l’environnement ?","acceptedAnswer":{"@type":"Answer","text":"Sobriété énergétique & numérique, mobilité raisonnée, gestes simples à impact concret."}}
-]}
-</script>
-
-<!-- ================== SCRIPTS: i18n & UI ================== -->
+<!-- ===== SCRIPTS: i18n & UI ===== -->
 <script>
-/* ================== i18n (FR/EN/AR) ================== */
-const I18N={
-  fr:{
-    aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue",tabs:"Sections ESG"},
-    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
-    title:"ESG chez Riskalia",
-    subtitle:"Gouvernance responsable • Engagement social • Respect de l’environnement • Impact sociétal • Achats responsables.",
-    method:"Nous voulons être plus qu’un intermédiaire financier : un acteur responsable, transparent et utile à la société.",
-    sec:{
-      intro:{
-        t:"Notre engagement",
-        lead:"🌱 Notre engagement ESG",
-        p:"Chez Riskalia, nous croyons qu’un cabinet de courtage doit être plus qu’un intermédiaire financier : il doit être un acteur responsable, transparent et engagé pour la société. Notre démarche ESG est conçue pour refléter nos valeurs, répondre aux attentes de nos clients et partenaires, et contribuer au développement durable du Maroc.",
-        badges:[
-          {t:"Transparence",p:"Décisions claires et traçables, alignées avec les meilleures pratiques."},
-          {t:"Éthique",p:"Déontologie, indépendance et gestion des conflits d’intérêt."},
-          {t:"Impact",p:"Actions concrètes à l’échelle de notre cabinet et de notre écosystème."}
-        ]
+/* FULL I18N — FR / EN / AR (global object) */
+window.I18N = {
+  fr: {
+    meta: {
+      title: "Riskalia — ESG & Développement Durable",
+      desc: "Notre engagement ESG : gouvernance responsable, développement social, respect environnemental et impact sociétal positif pour un courtage durable au Maroc."
+    },
+    ui: { search: "🔎…" },
+    aria: {
+      nav: "Navigation principale",
+      submenu_solutions: "Sous-menu Solutions",
+      langswitch: "Sélecteur de langue"
+    },
+    nav: {
+      home: "Accueil",
+      solutions: "Solutions",
+      ins: "Assurance",
+      re: "Réassurance",
+      climate: "Risques Climatiques",
+      services: "Services de Conseil",
+      esg: "ESG",
+      contact: "Contact"
+    },
+    hero: {
+      title: "🌱 Notre engagement ESG",
+      subtitle: "Un cabinet de courtage responsable, transparent et engagé pour la société marocaine"
+    },
+    cta: {
+      contact: "Nous contacter",
+      discover: "Découvrir nos actions",
+      partnership: "Partenariat ESG"
+    },
+    intro: {
+      title: "Notre vision ESG",
+      content: "Chez Riskalia, nous croyons qu'un cabinet de courtage doit être plus qu'un intermédiaire financier : il doit être un acteur responsable, transparent et engagé pour la société. Notre démarche ESG (Environnement, Social, Gouvernance) est conçue pour refléter nos valeurs, répondre aux attentes de nos clients et partenaires, et contribuer au développement durable du Maroc."
+    },
+    governance: {
+      kicker: "Gouvernance",
+      title: "🔹 Gouvernance responsable",
+      integrity: {
+        title: "Intégrité et transparence",
+        item1: "Relations transparentes avec clients, partenaires et régulateurs (ACAPS)",
+        item2: "Respect strict des règles du marché",
+        item3: "Communication claire et honnête sur nos pratiques"
       },
-      gov:{
-        t:"Gouvernance responsable",
-        cards:[
-          {t:"Intégrité & transparence",li:[
-            "Transparence vis-à-vis des clients, partenaires et régulateurs (ACAPS).",
-            "Reddition claire des honoraires et modalités de rémunération.",
-            "Traçabilité des décisions proportionnée à notre taille."
-          ]},
-          {t:"Déontologie & indépendance",li:[
-            "Gestion stricte des conflits d’intérêt et règles de marché respectées.",
-            "Cadeaux/hospitalités encadrés, registre et contrôles."
-          ]},
-          {t:"Gouvernance claire",li:[
-            "Rôles et responsabilités définis, comités ad hoc si besoin.",
-            "Revue périodique des engagements ESG et des incidents."
-          ]}
-        ]
+      ethics: {
+        title: "Déontologie et indépendance",
+        item1: "Gestion rigoureuse des conflits d'intérêt",
+        item2: "Indépendance dans nos conseils et recommandations",
+        item3: "Code de conduite strict appliqué par tous"
       },
-      social:{
-        t:"Engagement social",
-        cards:[
-          {t:"Égalité & diversité",li:[
-            "Recrutements ouverts aux talents sans distinction de genre, origine ou parcours.",
-            "Vivier de candidatures diversifié."
-          ]},
-          {t:"Développement des compétences",li:[
-            "Plan de formation continue (technique et humaine) pour chaque collaborateur.",
-            "Entretiens réguliers et parcours d’évolution."
-          ]},
-          {t:"Bien-être au travail",li:[
-            "Environnement respectueux et collaboratif.",
-            "Équilibre vie pro/vie perso (flex, télétravail quand possible)."
-          ]}
-        ]
-      },
-      env:{
-        t:"Respect de l’environnement",
-        cards:[
-          {t:"Sobriété énergétique & numérique",li:[
-            "Réduction des consommations au bureau (éclairage, climatisation).",
-            "Outils digitaux responsables et durée de vie des équipements allongée."
-          ]},
-          {t:"Mobilité raisonnée",li:[
-            "Limitation des déplacements non essentiels, visio par défaut.",
-            "Encouragement de la mobilité douce et du rail."
-          ]},
-          {t:"Gestes simples, impacts concrets",li:[
-            "Moins de papier, tri des déchets, économies d’eau et d’électricité."
-          ]}
-        ]
-      },
-      societal:{
-        t:"Impact sociétal",
-        cards:[
-          {t:"Assurance inclusive",li:[
-            "Faciliter l’accès à l’assurance pour les PME, agriculteurs et collectivités."
-          ]},
-          {t:"Résilience climatique",li:[
-            "Solutions innovantes (paramétriques, mutualisées) face aux aléas climatiques."
-          ]},
-          {t:"Contribution locale",li:[
-            "Partenariats avec associations, soutien à l’éducation et mentorat des jeunes talents."
-          ]}
-        ]
-      },
-      procure:{
-        t:"Achats responsables",
-        cards:[
-          {t:"Priorité locale",li:[
-            "Fournisseurs locaux et PME marocaines privilégiés."
-          ]},
-          {t:"Critères éthiques",li:[
-            "Intégration de critères sociaux, éthiques et environnementaux dans la sélection.",
-            "Confidentialité et conformité exigées."
-          ]},
-          {t:"Économie sociale & solidaire",li:[
-            "Soutien aux acteurs de l’ESS dès que possible."
-          ]}
-        ],
-        note:"👉 Notre ambition est simple : accompagner nos clients tout en créant un impact positif et durable pour nos collaborateurs, nos partenaires et la société."
+      structure: {
+        title: "Gouvernance claire",
+        item1: "Décisions structurées et documentées",
+        item2: "Processus proportionnés à notre taille",
+        item3: "Alignement avec les meilleures pratiques du secteur"
       }
     },
-    cta:{t:"Aller plus loin",p:"Demandez nos politiques détaillées (PDF) et notre trame d’indicateurs/KPIs.",btn:"Nous contacter"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"}
+    social: {
+      kicker: "Social",
+      title: "🔹 Engagement social",
+      diversity: {
+        title: "Égalité des chances et diversité",
+        item1: "Recrutements basés sur les talents sans discrimination",
+        item2: "Égalité de genre, d'origine et de parcours",
+        item3: "Promotion de la diversité à tous les niveaux"
+      },
+      development: {
+        title: "Développement des compétences",
+        item1: "Plan de formation continue pour chaque collaborateur",
+        item2: "Formation technique et développement personnel",
+        item3: "Accompagnement dans l'évolution de carrière"
+      },
+      wellbeing: {
+        title: "Bien-être au travail",
+        item1: "Environnement respectueux et collaboratif",
+        item2: "Équilibre vie professionnelle - vie personnelle",
+        item3: "Conditions de travail favorisant l'épanouissement"
+      },
+      impact: {
+        title: "Impact sociétal",
+        item1: "Assurance inclusive pour PME et agriculteurs",
+        item2: "Solutions innovantes face aux aléas climatiques",
+        item3: "Partenariats associatifs et soutien à l'éducation"
+      }
+    },
+    environment: {
+      kicker: "Environnement",
+      title: "🔹 Respect de l'environnement",
+      energy: {
+        title: "Sobriété énergétique et numérique",
+        item1: "Réduction des consommations dans nos bureaux",
+        item2: "Outils digitaux responsables",
+        item3: "Optimisation de l'éclairage et climatisation"
+      },
+      mobility: {
+        title: "Mobilité raisonnée",
+        item1: "Limitation des déplacements inutiles",
+        item2: "Recours privilégié à la visioconférence",
+        item3: "Encouragement de la mobilité douce"
+      },
+      waste: {
+        title: "Gestes simples, impacts concrets",
+        item1: "Optimisation de l'usage du papier",
+        item2: "Réduction et tri des déchets",
+        item3: "Économies d'eau et d'électricité"
+      }
+    },
+    procurement: {
+      kicker: "Achats Responsables",
+      title: "🔹 Achats responsables",
+      local: {
+        title: "Priorité au local",
+        item1: "Privilégier les fournisseurs locaux",
+        item2: "Soutien aux PME marocaines",
+        item3: "Contribution au développement économique régional"
+      },
+      ethics: {
+        title: "Critères éthiques",
+        item1: "Intégration de critères éthiques dans nos choix",
+        item2: "Soutien à l'économie sociale et solidaire",
+        item3: "Évaluation de l'impact social de nos prestataires"
+      }
+    },
+    vision: {
+      title: "Notre ambition",
+      content: "Avec cette démarche, Riskalia se positionne comme un courtier engagé, ancré dans son territoire et tourné vers l'avenir. Notre ambition est simple : accompagner nos clients tout en créant un impact positif et durable pour nos collaborateurs, nos partenaires et la société."
+    },
+    contact: {
+      title: "Rejoignez notre démarche ESG",
+      subtitle: "Découvrez comment nous pouvons collaborer pour un avenir plus durable"
+    },
+    footer: {
+      desc: "Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",
+      links: "Liens",
+      contact: "Contact",
+      contactBlock: {
+        tel: "Tél 1 :",
+        telNum1: "+212-666-756991",
+        tel2: "Tél 2 :",
+        telNum2: "+212-675-208909",
+        nabil: "E-mail de Nabil :",
+        infos: "Informations générales :"
+      }
+    }
+  },
+  
+  en: {
+    meta: {
+      title: "Riskalia — ESG & Sustainable Development",
+      desc: "Our ESG commitment: responsible governance, social development, environmental respect and positive societal impact for sustainable brokerage in Morocco."
+    },
+    ui: { search: "🔎…" },
+    aria: {
+      nav: "Main navigation",
+      submenu_solutions: "Solutions submenu",
+      langswitch: "Language switcher"
+    },
+    nav: {
+      home: "Home",
+      solutions: "Solutions",
+      ins: "Insurance",
+      re: "Reinsurance",
+      climate: "Climate Risks",
+      services: "Advisory Services",
+      esg: "ESG",
+      contact: "Contact"
+    },
+    hero: {
+      title: "🌱 Our ESG Commitment",
+      subtitle: "A responsible, transparent brokerage firm committed to Moroccan society"
+    },
+    cta: {
+      contact: "Contact us",
+      discover: "Discover our actions",
+      partnership: "ESG Partnership"
+    },
+    intro: {
+      title: "Our ESG Vision",
+      content: "At Riskalia, we believe that a brokerage firm must be more than a financial intermediary: it must be a responsible, transparent actor committed to society. Our ESG (Environment, Social, Governance) approach is designed to reflect our values, meet the expectations of our clients and partners, and contribute to Morocco's sustainable development."
+    },
+    governance: {
+      kicker: "Governance",
+      title: "🔹 Responsible governance",
+      integrity: {
+        title: "Integrity and transparency",
+        item1: "Transparent relationships with clients, partners and regulators (ACAPS)",
+        item2: "Strict respect for market rules",
+        item3: "Clear and honest communication about our practices"
+      },
+      ethics: {
+        title: "Ethics and independence",
+        item1: "Rigorous management of conflicts of interest",
+        item2: "Independence in our advice and recommendations",
+        item3: "Strict code of conduct applied by all"
+      },
+      structure: {
+        title: "Clear governance",
+        item1: "Structured and documented decisions",
+        item2: "Processes proportionate to our size",
+        item3: "Alignment with sector best practices"
+      }
+    },
+    social: {
+      kicker: "Social",
+      title: "🔹 Social commitment",
+      diversity: {
+        title: "Equal opportunities and diversity",
+        item1: "Talent-based recruitment without discrimination",
+        item2: "Gender, origin and background equality",
+        item3: "Promoting diversity at all levels"
+      },
+      development: {
+        title: "Skills development",
+        item1: "Continuous training plan for each employee",
+        item2: "Technical training and personal development",
+        item3: "Support in career progression"
+      },
+      wellbeing: {
+        title: "Workplace well-being",
+        item1: "Respectful and collaborative environment",
+        item2: "Work-life balance",
+        item3: "Working conditions that promote fulfillment"
+      },
+      impact: {
+        title: "Societal impact",
+        item1: "Inclusive insurance for SMEs and farmers",
+        item2: "Innovative solutions for climate risks",
+        item3: "Associative partnerships and education support"
+      }
+    },
+    environment: {
+      kicker: "Environment",
+      title: "🔹 Environmental respect",
+      energy: {
+        title: "Energy and digital sobriety",
+        item1: "Reducing consumption in our offices",
+        item2: "Responsible digital tools",
+        item3: "Optimizing lighting and air conditioning"
+      },
+      mobility: {
+        title: "Reasoned mobility",
+        item1: "Limiting unnecessary travel",
+        item2: "Privileged use of videoconferencing",
+        item3: "Encouraging soft mobility"
+      },
+      waste: {
+        title: "Simple gestures, concrete impacts",
+        item1: "Optimizing paper usage",
+        item2: "Waste reduction and sorting",
+        item3: "Water and electricity savings"
+      }
+    },
+    procurement: {
+      kicker: "Responsible Purchasing",
+      title: "🔹 Responsible purchasing",
+      local: {
+        title: "Local priority",
+        item1: "Favoring local suppliers",
+        item2: "Supporting Moroccan SMEs",
+        item3: "Contributing to regional economic development"
+      },
+      ethics: {
+        title: "Ethical criteria",
+        item1: "Integrating ethical criteria in our choices",
+        item2: "Supporting social and solidarity economy",
+        item3: "Evaluating the social impact of our providers"
+      }
+    },
+    vision: {
+      title: "Our ambition",
+      content: "With this approach, Riskalia positions itself as a committed broker, rooted in its territory and oriented towards the future. Our ambition is simple: to support our clients while creating a positive and sustainable impact for our employees, partners and society."
+    },
+    contact: {
+      title: "Join our ESG approach",
+      subtitle: "Discover how we can collaborate for a more sustainable future"
+    },
+    footer: {
+      desc: "Licensed insurance & reinsurance brokerage (ACAPS)<br/>Head office: 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",
+      links: "Links",
+      contact: "Contact",
+      contactBlock: {
+        tel: "Phone 1:",
+        telNum1: "+212-666-756991",
+        tel2: "Phone 2:",
+        telNum2: "+212-675-208909",
+        nabil: "Nabil's email:",
+        infos: "General information:"
+      }
+    }
   },
 
-  en:{
-    aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher",tabs:"ESG sections"},
-    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
-    title:"ESG at Riskalia",
-    subtitle:"Responsible governance • Social commitment • Environmental stewardship • Societal impact • Responsible procurement.",
-    method:"We aim to be more than a financial intermediary: a responsible, transparent, and useful actor for society.",
-    sec:{
-      intro:{
-        t:"Our commitment",
-        lead:"🌱 Our ESG commitment",
-        p:"At Riskalia, a brokerage must be more than a financial go-between: it must be responsible, transparent and engaged. Our ESG approach reflects our values, meets client and partner expectations, and contributes to Morocco’s sustainable development.",
-        badges:[
-          {t:"Transparency",p:"Clear, traceable decisions aligned to best practices."},
-          {t:"Ethics",p:"Professional conduct, independence and conflict-of-interest controls."},
-          {t:"Impact",p:"Concrete actions within our firm and ecosystem."}
-        ]
+  ar: {
+    meta: {
+      title: "ريسكاليا — الاستدامة والتنمية المستدامة",
+      desc: "التزامنا بالاستدامة: حوكمة مسؤولة، تنمية اجتماعية، احترام البيئة وتأثير إيجابي على المجتمع للوساطة المستدامة في المغرب."
+    },
+    ui: { search: "…🔎" },
+    aria: {
+      nav: "التنقل الرئيسي",
+      submenu_solutions: "القائمة الفرعية للحلول",
+      langswitch: "مبدّل اللغة"
+    },
+    nav: {
+      home: "الرئيسية",
+      solutions: "الحلول",
+      ins: "تأمين",
+      re: "إعادة التأمين",
+      climate: "مخاطر المناخ",
+      services: "الخدمات الاستشارية",
+      esg: "الاستدامة",
+      contact: "تواصل"
+    },
+    hero: {
+      title: "🌱 التزامنا بالاستدامة",
+      subtitle: "مكتب وساطة مسؤول وشفاف وملتزم بالمجتمع المغربي"
+    },
+    cta: {
+      contact: "تواصل معنا",
+      discover: "اكتشف أعمالنا",
+      partnership: "شراكة الاستدامة"
+    },
+    intro: {
+      title: "رؤيتنا للاستدامة",
+      content: "في ريسكاليا، نؤمن أن مكتب الوساطة يجب أن يكون أكثر من وسيط مالي: يجب أن يكون فاعلاً مسؤولاً وشفافاً وملتزماً بالمجتمع. نهجنا في الاستدامة (البيئة، الاجتماع، الحوكمة) مصمم لعكس قيمنا وتلبية توقعات عملائنا وشركائنا والمساهمة في التنمية المستدامة للمغرب."
+    },
+    governance: {
+      kicker: "الحوكمة",
+      title: "🔹 حوكمة مسؤولة",
+      integrity: {
+        title: "النزاهة والشفافية",
+        item1: "علاقات شفافة مع العملاء والشركاء والمنظمين (ACAPS)",
+        item2: "احترام صارم لقواعد السوق",
+        item3: "تواصل واضح وصادق حول ممارساتنا"
       },
-      gov:{
-        t:"Responsible governance",
-        cards:[
-          {t:"Integrity & transparency",li:[
-            "Transparency with clients, partners and the regulator (ACAPS).",
-            "Clear disclosure of fees and remuneration mechanisms.",
-            "Decision traceability proportional to our size."
-          ]},
-          {t:"Ethics & independence",li:[
-            "Strict conflict-of-interest management; market rules enforced.",
-            "Gifts/hospitality controlled with registers and checks."
-          ]},
-          {t:"Clear governance",li:[
-            "Defined roles and responsibilities; ad-hoc committees when needed.",
-            "Periodic review of ESG commitments and incidents."
-          ]}
-        ]
+      ethics: {
+        title: "الأخلاقيات والاستقلالية",
+        item1: "إدارة صارمة لتضارب المصالح",
+        item2: "الاستقلالية في نصائحنا وتوصياتنا",
+        item3: "مدونة سلوك صارمة يطبقها الجميع"
       },
-      social:{
-        t:"Social engagement",
-        cards:[
-          {t:"Equal opportunity & diversity",li:[
-            "Hiring focused on talent regardless of gender, origin or background.",
-            "Diverse candidate pools."
-          ]},
-          {t:"Skills development",li:[
-            "Continuous learning (technical & soft skills) for every employee.",
-            "Regular reviews and growth pathways."
-          ]},
-          {t:"Wellbeing at work",li:[
-            "Respectful, collaborative environment.",
-            "Work-life balance (flex, remote where relevant)."
-          ]}
-        ]
-      },
-      env:{
-        t:"Environmental stewardship",
-        cards:[
-          {t:"Energy & digital sobriety",li:[
-            "Lower office consumption (lighting, cooling).",
-            "Responsible digital tools and longer device lifetimes."
-          ]},
-          {t:"Reasoned mobility",li:[
-            "Limit non-essential travel, video-first.",
-            "Encourage soft mobility and rail."
-          ]},
-          {t:"Simple actions, real impact",li:[
-            "Less paper, waste sorting, water & electricity savings."
-          ]}
-        ]
-      },
-      societal:{
-        t:"Societal impact",
-        cards:[
-          {t:"Inclusive insurance",li:[
-            "Improving access to insurance for SMEs, farmers and municipalities."
-          ]},
-          {t:"Climate resilience",li:[
-            "Innovative solutions (parametric, pooled) for climate perils."
-          ]},
-          {t:"Local contribution",li:[
-            "Partnerships with NGOs, education support and youth mentoring."
-          ]}
-        ]
-      },
-      procure:{
-        t:"Responsible procurement",
-        cards:[
-          {t:"Local first",li:[
-            "Preference for local suppliers and Moroccan SMEs."
-          ]},
-          {t:"Ethical criteria",li:[
-            "Social, ethical and environmental criteria embedded in selection.",
-            "Confidentiality and compliance required."
-          ]},
-          {t:"Social & solidarity economy",li:[
-            "Support ESS actors whenever possible."
-          ]}
-        ],
-        note:"👉 Our ambition is simple: support clients while creating positive, lasting impact for our people, partners and society."
+      structure: {
+        title: "حوكمة واضحة",
+        item1: "قرارات منظمة وموثقة",
+        item2: "عمليات متناسبة مع حجمنا",
+        item3: "التوافق مع أفضل ممارسات القطاع"
       }
     },
-    cta:{t:"Go further",p:"Ask for our detailed policies (PDF) and KPI template.",btn:"Get in touch"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"}
-  },
-
-  ar:{
-    aria:{nav:"التنقّل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة",tabs:"أقسام الاستدامة"},
-    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"اتصال"},
-    title:"الاستدامة في ريسكاليا",
-    subtitle:"حوكمة مسؤولة • التزام اجتماعي • احترام البيئة • أثر مجتمعي • مشتريات مسؤولة.",
-    method:"نهدف لأن نكون أكثر من وسيط مالي: فاعلاً مسؤولاً وشفافاً ومفيداً للمجتمع.",
-    sec:{
-      intro:{
-        t:"التزامنا",
-        lead:"🌱 التزامنا بالاستدامة",
-        p:"في ريسكاليا، ينبغي لوسيط التأمين أن يكون أكثر من مجرّد وسيط مالي؛ يجب أن يكون فاعلاً مسؤولاً وشفافاً ومنخرطاً في خدمة المجتمع. صُمّمت مقاربتنا للاستدامة لتعكس قيمنا وتلبي توقعات العملاء والشركاء وتُسهم في التنمية المستدامة للمغرب.",
-        badges:[
-          {t:"شفافية",p:"قرارات واضحة وقابلة للتتبع وفق أفضل الممارسات."},
-          {t:"أخلاقيات",p:"مهنيّة واستقلالية وإدارة تضارب المصالح."},
-          {t:"أثر",p:"إجراءات ملموسة داخل الشركة وفي المنظومة المحيطة."}
-        ]
+    social: {
+      kicker: "اجتماعي",
+      title: "🔹 الالتزام الاجتماعي",
+      diversity: {
+        title: "تكافؤ الفرص والتنوع",
+        item1: "التوظيف القائم على المواهب دون تمييز",
+        item2: "المساواة في الجنس والأصل والخلفية",
+        item3: "تعزيز التنوع على جميع المستويات"
       },
-      gov:{
-        t:"حوكمة مسؤولة",
-        cards:[
-          {t:"النزاهة والشفافية",li:[
-            "شفافية مع العملاء والشركاء والجهة المنظمة (ACAPS).",
-            "إفصاح واضح عن الأتعاب وآليات التعويض.",
-            "قابلية تتبّع القرارات بما يتناسب مع حجمنا."
-          ]},
-          {t:"الأخلاقيات والاستقلالية",li:[
-            "إدارة صارمة لتضارب المصالح والالتزام بقواعد السوق.",
-            "تنظيم الهدايا والضيافة مع سجلات ورقابة."
-          ]},
-          {t:"حوكمة واضحة",li:[
-            "أدوار ومسؤوليات محددة ولجان عند الحاجة.",
-            "مراجعات دورية لالتزامات الاستدامة والحوادث."
-          ]}
-        ]
+      development: {
+        title: "تطوير المهارات",
+        item1: "خطة تدريب مستمرة لكل موظف",
+        item2: "التدريب التقني والتطوير الشخصي",
+        item3: "الدعم في التقدم المهني"
       },
-      social:{
-        t:"التزام اجتماعي",
-        cards:[
-          {t:"تكافؤ الفرص والتنوّع",li:[
-            "توظيف قائم على الكفاءة دون تمييز في النوع أو الأصل أو المسار.",
-            "قواعد مرشحين متنوّعة."
-          ]},
-          {t:"تطوير الكفاءات",li:[
-            "تعلّم مستمر (تقني وبشري) لكل موظف.",
-            "مراجعات منتظمة ومسارات نمو."
-          ]},
-          {t:"الرفاه في العمل",li:[
-            "بيئة عمل محترمة وتعاونية.",
-            "توازن بين الحياة المهنية والشخصية (مرونة/عمل عن بعد عند الملاءمة)."
-          ]}
-        ]
+      wellbeing: {
+        title: "الرفاهية في العمل",
+        item1: "بيئة محترمة وتعاونية",
+        item2: "التوازن بين العمل والحياة",
+        item3: "ظروف عمل تعزز الازدهار"
       },
-      env:{
-        t:"احترام البيئة",
-        cards:[
-          {t:"رشادة الطاقة والرقمنة",li:[
-            "خفض الاستهلاك في المكاتب (إنارة/تبريد).",
-            "أدوات رقمية مسؤولة وإطالة عمر الأجهزة."
-          ]},
-          {t:"تنقّل رشيد",li:[
-            "تقليل السفر غير الضروري واعتماد الاجتماعات المرئية.",
-            "تشجيع التنقّل النظيف والقطارات."
-          ]},
-          {t:"خطوات بسيطة وأثر ملموس",li:[
-            "تقليل الورق وفرز النفايات وترشيد الماء والكهرباء."
-          ]}
-        ]
-      },
-      societal:{
-        t:"أثر مجتمعي",
-        cards:[
-          {t:"تأمين شامل",li:[
-            "تحسين الوصول إلى التأمين للشركات الصغرى والمتوسطة والمزارعين والبلديات."
-          ]},
-          {t:"مرونة مناخية",li:[
-            "حلول مبتكرة (بارامترية وتجميعية) لمواجهة أخطار المناخ."
-          ]},
-          {t:"مساهمة محلية",li:[
-            "شراكات مع جمعيات، دعم للتعليم وإرشاد للشباب."
-          ]}
-        ]
-      },
-      procure:{
-        t:"مشتريات مسؤولة",
-        cards:[
-          {t:"أولوية للمحلي",li:[
-            "تفضيل المورّدين المحليين والشركات المغربية الصغرى والمتوسطة."
-          ]},
-          {t:"معايير أخلاقية",li:[
-            "دمج معايير اجتماعية وأخلاقية وبيئية في الاختيار.",
-            "اشتراط السرية والامتثال."
-          ]},
-          {t:"اقتصاد اجتماعي وتضامني",li:[
-            "دعم الفاعلين في هذا القطاع كلما أمكن."
-          ]}
-        ],
-        note:"👉 طموحُنا بسيط: مواكبة عملائنا مع صناعة أثر إيجابي ومستدام لموظفينا وشركائنا والمجتمع."
+      impact: {
+        title: "التأثير المجتمعي",
+        item1: "التأمين الشامل للمشاريع الصغيرة والمزارعين",
+        item2: "حلول مبتكرة لمواجهة المخاطر المناخية",
+        item3: "الشراكات الجمعياتية ودعم التعليم"
       }
     },
-    cta:{t:"للمتابعة",p:"اطلبوا سياساتنا التفصيلية (PDF) ونموذج المؤشرات.",btn:"تواصل معنا"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"}
+    environment: {
+      kicker: "البيئة",
+      title: "🔹 احترام البيئة",
+      energy: {
+        title: "ترشيد الطاقة والرقمنة",
+        item1: "تقليل الاستهلاك في مكاتبنا",
+        item2: "أدوات رقمية مسؤولة",
+        item3: "تحسين الإضاءة وتكييف الهواء"
+      },
+      mobility: {
+        title: "تنقل معقول",
+        item1: "الحد من السفر غير الضروري",
+        item2: "الاستخدام المفضل لمؤتمرات الفيديو",
+        item3: "تشجيع التنقل المستدام"
+      },
+      waste: {
+        title: "إجراءات بسيطة، تأثيرات ملموسة",
+        item1: "تحسين استخدام الورق",
+        item2: "تقليل النفايات وفرزها",
+        item3: "توفير المياه والكهرباء"
+      }
+    },
+    procurement: {
+      kicker: "المشتريات المسؤولة",
+      title: "🔹 المشتريات المسؤولة",
+      local: {
+        title: "الأولوية للمحلي",
+        item1: "تفضيل الموردين المحليين",
+        item2: "دعم الشركات الصغيرة المغربية",
+        item3: "المساهمة في التنمية الاقتصادية الإقليمية"
+      },
+      ethics: {
+        title: "المعايير الأخلاقية",
+        item1: "دمج المعايير الأخلاقية في اختياراتنا",
+        item2: "دعم الاقتصاد الاجتماعي والتضامني",
+        item3: "تقييم التأثير الاجتماعي لمزودينا"
+      }
+    },
+    vision: {
+      title: "طموحنا",
+      content: "بهذا النهج، تضع ريسكاليا نفسها كوسيط ملتزم، متجذر في إقليمه وموجه نحو المستقبل. طموحنا بسيط: مرافقة عملائنا مع خلق تأثير إيجابي ومستدام لموظفينا وشركائنا والمجتمع."
+    },
+    contact: {
+      title: "انضم إلى نهجنا للاستدامة",
+      subtitle: "اكتشف كيف يمكننا التعاون من أجل مستقبل أكثر استدامة"
+    },
+    footer: {
+      desc: "وساطة تأمين وإعادة تأمين مرخصة (ACAPS)<br/>المقر الرئيسي: ١٦، شارع تيرف، الطابق الثاني. حي مرس السلطان، الدار البيضاء",
+      links: "روابط",
+      contact: "تواصل",
+      contactBlock: {
+        tel: "هاتف ١:",
+        telNum1: "+٢١٢-٦٦٦-٧٥٦٩٩١",
+        tel2: "هاتف ٢:",
+        telNum2: "+٢١٢-٦٧٥-٢٠٨٩٠٩",
+        nabil: "بريد نبيل الإلكتروني:",
+        infos: "معلومات عامة:"
+      }
+    }
   }
 };
 
-/* ================== Helpers & UI ================== */
+/* Search index for ESG */
+const NAV_SEARCH_INDEX = [
+  {title:{fr:"ESG Gouvernance", en:"ESG Governance", ar:"حوكمة الاستدامة"}, url:"/esg.html#governance", tags:["gouvernance","transparence","éthique"], lang:"all"},
+  {title:{fr:"ESG Social", en:"ESG Social", ar:"الاستدامة الاجتماعية"}, url:"/esg.html#social", tags:["social","diversité","formation"], lang:"all"},
+  {title:{fr:"ESG Environnement", en:"ESG Environment", ar:"البيئة"}, url:"/esg.html#environment", tags:["environnement","énergie","mobilité"], lang:"all"},
+  {title:{fr:"Achats Responsables", en:"Responsible Purchasing", ar:"المشتريات المسؤولة"}, url:"/esg.html#procurement", tags:["achats","local","éthique"], lang:"all"},
+  {title:{fr:"Solutions", en:"Solutions", ar:"الحلول"}, url:"/solutions.html", tags:["entreprises","particuliers","assurance"], lang:"all"},
+  {title:{fr:"Réassurance", en:"Reinsurance", ar:"إعادة التأمين"}, url:"/reinsurance.html", tags:["traités","facultatives","capacity"], lang:"all"},
+  {title:{fr:"Risques climatiques", en:"Climate Risk", ar:"مخاطر المناخ"}, url:"/climate.html", tags:["tcfd","issb","paramétrique","adaptation"], lang:"all"},
+  {title:{fr:"Services de Conseil", en:"Advisory Services", ar:"الخدمات الاستشارية"}, url:"/services.html", tags:["gestion des risques","évaluation engagements","formation"], lang:"all"}
+];
+
+/* Helpers */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $=(s,r=document)=>r.querySelector(s);
-const $$=(s,r=document)=>[...r.querySelectorAll(s)];
-function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+
+function t(path){
+  const ns=path.split('.');
+  let cur=window.I18N?.[lang];
+  for(const n of ns){ if(cur==null || !(n in cur)) return path; cur=cur[n]; }
+  return cur;
+}
+
+/* Translate attributes via data-i18n-attr="attr:key,attr2:key2" */
 function applyI18nAttrs(){
   $$('[data-i18n-attr]').forEach(el=>{
-    const pairs = el.dataset.i18nAttr?.split(',').map(x=>x.trim()).filter(Boolean) || [];
+    const pairs = el.dataset.i18nAttr.split(',').map(x=>x.trim()).filter(Boolean);
     for(const pair of pairs){
       const [attr,key]=pair.split(':').map(s=>s.trim());
       const val = t(key);
@@ -810,6 +1183,19 @@ function applyI18nAttrs(){
     }
   });
 }
+
+/* Apply title & meta description */
+function setMeta(){
+  const m = window.I18N?.[lang]?.meta;
+  if(m?.title) document.title = m.title;
+  if(m?.desc){
+    let md = document.querySelector('meta[name="description"]');
+    if(!md){ md=document.createElement('meta'); md.setAttribute('name','description'); document.head.appendChild(md); }
+    md.setAttribute('content', m.desc);
+  }
+}
+
+/* Menu active highlight */
 function setActiveNav(){
   const path = location.pathname.split('/').pop() || 'esg.html';
   $$('#menu a').forEach(a=>{
@@ -818,49 +1204,44 @@ function setActiveNav(){
   });
 }
 
-/* Apply translations & nav state */
+/* Main apply */
 function applyTexts(){
   document.documentElement.lang=lang;
   document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+
+  $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
   applyI18nAttrs();
+
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
+  setMeta();
 }
 
-/* Tabs */
-function bindTabs(){
-  const tabs=$$('.tabs .tab');
-  const panels=$$('.tabpanel');
-  function show(id, push=true){
-    tabs.forEach(btn=>{
-      const on = btn.dataset.tab===id;
-      btn.classList.toggle('active', on);
-      btn.setAttribute('aria-selected', on?'true':'false');
-      btn.tabIndex = on?0:-1;
-    });
-    panels.forEach(p=> p.classList.toggle('active', p.id===id));
-    if(push) history.replaceState(null,'','#'+id);
-    $('#tab-'+id)?.focus({preventScroll:true});
-  }
-  tabs.forEach(btn=> btn.addEventListener('click', ()=> show(btn.dataset.tab)));
-  function fromHash(){
-    const id=(location.hash||'#intro').slice(1);
-    const known=['intro','gov','social','env','societal','procure'];
-    show( known.includes(id)?id:'intro', false );
-  }
-  window.addEventListener('hashchange',fromHash);
-  fromHash();
-}
+/* UI init */
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+    if (window._onLangChanged) window._onLangChanged();
+  }));
 
-/* Reveal on scroll */
-function activateReveal(){
   const rev=$$('.reveal');
-  const onScroll=()=>{ const tr=window.innerHeight*0.9; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll', onScroll); onScroll();
+  const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  const firstReveal=document.querySelector('.main-wrapper .reveal'); if(firstReveal) firstReveal.classList.add('active');
 }
 
-/* Dropdown (desktop hover + mobile click) */
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{
+    if(!window.I18N) throw new Error('I18N not loaded');
+    applyTexts(); initUI();
+  }catch(e){ console.error(e); document.documentElement.lang='fr'; }
+});
+</script>
+
+<!-- Dropdown (accessibility + mobile/desktop) -->
+<script>
 (function(){
   const li = document.querySelector('#menu li.dropdown');
   const trigger = li?.querySelector('a.has-caret');
@@ -878,6 +1259,7 @@ function activateReveal(){
   }
 
   trigger.addEventListener('click', toggleMobile);
+
   trigger.addEventListener('keydown', (e)=>{
     if(e.key==='Enter' || e.key===' '){
       e.preventDefault();
@@ -887,22 +1269,221 @@ function activateReveal(){
   document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
 
   let timer;
-  li.addEventListener('mouseenter', ()=>{ if (window.innerWidth > 900){ clearTimeout(timer); open(); }});
-  li.addEventListener('mouseleave', ()=>{ if (window.innerWidth > 900){ timer=setTimeout(close, 180); }});
+  li.addEventListener('mouseenter', ()=>{ clearTimeout(timer); open(); });
+  li.addEventListener('mouseleave', ()=>{ timer=setTimeout(close, 180); });
+
   window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
 })();
-
-/* Mobile menu & lang */
-function initUI(){
-  const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
-  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
-    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
-  }));
-  bindTabs();
-  activateReveal();
-}
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
+
+<!-- ======= NAV SEARCH (index + behavior) ======= -->
+<script>
+/* Placeholder helper */
+function setSearchPlaceholder(){
+  const input = document.getElementById('nav-search-input');
+  if(!input) return;
+  const p = (typeof t === 'function')
+    ? (t('ui.search') || t('search.placeholder') || null)
+    : null;
+  input.placeholder = p || (document.documentElement.lang === 'en' ? 'Search…' :
+                            document.documentElement.lang === 'ar' ? 'ابحث…' : 'Rechercher…');
+  input.setAttribute('aria-label', input.placeholder.replace(/[.…]+$/,''));
+}
+
+/* Tiny matcher (title + tags) */
+function navSearchFilter(q, lang){
+  if(!q) return [];
+  const n = q.trim().toLowerCase();
+  const L = lang || document.documentElement.lang || 'fr';
+  return NAV_SEARCH_INDEX
+    .map(item=>{
+      const title = item.title[L] || item.title.fr || '';
+      const hay = [title].concat(item.tags || []).join(' ').toLowerCase();
+      const score = hay.includes(n) ? 0 :
+                   hay.split(' ').some(w=>w.startsWith(n)) ? 1 :
+                   hay.indexOf(n) >= 0 ? 2 : 99;
+      return {item, title, score};
+    })
+    .filter(x=>x.score<99)
+    .sort((a,b)=>a.score-b.score)
+    .slice(0,8)
+    .map(x=>x.item);
+}
+
+/* Render + keyboard loop */
+(function initNavSearch(){
+  const box   = document.querySelector('.nav-search');
+  const input = document.getElementById('nav-search-input');
+  const list  = document.getElementById('nav-search-list');
+  if(!box || !input || !list) return;
+
+  setSearchPlaceholder();
+
+  let cur = -1;       // highlighted index
+  let opts = [];      // current results
+  let open = false;   // panel state
+
+  function openList(){
+    if (!open){
+      open = true;
+      box.setAttribute('aria-expanded','true');
+      list.setAttribute('aria-hidden','false');
+      list.style.display='block';
+    }
+  }
+  function closeList(){
+    open = false; cur = -1; list.innerHTML='';
+    box.setAttribute('aria-expanded','false');
+    list.setAttribute('aria-hidden','true');
+    list.style.display='none';
+  }
+  function highlight(i){
+    const nodes = [...list.querySelectorAll('[role="option"]')];
+    nodes.forEach((li,idx)=> li.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+    cur = i;
+  }
+  function go(iDelta){
+    if(!opts.length) return;
+    const L = opts.length;
+    let i = (cur + iDelta + L) % L;
+    highlight(i);
+    const node = list.querySelectorAll('[role="option"]')[i];
+    node?.scrollIntoView({block:'nearest'});
+  }
+  function commit(i){
+    const target = opts[i];
+    if(!target) return;
+    if(target.url.includes('#')) {
+      // Internal anchor
+      const [page, anchor] = target.url.split('#');
+      if(!page || window.location.pathname.includes(page)) {
+        // Same page, scroll to anchor
+        const targetEl = document.getElementById(anchor);
+        if(targetEl) targetEl.scrollIntoView({behavior: 'smooth'});
+      } else {
+        // Different page
+        window.location.href = target.url;
+      }
+    } else {
+      window.location.href = target.url;
+    }
+  }
+
+  function renderList(items){
+    const L = document.documentElement.lang || 'fr';
+    list.innerHTML = items.map((opt,idx)=>{
+      const displayUrl = opt.url.replace(/\.html$/, '');
+      return `<li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
+        <span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
+        <span class="opt-sub">${displayUrl}</span>
+      </li>`;
+    }).join('');
+    cur = items.length ? 0 : -1;
+    if(items.length){ openList(); sizeDropdown(); } else { closeList(); }
+  }
+
+  function render(q){
+    opts = navSearchFilter(q, document.documentElement.lang);
+    renderList(opts);
+  }
+
+  function renderPopular(){
+    opts = NAV_SEARCH_INDEX.slice(0, 6);
+    renderList(opts);
+  }
+
+  function updateHasValue(){
+    box.toggleAttribute('data-has-value', !!input.value.trim());
+  }
+
+  list.addEventListener('mousemove', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    highlight(parseInt(li.dataset.idx,10));
+  });
+  list.addEventListener('mousedown', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    e.preventDefault(); commit(parseInt(li.dataset.idx,10));
+  });
+
+  input.addEventListener('input', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1){ render(q); } else { renderPopular(); }
+  });
+
+  input.addEventListener('focus', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1) render(q);
+    else renderPopular();
+  });
+
+  document.addEventListener('click', (e)=>{
+    if(!box.contains(e.target)) closeList();
+  });
+  input.addEventListener('blur', ()=>{
+    setTimeout(()=>{ if(!box.contains(document.activeElement)) closeList(); }, 150);
+  });
+
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(!open){ const q=input.value.trim(); q?render(q):renderPopular(); } else go(+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); if(open) go(-1); }
+    else if(e.key==='Enter'){ if(open && cur>=0){ e.preventDefault(); commit(cur); } }
+    else if(e.key==='Escape'){ closeList(); }
+    else if(e.key==='Tab' && open){ e.preventDefault(); if(e.shiftKey) go(-1); else go(+1); }
+  });
+
+  document.addEventListener('DOMContentLoaded', setSearchPlaceholder);
+  (window._onLangChanged = function(){ setSearchPlaceholder(); })();
+})();
+</script>
+
+<!-- Dropdown sizing/alignment helpers -->
+<script>
+function alignDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  list.style.left = '0';
+  list.style.right = 'auto';
+
+  const r = list.getBoundingClientRect();
+  if (r.right > window.innerWidth){
+    list.style.left = 'auto';
+    list.style.right = '0';
+  }
+}
+
+/* Size to the longest suggestion (fallback if max-content isn't enough) */
+function sizeDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  let widest = 0;
+  list.querySelectorAll('li[role="option"]').forEach(li=>{
+    widest = Math.max(widest, li.scrollWidth);
+  });
+
+  const boxRect = box.getBoundingClientRect();
+  const spaceRight = window.innerWidth - boxRect.left - 16; // margin
+  const maxAllowed = Math.min(spaceRight, 800, window.innerWidth * 0.9);
+  const minAllowed = box.clientWidth;
+
+  list.style.width = Math.max(minAllowed, Math.min(widest + 20, maxAllowed)) + 'px';
+  alignDropdown();
+}
+
+window.addEventListener('resize', ()=>{
+  const list = document.getElementById('nav-search-list');
+  if (list && list.getAttribute('aria-hidden') !== 'true'){
+    sizeDropdown();
+  }
+});
+</script>
+
 </body>
 </html>
