@@ -51,15 +51,15 @@ header nav{ display:flex; align-items:center; gap:12px; }
   flex:0 0 100px;
   max-width:260px;
   min-width:100px;
-  margin-left:3px;
+  margin-left:1px;
   z-index:1000;
 }
-body[dir="rtl"] .nav-search{ margin-left:0; margin-right:8px; }
+body[dir="rtl"] .nav-search{ margin-left:0; margin-right:2px; }
 
 .nav-search input{
   height:30px;
   width:100%;
-  padding:0 14px 0 12px; /* room for buttons */
+  padding:0 1px 0 1px; /* room for buttons */
   border:1px solid #cfe1e6;
   border-radius:999px;
   background:#f7fcfe;
@@ -89,7 +89,6 @@ body[dir="rtl"] .nav-search{ margin-left:0; margin-right:8px; }
 .nav-search .nav-clear:hover{ opacity:1; background:rgba(0,176,200,.08); }
 
 .nav-search .nav-go{ right:6px; padding:0 6px; }
-.nav-search .nav-go .icon{ width:16px; height:16px; }
 
 .nav-search .nav-clear{
   right:34px; width:24px; font-size:16px; line-height:1; display:none;
@@ -97,8 +96,8 @@ body[dir="rtl"] .nav-search{ margin-left:0; margin-right:8px; }
 .nav-search.has-value .nav-clear{ display:inline-flex; }
 
 body[dir="rtl"] .nav-search .nav-go{ right:auto; left:6px; }
-body[dir="rtl"] .nav-search .nav-clear{ right:auto; left:34px; }
-body[dir="rtl"] .nav-search input{ padding:0 12px 0 64px; }
+body[dir="rtl"] .nav-search .nav-clear{ right:auto; left:4px; }
+body[dir="rtl"] .nav-search input{ padding:0 2px 0 4px; }
 
 /* Suggestions panel — expand to content, stay on-screen */
 #nav-search-list{
@@ -201,8 +200,8 @@ body[dir="rtl"] #menu li .submenu{left:auto;right:0}
 }
 .main-wrapper::before{
   content:""; position:absolute; inset:0;
-  background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
-  opacity:.12; filter:saturate(105%) contrast(102%) blur(.3px);
+  background:url('https://i.pinimg.com/originals/c3/37/73/c337735f6392960d4cf7028cd2ac9d23.gif') center/cover no-repeat;
+  opacity:.13; filter:saturate(105%) contrast(102%) blur(.3px);
   mix-blend-mode:normal; pointer-events:none; z-index:0;
 }
 .main-wrapper::after{
@@ -271,6 +270,49 @@ body[dir="rtl"] #menu li .submenu{left:auto;right:0}
 footer{background:var(--c1);color:#fff;padding:40px 0;margin-top:0}
 .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 footer h4{color:#a8ecf4;margin-bottom:8px}
+:root {
+  --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+  --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+  --border:1px solid rgba(0,93,115,.18);
+}
+
+/* ====== Ajouts / Correctifs RTL ====== */
+ul.card-list {
+  list-style-position: inside;
+  padding-inline-start: 0;
+}
+body[dir="rtl"] ul.card-list {
+  text-align: right;
+  list-style-position: inside;
+}
+ul.card-list li {
+  padding-inline-start: 1ch;
+  margin-block: 5px;
+}
+
+/* RTL fix pour nav-search */
+body[dir="rtl"] .nav-search input {
+  text-align: right;
+  padding-right: 14px;
+  padding-left: 64px;
+}
+body[dir="rtl"] .nav-search .nav-go {
+  right: auto;
+  left: 6px;
+}
+body[dir="rtl"] .nav-search .nav-clear {
+  right: auto;
+  left: 34px;
+}
+body[dir="rtl"] #nav-search-list li[role="option"] {
+  direction: rtl;
+  justify-content: space-between;
+}
+
+/* Lang switch RTL fix */
+body[dir="rtl"] .lang-switch {
+  direction: ltr;
+}
   </style>
 </head>
 <body>
@@ -542,21 +584,23 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
-      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+      <p><a href="solutions.html" data-i18n="nav.ins">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
          <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
          <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
          <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
-    <div>
-      <h4 data-i18n="footer.contact">Contact</h4>
-      <p><span data-i18n="footer.email_label">Email</span> :
-        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
-    </div>
+<div class="footer-contact">
+<h4 data-i18n="footer.contact">Contact</h4>
+<div><strong data-i18n="footer.contactBlock.tel">Tél1:</strong> <span data-i18n="footer.contactBlock.telNum1">+212-666-756991</span></div>
+<div><strong data-i18n="footer.contactBlock.tel2">Tél2:</strong> <span data-i18n="footer.contactBlock.telNum2">+212-675-208909</span></div>
+  <div><strong data-i18n="footer.contactBlock.nabil">Nabil:</strong> <a href="mailto:nabil.cherkaoui@riskalia.ma"> nabil.cherkaoui@riskalia.ma</a></div>
+  <div><strong data-i18n="footer.contactBlock.infos">Infos:</strong> <a href="mailto:contact@riskalia.ma"> contact@riskalia.ma</a></div>
+</div>
   </div>
 </footer>
 
@@ -600,7 +644,14 @@ window.I18N = {
         anasse:{role:"Associé stratégique",bio:"Actuaire et dirigeant, Anasse Youssfi cumule plus de vingt ans d’expérience auprès d’assureurs, de réassureurs et d’institutions financières en Afrique et à l’international. Il conjugue vision et exigence méthodologique, enseigne comme maître de conférences et forme de nouvelles générations d’actuaires. Chez Riskalia, il apporte un appui technique sur les dossiers à fort enjeu : structuration de couvertures sur mesure, critères de souscription, programmes multi-lignes/réassurance et solutions paramétriques. Objectif : aligner précisément risques, coût et valeur client."}
       },
       contact:{title:"Un besoin de couverture ?",sub:"Décrivez votre projet : nous répondons sous 24–48 h."},
-      footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"},
+      footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",links:"Liens",contact:"Contact",email_label:"Email",contactBlock: {
+    tel: "Tél 1 :",
+    telNum1: "+212-666-756991",
+    tel2: "Tél 2 :",
+    telNum2: "+212-675-208909",
+    nabil: "E-mail de Nabil :" ,
+    infos: "Informations générales :"
+  }},
       corp:["Multirisques Entreprise","Transport (marchandises)","Automobile & flotte","Responsabilité civile","Construction","Santé collective & prévoyance"],
       retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
   },
@@ -640,7 +691,14 @@ window.I18N = {
         anasse:{role:"Strategic Partner",bio:"An actuary and executive, Anasse Youssfi has 20+ years with insurers, reinsurers and financial institutions in Africa and internationally. He blends vision with methodological rigor, lectures as adjunct faculty and helps train new generations of actuaries. At Riskalia he provides technical support on high-stakes work: bespoke cover design, underwriting criteria, multi-line/reinsurance programs and parametric solutions—precisely aligning risk, cost and client value."}
       },
       contact:{title:"Need coverage?",sub:"Describe your project — we reply within 24–48h."},
-      footer:{desc:"Licensed insurance & reinsurance brokerage (ACAPS)<br/>Head office: Adresse. 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca<br/>License No.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"},
+      footer:{desc:"Licensed insurance & reinsurance brokerage (ACAPS)<br/>Head office: Adresse. 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",links:"Links",contact:"Contact",email_label:"Email",contactBlock: {
+    tel: "Phone 1 :",
+    telNum1: "+212-666-756991",
+    tel2: "Phone 2 :",
+    telNum2: "+212-675-208909",
+    nabil: "Nabil's e-mail :",
+    infos: "General Information :"
+  }},
       corp:["Commercial Property","Marine Cargo","Auto & Fleets","General Liability","Construction","Group Health & Benefits"],
       retail:["Health","Personal Accident","Home (Property)","Life & Savings","Schengen Travel","Retirement"]
   },
@@ -680,7 +738,14 @@ window.I18N = {
         anasse:{role:"شريك استراتيجي",bio:"خبير اكتواري ومدير تنفيذي بخبرة تفوق 20 عامًا لدى شركات التأمين وإعادة التأمين والمؤسسات المالية في إفريقيا وعلى المستوى الدولي. يجمع بين الرؤية والصرامة المنهجية، ويُدرّس ويساهم في تكوين الأجيال الجديدة. في ريسكاليا يقدّم دعماً تقنياً للملفات عالية الأهمية: تصميم تغطيات مفصّلة، معايير الاكتتاب، برامج متعددة الخطوط/إعادة تأمين وحلول معيارية—لمواءمة دقيقة بين المخاطر والكلفة وقيمة العميل."}
       },
       contact:{title:"تحتاج إلى تغطية؟",sub:"صف مشروعك—نرد خلال 48–24 ساعة."},
-      footer:{desc:"وساطة تأمين وإعادة تأمين مرخّصة (ACAPS)<br/>المقر: Adresse. 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca<br/>رقم الترخيص: [لاحقًا]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"},
+      footer:{desc:"وساطة تأمين وإعادة تأمين مرخّصة (ACAPS)<br/>المقر: Adresse. 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني",contactBlock: {
+    tel: "هاتف 1 :",
+    tel2: "هاتف 2 :",
+        telNum1: "+٢١٢-٦٦٦-٧٥٦٩٩١",
+        telNum2: "+٢١٢-٦٧٥-٢٠٨٩٠٩",
+    nabil: "بريد نبيل الإلكتروني :",
+    infos: "معلومات عامة :"
+  }},
       corp:["تأمين المنشآت التجارية","نقل البضائع","السيارات والأساطيل","المسؤولية العامة","الإنشاءات","الصحة الجماعية والمزايا"],
       retail:["الصحة","الحوادث الشخصية","المنازل","التأمين على الحياة والادخار","سفر شنغن","التقاعد"]
   }
@@ -916,24 +981,19 @@ function navSearchFilter(q, lang){
     window.location.assign(target.url);
   }
 
-  function renderList(items){
-    const L = document.documentElement.lang || 'fr';
-    list.innerHTML = items.map((opt,idx)=>`
-      <li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
-        <span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
-        <span class="opt-sub">${opt.url.replace(location.origin,'')}</span>
-      </li>
-    `).join('');
+function renderList(items){
+const L = document.documentElement.lang || 'fr';
+list.innerHTML = items.map((opt,idx)=>{
+const displayUrl = opt.url.replace(/\.html$/, '');
+return `<li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
+<span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
+<span class="opt-sub">${displayUrl}</span>
+</li>`;
+}).join('');
+cur = items.length ? 0 : -1;
+if(items.length){ openList(); sizeDropdown(); } else { closeList(); }
+}
 
-    cur = items.length ? 0 : -1;
-
-    if(items.length){
-      openList();
-      sizeDropdown();   // size to longest suggestion + keep on-screen
-    } else {
-      closeList();
-    }
-  }
 
   function render(q){
     opts = navSearchFilter(q, document.documentElement.lang);
