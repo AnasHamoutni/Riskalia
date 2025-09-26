@@ -33,6 +33,113 @@ section{padding:30px 0}
 /* NAV */
 header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+/* ===== NAV LAYOUT ===== */
+header .nav-wrap{
+  display:grid;
+  grid-template-columns:auto 1fr auto; /* brand | nav+search | lang */
+  align-items:center;
+  gap:12px;
+  padding:10px 0;
+}
+
+header nav{ display:flex; align-items:center; gap:12px; }
+#menu{ display:flex; gap:.8rem; align-items:center; flex:0 1 auto; }
+
+/* === Compact navbar search === */
+.nav-search{
+  position:relative;
+  flex:0 0 100px;
+  max-width:260px;
+  min-width:100px;
+  margin-left:3px;
+  z-index:1000;
+}
+body[dir="rtl"] .nav-search{ margin-left:0; margin-right:8px; }
+
+.nav-search input{
+  height:30px;
+  width:100%;
+  padding:0 14px 0 12px; /* room for buttons */
+  border:1px solid #cfe1e6;
+  border-radius:999px;
+  background:#f7fcfe;
+  color:#0b4e5b;
+  font-weight:700;
+  font-size:.92rem;
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+  box-shadow:inset 0 0 0 1px rgba(0,176,200,.03);
+}
+.nav-search input:focus{
+  border-color:#00b0c8;
+  box-shadow:0 0 0 3px rgba(0,176,200,.15);
+}
+
+/* Buttons inside the pill */
+.nav-search .nav-go,
+.nav-search .nav-clear{
+  position:absolute; top:50%; transform:translateY(-50%);
+  height:24px; min-width:24px;
+  border:0; background:transparent; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius:999px;
+  opacity:.75; transition:opacity .15s, background-color .15s;
+}
+.nav-search .nav-go:hover,
+.nav-search .nav-clear:hover{ opacity:1; background:rgba(0,176,200,.08); }
+
+.nav-search .nav-go{ right:6px; padding:0 6px; }
+.nav-search .nav-go .icon{ width:16px; height:16px; }
+
+.nav-search .nav-clear{
+  right:34px; width:24px; font-size:16px; line-height:1; display:none;
+}
+.nav-search.has-value .nav-clear{ display:inline-flex; }
+
+body[dir="rtl"] .nav-search .nav-go{ right:auto; left:6px; }
+body[dir="rtl"] .nav-search .nav-clear{ right:auto; left:34px; }
+body[dir="rtl"] .nav-search input{ padding:0 12px 0 64px; }
+
+/* Suggestions panel — expand to content, stay on-screen */
+#nav-search-list{
+  position:absolute; left:0; top:calc(100% + 8px);
+  display:none;
+  background:#fff; border:1px solid #e6eef0; border-radius:12px;
+  box-shadow:0 16px 36px rgba(0,0,0,.10);
+  padding:6px;
+  list-style:none; margin:0;
+
+  white-space:nowrap;                 /* keep items in one line */
+  width:max-content;                  /* grow to longest option */
+  min-width:100%;                     /* but at least input width */
+  max-width:min(90vw, 800px);         /* keep it on-screen */
+  z-index:2000;
+}
+#nav-search-list[aria-hidden="false"]{ display:block; }
+#nav-search-list li[role="option"]{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:10px; cursor:pointer;
+  color:#0b4e5b; font-weight:700;
+  white-space:nowrap;
+}
+#nav-search-list li[role="option"][aria-selected="true"],
+#nav-search-list li[role="option"]:hover{ background:#eef6f8; }
+#nav-search-list .opt-kicker, #nav-search-list .opt-sub{ flex:0 0 auto; }
+
+/* Mid screens */
+@media (max-width:1100px){
+  .nav-search{ flex-basis:220px; max-width:240px; }
+  .nav-search input{ height:30px; }
+}
+
+/* Mobile: full width row */
+@media (max-width:900px){
+  .nav-search{
+    order:4; grid-column:1 / -1; width:100%;
+    max-width:none; min-width:0; margin:8px 0 0 0;
+  }
+  .nav-search input{ height:36px; font-size:.95rem; }
+}
 .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
 .brand img{height:48px;width:auto;border-radius:10px}
 nav ul{list-style:none;display:flex;gap:.8rem;font-weight:700}
@@ -190,6 +297,20 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="nav-search"
+           role="combobox"
+           aria-haspopup="listbox"
+           aria-owns="nav-search-list"
+           aria-expanded="false">
+        <input id="nav-search-input"
+               type="search"
+               autocomplete="off"
+               placeholder="🔎…"
+               aria-label="Recherche"
+               aria-controls="nav-search-list"
+               aria-autocomplete="list" />
+        <ul id="nav-search-list" role="listbox" tabindex="-1"></ul>
+      </div>
     </nav>
     <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
@@ -443,7 +564,7 @@ footer h4{color:#a8ecf4;margin-bottom:8px}
 <script>
 /* FULL I18N — FR / EN / AR (global object) */
 window.I18N = {
-  fr:{meta:{title:"Riskalia — Courtage Assurance· Réassurance · Risques Climatiques · Politique ESG",desc:"Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."},
+  fr:{meta:{title:"Riskalia — Courtage Assurance· Réassurance · Risques Climatiques · Politique ESG",desc:"Riskalia : courtage toutes branches, réassurance (QS/Surplus/XoL/Stop-Loss, facultatives) et accompagnement ESG & climat (diagnostic, scénarios, paramétriques, reporting)."},ui:{ search:"🔎…" },
       aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue",linkedin_nabil:"LinkedIn — Nabil Cherkaoui",linkedin_anasse:"LinkedIn — Anasse Youssfi"},
       nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
       hero:{title:"L’expertise qui rassure",slogan:"Nous transformons vos aléas opérationnels en croissance durable.",sub:"Courtage toutes branches · Réassurance · Risques Climatiques · Services de Conseil en Gestion des Risques"},
@@ -483,7 +604,7 @@ window.I18N = {
       corp:["Multirisques Entreprise","Transport (marchandises)","Automobile & flotte","Responsabilité civile","Construction","Santé collective & prévoyance"],
       retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
   },
-  en:{meta:{title:"Riskalia — Insurance Broking · Reinsurance · Climate Risks · ESG Policy",desc:"Riskalia: all-lines insurance broking, reinsurance (QS/Surplus/XoL/Stop-Loss, facultative) and ESG & climate support (diagnostics, scenarios, parametrics, reporting)."},
+  en:{meta:{title:"Riskalia — Insurance Broking · Reinsurance · Climate Risks · ESG Policy",desc:"Riskalia: all-lines insurance broking, reinsurance (QS/Surplus/XoL/Stop-Loss, facultative) and ESG & climate support (diagnostics, scenarios, parametrics, reporting)."},ui:{ search:"🔎…" },
       aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher",linkedin_nabil:"LinkedIn — Nabil Cherkaoui",linkedin_anasse:"LinkedIn — Anasse Youssfi"},
       nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risks",services:"Advisory Services",esg:"ESG",contact:"Contact"},
       hero:{title:"Expertise that reassures",slogan:"We turn operational uncertainty into sustainable growth.",sub:"All-lines broking · Reinsurance · Climate Risks · Risk Management Advisory"},
@@ -523,7 +644,7 @@ window.I18N = {
       corp:["Commercial Property","Marine Cargo","Auto & Fleets","General Liability","Construction","Group Health & Benefits"],
       retail:["Health","Personal Accident","Home (Property)","Life & Savings","Schengen Travel","Retirement"]
   },
-  ar:{meta:{title:"ريسكاليا — وساطة التأمين · إعادة التأمين · مخاطر المناخ · سياسة الاستدامة",desc:"ريسكاليا: وساطة بجميع الفروع، إعادة التأمين (حصص/فائض/طبقات الخسارة/إيقاف الخسارة، عمليات اختيارية) ودعم الاستدامة والمناخ (تشخيص، سيناريوهات، تأمينات معيارية، تقارير)."},
+  ar:{meta:{title:"ريسكاليا — وساطة التأمين · إعادة التأمين · مخاطر المناخ · سياسة الاستدامة",desc:"ريسكاليا: وساطة بجميع الفروع، إعادة التأمين (حصص/فائض/طبقات الخسارة/إيقاف الخسارة، عمليات اختيارية) ودعم الاستدامة والمناخ (تشخيص، سيناريوهات، تأمينات معيارية، تقارير)."},ui:{ search:"…🔎" },
       aria:{nav:"التنقل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"اختيار اللغة",linkedin_nabil:"لينكدإن — نبيل شرقاوي",linkedin_anasse:"لينكدإن — أنس يوسف"},
       nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"تواصل"},
       hero:{title:"خبرة تمنحك الاطمئنان",slogan:"نحوّل عدم اليقين التشغيلي إلى نمو مستدام.",sub:"وساطة شاملة · إعادة التأمين · مخاطر المناخ · إدارة المخاطر"},
@@ -637,6 +758,7 @@ function initUI(){
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+    if (window._onLangChanged) window._onLangChanged();
   }));
 
   const rev=$$('.reveal');
@@ -701,5 +823,220 @@ function equalizeBios(){
 window.addEventListener('load', equalizeBios);
 window.addEventListener('resize', () => { clearTimeout(window.__bioTimer); window.__bioTimer=setTimeout(equalizeBios,120); });
 </script>
+
+<!-- ======= NAV SEARCH (index + behavior) ======= -->
+<script>
+/* 3.a Search index */
+const NAV_SEARCH_INDEX = [
+  {title:{fr:"Solutions", en:"Solutions", ar:"الحلول"}, url:"/solutions.html", tags:["entreprises","particuliers","assurance"], lang:"all"},
+  {title:{fr:"Réassurance", en:"Reinsurance", ar:"إعادة التأمين"}, url:"/reinsurance.html", tags:["traités","facultatives","capacity"], lang:"all"},
+  {title:{fr:"Risques climatiques", en:"Climate Risk", ar:"مخاطر المناخ"}, url:"/climate.html", tags:["tcfd","issb","paramétrique","adaptation"], lang:"all"},
+  {title:{fr:"ESG", en:"ESG", ar:"الاستدامة"}, url:"/esg.html", tags:["gouvernance","social","environnement"], lang:"all"},
+  {title:{fr:"Services de Conseil", en:"Advisory Services", ar:"الخدمات الاستشارية"}, url:"/services.html", tags:["gestion des risques","évaluation engagements","formation"], lang:"all"},
+  {title:{fr:"Santé (Particuliers)", en:"Health (Individuals)", ar:"الصحة (الأفراد)"}, url:"/Produits/sante.html", tags:["santé","particuliers","medical"], lang:"all"},
+  {title:{fr:"Accidents de la vie", en:"Personal Accident", ar:"حوادث الحياة"}, url:"/Produits/alv.html", tags:["accident","indemnité","fractures","hospitalisation"], lang:"all"},
+  {title:{fr:"Biens (Habitation)", en:"Home (Property)", ar:"السكن"}, url:"/Produits/habitation.html", tags:["incendie","dégâts des eaux","vol"], lang:"all"}
+];
+
+/* 3.b Placeholder helper */
+function setSearchPlaceholder(){
+  const input = document.getElementById('nav-search-input');
+  if(!input) return;
+  const p = (typeof t === 'function')
+    ? (t('ui.search') || t('search.placeholder') || null)
+    : null;
+  input.placeholder = p || (document.documentElement.lang === 'en' ? 'Search…' :
+                            document.documentElement.lang === 'ar' ? 'ابحث…' : 'Rechercher…');
+  input.setAttribute('aria-label', input.placeholder.replace(/[.…]+$/,''));
+}
+
+/* 3.c Tiny matcher (title + tags) */
+function navSearchFilter(q, lang){
+  if(!q) return [];
+  const n = q.trim().toLowerCase();
+  const L = lang || document.documentElement.lang || 'fr';
+  return NAV_SEARCH_INDEX
+    .map(item=>{
+      const title = item.title[L] || item.title.fr || '';
+      const hay = [title].concat(item.tags || []).join(' ').toLowerCase();
+      const score = hay.includes(n) ? 0 :
+                   hay.split(' ').some(w=>w.startsWith(n)) ? 1 :
+                   hay.indexOf(n) >= 0 ? 2 : 99;
+      return {item, title, score};
+    })
+    .filter(x=>x.score<99)
+    .sort((a,b)=>a.score-b.score)
+    .slice(0,8)
+    .map(x=>x.item);
+}
+
+/* 3.d Render + keyboard loop */
+(function initNavSearch(){
+  const box   = document.querySelector('.nav-search');
+  const input = document.getElementById('nav-search-input');
+  const list  = document.getElementById('nav-search-list');
+  if(!box || !input || !list) return;
+
+  setSearchPlaceholder();
+
+  let cur = -1;       // highlighted index
+  let opts = [];      // current results
+  let open = false;   // panel state
+
+  function openList(){
+    if (!open){
+      open = true;
+      box.setAttribute('aria-expanded','true');
+      list.setAttribute('aria-hidden','false');
+      list.style.display='block';
+    }
+  }
+  function closeList(){
+    open = false; cur = -1; list.innerHTML='';
+    box.setAttribute('aria-expanded','false');
+    list.setAttribute('aria-hidden','true');
+    list.style.display='none';
+  }
+  function highlight(i){
+    const nodes = [...list.querySelectorAll('[role="option"]')];
+    nodes.forEach((li,idx)=> li.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+    cur = i;
+  }
+  function go(iDelta){
+    if(!opts.length) return;
+    const L = opts.length;
+    let i = (cur + iDelta + L) % L;
+    highlight(i);
+    const node = list.querySelectorAll('[role="option"]')[i];
+    node?.scrollIntoView({block:'nearest'});
+  }
+  function commit(i){
+    const target = opts[i];
+    if(!target) return;
+    window.location.assign(target.url);
+  }
+
+  function renderList(items){
+    const L = document.documentElement.lang || 'fr';
+    list.innerHTML = items.map((opt,idx)=>`
+      <li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
+        <span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
+        <span class="opt-sub">${opt.url.replace(location.origin,'')}</span>
+      </li>
+    `).join('');
+
+    cur = items.length ? 0 : -1;
+
+    if(items.length){
+      openList();
+      sizeDropdown();   // size to longest suggestion + keep on-screen
+    } else {
+      closeList();
+    }
+  }
+
+  function render(q){
+    opts = navSearchFilter(q, document.documentElement.lang);
+    renderList(opts);
+  }
+
+  function renderPopular(){
+    opts = NAV_SEARCH_INDEX.slice(0, 6);
+    renderList(opts);
+  }
+
+  function updateHasValue(){
+    box.toggleAttribute('data-has-value', !!input.value.trim());
+  }
+
+  list.addEventListener('mousemove', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    highlight(parseInt(li.dataset.idx,10));
+  });
+  list.addEventListener('mousedown', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    e.preventDefault(); commit(parseInt(li.dataset.idx,10));
+  });
+
+  input.addEventListener('input', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1){ render(q); } else { renderPopular(); }
+  });
+
+  input.addEventListener('focus', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1) render(q);
+    else renderPopular();
+  });
+
+  document.addEventListener('click', (e)=>{
+    if(!box.contains(e.target)) closeList();
+  });
+  input.addEventListener('blur', ()=>{
+    setTimeout(()=>{ if(!box.contains(document.activeElement)) closeList(); }, 150);
+  });
+
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(!open){ const q=input.value.trim(); q?render(q):renderPopular(); } else go(+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); if(open) go(-1); }
+    else if(e.key==='Enter'){ if(open && cur>=0){ e.preventDefault(); commit(cur); } }
+    else if(e.key==='Escape'){ closeList(); }
+    else if(e.key==='Tab' && open){ e.preventDefault(); if(e.shiftKey) go(-1); else go(+1); }
+  });
+
+  document.addEventListener('DOMContentLoaded', setSearchPlaceholder);
+  (window._onLangChanged = function(){ setSearchPlaceholder(); })();
+})();
+</script>
+
+<!-- Dropdown sizing/alignment helpers -->
+<script>
+function alignDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  list.style.left = '0';
+  list.style.right = 'auto';
+
+  const r = list.getBoundingClientRect();
+  if (r.right > window.innerWidth){
+    list.style.left = 'auto';
+    list.style.right = '0';
+  }
+}
+
+/* Size to the longest suggestion (fallback if max-content isn't enough) */
+function sizeDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  let widest = 0;
+  list.querySelectorAll('li[role="option"]').forEach(li=>{
+    widest = Math.max(widest, li.scrollWidth);
+  });
+
+  const boxRect = box.getBoundingClientRect();
+  const spaceRight = window.innerWidth - boxRect.left - 16; // margin
+  const maxAllowed = Math.min(spaceRight, 800, window.innerWidth * 0.9);
+  const minAllowed = box.clientWidth;
+
+  list.style.width = Math.max(minAllowed, Math.min(widest + 20, maxAllowed)) + 'px';
+  alignDropdown();
+}
+
+window.addEventListener('resize', ()=>{
+  const list = document.getElementById('nav-search-list');
+  if (list && list.getAttribute('aria-hidden') !== 'true'){
+    sizeDropdown();
+  }
+});
+</script>
+
 </body>
 </html>
