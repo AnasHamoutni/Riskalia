@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Riskalia — Risques climatiques</title>
-  <meta name="description" content="Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting."/>
+  <meta name="description" content="Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d'adaptation, transfert de risque et reporting."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
   <noscript><style>.reveal{opacity:1!important;transform:none!important}.tabpanel{display:block}</style></noscript>
 
@@ -44,26 +44,140 @@
     .container{max-width:1180px;margin:auto;padding:0 18px}
     .muted{color:#5f7781}
     .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
-    section{padding:20px 0}
+    section{padding:40px 0}
 
     /* ================== Buttons ================== */
-    .btn{display:inline-block;padding:10px 16px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
+    .btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
     .btn:hover{background:var(--c2);transform:translateY(-1px)}
     .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
 
-    /* ================== Header / Nav (with dropdown like index.html) ================== */
+    /* ================== Header / Nav (SAME AS INDEX.HTML) ================== */
     header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
     .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:var(--fw-bold)}
+    /* ===== NAV LAYOUT ===== */
+    header .nav-wrap{
+      display:grid;
+      grid-template-columns:auto 1fr auto; /* brand | nav+search | lang */
+      align-items:center;
+      gap:12px;
+      padding:10px 0;
+    }
+
+    header nav{ display:flex; align-items:center; gap:12px; }
+    #menu{ display:flex; gap:.8rem; align-items:center; flex:0 1 auto; }
+
+    /* === Compact navbar search === */
+    .nav-search{
+      position:relative;
+      flex:0 0 100px;
+      max-width:260px;
+      min-width:100px;
+      margin-left:1px;
+      z-index:1000;
+    }
+    body[dir="rtl"] .nav-search{ margin-left:0; margin-right:2px; }
+
+    .nav-search input{
+      height:30px;
+      width:100%;
+      padding:0 38px 0 12px; /* room for buttons */
+      border:1px solid #cfe1e6;
+      border-radius:999px;
+      background:#f7fcfe;
+      color:#0b4e5b;
+      font-weight:700;
+      font-size:.92rem;
+      outline:none;
+      transition:border-color .2s, box-shadow .2s;
+      box-shadow:inset 0 0 0 1px rgba(0,176,200,.03);
+    }
+    .nav-search input:focus{
+      border-color:#00b0c8;
+      box-shadow:0 0 0 3px rgba(0,176,200,.15);
+    }
+
+    /* Buttons inside the pill */
+    .nav-search .nav-go,
+    .nav-search .nav-clear{
+      position:absolute; top:50%; transform:translateY(-50%);
+      height:24px; min-width:24px;
+      border:0; background:transparent; cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center;
+      border-radius:999px;
+      opacity:.75; transition:opacity .15s, background-color .15s;
+    }
+    .nav-search .nav-go:hover,
+    .nav-search .nav-clear:hover{ opacity:1; background:rgba(0,176,200,.08); }
+
+    .nav-search .nav-go{ right:6px; padding:0 6px; }
+
+    .nav-search .nav-clear{
+      right:34px; width:24px; font-size:16px; line-height:1; display:none;
+    }
+    .nav-search.has-value .nav-clear{ display:inline-flex; }
+
+    body[dir="rtl"] .nav-search .nav-go{ right:auto; left:6px; }
+    body[dir="rtl"] .nav-search .nav-clear{ right:auto; left:34px; }
+    body[dir="rtl"] .nav-search input{ padding:0 12px 0 38px; }
+
+    /* Suggestions panel — expand to content, stay on-screen */
+    #nav-search-list{
+      position:absolute; left:0; top:calc(100% + 8px);
+      display:none;
+      background:#fff; border:1px solid #e6eef0; border-radius:12px;
+      box-shadow:0 16px 36px rgba(0,0,0,.10);
+      padding:6px;
+      list-style:none; margin:0;
+
+      white-space:nowrap;                 /* keep items in one line */
+      width:max-content;                  /* grow to longest option */
+      min-width:100%;                     /* but at least input width */
+      max-width:min(90vw, 800px);         /* keep it on-screen */
+      z-index:2000;
+    }
+    #nav-search-list[aria-hidden="false"]{ display:block; }
+    #nav-search-list li[role="option"]{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:10px; cursor:pointer;
+      color:#0b4e5b; font-weight:700;
+      white-space:nowrap;
+    }
+    #nav-search-list li[role="option"][aria-selected="true"],
+    #nav-search-list li[role="option"]:hover{ background:#eef6f8; }
+    #nav-search-list .opt-kicker, #nav-search-list .opt-sub{ flex:0 0 auto; }
+
+    /* Mid screens */
+    @media (max-width:1100px){
+      .nav-search{ flex-basis:220px; max-width:240px; }
+      .nav-search input{ height:30px; }
+    }
+
+    /* Mobile: full width row */
+    @media (max-width:900px){
+      .nav-search{
+        order:4; grid-column:1 / -1; width:100%;
+        max-width:none; min-width:0; margin:8px 0 0 0;
+      }
+      .nav-search input{ height:36px; font-size:.95rem; }
+    }
+    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
     .brand img{height:48px;width:auto;border-radius:10px}
-    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:var(--fw-bold);font-size:var(--fs-nav)}
-    nav a{position:relative;padding:6px;line-height:1.2}
+    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:700}
+    nav a{position:relative;padding:6px}
     nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
     nav a:hover::after,nav a.active::after{width:100%}
-    .menu-toggle{display:none;font-size:2rem;cursor:pointer;line-height:1}
+    .menu-toggle{display:none;font-size:2rem;cursor:pointer}
     .lang-switch{display:flex;gap:6px}
-    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:var(--fw-bold);font-size:0.9rem}
+    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
     .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+
+    @media(max-width:900px){
+      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+      nav ul.show{right:0}
+      body[dir="rtl"] nav ul{right:auto;left:-100%}
+      body[dir="rtl"] nav ul.show{left:0}
+      .menu-toggle{display:block}
+    }
 
     /* Dropdown base */
     #menu li.dropdown{position:relative}
@@ -83,14 +197,7 @@
     body[dir="rtl"] #menu li .submenu{left:auto;right:0}
 
     /* Mobile nav */
-    @media(max-width:900px){
-      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
-      nav ul.show{right:0}
-      body[dir="rtl"] nav ul{right:auto;left:-100%}
-      body[dir="rtl"] nav ul.show{left:0}
-      .menu-toggle{display:block}
-
-      /* Dropdown in mobile: inline expansion */
+    @media (max-width:900px){
       #menu li.dropdown{width:100%}
       #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
       #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
@@ -98,9 +205,9 @@
       #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
     }
 
-    /* ================== Hero with wave (tight spacing) ================== */
+    /* ================== Hero with wave (harmonized with index.html) ================== */
     .hero{
-      min-height:26vh;
+      min-height:38vh;
       background:
         linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
         url('https://images.unsplash.com/photo-1472145246862-b24cf25c4a36?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
@@ -108,55 +215,84 @@
       position:relative;overflow:hidden;color:#fff;
     }
     .hero h1{color:#fff}
-    .hero p{color:#fff;opacity:.98;max-width:920px;margin:6px auto}
-    .hero .method{margin-top:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:10px;color:#ecf9ff}
+    .hero p{color:#fff;opacity:.98;max-width:920px;margin:8px auto}
+    .hero .method{margin-top:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:12px 16px;color:#ecf9ff;font-style:italic}
+    .hero .actions{gap:12px;margin-top:16px}
 
     /* Wavy curtain inside hero */
-    .hero-wave{
-      position:absolute; left:0; right:0; bottom:-1px; height:68px; pointer-events:none;
-      background:url('data:image/svg+xml;utf8,<svg width="1440" height="68" viewBox="0 0 1440 68" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,68 L0,68 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
-      opacity:1; animation: waveFloat 8s ease-in-out infinite;
+    .hero::after{
+      content:""; position:absolute; left:0; right:0; bottom:-1px; height:64px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="64" viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,64 L0,64 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      pointer-events:none; animation: waveFloat 8s ease-in-out infinite;
     }
     @keyframes waveFloat{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(4px) } }
 
-    /* Below-hero wave (small) */
+    /* Below-hero wave */
     .section-wave{
-      height:22px; margin-top:-30px;
-      background:url('data:image/svg+xml;utf8,<svg width="1440" height="22" viewBox="0 0 1440 22" xmlns="http://www.w3.org/2000/svg"><path d="M0,5 C240,24 480,0 720,9 C960,18 1200,4 1440,9 L1440,22 L0,22 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      height:44px; margin-top:-44px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="44" viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 C240,44 480,0 720,18 C960,36 1200,8 1440,18 L1440,44 L0,44 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      position:relative;
     }
+    .section-wave::after{content:""; position:absolute; left:0; right:0; top:100%; height:48px;
+      background:linear-gradient(to bottom, rgba(247,252,254,1) 0%, rgba(247,252,254,0) 100%); pointer-events:none}
 
     /* ================== Premium BG (like index.html) ================== */
     .main-wrapper{
       position:relative;z-index:0;isolation:isolate;
       background:
-        radial-gradient(1100px 460px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+        radial-gradient(1200px 500px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
         linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
     }
     .main-wrapper::before{
       content:"";position:absolute;inset:0;
-      background:url('https://cdn.dribbble.com/users/1100256/screenshots/7124464/hex.gif') center/cover no-repeat;
-      opacity:.12;filter:saturate(105%) contrast(102%) blur(.3px);
+      background:url('') center/cover no-repeat;
+      opacity:.08;filter:saturate(105%) contrast(102%) blur(.3px);
       mix-blend-mode:normal;pointer-events:none;z-index:0;
     }
     .main-wrapper::after{
-      content:"";position:absolute;left:0;right:0;top:0;height:48px;
+      content:"";position:absolute;left:0;right:0;top:0;height:88px;
       background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
       pointer-events:none;z-index:0;
     }
     .main-wrapper > *{position:relative;z-index:1}
+    .end-fade{height:72px; position:relative; margin-top:20px}
+    .end-fade::before{content:""; position:absolute; inset:0;
+      background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--cm) 100%)}
 
-    /* ================== Tabs (grid, no scroll) ================== */
+    /* ================== Climate Introduction (like ESG) ================== */
+    .climate-intro{
+      background:linear-gradient(135deg, rgba(0,176,200,.08), rgba(0,92,115,.04));
+      border-radius:18px;
+      padding:28px;
+      margin:24px 0;
+      border:1px solid rgba(0,95,115,.12);
+      box-shadow:0 8px 20px rgba(0,0,0,.06);
+    }
+
+    .climate-intro h2{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      color:var(--c1);
+    }
+
+    .climate-intro .icon{
+      font-size:1.8em;
+    }
+
+    /* ================== Tabs (improved spacing) ================== */
     .tabs{
-      margin:10px auto 14px;
+      margin:30px auto 20px;
       display:grid;grid-template-columns:repeat(7,1fr);
-      gap:10px;max-width:980px;padding:0 8px;
+      gap:12px;max-width:1100px;padding:0 8px;
     }
     @media (max-width:1100px){ .tabs{grid-template-columns:repeat(4,1fr)} }
     @media (max-width:750px){ .tabs{grid-template-columns:repeat(3,1fr)} }
     @media (max-width:520px){ .tabs{grid-template-columns:repeat(2,1fr)} }
 
     .tab{
-      padding:10px 12px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
+      padding:12px 16px;border-radius:999px;border:1px solid rgba(0,93,115,.16);
       font-weight:var(--fw-bold);font-size:0.95rem;color:#0b4e5b;text-align:center;cursor:pointer;
       background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
       backdrop-filter:saturate(115%) blur(4px); box-shadow:0 3px 10px rgba(0,0,0,.04);
@@ -171,19 +307,19 @@
       box-shadow:0 8px 22px rgba(0,176,200,.18);
     }
 
-    /* ================== Panels / Cards (glass style, compact width) ================== */
-    .tabpanel{display:none}
+    /* ================== Panels / Cards (improved layout) ================== */
+    .tabpanel{display:none;padding:20px 0}
     .tabpanel.active{display:block}
 
     .card{
       position:relative;border-radius:18px;overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.90));
       backdrop-filter:saturate(110%) blur(4px);
       box-shadow:0 12px 26px rgba(0,0,0,.07);
       border:1px solid rgba(0,93,115,.16);
-      padding:14px 18px;
+      padding:20px 24px 24px;
       transition:transform .22s ease, box-shadow .22s ease;
-      max-width:980px;margin:0 auto 16px;
+      max-width:1200px;margin:0 auto 20px;
     }
     .card::before{
       content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
@@ -192,77 +328,163 @@
     .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
     .card > h2{
       display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
-      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:6px 10px;color:var(--c1);
-      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:8px;
+      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:8px 14px;color:var(--c1);
+      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:16px;
     }
-    .card p,.card ul,.card ol{max-width:68ch}
-    .card ul{padding-left:16px}
-    .card ol{padding-left:16px}
-    .card li{margin:4px 0}
+    .card p,.card ul,.card ol{max-width:75ch;line-height:1.8}
+    .card ul{padding-left:20px;margin:12px 0}
+    .card ol{padding-left:20px;margin:12px 0}
+    .card li{margin:6px 0;color:#586e77}
 
-    /* ===== Content layout helpers to fill space ===== */
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    /* ===== Content layout helpers ===== */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
     @media (max-width:860px){ .split{grid-template-columns:1fr} }
 
-    .grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px }
-    .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px }
-    .grid-4{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px }
+    .grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:20px 0 }
+    .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:20px 0 }
+    .grid-4{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:20px 0 }
     @media (max-width:1100px){ .grid-4{ grid-template-columns:repeat(3,1fr) } }
     @media (max-width:860px){ .grid-4,.grid-3{ grid-template-columns:repeat(2,1fr) } }
     @media (max-width:560px){ .grid-4,.grid-3,.grid-2{ grid-template-columns:1fr } }
 
     .mini-card{
       border:1px solid rgba(0,93,115,.14);
-      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.86));
-      border-radius:14px; padding:12px;
-      box-shadow:0 6px 14px rgba(0,0,0,.05);
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.88));
+      border-radius:16px; padding:18px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+      transition:transform .2s ease, box-shadow .2s ease;
     }
-    .mini-card h3{ margin-top:0 }
+    .mini-card:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+    .mini-card h3{ margin-top:0; color:var(--c1) }
 
-    .kpi-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px }
+    .kpi-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin:24px 0 }
     @media (max-width:980px){ .kpi-grid{ grid-template-columns:repeat(3,1fr) } }
     @media (max-width:700px){ .kpi-grid{ grid-template-columns:repeat(2,1fr) } }
     @media (max-width:480px){ .kpi-grid{ grid-template-columns:1fr } }
     .kpi{
       border:1px solid rgba(0,93,115,.12);
-      background:radial-gradient(120% 120% at 0% 0%, rgba(0,176,200,.10), rgba(255,255,255,.92));
-      border-radius:14px; padding:12px;
-      box-shadow:0 6px 14px rgba(0,0,0,.05);
+      background:radial-gradient(120% 120% at 0% 0%, rgba(0,176,200,.12), rgba(255,255,255,.94));
+      border-radius:16px; padding:16px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+      text-align:center;
+      transition:transform .2s ease;
     }
-    .kpi .k{ font-weight:800; color:#0b4e5b; font-size:0.95rem }
-    .kpi .v{ font-size:1.35rem; font-weight:800; color:var(--c1); line-height:1.2 }
+    .kpi:hover{transform:translateY(-2px)}
+    .kpi .k{ font-weight:800; color:#0b4e5b; font-size:0.9rem; display:block; margin-bottom:4px }
+    .kpi .v{ font-size:1.4rem; font-weight:800; color:var(--c1); line-height:1.2 }
 
-    .timeline{ position:relative; margin:8px 0; padding-left:8px }
+    .timeline{ position:relative; margin:24px 0; padding-left:12px }
     .timeline ol{ list-style:none; padding-left:0; margin:0 }
-    .timeline li{ position:relative; padding-left:34px; margin:10px 0 }
+    .timeline li{ position:relative; padding-left:40px; margin:16px 0; color:#586e77; line-height:1.7 }
     .timeline li::before{
-      content:attr(data-step); position:absolute; left:0; top:0;
-      width:24px; height:24px; border-radius:50%;
+      content:attr(data-step); position:absolute; left:0; top:2px;
+      width:28px; height:28px; border-radius:50%;
       display:grid; place-items:center;
-      background:linear-gradient(135deg,var(--c3),var(--c2)); color:#fff; font-weight:800; font-size:.85rem;
-      box-shadow:0 3px 10px rgba(0,0,0,.08);
+      background:linear-gradient(135deg,var(--c3),var(--c2)); color:#fff; font-weight:800; font-size:.9rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.1);
     }
     .timeline li::after{
-      content:""; position:absolute; left:11px; top:26px; bottom:-10px; width:2px;
+      content:""; position:absolute; left:13px; top:32px; bottom:-14px; width:2px;
       background:linear-gradient(var(--c2),transparent);
     }
     .timeline li:last-child::after{ display:none }
 
     .callout{
       border:1px dashed rgba(0,92,115,.28);
-      background:linear-gradient(180deg, rgba(0,176,200,.08), rgba(255,255,255,.92));
-      border-radius:14px; padding:12px; color:#085160;
+      background:linear-gradient(180deg, rgba(0,176,200,.08), rgba(255,255,255,.94));
+      border-radius:16px; padding:18px; color:#085160; margin:16px 0;
+      box-shadow:0 4px 12px rgba(0,0,0,.04);
     }
 
-    /* ================== Reveal ================== */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease, transform .5s ease}
+    .highlight-box{
+      background:linear-gradient(135deg, rgba(0,176,200,.06), rgba(255,255,255,.95));
+      border-left:4px solid var(--c3);
+      padding:20px 24px;
+      margin:20px 0;
+      border-radius:0 12px 12px 0;
+      box-shadow:0 4px 12px rgba(0,0,0,.04);
+    }
+
+    /* ================== Reveal (improved) ================== */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
     .reveal.active{opacity:1;transform:none}
     @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
 
-    /* ================== Footer ================== */
-    footer{background:var(--c1);color:#fff;padding:36px 0;margin-top:0}
+    /* ================== FAQ Styling ================== */
+    details{
+      border:1px solid rgba(0,93,115,.14);
+      border-radius:12px;
+      margin:8px 0;
+      background:rgba(255,255,255,.96);
+      box-shadow:0 4px 12px rgba(0,0,0,.04);
+    }
+    details summary{
+      padding:16px 20px;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--c1);
+      border-radius:12px;
+      transition:background-color .2s ease;
+    }
+    details summary:hover{
+      background:rgba(0,176,200,.05);
+    }
+    details[open] summary{
+      border-bottom:1px solid rgba(0,93,115,.1);
+      border-radius:12px 12px 0 0;
+    }
+    details div{
+      padding:16px 20px;
+    }
+
+    /* ================== Footer (SAME AS INDEX.HTML) ================== */
+    footer{background:var(--c1);color:#fff;padding:40px 0;margin-top:0}
     .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
     footer h4{color:#a8ecf4;margin-bottom:8px}
+
+    /* RTL fixes */
+    :root {
+      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+      --border:1px solid rgba(0,93,115,.18);
+    }
+
+    ul.card-list {
+      list-style-position: inside;
+      padding-inline-start: 0;
+    }
+    body[dir="rtl"] ul.card-list {
+      text-align: right;
+      list-style-position: inside;
+    }
+    ul.card-list li {
+      padding-inline-start: 1ch;
+      margin-block: 5px;
+    }
+
+    /* RTL fix pour nav-search */
+    body[dir="rtl"] .nav-search input {
+      text-align: right;
+      padding-right: 14px;
+      padding-left: 64px;
+    }
+    body[dir="rtl"] .nav-search .nav-go {
+      right: auto;
+      left: 6px;
+    }
+    body[dir="rtl"] .nav-search .nav-clear {
+      right: auto;
+      left: 34px;
+    }
+    body[dir="rtl"] #nav-search-list li[role="option"] {
+      direction: rtl;
+      justify-content: space-between;
+    }
+
+    /* Lang switch RTL fix */
+    body[dir="rtl"] .lang-switch {
+      direction: ltr;
+    }
   </style>
 </head>
 <body>
@@ -292,6 +514,20 @@
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="nav-search"
+           role="combobox"
+           aria-haspopup="listbox"
+           aria-owns="nav-search-list"
+           aria-expanded="false">
+        <input id="nav-search-input"
+               type="search"
+               autocomplete="off"
+               placeholder="🔎…"
+               aria-label="Recherche"
+               aria-controls="nav-search-list"
+               aria-autocomplete="list" />
+        <ul id="nav-search-list" role="listbox" tabindex="-1"></ul>
+      </div>
     </nav>
     <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
@@ -306,18 +542,38 @@
   <div class="container">
     <h1 data-i18n="title">Risques climatiques</h1>
     <p data-i18n="subtitle">
-      Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.
+      Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d'adaptation, transfert de risque et reporting TCFD/ISSB.
     </p>
     <p class="method" data-i18n="method">
       On part de vos pertes passées et de votre tolérance au risque. On simule plusieurs seuils et on retient celui qui équilibre coût, protection et capital.
     </p>
+    <div class="actions">
+      <a href="contact.html" class="btn" data-i18n="cta.contact">Nous contacter</a>
+      <a href="#intro-climate" class="btn secondary" data-i18n="cta.discover">Découvrir notre approche</a>
+    </div>
   </div>
-  <div class="hero-wave" aria-hidden="true"></div>
 </section>
 <div class="section-wave" aria-hidden="true"></div>
 
 <!-- MAIN -->
 <div class="main-wrapper">
+  
+  <!-- Introduction Climate -->
+  <section class="reveal" id="intro-climate">
+    <div class="container">
+      <div class="climate-intro">
+        <h2>
+          <span class="icon">🌡️</span>
+          <span data-i18n="intro_climate.title">Le défi climatique au Maroc</span>
+        </h2>
+        <p data-i18n="intro_climate.content">
+          Le changement climatique est devenu l'un des premiers facteurs de risque pour les économies africaines et marocaines. 
+          Il est indispensable de passer d'une logique réactive à une approche anticipative : mesurer, planifier et couvrir.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <section class="reveal">
     <!-- Tabs -->
     <div class="tabs" role="tablist" aria-label="Sections climat">
@@ -333,15 +589,28 @@
     <!-- 1. Introduction -->
     <article id="intro" class="card tabpanel active" role="tabpanel" aria-labelledby="tab-intro">
       <h2 data-i18n="sec.intro.t">Introduction</h2>
-      <p class="muted" data-i18n="sec.intro.p1"></p>
-      <p class="muted" data-i18n="sec.intro.p2"></p>
-      <ul class="muted">
-        <li data-i18n="sec.intro.bul.0"></li>
-        <li data-i18n="sec.intro.bul.1"></li>
-        <li data-i18n="sec.intro.bul.2"></li>
-        <li data-i18n="sec.intro.bul.3"></li>
-      </ul>
-      <p class="muted" data-i18n="sec.intro.p3"></p>
+      
+      <p data-i18n="sec.intro.p1">
+        Le changement climatique est devenu l'un des premiers facteurs de risque pour les économies africaines et marocaines. 
+        Sécheresses récurrentes, stress hydrique, vagues de chaleur, inondations soudaines et feux de forêts : ces phénomènes 
+        ne sont plus exceptionnels mais tendent à se répéter et à s'intensifier.
+      </p>
+
+      <div class="highlight-box">
+        <h3 data-i18n="sec.intro.impacts_title">Au Maroc, les impacts sont déjà mesurables :</h3>
+        <ul>
+          <li data-i18n="sec.intro.impact1">pertes agricoles et baisse de rendements,</li>
+          <li data-i18n="sec.intro.impact2">dégâts aux infrastructures et perturbations des chaînes logistiques,</li>
+          <li data-i18n="sec.intro.impact3">hausse des coûts de l'énergie et de l'eau,</li>
+          <li data-i18n="sec.intro.impact4">effets sur la santé et la productivité des salariés.</li>
+        </ul>
+      </div>
+
+      <p data-i18n="sec.intro.conclusion">
+        Ces risques touchent toutes les catégories d'acteurs : assureurs, réassureurs, entreprises, collectivités, 
+        mais aussi ménages et investisseurs. Face à cette réalité, il est indispensable de passer d'une logique 
+        réactive (gérer après coup) à une approche anticipative (mesurer, planifier et couvrir).
+      </p>
     </article>
 
     <!-- 2. Risks -->
@@ -350,24 +619,30 @@
 
       <div class="split">
         <div class="mini-card">
-          <h3 data-i18n="sec.risks.phys.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.risks.phys.li.0"></li>
-            <li data-i18n="sec.risks.phys.li.1"></li>
+          <h3 data-i18n="sec.risks.phys.t">Risques physiques</h3>
+          <p data-i18n="sec.risks.distinction">On distingue :</p>
+          <ul>
+            <li><strong data-i18n="sec.risks.acute">Les risques aigus :</strong> <span data-i18n="sec.risks.acute_desc">événements soudains et destructeurs comme les inondations urbaines, les tempêtes violentes, les vagues de chaleur extrêmes ou les feux de forêts. Ils entraînent des dommages immédiats aux bâtiments, aux équipements, aux réseaux et peuvent interrompre l'activité.</span></li>
+            <li><strong data-i18n="sec.risks.chronic">Les risques chroniques :</strong> <span data-i18n="sec.risks.chronic_desc">effets progressifs mais durables comme la hausse des températures moyennes, la raréfaction de l'eau ou l'érosion côtière. Ils fragilisent les cultures, augmentent les coûts d'irrigation et modifient les conditions d'exploitation industrielle et agricole.</span></li>
           </ul>
         </div>
+        
         <div class="mini-card">
-          <h3 data-i18n="sec.risks.trans.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.risks.trans.li.0"></li>
-            <li data-i18n="sec.risks.trans.li.1"></li>
-            <li data-i18n="sec.risks.trans.li.2"></li>
-            <li data-i18n="sec.risks.trans.li.3"></li>
+          <h3 data-i18n="sec.risks.trans.t">Risques de transition</h3>
+          <p data-i18n="sec.risks.trans_intro">Ils découlent de l'évolution vers une économie bas carbone :</p>
+          <ul>
+            <li data-i18n="sec.risks.trans1">nouvelles réglementations (taxes carbone, normes de reporting ESG),</li>
+            <li data-i18n="sec.risks.trans2">exigences des bailleurs et assureurs internationaux,</li>
+            <li data-i18n="sec.risks.trans3">transformation des chaînes de valeur mondiales (exportateurs soumis à des critères climatiques stricts),</li>
+            <li data-i18n="sec.risks.trans4">attentes sociétales et réputationnelles (investisseurs, consommateurs).</li>
           </ul>
         </div>
       </div>
 
-      <p class="callout" style="margin-top:10px" data-i18n="sec.risks.why"></p>
+      <div class="callout">
+        <strong>➡️ <span data-i18n="sec.risks.why_title">Pourquoi c'est important ?</span></strong>
+        <span data-i18n="sec.risks.why_desc">Parce qu'un acteur qui n'anticipe pas ces évolutions peut perdre des financements, voir ses coûts grimper, ou rater des opportunités de marché.</span>
+      </div>
     </article>
 
     <!-- 3. Data & scenarios -->
@@ -375,73 +650,104 @@
       <h2 data-i18n="sec.data.t">Données & scénarios</h2>
 
       <div class="mini-card">
-        <h3 data-i18n="sec.data.collect.t"></h3>
-        <p class="muted" data-i18n="sec.data.collect.p"></p>
+        <h3 data-i18n="sec.data.collect.t">Collecte et analyse</h3>
+        <p data-i18n="sec.data.collect.p">
+          Nous partons de données concrètes : historiques de sinistres, bases climatiques disponibles au Maroc et à l'international, 
+          données locales de pluviométrie ou de température, mais aussi témoignages et retours d'expérience de vos équipes.
+        </p>
       </div>
 
-      <div class="split" style="margin-top:10px">
+      <div class="grid-2">
         <div class="mini-card">
-          <h3 data-i18n="sec.data.map.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.data.map.li.0"></li>
-            <li data-i18n="sec.data.map.li.1"></li>
-            <li data-i18n="sec.data.map.li.2"></li>
+          <h3 data-i18n="sec.data.map.t">Cartographie</h3>
+          <p data-i18n="sec.data.map.intro">Nous traduisons ces données en cartes claires :</p>
+          <ul>
+            <li data-i18n="sec.data.map1">zones agricoles exposées à la sécheresse,</li>
+            <li data-i18n="sec.data.map2">villes à risque d'inondation,</li>
+            <li data-i18n="sec.data.map3">régions industrielles confrontées aux vagues de chaleur.</li>
           </ul>
+          <p data-i18n="sec.data.map.conclusion">Chaque carte met en évidence les actifs critiques et les points de fragilité de vos opérations.</p>
         </div>
+        
         <div class="mini-card">
-          <h3 data-i18n="sec.data.scen.t"></h3>
-          <ul class="muted">
-            <li data-i18n="sec.data.scen.li.0"></li>
-            <li data-i18n="sec.data.scen.li.1"></li>
-            <li data-i18n="sec.data.scen.li.2"></li>
+          <h3 data-i18n="sec.data.scen.t">Scénarios prospectifs</h3>
+          <p data-i18n="sec.data.scen.intro">Nous construisons des trajectoires à horizon 2030 et 2050 pour tester la robustesse de vos stratégies :</p>
+          <ul>
+            <li data-i18n="sec.data.scen1">combien de jours de chaleur extrême supplémentaires ?</li>
+            <li data-i18n="sec.data.scen2">quelle fréquence d'inondations dans telle région ?</li>
+            <li data-i18n="sec.data.scen3">quel impact sur la productivité agricole ou industrielle ?</li>
           </ul>
         </div>
       </div>
 
-      <h3 class="mt-1" style="margin-top:12px" data-i18n="sec.data.kpi.t"></h3>
+      <h3 data-i18n="sec.data.kpi.title">Indicateurs clés</h3>
+      <p data-i18n="sec.data.kpi.intro">Nous traduisons tout cela en indicateurs simples :</p>
+      
       <div class="kpi-grid">
         <div class="kpi">
-          <div class="k" data-i18n="sec.data.kpi.li.0"></div>
+          <div class="k" data-i18n="sec.data.kpi.aal">Pertes annuelles moyennes</div>
           <div class="v">AAL</div>
         </div>
         <div class="kpi">
-          <div class="k" data-i18n="sec.data.kpi.li.1"></div>
+          <div class="k" data-i18n="sec.data.kpi.pml">Perte maximale probable</div>
           <div class="v">PML</div>
         </div>
         <div class="kpi">
-          <div class="k" data-i18n="sec.data.kpi.li.2"></div>
+          <div class="k" data-i18n="sec.data.kpi.costs">Évolution des coûts</div>
           <div class="v">Δ coûts</div>
         </div>
         <div class="kpi">
-          <div class="k" data-i18n="sec.data.kpi.li.3"></div>
-          <div class="v">Impacts</div>
+          <div class="k" data-i18n="sec.data.kpi.impact">Impact financier</div>
+          <div class="v">Impact</div>
         </div>
       </div>
-      <p class="muted" style="margin-top:8px" data-i18n="sec.data.kpi.note"></p>
+      
+      <div class="callout">
+        <strong>➡️ <span data-i18n="sec.data.objective">Objectif :</span></strong>
+        <span data-i18n="sec.data.objective_desc">rendre la donnée climatique lisible, comparable et directement exploitable dans vos décisions de gestion, de financement et d'assurance.</span>
+      </div>
     </article>
 
     <!-- 4. Strategy & roadmap -->
     <article id="strategy" class="card tabpanel" role="tabpanel" aria-labelledby="tab-strategy">
       <h2 data-i18n="sec.strategy.t">Stratégie & feuille de route</h2>
-      <p class="muted" data-i18n="sec.strategy.lead"></p>
+      
+      <p data-i18n="sec.strategy.intro">
+        Une bonne stratégie ne se limite pas à dresser un constat. Elle doit déboucher sur un plan d'action hiérarchisé et opérationnel.
+      </p>
 
+      <h3 data-i18n="sec.strategy.steps_title">Les 4 étapes</h3>
       <div class="timeline">
         <ol>
-          <li data-step="1" data-i18n="sec.strategy.steps.0"></li>
-          <li data-step="2" data-i18n="sec.strategy.steps.1"></li>
-          <li data-step="3" data-i18n="sec.strategy.steps.2"></li>
-          <li data-step="4" data-i18n="sec.strategy.steps.3"></li>
+          <li data-step="1"><strong data-i18n="sec.strategy.step1_title">Mesurer :</strong> <span data-i18n="sec.strategy.step1_desc">identifier clairement vos vulnérabilités et estimer leur coût.</span></li>
+          <li data-step="2"><strong data-i18n="sec.strategy.step2_title">Réduire :</strong> <span data-i18n="sec.strategy.step2_desc">mettre en place des mesures d'adaptation (renforcer les infrastructures sensibles, investir dans des solutions d'irrigation efficientes, établir des plans de continuité d'activité).</span></li>
+          <li data-step="3"><strong data-i18n="sec.strategy.step3_title">Transférer :</strong> <span data-i18n="sec.strategy.step3_desc">compléter la prévention par des mécanismes d'assurance et de réassurance, classiques ou paramétriques.</span></li>
+          <li data-step="4"><strong data-i18n="sec.strategy.step4_title">Piloter :</strong> <span data-i18n="sec.strategy.step4_desc">suivre l'évolution des risques et mettre à jour régulièrement vos protections.</span></li>
         </ol>
       </div>
 
-      <h3 class="mt-1" data-i18n="sec.strategy.roadmap.t"></h3>
+      <h3 data-i18n="sec.strategy.roadmap.t">La feuille de route Riskalia</h3>
+      <p data-i18n="sec.strategy.roadmap_intro">Nous livrons une roadmap sur 12 à 24 mois, structurée en :</p>
+      
       <div class="grid-3">
-        <div class="mini-card"><strong data-i18n="sec.strategy.deliv.0"></strong></div>
-        <div class="mini-card"><strong data-i18n="sec.strategy.deliv.1"></strong></div>
-        <div class="mini-card"><strong data-i18n="sec.strategy.deliv.2"></strong></div>
+        <div class="mini-card">
+          <h4 data-i18n="sec.strategy.quickwins_title">Quick wins</h4>
+          <p data-i18n="sec.strategy.quickwins_desc">mesures à faible coût mais à fort impact immédiat.</p>
+        </div>
+        <div class="mini-card">
+          <h4 data-i18n="sec.strategy.investments_title">Investissements prioritaires</h4>
+          <p data-i18n="sec.strategy.investments_desc">actions de résilience à planifier et financer.</p>
+        </div>
+        <div class="mini-card">
+          <h4 data-i18n="sec.strategy.coverage_title">Programme de couverture</h4>
+          <p data-i18n="sec.strategy.coverage_desc">assurance traditionnelle et/ou paramétrique adaptée à vos expositions.</p>
+        </div>
       </div>
 
-      <p class="muted" style="margin-top:8px" data-i18n="sec.strategy.benefit"></p>
+      <div class="callout">
+        <strong>➡️ <span data-i18n="sec.strategy.benefit_title">Bénéfice :</span></strong>
+        <span data-i18n="sec.strategy.benefit_desc">vous disposez d'un plan clair, compréhensible par les dirigeants comme par les opérationnels, et qui peut être suivi dans le temps.</span>
+      </div>
     </article>
 
     <!-- 5. Finance & transfer -->
@@ -450,455 +756,566 @@
 
       <div class="split">
         <div class="mini-card">
-          <h3 data-i18n="sec.finance.fund.t"></h3>
+          <h3 data-i18n="sec.finance.fund.t">Financer l'adaptation</h3>
+          <p data-i18n="sec.finance.fund.intro">L'adaptation climatique a un coût. Mais des leviers existent :</p>
           <ul>
-            <li data-i18n="sec.finance.fund.li.0"></li>
-            <li data-i18n="sec.finance.fund.li.1"></li>
-            <li data-i18n="sec.finance.fund.li.2"></li>
-            <li data-i18n="sec.finance.fund.li.3"></li>
+            <li data-i18n="sec.finance.fund1">subventions et programmes publics pour l'agriculture, l'eau et l'énergie,</li>
+            <li data-i18n="sec.finance.fund2">lignes de crédit vert des banques locales et internationales,</li>
+            <li data-i18n="sec.finance.fund3">garanties publiques (comme Tamwilcom) pour réduire le coût du risque,</li>
+            <li data-i18n="sec.finance.fund4">partenariats public-privé pour mutualiser les investissements de protection.</li>
           </ul>
+        </div>
+        
+        <div class="mini-card">
+          <h3 data-i18n="sec.finance.transfer.t">Transférer le risque</h3>
+          <p data-i18n="sec.finance.transfer.intro">L'assurance joue un rôle clé :</p>
+          <ul>
+            <li><strong data-i18n="sec.finance.transfer1_title">Produits traditionnels :</strong> <span data-i18n="sec.finance.transfer1_desc">dommages, catastrophes naturelles, multirisque agricole.</span></li>
+            <li><strong data-i18n="sec.finance.transfer2_title">Paramétriques météo :</strong> <span data-i18n="sec.finance.transfer2_desc">déclenchement automatique si un indice (pluie, chaleur, vent, sécheresse) dépasse un seuil. Indemnisation rapide, moins de litiges, plus de prévisibilité.</span></li>
+            <li><strong data-i18n="sec.finance.transfer3_title">Programmes mutualisés :</strong> <span data-i18n="sec.finance.transfer3_desc">couverture de groupes d'agriculteurs, de coopératives ou de collectivités.</span></li>
+            <li><strong data-i18n="sec.finance.transfer4_title">Réassurance et pools :</strong> <span data-i18n="sec.finance.transfer4_desc">sécurisation de la capacité sur les périls majeurs.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h3 data-i18n="sec.finance.blended.t">Blended finance</h3>
+        <p data-i18n="sec.finance.blended.desc">
+          Dans certains cas, nous combinons subventions, prêts concessionnels et assurance pour rendre les projets 
+          bancables et atténuer le coût final pour les assurés.
+        </p>
+      </div>
+
+      <h3 data-i18n="sec.finance.role.t">Rôle de Riskalia</h3>
+      <p data-i18n="sec.finance.role.intro">Nous intervenons sur :</p>
+      
+      <div class="grid-4">
+        <div class="mini-card">
+          <h4 data-i18n="sec.finance.role1">Montage financier</h4>
         </div>
         <div class="mini-card">
-          <h3 data-i18n="sec.finance.transfer.t"></h3>
-          <ul>
-            <li data-i18n="sec.finance.transfer.li.0"></li>
-            <li data-i18n="sec.finance.transfer.li.1"></li>
-            <li data-i18n="sec.finance.transfer.li.2"></li>
-            <li data-i18n="sec.finance.transfer.li.3"></li>
-          </ul>
+          <h4 data-i18n="sec.finance.role2">Conception des couvertures</h4>
+        </div>
+        <div class="mini-card">
+          <h4 data-i18n="sec.finance.role3">Sourcing de capacité</h4>
+        </div>
+        <div class="mini-card">
+          <h4 data-i18n="sec.finance.role4">Gouvernance et traçabilité</h4>
         </div>
       </div>
 
-      <div class="callout" style="margin-top:10px">
-        <h3 style="margin:0" data-i18n="sec.finance.blended.t"></h3>
-        <p class="muted" data-i18n="sec.finance.blended.p"></p>
+      <div class="callout">
+        <strong>➡️ <span data-i18n="sec.finance.promise_title">Notre promesse :</span></strong>
+        <span data-i18n="sec.finance.promise_desc">transformer une contrainte financière en solution soutenable et durable.</span>
       </div>
-
-      <h3 class="mt-1" style="margin-top:12px" data-i18n="sec.finance.role.t"></h3>
-      <div class="grid-4">
-        <div class="mini-card" data-i18n="sec.finance.role.li.0"></div>
-        <div class="mini-card" data-i18n="sec.finance.role.li.1"></div>
-        <div class="mini-card" data-i18n="sec.finance.role.li.2"></div>
-        <div class="mini-card" data-i18n="sec.finance.role.li.3"></div>
-      </div>
-
-      <p class="muted" style="margin-top:8px" data-i18n="sec.finance.promise"></p>
     </article>
 
     <!-- 6. Value -->
     <article id="value" class="card tabpanel" role="tabpanel" aria-labelledby="tab-value">
       <h2 data-i18n="sec.value.t">La valeur ajoutée de Riskalia</h2>
+      
       <div class="grid-2">
-        <div class="mini-card" data-i18n="sec.value.li.0"></div>
-        <div class="mini-card" data-i18n="sec.value.li.1"></div>
-        <div class="mini-card" data-i18n="sec.value.li.2"></div>
-        <div class="mini-card" data-i18n="sec.value.li.3"></div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.value.expertise_title">🌍 Expertise locale et internationale</h3>
+          <p data-i18n="sec.value.expertise_desc">connaissance des réalités marocaines et benchmark des meilleures pratiques.</p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.value.approach_title">📚 Approche pédagogique</h3>
+          <p data-i18n="sec.value.approach_desc">simplifier, vulgariser et impliquer tous les niveaux de décision.</p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.value.solutions_title">🚀 Solutions innovantes</h3>
+          <p data-i18n="sec.value.solutions_desc">assurance paramétrique, schémas mutualisés, partenariats public-privé.</p>
+        </div>
+        <div class="mini-card">
+          <h3 data-i18n="sec.value.impact_title">🎯 Impact concret</h3>
+          <p data-i18n="sec.value.impact_desc">réduction des vulnérabilités, amélioration de la résilience et meilleur accès au financement.</p>
+        </div>
       </div>
     </article>
 
     <!-- 7. FAQ -->
     <article id="faq" class="card tabpanel" role="tabpanel" aria-labelledby="tab-faq">
       <h2 data-i18n="sec.faq.t">FAQ</h2>
-      <details class="mt-1">
-        <summary>❓ <span data-i18n="faq.0.q"></span></summary>
-        <div><p class="muted" data-i18n="faq.0.a"></p></div>
-      </details>
+      
       <details>
-        <summary>❓ <span data-i18n="faq.1.q"></span></summary>
-        <div><p class="muted" data-i18n="faq.1.a"></p></div>
+        <summary>❓ <span data-i18n="faq.q1">Par où commencer si nous avons peu de données ?</span></summary>
+        <div><p data-i18n="faq.a1">Un diagnostic rapide permet d'obtenir une première vision en 3–4 semaines, même avec des données limitées.</p></div>
       </details>
+      
       <details>
-        <summary>❓ <span data-i18n="faq.2.q"></span></summary>
-        <div><p class="muted" data-i18n="faq.2.a"></p></div>
+        <summary>❓ <span data-i18n="faq.q2">Combien de temps pour avoir un plan d'action ?</span></summary>
+        <div><p data-i18n="faq.a2">Un premier plan priorisé peut être livré en moins d'un mois, avec des actions rapides et une vision sur 12–24 mois.</p></div>
       </details>
+      
       <details>
-        <summary>❓ <span data-i18n="faq.3.q"></span></summary>
-        <div><p class="muted" data-i18n="faq.3.a"></p></div>
+        <summary>❓ <span data-i18n="faq.q3">La réassurance peut-elle couvrir les aléas climatiques ?</span></summary>
+        <div><p data-i18n="faq.a3">Oui, à travers des traités CatNat, mais aussi via des solutions paramétriques spécialement conçues pour sécheresse, inondations ou vagues de chaleur.</p></div>
+      </details>
+      
+      <details>
+        <summary>❓ <span data-i18n="faq.q4">Qu'est-ce qu'une couverture paramétrique ?</span></summary>
+        <div><p data-i18n="faq.a4">C'est une assurance déclenchée par un indice (ex. volume de pluie, température). L'indemnité est versée automatiquement, sans attendre une expertise longue et coûteuse.</p></div>
       </details>
     </article>
 
   </section>
+  
+  <div class="end-fade" aria-hidden="true"></div>
 </div>
 
-<!-- FOOTER -->
+<!-- CONTACT CTA -->
+<section class="reveal" style="background:linear-gradient(200deg, var(--c1), var(--c2));color:white">
+  <div class="container" style="text-align:center">
+    <h2 data-i18n="contact.title" style="color:white">Prêt à anticiper les risques climatiques ?</h2>
+    <p data-i18n="contact.subtitle" style="color:white">
+      Commençons par un diagnostic rapide de vos expositions et opportunités.
+    </p>
+    <div style="margin-top:20px">
+      <a class="btn" href="contact.html" data-i18n="cta.contact" style="color:white;margin-right:12px">Demander un diagnostic</a>
+      <a class="btn secondary" href="contact.html" data-i18n="cta.advisor">Parler à un expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (SAME AS INDEX.HTML) -->
 <footer>
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca</p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
-      <p>
-        <a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
-        <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
-        <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-        <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a><br/>
-        <a href="contact.html" data-i18n="nav.contact">Contact</a>
-      </p>
+      <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
+         <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
+         <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
+         <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
-    <div>
+    <div class="footer-contact">
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p><span data-i18n="footer.email_label">Email</span> :
-        <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <div><strong data-i18n="footer.contactBlock.tel">Tél1:</strong> <span data-i18n="footer.contactBlock.telNum1">+212-666-756991</span></div>
+      <div><strong data-i18n="footer.contactBlock.tel2">Tél2:</strong> <span data-i18n="footer.contactBlock.telNum2">+212-675-208909</span></div>
+      <div><strong data-i18n="footer.contactBlock.nabil">Nabil:</strong> <a href="mailto:nabil.cherkaoui@riskalia.ma"> nabil.cherkaoui@riskalia.ma</a></div>
+      <div><strong data-i18n="footer.contactBlock.infos">Infos:</strong> <a href="mailto:contact@riskalia.ma"> contact@riskalia.ma</a></div>
     </div>
   </div>
 </footer>
 
 <!-- ================== SCRIPTS: i18n & UI ================== -->
 <script>
-/* ================== i18n (FR/EN/AR) ================== */
-const I18N={
+/* FULL I18N — FR / EN / AR (global object) */
+window.I18N = {
   fr:{
+    meta:{title:"Riskalia — Risques climatiques",desc:"Identifier, quantifier et piloter les risques climatiques : risques physiques et de transition, scénarios (RCP/SSP), feuille de route d'adaptation, transfert de risque et reporting."},
+    ui:{ search:"🔎…" },
     aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue"},
     nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
     title:"Risques climatiques",
-    subtitle:"Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d’adaptation, transfert de risque et reporting TCFD/ISSB.",
+    subtitle:"Identifier, quantifier et piloter les impacts liés au climat : risques physiques (aigus/chroniques) et de transition, scénarios (RCP/SSP), feuille de route d'adaptation, transfert de risque et reporting TCFD/ISSB.",
     method:"On part de vos pertes passées et de votre tolérance au risque. On simule plusieurs seuils et on retient celui qui équilibre coût, protection et capital.",
+    cta:{contact:"Nous contacter",discover:"Découvrir notre approche",advisor:"Parler à un expert"},
+    
+    intro_climate:{
+      title:"Le défi climatique au Maroc",
+      content:"Le changement climatique est devenu l'un des premiers facteurs de risque pour les économies africaines et marocaines. Il est indispensable de passer d'une logique réactive à une approche anticipative : mesurer, planifier et couvrir."
+    },
+    
     sec:{
       intro:{
         t:"Introduction",
-        p1:"Le changement climatique est devenu l’un des premiers facteurs de risque pour les économies africaines et marocaines.",
-        p2:"Sécheresses récurrentes, stress hydrique, vagues de chaleur, inondations soudaines et feux de forêts : ces phénomènes ne sont plus exceptionnels mais tendent à se répéter et à s’intensifier.",
-        bul:[
-          "pertes agricoles et baisse de rendements,",
-          "dégâts aux infrastructures et perturbations des chaînes logistiques,",
-          "hausse des coûts de l’énergie et de l’eau,",
-          "effets sur la santé et la productivité des salariés."
-        ],
-        p3:"Ces risques touchent toutes les catégories d’acteurs. Il est indispensable de passer d’une logique réactive (gérer après coup) à une approche anticipative (mesurer, planifier et couvrir)."
+        p1:"Le changement climatique est devenu l'un des premiers facteurs de risque pour les économies africaines et marocaines. Sécheresses récurrentes, stress hydrique, vagues de chaleur, inondations soudaines et feux de forêts : ces phénomènes ne sont plus exceptionnels mais tendent à se répéter et à s'intensifier.",
+        impacts_title:"Au Maroc, les impacts sont déjà mesurables :",
+        impact1:"pertes agricoles et baisse de rendements,",
+        impact2:"dégâts aux infrastructures et perturbations des chaînes logistiques,",
+        impact3:"hausse des coûts de l'énergie et de l'eau,",
+        impact4:"effets sur la santé et la productivité des salariés.",
+        conclusion:"Ces risques touchent toutes les catégories d'acteurs : assureurs, réassureurs, entreprises, collectivités, mais aussi ménages et investisseurs. Face à cette réalité, il est indispensable de passer d'une logique réactive (gérer après coup) à une approche anticipative (mesurer, planifier et couvrir)."
       },
       risks:{
         t:"Risques physiques & de transition",
-        phys:{t:"Risques physiques",li:[
-          "Aigus : événements soudains (inondations urbaines, tempêtes, vagues de chaleur extrêmes, feux de forêts) causant dommages immédiats et interruption d’activité.",
-          "Chroniques : hausse des températures, raréfaction de l’eau, érosion côtière — fragilisation des cultures, hausse des coûts d’irrigation, contraintes industrielles."
-        ]},
-        trans:{t:"Risques de transition",li:[
-          "nouvelles réglementations (taxes carbone, normes de reporting ESG),",
-          "exigences des bailleurs et assureurs internationaux,",
-          "transformation des chaînes de valeur mondiales,",
-          "attentes sociétales et réputationnelles."
-        ]},
-        why:"➡️ Pourquoi c’est important ? Sans anticipation, on peut perdre des financements, voir les coûts grimper, ou rater des opportunités."
+        phys:{t:"Risques physiques"},
+        distinction:"On distingue :",
+        acute:"Les risques aigus",
+        acute_desc:"événements soudains et destructeurs comme les inondations urbaines, les tempêtes violentes, les vagues de chaleur extrêmes ou les feux de forêts. Ils entraînent des dommages immédiats aux bâtiments, aux équipements, aux réseaux et peuvent interrompre l'activité.",
+        chronic:"Les risques chroniques",
+        chronic_desc:"effets progressifs mais durables comme la hausse des températures moyennes, la raréfaction de l'eau ou l'érosion côtière. Ils fragilisent les cultures, augmentent les coûts d'irrigation et modifient les conditions d'exploitation industrielle et agricole.",
+        trans:{t:"Risques de transition"},
+        trans_intro:"Ils découlent de l'évolution vers une économie bas carbone :",
+        trans1:"nouvelles réglementations (taxes carbone, normes de reporting ESG),",
+        trans2:"exigences des bailleurs et assureurs internationaux,",
+        trans3:"transformation des chaînes de valeur mondiales (exportateurs soumis à des critères climatiques stricts),",
+        trans4:"attentes sociétales et réputationnelles (investisseurs, consommateurs).",
+        why_title:"Pourquoi c'est important ?",
+        why_desc:"Parce qu'un acteur qui n'anticipe pas ces évolutions peut perdre des financements, voir ses coûts grimper, ou rater des opportunités de marché."
       },
       data:{
         t:"Données & scénarios",
-        collect:{t:"Collecte et analyse",p:"Historiques de sinistres, bases climatiques (Maroc/international), données locales de pluviométrie/température, retours des équipes."},
-        map:{t:"Cartographie",li:[
-          "zones agricoles exposées à la sécheresse,",
-          "villes à risque d’inondation,",
-          "régions industrielles confrontées aux vagues de chaleur."
-        ]},
-        scen:{t:"Scénarios prospectifs (2030/2050)",li:[
-          "combien de jours de chaleur extrême supplémentaires ?",
-          "quelle fréquence d’inondations par région ?",
-          "quel impact sur la productivité agricole/industrielle ?"
-        ]},
-        kpi:{t:"Indicateurs clés",li:[
-          "pertes annuelles moyennes (AAL),",
-          "perte maximale probable (PML),",
-          "évolution des coûts d’eau ou d’énergie,",
-          "impact potentiel sur les résultats financiers."
-        ],note:"➡️ Objectif : rendre la donnée climatique lisible, comparable et exploitable pour la gestion, le financement et l’assurance."}
+        collect:{t:"Collecte et analyse",p:"Nous partons de données concrètes : historiques de sinistres, bases climatiques disponibles au Maroc et à l'international, données locales de pluviométrie ou de température, mais aussi témoignages et retours d'expérience de vos équipes."},
+        map:{t:"Cartographie",intro:"Nous traduisons ces données en cartes claires :",conclusion:"Chaque carte met en évidence les actifs critiques et les points de fragilité de vos opérations."},
+        map1:"zones agricoles exposées à la sécheresse,",
+        map2:"villes à risque d'inondation,",
+        map3:"régions industrielles confrontées aux vagues de chaleur.",
+        scen:{t:"Scénarios prospectifs",intro:"Nous construisons des trajectoires à horizon 2030 et 2050 pour tester la robustesse de vos stratégies :"},
+        scen1:"combien de jours de chaleur extrême supplémentaires ?",
+        scen2:"quelle fréquence d'inondations dans telle région ?",
+        scen3:"quel impact sur la productivité agricole ou industrielle ?",
+        kpi:{title:"Indicateurs clés",intro:"Nous traduisons tout cela en indicateurs simples :",aal:"Pertes annuelles moyennes",pml:"Perte maximale probable",costs:"Évolution des coûts",impact:"Impact financier"},
+        objective:"Objectif",
+        objective_desc:"rendre la donnée climatique lisible, comparable et directement exploitable dans vos décisions de gestion, de financement et d'assurance."
       },
       strategy:{
-        t:"Stratégie & roadmap",
-        lead:"Une bonne stratégie débouche sur un plan d’action hiérarchisé et opérationnel.",
-        steps:[
-          "Mesurer : identifier les vulnérabilités et estimer leur coût.",
-          "Réduire : adaptation (infrastructures, irrigation efficiente, continuité d’activité).",
-          "Transférer : assurance & réassurance, y compris paramétriques.",
-          "Piloter : suivre l’évolution des risques et mettre à jour les protections."
-        ],
+        t:"Stratégie & feuille de route",
+        intro:"Une bonne stratégie ne se limite pas à dresser un constat. Elle doit déboucher sur un plan d'action hiérarchisé et opérationnel.",
+        steps_title:"Les 4 étapes",
+        step1_title:"Mesurer",step1_desc:"identifier clairement vos vulnérabilités et estimer leur coût.",
+        step2_title:"Réduire",step2_desc:"mettre en place des mesures d'adaptation (renforcer les infrastructures sensibles, investir dans des solutions d'irrigation efficientes, établir des plans de continuité d'activité).",
+        step3_title:"Transférer",step3_desc:"compléter la prévention par des mécanismes d'assurance et de réassurance, classiques ou paramétriques.",
+        step4_title:"Piloter",step4_desc:"suivre l'évolution des risques et mettre à jour régulièrement vos protections.",
         roadmap:{t:"La feuille de route Riskalia"},
-        deliv:[
-          "Quick wins : faible coût / fort impact immédiat.",
-          "Investissements prioritaires : actions de résilience à planifier et financer.",
-          "Programme de couverture : assurance traditionnelle et/ou paramétrique."
-        ],
-        benefit:"➡️ Bénéfice : un plan clair, compréhensible et suivi dans le temps."
+        roadmap_intro:"Nous livrons une roadmap sur 12 à 24 mois, structurée en :",
+        quickwins_title:"Quick wins",quickwins_desc:"mesures à faible coût mais à fort impact immédiat.",
+        investments_title:"Investissements prioritaires",investments_desc:"actions de résilience à planifier et financer.",
+        coverage_title:"Programme de couverture",coverage_desc:"assurance traditionnelle et/ou paramétrique adaptée à vos expositions.",
+        benefit_title:"Bénéfice",benefit_desc:"vous disposez d'un plan clair, compréhensible par les dirigeants comme par les opérationnels, et qui peut être suivi dans le temps."
       },
       finance:{
         t:"Financement & transfert de risque",
-        fund:{t:"Financer l’adaptation",li:[
-          "subventions et programmes publics,",
-          "lignes de crédit vert locales et internationales,",
-          "garanties publiques (p.ex. Tamwilcom),",
-          "partenariats public-privé."
-        ]},
-        transfer:{t:"Transférer le risque",li:[
-          "Produits traditionnels : dommages, catastrophes naturelles, multirisque agricole.",
-          "Paramétriques météo : déclenchement par indice (pluie, chaleur, vent, sécheresse).",
-          "Programmes mutualisés : agriculteurs, coopératives, collectivités.",
-          "Réassurance et pools : capacité sur périls majeurs."
-        ]},
-        blended:{t:"Blended finance",p:"Combiner subventions, prêts concessionnels et assurance pour bancabiliser les projets et réduire le coût final."},
-        role:{t:"Rôle de Riskalia",li:[
-          "montage financier,",
-          "conception des couvertures,",
-          "sourcing de capacité,",
-          "gouvernance et traçabilité."
-        ]},
-        promise:"➡️ Notre promesse : transformer une contrainte financière en solution soutenable."
+        fund:{t:"Financer l'adaptation",intro:"L'adaptation climatique a un coût. Mais des leviers existent :"},
+        fund1:"subventions et programmes publics pour l'agriculture, l'eau et l'énergie,",
+        fund2:"lignes de crédit vert des banques locales et internationales,",
+        fund3:"garanties publiques (comme Tamwilcom) pour réduire le coût du risque,",
+        fund4:"partenariats public-privé pour mutualiser les investissements de protection.",
+        transfer:{t:"Transférer le risque",intro:"L'assurance joue un rôle clé :"},
+        transfer1_title:"Produits traditionnels",transfer1_desc:"dommages, catastrophes naturelles, multirisque agricole.",
+        transfer2_title:"Paramétriques météo",transfer2_desc:"déclenchement automatique si un indice (pluie, chaleur, vent, sécheresse) dépasse un seuil. Indemnisation rapide, moins de litiges, plus de prévisibilité.",
+        transfer3_title:"Programmes mutualisés",transfer3_desc:"couverture de groupes d'agriculteurs, de coopératives ou de collectivités.",
+        transfer4_title:"Réassurance et pools",transfer4_desc:"sécurisation de la capacité sur les périls majeurs.",
+        blended:{t:"Blended finance",desc:"Dans certains cas, nous combinons subventions, prêts concessionnels et assurance pour rendre les projets bancables et atténuer le coût final pour les assurés."},
+        role:{t:"Rôle de Riskalia",intro:"Nous intervenons sur :"},
+        role1:"Montage financier",role2:"Conception des couvertures",role3:"Sourcing de capacité",role4:"Gouvernance et traçabilité",
+        promise_title:"Notre promesse",promise_desc:"transformer une contrainte financière en solution soutenable et durable."
       },
       value:{
         t:"La valeur ajoutée de Riskalia",
-        li:[
-          "Expertise locale et internationale.",
-          "Approche pédagogique et mobilisatrice.",
-          "Solutions innovantes (paramétrique, mutualisation, PPP).",
-          "Impact concret : résilience et accès au financement."
-        ]
+        expertise_title:"Expertise locale et internationale",expertise_desc:"connaissance des réalités marocaines et benchmark des meilleures pratiques.",
+        approach_title:"Approche pédagogique",approach_desc:"simplifier, vulgariser et impliquer tous les niveaux de décision.",
+        solutions_title:"Solutions innovantes",solutions_desc:"assurance paramétrique, schémas mutualisés, partenariats public-privé.",
+        impact_title:"Impact concret",impact_desc:"réduction des vulnérabilités, amélioration de la résilience et meilleur accès au financement."
       },
       faq:{t:"FAQ"}
     },
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact",email_label:"Email"},
+    
     faq:{
-      0:{q:"Par où commencer si nous avons peu de données ?",a:"Un diagnostic rapide permet d’obtenir une première vision en 3–4 semaines, même avec des données limitées."},
-      1:{q:"Combien de temps pour avoir un plan d’action ?",a:"Un premier plan priorisé peut être livré en moins d’un mois, avec des actions rapides et une vision sur 12–24 mois."},
-      2:{q:"La réassurance peut-elle couvrir les aléas climatiques ?",a:"Oui, via des traités CatNat et des solutions paramétriques (sécheresse, inondations, vagues de chaleur)."},
-      3:{q:"Qu’est-ce qu’une couverture paramétrique ?",a:"Une assurance déclenchée par un indice (ex. pluie/température). L’indemnité est versée automatiquement et rapidement."}
-    }
+      q1:"Par où commencer si nous avons peu de données ?",
+      a1:"Un diagnostic rapide permet d'obtenir une première vision en 3–4 semaines, même avec des données limitées.",
+      q2:"Combien de temps pour avoir un plan d'action ?",
+      a2:"Un premier plan priorisé peut être livré en moins d'un mois, avec des actions rapides et une vision sur 12–24 mois.",
+      q3:"La réassurance peut-elle couvrir les aléas climatiques ?",
+      a3:"Oui, à travers des traités CatNat, mais aussi via des solutions paramétriques spécialement conçues pour sécheresse, inondations ou vagues de chaleur.",
+      q4:"Qu'est-ce qu'une couverture paramétrique ?",
+      a4:"C'est une assurance déclenchée par un indice (ex. volume de pluie, température). L'indemnité est versée automatiquement, sans attendre une expertise longue et coûteuse."
+    },
+    
+    contact:{
+      title:"Prêt à anticiper les risques climatiques ?",
+      subtitle:"Commençons par un diagnostic rapide de vos expositions et opportunités."
+    },
+    
+    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",links:"Liens",contact:"Contact",contactBlock: {
+    tel: "Tél 1 :",
+    telNum1: "+212-666-756991",
+    tel2: "Tél 2 :",
+    telNum2: "+212-675-208909",
+    nabil: "E-mail de Nabil :" ,
+    infos: "Informations générales :"
+  }}
   },
 
   en:{
+    meta:{title:"Riskalia — Climate Risk",desc:"Identify, quantify and manage climate impacts: physical (acute/chronic) and transition risks, scenarios (RCP/SSP), adaptation roadmap, risk transfer and TCFD/ISSB reporting."},
+    ui:{ search:"🔎…" },
     aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher"},
     nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
     title:"Climate Risk",
     subtitle:"Identify, quantify and manage climate impacts: physical (acute/chronic) and transition risks, scenarios (RCP/SSP), adaptation roadmap, risk transfer and TCFD/ISSB reporting.",
     method:"We start from your historical losses and risk tolerance, simulate several thresholds, and retain the one that balances cost, protection and capital.",
+    cta:{contact:"Contact us",discover:"Discover our approach",advisor:"Talk to an expert"},
+    
+    intro_climate:{
+      title:"The climate challenge in Morocco",
+      content:"Climate change has become a top risk driver for African and Moroccan economies. It is essential to shift from reactive to anticipatory logic: measure, plan and cover."
+    },
+    
     sec:{
       intro:{
         t:"Introduction",
-        p1:"Climate change is a top risk driver for African and Moroccan economies.",
-        p2:"Droughts, water stress, heatwaves, flash floods and wildfires are recurring and intensifying.",
-        bul:[
-          "agricultural losses and yield decline,",
-          "infrastructure damage and supply chain disruptions,",
-          "rising energy and water costs,",
-          "health impacts and reduced productivity."
-        ],
-        p3:"All actors are affected. Shift from reactive to anticipatory: measure, plan and cover."
+        p1:"Climate change has become a top risk driver for African and Moroccan economies. Recurring droughts, water stress, heatwaves, flash floods and wildfires are no longer exceptional but tend to repeat and intensify.",
+        impacts_title:"In Morocco, impacts are already measurable:",
+        impact1:"agricultural losses and yield decline,",
+        impact2:"infrastructure damage and supply chain disruptions,",
+        impact3:"rising energy and water costs,",
+        impact4:"health impacts and reduced productivity.",
+        conclusion:"These risks affect all categories of actors: insurers, reinsurers, companies, municipalities, as well as households and investors. Faced with this reality, it is essential to shift from reactive logic (manage after the fact) to anticipatory approach (measure, plan and cover)."
       },
       risks:{
         t:"Physical & transition risks",
-        phys:{t:"Physical risks",li:[
-          "Acute: sudden events (urban floods, severe storms, extreme heatwaves, wildfires) causing immediate damage and business interruption.",
-          "Chronic: rising temperatures, water scarcity, coastal erosion — higher irrigation costs, crop fragility, industrial constraints."
-        ]},
-        trans:{t:"Transition risks",li:[
-          "new regulations (carbon pricing, ESG reporting),",
-          "requirements from international lenders/insurers,",
-          "global value chain transformation,",
-          "societal and reputational expectations."
-        ]},
-        why:"➡️ Why it matters: without anticipation, funding may dry up, costs rise, and opportunities are missed."
+        phys:{t:"Physical risks"},
+        distinction:"We distinguish:",
+        acute:"Acute risks",
+        acute_desc:"sudden and destructive events such as urban floods, violent storms, extreme heatwaves or forest fires. They cause immediate damage to buildings, equipment, networks and can interrupt activity.",
+        chronic:"Chronic risks",
+        chronic_desc:"progressive but lasting effects such as rising average temperatures, water scarcity or coastal erosion. They weaken crops, increase irrigation costs and modify industrial and agricultural operating conditions.",
+        trans:{t:"Transition risks"},
+        trans_intro:"They stem from the evolution towards a low-carbon economy:",
+        trans1:"new regulations (carbon taxes, ESG reporting standards),",
+        trans2:"requirements from international lenders and insurers,",
+        trans3:"transformation of global value chains (exporters subject to strict climate criteria),",
+        trans4:"societal and reputational expectations (investors, consumers).",
+        why_title:"Why it matters?",
+        why_desc:"Because an actor who does not anticipate these changes may lose funding, see costs rise, or miss market opportunities."
       },
       data:{
         t:"Data & scenarios",
-        collect:{t:"Collection & analysis",p:"Loss histories, climate databases (Morocco/international), local rainfall/temperature, and team insights."},
-        map:{t:"Mapping",li:[
-          "agricultural areas exposed to drought,",
-          "cities at flood risk,",
-          "industrial regions facing heatwaves."
-        ]},
-        scen:{t:"Forward scenarios (2030/2050)",li:[
-          "how many additional extreme-heat days?",
-          "what flood frequency by region?",
-          "impact on agricultural/industrial productivity?"
-        ]},
-        kpi:{t:"Key indicators",li:[
-          "Average Annual Loss (AAL),",
-          "Probable Maximum Loss (PML),",
-          "water/energy cost evolution,",
-          "potential impact on financial results."
-        ],note:"➡️ Goal: make climate data readable, comparable and usable for management, financing and insurance decisions."}
+        collect:{t:"Collection & analysis",p:"We start from concrete data: loss histories, climate databases available in Morocco and internationally, local rainfall or temperature data, as well as testimonies and feedback from your teams."},
+        map:{t:"Mapping",intro:"We translate this data into clear maps:",conclusion:"Each map highlights critical assets and fragility points of your operations."},
+        map1:"agricultural areas exposed to drought,",
+        map2:"cities at flood risk,",
+        map3:"industrial regions facing heatwaves.",
+        scen:{t:"Forward scenarios",intro:"We build trajectories for 2030 and 2050 to test the robustness of your strategies:"},
+        scen1:"how many additional extreme heat days?",
+        scen2:"what flood frequency in which region?",
+        scen3:"what impact on agricultural or industrial productivity?",
+        kpi:{title:"Key indicators",intro:"We translate all this into simple indicators:",aal:"Average Annual Loss",pml:"Probable Maximum Loss",costs:"Cost evolution",impact:"Financial impact"},
+        objective:"Objective",
+        objective_desc:"make climate data readable, comparable and directly usable in your management, financing and insurance decisions."
       },
       strategy:{
         t:"Strategy & roadmap",
-        lead:"Strategy must end in a prioritised, operational action plan.",
-        steps:[
-          "Measure: identify vulnerabilities and estimate their cost.",
-          "Reduce: adaptation (asset hardening, efficient irrigation, BCM).",
-          "Transfer: insurance & reinsurance, including parametrics.",
-          "Steer: track risk evolution and update protections."
-        ],
-        roadmap:{t:"Riskalia roadmap"},
-        deliv:[
-          "Quick wins: low cost / high immediate impact.",
-          "Priority investments: plan & finance resilience actions.",
-          "Coverage programme: traditional and/or parametric insurance."
-        ],
-        benefit:"➡️ Benefit: a clear plan, understood and trackable over time."
+        intro:"A good strategy is not limited to making an assessment. It must result in a prioritized and operational action plan.",
+        steps_title:"The 4 steps",
+        step1_title:"Measure",step1_desc:"clearly identify your vulnerabilities and estimate their cost.",
+        step2_title:"Reduce",step2_desc:"implement adaptation measures (strengthen sensitive infrastructure, invest in efficient irrigation solutions, establish business continuity plans).",
+        step3_title:"Transfer",step3_desc:"complement prevention with insurance and reinsurance mechanisms, traditional or parametric.",
+        step4_title:"Steer",step4_desc:"monitor risk evolution and regularly update your protections.",
+        roadmap:{t:"The Riskalia roadmap"},
+        roadmap_intro:"We deliver a 12 to 24-month roadmap, structured in:",
+        quickwins_title:"Quick wins",quickwins_desc:"low-cost measures with high immediate impact.",
+        investments_title:"Priority investments",investments_desc:"resilience actions to plan and finance.",
+        coverage_title:"Coverage program",coverage_desc:"traditional and/or parametric insurance adapted to your exposures.",
+        benefit_title:"Benefit",benefit_desc:"you have a clear plan, understandable by both executives and operations, that can be tracked over time."
       },
       finance:{
         t:"Financing & risk transfer",
-        fund:{t:"Financing adaptation",li:[
-          "public grants and programmes,",
-          "green credit lines (local/international),",
-          "public guarantees (e.g., Tamwilcom),",
-          "public–private partnerships."
-        ]},
-        transfer:{t:"Transferring risk",li:[
-          "Traditional covers: Property/CatNat, agricultural multi-peril.",
-          "Weather parametrics: index triggers (rain/heat/wind/drought).",
-          "Mutualised programmes: farmers, co-ops, municipalities.",
-          "Reinsurance & pools for major perils."
-        ]},
-        blended:{t:"Blended finance",p:"Combine grants, concessional loans and insurance to make projects bankable and reduce end-user cost."},
-        role:{t:"Riskalia’s role",li:[
-          "financial structuring,",
-          "coverage design,",
-          "capacity sourcing,",
-          "governance and audit trail."
-        ]},
-        promise:"➡️ Our promise: turn a financial constraint into a sustainable solution."
+        fund:{t:"Financing adaptation",intro:"Climate adaptation has a cost. But levers exist:"},
+        fund1:"public grants and programs for agriculture, water and energy,",
+        fund2:"green credit lines from local and international banks,",
+        fund3:"public guarantees (like Tamwilcom) to reduce risk cost,",
+        fund4:"public-private partnerships to pool protection investments.",
+        transfer:{t:"Transfer risk",intro:"Insurance plays a key role:"},
+        transfer1_title:"Traditional products",transfer1_desc:"property damage, natural disasters, agricultural multi-peril.",
+        transfer2_title:"Weather parametrics",transfer2_desc:"automatic trigger if an index (rain, heat, wind, drought) exceeds a threshold. Fast compensation, fewer disputes, more predictability.",
+        transfer3_title:"Pooled programs",transfer3_desc:"coverage for groups of farmers, cooperatives or municipalities.",
+        transfer4_title:"Reinsurance and pools",transfer4_desc:"securing capacity on major perils.",
+        blended:{t:"Blended finance",desc:"In some cases, we combine grants, concessional loans and insurance to make projects bankable and mitigate the final cost for the insured."},
+        role:{t:"Riskalia's role",intro:"We intervene on:"},
+        role1:"Financial structuring",role2:"Coverage design",role3:"Capacity sourcing",role4:"Governance and traceability",
+        promise_title:"Our promise",promise_desc:"transform a financial constraint into a sustainable and lasting solution."
       },
       value:{
-        t:"Riskalia value added",
-        li:[
-          "Local and international expertise.",
-          "Clear, pedagogical approach.",
-          "Innovative solutions (parametrics, pooling, PPP).",
-          "Tangible impact: resilience and access to finance."
-        ]
+        t:"Riskalia's added value",
+        expertise_title:"Local and international expertise",expertise_desc:"knowledge of Moroccan realities and benchmark of best practices.",
+        approach_title:"Educational approach",approach_desc:"simplify, popularize and involve all decision levels.",
+        solutions_title:"Innovative solutions",solutions_desc:"parametric insurance, pooled schemes, public-private partnerships.",
+        impact_title:"Concrete impact",impact_desc:"reduced vulnerabilities, improved resilience and better access to financing."
       },
       faq:{t:"FAQ"}
     },
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact",email_label:"Email"},
+    
     faq:{
-      0:{q:"Where to start with little data?",a:"A quick diagnostic gives a first view in 3–4 weeks, even with limited data."},
-      1:{q:"How long for an action plan?",a:"A prioritised plan in under a month, with quick actions and a 12–24 month view."},
-      2:{q:"Can reinsurance cover climate perils?",a:"Yes — Cat treaties and parametric solutions (drought, flood, heatwaves)."},
-      3:{q:"What is parametric insurance?",a:"Index-triggered cover (e.g., rainfall/temperature) with fast, predictable payouts."}
-    }
+      q1:"Where to start if we have little data?",
+      a1:"A rapid assessment provides a first vision in 3-4 weeks, even with limited data.",
+      q2:"How long to get an action plan?",
+      a2:"A first prioritized plan can be delivered in less than a month, with quick actions and a 12-24 month vision.",
+      q3:"Can reinsurance cover climate hazards?",
+      a3:"Yes, through CatNat treaties, but also via parametric solutions specially designed for drought, floods or heatwaves.",
+      q4:"What is parametric coverage?",
+      a4:"It's insurance triggered by an index (e.g. rainfall volume, temperature). Compensation is paid automatically, without waiting for lengthy and costly expertise."
+    },
+    
+    contact:{
+      title:"Ready to anticipate climate risks?",
+      subtitle:"Let's start with a rapid assessment of your exposures and opportunities."
+    },
+    
+    footer:{desc:"Licensed insurance & reinsurance brokerage (ACAPS)<br/>Head office: 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",links:"Links",contact:"Contact",contactBlock: {
+    tel: "Phone 1 :",
+    telNum1: "+212-666-756991",
+    tel2: "Phone 2 :",
+    telNum2: "+212-675-208909",
+    nabil: "Nabil's e-mail :",
+    infos: "General Information :"
+  }}
   },
 
   ar:{
+    meta:{title:"ريسكاليا — مخاطر المناخ",desc:"تحديد وقياس وإدارة آثار المناخ: المخاطر الفيزيائية (حادّة/مزمنة) ومخاطر الانتقال، سيناريوهات RCP/SSP، خارطة طريق للتكيّف، نقل المخاطر والإفصاح TCFD/ISSB."},
+    ui:{ search:"…🔎" },
     aria:{nav:"التنقل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"اختيار اللغة"},
     nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"اتصل بنا"},
     title:"مخاطر المناخ",
     subtitle:"تحديد وقياس وإدارة آثار المناخ: المخاطر الفيزيائية (حادّة/مزمنة) ومخاطر الانتقال، سيناريوهات RCP/SSP، خارطة طريق للتكيّف، نقل المخاطر والإفصاح TCFD/ISSB.",
     method:"نبدأ من خسائركم السابقة وتحمّل المخاطر لديكم، نحاكي عدة عتبات ونختار ما يوازن الكلفة والحماية ورأس المال.",
+    cta:{contact:"تواصل معنا",discover:"اكتشف نهجنا",advisor:"تحدث مع خبير"},
+    
+    intro_climate:{
+      title:"التحدي المناخي في المغرب",
+      content:"أضحى تغيّر المناخ من أكبر عوامل المخاطر لاقتصادات إفريقيا والمغرب. من الضروري الانتقال من المنطق التفاعلي إلى النهج الاستباقي: قياس، تخطيط وتغطية."
+    },
+    
     sec:{
       intro:{
         t:"مقدمة",
-        p1:"أضحى تغيّر المناخ من أكبر عوامل المخاطر لاقتصادات إفريقيا والمغرب.",
-        p2:"الجفاف وإجهاد المياه وموجات الحر والفيضانات السريعة وحرائق الغابات باتت تتكرر وتشتد.",
-        bul:[
-          "خسائر زراعية وتراجع المردودية،",
-          "أضرار بالبنى التحتية واضطراب سلاسل الإمداد،",
-          "ارتفاع تكاليف الطاقة والمياه،",
-          "آثار صحية وتراجع الإنتاجية."
-        ],
-        p3:"تطال المخاطر جميع الفاعلين. المطلوب الانتقال من رد الفعل إلى الاستباق: قياس، تخطيط وتغطية."
+        p1:"أضحى تغيّر المناخ من أكبر عوامل المخاطر لاقتصادات إفريقيا والمغرب. الجفاف المتكرر وإجهاد المياه وموجات الحر والفيضانات السريعة وحرائق الغابات لم تعد استثنائية بل تميل للتكرار والتكثف.",
+        impacts_title:"في المغرب، الآثار قابلة للقياس بالفعل:",
+        impact1:"خسائر زراعية وتراجع المردودية،",
+        impact2:"أضرار بالبنى التحتية واضطراب سلاسل الإمداد،",
+        impact3:"ارتفاع تكاليف الطاقة والمياه،",
+        impact4:"آثار صحية وتراجع الإنتاجية.",
+        conclusion:"تطال هذه المخاطر جميع فئات الفاعلين: المؤمنون، معيدو التأمين، الشركات، الجماعات، وكذلك الأسر والمستثمرون. أمام هذا الواقع، من الضروري الانتقال من المنطق التفاعلي (الإدارة بعد الحدث) إلى النهج الاستباقي (قياس، تخطيط وتغطية)."
       },
       risks:{
         t:"المخاطر الفيزيائية والانتقالية",
-        phys:{t:"المخاطر الفيزيائية",li:[
-          "حادّة: فيضانات حضرية، عواصف شديدة، موجات حر قصوى، حرائق — أضرار فورية وتوقف الأعمال.",
-          "مزمنة: ارتفاع درجات الحرارة، ندرة المياه، تآكل السواحل — كلف ري أعلى وهشاشة المحاصيل وقيود صناعية."
-        ]},
-        trans:{t:"مخاطر الانتقال",li:[
-          "تنظيمات جديدة (تسعير الكربون، تقارير ESG)،",
-          "متطلبات الممولين/المؤمّنين الدوليين،",
-          "تحولات سلاسل القيمة العالمية،",
-          "توقعات المجتمع والسمعة."
-        ]},
-        why:"➡️ لماذا يهم؟ من دون استباق قد تتقلص مصادر التمويل وترتفع الكلف وتضيع الفرص."
+        phys:{t:"المخاطر الفيزيائية"},
+        distinction:"نميز:",
+        acute:"المخاطر الحادة",
+        acute_desc:"أحداث مفاجئة ومدمرة مثل الفيضانات الحضرية والعواصف العنيفة وموجات الحر الشديدة أو حرائق الغابات. تسبب أضراراً فورية للمباني والمعدات والشبكات ويمكن أن تقطع النشاط.",
+        chronic:"المخاطر المزمنة",
+        chronic_desc:"تأثيرات تدريجية لكن دائمة مثل ارتفاع متوسط درجات الحرارة وندرة المياه أو تآكل السواحل. تضعف المحاصيل وترفع تكاليف الري وتعدل ظروف التشغيل الصناعي والزراعي.",
+        trans:{t:"مخاطر الانتقال"},
+        trans_intro:"تنبع من التطور نحو اقتصاد منخفض الكربون:",
+        trans1:"تنظيمات جديدة (ضرائب الكربون، معايير تقارير ESG)،",
+        trans2:"متطلبات الممولين والمؤمنين الدوليين،",
+        trans3:"تحول سلاسل القيمة العالمية (مصدرون خاضعون لمعايير مناخية صارمة)،",
+        trans4:"توقعات مجتمعية وسمعة (مستثمرون، مستهلكون).",
+        why_title:"لماذا هذا مهم؟",
+        why_desc:"لأن الفاعل الذي لا يستبق هذه التطورات قد يفقد التمويل أو يرى التكاليف ترتفع أو يفوت فرص السوق."
       },
       data:{
         t:"البيانات والسيناريوهات",
-        collect:{t:"جمع وتحليل",p:"سجلات الخسائر، قواعد مناخية (المغرب/دولية)، مطر/حرارة محلية، وملاحظات فرقكم."},
-        map:{t:"الخرائط",li:[
-          "مناطق زراعية معرضة للجفاف،",
-          "مدن مهددة بالفيضانات،",
-          "أقاليم صناعية تواجه موجات حر."
-        ]},
-        scen:{t:"سيناريوهات 2030/2050",li:[
-          "كم يوماً إضافياً من الحر الشديد؟",
-          "ما تواتر الفيضانات حسب المنطقة؟",
-          "ما الأثر على الإنتاجية الزراعية/الصناعية؟"
-        ]},
-        kpi:{t:"مؤشرات رئيسية",li:[
-          "الخسارة السنوية المتوسطة (AAL)،",
-          "الخسارة العظمى المتوقعة (PML)،",
-          "تطور كلفة المياه/الطاقة،",
-          "الأثر المحتمل على النتائج المالية."
-        ],note:"➡️ الهدف: جعل بيانات المناخ قابلة للقراءة والمقارنة والتطبيق في قرارات الإدارة والتمويل والتأمين."}
+        collect:{t:"الجمع والتحليل",p:"نبدأ من بيانات ملموسة: سجلات الخسائر، قواعد بيانات مناخية متاحة في المغرب ودولياً، بيانات محلية للأمطار أو درجة الحرارة، وكذلك شهادات وملاحظات من فرقكم."},
+        map:{t:"رسم الخرائط",intro:"نترجم هذه البيانات إلى خرائط واضحة:",conclusion:"كل خريطة تبرز الأصول الحرجة ونقاط الهشاشة في عملياتكم."},
+        map1:"مناطق زراعية معرضة للجفاف،",
+        map2:"مدن معرضة لخطر الفيضانات،",
+        map3:"مناطق صناعية تواجه موجات حر.",
+        scen:{t:"سيناريوهات مستقبلية",intro:"نبني مسارات لآفاق 2030 و2050 لاختبار قوة استراتيجياتكم:"},
+        scen1:"كم يوماً إضافياً من الحر الشديد؟",
+        scen2:"ما تكرار الفيضانات في أي منطقة؟",
+        scen3:"ما التأثير على الإنتاجية الزراعية أو الصناعية؟",
+        kpi:{title:"المؤشرات الرئيسية",intro:"نترجم كل هذا إلى مؤشرات بسيطة:",aal:"متوسط الخسائر السنوية",pml:"الخسارة القصوى المحتملة",costs:"تطور التكاليف",impact:"التأثير المالي"},
+        objective:"الهدف",
+        objective_desc:"جعل البيانات المناخية قابلة للقراءة والمقارنة والاستخدام المباشر في قرارات الإدارة والتمويل والتأمين."
       },
       strategy:{
         t:"الاستراتيجية وخارطة الطريق",
-        lead:"يجب أن تنتهي الاستراتيجية بخطة عملية مرتّبة حسب الأولويات.",
-        steps:[
-          "القياس: تحديد نقاط الضعف وتقدير كلفتها.",
-          "التقليل: تكيّف بنيوي وريّ فعّال واستمرارية الأعمال.",
-          "النقل: تأمين وإعادة تأمين بما فيها الحلول البارامترية.",
-          "التحكم: تتبع تطور المخاطر وتحديث الحماية."
-        ],
-        roadmap:{t:"خارطة طريق Riskalia"},
-        deliv:[
-          "إجراءات سريعة منخفضة الكلفة عالية الأثر.",
-          "استثمارات أولوية للمرونة للتمويل والتخطيط.",
-          "برنامج تغطية تقليدي و/أو بارامتري."
-        ],
-        benefit:"➡️ الفائدة: خطة واضحة قابلة للمتابعة عبر الزمن."
+        intro:"الاستراتيجية الجيدة لا تقتصر على إعداد تقييم. يجب أن تؤدي إلى خطة عمل مرتبة وعملية.",
+        steps_title:"الخطوات الأربع",
+        step1_title:"قياس",step1_desc:"تحديد نقاط ضعفكم بوضوح وتقدير تكلفتها.",
+        step2_title:"تقليل",step2_desc:"تنفيذ تدابير التكيف (تعزيز البنية التحتية الحساسة، الاستثمار في حلول ري فعالة، وضع خطط استمرارية الأعمال).",
+        step3_title:"نقل",step3_desc:"استكمال الوقاية بآليات التأمين وإعادة التأمين، التقليدية أو المعيارية.",
+        step4_title:"توجيه",step4_desc:"مراقبة تطور المخاطر وتحديث حمايتكم بانتظام.",
+        roadmap:{t:"خارطة طريق ريسكاليا"},
+        roadmap_intro:"نسلم خارطة طريق لـ 12 إلى 24 شهراً، منظمة في:",
+        quickwins_title:"انتصارات سريعة",quickwins_desc:"تدابير منخفضة التكلفة ذات تأثير فوري عالي.",
+        investments_title:"استثمارات أولوية",investments_desc:"إجراءات مرونة للتخطيط والتمويل.",
+        coverage_title:"برنامج تغطية",coverage_desc:"تأمين تقليدي و/أو معياري متكيف مع تعرضاتكم.",
+        benefit_title:"الفائدة",benefit_desc:"لديكم خطة واضحة، مفهومة من قبل التنفيذيين والعمليات، يمكن تتبعها مع الوقت."
       },
       finance:{
         t:"التمويل ونقل المخاطر",
-        fund:{t:"تمويل التكيّف",li:[
-          "منح وبرامج عامة،",
-          "خطوط ائتمان خضراء محلية ودولية،",
-          "ضمانات عامة (مثل تمويلكم)،",
-          "شراكات عام–خاص."
-        ]},
-        transfer:{t:"نقل المخاطر",li:[
-          "منتجات تقليدية: ممتلكات/كوارث، تعدد أخطار زراعية.",
-          "بارامترية للطقس: مؤشرات مطر/حرارة/رياح/جفاف.",
-          "برامج مُجمّعة: مزارعون وتعاونيات وبلديات.",
-          "إعادة التأمين وتجميع القدرات."
-        ]},
-        blended:{t:"تمويل مُركّب",p:"مزج المنح والقروض الميسّرة والتأمين لزيادة قابلية التمويل وخفض كلفة المستفيد."},
-        role:{t:"دور Riskalia",li:[
-          "الهيكلة المالية،",
-          "تصميم التغطيات،",
-          "تأمين السعات،",
-          "الحوكمة والتتبع."
-        ]},
-        promise:"➡️ وعدنا: تحويل القيد المالي إلى حل مستدام."
+        fund:{t:"تمويل التكيف",intro:"للتكيف المناخي كلفة. لكن توجد رافعات:"},
+        fund1:"منح وبرامج عامة للزراعة والمياه والطاقة،",
+        fund2:"خطوط ائتمان خضراء من البنوك المحلية والدولية،",
+        fund3:"ضمانات عامة (مثل تمويلكم) لتقليل تكلفة المخاطر،",
+        fund4:"شراكات عامة-خاصة لتجميع استثمارات الحماية.",
+        transfer:{t:"نقل المخاطر",intro:"يلعب التأمين دوراً رئيسياً:"},
+        transfer1_title:"منتجات تقليدية",transfer1_desc:"أضرار الممتلكات، كوارث طبيعية، متعدد المخاطر الزراعية.",
+        transfer2_title:"معايير جوية",transfer2_desc:"تفعيل تلقائي إذا تجاوز مؤشر (مطر، حرارة، رياح، جفاف) عتبة. تعويض سريع، نزاعات أقل، قابلية تنبؤ أكثر.",
+        transfer3_title:"برامج مجمعة",transfer3_desc:"تغطية لمجموعات المزارعين أو التعاونيات أو البلديات.",
+        transfer4_title:"إعادة تأمين ومجمعات",transfer4_desc:"تأمين القدرة على المخاطر الكبرى.",
+        blended:{t:"تمويل مختلط",desc:"في بعض الحالات، نجمع المنح والقروض التنازلية والتأمين لجعل المشاريع قابلة للتمويل المصرفي وتخفيف التكلفة النهائية للمؤمن عليهم."},
+        role:{t:"دور ريسكاليا",intro:"نتدخل في:"},
+        role1:"الهيكلة المالية",role2:"تصميم التغطيات",role3:"مصادر القدرة",role4:"الحوكمة والتتبع",
+        promise_title:"وعدنا",promise_desc:"تحويل قيد مالي إلى حل مستدام ودائم."
       },
       value:{
-        t:"القيمة المضافة لـ Riskalia",
-        li:[
-          "خبرة محلية ودولية.",
-          "نهج تعليمي مبسط.",
-          "حلول مبتكرة (بارامترية، تجميع، شراكات).",
-          "أثر ملموس: مرونة أفضل وتمويل أسهل."
-        ]
+        t:"القيمة المضافة لريسكاليا",
+        expertise_title:"خبرة محلية ودولية",expertise_desc:"معرفة الواقع المغربي ومعايير أفضل الممارسات.",
+        approach_title:"نهج تعليمي",approach_desc:"تبسيط، تعميم وإشراك جميع مستويات القرار.",
+        solutions_title:"حلول مبتكرة",solutions_desc:"تأمين معياري، مخططات مجمعة، شراكات عامة-خاصة.",
+        impact_title:"تأثير ملموس",impact_desc:"نقاط ضعف مخفضة، مرونة محسنة ووصول أفضل للتمويل."
       },
       faq:{t:"الأسئلة الشائعة"}
     },
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"تواصل",email_label:"البريد الإلكتروني"},
+    
     faq:{
-      0:{q:"من أين نبدأ إذا كانت البيانات قليلة؟",a:"تشخيص سريع يوفّر رؤية أولى خلال 3–4 أسابيع حتى مع بيانات محدودة."},
-      1:{q:"كم يلزم للحصول على خطة عمل؟",a:"خطة مرتّبة بأقل من شهر مع إجراءات سريعة ورؤية لـ 12–24 شهراً."},
-      2:{q:"هل تغطي إعادة التأمين أخطار المناخ؟",a:"نعم — معاهدات كوارث وحلول بارامترية (جفاف، فيضانات، موجات حر)."},
-      3:{q:"ما التأمين البارامتري؟",a:"تغطية تُفَعَّل بمؤشر (أمطار/حرارة) مع تعويض سريع ومتوقع."}
-    }
+      q1:"من أين نبدأ إذا كانت لدينا بيانات قليلة؟",  
+      a1:"تقييم سريع يوفر رؤية أولى في 3-4 أسابيع، حتى مع بيانات محدودة.",
+      q2:"كم يلزم من الوقت للحصول على خطة عمل؟",
+      a2:"يمكن تسليم خطة أولى مرتبة في أقل من شهر، مع إجراءات سريعة ورؤية لـ 12-24 شهراً.",
+      q3:"هل يمكن لإعادة التأمين تغطية المخاطر المناخية؟",
+      a3:"نعم، من خلال معاهدات CatNat، وأيضاً عبر حلول معيارية مصممة خصيصاً للجفاف والفيضانات أو موجات الحر.",
+      q4:"ما هي التغطية المعيارية؟",
+      a4:"هو تأمين يُفعّل بمؤشر (مثل حجم الأمطار، درجة الحرارة). يُدفع التعويض تلقائياً، دون انتظار خبرة طويلة ومكلفة."
+    },
+    
+    contact:{
+      title:"مستعد لاستباق المخاطر المناخية؟",
+      subtitle:"لنبدأ بتقييم سريع لتعرضاتكم وفرصكم."
+    },
+    
+    footer:{desc:"وساطة تأمين وإعادة تأمين مرخصة (ACAPS)<br/>المقر الرئيسي: ١٦، شارع تيرف، الطابق الثاني. حي مرس السلطان، الدار البيضاء",links:"روابط",contact:"تواصل",contactBlock: {
+    tel: "هاتف 1 :",
+    telNum1: "+٢١٢-٦٦٦-٧٥٦٩٩١",
+    tel2: "هاتف 2 :",
+    telNum2: "+٢١٢-٦٧٥-٢٠٨٩٠٩",
+    nabil: "بريد نبيل الإلكتروني :",
+    infos: "معلومات عامة :"
+  }}
   }
 };
 
-/* ================== Helpers & UI ================== */
+/* Search index for climate page */
+const NAV_SEARCH_INDEX = [
+  {title:{fr:"Solutions", en:"Solutions", ar:"الحلول"}, url:"/solutions.html", tags:["entreprises","particuliers","assurance"], lang:"all"},
+  {title:{fr:"Réassurance", en:"Reinsurance", ar:"إعادة التأمين"}, url:"/reinsurance.html", tags:["traités","facultatives","capacity"], lang:"all"},
+  {title:{fr:"Risques climatiques", en:"Climate Risk", ar:"مخاطر المناخ"}, url:"/climate.html", tags:["tcfd","issb","paramétrique","adaptation"], lang:"all"},
+  {title:{fr:"ESG", en:"ESG", ar:"الاستدامة"}, url:"/esg.html", tags:["gouvernance","social","environnement"], lang:"all"},
+  {title:{fr:"Services de Conseil", en:"Advisory Services", ar:"الخدمات الاستشارية"}, url:"/services.html", tags:["gestion des risques","évaluation engagements","formation"], lang:"all"},
+  {title:{fr:"Santé (Particuliers)", en:"Health (Individuals)", ar:"الصحة (الأفراد)"}, url:"/Produits/sante.html", tags:["santé","particuliers","medical"], lang:"all"},
+  {title:{fr:"Accidents de la vie", en:"Personal Accident", ar:"حوادث الحياة"}, url:"/Produits/alv.html", tags:["accident","indemnité","fractures","hospitalisation"], lang:"all"},
+  {title:{fr:"Biens (Habitation)", en:"Home (Property)", ar:"السكن"}, url:"/Produits/habitation.html", tags:["incendie","dégâts des eaux","vol"], lang:"all"}
+];
+
+/* Helpers */
 let lang = localStorage.getItem('riskalia_lang')||'fr';
 if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $=(s,r=document)=>r.querySelector(s);
-const $$=(s,r=document)=>[...r.querySelectorAll(s)];
-function t(path){const ns=path.split('.');let cur=I18N[lang];for(const n of ns){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+
+function t(path){
+  const ns=path.split('.');
+  let cur=window.I18N?.[lang];
+  for(const n of ns){ if(cur==null || !(n in cur)) return path; cur=cur[n]; }
+  return cur;
+}
+
+/* Translate attributes via data-i18n-attr="attr:key,attr2:key2" */
 function applyI18nAttrs(){
+
   $$('[data-i18n-attr]').forEach(el=>{
-    const pairs = el.dataset.i18nAttr?.split(',').map(x=>x.trim()).filter(Boolean) || [];
+    const pairs = el.dataset.i18nAttr.split(',').map(x=>x.trim()).filter(Boolean);
     for(const pair of pairs){
       const [attr,key]=pair.split(':').map(s=>s.trim());
       const val = t(key);
@@ -906,22 +1323,41 @@ function applyI18nAttrs(){
     }
   });
 }
+
+/* Apply title & meta description */
+function setMeta(){
+  const m = window.I18N?.[lang]?.meta;
+  if(m?.title) document.title = m.title;
+  if(m?.desc){
+    let md = document.querySelector('meta[name="description"]');
+    if(!md){ md=document.createElement('meta'); md.setAttribute('name','description'); document.head.appendChild(md); }
+    md.setAttribute('content', m.desc);
+  }
+}
+
+/* Menu active highlight */
 function setActiveNav(){
   const path = location.pathname.split('/').pop() || 'climate.html';
+
   $$('#menu a').forEach(a=>{
     const href = a.getAttribute('href');
     a.classList.toggle('active', href === path);
   });
 }
 
-/* Apply translations & nav state */
+/* Main apply */
 function applyTexts(){
   document.documentElement.lang=lang;
   document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+
+
+  $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
   applyI18nAttrs();
+
+
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
+  setMeta();
 }
 
 /* Tabs */
@@ -949,14 +1385,34 @@ function bindTabs(){
   fromHash();
 }
 
-/* Reveal on scroll */
-function activateReveal(){
+/* UI init */
+function initUI(){
+  const toggle=$('.menu-toggle'), menu=$('#menu');
+  if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
+
+  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
+    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+    if (window._onLangChanged) window._onLangChanged();
+  }));
+
   const rev=$$('.reveal');
-  const onScroll=()=>{ const tr=window.innerHeight*0.9; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
-  window.addEventListener('scroll', onScroll); onScroll();
+  const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  window.addEventListener('scroll',onScroll); onScroll();
+  const firstReveal=document.querySelector('.main-wrapper .reveal'); if(firstReveal) firstReveal.classList.add('active');
+  
+  bindTabs();
 }
 
-/* Dropdown (accessibility + mobile/desktop) */
+document.addEventListener('DOMContentLoaded', ()=>{
+  try{
+    if(!window.I18N) throw new Error('I18N not loaded');
+    applyTexts(); initUI();
+  }catch(e){ console.error(e); document.documentElement.lang='fr'; }
+});
+</script>
+
+<!-- Dropdown (accessibility + mobile/desktop) -->
+<script>
 (function(){
   const li = document.querySelector('#menu li.dropdown');
   const trigger = li?.querySelector('a.has-caret');
@@ -989,18 +1445,204 @@ function activateReveal(){
 
   window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
 })();
-
-/* Mobile menu & lang */
-function initUI(){
-  const toggle=$('.menu-toggle'), menu=$('#menu');
-  if(toggle&&menu) toggle.addEventListener('click',()=>menu.classList.toggle('show'));
-  $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
-    lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
-  }));
-  bindTabs();
-  activateReveal();
-}
-document.addEventListener('DOMContentLoaded', ()=>{ applyTexts(); initUI(); });
 </script>
+
+<!-- ======= NAV SEARCH (index + behavior) ======= -->
+<script>
+/* Placeholder helper */
+function setSearchPlaceholder(){
+  const input = document.getElementById('nav-search-input');
+  if(!input) return;
+  const p = (typeof t === 'function')
+    ? (t('ui.search') || t('search.placeholder') || null)
+    : null;
+  input.placeholder = p || (document.documentElement.lang === 'en' ? 'Search…' :
+                            document.documentElement.lang === 'ar' ? 'ابحث…' : 'Rechercher…');
+  input.setAttribute('aria-label', input.placeholder.replace(/[.…]+$/,''));
+}
+
+/* Tiny matcher (title + tags) */
+function navSearchFilter(q, lang){
+  if(!q) return [];
+  const n = q.trim().toLowerCase();
+  const L = lang || document.documentElement.lang || 'fr';
+  return NAV_SEARCH_INDEX
+    .map(item=>{
+      const title = item.title[L] || item.title.fr || '';
+      const hay = [title].concat(item.tags || []).join(' ').toLowerCase();
+      const score = hay.includes(n) ? 0 :
+                   hay.split(' ').some(w=>w.startsWith(n)) ? 1 :
+                   hay.indexOf(n) >= 0 ? 2 : 99;
+      return {item, title, score};
+    })
+    .filter(x=>x.score<99)
+    .sort((a,b)=>a.score-b.score)
+    .slice(0,8)
+    .map(x=>x.item);
+}
+
+/* Render + keyboard loop */
+(function initNavSearch(){
+  const box   = document.querySelector('.nav-search');
+  const input = document.getElementById('nav-search-input');
+  const list  = document.getElementById('nav-search-list');
+  if(!box || !input || !list) return;
+
+  setSearchPlaceholder();
+
+  let cur = -1;       // highlighted index
+  let opts = [];      // current results
+  let open = false;   // panel state
+
+  function openList(){
+    if (!open){
+      open = true;
+      box.setAttribute('aria-expanded','true');
+      list.setAttribute('aria-hidden','false');
+      list.style.display='block';
+    }
+  }
+  function closeList(){
+    open = false; cur = -1; list.innerHTML='';
+    box.setAttribute('aria-expanded','false');
+    list.setAttribute('aria-hidden','true');
+    list.style.display='none';
+  }
+  function highlight(i){
+    const nodes = [...list.querySelectorAll('[role="option"]')];
+    nodes.forEach((li,idx)=> li.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+    cur = i;
+  }
+  function go(iDelta){
+    if(!opts.length) return;
+    const L = opts.length;
+    let i = (cur + iDelta + L) % L;
+    highlight(i);
+    const node = list.querySelectorAll('[role="option"]')[i];
+    node?.scrollIntoView({block:'nearest'});
+  }
+  function commit(i){
+    const target = opts[i];
+    if(!target) return;
+    window.location.assign(target.url);
+  }
+
+function renderList(items){
+const L = document.documentElement.lang || 'fr';
+list.innerHTML = items.map((opt,idx)=>{
+const displayUrl = opt.url.replace(/\.html$/, '');
+return `<li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
+<span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
+<span class="opt-sub">${displayUrl}</span>
+</li>`;
+}).join('');
+cur = items.length ? 0 : -1;
+if(items.length){ openList(); sizeDropdown(); } else { closeList(); }
+}
+
+
+  function render(q){
+    opts = navSearchFilter(q, document.documentElement.lang);
+    renderList(opts);
+  }
+
+  function renderPopular(){
+    opts = NAV_SEARCH_INDEX.slice(0, 6);
+    renderList(opts);
+  }
+
+  function updateHasValue(){
+    box.toggleAttribute('data-has-value', !!input.value.trim());
+  }
+
+  list.addEventListener('mousemove', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    highlight(parseInt(li.dataset.idx,10));
+  });
+  list.addEventListener('mousedown', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    e.preventDefault(); commit(parseInt(li.dataset.idx,10));
+  });
+
+  input.addEventListener('input', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1){ render(q); } else { renderPopular(); }
+  });
+
+  input.addEventListener('focus', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1) render(q);
+    else renderPopular();
+  });
+
+  document.addEventListener('click', (e)=>{
+    if(!box.contains(e.target)) closeList();
+  });
+  input.addEventListener('blur', ()=>{
+    setTimeout(()=>{ if(!box.contains(document.activeElement)) closeList(); }, 150);
+  });
+
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(!open){ const q=input.value.trim(); q?render(q):renderPopular(); } else go(+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); if(open) go(-1); }
+    else if(e.key==='Enter'){ if(open && cur>=0){ e.preventDefault(); commit(cur); } }
+    else if(e.key==='Escape'){ closeList(); }
+    else if(e.key==='Tab' && open){ e.preventDefault(); if(e.shiftKey) go(-1); else go(+1); }
+  });
+
+  document.addEventListener('DOMContentLoaded', setSearchPlaceholder);
+  (window._onLangChanged = function(){ setSearchPlaceholder(); })();
+})();
+</script>
+
+<!-- Dropdown sizing/alignment helpers -->
+<script>
+function alignDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  list.style.left = '0';
+  list.style.right = 'auto';
+
+  const r = list.getBoundingClientRect();
+  if (r.right > window.innerWidth){
+    list.style.left = 'auto';
+    list.style.right = '0';
+  }
+}
+
+/* Size to the longest suggestion (fallback if max-content isn't enough) */
+function sizeDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  let widest = 0;
+  list.querySelectorAll('li[role="option"]').forEach(li=>{
+    widest = Math.max(widest, li.scrollWidth);
+  });
+
+  const boxRect = box.getBoundingClientRect();
+  const spaceRight = window.innerWidth - boxRect.left - 16; // margin
+  const maxAllowed = Math.min(spaceRight, 800, window.innerWidth * 0.9);
+  const minAllowed = box.clientWidth;
+
+  list.style.width = Math.max(minAllowed, Math.min(widest + 20, maxAllowed)) + 'px';
+  alignDropdown();
+}
+
+window.addEventListener('resize', ()=>{
+  const list = document.getElementById('nav-search-list');
+  if (list && list.getAttribute('aria-hidden') !== 'true'){
+    sizeDropdown();
+  }
+});
+</script>
+
 </body>
 </html>
