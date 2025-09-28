@@ -3,57 +3,290 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Riskalia — Contact & Espace client</title>
-  <meta name="description" content="Contactez Riskalia pour un devis ou un conseil : courtage toutes branches, réassurance, risques climat, politique ESG."/>
+  <title>Riskalia — Contact</title>
+  <meta name="description" content="Contactez Riskalia : demandes d'information, devis, partenariats, rendez-vous. Téléphone, e-mail et adresse à Casablanca."/>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
-  <!-- Feuille de styles globale -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/styles.css"/>
 
-  <!-- Styles spécifiques page contact -->
   <style>
-    .hero.hero--contact{
-      min-height:42vh;
-      background:linear-gradient(rgba(0,92,115,.85),rgba(0,92,115,.85)),
-                 url('https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1600&q=70') center/cover no-repeat;
+    /* ================== Design tokens ================== */
+    :root{
+      --c1:#005c73; --c2:#00849b; --c3:#00b0c8; --cl:#fff; --cm:#f6fafc; --cd:#243238;
+      --radius:18px; --shadow:0 14px 28px rgba(0,0,0,.08);
+      --border:1px solid rgba(0,93,115,.18);
+      --fs-nav:0.95rem; --fs-body:1rem; --fs-kicker:0.8rem;
+      --fs-h1:clamp(2rem,3.2vw,3rem); --fs-h2:clamp(1.25rem,2.2vw,1.6rem); --fs-h3:1.05rem;
+      --fw-bold:700; --fw-semi:600;
     }
-    .contact-layout{
-      display:grid;
-      grid-template-columns: minmax(280px,1fr) minmax(420px,1.6fr);
-      gap:22px; align-items:start;
+
+    /* ================== Base ================== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{overflow-x:hidden}
+    body{font-family:'Open Sans',sans-serif;color:var(--cd);line-height:1.7;background:#fff;font-size:var(--fs-body)}
+    body[dir="rtl"]{direction:rtl;font-family:'Tajawal','Open Sans',sans-serif}
+    h1,h2,h3,h4{font-family:'Montserrat',sans-serif;color:var(--c1)}
+    h1{font-size:var(--fs-h1)}
+    h2{font-size:var(--fs-h2); margin-bottom:6px}
+    h3{font-size:var(--fs-h3); margin:8px 0 4px}
+    body[dir="rtl"] h1,body[dir="rtl"] h2,body[dir="rtl"] h3,body[dir="rtl"] h4{font-family:'Tajawal','Open Sans',sans-serif;letter-spacing:0}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1180px;margin:auto;padding:0 18px}
+    .muted{color:#5f7781}
+    .kicker{color:#4e6a74;text-transform:uppercase;letter-spacing:.08em;font-weight:var(--fw-bold);margin-bottom:6px;font-size:var(--fs-kicker)}
+    section{padding:40px 0}
+    .btn{display:inline-block;padding:12px 18px;background:var(--c3);color:#fff;border-radius:12px;font-weight:var(--fw-bold);border:1px solid transparent;transition:.25s}
+    .btn:hover{background:var(--c2);transform:translateY(-1px)}
+    .btn.secondary{background:#fff;color:var(--c1);border-color:#cfe1e6}
+
+    /* ================== Header / Nav (identique climate.html) ================== */
+    header{position:sticky;top:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06);z-index:60}
+    .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    header .nav-wrap{
+      display:grid; grid-template-columns:auto 1fr auto;
+      align-items:center; gap:12px; padding:10px 0;
     }
-    @media(max-width:980px){.contact-layout{grid-template-columns:1fr}}
-    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .form{max-width:880px;margin:0 auto}
-    .form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media(max-width:700px){.form .row{grid-template-columns:1fr}}
-    .map-embed{border:1px solid #e2edf2;border-radius:16px;overflow:hidden}
-    .map-embed iframe{width:100%;height:280px;border:0;display:block}
-    @media(min-width:980px){.map-embed iframe{height:320px}}
-    .btn[aria-busy="true"]{opacity:.7;pointer-events:none}
+    header nav{ display:flex; align-items:center; gap:12px; }
+    #menu{ display:flex; gap:.8rem; align-items:center; flex:0 1 auto; }
+    .brand{display:flex;align-items:center;gap:10px;color:var(--c1);font-weight:800}
+    .brand img{height:48px;width:auto;border-radius:10px}
+    nav ul{list-style:none;display:flex;gap:.8rem;font-weight:700}
+    nav a{position:relative;padding:6px}
+    nav a::after{content:"";position:absolute;width:0;height:2px;background:var(--c3);left:0;bottom:-3px;transition:.25s}
+    nav a:hover::after,nav a.active::after{width:100%}
+    .menu-toggle{display:none;font-size:2rem;cursor:pointer}
+    .lang-switch{display:flex;gap:6px}
+    .lang-btn{border:1px solid #cfe1e6;border-radius:999px;padding:6px 10px;background:#eef6f8;color:#0b4e5b;font-weight:800}
+    .lang-btn.active,.lang-btn:hover{background:var(--c2);color:#fff;border-color:var(--c2)}
+    @media(max-width:900px){
+      nav ul{flex-direction:column;position:absolute;top:64px;right:-100%;background:#fff;width:260px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.08);transition:right .3s,left .3s}
+      nav ul.show{right:0}
+      body[dir="rtl"] nav ul{right:auto;left:-100%}
+      body[dir="rtl"] nav ul.show{left:0}
+      .menu-toggle{display:block}
+    }
+
+    /* Dropdown */
+    #menu li.dropdown{position:relative}
+    #menu li.dropdown > a.has-caret{padding-right:18px}
+    body[dir="rtl"] #menu li.dropdown > a.has-caret{padding-right:6px;padding-left:18px}
+    #menu li .caret{display:inline-block;transition:transform .2s}
+    #menu li .submenu{
+      display:none;position:absolute;top:calc(100% + 10px);left:0;background:#fff;
+      border:1px solid #e6eef0;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.08);
+      list-style:none;margin:0;padding:8px;min-width:220px;z-index:1000
+    }
+    #menu li .submenu li a{display:block;padding:10px 12px;border-radius:8px;color:#0b4e5b;font-weight:700}
+    #menu li .submenu li a:hover{background:#eef6f8}
+    #menu li.dropdown:hover > .submenu,#menu li.dropdown:focus-within > .submenu{display:block}
+    #menu li.open > .submenu{display:block}
+    #menu li.dropdown:hover > a .caret,#menu li.dropdown:focus-within > a .caret{transform:rotate(180deg)}
+    body[dir="rtl"] #menu li .submenu{left:auto;right:0}
+    @media (max-width:900px){
+      #menu li.dropdown{width:100%}
+      #menu li.dropdown > a.has-caret{display:flex;align-items:center;justify-content:space-between}
+      #menu li .submenu{position:static;display:none;box-shadow:none;border:0;padding:6px 0;background:transparent;margin-top:4px;min-width:auto}
+      #menu li.dropdown.open > .submenu{display:block}
+      #menu li.dropdown.open > a .caret{transform:rotate(180deg)}
+    }
+
+    /* === Compact navbar search === */
+    .nav-search{
+      position:relative; flex:0 0 100px; max-width:260px; min-width:100px; margin-left:1px; z-index:1000;
+    }
+    body[dir="rtl"] .nav-search{ margin-left:0; margin-right:2px; }
+    .nav-search input{
+      height:30px; width:100%; padding:0 38px 0 12px;
+      border:1px solid #cfe1e6; border-radius:999px; background:#f7fcfe;
+      color:#0b4e5b; font-weight:700; font-size:.92rem; outline:none;
+      transition:border-color .2s, box-shadow .2s; box-shadow:inset 0 0 0 1px rgba(0,176,200,.03);
+    }
+    .nav-search input:focus{ border-color:#00b0c8; box-shadow:0 0 0 3px rgba(0,176,200,.15); }
+    #nav-search-list{
+      position:absolute; left:0; top:calc(100% + 8px); display:none; background:#fff; border:1px solid #e6eef0; border-radius:12px;
+      box-shadow:0 16px 36px rgba(0,0,0,.10); padding:6px; list-style:none; margin:0;
+      white-space:nowrap; width:max-content; min-width:100%; max-width:min(90vw, 800px); z-index:2000;
+    }
+    #nav-search-list[aria-hidden="false"]{ display:block; }
+    #nav-search-list li[role="option"]{
+      display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; cursor:pointer; color:#0b4e5b; font-weight:700; white-space:nowrap;
+    }
+    #nav-search-list li[role="option"][aria-selected="true"],
+    #nav-search-list li[role="option"]:hover{ background:#eef6f8; }
+    @media (max-width:1100px){ .nav-search{ flex-basis:220px; max-width:240px; } .nav-search input{ height:30px; } }
+    @media (max-width:900px){
+      .nav-search{ order:4; grid-column:1 / -1; width:100%; max-width:none; min-width:0; margin:8px 0 0 0; }
+      .nav-search input{ height:36px; font-size:.95rem; }
+    }
+
+    /* ================== Hero ================== */
+    .hero{
+      min-height:38vh;
+      background:
+        linear-gradient(rgba(0,92,115,.86), rgba(0,92,115,.86)),
+        url('https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=2000&q=70') center/cover no-repeat;
+      display:flex;align-items:center;text-align:center;padding:20px 0 80px;
+      position:relative;overflow:hidden;color:#fff;
+    }
+    .hero h1{color:#fff}
+    .hero p{color:#fff;opacity:.98;max-width:920px;margin:8px auto}
+    .hero .actions{gap:12px;margin-top:16px}
+    /* Wavy curtain */
+    .hero.hero--contact::after{
+      content:""; position:absolute; left:0; right:0; bottom:-1px; height:64px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="64" viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C240,80 480,0 720,30 C960,60 1200,10 1440,28 L1440,64 L0,64 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      pointer-events:none; animation: waveFloat 8s ease-in-out infinite;
+    }
+    @keyframes waveFloat{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(4px) } }
+    .section-wave{
+      height:44px; margin-top:-44px;
+      background:url('data:image/svg+xml;utf8,<svg width="1440" height="44" viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg"><path d="M0,6 C240,44 480,0 720,18 C960,36 1200,8 1440,18 L1440,44 L0,44 Z" fill="%23f7fcfe"/></svg>') center/cover no-repeat;
+      position:relative;
+    }
+    .section-wave::after{content:""; position:absolute; left:0; right:0; top:100%; height:48px;
+      background:linear-gradient(to bottom, rgba(247,252,254,1) 0%, rgba(247,252,254,0) 100%); pointer-events:none}
+
+    /* ================== Premium BG ================== */
+    .main-wrapper{
+      position:relative;z-index:0;isolation:isolate;
+      background:
+        radial-gradient(1200px 500px at 70% -10%, rgba(0,176,200,.08) 0%, transparent 60%),
+        linear-gradient(180deg, #f7fcfe 0%, #ffffff 100%);
+    }
+    .main-wrapper::after{
+      content:"";position:absolute;left:0;right:0;top:0;height:88px;
+      background:linear-gradient(to bottom,#f7fcfe 0%,rgba(247,252,254,.92) 35%,rgba(247,252,254,0) 100%);
+      pointer-events:none;z-index:0;
+    }
+    .main-wrapper > *{position:relative;z-index:1}
+    .end-fade{height:72px; position:relative; margin-top:0px}
+    .end-fade::before{content:""; position:absolute; inset:0;
+      background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, var(--cm) 100%)}
+
+    /* ================== Contact content ================== */
+    .contact-grid{
+      display:grid; grid-template-columns:1.2fr .8fr; gap:20px; align-items:start;
+    }
+    @media (max-width:900px){ .contact-grid{ grid-template-columns:1fr; } }
+
+    .card{
+      position:relative;border-radius:18px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.90));
+      backdrop-filter:saturate(110%) blur(4px);
+      box-shadow:0 12px 26px rgba(0,0,0,.07);
+      border:1px solid rgba(0,93,115,.16);
+      padding:20px 24px 24px;
+      transition:transform .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.10)}
+    .card h2{
+      display:inline-block;background:linear-gradient(135deg, rgba(0,176,200,.14), rgba(0,92,115,.08));
+      border:1px solid rgba(0,92,115,.18);border-radius:12px;padding:8px 14px;color:var(--c1);
+      box-shadow:0 6px 16px rgba(0,0,0,.04);margin-bottom:16px;
+    }
+    .info-list p{margin:8px 0;color:#586e77}
+    .info-list a{text-decoration:underline;text-underline-offset:3px}
+
+    form.contact-form{display:grid; gap:12px}
+    form.contact-form .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width:700px){ form.contact-form .row{grid-template-columns:1fr} }
+    .field{display:flex; flex-direction:column; gap:6px}
+    .field label{font-weight:700; color:#0b4e5b}
+    .field input,.field select,.field textarea{
+      padding:12px 14px; border:1px solid rgba(0,93,115,.18); border-radius:12px; background:#fff;
+      outline:none; transition:border-color .2s, box-shadow .2s;
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:#00b0c8; box-shadow:0 0 0 3px rgba(0,176,200,.15);
+    }
+    .field textarea{min-height:140px; resize:vertical}
+
+    .mini-map{
+      border:1px solid rgba(0,93,115,.14); border-radius:16px; overflow:hidden; background:#eef6f8; height:240px;
+      display:grid; place-items:center; color:#0b4e5b; font-weight:800;
+    }
+.map-embed{
+  border:1px solid rgba(0,93,115,.14);
+  border-radius:16px;
+  overflow:hidden;
+  background:#eef6f8;
+  height:280px;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+}
+.map-embed iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+    /* ================== Footer ================== */
+    footer{background:var(--c1);color:#fff;padding:40px 0;margin-top:0}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    footer h4{color:#a8ecf4;margin-bottom:8px}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.active{opacity:1;transform:none}
+    @media (prefers-reduced-motion: reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+    /* RTL tweaks (cohérent avec tes autres pages) */
+    ul.card-list { list-style-position: inside; padding-inline-start: 0; }
+    body[dir="rtl"] ul.card-list { text-align: right; list-style-position: inside; }
+    ul.card-list li { padding-inline-start: 1ch; margin-block: 5px; }
+    body[dir="rtl"] .nav-search input { text-align: right; padding-right: 14px; padding-left: 64px; }
+    body[dir="rtl"] #nav-search-list li[role="option"] { direction: rtl; justify-content: space-between; }
+    body[dir="rtl"] .lang-switch { direction: ltr; }
   </style>
 </head>
 <body>
 <header>
   <div class="container nav-wrap">
     <a class="brand" href="index.html">
-      <img src="https://static.wixstatic.com/media/3cd6af_09896cec98fb4c77b6372c04da311cfd~mv2.jpg" alt="Riskalia">
-      <span></span>
+      <img src="./assets/Riskalia-Logo.png" alt="Riskalia" loading="eager" decoding="async">
     </a>
-    <nav aria-label="Navigation principale">
+    <nav aria-label="Navigation principale" data-i18n-attr="aria-label:aria.nav">
       <span class="menu-toggle" aria-label="Menu">☰</span>
       <ul id="menu">
         <li><a href="index.html" data-i18n="nav.home">Accueil</a></li>
-        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
-        <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+
+        <!-- Dropdown Solutions -->
+        <li class="dropdown">
+          <a href="solutions.html" class="has-caret" aria-haspopup="true" aria-expanded="false" data-i18n="nav.solutions">
+            Solutions <span class="caret" aria-hidden="true">▾</span>
+          </a>
+          <ul class="submenu" aria-label="Sous-menu Solutions" data-i18n-attr="aria-label:aria.submenu_solutions">
+            <li><a href="solutions.html" data-i18n="nav.ins">Assurance</a></li>
+            <li><a href="reinsurance.html" data-i18n="nav.re">Réassurance</a></li>
+          </ul>
+        </li>
+
         <li><a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a></li>
+        <li><a href="services.html" data-i18n="nav.services">Services de Conseil</a></li>
         <li><a href="esg.html" data-i18n="nav.esg">ESG</a></li>
         <li><a href="contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
       </ul>
+
+      <!-- Recherche compacte -->
+      <div class="nav-search"
+           role="combobox"
+           aria-haspopup="listbox"
+           aria-owns="nav-search-list"
+           aria-expanded="false">
+        <input id="nav-search-input"
+               type="search"
+               autocomplete="off"
+               placeholder="🔎…"
+               aria-label="Recherche"
+               aria-controls="nav-search-list"
+               aria-autocomplete="list" />
+        <ul id="nav-search-list" role="listbox" tabindex="-1"></ul>
+      </div>
     </nav>
-    <div class="lang-switch">
+    <div class="lang-switch" aria-label="Language switcher" data-i18n-attr="aria-label:aria.langswitch">
       <button class="lang-btn" data-lang="fr">Français</button>
       <button class="lang-btn" data-lang="en">English</button>
       <button class="lang-btn" data-lang="ar">عربية</button>
@@ -61,357 +294,525 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero hero--contact">
   <div class="container">
-    <h1 data-i18n="title">Contact & Espace client</h1>
-    <p data-i18n="lead">Une question ? Un besoin de couverture ? Remplissez le formulaire — un conseiller vous répond sous 24–48 h.</p>
-    <div class="badges">
-      <span class="badge" data-i18n="badges.0">Devis sur mesure</span>
-      <span class="badge" data-i18n="badges.1">Gestion des sinistres</span>
-      <span class="badge" data-i18n="badges.2">Transparence des honoraires</span>
+    <h1 data-i18n="hero.title">Contact</h1>
+    <p data-i18n="hero.subtitle">
+      Demandes d'information, devis, partenariats ou rendez-vous — nous vous répondons rapidement.
+    </p>
+    <div class="actions">
+      <a href="#contact" class="btn" data-i18n="cta.write">Écrire un message</a>
+      <a href="#coord" class="btn secondary" data-i18n="cta.call">Voir nos coordonnées</a>
     </div>
   </div>
 </section>
+<div class="section-wave" aria-hidden="true"></div>
 
-<!-- Ajout de 'active' pour éviter que le contenu reste masqué si le JS plante -->
-<section class="reveal active">
-  <div class="container">
-    <div class="contact-layout">
-      <!-- Colonne gauche -->
+<!-- MAIN -->
+<div class="main-wrapper">
+  <section class="reveal" id="contact">
+    <div class="container contact-grid">
+      <!-- Formulaire -->
       <article class="card">
-        <div class="kicker" data-i18n="box.contact.k">Contact</div>
-        <h3 data-i18n="box.contact.t">Nos coordonnées</h3>
+        <h2 data-i18n="form.title">Nous écrire</h2>
+        <p class="muted" data-i18n="form.desc">Laissez-nous vos coordonnées et votre message. Nous revenons vers vous sous 1 jour ouvré.</p>
 
-        <div class="contact-grid" style="margin-top:8px">
-          <div>
-            <p>📞 <strong data-i18n="box.contact.phone.t">Téléphone</strong><br>
-              <a href="tel:+212000000000" dir="ltr">+212 00 00 00 00</a></p>
-            <p style="margin-top:8px">✉️ <strong>Email</strong><br>
-              <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
-          </div>
-          <div>
-            <p>🏢 <strong data-i18n="box.contact.addr.t">Adresse</strong><br>
-              <span data-i18n="box.contact.addr.v">[Adresse complète], Maroc</span></p>
-            <p class="hint" style="margin-top:8px" data-i18n="box.contact.hours">Lun–Ven, 9:00–18:00 (UTC+1)</p>
-          </div>
-        </div>
-
-        <div class="map-embed" style="margin-top:12px">
-          <iframe
-            title="Localisation Riskalia sur Google Maps"
-            src="https://www.google.com/maps?q=Casablanca%2C%20Morocco&z=12&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </article>
-
-      <!-- Colonne droite : formulaire -->
-      <article class="card form">
-        <div class="kicker" data-i18n="form.k">Formulaire</div>
-        <h3 data-i18n="form.t">Demande d’information / Devis</h3>
-        <p class="hint" data-i18n="form.hint">Les champs marqués <span class="req">*</span> sont obligatoires.</p>
-
-        <form id="contactForm" novalidate>
-          <input type="text" name="company" autocomplete="organization" style="display:none" aria-hidden="true"><!-- honeypot -->
-
-          <div class="row" style="margin-top:10px">
+        <form class="contact-form" action="mailto:contact@riskalia.ma" method="post" enctype="text/plain">
+          <div class="row">
             <div class="field">
-              <label for="name" data-i18n="f.name.l">Nom & Prénom <span class="req">*</span></label>
-              <input id="name" name="name" required/>
-              <div class="error" id="e-name" data-i18n="f.err">Ce champ est requis.</div>
+              <label for="fname" data-i18n="form.fname">Prénom</label>
+              <input id="fname" name="Prénom" required placeholder="Ex. Sara">
             </div>
             <div class="field">
-              <label for="email">Email <span class="req">*</span></label>
-              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required/>
-              <div class="error" id="e-email" data-i18n="f.err">Ce champ est requis.</div>
+              <label for="lname" data-i18n="form.lname">Nom</label>
+              <input id="lname" name="Nom" required placeholder="Ex. El Amrani">
             </div>
           </div>
 
           <div class="row">
             <div class="field">
-              <label for="phone" data-i18n="f.phone.l">Téléphone</label>
-              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"/>
+              <label for="email" data-i18n="form.email">E-mail</label>
+              <input id="email" type="email" name="Email" required placeholder="vous@exemple.com">
             </div>
             <div class="field">
-              <label for="segment" data-i18n="f.segment.l">Vous êtes</label>
-              <select id="segment" name="segment">
-                <option value="corp" data-i18n="f.segment.corp">Entreprise</option>
-                <option value="retail" data-i18n="f.segment.retail">Particulier</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label for="product" data-i18n="f.product.l">Produit souhaité <span class="req">*</span></label>
-              <select id="product" name="product" required></select>
-              <div class="error" id="e-product" data-i18n="f.err">Ce champ est requis.</div>
-            </div>
-            <div class="field">
-              <label for="topic" data-i18n="f.topic.l">Objet</label>
-              <input id="topic" name="topic" placeholder="Ex. renouvellement flotte, montage XoL…"/>
+              <label for="phone" data-i18n="form.phone">Téléphone</label>
+              <input id="phone" type="tel" name="Téléphone" placeholder="+212 …">
             </div>
           </div>
 
           <div class="field">
-            <label for="message" data-i18n="f.msg.l">Message</label>
-            <textarea id="message" name="message" rows="6" placeholder=""></textarea>
+            <label for="topic" data-i18n="form.topic">Sujet</label>
+            <select id="topic" name="Sujet">
+              <option value="devis" data-i18n="form.opt.quote">Demande de devis</option>
+              <option value="rdv" data-i18n="form.opt.meeting">Prendre rendez-vous</option>
+              <option value="partenariat" data-i18n="form.opt.partner">Partenariat</option>
+              <option value="autre" data-i18n="form.opt.other">Autre</option>
+            </select>
           </div>
 
-          <div class="row" style="align-items:center;margin-top:6px">
-            <div class="field">
-              <label style="display:flex;gap:8px;align-items:center">
-                <input type="checkbox" id="consent" name="consent" value="yes" required/>
-                <span class="hint" data-i18n="f.consent">J’accepte d’être recontacté(e) par Riskalia concernant ma demande.</span>
-              </label>
-              <div class="error" id="e-consent" data-i18n="f.err">Ce champ est requis.</div>
-            </div>
-            <div style="text-align:right">
-              <button type="submit" class="btn" id="submitBtn" data-i18n="form.submit">Envoyer</button>
-            </div>
+          <div class="field">
+            <label for="msg" data-i18n="form.msg">Message</label>
+            <textarea id="msg" name="Message" required placeholder="..."></textarea>
           </div>
 
-          <div class="ok" id="ok" style="display:none" data-i18n="form.ok">Merci ! Votre message a été envoyé.</div>
+          <div>
+            <button class="btn" type="submit" data-i18n="form.submit">Envoyer</button>
+            <span class="muted" style="margin-left:8px" data-i18n="form.note">En cliquant “Envoyer”, vous acceptez d’être recontacté(e).</span>
+          </div>
         </form>
       </article>
+
+      <!-- Coordonnées -->
+      <aside class="card" id="coord">
+        <h2 data-i18n="box.title">Coordonnées</h2>
+        <div class="info-list">
+          <p>📞 <strong data-i18n="footer.contactBlock.tel">Tél1:</strong>
+            <span dir="ltr" data-i18n="footer.contactBlock.telNum1">+212-666-756991</span></p>
+          <p>📞 <strong data-i18n="footer.contactBlock.tel2">Tél2:</strong>
+            <span dir="ltr" data-i18n="footer.contactBlock.telNum2">+212-675-208909</span></p>
+          <p>✉️ <strong data-i18n="footer.contactBlock.infos">Infos:</strong>
+            <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+          <p>👤 <strong data-i18n="footer.contactBlock.nabil">Nabil:</strong>
+            <a href="mailto:nabil.cherkaoui@riskalia.ma">nabil.cherkaoui@riskalia.ma</a></p>
+          <p>🏢 <strong data-i18n="box.addr.t">Adresse</strong><br>
+            <span data-i18n="box.addr.v">16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca</span></p>
+        </div>
+
+<div class="map-embed" aria-label="Carte du cabinet Riskalia">
+  <iframe
+    title="Carte — Riskalia, 16 Rue de Terves, Casablanca"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q=16%20Rue%20de%20Terves%2C%20Casablanca&z=16&output=embed">
+  </iframe>
+</div>
+
+<p class="muted" style="margin-top:8px" data-i18n="box.hours">Lun–Ven, 9:00–18:00 (UTC+1)</p>
+
+<p style="margin-top:6px">
+  <a class="btn secondary" href="https://www.google.com/maps?q=16%20Rue%20de%20Terves%2C%20Casablanca" target="_blank" rel="noopener">
+    Ouvrir dans Google Maps
+  </a>
+</p>
+
+
+      </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="reveal" style="background:var(--cm)">
-  <div class="container center">
-    <h2 data-i18n="cta.t">Espace client</h2>
-    <p class="muted" data-i18n="cta.p">Accédez à vos documents, attestations et suivi de sinistres. (Ouverture prochainement)</p>
-    <a class="btn" href="#" aria-disabled="true" data-i18n="cta.btn">Se connecter</a>
-  </div>
-</section>
+  <!-- CTA -->
+  <section class="reveal" style="background:linear-gradient(200deg, var(--c1), var(--c2));color:white">
+    <div class="container" style="text-align:center">
+      <h2 data-i18n="cta.title" style="color:white">Parlons de votre besoin</h2>
+      <p data-i18n="cta.subtitle" style="color:white">
+        Un conseiller vous répond rapidement pour clarifier votre demande et proposer les prochaines étapes.
+      </p>
+      <div style="margin-top:16px">
+        <a class="btn" href="#contact" data-i18n="cta.write">Écrire un message</a>
+        <a class="btn secondary" href="#coord" data-i18n="cta.call" style="margin-left:8px">Voir nos coordonnées</a>
+      </div>
+    </div>
+  </section>
 
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="container footer-grid">
     <div>
       <h4>Riskalia</h4>
-      <p class="muted" data-i18n="footer.desc"  style="color:white;">Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]</p>
+      <p class="muted" data-i18n="footer.desc" style="color:white;">
+        Cabinet de courtage & réassurance agréé ACAPS<br/>
+        Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca
+      </p>
     </div>
     <div>
       <h4 data-i18n="footer.links">Liens</h4>
       <p><a href="solutions.html" data-i18n="nav.solutions">Solutions</a><br/>
          <a href="reinsurance.html" data-i18n="nav.re">Réassurance</a><br/>
          <a href="climate.html" data-i18n="nav.climate">Risques Climatiques</a><br/>
-        <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
+         <a href="services.html" data-i18n="nav.services">Services de Conseil</a><br/>
+         <a href="esg.html" data-i18n="nav.esg">ESG</a></p>
     </div>
-    <div>
+    <div class="footer-contact">
       <h4 data-i18n="footer.contact">Contact</h4>
-      <p>Email : <a href="mailto:contact@riskalia.ma">contact@riskalia.ma</a></p>
+      <div><strong data-i18n="footer.contactBlock.tel">Tél1:</strong> <span data-i18n="footer.contactBlock.telNum1">+212-666-756991</span></div>
+      <div><strong data-i18n="footer.contactBlock.tel2">Tél2:</strong> <span data-i18n="footer.contactBlock.telNum2">+212-675-208909</span></div>
+      <div><strong data-i18n="footer.contactBlock.nabil">Nabil:</strong> <a href="mailto:nabil.cherkaoui@riskalia.ma"> nabil.cherkaoui@riskalia.ma</a></div>
+      <div><strong data-i18n="footer.contactBlock.infos">Infos:</strong> <a href="mailto:contact@riskalia.ma"> contact@riskalia.ma</a></div>
     </div>
   </div>
 </footer>
 
-<!-- ================== EmailJS SDK ================== -->
-<!-- Charge le SDK et initialise emailjs uniquement quand il est prêt -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-        onload="emailjs.init('zNiKD3DUIXJB_LXeO')"></script>
-
+<!-- ================== SCRIPTS: i18n & UI ================== -->
 <script>
-/*********************** i18n ************************/
-const I18N={
+/* FULL I18N — FR / EN / AR */
+window.I18N = {
   fr:{
-    nav:{home:"Accueil",solutions:"Solutions",re:"Réassurance",climate:"Risques Climatiques",esg:"ESG",contact:"Contact"},
-    title:"Contact & Espace client",
-    lead:"Une question ? Un besoin de couverture ? Remplissez le formulaire — un conseiller vous répond sous 24–48 h.",
-    badges:["Devis sur mesure","Gestion des sinistres","Transparence des honoraires"],
-    box:{contact:{k:"Contact",t:"Nos coordonnées",phone:{t:"Téléphone"},addr:{t:"Adresse",v:"[Adresse complète], Maroc"},hours:"Lun–Ven, 9:00–18:00 (UTC+1)"}},
-    form:{k:"Formulaire",t:"Demande d’information / Devis",hint:"Les champs marqués <span class='req'>*</span> sont obligatoires.",submit:"Envoyer",ok:"Merci ! Votre message a été envoyé."},
-    f:{
-      err:"Ce champ est requis.",
-      name:{l:"Nom & Prénom"},
-      phone:{l:"Téléphone"},
-      segment:{l:"Vous êtes",corp:"Entreprise",retail:"Particulier"},
-      product:{l:"Produit souhaité"},
-      topic:{l:"Objet"},
-      msg:{l:"Message"},
-      consent:"J’accepte d’être recontacté(e) par Riskalia concernant ma demande."
+    meta:{title:"Riskalia — Contact",desc:"Contactez Riskalia : demandes d'information, devis, partenariats, rendez-vous. Téléphone, e-mail et adresse à Casablanca."},
+    ui:{ search:"🔎…" },
+    aria:{nav:"Navigation principale",submenu_solutions:"Sous-menu Solutions",langswitch:"Sélecteur de langue"},
+    nav:{home:"Accueil",solutions:"Solutions",ins:"Assurance",re:"Réassurance",climate:"Risques Climatiques",services:"Services de Conseil",esg:"ESG",contact:"Contact"},
+    hero:{title:"Contact",subtitle:"Demandes d'information, devis, partenariats ou rendez-vous — nous vous répondons rapidement."},
+    cta:{write:"Écrire un message",call:"Voir nos coordonnées",title:"Parlons de votre besoin",subtitle:"Un conseiller vous répond rapidement pour clarifier votre demande et proposer les prochaines étapes."},
+    form:{
+      title:"Nous écrire",desc:"Laissez-nous vos coordonnées et votre message. Nous revenons vers vous sous 1 jour ouvré.",
+      fname:"Prénom",lname:"Nom",email:"E-mail",phone:"Téléphone",topic:"Sujet",msg:"Message",
+      opt:{quote:"Demande de devis",meeting:"Prendre rendez-vous",partner:"Partenariat",other:"Autre"},
+      submit:"Envoyer",note:"En cliquant “Envoyer”, vous acceptez d’être recontacté(e)."
     },
-    cta:{t:"Espace client",p:"Accédez à vos documents, attestations et suivi de sinistres. (Ouverture prochainement)",btn:"Se connecter"},
-    footer:{desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : [adresse complète]<br/>N° agrément : [à compléter]",links:"Liens",contact:"Contact"},
-    prods:{
-      corp:["Multirisques Entreprise","Transport (marchandises)","Automobile & flotte","Responsabilité civile","Construction (CAR/EAR)","Santé collective & prévoyance","Réassurance (QS/Surplus/XoL/Stop-Loss)","Facultatives (Property/RC/etc.)","ESG & Climat (paramétriques, TCFD)"],
-      retail:["Santé","Accidents de la vie","Biens (Habitation)","Assurance-vie & placements","Voyage Schengen","Retraite"]
+    box:{title:"Coordonnées",addr:{t:"Adresse",v:"16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca"},hours:"Lun–Ven, 9:00–18:00 (UTC+1)"},
+    footer:{
+      desc:"Cabinet de courtage & réassurance agréé ACAPS<br/>Siège : 16, Rue de Terves, 2ème Etage. Quartier Mers Sutlan, Casablanca",
+      links:"Liens",contact:"Contact",
+      contactBlock:{tel:"Tél1:",telNum1:"+212-666-756991",tel2:"Tél2:",telNum2:"+212-675-208909",nabil:"Nabil:",infos:"Infos:"}
     }
   },
   en:{
-    nav:{home:"Home",solutions:"Solutions",re:"Reinsurance",climate:"Climate Risk",esg:"ESG",contact:"Contact"},
-    title:"Contact & Client area",
-    lead:"Got a question or need coverage? Fill in the form — we reply within 24–48h.",
-    badges:["Tailored quotes","Claims handling","Transparent fees"],
-    box:{contact:{k:"Contact",t:"Our details",phone:{t:"Phone"},addr:{t:"Address",v:"[Full address], Morocco"},hours:"Mon–Fri, 9:00–18:00 (UTC+1)"}},
-    form:{k:"Form",t:"Information / Quote request",hint:"Fields marked <span class='req'>*</span> are required.",submit:"Send",ok:"Thanks! Your message has been sent."},
-    f:{
-      err:"This field is required.",
-      name:{l:"Full name"},
-      phone:{l:"Phone"},
-      segment:{l:"You are",corp:"Business",retail:"Individual"},
-      product:{l:"Desired product"},
-      topic:{l:"Subject"},
-      msg:{l:"Message"},
-      consent:"I agree to be contacted by Riskalia regarding my request."
+    meta:{title:"Riskalia — Contact",desc:"Contact Riskalia: information requests, quotes, partnerships, meetings. Phone, email and address in Casablanca."},
+    ui:{ search:"🔎…" },
+    aria:{nav:"Main navigation",submenu_solutions:"Solutions submenu",langswitch:"Language switcher"},
+    nav:{home:"Home",solutions:"Solutions",ins:"Insurance",re:"Reinsurance",climate:"Climate Risk",services:"Advisory Services",esg:"ESG",contact:"Contact"},
+    hero:{title:"Contact",subtitle:"Information requests, quotes, partnerships or meetings — we’ll reply quickly."},
+    cta:{write:"Write a message",call:"See our details",title:"Let’s talk about your need",subtitle:"An advisor will get back to you quickly to clarify your request and propose next steps."},
+    form:{
+      title:"Write to us",desc:"Leave your details and message. We’ll get back to you within 1 business day.",
+      fname:"First name",lname:"Last name",email:"Email",phone:"Phone",topic:"Subject",msg:"Message",
+      opt:{quote:"Quote request",meeting:"Book a meeting",partner:"Partnership",other:"Other"},
+      submit:"Send",note:"By clicking “Send”, you agree to be contacted."
     },
-    cta:{t:"Client area",p:"Access your documents, certificates and claim tracking. (Coming soon)",btn:"Log in"},
-    footer:{desc:"ACAPS-licensed brokerage & reinsurance<br/>Head office: [full address]<br/>Licence no.: [to be completed]",links:"Links",contact:"Contact"},
-    prods:{
-      corp:["Commercial Property (All Risks)","Cargo/Transport","Motor & Fleet","General/Professional Liability","Construction (CAR/EAR)","Group Health & Benefits","Reinsurance (QS/Surplus/XoL/Stop-Loss)","Facultative (Property/GL/etc.)","ESG & Climate (parametrics, TCFD)"],
-      retail:["Health","Personal Accident","Home (Property)","Life Insurance & Savings","Schengen Travel","Retirement"]
+    box:{title:"Contact details",addr:{t:"Address",v:"16, Rue de Terves, 2nd floor. Mers Sultan district, Casablanca"},hours:"Mon–Fri, 9:00–18:00 (UTC+1)"},
+    footer:{
+      desc:"Licensed insurance & reinsurance brokerage (ACAPS)<br/>Head office: 16, Rue de Terves, 2nd floor. Mers Sultan, Casablanca",
+      links:"Links",contact:"Contact",
+      contactBlock:{tel:"Phone 1:",telNum1:"+212-666-756991",tel2:"Phone 2:",telNum2:"+212-675-208909",nabil:"Nabil:",infos:"Infos:"}
     }
   },
   ar:{
-    nav:{home:"الرئيسية",solutions:"الحلول",re:"إعادة التأمين",climate:"مخاطر المناخ",esg:"الاستدامة",contact:"اتصل بنا"},
-    title:"الاتصال ومساحة العملاء",
-    lead:"لديك سؤال أو تحتاج تغطية؟ املأ النموذج — سنرد خلال 24–48 ساعة.",
-    badges:["عروض مخصصة","إدارة المطالبات","شفافية الأتعاب"],
-    box:{contact:{k:"الاتصال",t:"بياناتنا",phone:{t:"الهاتف"},addr:{t:"العنوان",v:"[العنوان الكامل]، المغرب"},hours:"الإثنين–الجمعة، 18:00–9:00 (+1 UTC)"}},
-    form:{k:"النموذج",t:"طلب معلومات / عرض سعر",hint:"الحقول المشار إليها بـ <span class='req'>*</span> إلزامية.",submit:"إرسال",ok:"تم إرسال رسالتك بنجاح."},
-    f:{
-      err:"هذا الحقل مطلوب.",
-      name:{l:"الاسم الكامل"},
-      phone:{l:"الهاتف"},
-      segment:{l:"أنت",corp:"شركة",retail:"فرد"},
-      product:{l:"المنتج المطلوب"},
-      topic:{l:"الموضوع"},
-      msg:{l:"الرسالة"},
-      consent:"أوافق على أن يتواصل معي فريق Riskalia بخصوص طلبي."
+    meta:{title:"ريسكاليا — تواصل",desc:"تواصل مع ريسكاليا: معلومات، عروض أسعار، شراكات ومواعيد. الهاتف والبريد والعنوان بالدار البيضاء."},
+    ui:{ search:"…🔎" },
+    aria:{nav:"التنقل الرئيسي",submenu_solutions:"القائمة الفرعية للحلول",langswitch:"مبدّل اللغة"},
+    nav:{home:"الرئيسية",solutions:"الحلول",ins:"تأمين",re:"إعادة التأمين",climate:"مخاطر المناخ",services:"الخدمات الاستشارية",esg:"الاستدامة",contact:"تواصل"},
+    hero:{title:"تواصل",subtitle:"طلبات معلومات، عروض أسعار، شراكات أو مواعيد — سنرد سريعاً."},
+    cta:{write:"أرسل رسالة",call:"اطّلع على التفاصيل",title:"لنتحدث حول حاجتك",subtitle:"سيتواصل معك مستشار سريعاً لتوضيح الطلب واقتراح الخطوات التالية."},
+    form:{
+      title:"راسلنا",desc:"اترك بياناتك ورسالتك. نعود إليك خلال يوم عمل.",
+      fname:"الاسم",lname:"اللقب",email:"البريد الإلكتروني",phone:"الهاتف",topic:"الموضوع",msg:"الرسالة",
+      opt:{quote:"طلب عرض سعر",meeting:"حجز موعد",partner:"شراكة",other:"أخرى"},
+      submit:"إرسال",note:"بالنقر على “إرسال”، توافق على أن يتم التواصل معك."
     },
-    cta:{t:"مساحة العملاء",p:"الوصول إلى الوثائق والشهادات وتتبع المطالبات. (قريباً)",btn:"تسجيل الدخول"},
-    footer:{desc:"وساطة وإعادة تأمين بترخيص ACAPS<br/>المقر: [العنوان الكامل]<br/>رقم الترخيص: [لاحقاً]",links:"روابط",contact:"اتصال"},
-    prods:{
-      corp:["متعدد المخاطر للشركات","نقل البضائع","السيارات والأساطيل","المسؤولية العامة/المهنية","الإنشاءات (CAR/EAR)","الصحة الجماعية","إعادة التأمين (QS/فائض/XoL/ستوب-لوس)","اختياريات (ممتلكات/مسؤولية/… )","الاستدامة والمناخ (بارامترية، TCFD)"],
-      retail:["الصحة","حوادث الحياة","المنزل (الممتلكات)","تأمين الحياة والادخار","سفر شنغن","التقاعد"]
+    box:{title:"بيانات التواصل",addr:{t:"العنوان",v:"16، شارع تيرف، الطابق الثاني. حي مرس السلطان، الدار البيضاء"},hours:"الاثنين–الجمعة، 09:00–18:00 (UTC+1)"},
+    footer:{
+      desc:"وساطة تأمين وإعادة تأمين مرخصة (ACAPS)<br/>المقر: 16، شارع تيرف، الطابق الثاني. مرس السلطان، الدار البيضاء",
+      links:"روابط",contact:"تواصل",
+      contactBlock:{tel:"هاتف 1:",telNum1:"+٢١٢-٦٦٦-٧٥٦٩٩١",tel2:"هاتف 2:",telNum2:"+٢١٢-٦٧٥-٢٠٨٩٠٩",nabil:"نبيل:",infos:"معلومات:"}
     }
   }
 };
 
-/*********************** Helpers ************************/
-let lang = localStorage.getItem('riskalia_lang') || 'fr';
-if(!['fr','en','ar'].includes(lang)) lang='fr';
-const $ = (s,root=document)=>root.querySelector(s);
-const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
-function t(path){const nodes=path.split('.');let cur=I18N[lang];for(const n of nodes){if(cur==null||!(n in cur)) return path;cur=cur[n]}return cur;}
-function setActiveNav(){ $$('#menu a').forEach(a=>a.classList.toggle('active', a.getAttribute('href').endsWith('contact.html'))); }
+/* Search index simple */
+const NAV_SEARCH_INDEX = [
+  {title:{fr:"Solutions", en:"Solutions", ar:"الحلول"}, url:"/solutions.html", tags:["entreprises","particuliers","assurance"]},
+  {title:{fr:"Réassurance", en:"Reinsurance", ar:"إعادة التأمين"}, url:"/reinsurance.html", tags:["traités","facultatives","capacity"]},
+  {title:{fr:"Risques climatiques", en:"Climate Risk", ar:"مخاطر المناخ"}, url:"/climate.html", tags:["tcfd","issb","paramétrique","adaptation"]},
+  {title:{fr:"ESG", en:"ESG", ar:"الاستدامة"}, url:"/esg.html", tags:["gouvernance","social","environnement"]},
+  {title:{fr:"Services de Conseil", en:"Advisory Services", ar:"الخدمات الاستشارية"}, url:"/services.html", tags:["gestion des risques","formation"]},
+  {title:{fr:"Contact", en:"Contact", ar:"تواصل"}, url:"/contact.html", tags:["devis","demande","coordonnées"]}
+];
 
-/*********************** UI & i18n ************************/
-function populateProducts(){
-  const seg=$('#segment').value;
-  const list = seg==='corp' ? t('prods.corp') : t('prods.retail');
-  const sel=$('#product'); sel.innerHTML='';
-  (list||[]).forEach(label=>{
-    const opt=document.createElement('option');
-    opt.textContent=label; opt.value=label; sel.appendChild(opt);
+/* Helpers */
+let lang = localStorage.getItem('riskalia_lang')||'fr';
+if(!['fr','en','ar'].includes(lang)) lang='fr';
+const $=(s,root=document)=>root.querySelector(s);
+const $$=(s,root=document)=>[...root.querySelectorAll(s)];
+function t(path){
+  const ns=path.split('.');
+  let cur=window.I18N?.[lang];
+  for(const n of ns){ if(cur==null || !(n in cur)) return path; cur=cur[n]; }
+  return cur;
+}
+function applyI18nAttrs(){
+  $$('[data-i18n-attr]').forEach(el=>{
+    const pairs = el.dataset.i18nAttr.split(',').map(x=>x.trim()).filter(Boolean);
+    for(const pair of pairs){
+      const [attr,key]=pair.split(':').map(s=>s.trim());
+      const val = t(key);
+      if(attr && val) el.setAttribute(attr, val);
+    }
   });
 }
-
+function setMeta(){
+  const m = window.I18N?.[lang]?.meta;
+  if(m?.title) document.title = m.title;
+  if(m?.desc){
+    let md = document.querySelector('meta[name="description"]');
+    if(!md){ md=document.createElement('meta'); md.setAttribute('name','description'); document.head.appendChild(md); }
+    md.setAttribute('content', m.desc);
+  }
+}
+function setActiveNav(){
+  const path = location.pathname.split('/').pop() || 'contact.html';
+  $$('#menu a').forEach(a=>{
+    const href = a.getAttribute('href');
+    a.classList.toggle('active', href === path);
+  });
+}
 function applyTexts(){
-  document.documentElement.lang=lang; document.body.dir=(lang==='ar'?'rtl':'ltr');
-  $$('[data-i18n]').forEach(el=> el.innerHTML = t(el.dataset.i18n));
+  document.documentElement.lang=lang;
+  document.body.dir=(lang==='ar'?'rtl':'ltr');
+  $$('[data-i18n]').forEach(el=> el.innerHTML=t(el.dataset.i18n));
+  applyI18nAttrs();
   $$('.lang-btn').forEach(b=> b.classList.toggle('active', b.dataset.lang===lang));
   setActiveNav();
-  populateProducts();
-  // placeholders
-  $('#topic').placeholder = lang==='en'?'E.g. fleet renewal, XoL layer…'
-                         : lang==='ar'?'مثال: تجديد أسطول، طبقة XoL…'
-                         : 'Ex. renouvellement flotte, couche XoL…';
-  $('#message').placeholder = lang==='en'?'Briefly describe your need (context, sums insured, deadlines)…'
-                            : lang==='ar'?'صف حاجتك بإيجاز (السياق، مبالغ التأمين، المهل)…'
-                            : 'Décrivez brièvement votre besoin (contexte, capitaux, délais)…';
+  setMeta();
 }
 
+/* UI init */
 function initUI(){
   const toggle=$('.menu-toggle'), menu=$('#menu');
   if(toggle&&menu){ toggle.addEventListener('click',()=>menu.classList.toggle('show')); }
   $$('.lang-btn').forEach(btn=> btn.addEventListener('click', ()=>{
     lang=btn.dataset.lang; localStorage.setItem('riskalia_lang',lang); applyTexts();
+    if (window._onLangChanged) window._onLangChanged();
   }));
-  const rev=$$('.reveal'); const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
+  const rev=$$('.reveal');
+  const onScroll=()=>{ const tr=window.innerHeight*0.85; rev.forEach(el=>{ if(el.getBoundingClientRect().top<tr) el.classList.add('active'); }); };
   window.addEventListener('scroll',onScroll); onScroll();
-  $('#segment').addEventListener('change', populateProducts);
+  const firstReveal=document.querySelector('.main-wrapper .reveal'); if(firstReveal) firstReveal.classList.add('active');
 }
 
-/*********************** EmailJS + Form ************************/
-// IDs EmailJS (service et template)
-const EMAILJS_SERVICE_ID = "service_z6rik9r";
-const EMAILJS_TEMPLATE_ID = "template_lmbrfrb";
-
 document.addEventListener('DOMContentLoaded', ()=>{
-  applyTexts();
-  initUI();
-
-  const F   = document.getElementById("contactForm");
-  const BTN = document.getElementById("submitBtn");
-  const OK  = document.getElementById("ok");
-
-  // sécurité : si le SDK n’est pas chargé (bloqueur ou CDN), on évite l’erreur
-  if (!window.emailjs) {
-    console.error("EmailJS SDK not loaded");
-  }
-
-  F.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    // validation simple
-    let allOk=true;
-    const need = [['#name','#e-name'],['#email','#e-email'],['#product','#e-product'],['#consent','#e-consent']];
-    need.forEach(([f,err])=>{
-      const el=$(f), er=$(err);
-      const valid = (el.type==='checkbox') ? el.checked : !!el.value.trim();
-      er.style.display = valid?'none':'block';
-      if(!valid) allOk=false;
-    });
-    if (F.company && F.company.value) allOk=false; // honeypot
-    if(!allOk) return;
-
-    BTN.setAttribute('aria-busy','true');
-    try{
-      if (!window.emailjs) throw new Error('EmailJS SDK not loaded');
-      const res = await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, F);
-      console.log('EmailJS success:', res);
-      OK.style.display='block';
-      F.reset();
-      populateProducts(); // repop après reset
-    }catch(err){
-      console.error('EmailJS error:', err);
-      // Fallback mailto propre
-      const name    = encodeURIComponent($('#name').value.trim());
-      const email   = encodeURIComponent($('#email').value.trim());
-      const phone   = encodeURIComponent($('#phone').value.trim());
-      const segRaw  = $('#segment').value;
-      const seg     = segRaw==='corp' ? (lang==='en'?'Business':'Entreprise') : (lang==='en'?'Individual':'Particulier');
-      const product = encodeURIComponent($('#product').value);
-      const topic   = encodeURIComponent($('#topic').value.trim());
-      const message = encodeURIComponent($('#message').value.trim());
-
-      const lines = [
-        (lang==='en'?'Name: ':'Nom : ') + decodeURIComponent(name),
-        'Email: ' + decodeURIComponent(email),
-        (lang==='en'?'Phone: ':'Téléphone : ') + decodeURIComponent(phone),
-        (lang==='en'?'Segment: ':'Vous êtes : ') + seg,
-        (lang==='en'?'Product: ':'Produit : ') + decodeURIComponent(product),
-        (lang==='en'?'Subject: ':'Objet : ') + decodeURIComponent(topic || '—'),
-        '',
-        (lang==='en'?'Message:':'Message :'),
-        decodeURIComponent(message || '—')
-      ];
-      const subject = encodeURIComponent(
-        (lang==='en'?'Quote / Info — ':'Demande devis / info — ')
-        + seg + ' : ' + decodeURIComponent(product)
-      );
-      const body = encodeURIComponent(lines.join('\\n'));
-      const mailto = `mailto:contact@riskalia.ma?subject=${subject}&body=${body}`;
-      alert(lang==='en'?'EmailJS failed, opening your mail app.':'Erreur EmailJS, ouverture de votre application mail.');
-      window.location.href = mailto;
-    }finally{
-      BTN.removeAttribute('aria-busy');
-    }
-  });
+  try{ if(!window.I18N) throw new Error('I18N not loaded'); applyTexts(); initUI(); }
+  catch(e){ console.error(e); document.documentElement.lang='fr'; }
 });
 </script>
+
+<!-- Dropdown (accessibility + mobile/desktop) -->
+<script>
+(function(){
+  const li = document.querySelector('#menu li.dropdown');
+  const trigger = li?.querySelector('a.has-caret');
+  if(!li || !trigger) return;
+
+  function open(){ li.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+  function close(){ li.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+
+  function toggleMobile(e){
+    if (window.innerWidth <= 900){
+      e.preventDefault();
+      li.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', li.classList.contains('open') ? 'true' : 'false');
+    }
+  }
+
+  trigger.addEventListener('click', toggleMobile);
+  trigger.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      if (window.innerWidth <= 900) toggleMobile(e); else open();
+    } else if(e.key==='Escape'){ close(); trigger.focus(); }
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ close(); } });
+
+  let timer;
+  li.addEventListener('mouseenter', ()=>{ if (window.innerWidth > 900){ clearTimeout(timer); open(); }});
+  li.addEventListener('mouseleave', ()=>{ if (window.innerWidth > 900){ timer=setTimeout(close, 180); }});
+  window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ close(); } });
+})();
+</script>
+
+<!-- ======= NAV SEARCH (identique aux autres pages) ======= -->
+<script>
+function setSearchPlaceholder(){
+  const input = document.getElementById('nav-search-input');
+  if(!input) return;
+  const p = (typeof t === 'function')
+    ? (t('ui.search') || t('search.placeholder') || null)
+    : null;
+  input.placeholder = p || (document.documentElement.lang === 'en' ? 'Search…' :
+                            document.documentElement.lang === 'ar' ? 'ابحث…' : 'Rechercher…');
+  input.setAttribute('aria-label', input.placeholder.replace(/[.…]+$/,''));
+}
+
+/* Tiny matcher (title + tags) */
+function navSearchFilter(q, lang){
+  if(!q) return [];
+  const n = q.trim().toLowerCase();
+  const L = lang || document.documentElement.lang || 'fr';
+  return NAV_SEARCH_INDEX
+    .map(item=>{
+      const title = item.title[L] || item.title.fr || '';
+      const hay = [title].concat(item.tags || []).join(' ').toLowerCase();
+      const score = hay.includes(n) ? 0 :
+                   hay.split(' ').some(w=>w.startsWith(n)) ? 1 :
+                   hay.indexOf(n) >= 0 ? 2 : 99;
+      return {item, title, score};
+    })
+    .filter(x=>x.score<99)
+    .sort((a,b)=>a.score-b.score)
+    .slice(0,8)
+    .map(x=>x.item);
+}
+
+/* Render + keyboard loop */
+(function initNavSearch(){
+  const box   = document.querySelector('.nav-search');
+  const input = document.getElementById('nav-search-input');
+  const list  = document.getElementById('nav-search-list');
+  if(!box || !input || !list) return;
+
+  setSearchPlaceholder();
+
+  let cur = -1;       // highlighted index
+  let opts = [];      // current results
+  let open = false;   // panel state
+
+  function openList(){
+    if (!open){
+      open = true;
+      box.setAttribute('aria-expanded','true');
+      list.setAttribute('aria-hidden','false');
+      list.style.display='block';
+    }
+  }
+  function closeList(){
+    open = false; cur = -1; list.innerHTML='';
+    box.setAttribute('aria-expanded','false');
+    list.setAttribute('aria-hidden','true');
+    list.style.display='none';
+  }
+  function highlight(i){
+    const nodes = [...list.querySelectorAll('[role="option"]')];
+    nodes.forEach((li,idx)=> li.setAttribute('aria-selected', idx===i ? 'true' : 'false'));
+    cur = i;
+  }
+  function go(iDelta){
+    if(!opts.length) return;
+    const L = opts.length;
+    let i = (cur + iDelta + L) % L;
+    highlight(i);
+    const node = list.querySelectorAll('[role="option"]')[i];
+    node?.scrollIntoView({block:'nearest'});
+  }
+  function commit(i){
+    const target = opts[i];
+    if(!target) return;
+    if(target.url.includes('#')) {
+      const [page, anchor] = target.url.split('#');
+      if(!page || window.location.pathname.includes(page)) {
+        document.getElementById(anchor)?.scrollIntoView({behavior: 'smooth'});
+      } else {
+        window.location.href = target.url;
+      }
+    } else {
+      window.location.assign(target.url);
+    }
+  }
+  function renderList(items){
+    const L = document.documentElement.lang || 'fr';
+    list.innerHTML = items.map((opt,idx)=>{
+      const displayUrl = opt.url.replace(/\.html$/, '');
+      return `<li role="option" id="nav-opt-${idx}" aria-selected="${idx===0?'true':'false'}" data-idx="${idx}">
+        <span class="opt-kicker">${opt.title[L] || opt.title.fr}</span>
+        <span class="opt-sub">${displayUrl}</span>
+      </li>`;
+    }).join('');
+    cur = items.length ? 0 : -1;
+    if(items.length){ openList(); sizeDropdown(); } else { closeList(); }
+  }
+  function render(q){
+    opts = navSearchFilter(q, document.documentElement.lang);
+    renderList(opts);
+  }
+  function renderPopular(){
+    opts = NAV_SEARCH_INDEX.slice(0, 6);
+    renderList(opts);
+  }
+  function updateHasValue(){
+    box.toggleAttribute('data-has-value', !!input.value.trim());
+  }
+  list.addEventListener('mousemove', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    highlight(parseInt(li.dataset.idx,10));
+  });
+  list.addEventListener('mousedown', (e)=>{
+    const li = e.target.closest('[role="option"]');
+    if(!li) return;
+    e.preventDefault(); commit(parseInt(li.dataset.idx,10));
+  });
+  input.addEventListener('input', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1){ render(q); } else { renderPopular(); }
+  });
+  input.addEventListener('focus', ()=>{
+    updateHasValue();
+    const q = input.value.trim();
+    if(q.length >= 1) render(q);
+    else renderPopular();
+  });
+  document.addEventListener('click', (e)=>{
+    if(!box.contains(e.target)) closeList();
+  });
+  input.addEventListener('blur', ()=>{
+    setTimeout(()=>{ if(!box.contains(document.activeElement)) closeList(); }, 150);
+  });
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(!open){ const q=input.value.trim(); q?render(q):renderPopular(); } else go(+1); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); if(open) go(-1); }
+    else if(e.key==='Enter'){ if(open && cur>=0){ e.preventDefault(); commit(cur); } }
+    else if(e.key==='Escape'){ closeList(); }
+    else if(e.key==='Tab' && open){ e.preventDefault(); if(e.shiftKey) go(-1); else go(+1); }
+  });
+
+  document.addEventListener('DOMContentLoaded', setSearchPlaceholder);
+  (window._onLangChanged = function(){ setSearchPlaceholder(); })();
+})();
+</script>
+
+<!-- Dropdown sizing/alignment helpers -->
+<script>
+function alignDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  list.style.left = '0';
+  list.style.right = 'auto';
+
+  const r = list.getBoundingClientRect();
+  if (r.right > window.innerWidth){
+    list.style.left = 'auto';
+    list.style.right = '0';
+  }
+}
+function sizeDropdown(){
+  const list = document.getElementById('nav-search-list');
+  const box  = document.querySelector('.nav-search');
+  if(!list || !box) return;
+
+  let widest = 0;
+  list.querySelectorAll('li[role="option"]').forEach(li=>{
+    widest = Math.max(widest, li.scrollWidth);
+  });
+
+  const boxRect = box.getBoundingClientRect();
+  const spaceRight = window.innerWidth - boxRect.left - 16; // margin
+  const maxAllowed = Math.min(spaceRight, 800, window.innerWidth * 0.9);
+  const minAllowed = box.clientWidth;
+
+  list.style.width = Math.max(minAllowed, Math.min(widest + 20, maxAllowed)) + 'px';
+  alignDropdown();
+}
+window.addEventListener('resize', ()=>{
+  const list = document.getElementById('nav-search-list');
+  if (list && list.getAttribute('aria-hidden') !== 'true'){
+    sizeDropdown();
+  }
+});
+</script>
+
 </body>
 </html>
-
